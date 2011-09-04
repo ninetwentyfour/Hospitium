@@ -1,0 +1,90 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @animal.name %>
+</p>
+
+<p>
+  <b>Uuid:</b>
+  <%= @animal.uuid %>
+</p>
+
+<p>
+  <b>Previous name:</b>
+  <%= @animal.previous_name %>
+</p>
+
+<p>
+  <b>Species:</b>
+  <%= @animal.species %>
+</p>
+
+<p>
+  <b>Sex:</b>
+  <%= @animal.sex %>
+</p>
+
+<p>
+  <b>Spay neuter:</b>
+  <%= @animal.spay_neuter %>
+</p>
+
+<p>
+  <b>Color:</b>
+  <%= @animal.color %>
+</p>
+
+<p>
+  <b>Age:</b>
+  <%= @animal.age %>
+</p>
+
+<p>
+  <b>Biter:</b>
+  <%= @animal.biter %>
+</p>
+
+<p>
+  <b>Special needs:</b>
+  <%= @animal.special_needs %>
+</p>
+
+<p>
+  <b>Diet:</b>
+  <%= @animal.diet %>
+</p>
+
+<p>
+  <b>Date of intake:</b>
+  <%= @animal.date_of_intake %>
+</p>
+
+<p>
+  <b>Date of well check:</b>
+  <%= @animal.date_of_well_check %>
+</p>
+
+<p>
+  <b>Shelter:</b>
+  <%= @animal.shelter %>
+</p>
+
+<p>
+  <b>Deceased:</b>
+  <%= @animal.deceased %>
+</p>
+
+<p>
+  <b>Deceased reason:</b>
+  <%= @animal.deceased_reason %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @animal.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_animal_path(@animal) %> |
+<%= link_to 'Back', animals_path %>

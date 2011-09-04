@@ -1,0 +1,37 @@
+<h1>Listing adoption_contacts</h1>
+
+<table>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Uuid</th>
+    <th>Address</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Animal</th>
+    <th>Adopted date</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @adoption_contacts.each do |adoption_contact| %>
+  <tr>
+    <td><%= adoption_contact.first_name %></td>
+    <td><%= adoption_contact.last_name %></td>
+    <td><%= adoption_contact.uuid %></td>
+    <td><%= adoption_contact.address %></td>
+    <td><%= adoption_contact.phone %></td>
+    <td><%= adoption_contact.email %></td>
+    <td><%= adoption_contact.animal %></td>
+    <td><%= adoption_contact.adopted_date %></td>
+    <td><%= link_to 'Show', adoption_contact %></td>
+    <td><%= link_to 'Edit', edit_adoption_contact_path(adoption_contact) %></td>
+    <td><%= link_to 'Destroy', adoption_contact, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Adoption contact', new_adoption_contact_path %>

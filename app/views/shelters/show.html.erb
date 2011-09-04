@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @shelter.name %>
+</p>
+
+<p>
+  <b>Uuid:</b>
+  <%= @shelter.uuid %>
+</p>
+
+<p>
+  <b>Contact first:</b>
+  <%= @shelter.contact_first %>
+</p>
+
+<p>
+  <b>Contact last:</b>
+  <%= @shelter.contact_last %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @shelter.address %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @shelter.phone %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @shelter.email %>
+</p>
+
+<p>
+  <b>Website:</b>
+  <%= @shelter.website %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @shelter.notes %>
+</p>
+
+
+<%= link_to 'Edit', edit_shelter_path(@shelter) %> |
+<%= link_to 'Back', shelters_path %>

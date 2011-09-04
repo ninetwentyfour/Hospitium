@@ -1,0 +1,55 @@
+<h1>Listing animals</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Uuid</th>
+    <th>Previous name</th>
+    <th>Species</th>
+    <th>Sex</th>
+    <th>Spay neuter</th>
+    <th>Color</th>
+    <th>Age</th>
+    <th>Biter</th>
+    <th>Special needs</th>
+    <th>Diet</th>
+    <th>Date of intake</th>
+    <th>Date of well check</th>
+    <th>Shelter</th>
+    <th>Deceased</th>
+    <th>Deceased reason</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @animals.each do |animal| %>
+  <tr>
+    <td><%= animal.name %></td>
+    <td><%= animal.uuid %></td>
+    <td><%= animal.previous_name %></td>
+    <td><%= animal.species %></td>
+    <td><%= animal.sex %></td>
+    <td><%= animal.spay_neuter %></td>
+    <td><%= animal.color %></td>
+    <td><%= animal.age %></td>
+    <td><%= animal.biter %></td>
+    <td><%= animal.special_needs %></td>
+    <td><%= animal.diet %></td>
+    <td><%= animal.date_of_intake %></td>
+    <td><%= animal.date_of_well_check %></td>
+    <td><%= animal.shelter %></td>
+    <td><%= animal.deceased %></td>
+    <td><%= animal.deceased_reason %></td>
+    <td><%= animal.status %></td>
+    <td><%= link_to 'Show', animal %></td>
+    <td><%= link_to 'Edit', edit_animal_path(animal) %></td>
+    <td><%= link_to 'Destroy', animal, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Animal', new_animal_path %>

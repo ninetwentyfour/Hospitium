@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  clinic_name: MyString
+  uuid: MyString
+  address: MyString
+  phone: MyString
+  email: MyString
+  website: MyString
+  hours: MyString
+  emergency: MyString
+  organization: 
+
+two:
+  clinic_name: MyString
+  uuid: MyString
+  address: MyString
+  phone: MyString
+  email: MyString
+  website: MyString
+  hours: MyString
+  emergency: MyString
+  organization: 

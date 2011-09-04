@@ -1,0 +1,37 @@
+<h1>Listing relinquishment_contacts</h1>
+
+<table>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Uuid</th>
+    <th>Address</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Animal</th>
+    <th>Reason</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @relinquishment_contacts.each do |relinquishment_contact| %>
+  <tr>
+    <td><%= relinquishment_contact.first_name %></td>
+    <td><%= relinquishment_contact.last_name %></td>
+    <td><%= relinquishment_contact.uuid %></td>
+    <td><%= relinquishment_contact.address %></td>
+    <td><%= relinquishment_contact.phone %></td>
+    <td><%= relinquishment_contact.email %></td>
+    <td><%= relinquishment_contact.animal %></td>
+    <td><%= relinquishment_contact.reason %></td>
+    <td><%= link_to 'Show', relinquishment_contact %></td>
+    <td><%= link_to 'Edit', edit_relinquishment_contact_path(relinquishment_contact) %></td>
+    <td><%= link_to 'Destroy', relinquishment_contact, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Relinquishment contact', new_relinquishment_contact_path %>

@@ -1,0 +1,39 @@
+<h1>Listing shelters</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Uuid</th>
+    <th>Contact first</th>
+    <th>Contact last</th>
+    <th>Address</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Website</th>
+    <th>Notes</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @shelters.each do |shelter| %>
+  <tr>
+    <td><%= shelter.name %></td>
+    <td><%= shelter.uuid %></td>
+    <td><%= shelter.contact_first %></td>
+    <td><%= shelter.contact_last %></td>
+    <td><%= shelter.address %></td>
+    <td><%= shelter.phone %></td>
+    <td><%= shelter.email %></td>
+    <td><%= shelter.website %></td>
+    <td><%= shelter.notes %></td>
+    <td><%= link_to 'Show', shelter %></td>
+    <td><%= link_to 'Edit', edit_shelter_path(shelter) %></td>
+    <td><%= link_to 'Destroy', shelter, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Shelter', new_shelter_path %>

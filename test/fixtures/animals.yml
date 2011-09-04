@@ -1,0 +1,39 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  uuid: MyString
+  previous_name: MyString
+  species: 
+  sex: MyString
+  spay_neuter: MyString
+  color: MyString
+  age: 1
+  biter: MyString
+  special_needs: MyText
+  diet: MyText
+  date_of_intake: 2011-09-04 15:32:28
+  date_of_well_check: 2011-09-04 15:32:28
+  shelter: 
+  deceased: 2011-09-04 15:32:28
+  deceased_reason: MyText
+  status: MyString
+
+two:
+  name: MyString
+  uuid: MyString
+  previous_name: MyString
+  species: 
+  sex: MyString
+  spay_neuter: MyString
+  color: MyString
+  age: 1
+  biter: MyString
+  special_needs: MyText
+  diet: MyText
+  date_of_intake: 2011-09-04 15:32:28
+  date_of_well_check: 2011-09-04 15:32:28
+  shelter: 
+  deceased: 2011-09-04 15:32:28
+  deceased_reason: MyText
+  status: MyString

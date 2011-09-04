@@ -1,0 +1,85 @@
+<%= form_for(@animal) do |f| %>
+  <% if @animal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@animal.errors.count, "error") %> prohibited this animal from being saved:</h2>
+
+      <ul>
+      <% @animal.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :uuid %><br />
+    <%= f.text_field :uuid %>
+  </div>
+  <div class="field">
+    <%= f.label :previous_name %><br />
+    <%= f.text_field :previous_name %>
+  </div>
+  <div class="field">
+    <%= f.label :species %><br />
+    <%= f.text_field :species %>
+  </div>
+  <div class="field">
+    <%= f.label :sex %><br />
+    <%= f.text_field :sex %>
+  </div>
+  <div class="field">
+    <%= f.label :spay_neuter %><br />
+    <%= f.text_field :spay_neuter %>
+  </div>
+  <div class="field">
+    <%= f.label :color %><br />
+    <%= f.text_field :color %>
+  </div>
+  <div class="field">
+    <%= f.label :age %><br />
+    <%= f.text_field :age %>
+  </div>
+  <div class="field">
+    <%= f.label :biter %><br />
+    <%= f.text_field :biter %>
+  </div>
+  <div class="field">
+    <%= f.label :special_needs %><br />
+    <%= f.text_area :special_needs %>
+  </div>
+  <div class="field">
+    <%= f.label :diet %><br />
+    <%= f.text_area :diet %>
+  </div>
+  <div class="field">
+    <%= f.label :date_of_intake %><br />
+    <%= f.datetime_select :date_of_intake %>
+  </div>
+  <div class="field">
+    <%= f.label :date_of_well_check %><br />
+    <%= f.datetime_select :date_of_well_check %>
+  </div>
+  <div class="field">
+    <%= f.label :shelter %><br />
+    <%= f.text_field :shelter %>
+  </div>
+  <div class="field">
+    <%= f.label :deceased %><br />
+    <%= f.datetime_select :deceased %>
+  </div>
+  <div class="field">
+    <%= f.label :deceased_reason %><br />
+    <%= f.text_area :deceased_reason %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

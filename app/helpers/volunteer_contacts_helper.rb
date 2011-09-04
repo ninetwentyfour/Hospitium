@@ -1,0 +1,2 @@
+module VolunteerContactsHelper
+end
