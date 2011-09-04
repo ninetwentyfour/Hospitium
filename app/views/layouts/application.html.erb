@@ -1,51 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AnimalTracker</title>
+  <title>Animal Shelter Management Software | Hospitium</title>
   <%= stylesheet_link_tag :all %>
   <%= csrf_meta_tag %>
 <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-1.2.0.min.css">
 </head>
 <body>
-	<div class="topbar">
-	      <div class="topbar-inner">
-	        <div class="container">
-	          <h3><a href="#">Project Name</a></h3>
-	          <ul class="nav">
-	            <li class="active"><a href="#">Home</a></li>
-	            <li><a href="#">Link</a></li>
-	            <li><a href="#">Link</a></li>
-	            <li><a href="#">Link</a></li>
-	            <li class="dropdown">
-	              <a class="dropdown-toggle" href="#">Dropdown</a>
-	              <ul class="dropdown-menu">
-	                <li><a href="#">Secondary link</a></li>
-	                <li><a href="#">Something else here</a></li>
-	                <li class="divider"></li>
-	                <li><a href="#">Another link</a></li>
-	              </ul>
-	            </li>
-	          </ul>
-	          <form action="">
-	            <input type="text" placeholder="Search">
-	          </form>
-	          <ul class="nav secondary-nav">
-	            <li class="dropdown">
-	              <a class="dropdown-toggle" href="#">Dropdown</a>
-	              <ul class="dropdown-menu">
-	                <li><a href="#">Secondary link</a></li>
-	                <li><a href="#">Something else here</a></li>
-	                <li class="divider"></li>
-	                <li><a href="#">Another link</a></li>
-	              </ul>
-	            </li>
-	          </ul>
-	        </div>
-	      </div><!-- /topbar-inner -->
-	    </div>
-<div class="container">
-	<%= yield %>
+
+<div class="topbar">
+  <div class="fill">
+    <div class="container">
+      <h3><a href="/">Hospitium</a></h3>
+      <ul class="nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+			<ul class="nav secondary-nav">
+				<li><a href="/users/sign_in">Sign In</a></li>
+      </ul>
+    </div>
+  </div>
 </div>
+
+<div class="container">
+
+	<%= yield %>
+
+  <footer>
+    <p>Created by AppleWood Rescue</p>
+  </footer>
+
+</div> <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <%= javascript_include_tag :all %>
 </body>
