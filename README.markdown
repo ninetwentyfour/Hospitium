@@ -81,7 +81,7 @@ Todo:
 
 - click to call integration with twilio
 
-- show data that belongs to user only
+- <del>show data that belongs to user only</del>
 
 - <del>make more options dropdowns and checkboxes</del>
 
@@ -107,7 +107,7 @@ Todo:
 
 - city state and zip fields
 
-
+- <del>make new users default to admin role</del>
 
 
 * * *

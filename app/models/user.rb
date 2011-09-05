@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+  after_create :add_default_role
   
   # settings for rails admin views
   rails_admin do
@@ -37,5 +38,11 @@ class User < ActiveRecord::Base
   
   def role?(role)
       return !!self.roles.find_by_name(role.to_s.camelize)
+  end
+  
+  def add_default_role
+    @user = self.id
+    @permission = Permission.new
+    @permission.update_attributes(:user_id => @user, :role_id => 2) 
   end
 end
