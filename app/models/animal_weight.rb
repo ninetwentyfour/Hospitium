@@ -1,6 +1,7 @@
 class AnimalWeight < ActiveRecord::Base
-  #belongs_to :animal
   has_one :animal
+  before_create :create_uuid
+  
   # settings for rails admin views
   rails_admin do
     object_label_method do
@@ -24,4 +25,10 @@ class AnimalWeight < ActiveRecord::Base
   def show_weight_label_method
     "#{self.weight}"
   end
+  
+  #create uuid
+  def create_uuid()
+    self.uuid = UUIDTools::UUID.random_create.to_s
+  end
+  
 end
