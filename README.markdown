@@ -65,6 +65,10 @@ Todo:
 
 - Make age calculate over time. 
 
+- Post animals to other sites
+
+- Animal Weight MVC
+
 * * *
 
 
