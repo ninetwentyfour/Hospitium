@@ -41,6 +41,7 @@ GEM
     arel (2.0.10)
     bcrypt-ruby (3.0.0)
     builder (2.1.2)
+    cancan (1.6.5)
     devise (1.4.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -92,6 +93,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  cancan
   devise
   mysql2 (< 0.3)
   rails (= 3.0.10)

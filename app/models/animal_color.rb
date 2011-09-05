@@ -1,5 +1,5 @@
 class AnimalColor < ActiveRecord::Base
-  
+  belongs_to :organization
   # settings for rails admin views
   rails_admin do
     object_label_method do

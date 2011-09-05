@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110905202223) do
+ActiveRecord::Schema.define(:version => 20110905213745) do
 
   create_table "adoption_contacts", :force => true do |t|
     t.string   "first_name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20110905202223) do
     t.string   "uuid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "organization_id"
   end
 
   create_table "animal_weights", :force => true do |t|
@@ -73,6 +74,18 @@ ActiveRecord::Schema.define(:version => 20110905202223) do
     t.datetime "updated_at"
   end
 
+  create_table "organizations_users", :id => false, :force => true do |t|
+    t.integer "organization_id"
+    t.integer "user_id"
+  end
+
+  create_table "permissions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "rails_admin_histories", :force => true do |t|
     t.string   "message"
     t.string   "username"
@@ -95,6 +108,12 @@ ActiveRecord::Schema.define(:version => 20110905202223) do
     t.string   "email"
     t.integer  "animal_id"
     t.text     "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

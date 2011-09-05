@@ -2,7 +2,8 @@ class AdoptionContactsController < ApplicationController
   # GET /adoption_contacts
   # GET /adoption_contacts.xml
   def index
-    @adoption_contacts = AdoptionContact.all
+    #@adoption_contacts = AdoptionContact.all
+    @adoption_contacts = AdoptionContact.find(:all, :conditions => {:animal_id => {:organization_id => current_user.organization_ids}})
 
     respond_to do |format|
       format.html # index.html.erb

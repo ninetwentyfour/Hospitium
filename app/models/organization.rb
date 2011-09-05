@@ -1,4 +1,5 @@
 class Organization < ActiveRecord::Base
+    has_and_belongs_to_many :users
     before_create :create_uuid
     
     # settings for rails admin views

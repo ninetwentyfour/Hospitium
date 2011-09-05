@@ -18,6 +18,10 @@ AnimalTracker::Application.routes.draw do
   resources :animals
 
   resources :organizations
+  
+  resources :permissions
+  
+  resources :roles
 
   devise_for :users
   get "home/index"

@@ -1,5 +1,5 @@
 class AnimalWeight < ActiveRecord::Base
-  has_one :animal
+  belongs_to :animal
   before_create :create_uuid
   
   # settings for rails admin views
