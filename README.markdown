@@ -1,0 +1,66 @@
+* * *
+Hospitium
+========
+
+* * *
+
+Created By: [Travis Berry](http://www.travisberry.com), [Apple Wood Rescue](http://www.applewoodrescue.org)
+
+Licensed under the MIT license: [http://www.opensource.org/licenses/mit-license.php](http://www.opensource.org/licenses/mit-license.php)
+
+* * *
+
+Overview:
+========================
+
+* * *
+
+Hospitium is the brain child of Apple Wood Rescue, a small animal rescue in Denver Colorado. Developed to fit the needs of the rescue, it has since been open sourced for anyone to use.
+
+This program is completely free. You can modify it all you want and you can share it with anyone.
+
+A free hosted solution is coming soon.
+
+You can support the project by:
+
+- Donating to [Apple Wood Rescue](http://www.applewoodrescue.org/donate/)
+
+- Contributing to the development of Hospitium on [github](https://github.com/ninetwentyfour/Hospitium).
+
+
+* * *
+
+Install:
+========================
+
+* * *
+
+Set db connection in `/config/database.yml`
+
+`$ cd /foo/bar/app_location/`
+
+`$ bundle install`
+
+`$ rake db:migrate`
+
+`$ rails server`
+
+Go to [http://localhost:3000](http://localhost:3000)
+
+Sign up for a user if first install or empty db
+
+Dashboard can be found at [http://localhost:3000/admin](http://localhost:3000/admin)
+
+
+* * *
+
+Todo:
+======================== 
+
+* * *
+
+- Make age calculate over time. 
+
+* * *
+
+
