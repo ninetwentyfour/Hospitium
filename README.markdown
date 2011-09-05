@@ -75,6 +75,22 @@ Todo:
 
 - add checkbox for public on animals and create pubic adopt list.
 
+- twitter integration
+
+- post to pet finder and other animal sites
+
+- click to call integration with twilio
+
+- show data that belongs to user only
+
+- make more options dropdowns and checkboxes
+
+- hide uuids in views
+
+- setup emails
+
+- create graphs of info and stats like average time in shelter etc
+
 * * *
 
 
