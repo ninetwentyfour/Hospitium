@@ -9,3 +9,10 @@
 	}
 * html .clearfix             { zoom: 1; } /* IE6 */
 *:first-child+html .clearfix { zoom: 1; } /* IE7 */
+#slider {
+/*    margin:100px auto 0 auto;
+*/    width:560px; /* Make sure your images are the same size */
+    height:290px; /* Make sure your images are the same size */
+margin-left:10px;
+border:10px solid #fff;
+}

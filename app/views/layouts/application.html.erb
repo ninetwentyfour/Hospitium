@@ -14,7 +14,7 @@
       <h3><a href="/">Hospitium</a></h3>
       <ul class="nav">
         <li><a href="/">Home</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="/about">About</a></li>
       </ul>
 			<ul class="nav secondary-nav">
 				<li><a href="/users/sign_in">Sign In</a></li>
@@ -28,11 +28,17 @@
 	<%= yield %>
 
   <footer>
-    <p>Created by AppleWood Rescue</p>
+    <p>Created by <a href="http://www.applewoodrescue.org/">Apple Wood Rescue</a></p>
   </footer>
 
 </div> <!-- /container -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 <%= javascript_include_tag :all %>
+<script type="text/javascript">
+$(window).load(function() {
+    //$('#slider').nivoSlider();
+$('#slider').jqFancyTransitions({ width: 560, height: 290 });
+});
+</script>
 </body>
 </html>
