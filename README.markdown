@@ -109,6 +109,7 @@ Todo:
 
 - <del>make new users default to admin role</del>
 
+- force unique names on organizations and emails
 
 * * *
 
