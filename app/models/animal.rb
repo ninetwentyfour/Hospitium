@@ -2,6 +2,7 @@ class Animal < ActiveRecord::Base
   belongs_to :organization
   belongs_to :species
   belongs_to :shelter
+  belongs_to :animal_color
   has_many :animal_weights
   has_one :relinquishment_contact
   
@@ -22,7 +23,7 @@ class Animal < ActiveRecord::Base
       field :species
       field :age
       field :sex, :enum
-      field :color, :enum
+      field :animal_color
       field :spay_neuter, :enum
       field :biter, :enum
       field :date_of_intake

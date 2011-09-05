@@ -67,7 +67,7 @@ Todo:
 
 - Post animals to other sites
 
-- Animal Weight MVC
+- <del>Animal Weight MVC</del>
 
 - facebook integration
 
@@ -83,7 +83,7 @@ Todo:
 
 - show data that belongs to user only
 
-- make more options dropdowns and checkboxes
+- <del>make more options dropdowns and checkboxes</del>
 
 - <del>hide uuids in views</del>
 
@@ -96,6 +96,16 @@ Todo:
 - add current location to animal
 
 - <del>add adopted date to animal</del>
+
+- force all models to redirect to /admin
+
+- add versioning and undo / redo
+
+- <del>move colors to own mvc</del>
+
+- add photo and video uploads
+
+- city state and zip fields
 
 * * *
 
