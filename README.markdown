@@ -95,6 +95,8 @@ Todo:
 
 - add current location to animal
 
+- add adopted date to animal
+
 * * *
 
 

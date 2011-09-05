@@ -3,6 +3,7 @@ class Animal < ActiveRecord::Base
   belongs_to :species
   belongs_to :shelter
   has_many :animal_weights
+  has_one :relinquishment_contact
   
   before_create :create_uuid
   
@@ -32,9 +33,27 @@ class Animal < ActiveRecord::Base
       field :diet
       field :deceased
       field :deceased_reason
+      group :animal_weights
     end
     edit do
-      exclude_fields :uuid
+      field :name
+      field :previous_name
+      field :status, :enum
+      field :species
+      field :age
+      field :sex, :enum
+      field :color, :enum
+      field :spay_neuter, :enum
+      field :biter, :enum
+      field :date_of_intake
+      field :date_of_well_check
+      field :organization
+      field :shelter
+      field :special_needs
+      field :diet
+      field :deceased
+      field :deceased_reason
+      group :animal_weights
     end
     list do
       exclude_fields :uuid
