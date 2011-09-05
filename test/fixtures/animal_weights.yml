@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  animal: 
+  uuid: MyString
+  weight: 1
+
+two:
+  animal: 
+  uuid: MyString
+  weight: 1

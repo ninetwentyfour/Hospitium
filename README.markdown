@@ -63,7 +63,7 @@ Todo:
 
 * * *
 
-- Make age calculate over time. 
+- Make age calculate over time. (possibly just use date of birth if too hard to track for now)
 
 - Post animals to other sites
 
@@ -90,6 +90,10 @@ Todo:
 - setup emails
 
 - create graphs of info and stats like average time in shelter etc
+
+- mobile layouts
+
+- add current location to animal
 
 * * *
 

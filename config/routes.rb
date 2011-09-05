@@ -1,4 +1,6 @@
 AnimalTracker::Application.routes.draw do
+  resources :animal_weights
+
   resources :vet_contacts
 
   resources :volunteer_contacts

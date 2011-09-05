@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110904220023) do
+ActiveRecord::Schema.define(:version => 20110905184656) do
 
   create_table "adoption_contacts", :force => true do |t|
     t.string   "first_name"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(:version => 20110904220023) do
     t.string   "email"
     t.integer  "animal_id"
     t.datetime "adopted_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "animal_weights", :force => true do |t|
+    t.integer  "animal_id"
+    t.string   "uuid"
+    t.integer  "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
