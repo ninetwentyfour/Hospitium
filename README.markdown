@@ -85,7 +85,7 @@ Todo:
 
 - make more options dropdowns and checkboxes
 
-- hide uuids in views
+- <del>hide uuids in views</del>
 
 - setup emails
 

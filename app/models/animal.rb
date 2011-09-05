@@ -31,6 +31,7 @@ class Animal < ActiveRecord::Base
       field :shelter
       field :special_needs
       field :diet
+      field :adopted_date
       field :deceased
       field :deceased_reason
       group :animal_weights
@@ -51,6 +52,7 @@ class Animal < ActiveRecord::Base
       field :shelter
       field :special_needs
       field :diet
+      field :adopted_date
       field :deceased
       field :deceased_reason
       group :animal_weights
