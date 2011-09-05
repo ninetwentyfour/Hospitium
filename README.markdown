@@ -69,6 +69,12 @@ Todo:
 
 - Animal Weight MVC
 
+- facebook integration
+
+- post to wordpress / tumblr 
+
+- add checkbox for public on animals and create pubic adopt list.
+
 * * *
 
 
