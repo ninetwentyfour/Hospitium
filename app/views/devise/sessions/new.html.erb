@@ -1,6 +1,8 @@
 <div class="hero-unit">
 <h2>Sign in</h2>
-
+<div class="alert-message block-message error">
+        <p><strong>Warning!</strong> This is still super beta software. Things are changing fast and you may lose data.</p>
+</div>
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-stacked"}) do |f| %>
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>
