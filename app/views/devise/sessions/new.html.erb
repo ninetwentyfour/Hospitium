@@ -4,10 +4,10 @@
         <p><strong>Warning!</strong> This is still super beta software. Things are changing fast and you may lose data.</p>
 </div>
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-stacked"}) do |f| %>
-  <div class="clearfix"><%= f.label :email %><br />
+  <div class="clearfix"><%= f.label :email %>
   <%= f.email_field :email %></div>
 
-  <div class="clearfix"><%= f.label :password %><br />
+  <div class="clearfix"><%= f.label :password %>
   <%= f.password_field :password %></div>
 
   <% if devise_mapping.rememberable? -%>
