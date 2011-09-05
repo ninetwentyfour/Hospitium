@@ -4,6 +4,8 @@ Hospitium
 
 * * *
 
+Warning! This is still super beta software. Things are changing fast and you may lose data.
+
 [http://hospitium.heroku.com/](http://hospitium.heroku.com/)
 
 Created By: [Travis Berry](http://www.travisberry.com), [Apple Wood Rescue](http://www.applewoodrescue.org)
