@@ -14,12 +14,24 @@ class Animal < ActiveRecord::Base
       exclude_fields :uuid
     end
     create do
-      exclude_fields :uuid
-      field :color, :enum
-      field :biter, :enum
-      field :spay_neuter, :enum
-      field :sex, :enum
+      #exclude_fields :uuid
+      field :name
+      field :previous_name
       field :status, :enum
+      field :species
+      field :age
+      field :sex, :enum
+      field :color, :enum
+      field :spay_neuter, :enum
+      field :biter, :enum
+      field :date_of_intake
+      field :date_of_well_check
+      field :organization
+      field :shelter
+      field :special_needs
+      field :diet
+      field :deceased
+      field :deceased_reason
     end
     edit do
       exclude_fields :uuid
