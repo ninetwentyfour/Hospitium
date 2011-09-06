@@ -1,11 +1,11 @@
 class Animal < ActiveRecord::Base
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" },
+  has_attached_file :image, 
     :storage => :s3,
     :bucket => 'hospitium-static',
     :s3_credentials => {
       :access_key_id => ENV['S3_KEY'],
       :secret_access_key => ENV['S3_SECRET']
-    }
+    },:styles => { :medium => "300x300>", :thumb => "100x100>" }
   belongs_to :organization
   belongs_to :species
   belongs_to :shelter
