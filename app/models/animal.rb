@@ -37,9 +37,6 @@ class Animal < ActiveRecord::Base
       field :deceased
       field :deceased_reason
       field :image, :paperclip_file
-      # field :image do
-      #   thumb_method :thumb 
-      # end
       group :animal_weights
     end
     edit do
@@ -61,6 +58,7 @@ class Animal < ActiveRecord::Base
       field :adopted_date
       field :deceased
       field :deceased_reason
+      field :image, :paperclip_file
       group :animal_weights
     end
     list do
