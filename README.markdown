@@ -103,13 +103,15 @@ Todo:
 
 - <del>move colors to own mvc</del>
 
-- add photo and video uploads
+- add photo and video uploads (got a simple paperclip running on animals - possibly to a separate model)
 
 - city state and zip fields
 
 - <del>make new users default to admin role</del>
 
 - force unique names on organizations and emails
+
+- user docs
 
 
 * * *
