@@ -1,7 +1,7 @@
 class Animal < ActiveRecord::Base
   has_attached_file :image, 
     :storage => :s3,
-    :s3_credentials => :s3_credentials => S3_CREDENTIALS,
+    :s3_credentials => S3_CREDENTIALS,
     :bucket => 'hospitium-static',
     :path => ":attachment/:id/:style/:filename",
     :styles => { :medium => "300x300>", :thumb => "100x100>" }
