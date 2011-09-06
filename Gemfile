@@ -12,6 +12,7 @@ gem 'uuidtools'
 gem 'cancan'
 gem "paperclip", "~> 2.4"
 gem 'aws-s3'
+gem 'haml'
 
 # Use unicorn as the web server
 # gem 'unicorn'
