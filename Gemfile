@@ -12,7 +12,7 @@ gem 'uuidtools'
 gem 'cancan'
 gem "paperclip", "~> 2.4"
 gem 'right_aws'
-gem 'aws-s3'
+gem 'aws-s3', :require => 'aws/s3'
 gem 'haml'
 
 # Use unicorn as the web server
