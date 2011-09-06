@@ -1,4 +1,11 @@
 class Animal < ActiveRecord::Base
+  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" },
+    :storage => :s3,
+    :bucket => 'hospitium-images',
+    :s3_credentials => {
+      :access_key_id => ENV['S3_KEY'],
+      :secret_access_key => ENV['S3_SECRET']
+    }
   belongs_to :organization
   belongs_to :species
   belongs_to :shelter
@@ -13,7 +20,7 @@ class Animal < ActiveRecord::Base
   # settings for rails admin views
   rails_admin do
     show do
-      exclude_fields :uuid
+      exclude_fields :uuid, :image_file_name, :image_content_type, :image_file_size, :image_updated_at
     end
     create do
       #exclude_fields :uuid
@@ -35,6 +42,10 @@ class Animal < ActiveRecord::Base
       field :adopted_date
       field :deceased
       field :deceased_reason
+      field :image, :paperclip_file
+      # field :image do
+      #   thumb_method :thumb 
+      # end
       group :animal_weights
     end
     edit do

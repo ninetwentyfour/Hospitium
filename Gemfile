@@ -10,6 +10,8 @@ gem 'devise' # Devise must be required before RailsAdmin
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git', :branch => 'rails-3.0'
 gem 'uuidtools'
 gem 'cancan'
+gem "paperclip", "~> 2.4"
+gem 'aws-s3'
 
 # Use unicorn as the web server
 # gem 'unicorn'

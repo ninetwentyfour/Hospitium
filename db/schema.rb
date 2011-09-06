@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110905213745) do
+ActiveRecord::Schema.define(:version => 20110906001950) do
 
   create_table "adoption_contacts", :force => true do |t|
     t.string   "first_name"
@@ -65,6 +65,12 @@ ActiveRecord::Schema.define(:version => 20110905213745) do
     t.integer  "organization_id"
     t.datetime "adopted_date"
     t.integer  "animal_color_id"
+    t.string   "animal_pic"
+    t.string   "image"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "organizations", :force => true do |t|
