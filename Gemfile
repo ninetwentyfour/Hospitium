@@ -11,6 +11,7 @@ gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git', :branch =>
 gem 'uuidtools'
 gem 'cancan'
 gem "paperclip", "~> 2.4"
+gem 'right_aws'
 gem 'aws-s3'
 gem 'haml'
 
