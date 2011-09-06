@@ -107,6 +107,7 @@ DEPENDENCIES
   aws-s3
   cancan
   devise
+  haml
   mysql2 (< 0.3)
   paperclip (~> 2.4)
   rails (= 3.0.10)
