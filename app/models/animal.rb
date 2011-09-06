@@ -55,7 +55,7 @@ class Animal < ActiveRecord::Base
       field :species
       field :age
       field :sex, :enum
-      field :color, :enum
+      field :animal_color
       field :spay_neuter, :enum
       field :biter, :enum
       field :date_of_intake
@@ -80,9 +80,9 @@ class Animal < ActiveRecord::Base
   end
   
   #drop down options for some fields
-  def color_enum
-     ['white', 'black', 'brown', 'gray', 'pink']
-  end
+  # def color_enum
+  #    ['white', 'black', 'brown', 'gray', 'pink']
+  # end
   
   def biter_enum
      ['No', 'Yes']
