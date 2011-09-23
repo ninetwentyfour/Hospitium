@@ -4,11 +4,11 @@
 	<% @animals.each do |animal| %>
 		<li class="singleAnimalAdoption clearfix">
 			<%- unless animal.image.url(:medium) == "/images/medium/missing.png" %>
-				<img src="<%= animal.image.url(:small) %>" width=300 height=300 align="left" class="adoptImage" />
+				<a href="<%= animal.image.url %>"><img src="<%= animal.image.url(:medium) %>" width=300 height=300 align="left" class="adoptImage" /></a>
 			<%- else %>
 				<img src="images/no-animal-photo.jpg" width=300 height=300 align="left" class="adoptImage" />
 			<% end %>
-			<h1><%= animal.name %></h1><h4><%= animal.species.name %></h4>
+			<h1><a href="animals/<%= animal.id %>"><%= animal.name %></a></h1><h4><%= animal.species.name %></h4>
 			<div class="otherAnimalInfo">
 				<p>Organization: <%= animal.organization.name %></p>
 				<p>Sex: <%= animal.sex %></p>

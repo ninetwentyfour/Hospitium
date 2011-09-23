@@ -119,6 +119,8 @@ Todo:
 
 - add organization contact info so people can contact about public animals
 
+- add more descriptions to labels in create and edit of all models
+
 
 * * *
 
