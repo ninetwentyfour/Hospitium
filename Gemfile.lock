@@ -98,6 +98,7 @@ GEM
     uuidtools (2.1.2)
     warden (1.0.5)
       rack (>= 1.0)
+    will_paginate (3.0.1)
     xml-simple (1.1.0)
 
 PLATFORMS
@@ -112,3 +113,4 @@ DEPENDENCIES
   rails (= 3.0.10)
   rails_admin!
   uuidtools
+  will_paginate (~> 3.0.0)

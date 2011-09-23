@@ -117,6 +117,8 @@ Todo:
 
 - style uploaded images and show pages
 
+- add organization contact info so people can contact about public animals
+
 
 * * *
 

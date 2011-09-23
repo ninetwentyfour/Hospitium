@@ -19,3 +19,11 @@ border:10px solid #fff;
 body{
 	padding-top: 40px;
 }
+.singleAnimalAdoption{
+	border:1px solid #DDDDDD;
+	padding:20px;
+	margin:60px;
+}
+.adoptImage{
+	margin-right:20px;
+}

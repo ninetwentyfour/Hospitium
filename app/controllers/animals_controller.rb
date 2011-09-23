@@ -2,7 +2,9 @@ class AnimalsController < ApplicationController
   # GET /animals
   # GET /animals.xml
   def index
-    @animals = Animal.all
+    #find animals that are public to show on animals for adoption page
+    @animals = Animal.paginate(:page => params[:page], :per_page => 10, :conditions => {'public' => 1})
+    #Post.paginate(:page => params[:page], :per_page => 30)
 
     respond_to do |format|
       format.html # index.html.erb

@@ -21,6 +21,7 @@ class Animal < ActiveRecord::Base
       field :name
       field :previous_name
       field :status, :enum
+      field :public
       field :species
       field :age
       field :sex, :enum
@@ -43,6 +44,7 @@ class Animal < ActiveRecord::Base
       field :name
       field :previous_name
       field :status, :enum
+      field :public
       field :species
       field :age
       field :sex, :enum

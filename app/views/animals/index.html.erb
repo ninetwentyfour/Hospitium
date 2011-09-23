@@ -1,6 +1,30 @@
-<h1>Listing animals</h1>
+<h1>Adopt an Animal!</h1>
 
-<table>
+<ul class="unstyled">
+	<% @animals.each do |animal| %>
+		<li class="singleAnimalAdoption clearfix">
+			<%- unless animal.image.url(:medium) == "/images/medium/missing.png" %>
+				<img src="<%= animal.image.url(:small) %>" width=300 height=300 align="left" class="adoptImage" />
+			<%- else %>
+				<img src="images/no-animal-photo.jpg" width=300 height=300 align="left" class="adoptImage" />
+			<% end %>
+			<h1><%= animal.name %></h1><h4><%= animal.species.name %></h4>
+			<div class="otherAnimalInfo">
+				<p>Organization: <%= animal.organization.name %></p>
+				<p>Sex: <%= animal.sex %></p>
+				<p>Age: <%= animal.age %></p>
+				<p>Spay/Neuter: <%= animal.spay_neuter %></p>
+				<p>Color: <%= animal.animal_color.color %></p>
+				<p>Special Needs: <%= animal.special_needs %></p>
+			</div>
+		</li>
+	<% end %>
+	<%= will_paginate @animals %>
+</ul>
+<p>
+	You can also access this page at /animals.json or /animals.xml if you would like to use this data in other ways.
+</p>
+<!--<table>
   <tr>
     <th>Name</th>
     <th>Uuid</th>
@@ -52,4 +76,4 @@
 
 <br />
 
-<%= link_to 'New Animal', new_animal_path %>
+<%= link_to 'New Animal', new_animal_path %>-->
