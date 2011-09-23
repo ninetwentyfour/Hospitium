@@ -10,7 +10,9 @@ Warning! This is still super beta software. Things are changing fast and you may
 
 Created By: [Travis Berry](http://www.travisberry.com), [Apple Wood Rescue](http://www.applewoodrescue.org)
 
-Licensed under the MIT license: [http://www.opensource.org/licenses/mit-license.php](http://www.opensource.org/licenses/mit-license.php)
+Hospitium is Licensed under the MIT license: [http://www.opensource.org/licenses/mit-license.php](http://www.opensource.org/licenses/mit-license.php)
+
+RoR, Rails Admin, Twitter Bootstrap, and others licensed under their respective licenses. 
 
 * * *
 
@@ -55,6 +57,8 @@ Sign up for a user if first install or empty db
 
 Dashboard can be found at [http://localhost:3000/admin](http://localhost:3000/admin)
 
+Hospitium uses Amazon s3 for file storage. It currently relies on `ENV['S3_SECRET']` and `ENV['S3_KEY']` being set. You can see an example of how to use for development [here](http://devcenter.heroku.com/articles/config-vars#local_setup).
+
 
 * * *
 
@@ -65,7 +69,7 @@ Todo:
 
 - Make age calculate over time. (possibly just use date of birth if too hard to track for now)
 
-- Post animals to other sites
+- post to pet finder and other animal sites
 
 - <del>Animal Weight MVC</del>
 
@@ -76,8 +80,6 @@ Todo:
 - add checkbox for public on animals and create pubic adopt list.
 
 - twitter integration
-
-- post to pet finder and other animal sites
 
 - click to call integration with twilio
 
@@ -112,6 +114,8 @@ Todo:
 - force unique names on organizations and emails
 
 - user docs
+
+- style uploaded images and show pages
 
 
 * * *
