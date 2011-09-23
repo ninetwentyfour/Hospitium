@@ -10,7 +10,7 @@
 			<% end %>
 			<h1><a href="animals/<%= animal.id %>"><%= animal.name %></a></h1><h4><%= animal.species.name %></h4>
 			<div class="otherAnimalInfo">
-				<p>Organization: <%= animal.organization.name %></p>
+				<p>Organization: <a href="/organizations/<%= animal.organization.id %>"><%= animal.organization.name %></a></p>
 				<p>Sex: <%= animal.sex %></p>
 				<p>Age: <%= animal.age %></p>
 				<p>Spay/Neuter: <%= animal.spay_neuter %></p>
