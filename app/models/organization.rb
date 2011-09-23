@@ -1,6 +1,7 @@
 class Organization < ActiveRecord::Base
     has_and_belongs_to_many :users
     before_create :create_uuid
+    validates_presence_of :address, :city, :state, :zip_code
     validates_uniqueness_of :name
     
     # settings for rails admin views

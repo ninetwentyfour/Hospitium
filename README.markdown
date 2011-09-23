@@ -125,6 +125,10 @@ Todo:
 
 - lots of testing
 
+- <del>make address required in organizations</del>
+
+- <del>show location on adopt list</del>
+
 * * *
 
 
