@@ -9,12 +9,17 @@
 			<img src="/images/no-animal-photo.jpg" width=300 height=300 style="float:right" class="adoptImage" />
 		<% end %>
 		<image src="<%= @animal.image.url(:medium) %>" style="float:right" />
-		<p>Organization: <%= @animal.organization.name %></p>
 		<p>Sex: <%= @animal.sex %></p>
 		<p>Age: <%= @animal.age %></p>
 		<p>Spay/Neuter: <%= @animal.spay_neuter %></p>
 		<p>Color: <%= @animal.animal_color.color %></p>
 		<p>Special Needs: <%= @animal.special_needs %></p>
+		<hr />
+		<p>Adoption Contact</p>
+		<p>Organization: <%= @animal.organization.name %></p>
+		<p>Phone Number: <%= @animal.organization.phone_number %></p>
+		<p>Address: <%= @animal.organization.address %></p>
+		<p><%= @animal.organization.city %> <%= @animal.organization.state %> <%= @animal.organization.zip_code %></p>
 	</div>
 </div>
 
