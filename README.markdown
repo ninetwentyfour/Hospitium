@@ -125,6 +125,8 @@ Todo:
 
 - create url friendly slugs for animal names and organization names
 
+- lots of testing
+
 * * *
 
 
