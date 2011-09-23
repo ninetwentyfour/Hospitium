@@ -121,6 +121,7 @@ Todo:
 
 - add more descriptions to labels in create and edit of all models
 
+- bug with new users not being able to create organizations
 
 * * *
 

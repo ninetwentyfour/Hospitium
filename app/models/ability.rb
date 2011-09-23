@@ -40,7 +40,10 @@ class Ability
         can :manage, Animal, :organization => { :id => user.organization_ids }
         can :manage, AnimalColor, :organization => { :id => user.organization_ids }
         can :manage, AnimalWeight, :animal => { :organization_id => user.organization_ids }
-        can :manage, Organization, :id => user.organization_ids
+        can :read, Organization, :id => user.organization_ids
+        can :create, Organization
+        can :update, Organization, :id => user.organization_ids
+        can :destroy, Organization, :id => user.organization_ids
         can :manage, RelinquishmentContact, :animal => { :organization_id => user.organization_ids }
         #can :manage, Role, :organization => { :id => user.organization_ids }
         can :manage, Shelter, :organization => { :id => user.organization_ids }

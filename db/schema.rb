@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110912171420) do
+ActiveRecord::Schema.define(:version => 20110923210849) do
 
   create_table "adoption_contacts", :force => true do |t|
     t.string   "first_name"
@@ -79,6 +79,13 @@ ActiveRecord::Schema.define(:version => 20110912171420) do
     t.string   "uuid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "phone_number"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.string   "email"
+    t.string   "website"
   end
 
   create_table "organizations_users", :id => false, :force => true do |t|
