@@ -77,7 +77,7 @@ Todo:
 
 - post to wordpress / tumblr 
 
-- add checkbox for public on animals and create pubic adopt list.
+- <del>add checkbox for public on animals and create pubic adopt list.</del>
 
 - twitter integration
 
@@ -99,7 +99,7 @@ Todo:
 
 - <del>add adopted date to animal</del>
 
-- force all models to redirect to /admin
+- force all models to redirect to /admin except organizations and animals for adopt pages
 
 - add versioning and undo / redo
 
@@ -111,19 +111,17 @@ Todo:
 
 - <del>make new users default to admin role</del>
 
-- force unique names on organizations and emails
+- <del>force unique names on organizations and emails</del>
 
 - user docs
 
 - style uploaded images and show pages
 
-- add organization contact info so people can contact about public animals
+- <del>add organization contact info so people can contact about public animals</del>
 
 - add more descriptions to labels in create and edit of all models
 
-- bug with new users not being able to create organizations
-
-- create url friendly slugs for animal names and organization names
+- <del>bug with new users not being able to create organizations</del>
 
 - lots of testing
 
