@@ -123,6 +123,8 @@ Todo:
 
 - bug with new users not being able to create organizations
 
+- create url friendly slugs for animal names and organization names
+
 * * *
 
 

@@ -23,9 +23,15 @@
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
 				<li><a href="/features">Features</a></li>
+				<li><a href="/animals">Adopt an Animal</a></li>
       </ul>
 			<ul class="nav secondary-nav">
-				<li><a href="/users/sign_in">Sign In</a></li>
+				<% if user_signed_in? %>
+					<li><a href="/admin">Admin</a></li>
+					<li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+				<% else %>
+					<li><a href="/users/sign_in">Sign In</a></li>
+				<% end %>
       </ul>
     </div>
   </div>
