@@ -81,9 +81,11 @@ ul.items>li>ul {
 }
 .animalMedia{
 	float:right;
+	margin: 20px;
 }
 .showAnimalInfo{
 	float:left;
+	width: 600px;
 }
 /* new clearfix */
 .clearfix:after {
