@@ -43,7 +43,8 @@ class User < ActiveRecord::Base
       exclude_fields :uuid
     end
     list do
-      exclude_fields :uuid
+      field :username
+      field :created_at
     end
   end
   
