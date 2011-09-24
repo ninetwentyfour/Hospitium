@@ -137,13 +137,13 @@ Todo:
 
 - do public adopt pages grouped by organization - make embedable with code to copy in view
 
-- add warning to animal image upload that square images are preferred. 
+- <del>add warning to animal image upload that square images are preferred.</del>
 
 - <del>make user show email or add username to user and show that in rails admin instead of user ID</del>
 
-- limit image size in view incase they upload giant images
+- <del>limit image size in view incase they upload giant images</del>
 
-- add more image resize options to animal pics
+- <del>add more image resize options to animal pics</del>
 
 - <del>need to make github style add collaborators to organizations</del>
 
