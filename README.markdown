@@ -93,7 +93,7 @@ Todo:
 
 - <del>hide uuids in views</del>
 
-- setup emails
+- <del>setup emails</del>
 
 - create graphs of info and stats like average time in shelter etc
 
