@@ -137,6 +137,8 @@ Todo:
 
 - do public adopt pages grouped by organization - make embedable with code to copy in view
 
+- add warning to animal image upload that square images are preferred. 
+
 * * *
 
 
