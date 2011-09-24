@@ -103,7 +103,7 @@ Todo:
 
 - <del>add adopted date to animal</del>
 
-- force all models to redirect to /admin except organizations and animals for adopt pages
+- <del>force all models to redirect to /admin except organizations and animals for adopt pages</del>
 
 - add versioning and undo / redo
 
@@ -145,7 +145,7 @@ Todo:
 
 - add more image resize options to animal pics
 
-- need to make github style add collaborators to organizations
+- <del>need to make github style add collaborators to organizations</del>
 
 - no follow all links created by users (e.g. organization website) / make do follow for future paid accounts
 

@@ -16,7 +16,7 @@
 		<p>Special Needs: <%= @animal.special_needs %></p>
 		<hr />
 		<p>Adoption Contact</p>
-		<p>Organization: <a href="/organizations/<%= @animal.organization.id %>"><%= @animal.organization.name %></a></p>
+		<p>Organization: <a href="/organizations/<%= @animal.organization.uuid %>"><%= @animal.organization.name %></a></p>
 		<p>Website: <a href="<%= @animal.organization.website %>"><%= @animal.organization.website %></a></p>
 		<p>Email: <a href="mailto:<%= @animal.organization.email %>"><%= @animal.organization.email %></a></p>
 		<p>Phone Number: <%= @animal.organization.phone_number %></p>
@@ -30,4 +30,4 @@
 <p id="notice"><%= notice %></p>
 
 
-<%= link_to 'Back', request.env['HTTP_REFERER'] %>
+<%= link_to 'Back', animals_path %>

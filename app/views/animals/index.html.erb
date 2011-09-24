@@ -12,10 +12,10 @@
 			<%- else %>
 				<img src="images/no-animal-photo.jpg" width=300 height=300 align="left" class="adoptImage" />
 			<% end %>
-			<h1><a href="animals/<%= animal.id %>"><%= animal.name %></a></h1><h4><%= animal.species.name %></h4>
+			<h1><a href="animals/<%= animal.uuid %>"><%= animal.name %></a></h1><h4><%= animal.species.name %></h4>
 			<div class="otherAnimalInfo">
 				<p>Location: <%= animal.organization.city %>, <%= animal.organization.state %> <%= animal.organization.zip_code %></p>
-				<p>Organization: <a href="/organizations/<%= animal.organization.id %>"><%= animal.organization.name %></a></p>
+				<p>Organization: <a href="/organizations/<%= animal.organization.uuid %>"><%= animal.organization.name %></a></p>
 				<p>Sex: <%= animal.sex %></p>
 				<p>Age: <%= animal.age %></p>
 				<p>Spay/Neuter: <%= animal.spay_neuter %></p>
@@ -29,56 +29,4 @@
 <p>
 	You can also access this page at /animals.json or /animals.xml if you would like to use this data in other ways.
 </p>
-<!--<table>
-  <tr>
-    <th>Name</th>
-    <th>Uuid</th>
-    <th>Previous name</th>
-    <th>Species</th>
-    <th>Sex</th>
-    <th>Spay neuter</th>
-    <th>Color</th>
-    <th>Age</th>
-    <th>Biter</th>
-    <th>Special needs</th>
-    <th>Diet</th>
-    <th>Date of intake</th>
-    <th>Date of well check</th>
-    <th>Shelter</th>
-    <th>Deceased</th>
-    <th>Deceased reason</th>
-    <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @animals.each do |animal| %>
-  <tr>
-    <td><%= animal.name %></td>
-    <td><%= animal.uuid %></td>
-    <td><%= animal.previous_name %></td>
-    <td><%= animal.species %></td>
-    <td><%= animal.sex %></td>
-    <td><%= animal.spay_neuter %></td>
-    <td><%= animal.color %></td>
-    <td><%= animal.age %></td>
-    <td><%= animal.biter %></td>
-    <td><%= animal.special_needs %></td>
-    <td><%= animal.diet %></td>
-    <td><%= animal.date_of_intake %></td>
-    <td><%= animal.date_of_well_check %></td>
-    <td><%= animal.shelter %></td>
-    <td><%= animal.deceased %></td>
-    <td><%= animal.deceased_reason %></td>
-    <td><%= animal.status %></td>
-    <td><%= link_to 'Show', animal %></td>
-    <td><%= link_to 'Edit', edit_animal_path(animal) %></td>
-    <td><%= link_to 'Destroy', animal, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Animal', new_animal_path %>-->

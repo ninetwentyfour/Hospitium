@@ -14,7 +14,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1
   # GET /organizations/1.xml
   def show
-    @organization = Organization.find(params[:id])
+    @organization = Organization.find_by_uuid(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

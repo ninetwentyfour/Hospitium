@@ -16,7 +16,7 @@ class AnimalsController < ApplicationController
   # GET /animals/1
   # GET /animals/1.xml
   def show
-    @animal = Animal.find(params[:id])
+    @animal = Animal.find_by_uuid(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
