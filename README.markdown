@@ -149,6 +149,8 @@ Todo:
 
 - no follow all links created by users (e.g. organization website) / make do follow for future paid accounts
 
+- add adopt link to animals to set what the canonical adopt page is for adoptable animals
+
 * * *
 
 
