@@ -37,4 +37,6 @@ body{
 	display:block;
 	width:300px;
 	min-height:300px;
+	margin-right:20px;
+	float:left;
 }
