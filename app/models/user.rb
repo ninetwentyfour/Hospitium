@@ -43,8 +43,8 @@ class User < ActiveRecord::Base
       exclude_fields :uuid
     end
     list do
-      field :username
-      field :created_at
+      exclude_fields :uuid, :email, :updated_at, :sign_in_count, :remember_created_at, :reset_password_token, :reset_password_sent_at, :current_sign_in_at, :last_sign_in_at,
+                            :current_sign_in_ip, :last_sign_in_ip, :id
     end
   end
   
