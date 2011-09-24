@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   
   after_create :add_default_role
   
+  validates_uniqueness_of :username
+  
   # settings for rails admin views
   rails_admin do
     object_label_method do
