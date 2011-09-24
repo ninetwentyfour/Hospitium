@@ -155,6 +155,8 @@ Todo:
 
 - move sessions to database
 
+- use uuid instead of id on adopt list and shows / organizations / admin interface
+
 * * *
 
 
