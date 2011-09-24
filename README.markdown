@@ -133,6 +133,8 @@ Todo:
 
 - <del>show location on adopt list</del>
 
+- make adopt list random or cycle through entries
+
 * * *
 
 
