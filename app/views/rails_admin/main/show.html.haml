@@ -23,7 +23,7 @@
 			- @model_config.show.with(:object => @object, :view => self).visible_groups.each do |fieldset|
 				- unless (fields = fieldset.visible_fields.map{|f| f.with(:object => @object, :view => self)}).empty?
 					- if !(values = fields.map{ |f| f.pretty_value.presence }).compact.empty? || !RailsAdmin::config.compact_show_view
-						.fieldset
+						.fieldset.showAnimalInfo
 							%h4= fieldset.label
 							= content_tag :div, fieldset.help, :class => "help" if fieldset.help
 							- fields.each_with_index do |field, index|
