@@ -8,6 +8,9 @@
 <div class="alert-message block-message error">
         <p><strong>Warning!</strong> This is still super beta software. Things are changing fast and you may lose data.</p>
 </div>
+<div class="alert-message block-message error">
+        <p><strong>Notice!</strong> If you have never confirmed your account by email, click "<a href="/users/confirmation/new">Didn't receive confirmation instructions?</a>" below and fill out the form with your account email.</p>
+</div>
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-stacked"}) do |f| %>
 
 	<div class="clearfix"><%= f.label :login %>
