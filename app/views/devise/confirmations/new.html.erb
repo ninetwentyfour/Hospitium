@@ -1,10 +1,10 @@
 <div class="hero-unit">
-<h1>Resend confirmation instructions</h1>
+<h2>Resend confirmation instructions</h2>
 
 <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, :class => "form-stacked" }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
+  <div><%= f.label :email %>
   <%= f.email_field :email %></div>
 	<br />
   <div><%= f.submit "Resend confirmation instructions", :class => "btn primary" %></div>
