@@ -157,6 +157,8 @@ Todo:
 
 - use uuid instead of id on adopt list and shows / organizations / admin interface
 
+- add search to adopt list (search by location and species)
+
 * * *
 
 
