@@ -51,7 +51,7 @@ Set db connection in `/config/database.yml`
 
 For the time being (until I or someone create a migration to create default data) you need to manually add the roles to the database.
 
-Add a row and with SuperAdmin as the name. Then create row 3 with name Admin.
+Add a row and with SuperAdmin as the name. Then create row 2 with name Admin.
 
 `$ rails server`
 
