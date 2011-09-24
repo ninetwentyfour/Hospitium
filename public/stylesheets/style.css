@@ -33,3 +33,8 @@ body{
 .showAnimalInfo{
 	float:left;
 }
+.adoptListImageLink{
+	display:block;
+	width:300px;
+	min-height:300px;
+}
