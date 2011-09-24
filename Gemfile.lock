@@ -63,6 +63,8 @@ GEM
     mime-types (1.16)
     mysql2 (0.2.13)
     orm_adapter (0.0.5)
+    paper_trail (2.2.9)
+      rails (~> 3)
     paperclip (2.4.2)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
@@ -109,6 +111,7 @@ DEPENDENCIES
   cancan
   devise
   mysql2 (< 0.3)
+  paper_trail
   paperclip (~> 2.4)
   rails (= 3.0.10)
   rails_admin!

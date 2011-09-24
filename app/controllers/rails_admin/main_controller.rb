@@ -457,13 +457,15 @@ module RailsAdmin
     end
 
     def redirect_to_on_success
-      notice = t("admin.flash.successful", :name => @model_config.label, :action => t("admin.actions.#{params[:action]}d"))
+      undo = view_context.link_to("undo", revert_version_path(@object.versions.scoped.last), :method => :post)
+      #notice = t("admin.flash.successful #{undo}", :name => @model_config.label, :action => t("admin.actions.#{params[:action]}d"))
+      notice = "#{@model_config.label} was #{params[:action]}d successfully #{undo}"
       if params[:_add_another]
         redirect_to rails_admin_new_path, :notice => notice
       elsif params[:_add_edit]
         redirect_to rails_admin_edit_path(:id => @object.id), :notice => notice
       else
-        redirect_to rails_admin_list_path, :notice => notice
+        redirect_to rails_admin_show_path(:id => @object.id), :notice => notice
       end
     end
 

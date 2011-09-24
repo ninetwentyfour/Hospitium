@@ -15,6 +15,7 @@ gem "paperclip", "~> 2.4"
 gem 'aws-s3', :require => 'aws/s3'
 #gem 'haml'
 gem 'will_paginate', '~> 3.0.0'
+gem 'paper_trail'
 
 # Use unicorn as the web server
 # gem 'unicorn'

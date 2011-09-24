@@ -1,5 +1,7 @@
 AnimalTracker::Application.routes.draw do
   
+  post "versions/:id/revert" => "versions#revert", :as => "revert_version"
+  
   #force most controllers to /admin
   match "/animals/new" => redirect("/admin/animals/new"), :via => :get
   match "/animals/:id/edit" => redirect("/admin/animals/%{id}/edit"), :via => :get

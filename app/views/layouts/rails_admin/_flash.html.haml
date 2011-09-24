@@ -6,4 +6,4 @@
 
     - if flash[:notice].present?
       .message.notice
-        %p= flash[:notice]
+        %p= raw(flash[:notice])
