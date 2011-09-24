@@ -1,4 +1,57 @@
 AnimalTracker::Application.routes.draw do
+  
+  #force most controllers to /admin
+  match "/animals/new" => redirect("/admin/animals/new"), :via => :get
+  match "/animals/:id/edit" => redirect("/admin/animals/%{id}/edit"), :via => :get
+  
+  match "/organizations/new" => redirect("/admin/organizations/new"), :via => :get
+  match "/organizations/:id/edit" => redirect("/admin/organizations/%{id}/edit"), :via => :get
+  
+  match "/animal_colors" => redirect("/admin/animal_colors"), :via => :get
+  match "/animal_colors/:id" => redirect("/admin/animal_colors/%{id}"), :via => :get
+  match "/animal_colors/new" => redirect("/admin/animal_colors/new"), :via => :get
+  match "/animal_colors/:id/edit" => redirect("/admin/animal_colors/%{id}/edit"), :via => :get
+  
+  match "/animal_weights" => redirect("/admin/animal_weights"), :via => :get
+  match "/animal_weights/:id" => redirect("/admin/animal_weights/%{id}"), :via => :get
+  match "/animal_weights/new" => redirect("/admin/animal_weights/new"), :via => :get
+  match "/animal_weights/:id/edit" => redirect("/admin/animal_weights/%{id}/edit"), :via => :get
+  
+  match "/vet_contacts" => redirect("/admin/vet_contacts"), :via => :get
+  match "/vet_contacts/:id" => redirect("/admin/vet_contacts/%{id}"), :via => :get
+  match "/vet_contacts/new" => redirect("/admin/vet_contacts/new"), :via => :get
+  match "/vet_contacts/:id/edit" => redirect("/admin/vet_contacts/%{id}/edit"), :via => :get
+  
+  match "/volunteer_contacts" => redirect("/admin/volunteer_contacts"), :via => :get
+  match "/volunteer_contacts/:id" => redirect("/admin/volunteer_contacts/%{id}"), :via => :get
+  match "/volunteer_contacts/new" => redirect("/admin/volunteer_contacts/new"), :via => :get
+  match "/volunteer_contacts/:id/edit" => redirect("/admin/volunteer_contacts/%{id}/edit"), :via => :get
+  
+  match "/adoption_contacts" => redirect("/admin/adoption_contacts"), :via => :get
+  match "/adoption_contacts/:id" => redirect("/admin/adoption_contacts/%{id}"), :via => :get
+  match "/adoption_contacts/new" => redirect("/admin/adoption_contacts/new"), :via => :get
+  match "/adoption_contacts/:id/edit" => redirect("/admin/adoption_contacts/%{id}/edit"), :via => :get
+  
+  match "/relinquishment_contacts" => redirect("/admin/relinquishment_contacts"), :via => :get
+  match "/relinquishment_contacts/:id" => redirect("/admin/relinquishment_contacts/%{id}"), :via => :get
+  match "/relinquishment_contacts/new" => redirect("/admin/relinquishment_contacts/new"), :via => :get
+  match "/relinquishment_contacts/:id/edit" => redirect("/admin/relinquishment_contacts/%{id}/edit"), :via => :get
+  
+  match "/shelters" => redirect("/admin/shelters"), :via => :get
+  match "/shelters/:id" => redirect("/admin/shelters/%{id}"), :via => :get
+  match "/shelters/new" => redirect("/admin/shelters/new"), :via => :get
+  match "/shelters/:id/edit" => redirect("/admin/shelters/%{id}/edit"), :via => :get
+  
+  match "/species" => redirect("/admin/species"), :via => :get
+  match "/species/:id" => redirect("/admin/species/%{id}"), :via => :get
+  match "/species/new" => redirect("/admin/species/new"), :via => :get
+  match "/species/:id/edit" => redirect("/admin/species/%{id}/edit"), :via => :get
+  
+  match "/permissions" => redirect("/admin/permissions"), :via => :get
+  match "/permissions/:id" => redirect("/admin/permissions/%{id}"), :via => :get
+  match "/permissions/new" => redirect("/admin/permissions/new"), :via => :get
+  match "/permissions/:id/edit" => redirect("/admin/permissions/%{id}/edit"), :via => :get
+  
   resources :animal_colors
 
   resources :animal_weights
@@ -22,7 +75,8 @@ AnimalTracker::Application.routes.draw do
   resources :permissions
   
   resources :roles
-
+  
+    
   devise_for :users
   get "home/index"
   root :to => "home#index"

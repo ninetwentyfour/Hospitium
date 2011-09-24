@@ -13,4 +13,4 @@
 </div>
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Back', organizations_path %>
+<%= link_to 'Back', request.env['HTTP_REFERER'] %>

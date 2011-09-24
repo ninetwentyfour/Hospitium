@@ -30,4 +30,4 @@
 <p id="notice"><%= notice %></p>
 
 
-<%= link_to 'Back', animals_path %>
+<%= link_to 'Back', request.env['HTTP_REFERER'] %>
