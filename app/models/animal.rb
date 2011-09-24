@@ -10,6 +10,7 @@ class Animal < ActiveRecord::Base
   before_create :create_uuid
   
   validates_presence_of :name, :date_of_intake, :organization, :species, :animal_color, :biter, :spay_neuter, :sex, :status
+  validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']
   
   # settings for rails admin views
   rails_admin do
