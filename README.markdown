@@ -155,7 +155,7 @@ Todo:
 
 - move sessions to database
 
-- use uuid instead of id on adopt list and shows / organizations / admin interface
+- <del>use uuid instead of id on adopt list and shows / organizations / admin interface</del>
 
 - add search to adopt list (search by location and species)
 
