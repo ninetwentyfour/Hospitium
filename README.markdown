@@ -99,7 +99,7 @@ Todo:
 
 - mobile layouts
 
-- add current location to animal
+- add current location to animal (like address of foster home or vet)
 
 - <del>add adopted date to animal</del>
 
