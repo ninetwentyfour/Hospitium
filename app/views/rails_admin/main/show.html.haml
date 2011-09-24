@@ -16,11 +16,11 @@
 
 		%h2.title= @page_name
 		.inner
+			= render(:partial => 'layouts/rails_admin/flash', :locals => {:flash => flash})
 			-  if @object.respond_to?('image_file_name')
 				.animalMedia
 					%a{:href => "#{@object.image.url}"}
 						%img{:src  => "#{@object.image.url(:medium)}"}
-			= render(:partial => 'layouts/rails_admin/flash', :locals => {:flash => flash})
 			- @model_config.show.with(:object => @object, :view => self).visible_groups.each do |fieldset|
 				- unless (fields = fieldset.visible_fields.map{|f| f.with(:object => @object, :view => self)}).empty?
 					- if !(values = fields.map{ |f| f.pretty_value.presence }).compact.empty? || !RailsAdmin::config.compact_show_view
