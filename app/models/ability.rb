@@ -39,7 +39,7 @@ class Ability
         can :read, AdoptionContact, :animal => { :organization_id => user.organization_ids }
         can :create, AdoptionContact
         can :update, AdoptionContact, :animal => { :organization_id => user.organization_ids }
-        can :destroy, AdoptionContact,, :animal => { :organization_id => user.organization_ids }
+        can :destroy, AdoptionContact, :animal => { :organization_id => user.organization_ids }
         #can :manage, AdoptionContact
         #can :manage, Animal, :organization => { :id => user.organization_ids }
         can :read, Animal, :organization => { :id => user.organization_ids }
