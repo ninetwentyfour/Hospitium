@@ -153,6 +153,8 @@ Todo:
 
 - rpsec and cucumber tests
 
+- move sessions to database
+
 * * *
 
 
