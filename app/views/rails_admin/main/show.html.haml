@@ -4,7 +4,7 @@
 #block-tables.block
 	= breadcrumbs_for :show, @object
 
-	.content
+	.content.clearfix
 		.control
 			= action_button rails_admin_history_object_path(:id => params[:id]), t("admin.history.name"), :'calendar-hover'
 			- if ((show_url = url_for(@object)) && ActionController::Routing::Routes.recognize_path(show_url, :method => :get) rescue nil)
@@ -17,7 +17,7 @@
 		%h2.title= @page_name
 		.inner
 			-  if @object.respond_to?('image_file_name')
-				.adminPlayer
+				.animalMedia
 					%img{:src  => "#{@object.image.url(:medium)}"}
 			= render(:partial => 'layouts/rails_admin/flash', :locals => {:flash => flash})
 			- @model_config.show.with(:object => @object, :view => self).visible_groups.each do |fieldset|
