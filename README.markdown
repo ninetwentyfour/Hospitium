@@ -73,7 +73,7 @@ Todo:
 
 - Make age calculate over time. (possibly just use date of birth if too hard to track for now)
 
-- post to pet finder and other animal sites
+- post to pet finder and other animal sites (adopt-a-pet)
 
 - <del>Animal Weight MVC</del>
 
@@ -109,7 +109,7 @@ Todo:
 
 - <del>move colors to own mvc</del>
 
-- add photo and video uploads (got a simple paperclip running on animals - possibly to a separate model)
+- add photo and video uploads (got a simple paperclip running on animals - possibly to a separate model : possibly use youtube or some other service to handle video)
 
 - city state and zip fields
 
