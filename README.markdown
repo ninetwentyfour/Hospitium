@@ -85,7 +85,7 @@ Todo:
 
 - twitter integration
 
-- click to call integration with twilio
+- click to call integration with twilio (be able to call vets, contacts, etc from computer with mic or bridge call)
 
 - <del>show data that belongs to user only</del>
 
