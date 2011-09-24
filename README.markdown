@@ -135,6 +135,8 @@ Todo:
 
 - make adopt list random or cycle through entries
 
+- do public adopt pages grouped by organization - make embedable with code to copy in view
+
 * * *
 
 
