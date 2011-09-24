@@ -145,6 +145,8 @@ Todo:
 
 - add more image resize options to animal pics
 
+- need to make github style add collaborators to organizations
+
 * * *
 
 
