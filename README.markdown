@@ -151,6 +151,8 @@ Todo:
 
 - add adopt link to animals to set what the canonical adopt page is for adoptable animals
 
+- rpsec and cucumber tests
+
 * * *
 
 
