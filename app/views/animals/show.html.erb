@@ -4,7 +4,7 @@
 	</div>
 	<div class="otherAnimalInfo">
 		<%- unless @animal.image.url(:medium) == "/images/medium/missing.png" %>
-			<a href="<%= @animal.image.url %>"><img src="<%= @animal.image.url(:medium) %>" width=300 height=300 style="float:right" class="adoptImage" /></a>
+			<a href="<%= @animal.image.url %>"><img src="<%= @animal.image.url(:medium) %>" style="float:right" class="adoptImage" /></a>
 		<%- else %>
 			<img src="/images/no-animal-photo.jpg" width=300 height=300 style="float:right" class="adoptImage" />
 		<% end %>
