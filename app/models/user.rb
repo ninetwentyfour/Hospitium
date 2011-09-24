@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   
   after_create :add_default_role
   
+  validates_presence_of :username
   validates_uniqueness_of :username
   
   # settings for rails admin views
