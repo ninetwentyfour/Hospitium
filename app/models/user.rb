@@ -40,7 +40,13 @@ class User < ActiveRecord::Base
       group :permissions do
         hide
       end
-      exclude_fields :uuid
+      group :roles do
+        hide
+      end
+      group :organizations do
+        hide
+      end
+      exclude_fields :uuid, :reset_password_sent_at
     end
     list do
       exclude_fields :uuid, :email, :updated_at, :sign_in_count, :remember_created_at, :reset_password_token, :reset_password_sent_at, :current_sign_in_at, :last_sign_in_at,
