@@ -147,6 +147,8 @@ Todo:
 
 - need to make github style add collaborators to organizations
 
+- no follow all links created by users (e.g. organization website) / make do follow for future paid accounts
+
 * * *
 
 
