@@ -139,7 +139,7 @@ Todo:
 
 - add warning to animal image upload that square images are preferred. 
 
-- make user show email or add username to user and show that in rails admin instead of user ID
+- <del>make user show email or add username to user and show that in rails admin instead of user ID</del>
 
 - limit image size in view incase they upload giant images
 
