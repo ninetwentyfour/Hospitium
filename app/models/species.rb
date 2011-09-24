@@ -1,4 +1,5 @@
 class Species < ActiveRecord::Base
+  has_paper_trail
   belongs_to :organization
   before_create :create_uuid
   

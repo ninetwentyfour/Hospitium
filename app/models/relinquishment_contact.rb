@@ -1,4 +1,5 @@
 class RelinquishmentContact < ActiveRecord::Base
+  has_paper_trail
   belongs_to :animal
   before_create :create_uuid
   

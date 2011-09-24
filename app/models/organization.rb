@@ -1,4 +1,5 @@
 class Organization < ActiveRecord::Base
+    has_paper_trail
     has_and_belongs_to_many :users
     before_create :create_uuid
     validates_presence_of :address, :city, :state, :zip_code

@@ -1,4 +1,5 @@
 class AnimalColor < ActiveRecord::Base
+  has_paper_trail
   belongs_to :organization
   # settings for rails admin views
   rails_admin do

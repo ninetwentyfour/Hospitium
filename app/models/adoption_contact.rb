@@ -1,4 +1,5 @@
 class AdoptionContact < ActiveRecord::Base
+  has_paper_trail
   belongs_to :animal
   
   validates_presence_of :first_name, :last_name, :address
