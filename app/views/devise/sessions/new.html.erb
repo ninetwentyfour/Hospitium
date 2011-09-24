@@ -1,3 +1,8 @@
+<% if notice.blank? %>
+
+<% else %>
+	<div class="alert-message info" style="margin-top:60px;"><%= notice %></div>
+<% end %>
 <div class="hero-unit">
 <h2>Sign in</h2>
 <div class="alert-message block-message error">
