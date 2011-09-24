@@ -25,8 +25,17 @@ class User < ActiveRecord::Base
       :show_username_label_method # show the user email in the admin UI instead of the user id
     end
     show do
+      field :username
+      field :created_at
+      field :last_sign_in_at
       group :permissions do
         hide
+      end
+      group :roles do
+        hide
+      end
+      group :organizations do
+        show
       end
       exclude_fields :uuid
     end
