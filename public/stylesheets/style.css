@@ -30,3 +30,6 @@ body{
 .animalMedia{
 	float:right;
 }
+.showAnimalInfo{
+	float:left;
+}
