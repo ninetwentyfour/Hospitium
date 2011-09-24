@@ -3,10 +3,13 @@
 <div class="alert-message block-message error">
         <p><strong>Warning!</strong> This is still super beta software. Things are changing fast and you may lose data.</p>
 </div>
+<div class="alert-message block-message error">
+        <p><strong>Notice!</strong> If you have an account, please edit your user and make sure you have a username.</p>
+</div>
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-stacked"}) do |f| %>
-  <div class="clearfix"><%= f.label :email %>
-  <%= f.email_field :email %></div>
 
+	<div class="clearfix"><%= f.label :login %>
+		<%= f.text_field :login %></div>
   <div class="clearfix"><%= f.label :password %>
   <%= f.password_field :password %></div>
 

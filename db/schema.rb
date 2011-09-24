@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110923210849) do
+ActiveRecord::Schema.define(:version => 20110924183150) do
 
   create_table "adoption_contacts", :force => true do |t|
     t.string   "first_name"
@@ -168,6 +168,7 @@ ActiveRecord::Schema.define(:version => 20110923210849) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "username"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

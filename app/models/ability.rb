@@ -77,7 +77,9 @@ class Ability
         can :create, Species
         can :update, Species, :organization => { :id => user.organization_ids }
         can :destroy, Species, :organization => { :id => user.organization_ids }
-        can :manage, User, :id => user.id
+        #can :manage, User, :id => user.id
+        can :read, User
+        can :update, User, :id => user.id
         #can :manage, VetContact, :organization => { :id => user.organization_ids }
         can :read, VetContact, :organization => { :id => user.organization_ids }
         can :create, VetContact
