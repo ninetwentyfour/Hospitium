@@ -117,7 +117,7 @@ Todo:
 
 - <del>force unique names on organizations and emails</del>
 
-- user docs
+- user docs (started at [https://github.com/ninetwentyfour/Hospitium/wiki/User-Docs](https://github.com/ninetwentyfour/Hospitium/wiki/User-Docs))
 
 - style uploaded images and show pages
 
