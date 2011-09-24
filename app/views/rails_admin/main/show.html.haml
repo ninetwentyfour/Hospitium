@@ -18,7 +18,8 @@
 		.inner
 			-  if @object.respond_to?('image_file_name')
 				.animalMedia
-					%img{:src  => "#{@object.image.url(:medium)}"}
+					%a{:href => "#{@object.image.url}"}
+						%img{:src  => "#{@object.image.url(:medium)}"}
 			= render(:partial => 'layouts/rails_admin/flash', :locals => {:flash => flash})
 			- @model_config.show.with(:object => @object, :view => self).visible_groups.each do |fieldset|
 				- unless (fields = fieldset.visible_fields.map{|f| f.with(:object => @object, :view => self)}).empty?
