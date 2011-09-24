@@ -25,17 +25,8 @@ class User < ActiveRecord::Base
       :show_username_label_method # show the user email in the admin UI instead of the user id
     end
     show do
-      field :username
-      field :created_at
-      field :last_sign_in_at
       group :permissions do
         hide
-      end
-      group :roles do
-        hide
-      end
-      group :organizations do
-        show
       end
       exclude_fields :uuid
     end
@@ -49,19 +40,10 @@ class User < ActiveRecord::Base
       group :permissions do
         hide
       end
-      group :roles do
-        hide
-      end
-      group :organizations do
-        hide
-      end
-      exclude_fields :uuid, :reset_password_sent_at
+      exclude_fields :uuid
     end
     list do
-      field :username
-      field :created_at
-      exclude_fields :uuid, :email, :updated_at, :sign_in_count, :remember_created_at, :reset_password_token, :reset_password_sent_at, :current_sign_in_at, :last_sign_in_at,
-                      :current_sign_in_ip, :last_sign_in_ip, :id
+      exclude_fields :uuid
     end
   end
   
