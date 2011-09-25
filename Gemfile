@@ -18,6 +18,7 @@ gem 'will_paginate', '~> 3.0.0'
 gem 'paper_trail'
 
 group :production do
+	gem 'home_run', :require=>'date'
   gem 'slim_scrooge'
 end
 # Use unicorn as the web server
