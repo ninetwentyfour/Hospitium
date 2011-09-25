@@ -2,6 +2,8 @@ module RailsAdmin
 
   class MainController < RailsAdmin::ApplicationController
     include ActionView::Helpers::TextHelper
+    cache_sweeper :animal_sweeper
+    cache_sweeper :organization_sweeper
 
     layout "rails_admin/main"
 
