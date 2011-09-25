@@ -3,29 +3,30 @@
   	<h1>Adopt an Animal!</h1>
 	</div>
 </div>
-
-<ul class="unstyled">
-	<% @animals.each do |animal| %>
-		<li class="singleAnimalAdoption clearfix">
-			<%- unless animal.image.url(:medium) == "/images/medium/missing.png" %>
-				<a href="<%= animal.image.url %>" class="adoptListImageLink"><img src="<%= animal.image.url(:medium) %>" align="left" class="adoptImage" /></a>
-			<%- else %>
-				<img src="images/no-animal-photo.jpg" width=300 height=300 align="left" class="adoptImage" />
-			<% end %>
-			<h1><a href="animals/<%= animal.uuid %>"><%= animal.name %></a></h1><h4><%= animal.species.name %></h4>
-			<div class="otherAnimalInfo">
-				<p>Location: <%= animal.organization.city %>, <%= animal.organization.state %> <%= animal.organization.zip_code %></p>
-				<p>Organization: <a href="/organizations/<%= animal.organization.uuid %>"><%= animal.organization.name %></a></p>
-				<p>Sex: <%= animal.sex %></p>
-				<p>Age: <%= animal.age %></p>
-				<p>Spay/Neuter: <%= animal.spay_neuter %></p>
-				<p>Color: <%= animal.animal_color.color %></p>
-				<p>Special Needs: <%= animal.special_needs %></p>
-			</div>
-		</li>
-	<% end %>
-	<%= will_paginate @animals %>
-</ul>
+<% cache('all_available_animals') do %>
+	<ul class="unstyled">
+		<% @animals.each do |animal| %>
+			<li class="singleAnimalAdoption clearfix">
+				<%- unless animal.image.url(:medium) == "/images/medium/missing.png" %>
+					<a href="<%= animal.image.url %>" class="adoptListImageLink"><img src="<%= animal.image.url(:medium) %>" align="left" class="adoptImage" /></a>
+				<%- else %>
+					<img src="images/no-animal-photo.jpg" width=300 height=300 align="left" class="adoptImage" />
+				<% end %>
+				<h1><a href="animals/<%= animal.uuid %>"><%= animal.name %></a></h1><h4><%= animal.species.name %></h4>
+				<div class="otherAnimalInfo">
+					<p>Location: <%= animal.organization.city %>, <%= animal.organization.state %> <%= animal.organization.zip_code %></p>
+					<p>Organization: <a href="/organizations/<%= animal.organization.uuid %>"><%= animal.organization.name %></a></p>
+					<p>Sex: <%= animal.sex %></p>
+					<p>Age: <%= animal.age %></p>
+					<p>Spay/Neuter: <%= animal.spay_neuter %></p>
+					<p>Color: <%= animal.animal_color.color %></p>
+					<p>Special Needs: <%= animal.special_needs %></p>
+				</div>
+			</li>
+		<% end %>
+		<%= will_paginate @animals %>
+	</ul>
+<% end %>
 <p>
 	You can also access this page at /animals.json or /animals.xml if you would like to use this data in other ways.
 </p>
