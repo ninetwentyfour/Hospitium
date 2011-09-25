@@ -23,5 +23,6 @@ class AnimalSweeper < ActionController::Caching::Sweeper
  
     # Expire a fragment
     expire_fragment('all_available_animals')
+    expire_fragment('animal')
   end
 end

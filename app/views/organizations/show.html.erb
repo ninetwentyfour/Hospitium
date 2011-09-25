@@ -1,16 +1,18 @@
-<div class="hero-unit clearfix">
-	<div class="page-header">
-		<h1><%= @organization.name %></h1>
+<% cache(:action => 'show', :action_suffix => 'organization') do %>
+	<div class="hero-unit clearfix">
+		<div class="page-header">
+			<h1><%= @organization.name %></h1>
+		</div>
+		<div class="otherAnimalInfo">
+			<h2>Contact Info</h2>
+			<p>Website: <a href="<%= @organization.website %>"><%= @organization.website %></a></p>
+			<p>Email: <a href="mailto:<%= @organization.email %>"><%= @organization.email %></a></p>
+			<p>Phone Number: <%= @organization.phone_number %></p>
+			<p>Address: <%= @organization.address %></p>
+			<p><%= @organization.city %> <%= @organization.state %> <%= @organization.zip_code %></p>
+		</div>
 	</div>
-	<div class="otherAnimalInfo">
-		<h2>Contact Info</h2>
-		<p>Website: <a href="<%= @organization.website %>"><%= @organization.website %></a></p>
-		<p>Email: <a href="mailto:<%= @organization.email %>"><%= @organization.email %></a></p>
-		<p>Phone Number: <%= @organization.phone_number %></p>
-		<p>Address: <%= @organization.address %></p>
-		<p><%= @organization.city %> <%= @organization.state %> <%= @organization.zip_code %></p>
-	</div>
-</div>
-<p id="notice"><%= notice %></p>
-
+	<p id="notice"><%= notice %></p>
+<% end %>
 <%= link_to 'Back', request.env['HTTP_REFERER'] %>
+
