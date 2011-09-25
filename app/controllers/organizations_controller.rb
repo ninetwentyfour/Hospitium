@@ -1,7 +1,8 @@
 class OrganizationsController < ApplicationController
+  caches_action :index, :expires_in => 1.minute
+  caches_action :show, :expires_in => 1.minute
   # GET /organizations
   # GET /organizations.xml
-  #cache_sweeper :organization_sweeper
   def index
     #@organizations = Organization.all
     @organizations = Organization.find(:all, :conditions => {:id => current_user.organization_ids})

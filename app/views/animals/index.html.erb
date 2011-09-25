@@ -3,7 +3,7 @@
   	<h1>Adopt an Animal!</h1>
 	</div>
 </div>
-<% cache('all_available_animals') do %>
+
 	<ul class="unstyled">
 		<% @animals.each do |animal| %>
 			<li class="singleAnimalAdoption clearfix">
@@ -26,7 +26,7 @@
 		<% end %>
 		<%= will_paginate @animals %>
 	</ul>
-<% end %>
+
 <p>
 	You can also access this page at /animals.json or /animals.xml if you would like to use this data in other ways.
 </p>
