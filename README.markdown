@@ -161,6 +161,8 @@ Todo:
 
 - performance tweaks (limit data in calls, cache where we can, etc)
 
+- add image to organization and contacts
+
 
 * * *
 
