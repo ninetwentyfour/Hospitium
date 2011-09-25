@@ -1,6 +1,7 @@
 class AnimalsController < ApplicationController
   #caches_action :index, :expires_in => 1.hour
   #caches_action :show, :expires_in => 1.hour
+  cache_sweeper :animal_sweeper
   # GET /animals
   # GET /animals.xml
   def index
