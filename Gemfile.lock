@@ -47,6 +47,7 @@ GEM
     builder (2.1.2)
     cancan (1.6.5)
     cocaine (0.2.0)
+    dalli (1.0.5)
     devise (1.4.7)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -111,6 +112,7 @@ PLATFORMS
 DEPENDENCIES
   aws-s3
   cancan
+  dalli
   devise
   home_run
   mysql2 (< 0.3)

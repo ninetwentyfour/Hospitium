@@ -20,6 +20,7 @@ gem 'paper_trail'
 group :production do
 	gem 'home_run', :require=>'date'
   gem 'slim_scrooge'
+	gem 'dalli'
 end
 # Use unicorn as the web server
 # gem 'unicorn'
