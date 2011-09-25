@@ -155,7 +155,7 @@ Todo:
 
 - rpsec and cucumber tests
 
-- move sessions to database
+- <del>move sessions to database</del>
 
 - <del>use uuid instead of id on adopt list and shows / organizations / admin interface</del>
 
