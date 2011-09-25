@@ -159,6 +159,8 @@ Todo:
 
 - add search to adopt list (search by location and species)
 
+- performance tweaks (limit data in calls, cache where we can, etc)
+
 
 * * *
 
