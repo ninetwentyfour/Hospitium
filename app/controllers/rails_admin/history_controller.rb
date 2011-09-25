@@ -2,6 +2,7 @@ module RailsAdmin
   class HistoryController < RailsAdmin::ApplicationController
     before_filter :get_model, :except => [:list, :slider]
     before_filter :get_object, :except => [:list, :slider, :for_model]
+    caches_action :slider, :expires_in => 7.minutes
 
     def list
       if params[:month].nil? or params[:year].nil?
