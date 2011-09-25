@@ -5,6 +5,7 @@
   .input
     .toggle{:style => ('display:none;' if file.file? && field.delete_method && @object.send(field.delete_method) == '1')}
       /= field.pretty_value
+			= field.image.url
       %br
       = form.file_field(field.method_name, field.html_attributes)
     - if file.file? && field.delete_method
