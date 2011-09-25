@@ -96,4 +96,5 @@ class Animal < ActiveRecord::Base
      ['Adoptable', 'New Intake', 'Sanctuary', 'Sick', 'Deceased', 'Adopted', 'Foster Care']
   end
   
+  
 end
