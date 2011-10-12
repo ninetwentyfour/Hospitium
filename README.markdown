@@ -63,8 +63,6 @@ Dashboard can be found at [http://localhost:3000/admin](http://localhost:3000/ad
 
 Hospitium uses Amazon s3 for file storage. It currently relies on `ENV['S3_SECRET']` and `ENV['S3_KEY']` being set. You can see an example of how to use for development [here](http://devcenter.heroku.com/articles/config-vars#local_setup).
 
-If you are using this as a self hosted version, you will probably want to replace the google analytics scripts with your own.
-
 
 * * *
 
@@ -155,7 +153,7 @@ Todo:
 
 - rpsec and cucumber tests
 
-- <del>move sessions to database</del>
+- move sessions to database
 
 - <del>use uuid instead of id on adopt list and shows / organizations / admin interface</del>
 

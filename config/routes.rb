@@ -1,6 +1,9 @@
 AnimalTracker::Application.routes.draw do
+  resource :twitter_accounts
+  match '/callback/twitter/' => "twitter_accounts#callback", :as => :twitter_callback
+  match "/twitter_accounts/message_test" => "twitter_accounts#message_test", :as => "twitter_accounts"
   
-  post "versions/:id/revert" => "versions#revert", :as => "revert_version"
+  post "versions/:id/revert" => "versions#show", :as => "revert_version"
   
   #force most controllers to /admin
   match "/animals/new" => redirect("/admin/animals/new"), :via => :get
@@ -77,7 +80,7 @@ AnimalTracker::Application.routes.draw do
   resources :permissions
   
   resources :roles
-  
+
     
   devise_for :users
   get "home/index"

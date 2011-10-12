@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_paper_trail
   has_many :permissions
+  has_many :twitter_accounts
   has_many :roles, :through => :permissions
   has_and_belongs_to_many :organizations
   # Include default devise modules. Others available are:
