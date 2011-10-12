@@ -165,6 +165,8 @@ Todo:
 
 - add image to organization and contacts
 
+- mailchimp email list integration
+
 
 * * *
 
