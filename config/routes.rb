@@ -1,7 +1,7 @@
 AnimalTracker::Application.routes.draw do
   resource :twitter_accounts
   match '/callback/twitter/' => "twitter_accounts#callback", :as => :twitter_callback
-  match "/twitter_accounts/message_test" => "twitter_accounts#show", :as => "twitter_accounts"
+  match "/twitter_accounts/send_tweet" => "twitter_accounts#send_tweet", :as => "twitter_accounts"
   
   post "versions/:id/revert" => "versions#show", :as => "revert_version"
   
