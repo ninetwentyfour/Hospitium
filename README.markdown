@@ -169,6 +169,8 @@ Todo:
 
 - create check for memcached server being up or available, if bot, kick to db sessions
 
+- import animals from other sites in both batches and api style
+
 * * *
 
 
