@@ -165,6 +165,9 @@ Todo:
 
 - mailchimp email list integration
 
+- Need to hide twitter accounts from rails admin
+
+- create check for memcached server being up or available, if bot, kick to db sessions
 
 * * *
 
