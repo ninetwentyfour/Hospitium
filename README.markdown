@@ -83,7 +83,7 @@ Todo:
 
 - <del>add checkbox for public on animals and create pubic adopt list.</del>
 
-- twitter integration
+- <del>twitter integration</del>
 
 - click to call integration with twilio (be able to call vets, contacts, etc from computer with mic or bridge call)
 
