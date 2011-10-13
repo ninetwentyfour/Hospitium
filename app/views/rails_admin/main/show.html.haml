@@ -22,8 +22,10 @@
 					= current_user.id
 					%a{:href => "#{@object.image.url}"}
 						%img{:src  => "#{@object.image.url(:medium)}"}
-					%form#new_animal.form{"accept-charset" => "UTF-8", :action => "/twitter_accounts/send_tweet", :enctype => "multipart/form-data", :method => "post"}
+					/%form#new_animal.form{"accept-charset" => "UTF-8", :action => "/twitter_senders/new", :enctype => "multipart/form-data", :method => "post"}
+					- form_tag("/twitter_accounts/send_tweet", :method => "post") do
 						%input{:type => "hidden", :value => "#{@object.uuid}", :name => "animal_uuid"}
+						%input{:type => "hidden", :value => "#{@object.id}", :name => "animal_id"}
 						%input{:type => "hidden", :value => "#{@object.name}", :name => "animal_name"}
 						%input{:type => "hidden", :value => "#{current_user.id}", :name => "twitter_user_id"}
 						%input{:type => "submit", :value => "Send Animal To Twitter"}

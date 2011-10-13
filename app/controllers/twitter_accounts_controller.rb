@@ -21,10 +21,8 @@ class TwitterAccountsController < ApplicationController
   end
   
   def send_tweet
-    #puts debug(current_user.id)
-    TwitterAccount.twitter_post("#{params[:animal_name]} is ready for adoption at http://hospitium.heroku.com/animals/#{params[:animal_uuid]}", params[:twitter_user_id])
-    #TwitterAccount.twitter_post("test is ready for adoption at http://hospitium.heroku.com/animals/test", 1)
-    redirect_to :back
+    TwitterAccount.twitter_post("#{params[:animal_name]} is ready for adoption at http://hospitium.heroku.com/animals/#{params[:animal_uuid]}", current_user.id)
+    redirect_to("http://localhost:3000/admin/animals/#{params[:animal_id]}", :notice => 'Tweet Sent')
   end
  
 end
