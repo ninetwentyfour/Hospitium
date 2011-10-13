@@ -171,6 +171,8 @@ Todo:
 
 - import animals from other sites in both batches and api style
 
+- add bitly to shorten all share links
+
 * * *
 
 
