@@ -79,7 +79,7 @@ Todo:
 
 - facebook integration
 
-- post to wordpress / tumblr 
+- post to wordpress / tumblr [http://jmettraux.wordpress.com/2007/11/05/posting-to-wordpress-via-ruby-and-atompub/](http://jmettraux.wordpress.com/2007/11/05/posting-to-wordpress-via-ruby-and-atompub/)
 
 - <del>add checkbox for public on animals and create pubic adopt list.</del>
 
