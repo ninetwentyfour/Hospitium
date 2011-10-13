@@ -173,6 +173,8 @@ Todo:
 
 - add bitly to shorten all share links
 
+- add [aviary](http://www.aviary.com/) support to allow users to edit photos of animals
+
 * * *
 
 
