@@ -175,6 +175,8 @@ Todo:
 
 - add [aviary](http://www.aviary.com/) support to allow users to edit photos of animals
 
+- make public animal list a queue that is moderated by super admins
+
 * * *
 
 
