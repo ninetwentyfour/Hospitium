@@ -13,16 +13,22 @@ class TwitterAccountsController < ApplicationController
       twitter_account.validate_oauth_token(params[:oauth_verifier], twitter_callback_url)
       twitter_account.save
       if twitter_account.active?
-        redirect_to(deals_url, :notice => 'Twitter account activated!')
+        redirect_to("#{root_url}admin/user/#{current_user.id}", :notice => 'Twitter account activated!')
       else
-        redirect_to(deals_url, :notice => "Unable to activate twitter account.")
+        redirect_to("#{root_url}admin/user/#{current_user.id}", :notice => "Unable to activate twitter account.")
       end
     end
   end
   
   def send_tweet
-    TwitterAccount.twitter_post("#{params[:animal_name]} is ready for adoption at http://hospitium.heroku.com/animals/#{params[:animal_uuid]}", current_user.id)
-    redirect_to("http://localhost:3000/admin/animals/#{params[:animal_id]}", :notice => 'Tweet Sent')
+    account = TwitterAccount.find_by_user_id(current_user.id)
+    if account.blank?
+      twitter_account = TwitterAccount.create(:user => current_user)
+      redirect_to(twitter_account.authorize_url(twitter_callback_url))
+    else
+      TwitterAccount.twitter_post("#{params[:animal_name]} is ready for adoption at #{root_url}animals/#{params[:animal_uuid]}", current_user.id)
+      redirect_to("#{root_url}admin/animals/#{params[:animal_id]}", :notice => 'Tweet Sent')
+    end
   end
  
 end
