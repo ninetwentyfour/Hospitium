@@ -21,7 +21,10 @@ class TwitterAccountsController < ApplicationController
   end
   
   def show
-    TwitterAccount.twitter_post('one more test post from my app', current_user.id)
+    #puts debug(current_user.id)
+    TwitterAccount.twitter_post("#{params[:animal_name]} is ready for adoption at http://hospitium.heroku.com/animals/#{params[:animal_uuid]}", params[:twitter_user_id])
+    #TwitterAccount.twitter_post("test is ready for adoption at http://hospitium.heroku.com/animals/test", 1)
+    redirect_to :back
   end
  
 end

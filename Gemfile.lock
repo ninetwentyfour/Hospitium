@@ -1,14 +1,4 @@
 GIT
-  remote: git://github.com/jnunemaker/twitter.git
-  revision: a614f6e1259a43781923edc847042cb05c1c2c20
-  specs:
-    twitter (2.0.0)
-      faraday (~> 0.7.4)
-      multi_json (~> 1.0.0)
-      simple_oauth (~> 0.1.5)
-      twitter-text (~> 1.4.2)
-
-GIT
   remote: git://github.com/sferik/rails_admin.git
   revision: 77b45592f4bbcc182294e4281147671c74a9179d
   branch: rails-3.0
@@ -68,8 +58,11 @@ GEM
     faraday (0.7.5)
       addressable (~> 2.2.6)
       multipart-post (~> 1.1.3)
-      rack (>= 1.1.0, < 2)
+      rack (< 2, >= 1.1.0)
+    faraday_middleware (0.7.0)
+      faraday (~> 0.7.3)
     haml (3.1.3)
+    hashie (1.1.0)
     home_run (1.0.3)
     i18n (0.5.0)
     mail (2.2.19)
@@ -79,6 +72,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     multi_json (1.0.3)
+    multi_xml (0.4.1)
     multipart-post (1.1.3)
     mysql2 (0.2.13)
     oauth (0.4.5)
@@ -118,8 +112,13 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    twitter-text (1.4.12)
-      activesupport
+    twitter (1.7.2)
+      faraday (~> 0.7.4)
+      faraday_middleware (~> 0.7.0)
+      hashie (~> 1.1.0)
+      multi_json (~> 1.0.0)
+      multi_xml (~> 0.4.0)
+      simple_oauth (~> 0.1.5)
     tzinfo (0.3.29)
     uuidtools (2.1.2)
     warden (1.0.5)
@@ -143,6 +142,6 @@ DEPENDENCIES
   rails (= 3.0.10)
   rails_admin!
   slim_scrooge
-  twitter!
+  twitter
   uuidtools
   will_paginate (~> 3.0.0)

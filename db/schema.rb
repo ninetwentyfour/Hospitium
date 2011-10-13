@@ -65,12 +65,13 @@ ActiveRecord::Schema.define(:version => 20111012215840) do
     t.integer  "organization_id"
     t.datetime "adopted_date"
     t.integer  "animal_color_id"
+    t.string   "animal_pic"
     t.string   "image"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "public",             :default => 0
+    t.boolean  "public",             :default => false
   end
 
   create_table "organizations", :force => true do |t|
@@ -99,12 +100,25 @@ ActiveRecord::Schema.define(:version => 20111012215840) do
     t.datetime "updated_at"
   end
 
+  create_table "photos", :force => true do |t|
+    t.integer  "animal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "photos", ["animal_id"], :name => "index_photos_on_animal_id"
+
   create_table "rails_admin_histories", :force => true do |t|
     t.string   "message"
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month"
+    t.integer  "month",      :limit => 2
     t.integer  "year",       :limit => 8
     t.datetime "created_at"
     t.datetime "updated_at"

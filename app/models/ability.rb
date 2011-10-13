@@ -34,6 +34,7 @@ class Ability
         can :manage, :all
       elsif user.role? :admin
         can :access, :rails_admin
+        can :manage, :twitter_account
         #can :manage, :all
         #can :manage, AdoptionContact, :animal => { :organization_id => user.organization_ids }
         can :read, AdoptionContact, :animal => { :organization_id => user.organization_ids }

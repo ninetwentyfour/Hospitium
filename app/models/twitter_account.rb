@@ -45,13 +45,13 @@ class TwitterAccount < ActiveRecord::Base
       config.oauth_token_secret = account.oauth_token_secret
     end
     client = Twitter::Client.new
-    begin
-      client.update("#{message}")
-      return true
-    rescue Exception => e
-      self.errors.add(:oauth_token, "Unable to send to twitter: #{e.to_s}")
-      return false
-    end
+    #begin
+    client.update("#{message}")
+    return true
+    # rescue Exception => e
+    #   self.errors.add(:oauth_token, "Unable to send to twitter: #{e.to_s}")
+    #   return false
+    # end
   end
   
 end

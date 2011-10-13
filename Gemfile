@@ -17,7 +17,7 @@ gem 'aws-s3', :require => 'aws/s3'
 gem 'will_paginate', '~> 3.0.0'
 gem 'paper_trail'
 gem 'oauth'
-gem 'twitter', :git => 'git://github.com/jnunemaker/twitter.git'
+gem 'twitter'
 
 group :production do
 	gem 'home_run', :require=>'date'
