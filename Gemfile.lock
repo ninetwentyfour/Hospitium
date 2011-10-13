@@ -107,6 +107,7 @@ GEM
     rake (0.9.2)
     rdoc (3.9.4)
     simple_oauth (0.1.5)
+    slim_scrooge (1.0.11)
     thor (0.14.6)
     treetop (1.4.10)
       polyglot
@@ -140,6 +141,7 @@ DEPENDENCIES
   paperclip (~> 2.4)
   rails (= 3.0.10)
   rails_admin!
+  slim_scrooge
   twitter
   uuidtools
   will_paginate (~> 3.0.0)
