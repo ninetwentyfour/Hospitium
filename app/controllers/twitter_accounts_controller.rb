@@ -13,7 +13,7 @@ class TwitterAccountsController < ApplicationController
       twitter_account.validate_oauth_token(params[:oauth_verifier], twitter_callback_url)
       twitter_account.save
       if twitter_account.active?
-        redirect_to("#{root_url}admin/user/#{current_user.id}", :notice => 'Twitter account activated!')
+        redirect_to("#{root_url}admin/user/#{current_user.id}", :notice => 'Twitter account activated! You will need to resend the last tweet.')
       else
         redirect_to("#{root_url}admin/user/#{current_user.id}", :notice => "Unable to activate twitter account.")
       end
