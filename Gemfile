@@ -18,6 +18,10 @@ gem 'will_paginate', '~> 3.0.0'
 gem 'paper_trail'
 gem 'oauth'
 gem 'twitter'
+gem 'rest-client'
+gem 'json'
+
+
 
 group :production do
 	gem 'home_run', :require=>'date'

@@ -1,4 +1,9 @@
 AnimalTracker::Application.routes.draw do
+  resource :facebook_accounts
+  match '/callback/facebook/:id' => "facebook_accounts#callback", :as => :facebook_callback
+  match "/facebook_accounts/send_wall_post" => "facebook_accounts#send_wall_post", :as => "facebook_accounts"
+
+  
   resource :twitter_accounts
   match '/callback/twitter/' => "twitter_accounts#callback", :as => :twitter_callback
   match "/twitter_accounts/send_tweet" => "twitter_accounts#send_tweet", :as => "twitter_accounts"
