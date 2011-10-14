@@ -5,7 +5,7 @@
 		<strong><%= @post.author %> posted on <%= @post.created_at.strftime("%m-%d-%Y") %></strong>
 	</div>
 	<div class="otherAnimalInfo">
-		<p><%= @post.content %></p>
+		<p><%= raw(@post.content) %></p>
 	</div>
 </div>
 
