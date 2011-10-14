@@ -22,7 +22,7 @@ class FacebookAccountsController < ApplicationController
   def send_wall_post
     account = FacebookAccount.find_by_user_id(current_user.id)
     if account.blank?
-      facebook_account = FacebookAccount.create()
+      facebook_account = FacebookAccount.create(:user => current_user)
       redirect_to(facebook_account.authorize_url(facebook_callback_url(:id => facebook_account.id)))
     else
       FacebookAccount.post("#{params[:animal_name]} is ready for adoption at #{root_url}animals/#{params[:animal_uuid]}", current_user.id)
