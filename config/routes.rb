@@ -1,4 +1,5 @@
 AnimalTracker::Application.routes.draw do
+
   resource :facebook_accounts
   match '/callback/facebook/:id' => "facebook_accounts#callback", :as => :facebook_callback
   match "/facebook_accounts/send_wall_post" => "facebook_accounts#send_wall_post", :as => "facebook_accounts"
@@ -13,6 +14,9 @@ AnimalTracker::Application.routes.draw do
   #force most controllers to /admin
   match "/animals/new" => redirect("/admin/animals/new"), :via => :get
   match "/animals/:id/edit" => redirect("/admin/animals/%{id}/edit"), :via => :get
+  
+  match "/posts/new" => redirect("/admin/posts/new"), :via => :get
+  match "/posts/:id/edit" => redirect("/admin/posts/%{id}/edit"), :via => :get
   
   match "/organizations/new" => redirect("/admin/organizations/new"), :via => :get
   match "/organizations/:id/edit" => redirect("/admin/organizations/%{id}/edit"), :via => :get
@@ -85,6 +89,8 @@ AnimalTracker::Application.routes.draw do
   resources :permissions
   
   resources :roles
+  
+  resources :posts
 
     
   devise_for :users

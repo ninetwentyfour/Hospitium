@@ -1,0 +1,17 @@
+
+<div class="hero-unit clearfix">
+	<div class="page-header">
+		<h1><%= @post.title %></h1>
+		<strong><%= @post.author %> posted on <%= @post.created_at.strftime("%m-%d-%Y") %></strong>
+	</div>
+	<div class="otherAnimalInfo">
+		<p><%= @post.content %></p>
+	</div>
+</div>
+
+
+
+<p id="notice"><%= notice %></p>
+
+
+<%= link_to 'Back', posts_path %>

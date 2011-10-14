@@ -20,6 +20,7 @@ gem 'oauth'
 gem 'twitter'
 gem 'rest-client'
 gem 'json'
+gem 'ckeditor'
 
 
 

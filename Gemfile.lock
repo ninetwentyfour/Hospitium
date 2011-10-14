@@ -47,6 +47,9 @@ GEM
     bcrypt-ruby (3.0.1)
     builder (2.1.2)
     cancan (1.6.5)
+    ckeditor (3.6.2)
+      mime-types (~> 1.16)
+      orm_adapter (~> 0.0.5)
     cocaine (0.2.0)
     dalli (1.0.5)
     devise (1.4.7)
@@ -135,6 +138,7 @@ PLATFORMS
 DEPENDENCIES
   aws-s3
   cancan
+  ckeditor
   dalli
   devise
   home_run
