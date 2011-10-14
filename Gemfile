@@ -24,6 +24,7 @@ gem 'rest-client'
 gem 'json'
 gem 'ckeditor'
 gem 'libxml-xmlrpc'
+gem 'bitly'
 
 
 

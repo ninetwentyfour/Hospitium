@@ -21,11 +21,12 @@ class WordpressAccountsController < ApplicationController
     if account.blank?
       redirect_to("#{root_url}admin/user/#{current_user.id}", :notice => 'Please Add Wordpress Credentials!')
     else
+      link = WordpressAccount.shorten_link("#{root_url}animals/#{params[:animal_uuid]}")
       message = Hash.new
       message['title'] = "#{params[:animal_name]} is ready for adoption!"
       
       message['content'] = "<p><img src='#{params[:animal_picture]}' /></p>
-      <p>#{params[:animal_name]} is ready for adoption at <a href='#{root_url}animals/#{params[:animal_uuid]}'>#{root_url}animals/#{params[:animal_uuid]}</a></p>"
+      <p>#{params[:animal_name]} is ready for adoption at <a href='#{link}'>#{link}</a></p>"
       
       WordpressAccount.post(message, account)
       redirect_to("#{root_url}admin/animals/#{params[:animal_id]}", :notice => 'Wordpress Post Sent')
