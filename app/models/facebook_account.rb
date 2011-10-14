@@ -1,5 +1,14 @@
 class FacebookAccount < ActiveRecord::Base
   belongs_to :user
+  
+  # settings for rails admin views
+  rails_admin do
+    object_label_method do
+      :show_facebookurl_label_method # show the user email in the admin UI instead of the user id
+    end
+  end
+  
+  
   # Stubbed out! Does no (good) error checking!
 
   # Get these from facebook!
@@ -38,6 +47,11 @@ class FacebookAccount < ActiveRecord::Base
   def self.post(message, user)
     account = FacebookAccount.find_by_user_id(user)
     RestClient.post 'https://graph.facebook.com/me/feed', { :access_token => account.access_token, :message => message }
+  end
+  
+  # show the user email in the admin UI instead of the user id
+  def show_facebookurl_label_method
+    "#{self.stream_url}"
   end
 
 end

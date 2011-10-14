@@ -6,6 +6,13 @@ class TwitterAccount < ActiveRecord::Base
   
   belongs_to :user
   
+  # settings for rails admin views
+  rails_admin do
+    object_label_method do
+      :show_twitter_label_method # show the user email in the admin UI instead of the user id
+    end
+  end
+  
   
   def authorize_url(callback_url = '')
     if self.oauth_authorize_url.blank?
@@ -52,6 +59,12 @@ class TwitterAccount < ActiveRecord::Base
     #   self.errors.add(:oauth_token, "Unable to send to twitter: #{e.to_s}")
     #   return false
     # end
+  end
+  
+  
+  # show the user email in the admin UI instead of the user id
+  def show_twitter_label_method
+    "#{self.stream_url}"
   end
   
 end

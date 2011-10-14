@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :permissions
   has_many :twitter_accounts
   has_many :facebook_accounts
+  has_many :wordpress_accounts
   has_many :roles, :through => :permissions
   has_and_belongs_to_many :organizations
   # Include default devise modules. Others available are:
@@ -34,6 +35,15 @@ class User < ActiveRecord::Base
       group :roles do
         hide
       end
+      # group :facebook_accounts do
+      #   hide
+      # end
+      # group :twitter_accounts do
+      #   hide
+      # end
+      # group :wordpress_accounts do
+      #   hide
+      # end
       group :organizations do
         show
       end
@@ -53,10 +63,19 @@ class User < ActiveRecord::Base
       group :roles do
         hide
       end
+      # group :facebook_accounts do
+      #   hide
+      # end
+      # group :twitter_accounts do
+      #   hide
+      # end
+      # group :wordpress_accounts do
+      #   hide
+      # end
       group :organizations do
         hide
       end
-      exclude_fields :uuid, :reset_password_sent_at
+      exclude_fields :uuid, :reset_password_sent_at, :confirmation_token, :confirmed_at, :confirmation_sent_at
     end
     list do
       exclude_fields :uuid, :email, :updated_at, :sign_in_count, :remember_created_at, :reset_password_token, :reset_password_sent_at, :current_sign_in_at, :last_sign_in_at,

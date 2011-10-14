@@ -91,6 +91,12 @@ AnimalTracker::Application.routes.draw do
   resources :roles
   
   resources :posts
+  
+  resource :wordpress_accounts
+  match "/wordpress_accounts/send_blog_post" => "wordpress_accounts#send_blog_post", :as => "wordpress_accounts"
+  
+  resource :petfinder_accounts
+  match "/petfinder_accounts/send_animal_post" => "petfinder_accounts#send_animal_post", :as => "petfinder_accounts"
 
     
   devise_for :users

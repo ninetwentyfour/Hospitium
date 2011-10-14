@@ -20,20 +20,36 @@ class Animal < ActiveRecord::Base
     end
     create do
       #exclude_fields :uuid
-      field :name
-      field :previous_name
-      field :status, :enum
-      field :public, :boolean
-      field :species
-      field :age
+      field :name do
+        help 'Required - the animals current name.'
+      end
+      field :previous_name do
+        help 'Optional - any previous names the animal may have had.'
+      end
+      field :status, :enum 
+      field :public, :boolean do
+        help 'Optional - check to make the animal appear on our adopt list.'
+      end
+      field :species do
+        help 'Required - if the species you need is not listed, click "Create species" above.'
+      end
+      field :age do
+        help 'Optional - age of the animal in years.'
+      end
       field :sex, :enum
-      field :animal_color
+      field :animal_color do
+        help 'Required - if the animal color you need is not listed, click "Create animal color" above.'
+      end
       field :spay_neuter, :enum
       field :biter, :enum
       field :date_of_intake
-      field :date_of_well_check
+      field :date_of_well_check do
+        help 'Optional - date of first vet visit.'
+      end
       field :organization
-      field :shelter
+      field :shelter do
+        help 'Optional - if the shelter you need is not listed, click "Create shelter" above.'
+      end
       field :special_needs
       field :diet
       field :adopted_date
