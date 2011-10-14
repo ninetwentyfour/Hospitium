@@ -13,11 +13,16 @@ class ApplicationController < ActionController::Base
   end
 
   APP_DOMAIN = 'hospitium.co'
-
-  def ensure_domain
-    if request.env['HTTP_HOST'] != APP_DOMAIN
-      # HTTP 301 is a "permanent" redirect
-      redirect_to "http://#{APP_DOMAIN}", :status => 301
+  if RAILS_ENV == "production"
+    def ensure_domain
+      if request.env['HTTP_HOST'] != APP_DOMAIN
+        # HTTP 301 is a "permanent" redirect
+        redirect_to "http://#{APP_DOMAIN}", :status => 301
+      end
+    end
+  else
+    def ensure_domain
+      #do nothing
     end
   end
 end

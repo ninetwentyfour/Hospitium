@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111014011533) do
+ActiveRecord::Schema.define(:version => 20111014151350) do
 
   create_table "adoption_contacts", :force => true do |t|
     t.string   "first_name"
@@ -65,13 +65,12 @@ ActiveRecord::Schema.define(:version => 20111014011533) do
     t.integer  "organization_id"
     t.datetime "adopted_date"
     t.integer  "animal_color_id"
-    t.string   "animal_pic"
     t.string   "image"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.boolean  "public",             :default => false
+    t.integer  "public",             :default => 0
   end
 
   create_table "facebook_accounts", :force => true do |t|
@@ -110,19 +109,6 @@ ActiveRecord::Schema.define(:version => 20111014011533) do
     t.datetime "updated_at"
   end
 
-  create_table "photos", :force => true do |t|
-    t.integer  "animal_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "image"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-  end
-
-  add_index "photos", ["animal_id"], :name => "index_photos_on_animal_id"
-
   create_table "posts", :force => true do |t|
     t.string   "author"
     t.string   "title"
@@ -136,7 +122,7 @@ ActiveRecord::Schema.define(:version => 20111014011533) do
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month",      :limit => 2
+    t.integer  "month"
     t.integer  "year",       :limit => 8
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -263,6 +249,16 @@ ActiveRecord::Schema.define(:version => 20111014011533) do
     t.string   "email"
     t.datetime "application_date"
     t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "wordpress_accounts", :force => true do |t|
+    t.integer  "user_id"
+    t.boolean  "active",        :default => false
+    t.text     "site_url"
+    t.text     "blog_user"
+    t.text     "blog_password"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

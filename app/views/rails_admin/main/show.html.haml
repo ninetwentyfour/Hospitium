@@ -36,6 +36,31 @@
 						%input{:type => "hidden", :value => "#{@object.id}", :name => "animal_id"}
 						%input{:type => "hidden", :value => "#{@object.name}", :name => "animal_name"}
 						%button{:type => "submit", :class => "button"}Send Animal To Facebook
+					%br
+					%p
+					%br
+					- form_tag("/wordpress_accounts/send_blog_post", :method => "post") do
+						%input{:type => "hidden", :value => "#{@object.uuid}", :name => "animal_uuid"}
+						%input{:type => "hidden", :value => "#{@object.id}", :name => "animal_id"}
+						%input{:type => "hidden", :value => "#{@object.name}", :name => "animal_name"}
+						%input{:type => "hidden", :value => "#{@object.image.url(:medium)}", :name => "animal_picture"}
+						%button{:type => "submit", :class => "button"}Send Animal To Wordpress
+			-  if @object.respond_to?('password')
+				- form_tag("/wordpress_accounts", :method => "post") do
+					Please enter your wordpress url and user name and password
+					%label Site URL
+					%input{:type => "text", :name => "wordpress_account[site_url]"}
+					%br
+					%label Blog User
+					%input{:type => "text", :name => "wordpress_account[blog_user]"}
+					%br
+					%label Blog Password
+					%input{:type => "password", :name => "wordpress_account[blog_password]"}
+					%br
+					/%input{:type => "hidden", :value => "#{@object.uuid}", :name => "animal_uuid"}
+					/%input{:type => "hidden", :value => "#{@object.id}", :name => "animal_id"}
+					/%input{:type => "hidden", :value => "#{@object.name}", :name => "animal_name"}
+					%button{:type => "submit", :class => "button"}Add Wordpress Account
 			- @model_config.show.with(:object => @object, :view => self).visible_groups.each do |fieldset|
 				- unless (fields = fieldset.visible_fields.map{|f| f.with(:object => @object, :view => self)}).empty?
 					- if !(values = fields.map{ |f| f.pretty_value.presence }).compact.empty? || !RailsAdmin::config.compact_show_view
