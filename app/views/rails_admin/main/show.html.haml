@@ -29,6 +29,7 @@
 						%input{:type => "hidden", :value => "#{@object.name}", :name => "animal_name"}
 						%button{:type => "submit", :class => "button"}Send Animal To Twitter
 					%br
+					%p
 					%br
 					- form_tag("/facebook_accounts/send_wall_post", :method => "post") do
 						%input{:type => "hidden", :value => "#{@object.uuid}", :name => "animal_uuid"}
