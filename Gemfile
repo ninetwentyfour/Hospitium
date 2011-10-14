@@ -8,6 +8,8 @@ gem 'rails', '3.0.10'
 gem 'mysql2', '< 0.3'
 gem 'devise' # Devise must be required before RailsAdmin
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git', :branch => 'rails-3.0'
+gem 'nokogiri'
+gem 'mechanize'
 gem 'uuidtools'
 gem 'cancan'
 gem "paperclip", "~> 2.4"

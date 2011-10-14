@@ -1,5 +1,8 @@
+- head_style "rails_admin/form.css"
 - head_style "rails_admin/show.css"
 - head_javascript "rails_admin/application.js"
+- head_javascript "rails_admin/ra.remote-form.js"
+- head_javascript "rails_admin/activo/application.js"
 
 #block-tables.block
 	= breadcrumbs_for :show, @object
@@ -15,7 +18,7 @@
 				= action_button rails_admin_delete_path(@abstract_model, @object.id), t("admin.list.delete_action"), :cross
 
 		%h2.title= @page_name
-		.inner
+		.inner.clearfix
 			= render(:partial => 'layouts/rails_admin/flash', :locals => {:flash => flash})
 			-  if @object.respond_to?('image_file_name')
 				.animalMedia
@@ -45,22 +48,6 @@
 						%input{:type => "hidden", :value => "#{@object.name}", :name => "animal_name"}
 						%input{:type => "hidden", :value => "#{@object.image.url(:medium)}", :name => "animal_picture"}
 						%button{:type => "submit", :class => "button"}Send Animal To Wordpress
-			-  if @object.respond_to?('password')
-				- form_tag("/wordpress_accounts", :method => "post") do
-					Please enter your wordpress url and user name and password
-					%label Site URL
-					%input{:type => "text", :name => "wordpress_account[site_url]"}
-					%br
-					%label Blog User
-					%input{:type => "text", :name => "wordpress_account[blog_user]"}
-					%br
-					%label Blog Password
-					%input{:type => "password", :name => "wordpress_account[blog_password]"}
-					%br
-					/%input{:type => "hidden", :value => "#{@object.uuid}", :name => "animal_uuid"}
-					/%input{:type => "hidden", :value => "#{@object.id}", :name => "animal_id"}
-					/%input{:type => "hidden", :value => "#{@object.name}", :name => "animal_name"}
-					%button{:type => "submit", :class => "button"}Add Wordpress Account
 			- @model_config.show.with(:object => @object, :view => self).visible_groups.each do |fieldset|
 				- unless (fields = fieldset.visible_fields.map{|f| f.with(:object => @object, :view => self)}).empty?
 					- if !(values = fields.map{ |f| f.pretty_value.presence }).compact.empty? || !RailsAdmin::config.compact_show_view
@@ -72,3 +59,22 @@
 									- if (value = values[index]) || !RailsAdmin::config.compact_show_view
 										%div.label= field.label
 										%div.value= value || ' - '
+		-  if @object.respond_to?('password')
+			#wordpressForm{:style => "width:100%; padding:20px", :class => "clearfix"}
+				- form_tag("/wordpress_accounts", :method => "post", :class => "form") do
+					%h1 WordPress Account Signup
+					Please enter your wordpress url, user name, and password.
+					#user_username_field.field
+						%label{:for => "site_url"} Site URL
+						%input{:id => "site_url", :type => "text", :name => "wordpress_account[site_url]", :class => "string", :style => "width:px", :size => "50"}
+					#user_username_field.field
+						%label{:for => "blog_user"} Blog User
+						%input{:id => "blog_user", :type => "text", :name => "wordpress_account[blog_user]", :class => "string", :style => "width:px", :size => "50"}
+					#user_username_field.field
+						%label{:for => "blog_password"} Blog Password
+						%input{:id => "blog_password", :type => "password", :name => "wordpress_account[blog_password]", :class => "string", :style => "width:px", :size => "50"}
+					%br
+					/%input{:type => "hidden", :value => "#{@object.uuid}", :name => "animal_uuid"}
+					/%input{:type => "hidden", :value => "#{@object.id}", :name => "animal_id"}
+					/%input{:type => "hidden", :value => "#{@object.name}", :name => "animal_name"}
+					%button{:type => "submit", :class => "button"}Add Wordpress Account
