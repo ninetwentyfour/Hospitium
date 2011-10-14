@@ -31,7 +31,7 @@ class FacebookAccount < ActiveRecord::Base
       self.errors.add(:oauth_verifier, "Invalid token, unable to connect to facebook: #{pair[1]}")
       self.active = false
     end
-    self.user_id = current_user.id
+    #self.user_id = current_user.id
     self.save!
   end
   
