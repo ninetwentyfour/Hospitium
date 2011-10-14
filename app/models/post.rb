@@ -3,6 +3,11 @@ class Post < ActiveRecord::Base
   
   # settings for rails admin views
   rails_admin do
+    show do
+      field :title
+      field :author
+      field :content
+    end
     create do
       #field :title
       #field :author
@@ -16,6 +21,11 @@ class Post < ActiveRecord::Base
       field :content, :text do
         ckeditor true
       end
+    end
+    list do
+      field :title
+      field :author
+      field :content
     end
   end
   
