@@ -3,7 +3,7 @@ class FacebookAccountsController < ApplicationController
   # Stubbed out! Does no (good) error checking!
 
   def new
-    facebook_account = FacebookAccount.create()
+    facebook_account = FacebookAccount.create(:user => current_user)
     redirect_to(facebook_account.authorize_url(facebook_callback_url(:id => facebook_account.id)))
   end
 
