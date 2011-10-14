@@ -113,6 +113,7 @@ GEM
     rest-client (1.6.7)
       mime-types (>= 1.16)
     simple_oauth (0.1.5)
+    slim_scrooge (1.0.11)
     thor (0.14.6)
     treetop (1.4.10)
       polyglot
@@ -149,6 +150,7 @@ DEPENDENCIES
   rails (= 3.0.10)
   rails_admin!
   rest-client
+  slim_scrooge
   twitter
   uuidtools
   will_paginate (~> 3.0.0)
