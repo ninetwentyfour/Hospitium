@@ -1,5 +1,5 @@
 class FacebookAccount < ActiveRecord::Base
-
+  belongs_to :user
   # Stubbed out! Does no (good) error checking!
 
   # Get these from facebook!
