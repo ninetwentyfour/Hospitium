@@ -46,6 +46,8 @@ class WordpressAccount < ActiveRecord::Base
     if short_url.blank?
       short_url = RestClient.get "http://tinyurl.com/api-create.php?url=#{link}"
     end
+    
+    return short_url
   end
 
 end
