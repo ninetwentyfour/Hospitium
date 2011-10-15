@@ -6,7 +6,7 @@ class Shelter < ActiveRecord::Base
   # settings for rails admin views
   rails_admin do
     show do
-      exclude_fields :uuid
+      exclude_fields :uuid, :organization
     end
     create do
       exclude_fields :uuid
@@ -15,7 +15,7 @@ class Shelter < ActiveRecord::Base
       exclude_fields :uuid
     end
     list do
-      exclude_fields :uuid
+      exclude_fields :uuid, :organization
     end
   end
   

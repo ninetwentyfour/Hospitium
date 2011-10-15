@@ -1,5 +1,6 @@
 class FacebookAccount < ActiveRecord::Base
   belongs_to :user
+  belongs_to :organization
   
   # settings for rails admin views
   rails_admin do

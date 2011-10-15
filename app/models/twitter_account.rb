@@ -5,6 +5,7 @@ class TwitterAccount < ActiveRecord::Base
   OPTIONS = {:site => "http://api.twitter.com", :request_endpoint => "http://api.twitter.com"}
   
   belongs_to :user
+  belongs_to :organization
   
   # settings for rails admin views
   rails_admin do

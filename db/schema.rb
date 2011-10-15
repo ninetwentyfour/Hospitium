@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111014151350) do
+ActiveRecord::Schema.define(:version => 20111015212704) do
 
   create_table "adoption_contacts", :force => true do |t|
     t.string   "first_name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20111014151350) do
     t.datetime "adopted_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "organization_id"
   end
 
   create_table "animal_colors", :force => true do |t|
@@ -40,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20111014151350) do
     t.integer  "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "organization_id"
   end
 
   create_table "animals", :force => true do |t|
@@ -82,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20111014151350) do
     t.text     "oauth_authorize_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "organization_id"
   end
 
   create_table "organizations", :force => true do |t|
@@ -155,6 +158,7 @@ ActiveRecord::Schema.define(:version => 20111014151350) do
     t.text     "reason"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "organization_id"
   end
 
   create_table "roles", :force => true do |t|
@@ -204,6 +208,7 @@ ActiveRecord::Schema.define(:version => 20111014151350) do
     t.string  "oauth_token_secret"
     t.string  "oauth_token_verifier"
     t.text    "oauth_authorize_url"
+    t.integer "organization_id"
   end
 
   create_table "users", :force => true do |t|
@@ -223,6 +228,8 @@ ActiveRecord::Schema.define(:version => 20111014151350) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.integer  "organization_id"
+    t.string   "organization_name"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
@@ -269,12 +276,13 @@ ActiveRecord::Schema.define(:version => 20111014151350) do
 
   create_table "wordpress_accounts", :force => true do |t|
     t.integer  "user_id"
-    t.boolean  "active",        :default => false
+    t.boolean  "active",          :default => false
     t.text     "site_url"
     t.text     "blog_user"
     t.text     "blog_password"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "organization_id"
   end
 
 end

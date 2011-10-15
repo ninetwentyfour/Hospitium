@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   has_many :facebook_accounts
   has_many :wordpress_accounts
   has_many :roles, :through => :permissions
-  has_and_belongs_to_many :organizations
+  #has_and_belongs_to_many :organizations
+  belongs_to :organization
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :confirmable, :registerable,
@@ -15,13 +16,15 @@ class User < ActiveRecord::Base
  attr_accessor :login
          
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :login
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :login, :organization_name
   
-  
+  before_create :add_to_organization
   after_create :add_default_role
   
   validates_presence_of :username
   validates_uniqueness_of :username
+  validates_presence_of :organization_name
+  #validates_uniqueness_of :organization_name
   
   # settings for rails admin views
   rails_admin do
@@ -48,7 +51,7 @@ class User < ActiveRecord::Base
         show
       end
       exclude_fields :uuid, :email, :updated_at, :sign_in_count, :remember_created_at, :reset_password_token, :reset_password_sent_at, :current_sign_in_at, :last_sign_in_at,
-                            :current_sign_in_ip, :last_sign_in_ip, :id, :password, :password_confirmation, :confirmation_token, :confirmed_at, :confirmation_sent_at
+                            :current_sign_in_ip, :last_sign_in_ip, :id, :password, :password_confirmation, :confirmation_token, :confirmed_at, :confirmation_sent_at, :organization
     end
     create do
       group :permissions do
@@ -79,7 +82,7 @@ class User < ActiveRecord::Base
     end
     list do
       exclude_fields :uuid, :email, :updated_at, :sign_in_count, :remember_created_at, :reset_password_token, :reset_password_sent_at, :current_sign_in_at, :last_sign_in_at,
-                            :current_sign_in_ip, :last_sign_in_ip, :id, :confirmation_token, :confirmed_at, :confirmation_sent_at
+                            :current_sign_in_ip, :last_sign_in_ip, :id, :confirmation_token, :confirmed_at, :confirmation_sent_at, :organization
     end
   end
   
@@ -96,6 +99,16 @@ class User < ActiveRecord::Base
     @user = self.id
     @permission = Permission.new
     @permission.update_attributes(:user_id => @user, :role_id => 2) 
+  end
+  
+  def add_to_organization
+    unless self.organization_id.blank?
+      #do nothing
+    else
+      @organization = Organization.new
+      @organization.update_attributes(:name => "#{self.organization_name}") 
+      self.organization_id = @organization.id
+    end
   end
   
   protected

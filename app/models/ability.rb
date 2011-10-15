@@ -37,60 +37,61 @@ class Ability
         can :manage, :twitter_account
         #can :manage, :all
         #can :manage, AdoptionContact, :animal => { :organization_id => user.organization_ids }
-        can :read, AdoptionContact, :animal => { :organization_id => user.organization_ids }
+        can :read, AdoptionContact, :organization => { :id => user.organization_id }
         can :create, AdoptionContact
-        can :update, AdoptionContact, :animal => { :organization_id => user.organization_ids }
-        can :destroy, AdoptionContact, :animal => { :organization_id => user.organization_ids }
+        can :update, AdoptionContact, :organization => { :id => user.organization_id }
+        can :destroy, AdoptionContact, :organization => { :id => user.organization_id }
         #can :manage, AdoptionContact
         #can :manage, Animal, :organization => { :id => user.organization_ids }
-        can :read, Animal, :organization => { :id => user.organization_ids }
+        can :read, Animal, :organization => { :id => user.organization_id }
         can :create, Animal
-        can :update, Animal, :organization => { :id => user.organization_ids }
-        can :destroy, Animal, :organization => { :id => user.organization_ids }
+        can :update, Animal, :organization => { :id => user.organization_id }
+        can :destroy, Animal, :organization => { :id => user.organization_id }
         #can :manage, AnimalColor, :organization => { :id => user.organization_ids }
-        can :read, AnimalColor, :organization => { :id => user.organization_ids }
+        can :read, AnimalColor, :organization => { :id => user.organization_id }
         can :create, AnimalColor
-        can :update, AnimalColor, :organization => { :id => user.organization_ids }
-        can :destroy, AnimalColor, :organization => { :id => user.organization_ids }
+        can :update, AnimalColor, :organization => { :id => user.organization_id }
+        can :destroy, AnimalColor, :organization => { :id => user.organization_id }
         #can :manage, AnimalWeight, :animal => { :organization_id => user.organization_ids }
-        can :read, AnimalWeight, :animal => { :organization_id => user.organization_ids }
+        can :read, AnimalWeight, :organization => { :id => user.organization_id }
         can :create, AnimalWeight
-        can :update, AnimalWeight, :animal => { :organization_id => user.organization_ids }
-        can :destroy, AnimalWeight, :animal => { :organization_id => user.organization_ids }
+        can :update, AnimalWeight, :organization => { :id => user.organization_id }
+        can :destroy, AnimalWeight, :organization => { :id => user.organization_id }
         #
-        can :read, Organization, :id => user.organization_ids
-        can :create, Organization
-        can :update, Organization, :id => user.organization_ids
-        can :destroy, Organization, :id => user.organization_ids
+        can :read, Organization, :id => user.organization_id
+        #can :create, Organization
+        can :update, Organization, :id => user.organization_id
+        #can :destroy, Organization, :id => user.organization_id
         #can :manage, RelinquishmentContact, :animal => { :organization_id => user.organization_ids }
-        can :read, RelinquishmentContact, :animal => { :organization_id => user.organization_ids }
+        can :read, RelinquishmentContact, :organization => { :id => user.organization_id }
         can :create, RelinquishmentContact
-        can :update, RelinquishmentContact, :animal => { :organization_id => user.organization_ids }
-        can :destroy, RelinquishmentContact, :animal => { :organization_id => user.organization_ids }
+        can :update, RelinquishmentContact, :organization => { :id => user.organization_id }
+        can :destroy, RelinquishmentContact, :organization => { :id => user.organization_id }
         #can :manage, Role, :organization => { :id => user.organization_ids }
         #can :manage, Shelter, :organization => { :id => user.organization_ids }
-        can :read, Shelter, :organization => { :id => user.organization_ids }
+        can :read, Shelter, :organization => { :id => user.organization_id }
         can :create, Shelter
-        can :update, Shelter, :organization => { :id => user.organization_ids }
-        can :destroy, Shelter, :organization => { :id => user.organization_ids }
+        can :update, Shelter, :organization => { :id => user.organization_id }
+        can :destroy, Shelter, :organization => { :id => user.organization_id }
         #can :manage, Species, :organization => { :id => user.organization_ids }
-        can :read, Species, :organization => { :id => user.organization_ids }
+        can :read, Species, :organization => { :id => user.organization_id }
         can :create, Species
-        can :update, Species, :organization => { :id => user.organization_ids }
-        can :destroy, Species, :organization => { :id => user.organization_ids }
+        can :update, Species, :organization => { :id => user.organization_id }
+        can :destroy, Species, :organization => { :id => user.organization_id }
         #can :manage, User, :id => user.id
-        can :read, User
+        can :read, User, :organization => { :id => user.organization_id }
+        can :create, User
         can :update, User, :id => user.id
         #can :manage, VetContact, :organization => { :id => user.organization_ids }
-        can :read, VetContact, :organization => { :id => user.organization_ids }
+        can :read, VetContact, :organization => { :id => user.organization_id }
         can :create, VetContact
-        can :update, VetContact, :organization => { :id => user.organization_ids }
-        can :destroy, VetContact, :organization => { :id => user.organization_ids }
+        can :update, VetContact, :organization => { :id => user.organization_id }
+        can :destroy, VetContact, :organization => { :id => user.organization_id }
         #can :manage, VolunteerContact, :organization => { :id => user.organization_ids }
-        can :read, VolunteerContact, :organization => { :id => user.organization_ids }
+        can :read, VolunteerContact, :organization => { :id => user.organization_id }
         can :create, VolunteerContact
-        can :update, VolunteerContact, :organization => { :id => user.organization_ids }
-        can :destroy, VolunteerContact, :organization => { :id => user.organization_ids }
+        can :update, VolunteerContact, :organization => { :id => user.organization_id }
+        can :destroy, VolunteerContact, :organization => { :id => user.organization_id }
       elsif user.role? :standard
         can :access, :rails_admin 
         #can :manage, :all

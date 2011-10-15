@@ -7,7 +7,7 @@ class AnimalColor < ActiveRecord::Base
       :show_color_label_method # show the link in the admin UI instead of the link id
     end
     show do
-      exclude_fields :uuid
+      exclude_fields :uuid, :organization
     end
     create do
       exclude_fields :uuid
@@ -16,7 +16,7 @@ class AnimalColor < ActiveRecord::Base
       exclude_fields :uuid
     end
     list do
-      exclude_fields :uuid
+      exclude_fields :uuid, :organization
     end
   end
   
