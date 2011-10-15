@@ -77,9 +77,9 @@ Todo:
 
 - <del>Animal Weight MVC</del>
 
-- facebook integration
+- <del>facebook integration</del>
 
-- post to wordpress / tumblr [http://jmettraux.wordpress.com/2007/11/05/posting-to-wordpress-via-ruby-and-atompub/](http://jmettraux.wordpress.com/2007/11/05/posting-to-wordpress-via-ruby-and-atompub/)
+- <del>post to wordpress / tumblr [http://jmettraux.wordpress.com/2007/11/05/posting-to-wordpress-via-ruby-and-atompub/](http://jmettraux.wordpress.com/2007/11/05/posting-to-wordpress-via-ruby-and-atompub/)</del>
 
 - <del>add checkbox for public on animals and create pubic adopt list.</del>
 
@@ -178,6 +178,8 @@ Todo:
 - make public animal list a queue that is moderated by super admins
 
 - seo
+
+- send facebook to pages or groups
 
 * * *
 

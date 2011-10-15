@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
     end
     list do
       exclude_fields :uuid, :email, :updated_at, :sign_in_count, :remember_created_at, :reset_password_token, :reset_password_sent_at, :current_sign_in_at, :last_sign_in_at,
-                            :current_sign_in_ip, :last_sign_in_ip, :id
+                            :current_sign_in_ip, :last_sign_in_ip, :id, :confirmation_token, :confirmed_at, :confirmation_sent_at
     end
   end
   
