@@ -25,7 +25,8 @@ class FacebookAccountsController < ApplicationController
       facebook_account = FacebookAccount.create(:user => current_user)
       redirect_to(facebook_account.authorize_url(facebook_callback_url(:id => facebook_account.id)))
     else
-      FacebookAccount.post("#{params[:animal_name]} is ready for adoption at #{root_url}animals/#{params[:animal_uuid]}", current_user.id)
+      link = FacebookAccount.shorten_link("#{root_url}animals/#{params[:animal_uuid]}")
+      FacebookAccount.post("#{params[:animal_name]} is ready for adoption at #{link}", current_user.id)
       redirect_to("#{root_url}admin/animals/#{params[:animal_id]}", :notice => 'Facebook Post Sent')
     end
   end
