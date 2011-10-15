@@ -41,10 +41,10 @@ class WordpressAccount < ActiveRecord::Base
     #change user and api key to one for biemedia
     bitly = Bitly.new('hospitium','R_93a2ce1be0ecee1cc264afb2bac4381c')
     page_url = bitly.shorten(link)
-    self.short_url = page_url.short_url
+    short_url = page_url.short_url
     #fall back to tinyurl if bitly fails
-    if self.short_url.blank?
-      self.short_url = RestClient.get "http://tinyurl.com/api-create.php?url=#{link}"
+    if short_url.blank?
+      short_url = RestClient.get "http://tinyurl.com/api-create.php?url=#{link}"
     end
   end
 
