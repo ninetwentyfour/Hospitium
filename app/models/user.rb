@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   validates_uniqueness_of :username
   validates_presence_of :organization_name
-  #validates_uniqueness_of :organization_name
+  validates_uniqueness_of :organization_name, :if => :should_validate_organization_name?
   
   # settings for rails admin views
   rails_admin do
@@ -66,16 +66,13 @@ class User < ActiveRecord::Base
       group :roles do
         hide
       end
-      # group :facebook_accounts do
-      #   hide
-      # end
-      # group :twitter_accounts do
-      #   hide
-      # end
-      # group :wordpress_accounts do
-      #   hide
-      # end
-      group :organizations do
+      group :facebook_accounts do
+        hide
+      end
+      group :twitter_accounts do
+        hide
+      end
+      group :wordpress_accounts do
         hide
       end
       exclude_fields :uuid, :reset_password_sent_at, :confirmation_token, :confirmed_at, :confirmation_sent_at
@@ -102,12 +99,12 @@ class User < ActiveRecord::Base
   end
   
   def add_to_organization
-    unless self.organization_id.blank?
-      #do nothing
-    else
+    if self.organization_id.nil?
       @organization = Organization.new
       @organization.update_attributes(:name => "#{self.organization_name}") 
       self.organization_id = @organization.id
+    else
+      #do nothing
     end
   end
   
@@ -117,5 +114,13 @@ class User < ActiveRecord::Base
     conditions = warden_conditions.dup
     login = conditions.delete(:login)
     where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+  end
+  
+  def should_validate_organization_name?
+    if self.organization_id.nil?
+      true
+    else
+      false
+    end
   end
 end
