@@ -25,6 +25,7 @@ gem 'json'
 gem 'ckeditor'
 gem 'libxml-xmlrpc'
 gem 'bitly'
+gem 'site_meta'
 
 
 

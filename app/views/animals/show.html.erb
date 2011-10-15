@@ -47,3 +47,6 @@
 
 <%= link_to 'Back', animals_path %>
 
+<% set_meta_description("Adopt #{@animal.name} from #{@animal.organization.name}") %>
+<% set_meta_keywords("adopt,animal,pets") %>
+<% set_head_title("Adopt #{@animal.name}") %>
