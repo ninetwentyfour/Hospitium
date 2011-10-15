@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
         show
       end
       exclude_fields :uuid, :email, :updated_at, :sign_in_count, :remember_created_at, :reset_password_token, :reset_password_sent_at, :current_sign_in_at, :last_sign_in_at,
-                            :current_sign_in_ip, :last_sign_in_ip, :id, :password, :password_confirmation
+                            :current_sign_in_ip, :last_sign_in_ip, :id, :password, :password_confirmation, :confirmation_token, :confirmed_at, :confirmation_sent_at
     end
     create do
       group :permissions do
