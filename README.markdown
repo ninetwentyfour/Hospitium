@@ -181,6 +181,8 @@ Todo:
 
 - send facebook to pages or groups
 
+- send all new public animals to hospitium twitter
+
 * * *
 
 
