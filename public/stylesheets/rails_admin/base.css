@@ -98,4 +98,38 @@ ul.items>li>ul {
 	}
 * html .clearfix             { zoom: 1; } /* IE6 */
 *:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
+.user_organization_id{
+	display:none;
+}
+.user_organization_name{
+	display:none;
+}
+.adoption_contact_organization_id{
+	display:none;
+}
+.animal_organization_id{
+	display:none;
+}
+.animal_color_organization_id{
+	display:none;
+}
+.animal_weight_organization_id{
+	display:none;
+}
+.relinquishment_contact_organization_id{
+	display:none;
+}
+.shelter_organization_id{
+	display:none;
+}
+.species_organization_id{
+	display:none;
+}
+.vet_contact_organization_id{
+	display:none;
+}
+.volunteer_contact_organization_id{
+	display:none;
+}
   

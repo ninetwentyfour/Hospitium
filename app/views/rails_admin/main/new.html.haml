@@ -3,40 +3,7 @@
 - head_javascript "rails_admin/application.js"
 - head_javascript "rails_admin/ra.remote-form.js"
 - head_javascript "rails_admin/activo/application.js"
-:css
-	.user_organization_id{
-		display:none;
-	}
-	.user_organization_name{
-		display:none;
-	}
-	.adoption_contact_organization_id{
-		display:none;
-	}
-	.animal_organization_id{
-		display:none;
-	}
-	.animal_color_organization_id{
-		display:none;
-	}
-	.animal_weight_organization_id{
-		display:none;
-	}
-	.relinquishment_contact_organization_id{
-		display:none;
-	}
-	.shelter_organization_id{
-		display:none;
-	}
-	.species_organization_id{
-		display:none;
-	}
-	.vet_contact_organization_id{
-		display:none;
-	}
-	.volunteer_contact_organization_id{
-		display:none;
-	}
+
 #block-tables.block
 	= breadcrumbs_for :new, @abstract_model
 
@@ -49,33 +16,6 @@
 					= render :partial => 'form_fieldset', :locals => { :fieldset => fieldset, :form => form, :object => @object }
 				= render :partial => 'submit_buttons'
 :javascript
-	//users
-	document.getElementById("user_organization_name").setAttribute("value", "#{current_user.organization.name}");
-	document.getElementById("user_organization_id").value = #{current_user.organization.id};
-:javascript
 	//adopt contacts
-	document.getElementById("adoption_contact_organization_id").value = #{current_user.organization.id};
-:javascript
-	//adopt contacts
-	document.getElementById("animal_organization_id").value = #{current_user.organization.id};
-:javascript
-	//adopt contacts
-	document.getElementById("animal_color_organization_id").value = #{current_user.organization.id};
-:javascript
-	//adopt contacts
-	document.getElementById("relinquishment_contact_organization_id").value = #{current_user.organization.id};
-:javascript
-	//adopt contacts
-	document.getElementById("animal_weight_organization_id").value = #{current_user.organization.id};
-:javascript
-	//adopt contacts
-	document.getElementById("shelter_organization_id").value = #{current_user.organization.id};
-:javascript
-	//adopt contacts
-	document.getElementById("species_organization_id").value = #{current_user.organization.id};
-:javascript
-	//adopt contacts
-	document.getElementById("vet_contact_organization_id").value = #{current_user.organization.id};
-:javascript
-	//adopt contacts
-	document.getElementById("volunteer_contact_organization_id").value = #{current_user.organization.id};
+	document.getElementById("#{@abstract_model.to_param.singularize}_organization_id").value = #{current_user.organization.id};
+	document.getElementById("#{@abstract_model.to_param.singularize}_organization_name").setAttribute("value", "#{current_user.organization.name}");
