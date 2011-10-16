@@ -185,6 +185,8 @@ Todo:
 
 - scope data in dashboard
 
+- standardize address before saving with google maps api, and show map on show pages with locations
+
 * * *
 
 
