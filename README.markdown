@@ -105,7 +105,7 @@ Todo:
 
 - <del>force all models to redirect to /admin except organizations and animals for adopt pages</del>
 
-- add versioning and undo / redo
+- <del>add versioning and undo / redo</del>
 
 - <del>move colors to own mvc</del>
 
@@ -119,7 +119,7 @@ Todo:
 
 - user docs (started at [https://github.com/ninetwentyfour/Hospitium/wiki/User-Docs](https://github.com/ninetwentyfour/Hospitium/wiki/User-Docs))
 
-- style uploaded images and show pages
+- <del>style uploaded images and show pages</del>
 
 - <del>add organization contact info so people can contact about public animals</del>
 
@@ -167,7 +167,7 @@ Todo:
 
 - Need to hide twitter accounts from rails admin
 
-- create check for memcached server being up or available, if bot, kick to db sessions
+- create check for memcached server being up or available, if not, kick to db sessions
 
 - import animals from other sites in both batches and api style
 
@@ -183,7 +183,7 @@ Todo:
 
 - send all new public animals to hospitium twitter
 
-- scope data in dashboard
+- <del>scope data in dashboard</del>
 
 - standardize address before saving with google maps api, and show map on show pages with locations
 
