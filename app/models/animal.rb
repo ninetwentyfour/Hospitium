@@ -17,6 +17,9 @@ class Animal < ActiveRecord::Base
   # settings for rails admin views
   rails_admin do
     show do
+      group :animal_weights do
+        hide
+      end
       exclude_fields :uuid, :image_file_name, :image_content_type, :image_file_size, :image_updated_at, :organization
     end
     create do

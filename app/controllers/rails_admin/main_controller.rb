@@ -11,6 +11,37 @@ module RailsAdmin
     before_filter :check_for_cancel, :only => [:create, :update, :destroy, :export, :bulk_destroy]
 
     def index
+      twitter = TwitterAccount.find_by_user_id(current_user.id)
+      unless twitter.blank?
+        Twitter.configure do |config|
+          config.consumer_key = 'Is9pdOhRRNhx95wGBiWg'
+          config.consumer_secret = 'D2WLDX0Fh9EOGAhBJSQFkKs1U2c3ET2a5z2t9JZCrM'
+          config.oauth_token = twitter.oauth_token
+          config.oauth_token_secret = twitter.oauth_token_secret
+        end
+        @tweets = Twitter.home_timeline(:count => 10)
+      else
+        #do nothing
+        @tweets = ''
+      end
+      @animals_count = Animal.count(:conditions => {:organization_id => current_user.organization.id})
+      @new_intake_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status => "New Intake"})
+      @sanctuary_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status => "Sanctuary"})
+      @sick_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status => "Sick"})
+      @deceased_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status => "Deceased"})
+      @adopted_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status => "Adopted"})
+      @foster_care_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status => "Foster Care"})
+      @adopt_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status => "Adoptable"})
+      
+      @adopt_percent = (@adopt_count.to_f / @animals_count.to_f) * 100
+      @new_intake_percent = (@new_intake_count.to_f / @animals_count.to_f) * 100
+      @sanctuary_percent = (@sanctuary_count.to_f / @animals_count.to_f) * 100
+      @sick_percent = (@sick_count.to_f / @animals_count.to_f) * 100
+      @deceased_percent = (@deceased_count.to_f / @animals_count.to_f) * 100
+      @adopted_percent = (@adopted_count.to_f / @animals_count.to_f) * 100
+      @foster_care_percent = (@foster_care_count.to_f / @animals_count.to_f) * 100
+      
+      
       @authorization_adapter.authorize(:index) if @authorization_adapter
       @page_name = t("admin.dashboard.pagename")
       @page_type = "dashboard"
@@ -21,7 +52,7 @@ module RailsAdmin
       @history= AbstractHistory.history_for_month(@month, @year)
 
       @abstract_models = RailsAdmin::Config.visible_models.map(&:abstract_model)
-
+      
       @most_recent_changes = {}
       @count = {}
       @max = 0
@@ -140,6 +171,11 @@ module RailsAdmin
     def show
       @authorization_adapter.authorize(:show, @abstract_model, @object) if @authorization_adapter
       @page_name = t("admin.show.page_name", :name => @model_config.label.downcase)
+      if @model_config.label.downcase == 'animal'
+        @animal_weights = AnimalWeight.find(:all, :conditions => {:animal_id => @object.id}, :order => "created_at ASC")
+      else
+        @animal_weights = ''
+      end
     end
 
     def edit

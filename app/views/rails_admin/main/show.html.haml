@@ -3,6 +3,9 @@
 - head_javascript "rails_admin/application.js"
 - head_javascript "rails_admin/ra.remote-form.js"
 - head_javascript "rails_admin/activo/application.js"
+- head_javascript "raphael-min.js"
+- head_javascript "chart_popup.js"
+- head_javascript "weight_chart.js"
 
 #block-tables.block
 	= breadcrumbs_for :show, @object
@@ -68,6 +71,28 @@
 									- unless field.value.blank?
 										%h1{:style => "font-size:60px;letter-spacing: -1px;line-height: 1;"}
 											= field.value
+			- unless @animal_weights.blank?
+				.fieldset.showAnimalInfo
+					:css
+						#holder {
+							height: 250px;
+							margin: 0px 0 0 -100px;
+							width: 800px;
+						}
+					%h4 Animal Weights
+					.animal_animal_weights.field
+						%table#data
+							%tfoot
+								%tr
+									- @animal_weights.each do |animal_weight|
+										%th
+											= animal_weight.created_at.strftime("%m/%d/%Y")
+							%tbody
+								%tr
+									- @animal_weights.each do |animal_weight|
+										%td
+											= animal_weight.weight
+						#holder.clearfix
 		-  if @object.respond_to?('password')
 			#wordpressForm{:style => "width:100%; padding:20px", :class => "clearfix"}
 				- form_tag("/wordpress_accounts", :method => "post", :class => "form") do

@@ -153,7 +153,7 @@ Todo:
 
 - rpsec and cucumber tests
 
-- move sessions to database
+- <del>move sessions to database</del>
 
 - <del>use uuid instead of id on adopt list and shows / organizations / admin interface</del>
 
@@ -171,7 +171,7 @@ Todo:
 
 - import animals from other sites in both batches and api style
 
-- add bitly to shorten all share links
+- <del>add bitly to shorten all share links</del>
 
 - add [aviary](http://www.aviary.com/) support to allow users to edit photos of animals
 
