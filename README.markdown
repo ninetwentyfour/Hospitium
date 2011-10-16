@@ -183,6 +183,8 @@ Todo:
 
 - send all new public animals to hospitium twitter
 
+- scope data in dashboard
+
 * * *
 
 
