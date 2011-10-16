@@ -22,8 +22,11 @@
 			= render(:partial => 'layouts/rails_admin/flash', :locals => {:flash => flash})
 			-  if @object.respond_to?('image_file_name')
 				.animalMedia
-					%a{:href => "#{@object.image.url}"}
-						%img{:src  => "#{@object.image.url(:medium)}"}
+					- unless @object.image.url == "/images/original/missing.png"
+						%a{:href => "#{@object.image.url}"}
+							%img{:src  => "#{@object.image.url(:medium)}"}
+					- else
+						%img{:src  => "/images/no-animal-photo.jpg"}
 					%br
 					%br
 					- form_tag("/twitter_accounts/send_tweet", :method => "post") do
