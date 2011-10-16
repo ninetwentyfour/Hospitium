@@ -57,7 +57,8 @@ window.onload = function () {
         bottomgutter = 20,
         topgutter = 20,
         colorhue = .6 || Math.random(),
-        color = "hsl(" + [colorhue, .5, .5] + ")",
+        //color = "hsl(" + [colorhue, .5, .5] + ")",
+		color = "#0069D6",
         r = Raphael("holder", width, height),
         txt = {font: '12px Helvetica, Arial', fill: "#fff"},
         txt1 = {font: '10px Helvetica, Arial', fill: "#000"},
@@ -67,7 +68,7 @@ window.onload = function () {
         Y = (height - bottomgutter - topgutter) / max;
     r.drawGrid(leftgutter + X * .5 + .5, topgutter + .5, width - leftgutter - X, height - topgutter - bottomgutter, 10, 10, "#000");
     var path = r.path().attr({stroke: color, "stroke-width": 4, "stroke-linejoin": "round"}),
-        bgp = r.path().attr({stroke: "none", opacity: .3, fill: color}),
+        bgp = r.path().attr({stroke: color, opacity: .3, fill: color}),
         label = r.set(),
         lx = 0, ly = 0,
         is_label_visible = false,

@@ -59,25 +59,39 @@
 			%table#pichart{:style => "display:none;"}
 				%tbody
 					%tr.piepieces
-						%th{:scope => "row"}Adoptable
+						%th{:scope => "row"}
+							Adoptable 
+							=number_to_percentage(@adopt_percent, :precision => 0)
 						%td=number_to_percentage(@adopt_percent, :precision => 0)
 					%tr.piepieces
-						%th{:scope => "row"}New Intake
+						%th{:scope => "row"}
+							New Intake 
+							=number_to_percentage(@new_intake_percent, :precision => 0)
 						%td=number_to_percentage(@new_intake_percent, :precision => 0)
 					%tr.piepieces
-						%th{:scope => "row"}Sanctuary
+						%th{:scope => "row"}
+							Sanctuary 
+							=number_to_percentage(@sanctuary_percent, :precision => 0)
 						%td=number_to_percentage(@sanctuary_percent, :precision => 0)
 					%tr.piepieces
-						%th{:scope => "row"}Sick
+						%th{:scope => "row"}
+							Sick 
+							=number_to_percentage(@sick_percent, :precision => 0)
 						%td=number_to_percentage(@sick_percent, :precision => 0)
 					%tr.piepieces
-						%th{:scope => "row"}Deceased
+						%th{:scope => "row"}
+							Deceased 
+							=number_to_percentage(@deceased_percent, :precision => 0)
 						%td=number_to_percentage(@deceased_percent, :precision => 0)
 					%tr.piepieces
-						%th{:scope => "row"}Adopted
+						%th{:scope => "row"}
+							Adopted 
+							=number_to_percentage(@adopted_percent, :precision => 0)
 						%td=number_to_percentage(@adopted_percent, :precision => 0)
 					%tr.piepieces
-						%th{:scope => "row"}Foster Care
+						%th{:scope => "row"}
+							Foster Care 
+							=number_to_percentage(@foster_care_percent, :precision => 0)
 						%td=number_to_percentage(@foster_care_percent, :precision => 0)
 				#holder.clearfix
 - unless @tweets.blank?
