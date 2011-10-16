@@ -1,37 +1,8 @@
-		<!DOCTYPE html>
-		<html>
-		<head>
-			<meta charset="utf-8" />
-			<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
-			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-			<meta name="author" content="Travis Berry">
-			<!-- Mobile viewport optimized: j.mp/bplateviewport -->
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		  <title>Features - Hospitium</title>
-		<link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-1.2.0.min.css">
-		</head>
-		<body>
-<a href="https://github.com/ninetwentyfour/Hospitium"><img style="position: fixed; top: 0; left: 0; border: 0; z-index:11000;" src="https://a248.e.akamai.net/assets.github.com/img/6429057dfef9e98189338d22e7f6646c6694f032/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
-		<div class="topbar">
-		  <div class="fill">
-		    <div class="container">
-		      <h3><a href="/">Hospitium</a></h3>
-		      <ul class="nav">
-		        <li><a href="/about">About</a></li>
-						<li><a href="/features">Features</a></li>
-						<li><a href="https://github.com/ninetwentyfour/Hospitium/wiki/User-Docs">Docs</a></li>
-						<li><a href="/animals">Adopt an Animal</a></li>
-						<li><a href="/posts">Blog</a></li>
-		      </ul>
-					<ul class="nav secondary-nav">
-						<li><a href="/users/sign_in">Sign In</a></li>
-		      </ul>
-		    </div>
-		  </div>
-		</div>
+			<% if notice.blank? %>
 
-		<div class="container">
+			<% else %>
+				<div class="alert-message info" style="margin-top:60px;"><%= notice %></div>
+			<% end %>
 			<!-- Main hero unit for a primary marketing message or call to action -->
 			<div class="hero-unit clearfix">
 				<div class="page-header">
@@ -102,12 +73,6 @@
 					</ul>
 				</div>
 			</div>
-
-		  <footer>
-		    <p>Created by <a href="http://www.applewoodrescue.org/">Apple Wood Rescue</a></p>
-		  </footer>
-
-		</div> <!-- /container -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-		</body>
-		</html>
+		<% set_meta_description("We make it easy to keep track of your animals. Everything you need to know about an animal is instantly at your fingertips.") %>
+		<% set_meta_keywords("animal,management,software,online,hosted,hospitium,features") %>
+		<% set_head_title("Features") %>
