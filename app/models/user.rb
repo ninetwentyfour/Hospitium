@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   belongs_to :organization
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :confirmable, :registerable,
+  devise :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable
  # Virtual attribute for authenticating by either username or email
  # This is in addition to a real persisted field like 'username'
@@ -50,8 +50,8 @@ class User < ActiveRecord::Base
       group :organizations do
         show
       end
-      #exclude_fields :uuid, :email, :updated_at, :sign_in_count, :remember_created_at, :reset_password_token, :reset_password_sent_at, :current_sign_in_at, :last_sign_in_at,
-      #                      :current_sign_in_ip, :last_sign_in_ip, :id, :password, :password_confirmation, :confirmation_token, :confirmed_at, :confirmation_sent_at, :organization
+      exclude_fields :uuid, :email, :updated_at, :sign_in_count, :remember_created_at, :reset_password_token, :reset_password_sent_at, :current_sign_in_at, :last_sign_in_at,
+                            :current_sign_in_ip, :last_sign_in_ip, :id, :password, :password_confirmation, :confirmation_token, :confirmed_at, :confirmation_sent_at, :organization
     end
     create do
       group :permissions do
