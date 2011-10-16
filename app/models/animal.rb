@@ -1,5 +1,6 @@
 class Animal < ActiveRecord::Base
   has_paper_trail
+  default_scope :order => "name ASC"
   has_attached_file :image, :storage => :s3, :s3_credentials => {:access_key_id => ENV['S3_KEY']  || 'thedefaultkey', :secret_access_key => ENV['S3_SECRET']  || 'thedefaultkey'}, :bucket => 'hospitium-static', :styles => { :large => "900x900>", :medium => "300x300>", :thumb => "100x100>" }
   belongs_to :organization
   belongs_to :species

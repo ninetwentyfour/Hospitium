@@ -187,6 +187,8 @@ Todo:
 
 - standardize address before saving with google maps api, and show map on show pages with locations
 
+- show twitter and fb on dashboard and do pie charts of animals in statuses (adopted - etc)
+
 * * *
 
 
