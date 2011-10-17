@@ -86,7 +86,7 @@
 								%tr
 									- @animal_weights.each do |animal_weight|
 										%th
-											= animal_weight.created_at.strftime("%m/%d/%Y")
+											= animal_weight.date_of_weight.strftime("%m/%d/%Y")
 							%tbody
 								%tr
 									- @animal_weights.each do |animal_weight|

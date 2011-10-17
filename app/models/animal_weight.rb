@@ -3,6 +3,7 @@ class AnimalWeight < ActiveRecord::Base
   belongs_to :animal
   belongs_to :organization
   before_create :create_uuid
+  validates_presence_of :weight, :date_of_weight, :animal_id
   
   # settings for rails admin views
   rails_admin do
