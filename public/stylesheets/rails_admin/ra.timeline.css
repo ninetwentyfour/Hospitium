@@ -63,8 +63,15 @@
   bottom: 0;
   width: 100%;
 }
-
-.high {
+.bar {
+	border-radius: 3px 3px 3px 3px !important;
+	color: white;
+    font-size: 9.75px;
+    font-weight: bold;
+    padding: 3px 2px 2px 2px;
+    text-transform: uppercase;
+}
+/*.high {
   background: #bf2531;
 }
 
@@ -74,4 +81,16 @@
 
 .low {
   background: #BCCEB6;
+}*/
+.high {
+  background: #C43C35;
+}
+.medium {
+  background: #46A546;
+}
+.low {
+  background: #62CFFC;
+}
+.no_bar{
+	background: #BFBFBF !important;	
 }
