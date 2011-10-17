@@ -172,7 +172,7 @@ module RailsAdmin
       @authorization_adapter.authorize(:show, @abstract_model, @object) if @authorization_adapter
       @page_name = t("admin.show.page_name", :name => @model_config.label.downcase)
       if @model_config.label.downcase == 'animal'
-        @animal_weights = AnimalWeight.find(:all, :conditions => {:animal_id => @object.id}, :order => "created_at ASC")
+        @animal_weights = AnimalWeight.find(:all, :conditions => {:animal_id => @object.id}, :order => "date_of_weight ASC")
       else
         @animal_weights = ''
       end
