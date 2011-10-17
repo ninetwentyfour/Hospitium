@@ -210,7 +210,7 @@ hr {
 #header {
   background-image: url("images/logo.png");
   background-repeat: no-repeat;
-  background-position: 20px 20px;
+  /*background-position: 20px 20px;*/
   height: 80px;
   background-color: #333333;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
@@ -308,7 +308,9 @@ hr {
 
 #user-navigation {
   top: auto;
-  right: 10px; }
+  right: 10px; 
+margin:20px;
+}
 
 #user-navigation ul li a:link, #user-navigation ul li a:visited, #user-navigation ul li a:hover, #user-navigation ul li a:active {
   text-decoration: none;
@@ -724,3 +726,9 @@ a.button:active, button.button:active {
 .badge-red {
   background-color: #cc0000;
   color: white; }
+.my_header{
+	background-color: #222222 !important;
+    background-image: -moz-linear-gradient(center top , #333333, #222222) !important;
+    background-repeat: repeat-x !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 -1px 0 rgba(0, 0, 0, 0.1) inset !important;
+}
