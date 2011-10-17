@@ -5,6 +5,9 @@ class VetContact < ActiveRecord::Base
   
   # settings for rails admin views
   rails_admin do
+    object_label_method do
+      :show_name_label_method # show the user email in the admin UI instead of the user id
+    end
     show do
       exclude_fields :uuid, :organization
     end
@@ -22,6 +25,10 @@ class VetContact < ActiveRecord::Base
   #create uuid
   def create_uuid()
     self.uuid = UUIDTools::UUID.random_create.to_s
+  end
+  
+  def show_name_label_method
+    "#{self.clinic_name}"
   end
   
 end
