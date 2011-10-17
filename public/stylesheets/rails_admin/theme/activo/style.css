@@ -607,7 +607,6 @@ padding: 7px 14px;
     margin: 8px; }
 .flash .error, .flash .error-list {
   /*border: 1px solid #993624;*/
-  background: #cc4831 url("images/messages/error.png") no-repeat 10px center; 
   background-color: #C43C35;
   background-image: -moz-linear-gradient(center top , #EE5F5B, #C43C35);
   background-repeat: repeat-x;
@@ -616,7 +615,6 @@ padding: 7px 14px;
 }
 .flash .warning {
   /*border: 1px solid #bb9004;*/
-  background: #f9c006 url("images/messages/warning.png") no-repeat 10px center; 
   background-color: #339BB9;
   background-image: -moz-linear-gradient(center top , #5BC0DE, #339BB9);
   background-repeat: repeat-x;
@@ -627,7 +625,6 @@ padding: 7px 14px;
   color: #fff;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
   /*border: 1px solid #8a9daa;*/
-  background: #b8d1e2 url("images/messages/notice.png") no-repeat 10px center; 
   background-color: #57A957;
   background-image: -moz-linear-gradient(center top , #62C462, #57A957);
   background-repeat: repeat-x;
