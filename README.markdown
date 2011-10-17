@@ -175,7 +175,7 @@ Todo:
 
 - add [aviary](http://www.aviary.com/) support to allow users to edit photos of animals
 
-- make public animal list a queue that is moderated by super admins
+- make public animal list a queue that is moderated by super admins (not yet - wait to see spam levels)
 
 - seo
 
@@ -190,6 +190,8 @@ Todo:
 - show twitter and fb on dashboard and do pie charts of animals in statuses (adopted - etc)
 
 - cache twitter on dashboard
+
+- add label warning and make model strip any part of weight that isn't an integer (assumed grams)
 
 * * *
 

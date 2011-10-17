@@ -51,9 +51,9 @@ window.onload = function () {
     });
     
     // Draw
-    var width = 650,
+    var width = 550,
         height = 250,
-        leftgutter = 30,
+        leftgutter = 0,
         bottomgutter = 20,
         topgutter = 20,
         colorhue = .6 || Math.random(),
