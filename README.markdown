@@ -189,6 +189,8 @@ Todo:
 
 - show twitter and fb on dashboard and do pie charts of animals in statuses (adopted - etc)
 
+- cache twitter on dashboard
+
 * * *
 
 
