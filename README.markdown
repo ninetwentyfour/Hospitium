@@ -197,6 +197,8 @@ Todo:
 
 - create login messages to display helpful hints at random 
 
+- do browser testing and add warnings for ie =< 8
+
 * * *
 
 
