@@ -199,6 +199,8 @@ Todo:
 
 - do browser testing and add warnings for ie =< 8
 
+- remove and move to env variables all api keys
+
 * * *
 
 
