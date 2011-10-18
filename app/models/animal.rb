@@ -6,6 +6,10 @@ class Animal < ActiveRecord::Base
   belongs_to :species
   belongs_to :shelter
   belongs_to :animal_color
+  belongs_to :animal_sex
+  belongs_to :spay_neuter
+  belongs_to :biter
+  belongs_to :status
   has_many :animal_weights
   has_one :relinquishment_contact
   
@@ -20,7 +24,7 @@ class Animal < ActiveRecord::Base
       group :animal_weights do
         hide
       end
-      exclude_fields :uuid, :image_file_name, :image_content_type, :image_file_size, :image_updated_at, :organization
+      exclude_fields :uuid, :image_file_name, :image_content_type, :image_file_size, :image_updated_at, :organization, :age, :sex
     end
     create do
       #exclude_fields :uuid
@@ -30,22 +34,25 @@ class Animal < ActiveRecord::Base
       field :previous_name do
         help 'Optional - any previous names the animal may have had.'
       end
-      field :status, :enum 
+      field :status
       field :public, :boolean do
         help 'Optional - check to make the animal appear on our adopt list.'
       end
       field :species do
         help 'Required - if the species you need is not listed, click "Create species" above.'
       end
-      field :age do
-        help 'Optional - age of the animal in years.'
-      end
-      field :sex, :enum
+      field :birthday
+      # field :age do
+      #   help 'Optional - age of the animal in years.'
+      # end
+      #field :sex, :enum
+      field :animal_sex
       field :animal_color do
         help 'Required - if the animal color you need is not listed, click "Create animal color" above.'
       end
-      field :spay_neuter, :enum
-      field :biter, :enum
+      #field :spay_neuter, :enum
+      field :spay_neuter
+      field :biter
       field :date_of_intake
       field :date_of_well_check do
         help 'Optional - date of first vet visit.'
@@ -65,14 +72,17 @@ class Animal < ActiveRecord::Base
     edit do
       field :name
       field :previous_name
-      field :status, :enum
+      field :status
       field :public, :boolean
       field :species
-      field :age
-      field :sex, :enum
+      field :birthday
+      #field :age
+      #field :sex, :enum
+      field :animal_sex
       field :animal_color
-      field :spay_neuter, :enum
-      field :biter, :enum
+      #field :spay_neuter, :enum
+      field :spay_neuter
+      field :biter
       field :date_of_intake
       field :date_of_well_check
       field :organization
@@ -86,7 +96,7 @@ class Animal < ActiveRecord::Base
       group :animal_weights
     end
     list do
-      exclude_fields :uuid
+      exclude_fields :uuid, :age, :sex
     end
   end
   
@@ -114,6 +124,20 @@ class Animal < ActiveRecord::Base
   
   def status_enum
      ['Adoptable', 'New Intake', 'Sanctuary', 'Sick', 'Deceased', 'Adopted', 'Foster Care']
+  end
+  
+  #age tracking code
+  def self.calculate_age(birthday)
+    Time.now.year - birthday.year
+    #(Time.now.year - birthday.year) - (turned_older? ? 0 : 1) rescue 0
+  end
+ 
+  def next_birthday
+    birthday.to_time.change(:year => (turned_older? ? 1.year.from_now : Time.now).year)
+  end
+ 
+  def turned_older?
+    (birthday.to_time.change(:year => Time.now.year) <= Time.now)
   end
   
   

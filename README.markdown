@@ -71,7 +71,7 @@ Todo:
 
 * * *
 
-- Make age calculate over time. (possibly just use date of birth if too hard to track for now)
+- <del>Make age calculate over time. (possibly just use date of birth if too hard to track for now)</del>
 
 - post to pet finder and other animal sites (adopt-a-pet)
 
@@ -149,7 +149,7 @@ Todo:
 
 - no follow all links created by users (e.g. organization website) / make do follow for future paid accounts
 
-- add adopt link to animals to set what the canonical adopt page is for adoptable animals
+- <del>add adopt link to animals to set what the canonical adopt page is for adoptable animals</del>
 
 - rpsec and cucumber tests
 
@@ -197,13 +197,13 @@ Todo:
 
 - create login messages to display helpful hints at random 
 
-- do browser testing and add warnings for ie =< 8
+- <del>do browser testing and add warnings for ie =< 8</del>
 
 - remove and move to env variables all api keys
 
 - clean up show admin view (code is a mess)
 
-- make ages and weights decimals and make suffix user configurable 
+- make weights decimals and make suffix user configurable 
 
 * * *
 

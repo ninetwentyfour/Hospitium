@@ -92,6 +92,10 @@ class Ability
         can :create, VolunteerContact
         can :update, VolunteerContact, :organization => { :id => user.organization_id }
         can :destroy, VolunteerContact, :organization => { :id => user.organization_id }
+        
+        can :read, AnimalSex
+        can :read, SpayNeuter
+        can :read, Biter
       elsif user.role? :standard
         can :access, :rails_admin 
         #can :manage, :all

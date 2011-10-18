@@ -1,0 +1,21 @@
+<%= form_for(@spay_neuter) do |f| %>
+  <% if @spay_neuter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@spay_neuter.errors.count, "error") %> prohibited this spay_neuter from being saved:</h2>
+
+      <ul>
+      <% @spay_neuter.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :value %><br />
+    <%= f.text_field :value %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

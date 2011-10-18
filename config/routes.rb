@@ -1,5 +1,13 @@
 AnimalTracker::Application.routes.draw do
 
+  resources :statuses
+
+  resources :biters
+
+  resources :spay_neuters
+
+  resources :animal_sexes
+
   resource :facebook_accounts
   match '/callback/facebook/:id' => "facebook_accounts#callback", :as => :facebook_callback
   match "/facebook_accounts/send_wall_post" => "facebook_accounts#send_wall_post", :as => "facebook_accounts"

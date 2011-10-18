@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111017014019) do
+ActiveRecord::Schema.define(:version => 20111018221224) do
 
   create_table "adoption_contacts", :force => true do |t|
     t.string   "first_name"
@@ -39,6 +39,12 @@ ActiveRecord::Schema.define(:version => 20111017014019) do
 
   add_index "animal_colors", ["organization_id"], :name => "index_animal_colors_on_organization_id"
 
+  create_table "animal_sexes", :force => true do |t|
+    t.string   "sex"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "animal_weights", :force => true do |t|
     t.integer  "animal_id"
     t.string   "uuid"
@@ -57,10 +63,8 @@ ActiveRecord::Schema.define(:version => 20111017014019) do
     t.string   "previous_name"
     t.integer  "species_id"
     t.string   "sex"
-    t.string   "spay_neuter"
     t.string   "color"
     t.integer  "age"
-    t.string   "biter"
     t.text     "special_needs"
     t.text     "diet"
     t.datetime "date_of_intake"
@@ -68,22 +72,31 @@ ActiveRecord::Schema.define(:version => 20111017014019) do
     t.integer  "shelter_id"
     t.datetime "deceased"
     t.text     "deceased_reason"
-    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "organization_id"
     t.datetime "adopted_date"
     t.integer  "animal_color_id"
-    t.string   "animal_pic"
     t.string   "image"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.boolean  "public",             :default => false
+    t.integer  "public",             :default => 0
+    t.datetime "birthday"
+    t.integer  "animal_sex_id"
+    t.integer  "spay_neuter_id"
+    t.integer  "biter_id"
+    t.integer  "status_id"
   end
 
   add_index "animals", ["organization_id"], :name => "index_animals_on_organization_id"
+
+  create_table "biters", :force => true do |t|
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "facebook_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -122,18 +135,14 @@ ActiveRecord::Schema.define(:version => 20111017014019) do
     t.datetime "updated_at"
   end
 
-  create_table "photos", :force => true do |t|
-    t.integer  "animal_id"
+  create_table "petfinder_accounts", :force => true do |t|
+    t.integer  "user_id"
+    t.boolean  "active",       :default => false
+    t.text     "ftp_user"
+    t.text     "ftp_password"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
   end
-
-  add_index "photos", ["animal_id"], :name => "index_photos_on_animal_id"
 
   create_table "posts", :force => true do |t|
     t.string   "author"
@@ -148,7 +157,7 @@ ActiveRecord::Schema.define(:version => 20111017014019) do
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month",      :limit => 2
+    t.integer  "month"
     t.integer  "year",       :limit => 8
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -205,6 +214,12 @@ ActiveRecord::Schema.define(:version => 20111017014019) do
 
   add_index "shelters", ["organization_id"], :name => "index_shelters_on_organization_id"
 
+  create_table "spay_neuters", :force => true do |t|
+    t.string   "spay"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "species", :force => true do |t|
     t.string   "name"
     t.string   "uuid"
@@ -214,6 +229,13 @@ ActiveRecord::Schema.define(:version => 20111017014019) do
   end
 
   add_index "species", ["organization_id"], :name => "index_species_on_organization_id"
+
+  create_table "statuses", :force => true do |t|
+    t.string   "status"
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "twitter_accounts", :force => true do |t|
     t.integer "user_id"

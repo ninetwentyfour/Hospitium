@@ -26,13 +26,13 @@ module RailsAdmin
       end
       #this really needs cleaned up
       @animals_count = Animal.count(:conditions => {:organization_id => current_user.organization.id})
-      @new_intake_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status => "New Intake"})
-      @sanctuary_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status => "Sanctuary"})
-      @sick_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status => "Sick"})
-      @deceased_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status => "Deceased"})
-      @adopted_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status => "Adopted"})
-      @foster_care_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status => "Foster Care"})
-      @adopt_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status => "Adoptable"})
+      @new_intake_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => 2})
+      @sanctuary_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => 3})
+      @sick_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => 4})
+      @deceased_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => 5})
+      @adopted_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => 6})
+      @foster_care_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => 7})
+      @adopt_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => 1})
       
       @adopt_percent = (@adopt_count.to_f / @animals_count.to_f) * 100
       @new_intake_percent = (@new_intake_count.to_f / @animals_count.to_f) * 100
@@ -58,7 +58,7 @@ module RailsAdmin
       @count = {}
       @max = 0
       @abstract_models.each do |t|
-        unless t.model.model_name == "Organization" or t.model.model_name == "Post" or t.model.model_name == "Role"
+        unless t.model.model_name == "Organization" or t.model.model_name == "Post" or t.model.model_name == "Role" or t.model.model_name == "SpayNeuter" or t.model.model_name == "AnimalSex"
           current_count = t.count(:conditions => {:organization_id => current_user.organization.id})
           @max = current_count > @max ? current_count : @max
           @count[t.pretty_name] = current_count
