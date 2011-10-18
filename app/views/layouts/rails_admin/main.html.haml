@@ -1,14 +1,17 @@
 - if @abstract_model && @plugin_name
-  - content_for :title do
-    #{@abstract_model.pretty_name} | #{@plugin_name}
+	- content_for :title do
+		#{@abstract_model.pretty_name} | #{@plugin_name}
 = render(:partial => 'layouts/rails_admin/head')
 %body.rails_admin
-  #container
-    = render(:partial => 'layouts/rails_admin/header')
-    #wrapper.wat-cf
-      #main
-        #content= yield
-        #footer
-          %p Created by <a href="http://www.applewoodrescue.org/">Apple Wood Rescue</a>
-      = render :partial => "layouts/rails_admin/sidebar"
-  = render(:partial => 'layouts/rails_admin/footer')
+	#container
+		= render(:partial => 'layouts/rails_admin/header')
+		#wrapper.wat-cf
+			#main
+				#content= yield
+				#footer
+					%p 
+						Created by 
+						%a{:href => "http://www.applewoodrescue.org"}
+							Apple Wood Rescue
+			= render :partial => "layouts/rails_admin/sidebar"
+	= render(:partial => 'layouts/rails_admin/footer')
