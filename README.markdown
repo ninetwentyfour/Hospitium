@@ -201,6 +201,10 @@ Todo:
 
 - remove and move to env variables all api keys
 
+- clean up show admin view (code is a mess)
+
+- make ages and weights decimals and make suffix user configurable 
+
 * * *
 
 

@@ -24,6 +24,7 @@ module RailsAdmin
         #do nothing
         @tweets = ''
       end
+      #this really needs cleaned up
       @animals_count = Animal.count(:conditions => {:organization_id => current_user.organization.id})
       @new_intake_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status => "New Intake"})
       @sanctuary_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status => "Sanctuary"})
