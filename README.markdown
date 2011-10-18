@@ -193,7 +193,7 @@ Todo:
 
 - add label warning and make model strip any part of weight that isn't an integer (assumed grams)
 
-- make statuses like animal colors (addedable by user)
+- make statuses like animal colors (addable by user)
 
 - create login messages to display helpful hints at random 
 
