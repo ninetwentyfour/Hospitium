@@ -4,13 +4,19 @@ module RailsAdmin
     include ActionView::Helpers::TextHelper
 
     layout "rails_admin/main"
-
+    
+    before_filter :get_notice
     before_filter :get_model, :except => [:index]
     before_filter :get_object, :only => [:show, :edit, :update, :delete, :destroy]
     before_filter :get_attributes, :only => [:create, :update]
     before_filter :check_for_cancel, :only => [:create, :update, :destroy, :export, :bulk_destroy]
-
+    
+    def get_notice
+      @random_notice = Notification.offset(rand(Notification.count)).first
+    end
+    
     def index
+      #get twitter feed for users twitter account if one exists
       twitter = TwitterAccount.find_by_user_id(current_user.id)
       unless twitter.blank?
         Twitter.configure do |config|
@@ -24,24 +30,18 @@ module RailsAdmin
         #do nothing
         @tweets = ''
       end
-      #this really needs cleaned up
-      @animals_count = Animal.count(:conditions => {:organization_id => current_user.organization.id})
-      @new_intake_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => 2})
-      @sanctuary_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => 3})
-      @sick_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => 4})
-      @deceased_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => 5})
-      @adopted_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => 6})
-      @foster_care_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => 7})
-      @adopt_count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => 1})
       
-      @adopt_percent = (@adopt_count.to_f / @animals_count.to_f) * 100
-      @new_intake_percent = (@new_intake_count.to_f / @animals_count.to_f) * 100
-      @sanctuary_percent = (@sanctuary_count.to_f / @animals_count.to_f) * 100
-      @sick_percent = (@sick_count.to_f / @animals_count.to_f) * 100
-      @deceased_percent = (@deceased_count.to_f / @animals_count.to_f) * 100
-      @adopted_percent = (@adopted_count.to_f / @animals_count.to_f) * 100
-      @foster_care_percent = (@foster_care_count.to_f / @animals_count.to_f) * 100
+      #generate the animal status percentages for the dashboard
+      @animals_count = Animal.count(:conditions => {:organization_id => current_user.organization.id})     
+      @all_statuses = Status.find(:all, :conditions => {:organization_id => current_user.organization.id})
+      @final_status_hash = Hash.new
+      @all_statuses.each do |status|
+        @count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => status.id})
+        @final_status_hash["#{status.status}"] = (@count.to_f / @animals_count.to_f) * 100
+      end
       
+      #get random notification
+      #@random_notice = Notification.offset(rand(Notification.count)).first
       
       @authorization_adapter.authorize(:index) if @authorization_adapter
       @page_name = t("admin.dashboard.pagename")
@@ -58,7 +58,7 @@ module RailsAdmin
       @count = {}
       @max = 0
       @abstract_models.each do |t|
-        unless t.model.model_name == "Organization" or t.model.model_name == "Post" or t.model.model_name == "Role" or t.model.model_name == "SpayNeuter" or t.model.model_name == "AnimalSex"
+        unless t.model.model_name == "Organization" or t.model.model_name == "Post" or t.model.model_name == "Role" or t.model.model_name == "SpayNeuter" or t.model.model_name == "AnimalSex"  or t.model.model_name == "Notification"
           current_count = t.count(:conditions => {:organization_id => current_user.organization.id})
           @max = current_count > @max ? current_count : @max
           @count[t.pretty_name] = current_count

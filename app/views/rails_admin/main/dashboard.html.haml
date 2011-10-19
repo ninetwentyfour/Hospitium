@@ -3,8 +3,8 @@
 - head_style "rails_admin/ra.timeline.css"
 - head_javascript "rails_admin/application.js"
 - head_javascript "rails_admin/ra.timeline.js"
-- head_javascript "raphael-min.js"
-- head_javascript "pie.js"
+- head_javascript "dashboard_animate.js"
+
 
 #block-tables.block
 	= breadcrumbs_for :dashboard, nil
@@ -35,90 +35,28 @@
 										= time_ago_in_words last_used
 										= t "admin.dashboard.ago"
 								%td.count
-									/%span.number= @count[abstract_model.pretty_name]
 									%span.scale
 										- percent = @count[abstract_model.pretty_name] * 100 / @max unless @max == 0
 										- percent = 1 if percent.nil?
 										- percent = 2 if percent == 0
 										-if percent == 2
-											%div{:class => "bar #{get_indicator(percent)} no_bar", :style => "width:#{percent}%;"}
+											%div{:class => "bar #{get_indicator(percent)} no_bar", :style => "width:2%;opacity: 0;", :'data-animate-length' => "#{percent}%"}
 												= @count[abstract_model.pretty_name]
 										- else
-											%div{:class => "bar #{get_indicator(percent)}", :style => "width:#{percent}%;"}
+											%div{:class => "bar #{get_indicator(percent)}", :style => "width:2%;opacity: 0;", :'data-animate-length' => "#{percent}%"}
 												= @count[abstract_model.pretty_name]
-										/%div{:class => "bar #{get_indicator(percent)} #{no_bar}", :style => "width:#{percent}%;"}
 								%td.last
 									- if authorized? :new, abstract_model
 										- new_path = rails_admin_new_path(:model_name => abstract_model.to_param)
 										= action_icon(new_path, :add, t("admin.dashboard.add_new"))
 									- history_path = rails_admin_history_model_path(:model_name => abstract_model.to_param)
 									= action_icon(history_path, :calendar, t("admin.history.name"))
-#block-tables.block
-	.content
-		%h2.title Animal Statuses
-		.inner
-			:css 
-				#holder {
-					margin: -120px 0 0px -50px;
-					width: 700px;
-					height: 700px;
-				}
-			%table#pichart{:style => "display:none;"}
-				%tbody
-					%tr.piepieces
-						%th{:scope => "row"}
-							Adoptable 
-							=number_to_percentage(@adopt_percent, :precision => 0)
-						%td=number_to_percentage(@adopt_percent, :precision => 0)
-					%tr.piepieces
-						%th{:scope => "row"}
-							New Intake 
-							=number_to_percentage(@new_intake_percent, :precision => 0)
-						%td=number_to_percentage(@new_intake_percent, :precision => 0)
-					%tr.piepieces
-						%th{:scope => "row"}
-							Sanctuary 
-							=number_to_percentage(@sanctuary_percent, :precision => 0)
-						%td=number_to_percentage(@sanctuary_percent, :precision => 0)
-					%tr.piepieces
-						%th{:scope => "row"}
-							Sick 
-							=number_to_percentage(@sick_percent, :precision => 0)
-						%td=number_to_percentage(@sick_percent, :precision => 0)
-					%tr.piepieces
-						%th{:scope => "row"}
-							Deceased 
-							=number_to_percentage(@deceased_percent, :precision => 0)
-						%td=number_to_percentage(@deceased_percent, :precision => 0)
-					%tr.piepieces
-						%th{:scope => "row"}
-							Adopted 
-							=number_to_percentage(@adopted_percent, :precision => 0)
-						%td=number_to_percentage(@adopted_percent, :precision => 0)
-					%tr.piepieces
-						%th{:scope => "row"}
-							Foster Care 
-							=number_to_percentage(@foster_care_percent, :precision => 0)
-						%td=number_to_percentage(@foster_care_percent, :precision => 0)
-				#holder.clearfix
+/ graph animal statuses in pie chart
+- unless @final_status_hash.blank?
+	= render :partial => "animal_status_graph", :object => @final_status_hash
+/ show tweets if user has twitter account
 - unless @tweets.blank?
-	#block-tables.block
-		.content
-			%h2.title Recent Tweets
-			.inner
-				%table.table.grid
-					%thead
-						%tr
-							%th.start User
-							%th Tweet
-					%tbody
-						- @tweets.each do |tweet|
-							- row_class = "#{cycle("odd", "even")}"
-							%tr{:class => row_class}
-								%td
-									= tweet.user.name
-								%td
-									= tweet.text
+	= render :partial => "tweets_list", :object => @tweets
 - if authorized? :see_history
 	#block-tables.block
 		.content

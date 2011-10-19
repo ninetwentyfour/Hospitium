@@ -9,16 +9,20 @@ class Status < ActiveRecord::Base
       :show_status_label_method # show the link in the admin UI instead of the link id
     end
     show do
-
+      exclude_fields :organization
     end
     create do
-
+      group :animals do
+        hide
+      end
     end
     edit do
-
+      group :animals do
+        hide
+      end
     end
     list do
-
+      exclude_fields :organization
     end
   end
   

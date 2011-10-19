@@ -1,0 +1,15 @@
+#wordpressForm{:style => "width:100%; padding:20px", :class => "clearfix"}
+	- form_tag("/wordpress_accounts", :method => "post", :class => "form") do
+		%h1 WordPress Account Signup
+		Please enter your wordpress url, user name, and password.
+		#user_username_field.field
+			%label{:for => "site_url"} Site URL
+			%input{:id => "site_url", :type => "text", :name => "wordpress_account[site_url]", :class => "string", :style => "width:px", :size => "50"}
+		#user_username_field.field
+			%label{:for => "blog_user"} Blog User
+			%input{:id => "blog_user", :type => "text", :name => "wordpress_account[blog_user]", :class => "string", :style => "width:px", :size => "50"}
+		#user_username_field.field
+			%label{:for => "blog_password"} Blog Password
+			%input{:id => "blog_password", :type => "password", :name => "wordpress_account[blog_password]", :class => "string", :style => "width:px", :size => "50"}
+		%br
+		%button{:type => "submit", :class => "button"}Add Wordpress Account

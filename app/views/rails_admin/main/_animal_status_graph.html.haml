@@ -1,0 +1,22 @@
+- head_javascript "raphael-min.js"
+- head_javascript "pie.js"
+
+#block-tables.block
+	.content
+		%h2.title Animal Statuses
+		.inner
+			:css 
+				#holder {
+					margin: -120px 0 0px -50px;
+					width: 700px;
+					height: 700px;
+				}
+			%table#pichart{:style => "display:none;"}
+				%tbody
+					- @final_status_hash.each do |key, value|
+						%tr.piepieces
+							%th{:scope => "row"}
+								= key
+								=number_to_percentage(value, :precision => 0)
+							%td=number_to_percentage(value, :precision => 0)
+			#holder.clearfix

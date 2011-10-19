@@ -1,0 +1,17 @@
+#block-tables.block
+	.content
+		%h2.title Recent Tweets
+		.inner
+			%table.table.grid
+				%thead
+					%tr
+						%th.start User
+						%th Tweet
+				%tbody
+					- @tweets.each do |tweet|
+						- row_class = "#{cycle("odd", "even")}"
+						%tr{:class => row_class}
+							%td
+								= tweet.user.name
+							%td
+								= tweet.text

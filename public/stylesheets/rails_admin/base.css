@@ -132,6 +132,9 @@ ul.items>li>ul {
 .volunteer_contact_organization_id{
 	display:none;
 }
+.status_organization_id{
+	display:none;
+}
 noscript {
     background-color: rgba(0, 0, 0, 0.9);
     clear: both;

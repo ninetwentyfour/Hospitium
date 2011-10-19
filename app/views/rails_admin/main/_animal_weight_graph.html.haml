@@ -1,0 +1,25 @@
+- head_javascript "raphael-min.js"
+- head_javascript "chart_popup.js"
+- head_javascript "weight_chart.js"
+
+.fieldset.showAnimalInfo
+	:css
+		#holder {
+			height: 250px;
+			margin: 0px 0 0 0px;
+			width: 550px;
+		}
+	%h4 Animal Weights
+	.animal_animal_weights.field
+		%table#data
+			%tfoot
+				%tr
+					- @animal_weights.each do |animal_weight|
+						%th
+							= animal_weight.date_of_weight.strftime("%m/%d/%Y")
+			%tbody
+				%tr
+					- @animal_weights.each do |animal_weight|
+						%td
+							= animal_weight.weight
+		#holder.clearfix

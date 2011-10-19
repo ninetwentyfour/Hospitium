@@ -14,6 +14,7 @@ class Organization < ActiveRecord::Base
     has_many :wordpress_accounts
     has_many :users
     before_create :create_uuid
+    after_create :add_default_status
     #validates_presence_of :address, :city, :state, :zip_code
     validates_uniqueness_of :name
     
@@ -36,6 +37,24 @@ class Organization < ActiveRecord::Base
     #create uuid
     def create_uuid()
       self.uuid = UUIDTools::UUID.random_create.to_s
+    end
+    
+    #create the default statuses and assign them to the new organization
+    def add_default_status
+      @status = Status.new
+      @status.update_attributes(:status => "Adoptable", :organization_id => self.id)
+      @status = Status.new
+      @status.update_attributes(:status => "New Intake", :organization_id => self.id)
+      @status = Status.new
+      @status.update_attributes(:status => "Sanctuary", :organization_id => self.id)
+      @status = Status.new
+      @status.update_attributes(:status => "Sick", :organization_id => self.id)
+      @status = Status.new
+      @status.update_attributes(:status => "Deceased", :organization_id => self.id)
+      @status = Status.new
+      @status.update_attributes(:status => "Adopted", :organization_id => self.id)
+      @status = Status.new
+      @status.update_attributes(:status => "Foster Care", :organization_id => self.id)
     end
     
 end

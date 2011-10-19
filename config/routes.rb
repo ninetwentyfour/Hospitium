@@ -1,5 +1,7 @@
 AnimalTracker::Application.routes.draw do
 
+  resources :notifications
+
   resources :statuses
 
   resources :biters
