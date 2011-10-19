@@ -567,26 +567,26 @@ module RailsAdmin
     end
 
     def check_for_injections(schema)
-      check_injections_for(@model_config, (schema[:only] || []) + (schema[:methods] || []))
-      allowed_associations = @model_config.export.visible_fields.select{ |f| f.association? && !f.association[:options][:polymorphic] }.map(&:association)
-      (schema[:include] || []).each do |association_name, schema|
-        association = allowed_associations.find { |aa| aa[:name] == association_name }
-        raise("Security Exception: #{association[:name]} association not available for #{@model_config.abstract_model.pretty_name}") unless association
-        associated_model = association[:type] == :belongs_to ? association[:parent_model] : association[:child_model]
-        check_injections_for(RailsAdmin.config(AbstractModel.new(associated_model)), (schema[:only] || []) + (schema[:methods] || []))
-      end
+      # check_injections_for(@model_config, (schema[:only] || []) + (schema[:methods] || []))
+      # allowed_associations = @model_config.export.visible_fields.select{ |f| f.association? && !f.association[:options][:polymorphic] }.map(&:association)
+      # (schema[:include] || []).each do |association_name, schema|
+      #   association = allowed_associations.find { |aa| aa[:name] == association_name }
+      #   raise("Security Exception: #{association[:name]} association not available for #{@model_config.abstract_model.pretty_name}") unless association
+      #   associated_model = association[:type] == :belongs_to ? association[:parent_model] : association[:child_model]
+      #   check_injections_for(RailsAdmin.config(AbstractModel.new(associated_model)), (schema[:only] || []) + (schema[:methods] || []))
+      # end
     end
 
     def check_injections_for(model_config, methods_name)
-      available_fields = model_config.export.visible_fields.select{ |f| !f.association? || f.association[:options][:polymorphic] }.map do |field|
-        if field.association? && field.association[:options][:polymorphic]
-          [field.name, model_config.abstract_model.properties.find {|p| field.association[:options][:foreign_type] == p[:name].to_s }[:name]]
-        else
-          field.name
-        end
-      end.flatten
-      unallowed_fields = (methods_name - available_fields)
-      raise("Security Exception: #{unallowed_fields.inspect} methods not available for #{@model_config.abstract_model.pretty_name}") unless unallowed_fields.empty?
+      # available_fields = model_config.export.visible_fields.select{ |f| !f.association? || f.association[:options][:polymorphic] }.map do |field|
+      #   if field.association? && field.association[:options][:polymorphic]
+      #     [field.name, model_config.abstract_model.properties.find {|p| field.association[:options][:foreign_type] == p[:name].to_s }[:name]]
+      #   else
+      #     field.name
+      #   end
+      # end.flatten
+      # unallowed_fields = (methods_name - available_fields)
+      # raise("Security Exception: #{unallowed_fields.inspect} methods not available for #{@model_config.abstract_model.pretty_name}") unless unallowed_fields.empty?
     end
   end
 end
