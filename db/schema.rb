@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111019221735) do
+ActiveRecord::Schema.define(:version => 20111020002006) do
 
   create_table "adoption_contacts", :force => true do |t|
     t.string   "first_name"
@@ -151,6 +151,19 @@ ActiveRecord::Schema.define(:version => 20111019221735) do
     t.datetime "updated_at"
   end
 
+  create_table "photos", :force => true do |t|
+    t.integer  "animal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "photos", ["animal_id"], :name => "index_photos_on_animal_id"
+
   create_table "posts", :force => true do |t|
     t.string   "author"
     t.string   "title"
@@ -245,14 +258,16 @@ ActiveRecord::Schema.define(:version => 20111019221735) do
   end
 
   create_table "twitter_accounts", :force => true do |t|
-    t.integer "user_id"
-    t.boolean "active",               :default => false
-    t.text    "stream_url"
-    t.string  "oauth_token"
-    t.string  "oauth_token_secret"
-    t.string  "oauth_token_verifier"
-    t.text    "oauth_authorize_url"
-    t.integer "organization_id"
+    t.integer  "user_id"
+    t.boolean  "active",               :default => false
+    t.text     "stream_url"
+    t.string   "oauth_token"
+    t.string   "oauth_token_secret"
+    t.string   "oauth_token_verifier"
+    t.text     "oauth_authorize_url"
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

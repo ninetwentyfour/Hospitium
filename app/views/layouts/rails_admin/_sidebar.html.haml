@@ -25,7 +25,7 @@
   .block
     .alert-message.block-message
       %strong= @random_notice.status_type + "!"
-      = @random_notice.message
+      = raw(@random_notice.message)
     %h3 Navigation
     = render(:partial => 'rails_admin/main/navigation')
   -#.block.notice
