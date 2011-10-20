@@ -24,8 +24,8 @@
 #sidebar
   .block
     .alert-message.block-message
-      %strong= @random_notice.status_type + "!"
-      = raw(@random_notice.message)
+      %strong= @random_notice.status_type + "!" unless @random_notice.blank?
+      = raw(@random_notice.message)  unless @random_notice.blank?
     %h3 Navigation
     = render(:partial => 'rails_admin/main/navigation')
   -#.block.notice
