@@ -1,14 +1,5 @@
 AnimalTracker::Application.routes.draw do
 
-  resources :notifications
-
-  resources :statuses
-
-  resources :biters
-
-  resources :spay_neuters
-
-  resources :animal_sexes
 
   resource :facebook_accounts
   match '/callback/facebook/:id' => "facebook_accounts#callback", :as => :facebook_callback
@@ -75,6 +66,41 @@ AnimalTracker::Application.routes.draw do
   match "/permissions/:id" => redirect("/admin/permissions/%{id}"), :via => :get
   match "/permissions/new" => redirect("/admin/permissions/new"), :via => :get
   match "/permissions/:id/edit" => redirect("/admin/permissions/%{id}/edit"), :via => :get
+  
+  match "/notifications" => redirect("/admin/notifications"), :via => :get
+  match "/notifications/:id" => redirect("/admin/notifications/%{id}"), :via => :get
+  match "/notifications/new" => redirect("/admin/notifications/new"), :via => :get
+  match "/notifications/:id/edit" => redirect("/admin/notifications/%{id}/edit"), :via => :get
+  
+  match "/statuses" => redirect("/admin/statuses"), :via => :get
+  match "/statuses/:id" => redirect("/admin/statuses/%{id}"), :via => :get
+  match "/statuses/new" => redirect("/admin/statuses/new"), :via => :get
+  match "/statuses/:id/edit" => redirect("/admin/statuses/%{id}/edit"), :via => :get
+  
+  match "/biters" => redirect("/admin/biters"), :via => :get
+  match "/biters/:id" => redirect("/admin/biters/%{id}"), :via => :get
+  match "/biters/new" => redirect("/admin/biters/new"), :via => :get
+  match "/biters/:id/edit" => redirect("/admin/biters/%{id}/edit"), :via => :get
+  
+  match "/animal_sexes" => redirect("/admin/animal_sexes"), :via => :get
+  match "/animal_sexes/:id" => redirect("/admin/animal_sexes/%{id}"), :via => :get
+  match "/animal_sexes/new" => redirect("/admin/animal_sexes/new"), :via => :get
+  match "/animal_sexes/:id/edit" => redirect("/admin/animal_sexes/%{id}/edit"), :via => :get
+  
+  match "/spay_neuters" => redirect("/admin/spay_neuters"), :via => :get
+  match "/spay_neuters/:id" => redirect("/admin/spay_neuters/%{id}"), :via => :get
+  match "/spay_neuters/new" => redirect("/admin/spay_neuters/new"), :via => :get
+  match "/spay_neuters/:id/edit" => redirect("/admin/spay_neuters/%{id}/edit"), :via => :get
+  
+  resources :biters
+  
+  resources :notifications
+
+  resources :statuses
+
+  resources :spay_neuters
+
+  resources :animal_sexes
   
   resources :animal_colors
 

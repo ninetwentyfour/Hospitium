@@ -14,6 +14,7 @@ class Organization < ActiveRecord::Base
     has_many :wordpress_accounts
     has_many :users
     before_create :create_uuid
+    before_update :modify_phone_number
     after_create :add_default_status
     #validates_presence_of :address, :city, :state, :zip_code
     validates_uniqueness_of :name
@@ -55,6 +56,12 @@ class Organization < ActiveRecord::Base
       @status.update_attributes(:status => "Adopted", :organization_id => self.id)
       @status = Status.new
       @status.update_attributes(:status => "Foster Care", :organization_id => self.id)
+    end
+    
+    def modify_phone_number
+      unless self.phone_number.blank?
+        self.phone_number = self.phone_number.delete("^0-9")
+      end
     end
     
 end

@@ -2,7 +2,8 @@ class RelinquishmentContact < ActiveRecord::Base
   has_paper_trail
   belongs_to :animal
   belongs_to :organization
-  before_create :create_uuid
+  before_create :create_uuid, :modify_phone_number
+  before_update :modify_phone_number
   
   # settings for rails admin views
   rails_admin do
@@ -30,5 +31,11 @@ class RelinquishmentContact < ActiveRecord::Base
   
   def show_name_label_method
     "#{self.first_name} #{self.last_name}"
+  end
+  
+  def modify_phone_number
+    unless self.phone.blank?
+      self.phone = self.phone.delete("^0-9")
+    end
   end
 end

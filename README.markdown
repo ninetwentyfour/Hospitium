@@ -147,7 +147,7 @@ Todo:
 
 - <del>need to make github style add collaborators to organizations</del>
 
-- no follow all links created by users (e.g. organization website) / make do follow for future paid accounts
+- <del>no follow all links created by users (e.g. organization website) / make do follow for future paid accounts</del>
 
 - <del>add adopt link to animals to set what the canonical adopt page is for adoptable animals</del>
 
@@ -187,7 +187,7 @@ Todo:
 
 - standardize address before saving with google maps api, and show map on show pages with locations
 
-- show twitter and fb on dashboard and do pie charts of animals in statuses (adopted - etc)
+- <del>show twitter and fb on dashboard and do pie charts of animals in statuses (adopted - etc)</del>
 
 - cache twitter on dashboard
 
@@ -201,11 +201,11 @@ Todo:
 
 - remove and move to env variables all api keys
 
-- clean up show admin view (code is a mess)
+- <del>clean up show admin view (code is a mess)</del>
 
 - make weights decimals and make suffix user configurable 
 
-- add microchip boolean to animal
+- add microchip field to animal
 
 - graph of animal ages
 
@@ -214,6 +214,8 @@ Todo:
 - let organizations add donate links to public pages
 
 - mark what fields are public
+
+- rabies boolean on animal
 
 
 * * *

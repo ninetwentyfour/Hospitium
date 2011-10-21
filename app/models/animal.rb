@@ -1,6 +1,5 @@
 class Animal < ActiveRecord::Base
   has_paper_trail
-  #default_scope :order => "name ASC"
   has_attached_file :image, :storage => :s3, :s3_credentials => {:access_key_id => ENV['S3_KEY']  || 'thedefaultkey', :secret_access_key => ENV['S3_SECRET']  || 'thedefaultkey'}, :bucket => 'hospitium-static', :styles => { :large => "900x900>", :medium => "300x300>", :thumb => "100x100>" }
   belongs_to :organization
   belongs_to :species
@@ -21,13 +20,27 @@ class Animal < ActiveRecord::Base
   # settings for rails admin views
   rails_admin do
     show do
-      group :animal_weights do
-        hide
-      end
-      exclude_fields :uuid, :image_file_name, :image_content_type, :image_file_size, :image_updated_at, :organization, :age, :sex
+      field :name
+      field :previous_name
+      field :status
+      field :public
+      field :species
+      field :birthday
+      field :animal_sex
+      field :animal_color
+      field :spay_neuter
+      field :biter
+      field :date_of_intake
+      field :date_of_well_check
+      field :organization
+      field :shelter
+      field :special_needs
+      field :diet
+      field :adopted_date
+      field :deceased
+      field :deceased_reason
     end
     create do
-      #exclude_fields :uuid
       field :name do
         help 'Required - the animals current name.'
       end
@@ -42,15 +55,10 @@ class Animal < ActiveRecord::Base
         help 'Required - if the species you need is not listed, click "Create species" above.'
       end
       field :birthday
-      # field :age do
-      #   help 'Optional - age of the animal in years.'
-      # end
-      #field :sex, :enum
       field :animal_sex
       field :animal_color do
         help 'Required - if the animal color you need is not listed, click "Create animal color" above.'
       end
-      #field :spay_neuter, :enum
       field :spay_neuter
       field :biter
       field :date_of_intake
@@ -76,11 +84,8 @@ class Animal < ActiveRecord::Base
       field :public, :boolean
       field :species
       field :birthday
-      #field :age
-      #field :sex, :enum
       field :animal_sex
       field :animal_color
-      #field :spay_neuter, :enum
       field :spay_neuter
       field :biter
       field :date_of_intake
@@ -105,40 +110,6 @@ class Animal < ActiveRecord::Base
     self.uuid = UUIDTools::UUID.random_create.to_s
   end
   
-  #drop down options for some fields
-  # def color_enum
-  #    ['white', 'black', 'brown', 'gray', 'pink']
-  # end
-  
-  def biter_enum
-     ['No', 'Yes']
-  end
-  
-  def spay_neuter_enum
-     ['No', 'Yes']
-  end
-  
-  def sex_enum
-     ['Male', 'Female']
-  end
-  
-  def status_enum
-     ['Adoptable', 'New Intake', 'Sanctuary', 'Sick', 'Deceased', 'Adopted', 'Foster Care']
-  end
-  
-  #age tracking code
-  def self.calculate_age(birthday)
-    Time.now.year - birthday.year
-    #(Time.now.year - birthday.year) - (turned_older? ? 0 : 1) rescue 0
-  end
- 
-  def next_birthday
-    birthday.to_time.change(:year => (turned_older? ? 1.year.from_now : Time.now).year)
-  end
- 
-  def turned_older?
-    (birthday.to_time.change(:year => Time.now.year) <= Time.now)
-  end
   
   
 end
