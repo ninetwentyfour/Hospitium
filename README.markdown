@@ -211,6 +211,9 @@ Todo:
 
 - do some cake thing on dashboard for animals birthdays
 
+- let organizations add donate links to public pages
+
+
 * * *
 
 
