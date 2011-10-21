@@ -347,7 +347,7 @@ margin:20px;
           color: #261f1f; }
 
 #footer {
-  color: white; }
+  color: #555; }
   #footer .block {
     background: #261f1f;
     -moz-border-radius: 6px;
@@ -357,7 +357,7 @@ margin:20px;
     margin: 0;
     padding: 0;
     text-align: center;
-    text-shadow: 0 1px 0 #555555; }
+}
 
 #sidebar {
   width: 20%;
