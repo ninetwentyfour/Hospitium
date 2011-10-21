@@ -10,9 +10,9 @@
 			<img src="/images/no-animal-photo.jpg" width=300 height=300 style="float:right" class="adoptImage" />
 		<% end %>
 		<p>Species: <%= @animal.species.name %></p>
-		<p>Sex: <%= @animal.animal_sex.sex unless @animal.animal_sex.sex.blank? %></p>
+		<p>Sex: <%= @animal.animal_sex.sex unless @animal.animal_sex.blank? %></p>
 		<p>Age: <%= calculate_animal_age(@animal.birthday) unless @animal.birthday.blank? %></p>
-		<p>Spay/Neuter: <%= @animal.spay_neuter.spay unless @animal.spay_neuter.spay.blank? %></p>
+		<p>Spay/Neuter: <%= @animal.spay_neuter.spay unless @animal.spay_neuter.blank? %></p>
 		<p>Color: <%= @animal.animal_color.color %></p>
 		<p>Special Needs: <%= @animal.special_needs %></p>
 		<hr />
