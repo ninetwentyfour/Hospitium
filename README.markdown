@@ -221,6 +221,7 @@ Todo:
 
 - donations and fundraising MVC 
 
+- maybe work with something like this [http://www.petdetect.com/](http://www.petdetect.com/)
 
 * * *
 
