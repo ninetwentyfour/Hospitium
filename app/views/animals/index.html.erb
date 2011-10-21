@@ -16,9 +16,9 @@
 				<div class="otherAnimalInfo">
 					<p>Location: <%= animal.organization.city %>, <%= animal.organization.state %> <%= animal.organization.zip_code %></p>
 					<p>Organization: <a href="/organizations/<%= animal.organization.uuid %>"><%= animal.organization.name %></a></p>
-					<p>Sex: <%= animal.sex %></p>
-					<p>Age: <%= animal.age %></p>
-					<p>Spay/Neuter: <%= animal.spay_neuter %></p>
+					<p>Sex: <%= animal.animal_sex.sex %></p>
+					<p>Age: <%= calculate_animal_age(animal.birthday) %></p>
+					<p>Spay/Neuter: <%= animal.spay_neuter.spay %></p>
 					<p>Color: <%= animal.animal_color.color %></p>
 					<p>Special Needs: <%= animal.special_needs %></p>
 				</div>

@@ -205,6 +205,12 @@ Todo:
 
 - make weights decimals and make suffix user configurable 
 
+- add microchip boolean to animal
+
+- graph of animal ages
+
+- do some cake thing on dashboard for animals birthdays
+
 * * *
 
 
