@@ -9,7 +9,7 @@
 			- children = [model] + models.select { |m| m.parent.to_s == model.abstract_model.model.to_s }
 			- tab_titles = children.map { |child| child.abstract_model.pretty_name.downcase }
 			- active = tab_titles.include? @page_type
-			%li{:class => "#{"active" if active} #{"more" unless children.empty?}"}
+			%li{:id => "#{model.label.pluralize.downcase}_nav"}
 				- if children.size == 1
 					= link_to(model.label_plural, rails_admin_list_path(:model_name => model.abstract_model.to_param))
 				- else
