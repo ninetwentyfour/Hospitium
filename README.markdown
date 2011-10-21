@@ -195,7 +195,7 @@ Todo:
 
 - <del>make statuses like animal colors (addable by user)</del>
 
-- create login messages to display helpful hints at random 
+- <del>create login messages to display helpful hints at random</del>
 
 - <del>do browser testing and add warnings for ie =< 8</del>
 
@@ -216,6 +216,10 @@ Todo:
 - mark what fields are public
 
 - rabies boolean on animal
+
+- privacy policy and terms of service
+
+- donations and fundraising MVC 
 
 
 * * *
