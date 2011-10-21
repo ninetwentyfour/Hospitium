@@ -213,6 +213,8 @@ Todo:
 
 - let organizations add donate links to public pages
 
+- mark what fields are public
+
 
 * * *
 
