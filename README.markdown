@@ -223,6 +223,8 @@ Todo:
 
 - maybe work with something like this [http://www.petdetect.com/](http://www.petdetect.com/)
 
+- remove a bunch of stuff from organizations create and edit
+
 * * *
 
 

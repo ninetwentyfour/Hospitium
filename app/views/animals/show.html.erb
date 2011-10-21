@@ -20,7 +20,7 @@
 		<p>Organization: <a href="/organizations/<%= @animal.organization.uuid %>"><%= @animal.organization.name %></a></p>
 		<p>Website: <a href="<%= @animal.organization.website %>"><%= @animal.organization.website %></a></p>
 		<p>Email: <a href="mailto:<%= @animal.organization.email %>"><%= @animal.organization.email %></a></p>
-		<p>Phone Number: <%= @animal.organization.phone_number %></p>
+		<p>Phone Number: <%= number_to_phone(@animal.organization.phone_number, :area_code => true) %></p>
 		<p>Address: <%= @animal.organization.address %></p>
 		<p><%= @animal.organization.city %>, <%= @animal.organization.state %> <%= @animal.organization.zip_code %></p>
 		<p><!-- AddToAny BEGIN -->
