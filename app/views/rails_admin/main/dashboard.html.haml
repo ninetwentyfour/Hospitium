@@ -53,13 +53,11 @@
 										- history_path = rails_admin_history_model_path(:model_name => abstract_model.to_param)
 										= action_icon(history_path, :calendar, t("admin.history.name"))
 / graph animal statuses in pie chart
-- cache("dashboard_piechart_for_#{current_user.id}") do
-	- unless @final_status_hash.blank?
-		= render :partial => "animal_status_graph", :object => @final_status_hash
+- unless @final_status_hash.blank?
+	= render :partial => "animal_status_graph", :object => @final_status_hash
 / show tweets if user has twitter account
-- cache("dashboard_tweetlist_for_#{current_user.id}") do
-	- unless @tweets.blank?
-		= render :partial => "tweets_list", :object => @tweets
+- unless @tweets.blank?
+	= render :partial => "tweets_list", :object => @tweets
 - if authorized? :see_history
 	#block-tables.block
 		.content
