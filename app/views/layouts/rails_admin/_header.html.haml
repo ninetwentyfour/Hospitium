@@ -5,7 +5,7 @@
 	%a{:href => "http://enable-javascript.com/"}
 		instructions on how to enable JavaScript in your web browser
 #hiddenForNavHighlight{:style => "display:none;"}
-	%input{:type => "text", :value => "#{@abstract_model.pretty_name.downcase unless @page_type == "dashboard"}s", :id => "hiddenForNavHighlightInput"}
+	%input{:type => "text", :value => "#{@abstract_model.pretty_name.gsub(/\s/, "_").gsub(/[^\w-]/, '').downcase unless @page_type == "dashboard"}s", :id => "hiddenForNavHighlightInput"}
 #header.my_header
 	%h1.title
 		%a{:href => '/admin'}
