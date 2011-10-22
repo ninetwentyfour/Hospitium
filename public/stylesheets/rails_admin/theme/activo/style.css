@@ -212,15 +212,15 @@ hr {
   background-image: url("images/logo.png");
   background-repeat: no-repeat;
   /*background-position: 20px 20px;*/
-  height: 80px;
+  height: 40px;
   background-color: #333333;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
   box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.25), 0 1px 1px rgba(255, 255, 255, 0.3);
   -moz-box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.25), 0 1px 1px rgba(255, 255, 255, 0.3);
   -webkit-box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.25), 0 1px 1px rgba(255, 255, 255, 0.3); }
   #header h1 {
-    padding: 15px 55px;
-    font-size: 40px;
+    padding: 3px 5px 5px 5px;
+    font-size: 20px;
     font-style: normal;
     text-transform: normal;
     letter-spacing: -1px;
@@ -310,7 +310,7 @@ hr {
 #user-navigation {
   top: auto;
   right: 10px; 
-margin:20px;
+margin:3px 20px 20px 20px;
 }
 
 #user-navigation ul li a:link, #user-navigation ul li a:visited, #user-navigation ul li a:hover, #user-navigation ul li a:active {
