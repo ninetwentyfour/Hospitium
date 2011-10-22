@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111022192045) do
+ActiveRecord::Schema.define(:version => 20111022194204) do
 
   create_table "adopt_animals", :force => true do |t|
     t.integer  "animal_id"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(:version => 20111022192045) do
     t.string   "address"
     t.string   "phone"
     t.string   "email"
-    t.integer  "animal_id"
     t.datetime "adopted_date"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -206,7 +205,6 @@ ActiveRecord::Schema.define(:version => 20111022192045) do
     t.string   "address"
     t.string   "phone"
     t.string   "email"
-    t.integer  "animal_id"
     t.text     "reason"
     t.datetime "created_at"
     t.datetime "updated_at"
