@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111022194204) do
+ActiveRecord::Schema.define(:version => 20111022201703) do
 
   create_table "adopt_animals", :force => true do |t|
     t.integer  "animal_id"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(:version => 20111022194204) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "adopt_animals", ["adoption_contact_id"], :name => "index_adopt_animals_on_adoption_contact_id"
+  add_index "adopt_animals", ["animal_id"], :name => "index_adopt_animals_on_animal_id"
 
   create_table "adoption_contacts", :force => true do |t|
     t.string   "first_name"
@@ -96,7 +99,15 @@ ActiveRecord::Schema.define(:version => 20111022194204) do
     t.integer  "status_id"
   end
 
+  add_index "animals", ["animal_color_id"], :name => "index_animals_on_animal_color_id"
+  add_index "animals", ["animal_sex_id"], :name => "index_animals_on_animal_sex_id"
+  add_index "animals", ["biter_id"], :name => "index_animals_on_biter_id"
   add_index "animals", ["organization_id"], :name => "index_animals_on_organization_id"
+  add_index "animals", ["shelter_id"], :name => "index_animals_on_shelter_id"
+  add_index "animals", ["spay_neuter_id"], :name => "index_animals_on_spay_neuter_id"
+  add_index "animals", ["species_id"], :name => "index_animals_on_species_id"
+  add_index "animals", ["status_id"], :name => "index_animals_on_status_id"
+  add_index "animals", ["uuid"], :name => "index_animals_on_uuid"
 
   create_table "biters", :force => true do |t|
     t.string   "value"
@@ -114,6 +125,8 @@ ActiveRecord::Schema.define(:version => 20111022194204) do
     t.datetime "updated_at"
     t.integer  "organization_id"
   end
+
+  add_index "facebook_accounts", ["user_id"], :name => "index_facebook_accounts_on_user_id"
 
   create_table "notifications", :force => true do |t|
     t.text     "message"
@@ -136,6 +149,8 @@ ActiveRecord::Schema.define(:version => 20111022194204) do
     t.string   "website"
   end
 
+  add_index "organizations", ["uuid"], :name => "index_organizations_on_uuid"
+
   create_table "organizations_users", :id => false, :force => true do |t|
     t.integer "organization_id"
     t.integer "user_id"
@@ -147,6 +162,9 @@ ActiveRecord::Schema.define(:version => 20111022194204) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "permissions", ["role_id"], :name => "index_permissions_on_role_id"
+  add_index "permissions", ["user_id"], :name => "index_permissions_on_user_id"
 
   create_table "petfinder_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -198,6 +216,9 @@ ActiveRecord::Schema.define(:version => 20111022194204) do
     t.datetime "updated_at"
   end
 
+  add_index "relinquish_animals", ["animal_id"], :name => "index_relinquish_animals_on_animal_id"
+  add_index "relinquish_animals", ["relinquishment_contact_id"], :name => "index_relinquish_animals_on_relinquishment_contact_id"
+
   create_table "relinquishment_contacts", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -218,6 +239,8 @@ ActiveRecord::Schema.define(:version => 20111022194204) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
@@ -269,6 +292,8 @@ ActiveRecord::Schema.define(:version => 20111022194204) do
     t.datetime "updated_at"
   end
 
+  add_index "statuses", ["organization_id"], :name => "index_statuses_on_organization_id"
+
   create_table "twitter_accounts", :force => true do |t|
     t.integer  "user_id"
     t.boolean  "active",               :default => false
@@ -281,6 +306,8 @@ ActiveRecord::Schema.define(:version => 20111022194204) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "twitter_accounts", ["user_id"], :name => "index_twitter_accounts_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -360,5 +387,7 @@ ActiveRecord::Schema.define(:version => 20111022194204) do
     t.datetime "updated_at"
     t.integer  "organization_id"
   end
+
+  add_index "wordpress_accounts", ["user_id"], :name => "index_wordpress_accounts_on_user_id"
 
 end
