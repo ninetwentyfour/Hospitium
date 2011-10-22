@@ -1,11 +1,11 @@
 class VolunteerContact < ActiveRecord::Base
   has_paper_trail
-  has_attached_file :image, :storage => :s3, :s3_credentials => {:access_key_id => ENV['S3_KEY']  || 'thedefaultkey', :secret_access_key => ENV['S3_SECRET']  || 'thedefaultkey'}, :bucket => 'hospitium-static', :url => '/:class/:id/:style/:filename', :styles => { :large => "900x900>", :medium => "300x300>", :thumb => "100x100>" }
+  #has_attached_file :image, :storage => :s3, :s3_credentials => {:access_key_id => ENV['S3_KEY']  || 'thedefaultkey', :secret_access_key => ENV['S3_SECRET']  || 'thedefaultkey'}, :bucket => 'hospitium-static', :styles => { :large => "900x900>", :medium => "300x300>", :thumb => "100x100>" }
   belongs_to :organization
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
   
-  validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']
+  #validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']
   
   # settings for rails admin views
   rails_admin do
@@ -21,7 +21,7 @@ class VolunteerContact < ActiveRecord::Base
       field :phone
       field :email
       field :application_date
-      field :image, :paperclip_file
+      #field :image, :paperclip_file
     end
     edit do
       exclude_fields :uuid
