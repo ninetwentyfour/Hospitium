@@ -4,6 +4,7 @@ class VetContact < ActiveRecord::Base
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
   
+  
   # settings for rails admin views
   rails_admin do
     object_label_method do
