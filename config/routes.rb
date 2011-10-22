@@ -10,7 +10,7 @@ AnimalTracker::Application.routes.draw do
   match '/callback/twitter/' => "twitter_accounts#callback", :as => :twitter_callback
   match "/twitter_accounts/send_tweet" => "twitter_accounts#send_tweet", :as => "twitter_accounts"
   
-  post "versions/:id/revert" => "versions#show", :as => "revert_version"
+  post "versions/:id/revert" => "versions#revert", :as => "revert_version"
   
   #force most controllers to /admin
   match "/animals/new" => redirect("/admin/animals/new"), :via => :get

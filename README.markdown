@@ -227,6 +227,8 @@ Todo:
 
 - create cancel account mechanism and job that deletes info in 30 days
 
+- <del>fix undo</del>
+
 * * *
 
 
