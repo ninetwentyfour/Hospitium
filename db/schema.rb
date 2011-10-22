@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111022182605) do
+ActiveRecord::Schema.define(:version => 20111022192045) do
+
+  create_table "adopt_animals", :force => true do |t|
+    t.integer  "animal_id"
+    t.integer  "adoption_contact_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "adoption_contacts", :force => true do |t|
     t.string   "first_name"
@@ -184,6 +191,13 @@ ActiveRecord::Schema.define(:version => 20111022182605) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "relinquish_animals", :force => true do |t|
+    t.integer  "animal_id"
+    t.integer  "relinquishment_contact_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "relinquishment_contacts", :force => true do |t|
     t.string   "first_name"

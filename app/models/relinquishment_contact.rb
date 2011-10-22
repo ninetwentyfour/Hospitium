@@ -1,6 +1,7 @@
 class RelinquishmentContact < ActiveRecord::Base
   has_paper_trail
-  belongs_to :animal
+  has_many :relinquish_animals
+  has_many :animals, :through => :relinquish_animals
   belongs_to :organization
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
@@ -11,12 +12,21 @@ class RelinquishmentContact < ActiveRecord::Base
       :show_name_label_method # show the user email in the admin UI instead of the user id
     end
     show do
+      group :relinquish_animals do
+        hide
+      end
       exclude_fields :uuid, :organization
     end
     create do
+      group :relinquish_animals do
+        hide
+      end
       exclude_fields :uuid
     end
     edit do
+      group :relinquish_animals do
+        hide
+      end
       exclude_fields :uuid
     end
     list do

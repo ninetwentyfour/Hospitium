@@ -217,13 +217,13 @@ Todo:
 
 - rabies boolean on animal
 
-- privacy policy and terms of service
+- <del>privacy policy and terms of service</del>
 
 - donations and fundraising MVC 
 
 - maybe work with something like this [http://www.petdetect.com/](http://www.petdetect.com/)
 
-- remove a bunch of stuff from organizations create and edit
+- <del>remove a bunch of stuff from organizations create and edit</del>
 
 - create cancel account mechanism and job that deletes info in 30 days
 

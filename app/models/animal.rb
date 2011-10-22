@@ -10,6 +10,10 @@ class Animal < ActiveRecord::Base
   belongs_to :biter
   belongs_to :status
   has_many :animal_weights
+  has_many :adopt_animals
+  has_many :adoption_contacts, :through => :adopt_animals
+  has_many :relinquish_animals
+  has_many :relinquishment_contacts, :through => :relinquish_animals
   has_one :relinquishment_contact
   
   before_create :create_uuid
