@@ -2,7 +2,7 @@ class AdoptionContact < ActiveRecord::Base
   has_paper_trail
   belongs_to :animal
   belongs_to :organization
-  before_create :modify_phone_number
+  before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
   
   validates_presence_of :first_name, :last_name, :address
@@ -24,6 +24,11 @@ class AdoptionContact < ActiveRecord::Base
     list do
       exclude_fields :uuid, :organization
     end
+  end
+  
+  #create uuid
+  def create_uuid()
+    self.uuid = UUIDTools::UUID.random_create.to_s
   end
   
   def show_name_label_method

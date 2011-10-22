@@ -4,6 +4,8 @@ class VolunteerContact < ActiveRecord::Base
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
   
+  validates_presence_of :first_name, :last_name, :address
+  
   # settings for rails admin views
   rails_admin do
     object_label_method do

@@ -22,12 +22,99 @@ class Organization < ActiveRecord::Base
     # settings for rails admin views
     rails_admin do
       show do
+        group :wordpress_accounts do
+          hide
+        end
+        group :facebook_accounts do
+          hide
+        end
+        group :twitter_accounts do
+          hide
+        end
         exclude_fields :uuid
       end
       create do
+        group :adoption_contacts do
+          hide
+        end
+        group :animals do
+          hide
+        end
+        group :animal_colors do
+          hide
+        end
+        group :animal_weights do
+          hide
+        end
+        group :facebook_accounts do
+          hide
+        end
+        group :relinquishment_contacts do
+          hide
+        end
+        group :shelters do
+          hide
+        end
+        group :species do
+          hide
+        end
+        group :twitter_accounts do
+          hide
+        end
+        group :vet_contacts do
+          hide
+        end
+        group :volunteer_contacts do
+          hide
+        end
+        group :wordpress_accounts do
+          hide
+        end
+        group :users do
+          hide
+        end
         exclude_fields :uuid
       end
       edit do
+        group :adoption_contacts do
+          hide
+        end
+        group :animals do
+          hide
+        end
+        group :animal_colors do
+          hide
+        end
+        group :animal_weights do
+          hide
+        end
+        group :facebook_accounts do
+          hide
+        end
+        group :relinquishment_contacts do
+          hide
+        end
+        group :shelters do
+          hide
+        end
+        group :species do
+          hide
+        end
+        group :twitter_accounts do
+          hide
+        end
+        group :vet_contacts do
+          hide
+        end
+        group :volunteer_contacts do
+          hide
+        end
+        group :wordpress_accounts do
+          hide
+        end
+        group :users do
+          hide
+        end
         exclude_fields :uuid
       end
       list do
