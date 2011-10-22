@@ -225,6 +225,8 @@ Todo:
 
 - remove a bunch of stuff from organizations create and edit
 
+- create cancel account mechanism and job that deletes info in 30 days
+
 * * *
 
 

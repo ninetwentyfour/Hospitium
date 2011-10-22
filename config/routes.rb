@@ -140,6 +140,7 @@ AnimalTracker::Application.routes.draw do
   root :to => "home#index"
   match "/about" => "home#about", :as => "about"
   match "/features" => "home#features", :as => "features"
+  match "/privacy-and-terms-of-service" => "home#privacy", :as => "privacy"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
