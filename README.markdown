@@ -229,6 +229,8 @@ Todo:
 
 - <del>fix undo</del>
 
+- <del>do missing animal and all around photo like the default missing gravatar but like a mouse silhouette</del>
+
 * * *
 
 
