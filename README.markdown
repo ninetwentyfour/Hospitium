@@ -231,7 +231,9 @@ Todo:
 
 - <del>do missing animal and all around photo like the default missing gravatar but like a mouse silhouette</del>
 
-- fix bg with filters and search for non super admins
+- <del>fix bg with filters and search for non super admins</del>
+
+- <del>fix bulk delete for non super admins</del>
 
 * * *
 
