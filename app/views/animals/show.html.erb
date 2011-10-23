@@ -12,12 +12,12 @@
 			<% end %>
 			<br />
 			<%- unless @animal.second_image.url(:medium) == "/second_images/medium/missing.png" %>
-				<a href="<%= @animal.second_image.url %>"><img src="<%= @animal.second_image.url(:thumb) %>" width=140 height=140 class="adoptImage" /></a>
+				<a href="<%= @animal.second_image.url %>"><img src="<%= @animal.second_image.url(:thumb) %>" width=140 height=140 style="float:left;margin:margin:5px 10px 0px 0px;" /></a>
 			<%- else %>
 			
 			<% end %>
 			<%- unless @animal.third_image.url(:medium) == "/third_images/medium/missing.png" %>
-				<a href="<%= @animal.third_image.url %>"><img src="<%= @animal.third_image.url(:thumb) %>" width=140 height=140 class="adoptImage" /></a>
+				<a href="<%= @animal.third_image.url %>"><img src="<%= @animal.third_image.url(:thumb) %>" width=140 height=140 style="float:left;margin:margin:5px 10px 0px 0px;" /></a>
 			<%- else %>
 			
 			<% end %>
