@@ -190,7 +190,7 @@ form.formtastic {
 body {
   color: #111111;
   /*background: #c4c4c4 url("images/bgd.png");*/
-background: #c4c4c4 url(/images/body_bg.jpg);
+background: #c4c4c4 url(http://s3.amazonaws.com/hospitium-app-assets/images/body_bg.jpg);
   font-family: helvetica, arial, sans-serif; }
 
 h1, h2, h3 {

@@ -17,12 +17,12 @@ margin-left:10px;
 border:10px solid #fff;
 }
 html{
-	background-image:url(/images/body_bg.jpg);
+	background-image:url(http://s3.amazonaws.com/hospitium-app-assets/images/body_bg.jpg);
 }
 body{
 	padding-top: 40px;
 	color: #555555 !important;
-	background-image:url(/images/body_bg.jpg);
+	background-image:url(http://s3.amazonaws.com/hospitium-app-assets/images/body_bg.jpg);
 }
 li{
 	color: #555555 !important;
