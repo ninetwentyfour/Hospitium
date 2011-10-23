@@ -31,6 +31,7 @@ li{
 	border:1px solid #DDDDDD;
 	padding:20px;
 	margin:60px;
+	background: none repeat scroll 0 0 #F5F5F5;
 }
 .adoptImage{
 	margin-right:20px;
@@ -64,4 +65,8 @@ noscript {
     top: 0;
     width: 100%;
     z-index: 99;
+}
+.hero-unit{
+	border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.3);
 }
