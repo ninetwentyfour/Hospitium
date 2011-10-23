@@ -3,14 +3,15 @@
 		%img{:src  => "#{@object.image.url(:medium)}"}
 - else
 	%img{:src  => "/images/no-animal-photo.jpg"}
-- unless @object.second_image.url == "/images/original/missing.png"
+%br
+- unless @object.second_image.url == "/second_images/original/missing.png"
 	%a{:href => "#{@object.second_image.url}"}
-		%img{:src  => "#{@object.second_image.url(:thumb)}"}
+		%img{:src  => "#{@object.second_image.url(:thumb)}", :width => 140, :style => "margin:5px 5px 0px 0px"}
 - else
 	/do nothing
-- unless @object.third_image.url == "/images/original/missing.png"
+- unless @object.third_image.url == "/third_images/original/missing.png"
 	%a{:href => "#{@object.third_image.url}"}
-		%img{:src  => "#{@object.third_image.url(:thumb)}"}
+		%img{:src  => "#{@object.third_image.url(:thumb)}", :width => 140, :style => "margin:5px 0px 0px 5px"}
 - else
 	/do nothing
 %br
