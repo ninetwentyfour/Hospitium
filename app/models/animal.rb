@@ -14,7 +14,6 @@ class Animal < ActiveRecord::Base
   has_many :adoption_contacts, :through => :adopt_animals
   has_many :relinquish_animals
   has_many :relinquishment_contacts, :through => :relinquish_animals
-  has_one :relinquishment_contact
   
   before_create :create_uuid
   
