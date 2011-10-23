@@ -47,6 +47,7 @@ class AdoptAPetAccountsController < ApplicationController
     #ftp it to adopt a pet account
     require 'net/ftp'
     ftp = Net::FTP.new('autoupload.adoptapet.com')
+    ftp.passive = true
     ftp.login(user = "#{@account.user_name}", passwd = "#{@account.password}")
     ftp.putbinaryfile(file.string(), "pets.csv")
     ftp.putbinaryfile("#{RAILS_ROOT}/public/adopt_a_pet/import.cfg", "import.cfg")
