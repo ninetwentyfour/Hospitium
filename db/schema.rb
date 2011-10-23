@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111023015335) do
+ActiveRecord::Schema.define(:version => 20111023051237) do
 
   create_table "adopt_a_pet_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -339,6 +339,7 @@ ActiveRecord::Schema.define(:version => 20111023015335) do
     t.datetime "confirmation_sent_at"
     t.integer  "organization_id"
     t.string   "organization_name"
+    t.integer  "owner",                                 :default => 0
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

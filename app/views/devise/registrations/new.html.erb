@@ -21,6 +21,7 @@
 
   <div class="clearfix"><%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %></div>
+  <input type="hidden" value="1" name="user[owner]" id="new_user_admin">
 	<br />
   <div><%= f.submit "Sign up", :class => "btn primary" %></div>
 <% end %>
