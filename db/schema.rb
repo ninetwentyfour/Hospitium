@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111022201703) do
+ActiveRecord::Schema.define(:version => 20111023015335) do
+
+  create_table "adopt_a_pet_accounts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "organization_id"
+    t.boolean  "active",          :default => false
+    t.text     "user_name"
+    t.text     "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "adopt_animals", :force => true do |t|
     t.integer  "animal_id"
@@ -103,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20111022201703) do
   add_index "animals", ["animal_sex_id"], :name => "index_animals_on_animal_sex_id"
   add_index "animals", ["biter_id"], :name => "index_animals_on_biter_id"
   add_index "animals", ["organization_id"], :name => "index_animals_on_organization_id"
+  add_index "animals", ["public"], :name => "index_animals_on_public"
   add_index "animals", ["shelter_id"], :name => "index_animals_on_shelter_id"
   add_index "animals", ["spay_neuter_id"], :name => "index_animals_on_spay_neuter_id"
   add_index "animals", ["species_id"], :name => "index_animals_on_species_id"

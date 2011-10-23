@@ -133,6 +133,9 @@ AnimalTracker::Application.routes.draw do
   
   resource :petfinder_accounts
   match "/petfinder_accounts/send_animal_post" => "petfinder_accounts#send_animal_post", :as => "petfinder_accounts"
+  
+  resource :adopt_a_pet_accounts
+  match "/send-to-adopt-a-pet" => "adopt_a_pet_accounts#send_animal", :as => "adopt_a_pet_accounts"
 
     
   devise_for :users
@@ -141,6 +144,7 @@ AnimalTracker::Application.routes.draw do
   match "/about" => "home#about", :as => "about"
   match "/features" => "home#features", :as => "features"
   match "/privacy-and-terms-of-service" => "home#privacy", :as => "privacy"
+  match "/ftp-test" => "adopt_a_pets#send_to_site", :as => "send_to_site"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
