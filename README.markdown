@@ -235,7 +235,6 @@ Todo:
 
 - <del>fix bulk delete for non super admins</del>
 
-- add onclick event to everything in admin and add black out loading div
 
 * * *
 
