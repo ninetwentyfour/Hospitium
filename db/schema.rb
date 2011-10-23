@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111023051237) do
+ActiveRecord::Schema.define(:version => 20111023181922) do
 
   create_table "adopt_a_pet_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -101,12 +101,17 @@ ActiveRecord::Schema.define(:version => 20111023051237) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "public",             :default => 0
+    t.integer  "public",                    :default => 0
     t.datetime "birthday"
     t.integer  "animal_sex_id"
     t.integer  "spay_neuter_id"
     t.integer  "biter_id"
     t.integer  "status_id"
+    t.string   "second_image"
+    t.string   "second_image_file_name"
+    t.string   "second_image_content_type"
+    t.integer  "second_image_file_size"
+    t.datetime "second_image_updated_at"
   end
 
   add_index "animals", ["animal_color_id"], :name => "index_animals_on_animal_color_id"
