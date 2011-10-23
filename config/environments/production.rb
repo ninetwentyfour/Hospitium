@@ -58,5 +58,5 @@ AnimalTracker::Application.configure do
     :domain         => ENV['SENDGRID_DOMAIN']
   }
   
-  config.action_controller.asset_host = "s3.amazonaws.com/hospitium-app-assets"
+  config.action_controller.asset_host = "d4uktpxr9m70.cloudfront.net"
 end

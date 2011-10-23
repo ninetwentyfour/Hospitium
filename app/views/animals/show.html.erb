@@ -8,7 +8,7 @@
 			<%- unless @animal.image.url(:medium) == "/images/medium/missing.png" %>
 				<a href="<%= @animal.image.url %>"><img src="<%= @animal.image.url(:medium) %>" class="adoptImage" /></a>
 			<%- else %>
-				<img src="/images/no-animal-photo.jpg" width=300 height=300 style="float:right" class="adoptImage" />
+				<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-photo.jpg" width=300 height=300 style="float:right" class="adoptImage" />
 			<% end %>
 			<br />
 			<%- unless @animal.second_image.url(:medium) == "/second_images/medium/missing.png" %>

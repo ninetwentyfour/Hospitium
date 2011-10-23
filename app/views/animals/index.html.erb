@@ -10,7 +10,7 @@
 				<%- unless animal.image.url(:medium) == "/images/medium/missing.png" %>
 					<a href="<%= animal.image.url %>" class="adoptListImageLink"><img src="<%= animal.image.url(:medium) %>" align="left" class="adoptImage" /></a>
 				<%- else %>
-					<img src="images/no-animal-photo.jpg" width=300 height=300 align="left" class="adoptImage" />
+					<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-photo.jpg" width=300 height=300 align="left" class="adoptImage" />
 				<% end %>
 				<h1><a href="animals/<%= animal.uuid %>"><%= animal.name %></a></h1><h4><%= animal.species.name %></h4>
 				<div class="otherAnimalInfo">
