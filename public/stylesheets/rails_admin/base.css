@@ -152,4 +152,21 @@ noscript {
     width: 100%;
     z-index: 99;
 }
+#loadingBlock{
+background-color:rgba(255,255,255,0.5);
+    clear: both;
+    height: 100%;
+    margin: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+color:red;
+font-size:30px;
+text-align:center;
+padding-top:100px;
+left:0;
+top:0;
+line-height: 2em;
+text-shadow: none;
+}
   
