@@ -17,7 +17,7 @@
 			
 			<% end %>
 			<%- unless @animal.third_image.url(:medium) == "/third_images/medium/missing.png" %>
-				<a href="<%= @animal.third_image.url %>"><img src="<%= @animal.third_image.url(:thumb) %>" width=140 height=140 style="float:left;margin:5px 10px 0px 0px;" /></a>
+				<a href="<%= @animal.third_image.url %>"><img src="<%= @animal.third_image.url(:thumb) %>" width=140 height=140 style="float:left;margin:5px 0px 0px 10px;" /></a>
 			<%- else %>
 			
 			<% end %>
