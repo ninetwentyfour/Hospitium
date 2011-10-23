@@ -14,6 +14,7 @@
 				<% end %>
 				<h1><a href="animals/<%= animal.uuid %>"><%= animal.name %></a></h1><h4><%= animal.species.name %></h4>
 				<div class="otherAnimalInfo">
+					<p>Status: <%= animal.status.status %></p>
 					<p>Location: <%= animal.organization.city %>, <%= animal.organization.state %> <%= animal.organization.zip_code %></p>
 					<p>Organization: <a href="/organizations/<%= animal.organization.uuid %>"><%= animal.organization.name %></a></p>
 					<p>Sex: <%= animal.animal_sex.sex unless animal.animal_sex.blank? %></p>

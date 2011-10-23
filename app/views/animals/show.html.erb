@@ -9,6 +9,7 @@
 		<%- else %>
 			<img src="/images/no-animal-photo.jpg" width=300 height=300 style="float:right" class="adoptImage" />
 		<% end %>
+		<p>Status: <%= @animal.status.status %></p>
 		<p>Species: <%= @animal.species.name %></p>
 		<p>Sex: <%= @animal.animal_sex.sex unless @animal.animal_sex.blank? %></p>
 		<p>Age: <%= calculate_animal_age(@animal.birthday) unless @animal.birthday.blank? %></p>
