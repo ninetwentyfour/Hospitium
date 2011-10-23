@@ -9,6 +9,17 @@
 		<%- else %>
 			<img src="/images/no-animal-photo.jpg" width=300 height=300 style="float:right" class="adoptImage" />
 		<% end %>
+		<br />
+		<%- unless @animal.second_image.url(:medium) == "/second_images/medium/missing.png" %>
+			<a href="<%= @animal.second_image.url %>"><img src="<%= @animal.second_image.url(:thumb) %>" style="float:right" class="adoptImage" /></a>
+		<%- else %>
+			
+		<% end %>
+		<%- unless @animal.third_image.url(:medium) == "/third_images/medium/missing.png" %>
+			<a href="<%= @animal.third_image.url %>"><img src="<%= @animal.third_image.url(:thumb) %>" style="float:right" class="adoptImage" /></a>
+		<%- else %>
+			
+		<% end %>
 		<p>Status: <%= @animal.status.status %></p>
 		<p>Species: <%= @animal.species.name %></p>
 		<p>Sex: <%= @animal.animal_sex.sex unless @animal.animal_sex.blank? %></p>
