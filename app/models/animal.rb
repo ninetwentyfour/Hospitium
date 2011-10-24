@@ -1,4 +1,8 @@
 class Animal < ActiveRecord::Base
+  CONSUMER_KEY = 'Is9pdOhRRNhx95wGBiWg'
+  CONSUMER_SECRET = 'D2WLDX0Fh9EOGAhBJSQFkKs1U2c3ET2a5z2t9JZCrM'
+  OPTIONS = {:site => "http://api.twitter.com", :request_endpoint => "http://api.twitter.com"}
+  
   has_paper_trail
   has_attached_file :image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY']  || 'thedefaultkey', :secret_access_key => ENV['S3_SECRET']  || 'thedefaultkey'}, :bucket => 'hospitium-static', :styles => { :large => "900x900>", :medium => "300x300>", :thumb => "140x140>" }
   has_attached_file :second_image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY']  || 'thedefaultkey', :secret_access_key => ENV['S3_SECRET']  || 'thedefaultkey'}, :bucket => 'hospitium-static', :styles => { :large => "900x900>", :medium => "300x300>", :thumb => "140x140>" }
@@ -18,7 +22,7 @@ class Animal < ActiveRecord::Base
   has_many :relinquishment_contacts, :through => :relinquish_animals
   
   before_create :create_uuid
-  
+  after_update :send_public_tweet
   validates_presence_of :name, :date_of_intake, :organization, :species, :animal_color, :biter, :spay_neuter, :animal_sex, :status
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']
   
@@ -117,6 +121,23 @@ class Animal < ActiveRecord::Base
   #create uuid
   def create_uuid()
     self.uuid = UUIDTools::UUID.random_create.to_s
+  end
+  
+  def send_public_tweet
+    if self.public == 1
+      account = TwitterAccount.find_by_user_id(1)
+      Twitter.configure do |config|
+        config.consumer_key = TwitterAccount::CONSUMER_KEY
+        config.consumer_secret = TwitterAccount::CONSUMER_SECRET
+        config.oauth_token = account.oauth_token
+        config.oauth_token_secret = account.oauth_token_secret
+      end
+      client = Twitter::Client.new
+      #begin
+      link = TwitterAccount.shorten_link("http://hospitium.co/animals/#{self.uuid}")
+      client.update("#{self.name} is ready for adoption at #{link}")
+      return true
+    end
   end
   
   
