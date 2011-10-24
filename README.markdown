@@ -181,7 +181,7 @@ Todo:
 
 - send facebook to pages or groups
 
-- send all new public animals to hospitium twitter
+- <del>send all new public animals to hospitium twitter</del>
 
 - <del>scope data in dashboard</del>
 
