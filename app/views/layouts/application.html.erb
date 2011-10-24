@@ -68,15 +68,35 @@
 </div> <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 <%= javascript_include_tag "rails.js" %>
-<%= javascript_include_tag "jqFancyTransitions.1.8.min.js" %>
-<%= javascript_include_tag "jquery.tipsy.js" %>
-<%= javascript_include_tag "prettify.js" %>
-<%= javascript_include_tag "application.js" %>
+
+<%= javascript_include_tag "jquery.nivo.slider.pack.js" %>
 <script type="text/javascript">
 $(window).load(function() {
     //$('#slider').nivoSlider();
 $('#slider').attr("style", "float:right;visibility:visible;");
-$('#slider').jqFancyTransitions({ width: 560, height: 290 });
+//$('#slider').jqFancyTransitions({ width: 560, height: 290 });
+$('#slider').nivoSlider({
+    effect: 'random', // Specify sets like: 'fold,fade,sliceDown'
+    slices: 8, // For slice animations
+    boxCols: 6, // For box animations
+    boxRows: 4, // For box animations
+    animSpeed: 500, // Slide transition speed
+    pauseTime: 3000, // How long each slide will show
+    startSlide: 0, // Set starting Slide (0 index)
+    directionNav: false, // Next & Prev navigation
+    directionNavHide: true, // Only show on hover
+    controlNav: false, // 1,2,3... navigation
+    controlNavThumbs: false, // Use thumbnails for Control Nav
+    controlNavThumbsFromRel: false, // Use image rel for thumbs
+    controlNavThumbsSearch: '.jpg', // Replace this with...
+    controlNavThumbsReplace: '_thumb.jpg', // ...this in thumb Image src
+    keyboardNav: false, // Use left & right arrows
+    pauseOnHover: false, // Stop animation while hovering
+    manualAdvance: false, // Force manual transitions
+    captionOpacity: 1, // Universal caption opacity
+    prevText: '', // Prev directionNav text
+    nextText: '', // Next directionNav text
+});
 });
 </script>
 <script type="text/javascript">
