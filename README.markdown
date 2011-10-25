@@ -238,6 +238,9 @@ Todo:
 - add comments section that grows over time for animal
 
 - track vet visits over time w/ notes
+
+- create some dummy default data for things like species / animal colors (maybe map to adopt a pet fields?)
+
 * * *
 
 
