@@ -41,6 +41,8 @@ Install:
 
 * * *
 
+**These instruction are a bit out of date. I'll work on new ones and post as soon as I can.**
+
 Set db connection in `/config/database.yml`
 
 `$ cd /foo/bar/app_location/`
@@ -240,6 +242,10 @@ Todo:
 - track vet visits over time w/ notes
 
 - create some dummy default data for things like species / animal colors (maybe map to adopt a pet fields?)
+
+- calculate most adopted species and do percentages of it
+
+- calculate average time from intake to adoption/death
 
 * * *
 
