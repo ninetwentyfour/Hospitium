@@ -247,6 +247,8 @@ Todo:
 
 - calculate average time from intake to adoption/death
 
+- tag via @hospitium_app to sent tweets (make customizable messages / no via for premium accounts)
+
 * * *
 
 
