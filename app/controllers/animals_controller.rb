@@ -1,6 +1,6 @@
 class AnimalsController < ApplicationController
   #caches_action :index, :expires_in => 1.minute
-  caches_action :show, :expires_in => 1.minute
+  #caches_action :show, :expires_in => 1.minute
   #cache_sweeper :animal_sweeper
   # GET /animals
   # GET /animals.xml
@@ -21,7 +21,10 @@ class AnimalsController < ApplicationController
   # GET /animals/1
   # GET /animals/1.xml
   def show
-    @animal = Animal.find_by_uuid(params[:id])
+    @animal = Rails.cache.fetch("public_animal_#{params[:id]}", :expires_in => 10.minutes) do
+      Animal.find_by_uuid(params[:id])
+    end
+    #@animal = Animal.find_by_uuid(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
