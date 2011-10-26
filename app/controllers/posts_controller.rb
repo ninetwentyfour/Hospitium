@@ -2,7 +2,10 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.xml
   def index
-    @posts = Post.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+    @posts = Rails.cache.fetch('public_posts_listing', :expires_in => 10.minutes) do
+      Post.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+    end
+    #@posts = Post.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
     #@posts = Post.all
 
     respond_to do |format|
@@ -15,7 +18,10 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
-    @post = Post.find(params[:id])
+    @post = Rails.cache.fetch("public_post_#{params[:id]}", :expires_in => 10.minutes) do
+      Post.find(params[:id])
+    end
+    #@post = Post.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
