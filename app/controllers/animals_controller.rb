@@ -6,7 +6,9 @@ class AnimalsController < ApplicationController
   # GET /animals.xml
   def index
     #find animals that are public to show on animals for adoption page
-    @animals = Animal.paginate(:page => params[:page], :per_page => 10, :conditions => {'public' => 1}, :order => "updated_at DESC")
+    @animals = Animal.paginate(:page => params[:page], :per_page => 10, :conditions => {'public' => 1}, :order => "updated_at DESC", 
+        :select => 'animals.uuid, animals.name, animals.special_needs, animals.animal_color_id, animals.animal_sex_id, animals.species_id, animals.status_id, animals.organization_id, animals.spay_neuter_id, animals.image_file_name', 
+        :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
     #Post.paginate(:page => params[:page], :per_page => 30)
 
     respond_to do |format|

@@ -10,14 +10,16 @@ module RailsAdmin
     before_filter :get_object, :only => [:show, :edit, :update, :delete, :destroy]
     before_filter :get_attributes, :only => [:create, :update]
     before_filter :check_for_cancel, :only => [:create, :update, :destroy, :export, :bulk_destroy]
+    caches_action :get_notice, :expires_in => 1.minute
     
     def get_notice
-      @random_notice = Notification.offset(rand(Notification.count)).first
+      @random_notice = Notification.offset(rand(Notification.count)).first(:select => 'notifications.message, notifications.status_type')
     end
     
     def index
       #get twitter feed for users twitter account if one exists
-      twitter = TwitterAccount.find_by_user_id(current_user.id)
+      #twitter = TwitterAccount.find_by_user_id(current_user.id)
+      twitter = TwitterAccount.find(:first, :select => 'twitter_accounts.oauth_token, twitter_accounts.oauth_token_secret', :conditions => {:user_id => current_user.id})
       unless twitter.blank?
         Twitter.configure do |config|
           config.consumer_key = 'Is9pdOhRRNhx95wGBiWg'
@@ -33,7 +35,7 @@ module RailsAdmin
       
       #generate the animal status percentages for the dashboard
       @animals_count = Animal.count(:conditions => {:organization_id => current_user.organization.id})     
-      @all_statuses = Status.find(:all, :conditions => {:organization_id => current_user.organization.id})
+      @all_statuses = Status.find(:all, :select => 'statuses.id, statuses.status', :conditions => {:organization_id => current_user.organization.id})
       @final_status_hash = Hash.new
       @all_statuses.each do |status|
         @count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => status.id})
