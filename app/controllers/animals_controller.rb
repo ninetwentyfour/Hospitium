@@ -6,8 +6,11 @@ class AnimalsController < ApplicationController
   # GET /animals.xml
   def index
     #find animals that are public to show on animals for adoption page
-    @animals = Animal.paginate(:page => params[:page], :per_page => 10, :conditions => {'public' => 1}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
-    #Post.paginate(:page => params[:page], :per_page => 30)
+    @animals = Rails.cache.fetch('random_notifications', :expires_in => 10.minutes) do
+      Animal.paginate(:page => params[:page], :per_page => 10, :conditions => {'public' => 1}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
+    end
+    #@animals = Animal.paginate(:page => params[:page], :per_page => 10, :conditions => {'public' => 1}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
+
 
     respond_to do |format|
       format.html # index.html.erb
