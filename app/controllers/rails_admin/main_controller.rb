@@ -10,10 +10,13 @@ module RailsAdmin
     before_filter :get_object, :only => [:show, :edit, :update, :delete, :destroy]
     before_filter :get_attributes, :only => [:create, :update]
     before_filter :check_for_cancel, :only => [:create, :update, :destroy, :export, :bulk_destroy]
-    caches_action :get_notice, :expires_in => 1.minute
+    #caches_action :get_notice, :expires_in => 1.minute
     
     def get_notice
-      @random_notice = Notification.offset(rand(Notification.count)).first(:select => 'notifications.message, notifications.status_type')
+      @random_notice = Rails.cache.fetch('random_notifications', :expires_in => 1.minutes) do
+        Notification.offset(rand(Notification.count)).first(:select => 'notifications.message, notifications.status_type')
+      end
+      #@random_notice = Notification.offset(rand(Notification.count)).first(:select => 'notifications.message, notifications.status_type')
     end
     
     def index
