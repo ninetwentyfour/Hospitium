@@ -19,7 +19,7 @@ module RailsAdmin
       if params[:from].blank? or params[:to].blank?
         not_found
       else
-        @histories = Rails.cache.fetch("rails_admin_history_user_#{current_user.id}", :expires_in => 10.minutes) do
+        @histories = Rails.cache.fetch("rails_admin_history_user_#{current_user.id}", :expires_in => 2.hours) do
           AbstractHistory.history_summaries(params[:from], params[:to])
         end
         render :json => @histories
