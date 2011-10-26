@@ -89,12 +89,7 @@ class User < ActiveRecord::Base
   end
   
   def role?(role)
-    #@role = 
-    @role = Rails.cache.fetch("user_role_user_#{current_user.id}", :expires_in => 5.minutes) do
-      !!self.roles.find_by_name(role.to_s.camelize)
-    end
-    return @role
-      #return !!self.roles.find_by_name(role.to_s.camelize)
+      return !!self.roles.find_by_name(role.to_s.camelize)
   end
   
   def add_default_role
