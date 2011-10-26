@@ -36,27 +36,16 @@ module RailsAdmin
         @tweets = ''
       end
       
-      @final_status_hash = Hash.new
-      @final_status_hash = Rails.cache.fetch("animal_status_pie_chart_user_#{current_user.id}", :expires_in => 5.minutes) do
-        @animals_count = Animal.count(:conditions => {:organization_id => current_user.organization.id})     
-        @all_statuses = Status.find(:all, :select => 'statuses.id, statuses.status', :conditions => {:organization_id => current_user.organization.id})
-        @all_statuses.each do |status|
-          @count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => status.id})
-          @final_status_hash["#{status.status}"] = (@count.to_f / @animals_count.to_f) * 100
-        end
-      end
       
       #generate the animal status percentages for the dashboard
-      # @animals_count = Animal.count(:conditions => {:organization_id => current_user.organization.id})     
-      # @all_statuses = Status.find(:all, :select => 'statuses.id, statuses.status', :conditions => {:organization_id => current_user.organization.id})
-      # @final_status_hash = Hash.new
-      # @all_statuses.each do |status|
-      #   @count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => status.id})
-      #   @final_status_hash["#{status.status}"] = (@count.to_f / @animals_count.to_f) * 100
-      # end
+      @animals_count = Animal.count(:conditions => {:organization_id => current_user.organization.id})     
+      @all_statuses = Status.find(:all, :select => 'statuses.id, statuses.status', :conditions => {:organization_id => current_user.organization.id})
+      @final_status_hash = Hash.new
+      @all_statuses.each do |status|
+        @count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => status.id})
+        @final_status_hash["#{status.status}"] = (@count.to_f / @animals_count.to_f) * 100
+      end
       
-      #get random notification
-      #@random_notice = Notification.offset(rand(Notification.count)).first
       
       @authorization_adapter.authorize(:index) if @authorization_adapter
       @page_name = t("admin.dashboard.pagename")
@@ -93,8 +82,12 @@ module RailsAdmin
 
       @page_type = @abstract_model.pretty_name.downcase
       @page_name = t("admin.list.select", :name => @model_config.label.downcase)
-
-      @objects, @current_page, @page_count, @record_count = list_entries
+      
+      @objects, @current_page, @page_count, @record_count = Rails.cache.fetch("#{@abstract_model.pretty_name.downcase}_user_#{current_user.id}", :expires_in => 5.minutes) do
+        list_entries
+      end
+      
+      #@objects, @current_page, @page_count, @record_count = list_entries
       @schema ||= { :only => @model_config.list.visible_fields.map {|f| f.name } }
 
       respond_to do |format|
