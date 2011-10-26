@@ -29,7 +29,7 @@ module RailsAdmin
           config.oauth_token_secret = twitter.oauth_token_secret
         end
         @tweets = Rails.cache.fetch("tweets_listing_user_#{current_user.id}", :expires_in => 5.minutes) do
-          @tweets = Twitter.home_timeline(:count => 10)
+          Twitter.home_timeline(:count => 10)
         end
       else
         #do nothing
