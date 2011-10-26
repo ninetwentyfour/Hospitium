@@ -83,11 +83,8 @@ module RailsAdmin
       @page_type = @abstract_model.pretty_name.downcase
       @page_name = t("admin.list.select", :name => @model_config.label.downcase)
       
-      @objects, @current_page, @page_count, @record_count = Rails.cache.fetch("#{@abstract_model.pretty_name.downcase}_user_#{current_user.id}", :expires_in => 5.minutes) do
-        list_entries
-      end
       
-      #@objects, @current_page, @page_count, @record_count = list_entries
+      @objects, @current_page, @page_count, @record_count = list_entries
       @schema ||= { :only => @model_config.list.visible_fields.map {|f| f.name } }
 
       respond_to do |format|
