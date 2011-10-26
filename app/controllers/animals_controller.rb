@@ -6,7 +6,7 @@ class AnimalsController < ApplicationController
   # GET /animals.xml
   def index
     #find animals that are public to show on animals for adoption page
-    @animals = Rails.cache.fetch('random_notifications', :expires_in => 10.minutes) do
+    @animals = Rails.cache.fetch('public_animals_listing', :expires_in => 10.minutes) do
       Animal.paginate(:page => params[:page], :per_page => 10, :conditions => {'public' => 1}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
     end
     #@animals = Animal.paginate(:page => params[:page], :per_page => 10, :conditions => {'public' => 1}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
