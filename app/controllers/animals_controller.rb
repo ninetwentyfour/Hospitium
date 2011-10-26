@@ -9,7 +9,6 @@ class AnimalsController < ApplicationController
     @animals = Rails.cache.fetch('public_animals_listing', :expires_in => 10.minutes) do
       Animal.paginate(:page => params[:page], :per_page => 10, :conditions => {'public' => 1}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
     end
-    #@animals = Animal.paginate(:page => params[:page], :per_page => 10, :conditions => {'public' => 1}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
 
 
     respond_to do |format|
