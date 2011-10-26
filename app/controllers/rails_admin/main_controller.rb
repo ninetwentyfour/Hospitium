@@ -31,20 +31,29 @@ module RailsAdmin
         @tweets = Rails.cache.fetch("tweets_listing_user_#{current_user.id}", :expires_in => 5.minutes) do
           @tweets = Twitter.home_timeline(:count => 10)
         end
-        #@tweets = Twitter.home_timeline(:count => 10)
       else
         #do nothing
         @tweets = ''
       end
       
-      #generate the animal status percentages for the dashboard
-      @animals_count = Animal.count(:conditions => {:organization_id => current_user.organization.id})     
-      @all_statuses = Status.find(:all, :select => 'statuses.id, statuses.status', :conditions => {:organization_id => current_user.organization.id})
       @final_status_hash = Hash.new
-      @all_statuses.each do |status|
-        @count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => status.id})
-        @final_status_hash["#{status.status}"] = (@count.to_f / @animals_count.to_f) * 100
+      @final_status_hash = Rails.cache.fetch("animal_status_pie_chart_user_#{current_user.id}", :expires_in => 5.minutes) do
+        @animals_count = Animal.count(:conditions => {:organization_id => current_user.organization.id})     
+        @all_statuses = Status.find(:all, :select => 'statuses.id, statuses.status', :conditions => {:organization_id => current_user.organization.id})
+        @all_statuses.each do |status|
+          @count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => status.id})
+          @final_status_hash["#{status.status}"] = (@count.to_f / @animals_count.to_f) * 100
+        end
       end
+      
+      #generate the animal status percentages for the dashboard
+      # @animals_count = Animal.count(:conditions => {:organization_id => current_user.organization.id})     
+      # @all_statuses = Status.find(:all, :select => 'statuses.id, statuses.status', :conditions => {:organization_id => current_user.organization.id})
+      # @final_status_hash = Hash.new
+      # @all_statuses.each do |status|
+      #   @count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => status.id})
+      #   @final_status_hash["#{status.status}"] = (@count.to_f / @animals_count.to_f) * 100
+      # end
       
       #get random notification
       #@random_notice = Notification.offset(rand(Notification.count)).first
