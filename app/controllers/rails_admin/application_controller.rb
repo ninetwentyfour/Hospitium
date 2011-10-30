@@ -26,9 +26,10 @@ module RailsAdmin
 
     def get_object
       @object = Rails.cache.fetch("#{@object.id}_#{@object.updated_at}_#{@abstract_model.model.model_name}", :expires_in => 5.minutes) do
-        Twitter.home_timeline(:count => 10)
+        #Twitter.home_timeline(:count => 10)
+        @abstract_model.get(params[:id])
       end
-      @object = @abstract_model.get(params[:id])
+      #@object = @abstract_model.get(params[:id])
       not_found unless @object
     end
 
