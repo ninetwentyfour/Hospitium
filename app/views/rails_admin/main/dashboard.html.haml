@@ -98,7 +98,7 @@
 			%ul.timelineAnimal
 				- @final_species_hash.each do |key, value|
 					%li.barAnimal
-						%a.tipsy{:href => "#"}
+						%a{:href => "#"}
 							%span.labelAnimal= key + " count: " + value["count"]
 							%span.countAnimal{"data-animate-length" => "#{number_to_percentage(value["percent"], :precision => 0)}", :style => "height: 2%;opacity:0;", :title => "#{value["count"]}"}=value["count"]
 			%ul#chartKey
