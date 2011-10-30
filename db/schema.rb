@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111023183716) do
+ActiveRecord::Schema.define(:version => 20111029180908) do
 
   create_table "adopt_a_pet_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -254,6 +254,13 @@ ActiveRecord::Schema.define(:version => 20111023183716) do
   end
 
   add_index "relinquishment_contacts", ["organization_id"], :name => "index_relinquishment_contacts_on_organization_id"
+
+  create_table "reports", :force => true do |t|
+    t.string   "report"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "organization_id"
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name"

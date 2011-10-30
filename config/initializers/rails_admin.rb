@@ -9,4 +9,7 @@ RailsAdmin.config do |config|
   config.model Biter do
       visible false
   end
+  config.model Report do
+      visible false
+  end
 end

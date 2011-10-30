@@ -1,6 +1,7 @@
 Raphael.fn.pieChart = function (cx, cy, r, values, labels, stroke) {
     var paper = this,
         rad = Math.PI / 180,
+covers = this.set(),
         chart = this.set();
     function sector(cx, cy, r, startAngle, endAngle, params) {
         console.log(params.fill);
@@ -34,6 +35,33 @@ Raphael.fn.pieChart = function (cx, cy, r, values, labels, stroke) {
             chart.push(p);
             chart.push(txt);
             start += .1;
+	// 
+	// 
+	//         var x = cx + r + r / 5,
+	//             y = cy,
+	//             h = y + 10;
+	//         dir = "east";
+	//         mark = "disc";
+	//         chart.labelz = paper.set();
+	//             var clr = bcolor,
+	//                 txt;
+	//             //labels[j] = graph.labelise(labels[j], values[i], total);
+	//             chart.labelz.push(paper.set());
+	//             //chart.labels[i].push(graph[mark](x + 5, h, 5).attr({fill: clr, stroke: "none"}));
+	// //txt = paper.text(x + 20, h, labels[j] || values[j]).attr(graph.txtattr).attr({fill: opts.legendcolor || "#000", "text-anchor": "start"})
+	//   //          chart.labelz.push(txt = paper.text(cx + (r + delta + 55) * Math.cos(-popangle * rad), cy + (r + delta + 25) * Math.sin(-popangle * rad), labels[j]).attr({fill: bcolor, stroke: 1, opacity: 1, "font-size": 20}));
+	//             chart.labelz.push(txt = paper.text(x + 20, h, labels[j]).attr({fill: bcolor, stroke: 1, opacity: 1, "font-size": 20}));
+	//             //covers[j].label = chart.labels[i];
+	//             h += txt.getBBox().height * 1.2;
+	//         var bb = chart.labelz.getBBox(),
+	//             tr = {
+	//                 east: [0, -bb.height / 2],
+	//                 west: [-bb.width - 2 * r - 20, -bb.height / 2],
+	//                 north: [-r - bb.width / 2, -r - bb.height - 10],
+	//                 south: [-r - bb.width / 2, r + 10]
+	//             }[dir];
+	//         chart.labelz.translate.apply(chart.labelz, tr);
+	//         chart.push(chart.labelz);
         };
     for (var i = 0, ii = values.length; i < ii; i++) {
         total += values[i];
@@ -53,4 +81,13 @@ jQuery(function () {
     });
     jQuery("#piechart").hide();
     Raphael("holder", 700, 700).pieChart(350, 350, 200, values, labels, "#efefef");
+
+    var values2 = [],
+        labels2 = [];
+    jQuery(".piepieces2").each(function () {
+        values2.push(parseInt(jQuery("td", this).text(), 10));
+        labels2.push(jQuery("th", this).text());
+    });
+    jQuery("#piehart").hide();
+    Raphael("damnthing", 700, 700).pieChart(350, 350, 200, values2, labels2, "#efefef");
 });

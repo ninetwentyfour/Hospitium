@@ -37,14 +37,9 @@ module RailsAdmin
       end
       
       
-      #generate the animal status percentages for the dashboard
-      @animals_count = Animal.count(:conditions => {:organization_id => current_user.organization.id})     
-      @all_statuses = Status.find(:all, :select => 'statuses.id, statuses.status', :conditions => {:organization_id => current_user.organization.id})
-      @final_status_hash = Hash.new
-      @all_statuses.each do |status|
-        @count = Animal.count(:conditions => {:organization_id => current_user.organization.id, :status_id => status.id})
-        @final_status_hash["#{status.status}"] = (@count.to_f / @animals_count.to_f) * 100
-      end
+      #generate the animal percentages for the dashboard
+      @final_status_hash = Report.animals_by_status(current_user.organization.id)
+      @final_species_hash = Report.animals_by_species(current_user.organization.id)
       
       
       @authorization_adapter.authorize(:index) if @authorization_adapter

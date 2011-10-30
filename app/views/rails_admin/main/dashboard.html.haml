@@ -4,6 +4,15 @@
 - head_javascript "rails_admin/application.min.js"
 - head_javascript "rails_admin/ra.timeline.min.js"
 - head_javascript "dashboard_animate.js"
+- head_javascript "raphael-min.js"
+- head_javascript "g.raphael.js"
+/- head_javascript "g.pie-min.js"
+- head_javascript "pie.js"
+- head_javascript "bar-chart.js"
+/- head_javascript "jquery.jqplot.min.js"
+/- head_javascript "jqplot.pieRenderer.min.js"
+/- head_javascript "test-pie5.js"
+/- head_javascript "test-pie6.js"
 
 
 #block-tables.block
@@ -55,7 +64,50 @@
 / graph animal statuses in pie chart
 - unless @final_status_hash.blank?
 	= render :partial => "animal_status_graph", :object => @final_status_hash
+/ #block-tables.block
+/ 	.content
+/ 		%h2.title Animal Statuses
+/ 		.inner
+/ 			:css 
+/ 				#damnthing {
+/ 					margin: -120px 0 0px -50px;
+/ 					width: 700px;
+/ 					height: 700px;
+/ 					float:left;
+/ 				}
+/ 			%table#piehart
+/ 				%tbody
+/ 					- @final_species_hash.each do |key, value|
+/ 						%tr.piepieces2
+/ 							%th{:scope => "row"}= key + ": " + number_to_percentage(value["percent"], :precision => 0)
+/ 							%td=number_to_percentage(value["percent"], :precision => 0)
+/ 			#damnthing.clearfix
 / show tweets if user has twitter account
+#block-tables.block.clearfix
+	.content
+		%h2.title Animal Species
+		.inner
+			:css 
+				#damnthing {
+					margin: -120px 0 0px -50px;
+					width: 700px;
+					height: 700px;
+					float:left;
+				}
+			%table#piehart
+				%tbody
+					- @final_species_hash.each do |key, value|
+						%tr.piepieces2
+							%th{:scope => "row"}= key + ": " + number_to_percentage(value["percent"], :precision => 0)
+							%td=number_to_percentage(value["percent"], :precision => 0)
+			#damnthing.clearfix
+			%ul.timelineAnimal
+				- @final_species_hash.each do |key, value|
+					%li.barAnimal
+						%a.tipsy{:href => "#"}
+							%span.labelAnimal= key + " count: " + value["count"]
+							%span.countAnimal{"data-animate-length" => "#{number_to_percentage(value["percent"], :precision => 0)}", :style => "height: 2%;opacity:0;", :title => "#{value["count"]}"}=value["count"]
+			%ul#chartKey
 - unless @tweets.blank?
 	= render :partial => "tweets_list", :object => @tweets
 - if authorized? :see_history
