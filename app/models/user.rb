@@ -90,7 +90,8 @@ class User < ActiveRecord::Base
   
   def role?(role)
     Rails.cache.fetch("role_for_user_#{self.id}_#{self.updated_at}") do
-      return !!self.roles.find_by_name(role.to_s.camelize)
+      self.roles.find_by_name(role.to_s.camelize)
+      #return !!self.roles.find_by_name(role.to_s.camelize)
     end
   end
   

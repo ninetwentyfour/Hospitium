@@ -1,12 +1,13 @@
-%br
-%h4= "#{month_names[month - 1]} #{year} #{t("admin.history.name").downcase}"
-%table#history.table.grid
-  %thead
-    %tr
-      %th.start User
-      %th Changes
-  %tbody
-    - history.each do |t|
-      %tr{:class => cycle('even', 'odd')}
-        %td.start= t.try :username
-        %td= history_output(t)
+- cache("history_slider_for_#{current_user.id}", :expires_in => 60.minutes) do
+	%br
+	%h4= "#{month_names[month - 1]} #{year} #{t("admin.history.name").downcase}"
+	%table#history.table.grid
+		%thead
+			%tr
+				%th.start User
+				%th Changes
+		%tbody
+			- history.each do |t|
+				%tr{:class => cycle('even', 'odd')}
+					%td.start= t.try :username
+					%td= history_output(t)
