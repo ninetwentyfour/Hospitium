@@ -27,7 +27,6 @@ gem 'libxml-xmlrpc'
 gem 'bitly'
 gem 'site_meta'
 
-
 group :production do
 	gem 'home_run', :require=>'date'
   gem 'slim_scrooge'
