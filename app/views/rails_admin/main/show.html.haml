@@ -4,68 +4,68 @@
 - head_javascript "rails_admin/ra.remote-form.min.js"
 - head_javascript "rails_admin/activo/application.min.js"
 
-- cache (@object) do
-	#block-tables.block
-		= breadcrumbs_for :show, @object
 
-		.content.clearfix
-			.control
-				= action_button rails_admin_history_object_path(:id => params[:id]), t("admin.history.name"), :'calendar-hover'
-				- if authorized? :edit, @abstract_model, @object
-					= action_button rails_admin_edit_path(@abstract_model, @object.id), t("admin.list.edit_action"), :edit
-				- if authorized? :delete, @abstract_model, @object
-					= action_button rails_admin_delete_path(@abstract_model, @object.id), t("admin.list.delete_action"), :cross
+#block-tables.block
+	= breadcrumbs_for :show, @object
 
-			%h2.title= @page_name
-			.inner.clearfix
-				= render(:partial => 'layouts/rails_admin/flash', :locals => {:flash => flash})
-				/ render the sidebar for animal pages - show the animal picture and the share buttons
-				-  if @object.respond_to?('image_file_name')
-					.animalMedia
-						= render :partial => "animal_image", :object => @object
-						= render :partial => "animal_sharing", :object => @object
-				- @model_config.show.with(:object => @object, :view => self).visible_groups.each do |fieldset|
-					- unless (fields = fieldset.visible_fields.map{|f| f.with(:object => @object, :view => self)}).empty?
-						- if !(values = fields.map{ |f| f.pretty_value.presence }).compact.empty? || !RailsAdmin::config.compact_show_view
-							.fieldset.showAnimalInfo
-								%h4= fieldset.label
-								= content_tag :div, fieldset.help, :class => "help" if fieldset.help
-								- fields.each_with_index do |field, index|
-									/do your normal loop on each field in the db - skip name birthday and blank values
-									- unless field.label == "Name" or field.label == "Birthday" or field.label == "Phone number" or field.label == "Phone" or field.value.blank?
+	.content.clearfix
+		.control
+			= action_button rails_admin_history_object_path(:id => params[:id]), t("admin.history.name"), :'calendar-hover'
+			- if authorized? :edit, @abstract_model, @object
+				= action_button rails_admin_edit_path(@abstract_model, @object.id), t("admin.list.edit_action"), :edit
+			- if authorized? :delete, @abstract_model, @object
+				= action_button rails_admin_delete_path(@abstract_model, @object.id), t("admin.list.delete_action"), :cross
+
+		%h2.title= @page_name
+		.inner.clearfix
+			= render(:partial => 'layouts/rails_admin/flash', :locals => {:flash => flash})
+			/ render the sidebar for animal pages - show the animal picture and the share buttons
+			-  if @object.respond_to?('image_file_name')
+				.animalMedia
+					= render :partial => "animal_image", :object => @object
+					= render :partial => "animal_sharing", :object => @object
+			- @model_config.show.with(:object => @object, :view => self).visible_groups.each do |fieldset|
+				- unless (fields = fieldset.visible_fields.map{|f| f.with(:object => @object, :view => self)}).empty?
+					- if !(values = fields.map{ |f| f.pretty_value.presence }).compact.empty? || !RailsAdmin::config.compact_show_view
+						.fieldset.showAnimalInfo
+							%h4= fieldset.label
+							= content_tag :div, fieldset.help, :class => "help" if fieldset.help
+							- fields.each_with_index do |field, index|
+								/do your normal loop on each field in the db - skip name birthday and blank values
+								- unless field.label == "Name" or field.label == "Birthday" or field.label == "Phone number" or field.label == "Phone" or field.value.blank?
+									%div.field{:class => "#{field.abstract_model.to_param.singularize}_#{field.name}"}
+										- if (value = values[index]) || !RailsAdmin::config.compact_show_view
+											%div.label= field.label
+											%div.value= value || ' - '
+								- else
+									- if field.value.blank?
+										/do nothing - dont show anything if the field is blank
+									-elsif field.label == "Name"
+										/ we make the name big and badass
+										%h1{:style => "font-size:60px;letter-spacing: -1px;line-height: 1;"}
+											= field.value
+									-elsif field.label == "Birthday"
+										/ birthday calculates the age and shows that instead
+										%div.field{:class => "#{field.abstract_model.to_param.singularize}_#{field.name}"}
+											- if (value = values[index]) || !RailsAdmin::config.compact_show_view
+												%div.label Age
+												%div.value= calculate_animal_age(@object.birthday)
+									-elsif field.label == "Phone number"
+										/ format pretty phone numbers
 										%div.field{:class => "#{field.abstract_model.to_param.singularize}_#{field.name}"}
 											- if (value = values[index]) || !RailsAdmin::config.compact_show_view
 												%div.label= field.label
-												%div.value= value || ' - '
-									- else
-										- if field.value.blank?
-											/do nothing - dont show anything if the field is blank
-										-elsif field.label == "Name"
-											/ we make the name big and badass
-											%h1{:style => "font-size:60px;letter-spacing: -1px;line-height: 1;"}
-												= field.value
-										-elsif field.label == "Birthday"
-											/ birthday calculates the age and shows that instead
-											%div.field{:class => "#{field.abstract_model.to_param.singularize}_#{field.name}"}
-												- if (value = values[index]) || !RailsAdmin::config.compact_show_view
-													%div.label Age
-													%div.value= calculate_animal_age(@object.birthday)
-										-elsif field.label == "Phone number"
-											/ format pretty phone numbers
-											%div.field{:class => "#{field.abstract_model.to_param.singularize}_#{field.name}"}
-												- if (value = values[index]) || !RailsAdmin::config.compact_show_view
-													%div.label= field.label
-													%div.value= number_to_phone(@object.phone_number, :area_code => true)
-										-elsif field.label == "Phone"
-											/ format pretty phone numbers
-											%div.field{:class => "#{field.abstract_model.to_param.singularize}_#{field.name}"}
-												- if (value = values[index]) || !RailsAdmin::config.compact_show_view
-													%div.label= field.label
-													%div.value= number_to_phone(@object.phone, :area_code => true)
-				- unless @animal_weights.blank?
-					/if we have animal weights - graph them
-					= render :partial => "animal_weight_graph", :object => @animal_weights
-			-  if @object.respond_to?('password')
-				/ on the user page show the wordpress account form
-				= render :partial => "wordpress_form", :object => @object
-				= render :partial => "adopt_a_pet_form", :object => @object
+												%div.value= number_to_phone(@object.phone_number, :area_code => true)
+									-elsif field.label == "Phone"
+										/ format pretty phone numbers
+										%div.field{:class => "#{field.abstract_model.to_param.singularize}_#{field.name}"}
+											- if (value = values[index]) || !RailsAdmin::config.compact_show_view
+												%div.label= field.label
+												%div.value= number_to_phone(@object.phone, :area_code => true)
+			- unless @animal_weights.blank?
+				/if we have animal weights - graph them
+				= render :partial => "animal_weight_graph", :object => @animal_weights
+		-  if @object.respond_to?('password')
+			/ on the user page show the wordpress account form
+			= render :partial => "wordpress_form", :object => @object
+			= render :partial => "adopt_a_pet_form", :object => @object
