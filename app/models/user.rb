@@ -90,10 +90,10 @@ class User < ActiveRecord::Base
   
   def role?(role)
     #self.id
-    @roles = Rails.cache.fetch("role_for_user_#{self.id}", :expires_in => 5.minutes) do
-      self.roles.find_by_name(role.to_s.camelize)
+    Rails.cache.fetch("role_for_user_#{self.id}", :expires_in => 5.minutes) do
+      return !!self.roles.find_by_name(role.to_s.camelize)
     end
-    return !!@roles
+    #return !!@roles
       #return !!self.roles.find_by_name(role.to_s.camelize)
   end
   
