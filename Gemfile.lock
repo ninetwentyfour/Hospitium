@@ -136,6 +136,7 @@ GEM
     simple_oauth (0.1.5)
     site_meta (1.0.0)
       rails (>= 2.3.5)
+    slim_scrooge (1.0.11)
     thor (0.14.6)
     treetop (1.4.10)
       polyglot
@@ -179,6 +180,7 @@ DEPENDENCIES
   rails_admin!
   rest-client
   site_meta
+  slim_scrooge
   twitter
   uuidtools
   will_paginate (~> 3.0.0)
