@@ -25,7 +25,7 @@ module RailsAdmin
     end
 
     def get_object
-      @object = Rails.cache.fetch(@abstract_model, :expires_in => 5.minutes) do
+      @object = Rails.cache.fetch("#{@abstract_model.model.model_name}_#{params[:id]}_#{@abstract_model.model.updated_at}", :expires_in => 5.minutes) do
         #Twitter.home_timeline(:count => 10)
         @abstract_model.get(params[:id])
       end
