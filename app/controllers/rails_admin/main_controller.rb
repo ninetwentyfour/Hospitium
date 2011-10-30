@@ -38,8 +38,14 @@ module RailsAdmin
       
       
       #generate the animal percentages for the dashboard
-      @final_status_hash = Report.animals_by_status(current_user.organization.id)
-      @final_species_hash = Report.animals_by_species(current_user.organization.id)
+      @final_status_hash = Rails.cache.fetch("animal_status_hash_user_#{current_user.id}", :expires_in => 1.minutes) do
+        Report.animals_by_status(current_user.organization.id)
+      end
+      #@final_status_hash = Report.animals_by_status(current_user.organization.id)
+      @final_species_hash = Rails.cache.fetch("animal_species_hash_user_#{current_user.id}", :expires_in => 1.minutes) do
+        Report.animals_by_species(current_user.organization.id)
+      end
+      #@final_species_hash = Report.animals_by_species(current_user.organization.id)
       
       
       @authorization_adapter.authorize(:index) if @authorization_adapter
