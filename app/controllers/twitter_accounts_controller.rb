@@ -21,7 +21,10 @@ class TwitterAccountsController < ApplicationController
   end
   
   def send_tweet
-    account = TwitterAccount.find_by_user_id(current_user.id)
+    account = Rails.cache.fetch("twitter_account_user_#{current_user.id}", :expires_in => 35.minutes) do
+       TwitterAccount.find_by_user_id(current_user.id)
+    end
+    #account = TwitterAccount.find_by_user_id(current_user.id)
     if account.blank?
       twitter_account = TwitterAccount.create(:user => current_user)
       redirect_to(twitter_account.authorize_url(twitter_callback_url))

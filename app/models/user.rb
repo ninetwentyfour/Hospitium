@@ -92,6 +92,9 @@ class User < ActiveRecord::Base
     #Rails.cache.fetch("role_for_user_#{self.id}_#{self.updated_at}") do
       #self.roles.find_by_name(role.to_s.camelize)
       return !!self.roles.find_by_name(role.to_s.camelize)
+      #return !!self.roles.find(:first, :select => 'roles.name, roles.id')
+      #Permission.find(:all, :joins => {:roles => :users}, :conditions => ["user.id = ?", self.id])
+      #self.roles.joins(:roles).where('roles.id', "%#{var}%")
     #end
   end
   
