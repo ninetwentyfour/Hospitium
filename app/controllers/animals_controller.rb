@@ -1,14 +1,15 @@
 class AnimalsController < ApplicationController
   #caches_action :index, :expires_in => 1.minute
+  caches_action :index, :cache_path => Proc.new { |controller| controller.params }
   #caches_action :show, :expires_in => 1.minute
   #cache_sweeper :animal_sweeper
   # GET /animals
   # GET /animals.xml
   def index
     #find animals that are public to show on animals for adoption page
-    @animals = Rails.cache.fetch('public_animals_listing', :expires_in => 10.minutes) do
-      Animal.paginate(:page => params[:page], :per_page => 10, :conditions => {'public' => 1}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
-    end
+    #@animals = Rails.cache.fetch("all_posts_#{params[:page]}", :expires_in => 10.minutes) do
+      @animals = Animal.paginate(:page => params[:page], :per_page => 10, :conditions => {'public' => 1}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
+    #end
 
 
     respond_to do |format|
