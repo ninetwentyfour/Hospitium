@@ -103,7 +103,7 @@ module RailsAdmin
       @page_type = @abstract_model.pretty_name.downcase
       @page_name = t("admin.list.select", :name => @model_config.label.downcase)
       @countz = @abstract_model.count
-      @objects, @current_page, @page_count, @record_count = Rails.cache.fetch("#{params[:model_name]}_t_user_#{current_user.id}_#{params[:page]}_#{params[:sort]}_#{params[:sort_reverse]}_#{params[:filters]}_#{@countz}_#{current_user.organization_id}") do
+      @objects, @current_page, @page_count, @record_count = Rails.cache.fetch("#{params[:model_name]}_t_user_#{current_user.id}_#{params[:page]}_#{params[:sort]}_#{params[:sort_reverse]}_#{params[:filters]}_#{@countz}") do
          list_entries
       end
       #@objects, @current_page, @page_count, @record_count = list_entries
