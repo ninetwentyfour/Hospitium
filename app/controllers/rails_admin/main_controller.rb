@@ -103,7 +103,8 @@ module RailsAdmin
       @page_type = @abstract_model.pretty_name.downcase
       @page_name = t("admin.list.select", :name => @model_config.label.downcase)
       @countz = @abstract_model.count
-      @objects, @current_page, @page_count, @record_count = Rails.cache.fetch("#{params[:model_name]}_t_user_#{current_user.id}_#{params[:page]}_#{params[:sort]}_#{params[:sort_reverse]}_#{params[:filters]}_#{params[:set]}_#{@countz}") do
+      @updated_at = @abstract_model.model.order("updated_at desc").first.try(:updated_at)
+      @objects, @current_page, @page_count, @record_count = Rails.cache.fetch("#{params[:model_name]}_t_user_#{current_user.id}_#{params[:page]}_#{params[:sort]}_#{params[:sort_reverse]}_#{params[:filters]}_#{params[:set]}_#{@countz}_#{@updated_at}") do
          list_entries
       end
       #@objects, @current_page, @page_count, @record_count = list_entries
