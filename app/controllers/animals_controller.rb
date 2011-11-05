@@ -1,6 +1,6 @@
 class AnimalsController < ApplicationController
   #caches_action :index, :expires_in => 1.minute
-  caches_action :index, :cache_path => Proc.new { |controller| controller.params }
+  caches_action :index, :cache_path => Proc.new { |controller| controller.params },:layout => false
   #caches_action :show, :expires_in => 1.minute
   #cache_sweeper :animal_sweeper
   # GET /animals
