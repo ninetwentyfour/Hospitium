@@ -26,7 +26,7 @@ class WordpressAccountsController < ApplicationController
       message['title'] = "#{params[:animal_name]} is ready for adoption!"
       
       message['content'] = "<p><img src='#{params[:animal_picture]}' /></p>
-      <p>#{params[:animal_name]} is ready for adoption at <a href='#{link}'>#{link}</a></p>"
+      <p>#{params[:animal_name]} is ready for adoption at <a href='#{link}'>#{link}</a> via <a href='http://twitter.com/#!/hospitium_app'>@hospitium_app</a>.</p>"
       
       WordpressAccount.post(message, account)
       redirect_to("#{root_url}admin/animals/#{params[:animal_id]}", :notice => 'Wordpress Post Sent')
