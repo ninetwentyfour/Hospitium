@@ -26,7 +26,7 @@
 						%th=# t "admin.dashboard.modify"
 				%tbody
 					- @abstract_models.each do |abstract_model|
-						- unless abstract_model.pretty_name == "Animal weight" or abstract_model.pretty_name == "Animal color" or abstract_model.pretty_name == "Status" or abstract_model.pretty_name == "Organization" or abstract_model.pretty_name == "User"
+						- if abstract_model.pretty_name == "Animal" or abstract_model.pretty_name == "Adoption contact" or abstract_model.pretty_name == "Relinquishment contact" or abstract_model.pretty_name == "Shelter" or abstract_model.pretty_name == "Species" or abstract_model.pretty_name == "Vet contact" or abstract_model.pretty_name == "Volunteer contact"
 							- if authorized? :list, abstract_model
 								- list_path = rails_admin_list_path(:model_name => abstract_model.to_param)
 								- row_class = "#{cycle("odd", "even")}#{" link" if list_path}"

@@ -78,32 +78,17 @@ module RailsAdmin
       @count = {}
       @max = 0
       @abstract_models.each do |t|
-        unless t.model.model_name == "Organization" or t.model.model_name == "Post" or t.model.model_name == "Role" or t.model.model_name == "SpayNeuter" or t.model.model_name == "AnimalSex"  or t.model.model_name == "Notification"
-          if t.model.model_name == "AnimalWeight"
-            current_count = 0
-          else
-            current_count = Rails.cache.fetch("dashboard_top_graph_currentcount_#{t.model.model_name}_user_#{current_user.organization_id}", :expires_in => 4.minutes) do
-              t.count(:conditions => {:organization_id => current_user.organization_id})
-            end
+        unless t.model.model_name == "Animal" or t.model.model_name == "AdoptionContact"  or t.model.model_name == "RelinquishmentContact" or t.model.model_name == "Shelter"  or t.model.model_name == "Species" or t.model.model_name == "VetContact" or t.model.model_name == "VolunteerContact"            
+          #do nothing
+        else
+          current_count = Rails.cache.fetch("dashboard_top_graph_currentcount_#{t.model.model_name}_user_#{current_user.organization_id}", :expires_in => 4.minutes) do
+            t.count(:conditions => {:organization_id => current_user.organization_id})
           end
-          #current_count = t.count(:conditions => {:organization_id => current_user.organization.id})
           @max = current_count > @max ? current_count : @max
           @count[t.pretty_name] = current_count
           @most_recent_changes[t.pretty_name] = Rails.cache.fetch("dashboard_top_graph_recentchanges_#{t.model.model_name}_user_#{current_user.organization_id}", :expires_in => 4.minutes) do
             t.model.order("updated_at desc").first.try(:updated_at) rescue nil
           end
-          #@most_recent_changes[t.pretty_name] = t.model.order("updated_at desc").first.try(:updated_at) rescue nil
-        else
-          current_count = Rails.cache.fetch("dashboard_top_graph_currentcount2_#{t.model.model_name}_user_#{current_user.organization_id}", :expires_in => 4.minutes) do
-            t.count(:conditions => {:id => current_user.organization_id})
-          end
-          #current_count = t.count(:conditions => {:id => current_user.organization.id})
-          @max = current_count > @max ? current_count : @max
-          @count[t.pretty_name] = current_count
-          @most_recent_changes[t.pretty_name] = Rails.cache.fetch("dashboard_top_graph_recentchanges2_#{t.model.model_name}_user_#{current_user.organization_id}", :expires_in => 4.minutes) do
-            t.model.order("updated_at desc").first.try(:updated_at) rescue nil
-          end
-          #@most_recent_changes[t.pretty_name] = t.model.order("updated_at desc").first.try(:updated_at) rescue nil
         end
       end
       render :dashboard
