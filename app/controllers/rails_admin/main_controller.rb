@@ -42,14 +42,14 @@ module RailsAdmin
       
       
       #generate the animal percentages for the dashboard
-      @animals_count = Animal.count(:conditions => {:organization_id => current_user.organization.id}) 
+      @animals_count = Animal.count(:conditions => {:organization_id => current_user.organization_id}) 
       @animal_update = Animal.order("updated_at desc").first.try(:updated_at)
       @final_status_hash = Rails.cache.fetch("animal_status_hash_user_#{current_user.organization_id}_#{@animals_count}_#{@animal_update}") do
-        Report.animals_by_status(current_user.organization.id)
+        Report.animals_by_status(current_user.organization_id)
       end
       #@final_status_hash = Report.animals_by_status(current_user.organization.id)
       @final_species_hash = Rails.cache.fetch("animal_species_hash_user_#{current_user.organization_id}_#{@animals_count}_#{@animal_update}") do
-        Report.animals_by_species(current_user.organization.id)
+        Report.animals_by_species(current_user.organization_id)
       end
       #@final_species_hash = Report.animals_by_species(current_user.organization.id)
       
@@ -80,7 +80,7 @@ module RailsAdmin
       @abstract_models.each do |t|
         unless t.model.model_name == "Organization" or t.model.model_name == "Post" or t.model.model_name == "Role" or t.model.model_name == "SpayNeuter" or t.model.model_name == "AnimalSex"  or t.model.model_name == "Notification"
           current_count = Rails.cache.fetch("dashboard_top_graph_currentcount_#{t.model.model_name}_user_#{current_user.organization_id}", :expires_in => 4.minutes) do
-            t.count(:conditions => {:organization_id => current_user.organization.id})
+            t.count(:conditions => {:organization_id => current_user.organization_id})
           end
           #current_count = t.count(:conditions => {:organization_id => current_user.organization.id})
           @max = current_count > @max ? current_count : @max
@@ -91,7 +91,7 @@ module RailsAdmin
           #@most_recent_changes[t.pretty_name] = t.model.order("updated_at desc").first.try(:updated_at) rescue nil
         else
           current_count = Rails.cache.fetch("dashboard_top_graph_currentcount2_#{t.model.model_name}_user_#{current_user.organization_id}", :expires_in => 4.minutes) do
-            t.count(:conditions => {:id => current_user.organization.id})
+            t.count(:conditions => {:id => current_user.organization_id})
           end
           #current_count = t.count(:conditions => {:id => current_user.organization.id})
           @max = current_count > @max ? current_count : @max
@@ -112,7 +112,7 @@ module RailsAdmin
       @page_name = t("admin.list.select", :name => @model_config.label.downcase)
       @countz = @abstract_model.count
       @updated_at = @abstract_model.model.order("updated_at desc").first.try(:updated_at)
-      @objects, @current_page, @page_count, @record_count = Rails.cache.fetch("#{params[:model_name]}_t_user_#{current_user.id}_#{params[:page]}_#{params[:sort]}_#{params[:sort_reverse]}_#{params[:filters]}_#{params[:set]}_#{@countz}_#{@updated_at}") do
+      @objects, @current_page, @page_count, @record_count = Rails.cache.fetch("#{params[:model_name]}_t_user_#{current_user.organization_id unless current_user.id == 1}_#{params[:page]}_#{params[:sort]}_#{params[:sort_reverse]}_#{params[:filters]}_#{params[:set]}_#{@countz}_#{@updated_at}") do
          list_entries
       end
       #@objects, @current_page, @page_count, @record_count = list_entries
