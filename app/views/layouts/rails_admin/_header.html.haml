@@ -15,6 +15,9 @@
 
 		#user-navigation
 			%ul.wat-cf
+				%li
+					%a{:href => "https://hospitium.tenderapp.com/kb", :target => "blank"}
+						%img{:alt => "Help", :src => "https://d4uktpxr9m70.cloudfront.net/stylesheets/rails_admin/theme/activo/images/session/help3.png", :title => "Help"}
 				%li= link_to header_icon(:config, t('admin.dashboard.name')), rails_admin_dashboard_path
 				- if (root_path rescue nil)
 					%li= link_to header_icon(:home, t('home.name').capitalize), root_path
