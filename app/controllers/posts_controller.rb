@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
-    @post = Rails.cache.fetch("public_post_#{params[:id]}", :expires_in => 10.minutes) do
+    @post = Rails.cache.fetch("public_post_#{params[:id]}", :expires_in => 180.minutes) do
       Post.find(params[:id])
     end
     #@post = Post.find(params[:id])
