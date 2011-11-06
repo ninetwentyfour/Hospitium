@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
   # GET /posts
+  caches_action :index, :cache_path => Proc.new { |controller| controller.params },:layout => false, :expires_in => 180.minutes
+  
   # GET /posts.xml
   def index
-    @posts = Rails.cache.fetch('public_posts_listing', :expires_in => 10.minutes) do
-      Post.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
-    end
+    #@posts = Rails.cache.fetch('public_posts_listing', :expires_in => 10.minutes) do
+      @posts = Post.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+    #end
     #@posts = Post.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
     #@posts = Post.all
 
