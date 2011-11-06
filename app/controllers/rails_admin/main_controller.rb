@@ -79,8 +79,12 @@ module RailsAdmin
       @max = 0
       @abstract_models.each do |t|
         unless t.model.model_name == "Organization" or t.model.model_name == "Post" or t.model.model_name == "Role" or t.model.model_name == "SpayNeuter" or t.model.model_name == "AnimalSex"  or t.model.model_name == "Notification"
-          current_count = Rails.cache.fetch("dashboard_top_graph_currentcount_#{t.model.model_name}_user_#{current_user.organization_id}", :expires_in => 4.minutes) do
-            t.count(:conditions => {:organization_id => current_user.organization_id})
+          if t.model.model_name == "AnimalWeight"
+            current_count = 0
+          else
+            current_count = Rails.cache.fetch("dashboard_top_graph_currentcount_#{t.model.model_name}_user_#{current_user.organization_id}", :expires_in => 4.minutes) do
+              t.count(:conditions => {:organization_id => current_user.organization_id})
+            end
           end
           #current_count = t.count(:conditions => {:organization_id => current_user.organization.id})
           @max = current_count > @max ? current_count : @max
