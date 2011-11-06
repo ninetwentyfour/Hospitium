@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111029180908) do
+ActiveRecord::Schema.define(:version => 20111106184654) do
 
   create_table "adopt_a_pet_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -81,9 +81,6 @@ ActiveRecord::Schema.define(:version => 20111029180908) do
     t.string   "uuid"
     t.string   "previous_name"
     t.integer  "species_id"
-    t.string   "sex"
-    t.string   "color"
-    t.integer  "age"
     t.text     "special_needs"
     t.text     "diet"
     t.datetime "date_of_intake"

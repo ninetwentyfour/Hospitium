@@ -114,7 +114,26 @@ class Animal < ActiveRecord::Base
       group :animal_weights
     end
     list do
-      exclude_fields :uuid, :age, :sex
+      field :name
+      field :previous_name
+      field :species
+      field :status
+      field :animal_sex
+      field :biter
+      field :animal_color
+      field :spay_neuter
+      field :public
+      field :shelter
+      field :birthday
+      field :date_of_intake
+      field :date_of_well_check
+      field :deceased
+      field :adopted_date
+      field :created_at
+      field :updated_at
+      # exclude_fields :uuid, :age, :sex, :image, :image_file_name, :image_content_type, :image_file_size, :image_updated_at, :second_image, :second_image_file_name,
+      #   :second_image_content_type, :second_image_file_size, :second_image_updated_at, :third_image, :third_image_file_name,
+      #     :third_image_content_type, :third_image_file_size, :third_image_updated_at, :organization, :deceased_reason, :diet, :special_needs
     end
   end
   
