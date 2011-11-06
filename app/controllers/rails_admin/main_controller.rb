@@ -2,7 +2,7 @@ module RailsAdmin
 
   class MainController < RailsAdmin::ApplicationController
     include ActionView::Helpers::TextHelper
-    #caches_action :list, :cache_path => Proc.new { |controller| controller.params }
+    #caches_action :show, :cache_path => Proc.new { |controller| controller.params }
     layout "rails_admin/main"
     
     before_filter :get_notice
@@ -42,11 +42,13 @@ module RailsAdmin
       
       
       #generate the animal percentages for the dashboard
-      @final_status_hash = Rails.cache.fetch("animal_status_hash_user_#{current_user.organization_id}", :expires_in => 2.minutes) do
+      @animals_count = Animal.count(:conditions => {:organization_id => current_user.organization.id}) 
+      @animal_update = Animal.order("updated_at desc").first.try(:updated_at)
+      @final_status_hash = Rails.cache.fetch("animal_status_hash_user_#{current_user.organization_id}_#{@animals_count}_#{@animal_update}") do
         Report.animals_by_status(current_user.organization.id)
       end
       #@final_status_hash = Report.animals_by_status(current_user.organization.id)
-      @final_species_hash = Rails.cache.fetch("animal_species_hash_user_#{current_user.organization_id}", :expires_in => 2.minutes) do
+      @final_species_hash = Rails.cache.fetch("animal_species_hash_user_#{current_user.organization_id}_#{@animals_count}_#{@animal_update}") do
         Report.animals_by_species(current_user.organization.id)
       end
       #@final_species_hash = Report.animals_by_species(current_user.organization.id)
@@ -71,24 +73,24 @@ module RailsAdmin
       @max = 0
       @abstract_models.each do |t|
         unless t.model.model_name == "Organization" or t.model.model_name == "Post" or t.model.model_name == "Role" or t.model.model_name == "SpayNeuter" or t.model.model_name == "AnimalSex"  or t.model.model_name == "Notification"
-          current_count = Rails.cache.fetch("dashboard_top_graph_currentcount_#{t.model.model_name}_user_#{current_user.organization_id}", :expires_in => 2.minutes) do
+          current_count = Rails.cache.fetch("dashboard_top_graph_currentcount_#{t.model.model_name}_user_#{current_user.organization_id}", :expires_in => 4.minutes) do
             t.count(:conditions => {:organization_id => current_user.organization.id})
           end
           #current_count = t.count(:conditions => {:organization_id => current_user.organization.id})
           @max = current_count > @max ? current_count : @max
           @count[t.pretty_name] = current_count
-          @most_recent_changes[t.pretty_name] = Rails.cache.fetch("dashboard_top_graph_recentchanges_#{t.model.model_name}_user_#{current_user.organization_id}", :expires_in => 2.minutes) do
+          @most_recent_changes[t.pretty_name] = Rails.cache.fetch("dashboard_top_graph_recentchanges_#{t.model.model_name}_user_#{current_user.organization_id}", :expires_in => 4.minutes) do
             t.model.order("updated_at desc").first.try(:updated_at) rescue nil
           end
           #@most_recent_changes[t.pretty_name] = t.model.order("updated_at desc").first.try(:updated_at) rescue nil
         else
-          current_count = Rails.cache.fetch("dashboard_top_graph_currentcount2_#{t.model.model_name}_user_#{current_user.organization_id}", :expires_in => 2.minutes) do
+          current_count = Rails.cache.fetch("dashboard_top_graph_currentcount2_#{t.model.model_name}_user_#{current_user.organization_id}", :expires_in => 4.minutes) do
             t.count(:conditions => {:id => current_user.organization.id})
           end
           #current_count = t.count(:conditions => {:id => current_user.organization.id})
           @max = current_count > @max ? current_count : @max
           @count[t.pretty_name] = current_count
-          @most_recent_changes[t.pretty_name] = Rails.cache.fetch("dashboard_top_graph_recentchanges2_#{t.model.model_name}_user_#{current_user.organization_id}", :expires_in => 2.minutes) do
+          @most_recent_changes[t.pretty_name] = Rails.cache.fetch("dashboard_top_graph_recentchanges2_#{t.model.model_name}_user_#{current_user.organization_id}", :expires_in => 4.minutes) do
             t.model.order("updated_at desc").first.try(:updated_at) rescue nil
           end
           #@most_recent_changes[t.pretty_name] = t.model.order("updated_at desc").first.try(:updated_at) rescue nil
