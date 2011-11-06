@@ -22,7 +22,7 @@ class AnimalsController < ApplicationController
   # GET /animals/1
   # GET /animals/1.xml
   def show
-    @animal = Rails.cache.fetch("public_animal_#{params[:id]}", :expires_in => 10.minutes) do
+    @animal = Rails.cache.fetch("public_animal_#{params[:id]}", :expires_in => 15.minutes) do
       Animal.find_by_uuid(params[:id])
     end
     #@animal = Animal.find_by_uuid(params[:id])
