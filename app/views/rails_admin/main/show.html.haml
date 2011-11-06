@@ -65,7 +65,7 @@
 			- unless @animal_weights.blank?
 				/if we have animal weights - graph them
 				= render :partial => "animal_weight_graph", :object => @animal_weights
-		-  if @object.respond_to?('password')
+		-  if @object.respond_to?('password') and current_user.id == @object.id 
 			/ on the user page show the wordpress account form
 			= render :partial => "wordpress_form", :object => @object
 			= render :partial => "adopt_a_pet_form", :object => @object
