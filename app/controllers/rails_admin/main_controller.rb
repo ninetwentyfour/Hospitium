@@ -110,8 +110,13 @@ module RailsAdmin
 
       @page_type = @abstract_model.pretty_name.downcase
       @page_name = t("admin.list.select", :name => @model_config.label.downcase)
-      @countz = @abstract_model.count(:conditions => {:organization_id => current_user.organization_id})
-      @updated_at = @abstract_model.model.order("updated_at desc").first(:conditions => {:organization_id => current_user.organization_id}).try(:updated_at)
+      if @model_config.label.downcase == 'organization'
+        @countz = @abstract_model.count(:conditions => {:id => current_user.organization_id})
+        @updated_at = @abstract_model.model.order("updated_at desc").first(:conditions => {:id => current_user.organization_id}).try(:updated_at)
+      else
+        @countz = @abstract_model.count(:conditions => {:organization_id => current_user.organization_id})
+        @updated_at = @abstract_model.model.order("updated_at desc").first(:conditions => {:organization_id => current_user.organization_id}).try(:updated_at)
+      end
       @objects, @current_page, @page_count, @record_count = Rails.cache.fetch("#{params[:model_name]}_t_user_#{current_user.organization_id unless current_user.id == 1}_#{params[:page]}_#{params[:sort]}_#{params[:sort_reverse]}_#{params[:filters]}_#{params[:set]}_#{@countz}_#{@updated_at}") do
          list_entries
       end
