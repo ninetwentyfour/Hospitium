@@ -1,6 +1,8 @@
 class Post < ActiveRecord::Base
   has_paper_trail
-  
+  def to_params
+    "#{id}-#{title.parameterize}"
+  end
   # settings for rails admin views
   # rails_admin do
   #   show do
