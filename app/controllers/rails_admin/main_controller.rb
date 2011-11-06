@@ -63,7 +63,7 @@ module RailsAdmin
       @year = DateTime.now.year
       @history= AbstractHistory.history_for_month(@month, @year)
       
-      @abstract_models = Rails.cache.fetch("dashboard_top_graph_user_#{current_user.id}", :expires_in => 2.minutes) do
+      @abstract_models = Rails.cache.fetch("dashboard_top_graph_user_#{current_user.id}", :expires_in => 60.minutes) do
         RailsAdmin::Config.visible_models.map(&:abstract_model)
       end
       #@abstract_models = RailsAdmin::Config.visible_models.map(&:abstract_model)
