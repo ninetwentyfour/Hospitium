@@ -1,4 +1,4 @@
-- cache("nav_for_#{current_user.id}") do 
+- cache("nav_for_#{current_user.id unless current_user.id != 1}") do 
 	- models = RailsAdmin::Config.visible_models.select { |model| authorized?(:list, model.abstract_model) }
 	- root_models = models.select { |model| model.parent == :root }
 
