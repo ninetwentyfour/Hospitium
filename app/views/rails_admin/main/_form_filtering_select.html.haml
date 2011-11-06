@@ -3,7 +3,7 @@
   related_id = params[:associations] && params[:associations][field.name.to_s]
   
   
-  xhr = field.associated_collection_count > 100
+  xhr = field.associated_collection_count > 2000
   
   if @object.new_record? && related_id.present? && related_id != 'new'
     selected = field.associated_model_config.abstract_model.get(related_id)
