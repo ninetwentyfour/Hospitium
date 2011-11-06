@@ -209,10 +209,10 @@ module RailsAdmin
       @authorization_adapter.authorize(:show, @abstract_model, @object) if @authorization_adapter
       @page_name = t("admin.show.page_name", :name => @model_config.label.downcase)
       if @model_config.label.downcase == 'animal'
-        @animal_weights = Rails.cache.fetch("animal_weights_hash_user_#{current_user.organization.id}_#{@object.updated_at}_#{@object.id}", :expires_in => 1.minutes) do
-          AnimalWeight.find(:all, :conditions => {:animal_id => @object.id}, :order => "date_of_weight ASC")
-        end
-        #@animal_weights = AnimalWeight.find(:all, :conditions => {:animal_id => @object.id}, :order => "date_of_weight ASC")
+        # @animal_weights = Rails.cache.fetch("animal_weights_hash_user_#{current_user.organization.id}_#{@object.updated_at}_#{@object.id}", :expires_in => 1.minutes) do
+        #   AnimalWeight.find(:all, :conditions => {:animal_id => @object.id}, :order => "date_of_weight ASC")
+        # end
+        @animal_weights = AnimalWeight.find(:all, :conditions => {:animal_id => @object.id}, :order => "date_of_weight ASC")
       else
         @animal_weights = ''
       end
