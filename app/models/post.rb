@@ -48,7 +48,7 @@ class Post < ActiveRecord::Base
       client = Twitter::Client.new
       #begin
       link = TwitterAccount.shorten_link("http://hospitium.co/posts/#{self.id}-#{self.title.parameterize}")
-      client.update("#{self.title} | #{link}")
+      client.update("#{truncate(self.title, :length => 100)} | #{link}")
       return true
     end
   end
