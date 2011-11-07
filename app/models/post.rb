@@ -1,4 +1,8 @@
 class Post < ActiveRecord::Base
+  CONSUMER_KEY = 'Is9pdOhRRNhx95wGBiWg'
+  CONSUMER_SECRET = 'D2WLDX0Fh9EOGAhBJSQFkKs1U2c3ET2a5z2t9JZCrM'
+  OPTIONS = {:site => "http://api.twitter.com", :request_endpoint => "http://api.twitter.com"}
+  
   has_paper_trail
   after_update :send_public_tweet
   
