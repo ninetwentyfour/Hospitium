@@ -3,6 +3,41 @@
 - head_javascript "rails_admin/application.min.js"
 - head_javascript "rails_admin/ra.remote-form.min.js"
 - head_javascript "rails_admin/activo/application.min.js"
+- head_style "rails_admin/jquery.ui.timepicker.css"
+- head_javascript "rails_admin/jquery.ui.timepicker.js"
+- head_javascript "rails_admin/ra.datetimepicker.js"
+- head_javascript do
+	:plain
+		$j(document).ready(function($){
+		$("#animal_weight_date_of_weight").datetimepicker({"datepicker":{"dateFormat":"MM dd, yy","dayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"dayNamesShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"dayNamesMin":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"firstDay":1,"monthNames":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthNamesShort":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"value":""},"timepicker":{"amPmText":["",""],"hourText":"Hour","minuteText":"Minute","showPeriod":false,"value":"00:00"}});
+		});
+- head_javascript do
+	$j(document).ready(function($){
+	if($("div.createAssociatedRecordDialog").length == 0) {
+	$(".createAssociatedRecord").remoteForm({ dialogClass: "createAssociatedRecordDialog" });
+	} else { // hide link if we already are inside a dialog (endless issues on nested dialogs with JS)
+	$(".createAssociatedRecord").hide();
+	}
+	});
+	$j.fx.speeds._default = 1000;
+	$j(function() {
+	$j( "#popUpForm" ).dialog({
+	autoOpen: false,
+	show: "fade",
+	hide: "fade",
+	modal: true,
+	minWidth: 720,
+	minHeight: 500,
+	});
+	$j( "#animal-weight-popup" ).click(function() {
+	$j( "#popUpForm" ).dialog( "open" );
+	return false;
+	});
+	});
+	function reload_page(){
+	location.reload();
+	}
+
 
 
 #block-tables.block
@@ -65,6 +100,33 @@
 			- unless @animal_weights.blank?
 				/if we have animal weights - graph them
 				= render :partial => "animal_weight_graph", :object => @animal_weights
+			- else 
+				-  if @object.respond_to?('image_file_name')
+					.fieldset.showAnimalInfo
+						:css
+							#holder {
+								height: 20px;
+								margin: 0px 0 0 0px;
+								width: 550px;
+							}
+						#holder.clearfix
+						%br
+						%a{:id => "animal-weight-popup", :href => "#"} Add Animal Weight
+			#popUpForm{:title => "Add Animal Weight", :style => "display:none"}
+				%h2.title Create animal weight
+				- form_tag("/admin/animal_weights", :method => "post", :class => "form", :remote => true, :onsubmit => "reload_page()") do
+					#animal_weight_weight_field.field.animal_weight_weight
+						%label{:for => "animal_weight_weight"} Weight
+						%input#animal_weight_weight.integer{:name => "animal_weight[weight]", :size => "30", :type => "text", :value => ""}
+					#animal_weight_date_of_weight_field.field.animal_weight_date_of_weight
+						%label{:for => "animal_weight_date_of_weight"} Date of weight
+						%input#animal_weight_date_of_weight.datetime{:name => "animal_weight[date_of_weight]", :size => "30", :style => "display: none;", :type => "text", :value => "November 09, 2011 00:00"}
+							/%input#dp1320625652287.hasDatepicker{:style => "margin-right: 10px;", :type => "text", :value => "November 09, 2011"}
+							/%input#tp1320625669644.hasTimepicker{:style => "width: 60px;", :type => "text", :value => "00:00"}
+					%input{:id => "animal_weight_org_id", :type => "hidden", :name => "animal_weight[organization_id]", :value => current_user.organization_id}
+					%input{:value => @object.id, :id => "animal_weight_animal_id", :type => "hidden", :name => "animal_weight[animal_id]"}
+					%br
+					%button{:type => "submit", :class => "button"}Add Animal Weight
 		-  if @object.respond_to?('password') and current_user.id == @object.id 
 			/ on the user page show the wordpress account form
 			= render :partial => "wordpress_form", :object => @object

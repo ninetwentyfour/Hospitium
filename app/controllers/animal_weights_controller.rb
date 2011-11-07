@@ -29,6 +29,7 @@ class AnimalWeightsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @animal_weight }
+      format.js
     end
   end
 
@@ -46,6 +47,7 @@ class AnimalWeightsController < ApplicationController
       if @animal_weight.save
         format.html { redirect_to(@animal_weight, :notice => 'Animal weight was successfully created.') }
         format.xml  { render :xml => @animal_weight, :status => :created, :location => @animal_weight }
+        format.js
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @animal_weight.errors, :status => :unprocessable_entity }
