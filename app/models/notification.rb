@@ -1,6 +1,7 @@
 class Notification < ActiveRecord::Base
   has_paper_trail
   after_create :send_public_tweet
+  after_update :send_public_tweet
   
   def send_public_tweet
     account = TwitterAccount.find_by_user_id(1)

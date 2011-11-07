@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
   OPTIONS = {:site => "http://api.twitter.com", :request_endpoint => "http://api.twitter.com"}
   
   has_paper_trail
+  after_create :send_public_tweet
   after_update :send_public_tweet
   
   def to_params
