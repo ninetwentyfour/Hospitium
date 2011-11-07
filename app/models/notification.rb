@@ -13,7 +13,7 @@ class Notification < ActiveRecord::Base
     end
     client = Twitter::Client.new
     #begin
-    client.update("#{self.status_type}! #{self.message.slice(0, 100).to_html}")
+    client.update("#{self.status_type}! #{self.message.slice(0, 100)}")
     return true
   end
 end
