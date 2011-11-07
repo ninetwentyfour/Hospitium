@@ -16,6 +16,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1
   # GET /organizations/1.xml
   def show
+    canonical_url("/organizations/#{params[:id]}")
     @organization = Organization.find_by_uuid(params[:id])
 
     respond_to do |format|
