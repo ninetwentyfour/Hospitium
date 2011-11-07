@@ -114,8 +114,6 @@
 					#animal_weight_date_of_weight_field.field.animal_weight_date_of_weight
 						%label{:for => "animal_weight_date_of_weight"} Date of weight
 						%input#animal_weight_date_of_weight.datetime{:name => "animal_weight[date_of_weight]", :size => "30", :style => "display: none;", :type => "text", :value => "November 09, 2011 00:00"}
-							/%input#dp1320625652287.hasDatepicker{:style => "margin-right: 10px;", :type => "text", :value => "November 09, 2011"}
-							/%input#tp1320625669644.hasTimepicker{:style => "width: 60px;", :type => "text", :value => "00:00"}
 					%input{:id => "animal_weight_org_id", :type => "hidden", :name => "animal_weight[organization_id]", :value => current_user.organization_id}
 					%input{:value => @object.id, :id => "animal_weight_animal_id", :type => "hidden", :name => "animal_weight[animal_id]"}
 					%br

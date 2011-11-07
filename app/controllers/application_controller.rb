@@ -26,4 +26,8 @@ class ApplicationController < ActionController::Base
       #do nothing
     end
   end
+  
+  def canonical_url(canonical_url)
+    @canonical_url = canonical_url
+  end
 end

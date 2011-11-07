@@ -11,4 +11,8 @@ module ApplicationHelper
       return age
     end
     
+    def canonical_link_tag
+      tag(:link, :rel => :canonical, :href => "http://hospitium.co"+@canonical_url) if @canonical_url
+    end
+    
 end

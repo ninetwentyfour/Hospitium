@@ -6,6 +6,7 @@ class AnimalsController < ApplicationController
   # GET /animals
   # GET /animals.xml
   def index
+    canonical_url("/animals")
     #find animals that are public to show on animals for adoption page
     #@animals = Rails.cache.fetch("all_posts_#{params[:page]}", :expires_in => 10.minutes) do
       @animals = Animal.paginate(:page => params[:page], :per_page => 10, :conditions => {'public' => 1}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
@@ -22,6 +23,7 @@ class AnimalsController < ApplicationController
   # GET /animals/1
   # GET /animals/1.xml
   def show
+    canonical_url("/animals/#{params[:id]}")
     @animal = Rails.cache.fetch("public_animal_#{params[:id]}", :expires_in => 15.minutes) do
       Animal.find_by_uuid(params[:id])
     end

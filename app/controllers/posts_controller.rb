@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   
   # GET /posts.xml
   def index
+    canonical_url("/posts")
     #@posts = Rails.cache.fetch('public_posts_listing', :expires_in => 10.minutes) do
       @posts = Post.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
     #end
@@ -20,6 +21,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
+    canonical_url("/posts/#{params[:id]}")
     @post = Rails.cache.fetch("public_post_#{params[:id]}", :expires_in => 180.minutes) do
       Post.find(params[:id])
     end
