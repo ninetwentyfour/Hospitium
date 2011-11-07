@@ -107,7 +107,7 @@
 						%a{:id => "animal-weight-popup", :href => "#"} Add Animal Weight
 			#popUpForm{:title => "Add Animal Weight", :style => "display:none"}
 				%h2.title Create animal weight
-				- form_tag("/admin/animal_weights", :method => "post", :class => "form", :remote => true, :onsubmit => "reload_page()", :enctype => "multipart/form-data") do
+				- form_tag("/admin/animal_weights", :method => "post", :class => "form", :onsubmit => "reload_page()", :enctype => "multipart/form-data", :remote => true) do
 					#animal_weight_weight_field.field.animal_weight_weight
 						%label{:for => "animal_weight_weight"} Weight
 						%input#animal_weight_weight.integer{:name => "animal_weight[weight]", :size => "30", :type => "text", :value => ""}
