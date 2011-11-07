@@ -99,7 +99,7 @@ module RailsAdmin
 
       @page_type = @abstract_model.pretty_name.downcase
       @page_name = t("admin.list.select", :name => @model_config.label.downcase)
-      if @model_config.label.downcase == 'organization' or @model_config.label.downcase == 'post'
+      if @model_config.label.downcase == 'organization' or @model_config.label.downcase == 'post' or @model_config.label.downcase == 'notification'
         @countz = @abstract_model.count(:conditions => {:id => current_user.organization_id})
         @updated_at = @abstract_model.model.order("updated_at desc").first(:conditions => {:id => current_user.organization_id}).try(:updated_at)
       else
