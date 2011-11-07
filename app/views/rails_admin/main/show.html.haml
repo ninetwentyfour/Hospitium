@@ -27,9 +27,9 @@
 	return false;
 	});
 	});
-	function reload_page(){
+	$j('#animal_weight_form').bind("ajax:success", function(evt, data, status, xhr){
 	location.reload();
-	}
+	});
 
 
 
@@ -107,7 +107,7 @@
 						%a{:id => "animal-weight-popup", :href => "#"} Add Animal Weight
 			#popUpForm{:title => "Add Animal Weight", :style => "display:none"}
 				%h2.title Create animal weight
-				- form_tag("/admin/animal_weights", :method => "post", :class => "form", :enctype => "multipart/form-data", :remote => true) do
+				- form_tag("/admin/animal_weights", :method => "post", :class => "form", :enctype => "multipart/form-data", :remote => true, :id => "animal_weight_form") do
 					#animal_weight_weight_field.field.animal_weight_weight
 						%label{:for => "animal_weight_weight"} Weight
 						%input#animal_weight_weight.integer{:name => "animal_weight[weight]", :size => "30", :type => "text", :value => ""}
@@ -119,7 +119,7 @@
 					%input{:id => "animal_weight_org_id", :type => "hidden", :name => "animal_weight[organization_id]", :value => current_user.organization_id}
 					%input{:value => @object.id, :id => "animal_weight_animal_id", :type => "hidden", :name => "animal_weight[animal_id]"}
 					%br
-					%button{:type => "submit", :class => "button"}Add Animal Weight
+					%button{:type => "submit", :class => "button", :id => "remote_form_submit"}Add Animal Weight
 		-  if @object.respond_to?('password') and current_user.id == @object.id 
 			/ on the user page show the wordpress account form
 			= render :partial => "wordpress_form", :object => @object
