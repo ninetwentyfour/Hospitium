@@ -23,10 +23,10 @@
 	<%= stylesheet_link_tag "twitter.gz.css" %>
 	<link href='http://fonts.googleapis.com/css?family=Cabin:700|Maven+Pro' rel='stylesheet' type='text/css'>
 	<style>
-	html, p, body,h1,h2,h3,h4,h5,h6{
+	html, p, body{
 		font-family: 'Maven Pro', sans-serif !important;
 	}
-	h1,h2,h3,h4,h5,h6,strong{
+	h1,h2,h3,h4,h5,h6{
 		font-weight:700;
 		font-family: 'Cabin', sans-serif !important;
 	}
@@ -35,13 +35,14 @@
 		line-height:1.5em;
 		font-weight:400;
 	}
+	.otherAnimalInfo p{
+		font-size:14px;
+		line-height:1em !important;
+	}
 /*	footer p{
 		font-size:13px;
 	}
-	.otherAnimalInfo p{
-		font-size:16px;
-		line-height:1em !important;
-	}*/
+*/
 	</style>
 	<%= csrf_meta_tag %>
   <%= meta_description("")%>
