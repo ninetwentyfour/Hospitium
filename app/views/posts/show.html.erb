@@ -4,7 +4,7 @@
 		<h1><%= @post.title %></h1>
 		<strong><%= @post.author %> posted on <%= @post.created_at.strftime("%m-%d-%Y") %></strong>
 	</div>
-	<div class="otherAnimalInfo">
+	<div>
 		<p><%= raw(@post.content) %></p>
 		<p><!-- AddToAny BEGIN -->
 		<div class="a2a_kit a2a_default_style">
