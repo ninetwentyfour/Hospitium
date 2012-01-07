@@ -58,15 +58,15 @@ module RailsAdmin
       @page_name = t("admin.dashboard.pagename")
       @page_type = "dashboard"
 
-      @history = Rails.cache.fetch("history_latest_summaries", :expires_in => 60.minutes) do
-        AbstractHistory.history_latest_summaries
-      end
-      #@history = AbstractHistory.history_latest_summaries
-      @month = DateTime.now.month
-      @year = DateTime.now.year
-      @history = Rails.cache.fetch("history_for_month", :expires_in => 60.minutes) do
-        AbstractHistory.history_for_month(@month, @year)
-      end
+      # @history = Rails.cache.fetch("history_latest_summaries", :expires_in => 60.minutes) do
+      #   AbstractHistory.history_latest_summaries
+      # end
+      # #@history = AbstractHistory.history_latest_summaries
+      # @month = DateTime.now.month
+      # @year = DateTime.now.year
+      # @history = Rails.cache.fetch("history_for_month", :expires_in => 60.minutes) do
+      #   AbstractHistory.history_for_month(@month, @year)
+      # end
       #@history= AbstractHistory.history_for_month(@month, @year)
       
       @abstract_models = Rails.cache.fetch("dashboard_top_graph_user_#{current_user.id unless current_user.id != 1}", :expires_in => 60.minutes) do
