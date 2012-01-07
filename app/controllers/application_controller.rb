@@ -33,6 +33,12 @@ class ApplicationController < ActionController::Base
   
   protected 
     def render_optional_error_file(status_code) 
-      render :template => "errors/500", :status => 500, :layout => 'application' 
+      #render :template => "errors/500", :status => 500, :layout => 'application'
+      status = interpret_status(status_code)[0,3]
+      if ["404"].include?(status)
+        render :template => "/errors/404.html.erb", :status => status, :layout => 'application'
+      else
+        render :template => "/errors/500.html.erb", :status => status, :layout => 'application'
+      end
   end
 end
