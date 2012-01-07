@@ -40,6 +40,9 @@ GEM
       activesupport (= 3.0.10)
     activesupport (3.0.10)
     addressable (2.2.6)
+    airbrake (3.0.9)
+      activesupport
+      builder
     arel (2.0.10)
     arrayfields (4.7.4)
     aws-s3 (0.6.2)
@@ -224,6 +227,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  airbrake
   aws-s3
   bitly
   cancan
