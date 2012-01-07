@@ -30,4 +30,9 @@ class ApplicationController < ActionController::Base
   def canonical_url(canonical_url)
     @canonical_url = canonical_url
   end
+  
+  protected 
+    def render_optional_error_file(status_code) 
+      render :template => "errors/500", :status => 500, :layout => 'application' 
+  end
 end
