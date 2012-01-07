@@ -6,18 +6,18 @@
 	<div class="otherAnimalInfo">
 		<div id="public_animal_images" style="float:right;width:300px;">
 			<%- unless @animal.image.url(:medium) == "/images/medium/missing.png" %>
-				<a href="<%= @animal.image.url %>"><img src="<%= @animal.image.url(:medium) %>" class="adoptImage" /></a>
+				<a href="<%= @animal.image.url %>" rel="shadowbox[AnimalGallery]"><img src="<%= @animal.image.url(:medium) %>" class="adoptImage" /></a>
 			<%- else %>
 				<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-photo.jpg" width=300 height=300 style="float:right" class="adoptImage" />
 			<% end %>
 			<br />
 			<%- unless @animal.second_image.url(:medium) == "/second_images/medium/missing.png" %>
-				<a href="<%= @animal.second_image.url %>"><img src="<%= @animal.second_image.url(:thumb) %>" width=140 height=140 style="float:left;margin:5px 10px 0px 0px;" /></a>
+				<a href="<%= @animal.second_image.url %>" rel="shadowbox[AnimalGallery]"><img src="<%= @animal.second_image.url(:thumb) %>" width=140 height=140 style="float:left;margin:5px 10px 0px 0px;" /></a>
 			<%- else %>
 			
 			<% end %>
 			<%- unless @animal.third_image.url(:medium) == "/third_images/medium/missing.png" %>
-				<a href="<%= @animal.third_image.url %>"><img src="<%= @animal.third_image.url(:thumb) %>" width=140 height=140 style="float:left;margin:5px 0px 0px 10px;" /></a>
+				<a href="<%= @animal.third_image.url %>" rel="shadowbox[AnimalGallery]"><img src="<%= @animal.third_image.url(:thumb) %>" width=140 height=140 style="float:left;margin:5px 0px 0px 10px;" /></a>
 			<%- else %>
 			
 			<% end %>
@@ -67,3 +67,10 @@
 <% set_meta_description("Adopt #{@animal.name} from #{@animal.organization.name}") %>
 <% set_meta_keywords("adopt,animal,pets") %>
 <% set_head_title("Adopt #{@animal.name}") %>
+
+<% content_for :javascript_footer do %>
+	<script type="text/javascript" src="https://d4uktpxr9m70.cloudfront.net/javascripts/shadowbox.js"></script>
+	<script type="text/javascript">
+		Shadowbox.init();
+	</script>
+<% end %>
