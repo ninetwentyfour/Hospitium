@@ -53,6 +53,9 @@
 
 			#{@ordered_filter_string}
 		});
+		$j(function() {
+			$j('img[rel=tipsy2]').tipsy();
+		 });
 
 #block-tables.block
 	= breadcrumbs_for :list, @abstract_model
@@ -138,6 +141,9 @@
 									= action_icon(show_path,	 :show,	 t("admin.list.show_action"))		if can_show
 									= action_icon(edit_path,	 :edit,	 t("admin.list.edit_action"))		if can_edit
 									= action_icon(delete_path, :cross, t("admin.list.delete_action")) if can_delete
+									- unless @abstract_model.to_param == "users" or @abstract_model.to_param == "organizations"
+										%a{:href => "/admin/"+@abstract_model.to_param+"/"+object.id.to_s+"/duplicate"}
+											%img{:rel => "tipsy2", :alt => "Duplicate", :onmouseout => "this.src='https://d4uktpxr9m70.cloudfront.net/images/duplicate-light2.png'", :onmouseover => "this.src='https://d4uktpxr9m70.cloudfront.net/images/duplicate.png'", "original-title" => "Duplicate", :src => "https://d4uktpxr9m70.cloudfront.net/images/duplicate-light2.png"}
 
 				.pagination
 					- if @page_count.to_i > 1

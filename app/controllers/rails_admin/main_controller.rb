@@ -7,7 +7,7 @@ module RailsAdmin
     
     before_filter :get_notice
     before_filter :get_model, :except => [:index]
-    before_filter :get_object, :only => [:show, :edit, :update, :delete, :destroy]
+    before_filter :get_object, :only => [:show, :edit, :update, :delete, :destroy, :duplicate]
     before_filter :get_attributes, :only => [:create, :update]
     before_filter :check_for_cancel, :only => [:create, :update, :destroy, :export, :bulk_destroy]
     
@@ -93,7 +93,20 @@ module RailsAdmin
       end
       render :dashboard
     end
-
+    
+    def duplicate
+      #@authorization_adapter.authorize(:show, @abstract_model, @object) if @authorization_adapter
+      #@object.id
+      new_record = @object.clone
+      respond_to do |format|
+        if new_record.save
+          format.html { redirect_to :back, notice: 'Successfully duplicated.' }
+        else
+          format.html { redirect_to :back, notice: 'There was a problem duplicating.' }
+        end
+      end
+    end
+    
     def list
       @authorization_adapter.authorize(:list, @abstract_model) if @authorization_adapter
 
