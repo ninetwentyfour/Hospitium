@@ -68,6 +68,11 @@
 <% set_meta_keywords("adopt,animal,pets") %>
 <% set_head_title("Adopt #{@animal.name}") %>
 
+
+<% content_for :head do %>
+	<link rel="stylesheet" type="text/css" href="https://d4uktpxr9m70.cloudfront.net/stylesheets/shadowbox.css">
+<% end %>
+
 <% content_for :javascript_footer do %>
 	<script type="text/javascript" src="https://d4uktpxr9m70.cloudfront.net/javascripts/shadowbox.js"></script>
 	<script type="text/javascript">
