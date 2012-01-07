@@ -191,7 +191,7 @@ Todo:
 
 - <del>show twitter and fb on dashboard and do pie charts of animals in statuses (adopted - etc)</del>
 
-- cache twitter on dashboard
+- <del>cache twitter on dashboard</del>
 
 - add label warning and make model strip any part of weight that isn't an integer (assumed grams)
 

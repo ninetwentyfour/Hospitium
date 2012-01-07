@@ -26,11 +26,11 @@ class AdoptAPetAccountsController < ApplicationController
       @animals = Animal.find(:all, :conditions => {:organization_id => current_user.organization.id, :public => 1}) 
       csv_string = CSV.open("#{RAILS_ROOT}/tmp/#{current_user.id}_adopt_a_pet_export_temp.csv", "w") do |csv| 
         # header row 
-        csv << ["ID", "Type", "Breed", "Breed2", "Name", "Sex", "Description", "Status", "SpayedNeutered", "PhotoURL", "PhotoURL2", "PhotoURL3"] 
+        csv << ["ID", "Type", "Breed", "Breed2", "Name", "Sex", "Description", "Status", "SpayedNeutered", "PhotoURL"] 
 
         # data rows 
         @animals.each do |animal|
-          csv << [animal.uuid, animal.species.name, animal.species.name, "", animal.name, animal.animal_sex.sex, animal.special_needs, "Available", animal.spay_neuter.spay,  animal.image.url(:medium),  animal.second_image.url(:medium),  animal.third_image.url(:medium)] 
+          csv << [animal.uuid, animal.species.name, animal.species.name, "", animal.name, animal.animal_sex.sex, animal.special_needs, "Available", animal.spay_neuter.spay,  animal.image.url(:medium)] 
         end 
       end 
       #read the newly created csv
