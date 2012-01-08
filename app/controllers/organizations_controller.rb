@@ -18,6 +18,8 @@ class OrganizationsController < ApplicationController
   def show
     canonical_url("/organizations/#{params[:id]}")
     @organization = Organization.find_by_uuid(params[:id])
+    @animals = Animal.find(:all, :conditions => {'public' => 1, :organization_id => @organization.id})
+    
 
     respond_to do |format|
       format.html # show.html.erb
