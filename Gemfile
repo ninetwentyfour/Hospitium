@@ -27,6 +27,7 @@ gem 'libxml-xmlrpc'
 gem 'bitly'
 gem 'site_meta'
 gem 'airbrake'
+gem 'gravatar_image_tag'
 
 group :development do
 	gem 'metrical'

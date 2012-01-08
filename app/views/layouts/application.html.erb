@@ -69,7 +69,7 @@
       </ul>
 			<ul class="nav secondary-nav">
 				<% if user_signed_in? %>
-					<li><a href="/admin">Admin</a></li>
+					<li><a href="/admin"><%= gravatar_image_tag("#{current_user.email}", :alt => "#{current_user.email}", :gravatar => { :size => 25 }, :style => "position:absolute;top:7px") %> <span style="margin-left:30px">Admin</span></a></li>
 					<li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
 				<% else %>
 					<li><a href="/users/sign_in">Sign In</a></li>
