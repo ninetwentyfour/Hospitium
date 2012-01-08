@@ -1,4 +1,10 @@
+body{
+	/*background:none !important;*/
+	/*background-image:none !important;*/
+	background:none repeat scroll 0 0 transparent !important
+}
 html{
+	background-image:none !important;
 	background-color:#fff !important;
 	background-repeat:no-repeat;
 	background-attachment:fixed;
@@ -20,9 +26,6 @@ html{
 }
 .duck{
 	background-image:url(https://d4uktpxr9m70.cloudfront.net/images/homepage/duck-bg.jpg) !important;
-}
-body{
-	background:none !important;
 }
 .hero-unit {
 	background:none;
