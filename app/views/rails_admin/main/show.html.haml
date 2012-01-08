@@ -52,6 +52,9 @@
 				.animalMedia
 					= render :partial => "animal_image", :object => @object
 					= render :partial => "animal_sharing", :object => @object
+			-  if @object.respond_to?('address')
+				.animalMedia
+					= render :partial => "google_map", :object => @object
 			- @model_config.show.with(:object => @object, :view => self).visible_groups.each do |fieldset|
 				- unless (fields = fieldset.visible_fields.map{|f| f.with(:object => @object, :view => self)}).empty?
 					- if !(values = fields.map{ |f| f.pretty_value.presence }).compact.empty? || !RailsAdmin::config.compact_show_view
