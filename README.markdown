@@ -249,6 +249,12 @@ Todo:
 
 - tag via @hospitium_app to sent tweets (make customizable messages / no via for premium accounts)
 
+- add text area sizer
+
+- link all email fields
+
+- switch notifications and use in all text area fields redcarpet
+
 * * *
 
 
