@@ -20,8 +20,9 @@
 	<%= stylesheet_link_tag "nivo-slider" %>
 	<%= stylesheet_link_tag "scaffold" %>
 	<%= stylesheet_link_tag "style" %>
-	<%= stylesheet_link_tag "twitter.gz.css" %>
+
 	<link href='https://fonts.googleapis.com/css?family=Cabin:700|Maven+Pro' rel='stylesheet' type='text/css'>
+	<link href='/stylesheets/twitter2.css' rel='stylesheet' type='text/css'>
 	<style>
 	html, p, body{
 		font-family: 'Maven Pro', sans-serif !important;
@@ -56,10 +57,10 @@
 	
 	<!-- <a href="https://github.com/ninetwentyfour/Hospitium"><img style="position: fixed; top: 0; left: 0; border: 0; z-index:11000;" src="https://a248.e.akamai.net/assets.github.com/img/6429057dfef9e98189338d22e7f6646c6694f032/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a> -->
 
-<div class="topbar">
-  <div class="fill">
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
     <div class="container">
-      <h3><a href="/">Hospitium</a></h3>
+      <a class="brand" href="/">Hospitium</a>
       <ul class="nav">
         <li><a href="/about">About</a></li>
 				<li><a href="/features">Features</a></li>
@@ -67,7 +68,7 @@
 				<li><a href="/animals">Adopt an Animal</a></li>
 				<li><a href="/posts">Blog</a></li>
       </ul>
-			<ul class="nav secondary-nav">
+			<ul class="nav pull-right">
 				<% if user_signed_in? %>
 					<li><a href="/admin"><%= gravatar_image_tag("#{current_user.email}", :alt => "#{current_user.email}", :gravatar => { :size => 25 }, :style => "position:absolute;top:7px") %> <span style="margin-left:30px">Admin</span></a></li>
 					<li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
