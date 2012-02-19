@@ -7,16 +7,14 @@ gem 'rails', '3.2.0'
 
 gem 'mysql2'
 gem 'devise' # Devise must be required before RailsAdmin
-#gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git', :branch => 'rails-3.0'
 gem 'nokogiri'
 gem 'mechanize'
 gem 'uuidtools'
 gem 'cancan'
-gem "paperclip", "~> 2.4"
-#gem 'right_aws'
-gem 'aws-s3', :require => 'aws/s3'
-#gem 'haml'
-gem 'will_paginate', '~> 3.0.0'
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+#gem 'aws-s3', :require => 'aws/s3'
+gem 'aws-sdk', '~> 1.3.4'
+gem 'will_paginate'
 gem 'paper_trail'
 gem 'oauth'
 gem 'twitter'

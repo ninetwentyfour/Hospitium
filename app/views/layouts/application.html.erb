@@ -59,9 +59,9 @@
     <div class="container">
       <a class="brand" href="/">Hospitium</a>
       <ul class="nav">
-        <li><a href="/about">About</a></li>
-				<li><a href="/features">Features</a></li>
-				<li><a href="https://hospitium.tenderapp.com/kb">Docs</a></li>
+        <li><a class='js-pjax' href="/about">About</a></li>
+				<li><a class='js-pjax' href="/features">Features</a></li>
+				<li><a class='js-pjax' href="https://hospitium.tenderapp.com/kb">Docs</a></li>
 				<li><a href="/animals">Adopt an Animal</a></li>
 				<li><a href="/posts">Blog</a></li>
       </ul>
@@ -70,7 +70,7 @@
 					<li><a href="/admin"><%= gravatar_image_tag("#{current_user.email}", :alt => "#{current_user.email}", :gravatar => { :size => 25 }, :style => "position:absolute;top:7px") %> <span style="margin-left:30px">Admin</span></a></li>
 					<li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
 				<% else %>
-					<li><a href="/users/sign_in">Sign In</a></li>
+					<li><a class='js-pjax' href="/users/sign_in">Sign In</a></li>
 				<% end %>
       </ul>
     </div>
@@ -78,11 +78,12 @@
 </div>
 
 <div class="container main-container">
-
-	<%= yield %>
+	<div id="pjax-contain">
+		<%= yield %>
+	</div>
 
   <footer>
-    <p><a href="/privacy-and-terms-of-service">Privacy & Terms</a> | <a href="mailto:contact@hospitium.co">contact@hospitium.co</a> | <a href="http://twitter.com/#!/hospitium_app">@hospitium_app</a> | <a href="https://github.com/ninetwentyfour/Hospitium">Fork me on GitHub</a></p>
+    <p><a class='js-pjax' href="/privacy-and-terms-of-service">Privacy & Terms</a> | <a href="mailto:contact@hospitium.co">contact@hospitium.co</a> | <a href="http://twitter.com/#!/hospitium_app">@hospitium_app</a> | <a href="https://github.com/ninetwentyfour/Hospitium">Fork me on GitHub</a></p>
   </footer>
 
 </div> <!-- /container -->

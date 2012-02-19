@@ -14,7 +14,7 @@
 			<h2>Animals For Adoption</h2>
 			<ul>
 				<% @animals.each do |animal| %>
-					<li><a href="/animals/<%= animal.uuid %>"><%= animal.name %></a></li>
+					<li><a class='js-pjax' href="/animals/<%= animal.uuid %>"><%= animal.name %></a></li>
 				<% end %>
 			</ul>
 		</div>
