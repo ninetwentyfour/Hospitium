@@ -1,0 +1,83 @@
+
+<div class="hero-unit clearfix">
+	<div class="page-header">
+		<h1><%= @animal.name %></h1>
+	</div>
+	<div class="otherAnimalInfo">
+		<div id="public_animal_images" style="float:right;width:300px;">
+			<%- unless @animal.image.url(:medium) == "/images/medium/missing.png" %>
+				<a href="<%= @animal.image.url %>" rel="shadowbox[AnimalGallery]"><img src="<%= @animal.image.url(:medium) %>" class="adoptImage" /></a>
+			<%- else %>
+				<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-photo.jpg" width=300 height=300 style="float:right" class="adoptImage" />
+			<% end %>
+			<br />
+			<%- unless @animal.second_image.url(:medium) == "/second_images/medium/missing.png" %>
+				<a href="<%= @animal.second_image.url %>" rel="shadowbox[AnimalGallery]"><img src="<%= @animal.second_image.url(:thumb) %>" width=140 height=140 style="float:left;margin:5px 10px 0px 0px;" /></a>
+			<%- else %>
+			
+			<% end %>
+			<%- unless @animal.third_image.url(:medium) == "/third_images/medium/missing.png" %>
+				<a href="<%= @animal.third_image.url %>" rel="shadowbox[AnimalGallery]"><img src="<%= @animal.third_image.url(:thumb) %>" width=140 height=140 style="float:left;margin:5px 0px 0px 10px;" /></a>
+			<%- else %>
+			
+			<% end %>
+		</div>
+		<p>Status: <%= @animal.status.status %></p>
+		<p>Species: <%= @animal.species.name %></p>
+		<p>Sex: <%= @animal.animal_sex.sex unless @animal.animal_sex.blank? %></p>
+		<p>Age: <%= calculate_animal_age(@animal.birthday) unless @animal.birthday.blank? %></p>
+		<p>Spay/Neuter: <%= @animal.spay_neuter.spay unless @animal.spay_neuter.blank? %></p>
+		<p>Color: <%= @animal.animal_color.color %></p>
+		<p>Special Needs: <%= @animal.special_needs %></p>
+		<hr />
+		<p>Adoption Contact</p>
+		<p>Organization: <a class='js-pjax' href="/organizations/<%= @animal.organization.uuid %>"><%= @animal.organization.name %></a></p>
+		<p>Website: <a href="<%= @animal.organization.website %>"><%= @animal.organization.website %></a></p>
+		<p>Email: <a href="mailto:<%= @animal.organization.email %>"><%= @animal.organization.email %></a></p>
+		<p>Phone Number: <%= number_to_phone(@animal.organization.phone_number, :area_code => true) %></p>
+		<p>Address: <%= @animal.organization.address %></p>
+		<p><%= @animal.organization.city %>, <%= @animal.organization.state %> <%= @animal.organization.zip_code %></p>
+		<p><!-- AddToAny BEGIN -->
+		<div class="a2a_kit a2a_default_style">
+		<a class="a2a_dd" href="http://www.addtoany.com/share_save">Share</a>
+		<span class="a2a_divider"></span>
+		<a class="a2a_button_twitter"></a>
+		<a class="a2a_button_facebook"></a>
+		<a class="a2a_button_email"></a>
+		</div>
+		<script type="text/javascript">
+		var a2a_config = a2a_config || {};
+		a2a_config.linkname = "Hospitium Adoption";
+		</script>
+		<script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>
+		<!-- AddToAny END --></p>
+	</div>
+</div>
+
+
+
+<p id="notice"><%= notice %></p>
+
+
+<%= link_to 'Back', animals_path %>
+<br /><br />
+<p style="font-size:13px;">
+	All information listed here is contributed by our members. Hospitium is not responsible for its contents. We assume in good faith that all Organizations are in good legal standing to adopt animals. Animals listed here are for adoption only. No animals for sale (adoption fees are ok).
+</p>
+<% set_meta_description("Adopt #{@animal.name} from #{@animal.organization.name}") %>
+<% set_meta_keywords("adopt,animal,pets") %>
+<% set_head_title("Adopt #{@animal.name}") %>
+<% content_for :title, "Adopt #{@animal.name} - Hospitium" %>
+<title><%= yield (:title) %></title>
+
+
+<% content_for :head do %>
+	<link rel="stylesheet" type="text/css" href="https://d4uktpxr9m70.cloudfront.net/stylesheets/shadowbox.css">
+<% end %>
+
+<% content_for :javascript_footer do %>
+	<script type="text/javascript" src="https://d4uktpxr9m70.cloudfront.net/javascripts/shadowbox.js"></script>
+	<script type="text/javascript">
+		Shadowbox.init();
+	</script>
+<% end %>

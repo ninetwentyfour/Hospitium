@@ -1,0 +1,52 @@
+<div class="row-fluid">
+	<div class="span12">
+		<div class="well">
+			<div class="span6">
+				<a class="btn" href="#"><i class="icon-plus"></i>Add New Animal</a>
+				&nbsp;
+				<a class="btn" href="#"><i class="icon-share"></i>Sync Public To Adopt-A-Pet</a>
+			</div>
+			<div class="span1"> &nbsp; </div>
+			<div class="btn-group span2">
+				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Add Filter <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="#">Name</a></li>
+					<li><a href="#">Status</a></li>
+					<li><a href="#">Sex</a></li>
+					<li><a href="#">Color</a></li>
+				</ul>
+			</div>
+			<form class="form-search">
+			  <input type="text" class="input-medium search-query">
+			  <button type="submit" class="btn">Search</button>
+			</form>
+		</div>
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Status</th>
+					<th>Sex</th>
+					<th>Age</th>
+					<th>Spay / Neuter</th>
+					<th>Color</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @animals.each do |animal| %>
+					<tr>
+						<td><a class='js-pjax' href="/admin/animals/<%= animal.uuid %>"><%= animal.name %></a></td>
+						<td><%= animal.status.status %></td>
+						<td><%= animal.animal_sex.sex unless animal.animal_sex.blank? %></td>
+						<td><%= calculate_animal_age(animal.birthday) unless animal.birthday.blank? %></td>
+						<td><%= animal.spay_neuter.spay unless animal.spay_neuter.blank? %></td>
+						<td><%= animal.animal_color.color %></td>
+						<td><a href="/admin/animals/<%= animal.uuid %>" class="js-pjax table-actions-icons"><i class="icon-eye-open tooltip-class" rel="tooltip" title="View Animal"></i></a> <a href="" class="table-actions-icons"><i class="icon-plus-sign tooltip-class" rel="tooltip" title="Duplicate Animal"></i></a> <a href="" class="table-actions-icons"><i class="icon-remove tooltip-class" rel="tooltip" title="Delete Animal"></i></a></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<%= will_paginate @animals %>
+	</div>
+</div>
