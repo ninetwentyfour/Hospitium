@@ -4,23 +4,23 @@ class AnimalColor < ActiveRecord::Base
   belongs_to :organization
   before_update :create_uuid
   # settings for rails admin views
-  rails_admin do
-    object_label_method do
-      :show_color_label_method # show the link in the admin UI instead of the link id
-    end
-    show do
-      exclude_fields :uuid, :organization
-    end
-    create do
-      exclude_fields :uuid
-    end
-    edit do
-      exclude_fields :uuid
-    end
-    list do
-      exclude_fields :uuid, :organization
-    end
-  end
+  # rails_admin do
+  #   object_label_method do
+  #     :show_color_label_method # show the link in the admin UI instead of the link id
+  #   end
+  #   show do
+  #     exclude_fields :uuid, :organization
+  #   end
+  #   create do
+  #     exclude_fields :uuid
+  #   end
+  #   edit do
+  #     exclude_fields :uuid
+  #   end
+  #   list do
+  #     exclude_fields :uuid, :organization
+  #   end
+  # end
   
   #create uuid
   def create_uuid()

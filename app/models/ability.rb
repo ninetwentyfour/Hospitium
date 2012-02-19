@@ -4,10 +4,10 @@ class Ability
     #user ||= User.new # guest user
     if user
       if user.role? :super_admin
-        can :access, :rails_admin 
+        #can :access, :rails_admin 
         can :manage, :all
       elsif user.role? :admin
-        can :access, :rails_admin
+        #can :access, :rails_admin
         can :manage, :twitter_account
         #can :manage, :all
         #can :manage, AdoptionContact, :animal => { :organization_id => user.organization_ids }
@@ -99,7 +99,7 @@ class Ability
         can :read, SpayNeuter
         can :read, Biter
       elsif user.role? :standard
-        can :access, :rails_admin
+        #can :access, :rails_admin
         can :manage, :twitter_account
         #can :manage, :all
         #can :manage, AdoptionContact, :animal => { :organization_id => user.organization_ids }

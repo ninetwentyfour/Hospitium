@@ -3,11 +3,11 @@ class FacebookAccount < ActiveRecord::Base
   belongs_to :organization
   
   # settings for rails admin views
-  rails_admin do
-    object_label_method do
-      :show_facebookurl_label_method # show the user email in the admin UI instead of the user id
-    end
-  end
+  # rails_admin do
+  #   object_label_method do
+  #     :show_facebookurl_label_method # show the user email in the admin UI instead of the user id
+  #   end
+  # end
   
   
   # Stubbed out! Does no (good) error checking!
