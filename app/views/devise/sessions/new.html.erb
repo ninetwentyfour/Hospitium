@@ -27,7 +27,9 @@
 <% end %>
 <!-- <hr /> -->
 <br /><br />
-<p>If you don't have an account <a href="/users/sign_up">Sign Up Here</a>.</p>
-<p><a href="/users/password/new">Forgot your password?</a></p>
+<p>If you don't have an account <a class="js-pjax" href="/users/sign_up">Sign Up Here</a>.</p>
+<p><a class="js-pjax" href="/users/password/new">Forgot your password?</a></p>
 </div>
-<!-- <%= render :partial => "devise/shared/links" %> -->
+<% set_head_title("Sign In") %>
+<% content_for :title, "Sign In - Hospitium" %>
+<title><%= yield (:title) %></title>

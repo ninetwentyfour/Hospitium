@@ -1,4 +1,3 @@
-
 			<% if notice.blank? %>
 
 			<% else %>
@@ -51,3 +50,5 @@
 		<% set_meta_description("Hospitium is the brain child of Apple Wood Rescue, a small animal rescue in Denver Colorado.") %>
 		<% set_meta_keywords("animal,management,software,online,hosted,hospitium") %>
 		<% set_head_title("About") %>
+		<% content_for :title, "About" %>
+		<title><%= yield (:title) %></title>

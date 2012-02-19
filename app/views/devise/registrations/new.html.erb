@@ -30,8 +30,10 @@
 <% end %>
 <!-- <hr /> -->
 <br /><br />
-<p>By signing up you agree to our <a href="/privacy-and-terms-of-service">privacy policy & terms of service</a>.</p>
+<p>By signing up you agree to our <a class="js-pjax" href="/privacy-and-terms-of-service">privacy policy & terms of service</a>.</p>
 <p> <a href="https://hospitium.tenderapp.com/kb" target="blank">Click here</a> for help getting started.</p>
-<p>Already have an account? <a href="/users/sign_in">Sign In Here</a>.</p>
+<p>Already have an account? <a class="js-pjax" href="/users/sign_in">Sign In Here</a>.</p>
 </div>
-<!-- <%= render :partial => "devise/shared/links" %> -->
+<% set_head_title("Sign Up") %>
+<% content_for :title, "Sign Up - Hospitium" %>
+<title><%= yield (:title) %></title>

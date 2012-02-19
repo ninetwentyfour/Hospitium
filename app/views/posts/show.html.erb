@@ -47,3 +47,5 @@
 <% set_meta_description("#{truncate(@post.content, :length => 155)}") %>
 <% set_meta_keywords("hospitium,blog") %>
 <% set_head_title("#{@post.title}") %>
+<% content_for :title, "#{@post.title} - Hospitium" %>
+<title><%= yield (:title) %></title>

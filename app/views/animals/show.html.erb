@@ -67,6 +67,8 @@
 <% set_meta_description("Adopt #{@animal.name} from #{@animal.organization.name}") %>
 <% set_meta_keywords("adopt,animal,pets") %>
 <% set_head_title("Adopt #{@animal.name}") %>
+<% content_for :title, "Adopt #{@animal.name} - Hospitium" %>
+<title><%= yield (:title) %></title>
 
 
 <% content_for :head do %>
