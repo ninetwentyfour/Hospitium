@@ -1,69 +1,86 @@
+<div class="row-fluid">
+	<div class="span12">
+		<% if notice.blank? %>
 
-<div class="hero-unit clearfix">
-	<div class="page-header">
-		<h1><%= @animal.name %></h1>
-	</div>
-	<div class="otherAnimalInfo">
-		<div id="public_animal_images" style="float:right;width:300px;">
-			<%- unless @animal.image.url(:medium) == "/images/medium/missing.png" %>
-				<a href="<%= @animal.image.url %>" rel="shadowbox[AnimalGallery]"><img src="<%= @animal.image.url(:medium) %>" class="adoptImage" /></a>
-			<%- else %>
-				<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-photo.jpg" width=300 height=300 style="float:right" class="adoptImage" />
-			<% end %>
-			<br />
-			<%- unless @animal.second_image.url(:medium) == "/second_images/medium/missing.png" %>
-				<a href="<%= @animal.second_image.url %>" rel="shadowbox[AnimalGallery]"><img src="<%= @animal.second_image.url(:thumb) %>" width=140 height=140 style="float:left;margin:5px 10px 0px 0px;" /></a>
-			<%- else %>
-			
-			<% end %>
-			<%- unless @animal.third_image.url(:medium) == "/third_images/medium/missing.png" %>
-				<a href="<%= @animal.third_image.url %>" rel="shadowbox[AnimalGallery]"><img src="<%= @animal.third_image.url(:thumb) %>" width=140 height=140 style="float:left;margin:5px 0px 0px 10px;" /></a>
-			<%- else %>
-			
-			<% end %>
+		<% else %>
+			<div class="alert alert-info"><a class="close" data-dismiss="alert" href="#">&times;</a> <%= notice %></div>
+		<% end %>
+		<div class="page-header">
+			<h1><%= @animal.name %></h1>
 		</div>
-		<p>Status: <%= @animal.status.status %></p>
-		<p>Species: <%= @animal.species.name %></p>
-		<p>Sex: <%= @animal.animal_sex.sex unless @animal.animal_sex.blank? %></p>
-		<p>Age: <%= calculate_animal_age(@animal.birthday) unless @animal.birthday.blank? %></p>
-		<p>Spay/Neuter: <%= @animal.spay_neuter.spay unless @animal.spay_neuter.blank? %></p>
-		<p>Color: <%= @animal.animal_color.color %></p>
-		<p>Special Needs: <%= @animal.special_needs %></p>
-		<hr />
-		<p>Adoption Contact</p>
-		<p>Organization: <a class='js-pjax' href="/organizations/<%= @animal.organization.uuid %>"><%= @animal.organization.name %></a></p>
-		<p>Website: <a href="<%= @animal.organization.website %>"><%= @animal.organization.website %></a></p>
-		<p>Email: <a href="mailto:<%= @animal.organization.email %>"><%= @animal.organization.email %></a></p>
-		<p>Phone Number: <%= number_to_phone(@animal.organization.phone_number, :area_code => true) %></p>
-		<p>Address: <%= @animal.organization.address %></p>
-		<p><%= @animal.organization.city %>, <%= @animal.organization.state %> <%= @animal.organization.zip_code %></p>
-		<p><!-- AddToAny BEGIN -->
-		<div class="a2a_kit a2a_default_style">
-		<a class="a2a_dd" href="http://www.addtoany.com/share_save">Share</a>
-		<span class="a2a_divider"></span>
-		<a class="a2a_button_twitter"></a>
-		<a class="a2a_button_facebook"></a>
-		<a class="a2a_button_email"></a>
+		<div class="row-fluid">
+			<div class="tabbable span4">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#1" data-toggle="tab">Overview</a></li>
+					<li><a href="#2" data-toggle="tab">Details</a></li>
+					<li><a href="#3" data-toggle="tab">History</a></li>
+					<li><a href="#4" data-toggle="tab">Weight</a></li>
+					<li><a href="#5" data-toggle="tab">Notes</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="1">
+						<div class="">
+							<p><strong>Status:</strong> <%= @animal.status.status %></p>
+							<p><strong>Species:</strong> <%= @animal.species.name %></p>
+							<p><strong>Sex:</strong> <%= @animal.animal_sex.sex unless @animal.animal_sex.blank? %></p>
+							<p><strong>Age:</strong> <%= calculate_animal_age(@animal.birthday) unless @animal.birthday.blank? %></p>
+							<p><strong>Spay/Neuter:</strong> <%= @animal.spay_neuter.spay unless @animal.spay_neuter.blank? %></p>
+							<p><strong>Color:</strong> <%= @animal.animal_color.color %></p>
+							<p><strong>Special Needs:</strong> <%= @animal.special_needs %></p>
+						</div>
+					</div>
+					<div class="tab-pane" id="2">
+						<p><strong>Shelter:</strong> <%= @animal.shelter.name unless @animal.shelter.blank? %></p>
+						<p><strong>Diet:</strong> <%= @animal.diet unless @animal.diet.blank? %></p>
+						<p><strong>Deceased:</strong> <%= @animal.deceased unless @animal.deceased.blank? %></p>
+						<p><strong>Deceased Reason</strong>: <%= @animal.deceased_reason unless @animal.deceased_reason.blank? %></p>
+					</div>
+					<div class="tab-pane" id="3">
+						<p><strong>Date of Intake:</strong> <%= @animal.date_of_intake unless @animal.date_of_intake.blank? %></p>
+						<p><strong>Date of Well Check:</strong> <%= @animal.date_of_well_check unless @animal.date_of_well_check.blank? %></p>
+					</div>
+					<div class="tab-pane" id="4">
+						<p><strong>Date of Intake:</strong> <%= @animal.date_of_intake unless @animal.date_of_intake.blank? %></p>
+						<p><strong>Date of Well Check:</strong> <%= @animal.date_of_well_check unless @animal.date_of_well_check.blank? %></p>
+					</div>
+					<div class="tab-pane" id="5">
+						<p><strong>Date of Intake:</strong> <%= @animal.date_of_intake unless @animal.date_of_intake.blank? %></p>
+						<p><strong>Date of Well Check:</strong> <%= @animal.date_of_well_check unless @animal.date_of_well_check.blank? %></p>
+					</div>
+				</div>
+			</div>
+		
+			<div class="span8 pull-right">
+				<ul class="thumbnails">
+						<li class="span4 pull-right">
+							<a href="#" class="thumbnail">
+								<img src="http://placehold.it/260x180" alt="">
+							</a>
+						</li>
+						<li class="span4 pull-right">
+							<a href="#" class="thumbnail">
+								<img src="http://placehold.it/260x180" alt="">
+							</a>
+						</li>
+						<li class="span4 pull-right">
+							<a href="#" class="thumbnail">
+								<img src="http://placehold.it/260x180" alt="">
+							</a>
+						</li>
+						<li class="span4 pull-right">
+							<a href="#" class="thumbnail">
+								<img src="http://placehold.it/260x180" alt="">
+							</a>
+						</li>
+				</ul>
+			</div>
 		</div>
-		<script type="text/javascript">
-		var a2a_config = a2a_config || {};
-		a2a_config.linkname = "Hospitium Adoption";
-		</script>
-		<script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>
-		<!-- AddToAny END --></p>
 	</div>
 </div>
 
 
+<%= link_to 'Back', admin_animals_path, :class => "js-pjax" %>
 
-<p id="notice"><%= notice %></p>
-
-
-<%= link_to 'Back', animals_path %>
-<br /><br />
-<p style="font-size:13px;">
-	All information listed here is contributed by our members. Hospitium is not responsible for its contents. We assume in good faith that all Organizations are in good legal standing to adopt animals. Animals listed here are for adoption only. No animals for sale (adoption fees are ok).
-</p>
 <% set_meta_description("Adopt #{@animal.name} from #{@animal.organization.name}") %>
 <% set_meta_keywords("adopt,animal,pets") %>
 <% set_head_title("Adopt #{@animal.name}") %>
