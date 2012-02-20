@@ -65,6 +65,12 @@
       </ul>
 			<ul class="nav pull-right">
 				<% if user_signed_in? %>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= gravatar_image_tag("#{current_user.email}", :alt => "#{current_user.email}", :gravatar => { :size => 25 }, :style => "position:absolute;top:7px") %> <span style="margin-left:30px">Account</span> <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+						</ul>
+					</li>
 					<li><a href="/admin"><%= gravatar_image_tag("#{current_user.email}", :alt => "#{current_user.email}", :gravatar => { :size => 25 }, :style => "position:absolute;top:7px") %> <span style="margin-left:30px">Admin</span></a></li>
 					<li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
 				<% else %>
@@ -134,7 +140,6 @@
 				</div>
 			</div>
 	</div>
-
 
 	<footer class="subnav">
 	  <p style="padding-left:10px;"><a href="/privacy-and-terms-of-service">Privacy & Terms</a> | <a href="mailto:contact@hospitium.co">contact@hospitium.co</a> | <a href="http://twitter.com/#!/hospitium_app">@hospitium_app</a> | <a href="https://github.com/ninetwentyfour/Hospitium">Fork me on GitHub</a></p>
