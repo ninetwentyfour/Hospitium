@@ -122,6 +122,11 @@
 						<a href="#">Volunteer Contacts</a>
 					</li>
 				</ul>
+				<hr />
+				<div class="alert alert-block">
+					<strong><%= @random_notice.status_type + "!" unless @random_notice.blank? %></strong>
+					<%= raw(@random_notice.message)  unless @random_notice.blank? %>
+				</div>
 			</div>
 			<div class="span10">
 				<div id="pjax-contain">
