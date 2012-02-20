@@ -1,10 +1,11 @@
 class Admin::AnimalsController < Admin::ApplicationController
+
   #layout "admin/application"
   # GET /animals
   # GET /animals.xml
   def index
 
-    @animals = Animal.paginate(:page => params[:page], :per_page => 10, :conditions => {}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
+    @animals = Animal.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
 
 
 
@@ -20,8 +21,11 @@ class Admin::AnimalsController < Admin::ApplicationController
   def show
     require_dependency "Animal"
     @animal = Animal.find_by_uuid(params[:id])
-    @statuses = Status.where(:organization_id => 1)
-    @b = @statuses.collect{|x| [x.id.to_s,x.status.to_s]}
+    @statuses = Status.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.status.to_s]}
+    @species = Species.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.name.to_s]}
+    @colors = AnimalColor.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.color.to_s]}
+    @shelters = Shelter.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.name.to_s]}
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @animal }

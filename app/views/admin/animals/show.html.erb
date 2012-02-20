@@ -20,25 +20,25 @@
 				<div class="tab-content">
 					<div class="tab-pane active" id="1">
 						<div class="">
-							<p><strong>Status:</strong> <%= best_in_place @animal, :status_id, :type => :select, collection: @b, :nil => @animal.status.status %>
+							<p><strong>Status:</strong> <%= best_in_place @animal, :status_id, :type => :select, collection: @statuses, :nil => @animal.status.status %>
 							</p>
-							<p><strong>Species:</strong> <%= @animal.species.name %></p>
+							<p><strong>Species:</strong> <%= best_in_place @animal, :species_id, :type => :select, collection: @species, :nil => @animal.species.name %></p>
 							<p><strong>Sex:</strong> <%= best_in_place @animal, :animal_sex_id, :type => :select, collection: [["1", "Male"], ["2", "Female"], ["3", "Unknown"]], :nil => @animal.animal_sex.sex unless @animal.animal_sex.blank? %></p>
 							<p><strong>Age:</strong> <%= best_in_place @animal, :birthday, :type => :date, :display_as => :calculate_animal_age %></p>
 							<p><strong>Spay/Neuter:</strong> <%= best_in_place @animal, :spay_neuter_id, :type => :select, collection: [["1", "No"], ["2", "Yes"], ["3", "Unknown"]], :nil => @animal.spay_neuter.spay unless @animal.spay_neuter.blank? %></p>
-							<p><strong>Color:</strong> <%= @animal.animal_color.color %></p>
+							<p><strong>Color:</strong> <%= best_in_place @animal, :animal_color_id, :type => :select, collection: @colors, :nil => @animal.animal_color.color %></p>
 							<p><strong>Special Needs:</strong> <%= best_in_place @animal, :special_needs, type: :textarea %></p>
 						</div>
 					</div>
 					<div class="tab-pane" id="2">
-						<p><strong>Shelter:</strong> <%= @animal.shelter.name unless @animal.shelter.blank? %></p>
-						<p><strong>Diet:</strong> <%= @animal.diet unless @animal.diet.blank? %></p>
-						<p><strong>Deceased:</strong> <%= @animal.deceased unless @animal.deceased.blank? %></p>
-						<p><strong>Deceased Reason</strong>: <%= @animal.deceased_reason unless @animal.deceased_reason.blank? %></p>
+						<p><strong>Shelter:</strong> <%= best_in_place @animal, :shelter_id, :type => :select, collection: @shelters, :nil => @animal.shelter.name unless @animal.shelter.blank? %></p>
+						<p><strong>Diet:</strong> <%= best_in_place @animal, :diet, :type => :textarea, :nil => "Click me to add content!" %></p>
+						<p><strong>Deceased:</strong> <%= best_in_place @animal, :deceased, :type => :date, :display_as => :formatted_deceased_date %></p>
+						<p><strong>Deceased Reason</strong>: <%= best_in_place @animal, :deceased_reason, :type => :textarea, :nil => "Click me to add content!" %></p>
 					</div>
 					<div class="tab-pane" id="3">
-						<p><strong>Date of Intake:</strong> <%= @animal.date_of_intake unless @animal.date_of_intake.blank? %></p>
-						<p><strong>Date of Well Check:</strong> <%= @animal.date_of_well_check unless @animal.date_of_well_check.blank? %></p>
+						<p><strong>Date of Intake:</strong> <%= best_in_place @animal, :date_of_intake, :type => :date, :display_as => :formatted_intake_date %></p>
+						<p><strong>Date of Well Check:</strong> <%= best_in_place @animal, :date_of_well_check, :type => :date, :display_as => :formatted_well_date %></p>
 					</div>
 					<div class="tab-pane" id="4">
 						<p><strong>Date of Intake:</strong> <%= @animal.date_of_intake unless @animal.date_of_intake.blank? %></p>
@@ -97,5 +97,31 @@
 	<script type="text/javascript" src="https://d4uktpxr9m70.cloudfront.net/javascripts/shadowbox.js"></script>
 	<script type="text/javascript">
 		Shadowbox.init();
+	</script>
+	<script type="text/javascript">
+	//setup juggernaut to handle real time updating page changes
+	//this one handles changes made with best in place
+	var jug = new Juggernaut;
+
+	jug.subscribe("/observer/<%= @animal.uuid %>", function(data){
+		jQuery.each(data.record, function(i, val) {
+			//alert(i); 
+			//alert(val);
+			if (i != "updated_at"){
+					//have tp dp extra loop if order details updated since its an array
+					//alert(val[1]);
+					$('#best_in_place_animal_<%= @animal.id %>_'+i).css("background-color","#D1EED1");
+					$('#best_in_place_animal_<%= @animal.id %>_'+i).html(val[1]);
+					$('#best_in_place_animal_<%= @animal.id %>_'+i).delay(1500).animate({backgroundColor: "#fff"}, 1000 );
+					// $.each( val.pop(), function(k, v){
+					// 	alert(k);
+					// 	alert(v);
+					// 	$('#best_in_place_order_<%= @animal.id %>_'+k).css("background-color","#D1EED1");
+					// 	//$('#best_in_place_order_'+current_order_id+'_order_details_'+k).children().html(v);
+					// 	//$('#best_in_place_order_'+current_order_id+'_order_details_'+k).delay(1500).animate({backgroundColor: "#F5F5F5"}, 1000 );
+					// });
+			}
+		});
+	});
 	</script>
 <% end %>

@@ -145,6 +145,7 @@ AnimalTracker::Application.routes.draw do
   match "/features" => "home#features", :as => "features"
   match "/privacy-and-terms-of-service" => "home#privacy", :as => "privacy"
   match "/ftp-test" => "adopt_a_pets#send_to_site", :as => "send_to_site"
+  match "/admin" => "admin/home#index", :as => "index"
   
   
   

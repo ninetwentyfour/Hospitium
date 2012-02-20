@@ -132,6 +132,8 @@ GEM
       thor (~> 0.14)
     json (1.6.1)
     json_pure (1.6.5)
+    juggernaut (2.1.1)
+      redis
     libxml-ruby (2.2.2)
     libxml-xmlrpc (0.1.5)
       libxml-ruby (> 0.0.0)
@@ -215,6 +217,7 @@ GEM
     rcov (0.9.11)
     rdoc (3.12)
       json (~> 1.4)
+    redis (2.2.2)
     reek (1.2.8)
       ruby2ruby (~> 1.2)
       ruby_parser (~> 2.0)
@@ -283,6 +286,7 @@ DEPENDENCIES
   home_run
   jquery-rails
   json
+  juggernaut
   libxml-xmlrpc
   mechanize
   metrical

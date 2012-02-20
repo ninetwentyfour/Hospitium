@@ -1,4 +1,5 @@
 class Admin::ApplicationController < ActionController::Base
+  before_filter :authenticate_user!
   before_filter :ensure_domain
   protect_from_forgery # Turn on request forgery protection. Bear in mind that only non-GET, HTML/JavaScript requests are checked.
   

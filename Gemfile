@@ -27,6 +27,7 @@ gem 'site_meta'
 gem 'airbrake'
 gem 'gravatar_image_tag'
 gem 'best_in_place'
+gem 'juggernaut'
 
 # Gems used only for assets and not required
 # in production environments by default.
