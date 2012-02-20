@@ -27,6 +27,7 @@
 				<tr>
 					<th><%= sort_link @search, :name %></th>
 					<th><%= sort_link @search, :status_status, "Status", {}, :class => "status" %></th>
+					<th><%= sort_link @search, :public %></th>
 					<th><%= sort_link @search, :animal_sex_sex, "Sex", {}, :class => "animal_sex" %></th>
 					<th><%= sort_link @search, :birthday, "Age" %></th>
 					<th><%= sort_link @search, :spay_neuter_spay, "Spay / Neuter", {}, :class => "spay_neuter" %></th>
@@ -39,6 +40,7 @@
 					<tr>
 						<td><a class='js-pjax' href="/admin/animals/<%= animal.uuid %>"><%= animal.name %></a></td>
 						<td><%= animal.status.status %></td>
+						<td><%= animal.public? ? 'yes' : 'no' %></td>
 						<td><%= animal.animal_sex.sex unless animal.animal_sex.blank? %></td>
 						<td><%= calculate_animal_age(animal.birthday) unless animal.birthday.blank? %></td>
 						<td><%= animal.spay_neuter.spay unless animal.spay_neuter.blank? %></td>

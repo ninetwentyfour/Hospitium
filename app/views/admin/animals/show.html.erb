@@ -125,15 +125,26 @@
 		});
 
 		jug.subscribe("/observer/<%= @animal.uuid %>", function(data){
+			var updated_text = "There was an update, but a problem displaying. Please refresh."
 			jQuery.each(data.record, function(i, val) {
 				if (i != "updated_at"){
-						$('#best_in_place_animal_<%= @animal.id %>_'+i).css("background-color","#D1EED1");
-						$('#best_in_place_animal_<%= @animal.id %>_'+i).html(val[1]);
-						$('#best_in_place_animal_<%= @animal.id %>_'+i).delay(1500).animate({backgroundColor: "#fff"}, 1000 );
+					updated_text = val[1];
+					if ($("#best_in_place_animal_<%= @animal.id %>_"+i).attr("data-collection") !== undefined) {
+						var brand = $('#best_in_place_animal_<%= @animal.id %>_'+i).attr("data-collection");
+						var test = $.parseJSON(brand);
+						$.each(test, function(index, value) {
+							if(value[0] == val[1]){
+								updated_text = value[1];
+							}
+						});
+					} else {
+					    //do nothing
+					}
+					$('#best_in_place_animal_<%= @animal.id %>_'+i).css("background-color","#D1EED1");
+					$('#best_in_place_animal_<%= @animal.id %>_'+i).html(updated_text);
+					$('#best_in_place_animal_<%= @animal.id %>_'+i).delay(1500).animate({backgroundColor: "#fff"}, 1000 );
 				}
 			});
 		});
 	</script>
-	<%= javascript_include_tag "chart_popup.min.js" %>
-	<%= javascript_include_tag "weight_chart.min.js" %>
 <% end %>
