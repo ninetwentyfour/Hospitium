@@ -28,6 +28,12 @@ class Admin::AnimalsController < Admin::ApplicationController
     @colors = AnimalColor.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.color.to_s]}
     @shelters = Shelter.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.name.to_s]}
     @animal_weights = AnimalWeight.find(:all, :conditions => {:animal_id => @animal.id}, :order => "date_of_weight ASC")
+    
+    @status = Status.new
+    @species_model = Species.new
+    @animal_color_model = AnimalColor.new
+    @shelter_model = Shelter.new
+    @animal_weight_model = AnimalWeight.new
 
     respond_to do |format|
       format.html # show.html.erb

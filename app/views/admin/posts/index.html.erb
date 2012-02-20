@@ -1,0 +1,22 @@
+<div class="hero-unit clearfix">
+	<div class="page-header">
+  	<h1>Hospitium Blog!</h1>
+	</div>
+	<p style="text-align:right;"><a class="btn btn-success btn-large js-pjax" href="/users/sign_up">Try It Now &raquo;</a></p>
+</div>
+
+	<ul class="unstyled">
+		<% @posts.each do |post| %>
+			<li class="singleAnimalAdoption clearfix">
+				<h1><a class="js-pjax" href="/posts/<%= post.id %>-<%= post.title.parameterize %>"><%= post.title %></a></h1>
+				<strong><%= post.author %> posted on <%= post.created_at.strftime("%m-%d-%Y") %></strong>
+				<hr />
+				<p><%= raw(truncate(post.content, :length => 140)) %> <a class="js-pjax" href="/posts/<%= post.id %>-<%= post.title.parameterize %>">Read More</a></p>
+			</li>
+		<% end %>
+		<%= will_paginate @posts %>
+	</ul>
+
+	<% set_meta_description("Find out the latest news and other goodness from Hospitium's blog.") %>
+	<% set_meta_keywords("adopt,animal,pets") %>
+	<% set_head_title("Blog") %>

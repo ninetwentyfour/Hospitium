@@ -1,0 +1,23 @@
+<h1>Listing biters</h1>
+
+<table>
+  <tr>
+    <th>Value</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @biters.each do |biter| %>
+  <tr>
+    <td><%= biter.value %></td>
+    <td><%= link_to 'Show', biter %></td>
+    <td><%= link_to 'Edit', edit_biter_path(biter) %></td>
+    <td><%= link_to 'Destroy', biter, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Biter', new_biter_path %>

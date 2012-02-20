@@ -27,7 +27,7 @@ class FacebookAccountsController < ApplicationController
     else
       link = FacebookAccount.shorten_link("#{root_url}animals/#{params[:animal_uuid]}")
       FacebookAccount.post("#{params[:animal_name]} is ready for adoption at #{link} via @hospitium_app.", current_user.id)
-      redirect_to("#{root_url}admin/animals/#{params[:animal_id]}", :notice => 'Facebook Post Sent')
+      redirect_to("#{root_url}admin/animals/#{params[:animal_uuid]}", :notice => 'Facebook Post Sent')
     end
   end
 

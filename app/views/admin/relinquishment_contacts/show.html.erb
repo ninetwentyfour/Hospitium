@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>First name:</b>
+  <%= @relinquishment_contact.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @relinquishment_contact.last_name %>
+</p>
+
+<p>
+  <b>Uuid:</b>
+  <%= @relinquishment_contact.uuid %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @relinquishment_contact.address %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @relinquishment_contact.phone %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @relinquishment_contact.email %>
+</p>
+
+<p>
+  <b>Animal:</b>
+  <%= @relinquishment_contact.animal %>
+</p>
+
+<p>
+  <b>Reason:</b>
+  <%= @relinquishment_contact.reason %>
+</p>
+
+
+<%= link_to 'Edit', edit_relinquishment_contact_path(@relinquishment_contact) %> |
+<%= link_to 'Back', relinquishment_contacts_path %>

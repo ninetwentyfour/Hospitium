@@ -1,0 +1,79 @@
+
+	<div class="hero-unit clearfix">
+		<div class="page-header">
+			<%= gravatar_image_tag("#{@organization.email}", :alt => "#{@organization.email}", :gravatar => { :size => 50 }, :style => "vertical-align:bottom;padding:5px 5px 7px 0px") %>
+			<h1 style="display:inline;"><%= @organization.name %></h1>
+		</div>
+		<div class="otherAnimalInfo" style="width:400px;float:left">
+			<h2>Contact Info</h2>
+			<p>Website: <a href="<%= @organization.website %>" rel="nofollow"><%= @organization.website %></a></p>
+			<p>Email: <a href="mailto:<%= @organization.email %>"><%= @organization.email %></a></p>
+			<p>Phone Number: <%= number_to_phone(@organization.phone_number, :area_code => true) %></p>
+			<p>Address: <%= @organization.address %></p>
+			<p><%= @organization.city %> <%= @organization.state %> <%= @organization.zip_code %></p>
+			<h2>Animals For Adoption</h2>
+			<ul>
+				<% @animals.each do |animal| %>
+					<li><a class='js-pjax' href="/animals/<%= animal.uuid %>"><%= animal.name %></a></li>
+				<% end %>
+			</ul>
+		</div>
+		<div id="map_canvas" style="height:400px;width:400px;float:right;"></div>
+	</div>
+	<p id="notice"><%= notice %></p>
+<%= link_to 'Back', request.env['HTTP_REFERER'] %>
+<br /><br />
+<p style="font-size:13px;">
+All information listed here is contributed by our members. Hospitium is not responsible for its contents. We assume in good faith that all Organizations are in good legal standing to adopt animals.
+</p>
+<% set_meta_description("#{@organization.name}: #{@organization.website}, #{@organization.phone_number}") %>
+<% set_meta_keywords("adopt,animal,pets") %>
+<% set_head_title("#{@organization.name}") %>
+<% content_for :title, "#{@organization.name} - Hospitium" %>
+<title><%= yield (:title) %></title>
+
+<% content_for :javascript_footer do %>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			geocoder = new google.maps.Geocoder();
+			geocoder.geocode( { 'address': '<%= @organization.address %> <%= @organization.city %> <%= @organization.state %> <%= @organization.zip_code %>'}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					var latlng = new google.maps.LatLng(results[0].geometry.location);
+					var myOptions = {
+						zoom: 12,
+						center: latlng,
+						mapTypeId: google.maps.MapTypeId.ROADMAP
+					}
+					map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+					map.setCenter(results[0].geometry.location);
+
+					var contentString = '<div id="content">'+
+						'<div id="siteNotice">'+
+						'</div>'+
+						'<h3 id="firstHeading" class="firstHeading"><%= @organization.name %></h3>'+
+						'<div id="bodyContent">'+
+						'<p><%= @organization.address %><br /><%= @organization.city %> <%= @organization.state %> <%= @organization.zip_code %></p>'+
+						'</div>'+
+					'</div>';
+
+					var infowindow = new google.maps.InfoWindow({
+						content: contentString
+					});
+
+					var marker = new google.maps.Marker({
+						map: map, 
+						position: results[0].geometry.location,
+						title: '<%= @organization.name %>'
+					});
+
+					google.maps.event.addListener(marker, 'click', function() {
+						infowindow.open(map,marker);
+					});
+				} else {
+					//alert("Geocode was not successful for the following reason: " + status);
+				}
+			});
+		});
+	</script>
+<% end %>

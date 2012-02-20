@@ -160,3 +160,10 @@ list-style:none !important;
 	margin:10px;
 	list-style:none !important;
 }
+.new_link{
+	color:#555;
+}
+.float-form{
+	float:left;
+	padding-right:10px;
+}

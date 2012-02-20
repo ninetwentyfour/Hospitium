@@ -31,7 +31,7 @@ class TwitterAccountsController < ApplicationController
     else
       link = TwitterAccount.shorten_link("#{root_url}animals/#{params[:animal_uuid]}")
       TwitterAccount.twitter_post("#{params[:animal_name]} is ready for adoption at #{link} via @hospitium_app", current_user.id)
-      redirect_to("#{root_url}admin/animals/#{params[:animal_id]}", :notice => 'Tweet Sent')
+      redirect_to("#{root_url}admin/animals/#{params[:animal_uuid]}", :notice => 'Tweet Sent')
     end
   end
  
