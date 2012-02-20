@@ -33,7 +33,7 @@
 					<div class="tab-pane" id="2">
 						<p><strong>Shelter:</strong> <%= best_in_place @animal, :shelter_id, :type => :select, collection: @shelters, :nil => @animal.shelter.name unless @animal.shelter.blank? %></p>
 						<p><strong>Diet:</strong> <%= best_in_place @animal, :diet, :type => :textarea, :nil => "Click me to add content!" %></p>
-						<p><strong>Deceased:</strong> <%= best_in_place @animal, :deceased, :type => :date, :display_as => :formatted_deceased_date %></p>
+						<p><strong>Deceased:</strong> <%= best_in_place @animal, :deceased, :type => :date, :display_as => :formatted_deceased_date, :nil => "Click me to add content!" %></p>
 						<p><strong>Deceased Reason</strong>: <%= best_in_place @animal, :deceased_reason, :type => :textarea, :nil => "Click me to add content!" %></p>
 					</div>
 					<div class="tab-pane" id="3">
@@ -41,8 +41,24 @@
 						<p><strong>Date of Well Check:</strong> <%= best_in_place @animal, :date_of_well_check, :type => :date, :display_as => :formatted_well_date %></p>
 					</div>
 					<div class="tab-pane" id="4">
-						<p><strong>Date of Intake:</strong> <%= @animal.date_of_intake unless @animal.date_of_intake.blank? %></p>
-						<p><strong>Date of Well Check:</strong> <%= @animal.date_of_well_check unless @animal.date_of_well_check.blank? %></p>
+						<div class="showAnimalInfo">
+							<table id="data">
+								<tfoot>
+									<tr>
+										<% @animal_weights.each do |animal_weight| %>
+											<th><%= animal_weight.date_of_weight.strftime("%m/%d/%Y")%></th>
+										<%end%>
+								</tfoot>
+								<tbody>
+									<tr>
+										<%@animal_weights.each do |animal_weight|%>
+											<td><%= animal_weight.weight%></td>
+										<%end%>
+									</tr>
+								</tbody>
+							</table>
+							<div id="holder"></div>
+						</div>
 					</div>
 					<div class="tab-pane" id="5">
 						<p><strong>Date of Intake:</strong> <%= @animal.date_of_intake unless @animal.date_of_intake.blank? %></p>
@@ -99,29 +115,25 @@
 		Shadowbox.init();
 	</script>
 	<script type="text/javascript">
-	//setup juggernaut to handle real time updating page changes
-	//this one handles changes made with best in place
-	var jug = new Juggernaut;
-
-	jug.subscribe("/observer/<%= @animal.uuid %>", function(data){
-		jQuery.each(data.record, function(i, val) {
-			//alert(i); 
-			//alert(val);
-			if (i != "updated_at"){
-					//have tp dp extra loop if order details updated since its an array
-					//alert(val[1]);
-					$('#best_in_place_animal_<%= @animal.id %>_'+i).css("background-color","#D1EED1");
-					$('#best_in_place_animal_<%= @animal.id %>_'+i).html(val[1]);
-					$('#best_in_place_animal_<%= @animal.id %>_'+i).delay(1500).animate({backgroundColor: "#fff"}, 1000 );
-					// $.each( val.pop(), function(k, v){
-					// 	alert(k);
-					// 	alert(v);
-					// 	$('#best_in_place_order_<%= @animal.id %>_'+k).css("background-color","#D1EED1");
-					// 	//$('#best_in_place_order_'+current_order_id+'_order_details_'+k).children().html(v);
-					// 	//$('#best_in_place_order_'+current_order_id+'_order_details_'+k).delay(1500).animate({backgroundColor: "#F5F5F5"}, 1000 );
-					// });
-			}
+		//setup juggernaut to handle real time updating page changes
+		//this one handles changes made with best in place
+		var jug = new Juggernaut({
+			secure: false,
+			host: 'hospitium-juggernaut.herokuapp.com',
+			port: 80,
+			transports: ['xhr-polling','jsonp-polling']
 		});
-	});
+
+		jug.subscribe("/observer/<%= @animal.uuid %>", function(data){
+			jQuery.each(data.record, function(i, val) {
+				if (i != "updated_at"){
+						$('#best_in_place_animal_<%= @animal.id %>_'+i).css("background-color","#D1EED1");
+						$('#best_in_place_animal_<%= @animal.id %>_'+i).html(val[1]);
+						$('#best_in_place_animal_<%= @animal.id %>_'+i).delay(1500).animate({backgroundColor: "#fff"}, 1000 );
+				}
+			});
+		});
 	</script>
+	<%= javascript_include_tag "chart_popup.min.js" %>
+	<%= javascript_include_tag "weight_chart.min.js" %>
 <% end %>

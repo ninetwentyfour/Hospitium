@@ -1,0 +1,29 @@
+<style>
+#holder {
+	margin: -120px 0 0px -50px;
+	width: 700px;
+	height: 700px;
+	float:left;
+}
+</style>
+<table id="pichart" style="display:none;">
+	<tbody>
+		<% @final_status_hash.each do |key, value| %>
+			<tr class="piepieces">
+				<th scope="row"><%= key + ": " + number_to_percentage(value["percent"], :precision => 0) %></th>
+				<td><%=number_to_percentage(value["percent"], :precision => 0) %></td>
+			</tr>
+		<%end%>
+	</tbody>
+</table>
+<div id="holder" class="clearfix" />
+
+<ul class="timelineAnimal">
+	<% @final_status_hash.each do |key, value| %>
+		<li class="barAnimal"><a href="#">
+			<span class="labelAnimal"><%= key + " count: " + value["count"]%></span>
+			<span class="countAnimal" data-animate-length="<%= number_to_percentage(value["percent"], :precision => 0)%>" style="height: 2%;opacity:0;" title="<%= value["count"] %>"><%= value["count"] %></span>
+		</a></li>
+	<%end%>
+</ul>
+<ul id="chartKey"></ul>

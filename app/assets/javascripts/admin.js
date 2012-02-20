@@ -6,7 +6,6 @@
 //= require best_in_place
 //= require_self
 //= require bootstrap
-
 $(function(){
 	if(window.location.pathname === "/"){
 		//do nothing

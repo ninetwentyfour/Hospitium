@@ -184,7 +184,11 @@ class Animal < ActiveRecord::Base
   end
   
   def formatted_deceased_date
-    age = self.deceased.strftime("%a, %b %e at %l:%M")
+    unless self.deceased.blank?
+      age = self.deceased.strftime("%a, %b %e at %l:%M")
+    else
+      age = ""
+    end
     return age
   end
   

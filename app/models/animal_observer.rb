@@ -6,6 +6,7 @@ class AnimalObserver < ActiveRecord::Observer
   end
   
   def publish(type, animal)
+    Juggernaut.url = "redis://redistogo:c1e5ec10fe92d5ed2ff683e28a4eb809@carp.redistogo.com:9525/"
     Juggernaut.publish("/observer/#{animal.uuid}", {
       :id     => animal.uuid, 
       :type   => type, 
