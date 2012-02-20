@@ -5,8 +5,10 @@ class Admin::AnimalsController < Admin::ApplicationController
   # GET /animals.xml
   def index
 
-    @animals = Animal.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
-
+    #@animals = Animal.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
+    @search = Animal.search(params[:search])
+    #@animals = @search.relation.where(:organization_id => current_user.organization_id)   # or @search.relation to lazy load in view
+    @animals = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
 
 
     respond_to do |format|

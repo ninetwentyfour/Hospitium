@@ -28,6 +28,8 @@ gem 'airbrake'
 gem 'gravatar_image_tag'
 gem 'best_in_place'
 gem 'juggernaut'
+gem 'squeel'
+gem 'meta_search'
 
 # Gems used only for assets and not required
 # in production environments by default.

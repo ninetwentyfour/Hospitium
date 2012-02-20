@@ -6,6 +6,7 @@ class Admin::ApplicationController < ActionController::Base
   
   
   def get_notice
+    require_dependency "Notification"
     @random_notice = Rails.cache.fetch('random_notifications', :expires_in => 1.minutes) do
       Notification.offset(rand(Notification.count)).first(:select => 'notifications.message, notifications.status_type')
     end
