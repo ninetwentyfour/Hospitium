@@ -21,6 +21,7 @@ class Animal < ActiveRecord::Base
   has_many :relinquish_animals
   has_many :relinquishment_contacts, :through => :relinquish_animals
   
+  
   before_create :create_uuid
   after_update :send_public_tweet
   validates_presence_of :name, :date_of_intake, :organization, :species, :animal_color, :biter, :spay_neuter, :animal_sex, :status
@@ -171,6 +172,16 @@ class Animal < ActiveRecord::Base
     end
   end
   
+  def calculate_animal_age
+    age = (Time.now.year - self.birthday.year).to_s + " years"
+    if age == "0 years"
+      age = (Time.now.month - self.birthday.month).to_s + " months"
+      if age == "0 months"
+        age = (Time.now.day - self.birthday.day).to_s + " days"
+      end
+    end
+    return age
+  end
   
   
 end

@@ -20,8 +20,8 @@ class Admin::AnimalsController < Admin::ApplicationController
   def show
     require_dependency "Animal"
     @animal = Animal.find_by_uuid(params[:id])
-
-
+    @statuses = Status.where(:organization_id => 1)
+    @b = @statuses.collect{|x| [x.id.to_s,x.status.to_s]}
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @animal }
@@ -62,16 +62,31 @@ class Admin::AnimalsController < Admin::ApplicationController
 
   # PUT /animals/1
   # PUT /animals/1.xml
+  # def update
+  #   @animal = Animal.find(params[:id])
+  # 
+  #   respond_to do |format|
+  #     if @animal.update_attributes(params[:animal])
+  #       format.html { redirect_to(@animal, :notice => 'Animal was successfully updated.') }
+  #       format.xml  { head :ok }
+  #     else
+  #       format.html { render :action => "edit" }
+  #       format.xml  { render :xml => @animal.errors, :status => :unprocessable_entity }
+  #     end
+  #   end
+  # end
+  
   def update
-    @animal = Animal.find(params[:id])
+    #@animal = Animal.find(params[:id])
+    @animal = Animal.find_by_uuid(params[:id])
 
     respond_to do |format|
-      if @animal.update_attributes(params[:animal])
+      if @animal.update_attributes(params[:user])
         format.html { redirect_to(@animal, :notice => 'Animal was successfully updated.') }
-        format.xml  { head :ok }
+        format.json { respond_with_bip(@animal) }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @animal.errors, :status => :unprocessable_entity }
+        format.json { respond_with_bip(@animal) }
       end
     end
   end

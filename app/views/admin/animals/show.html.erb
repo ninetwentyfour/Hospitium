@@ -6,7 +6,7 @@
 			<div class="alert alert-info"><a class="close" data-dismiss="alert" href="#">&times;</a> <%= notice %></div>
 		<% end %>
 		<div class="page-header">
-			<h1><%= @animal.name %></h1>
+			<h1><%= best_in_place @animal, :name, :type => :input, :nil => "Click me to add content!" %></h1>
 		</div>
 		<div class="row-fluid">
 			<div class="tabbable span4">
@@ -20,13 +20,14 @@
 				<div class="tab-content">
 					<div class="tab-pane active" id="1">
 						<div class="">
-							<p><strong>Status:</strong> <%= @animal.status.status %></p>
+							<p><strong>Status:</strong> <%= best_in_place @animal, :status_id, :type => :select, collection: @b, :nil => @animal.status.status %>
+							</p>
 							<p><strong>Species:</strong> <%= @animal.species.name %></p>
-							<p><strong>Sex:</strong> <%= @animal.animal_sex.sex unless @animal.animal_sex.blank? %></p>
-							<p><strong>Age:</strong> <%= calculate_animal_age(@animal.birthday) unless @animal.birthday.blank? %></p>
-							<p><strong>Spay/Neuter:</strong> <%= @animal.spay_neuter.spay unless @animal.spay_neuter.blank? %></p>
+							<p><strong>Sex:</strong> <%= best_in_place @animal, :animal_sex_id, :type => :select, collection: [["1", "Male"], ["2", "Female"], ["3", "Unknown"]], :nil => @animal.animal_sex.sex unless @animal.animal_sex.blank? %></p>
+							<p><strong>Age:</strong> <%= best_in_place @animal, :birthday, :type => :date, :display_as => :calculate_animal_age %></p>
+							<p><strong>Spay/Neuter:</strong> <%= best_in_place @animal, :spay_neuter_id, :type => :select, collection: [["1", "No"], ["2", "Yes"], ["3", "Unknown"]], :nil => @animal.spay_neuter.spay unless @animal.spay_neuter.blank? %></p>
 							<p><strong>Color:</strong> <%= @animal.animal_color.color %></p>
-							<p><strong>Special Needs:</strong> <%= @animal.special_needs %></p>
+							<p><strong>Special Needs:</strong> <%= best_in_place @animal, :special_needs, type: :textarea %></p>
 						</div>
 					</div>
 					<div class="tab-pane" id="2">

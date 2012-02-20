@@ -1,3 +1,4 @@
+//= require refire
 //= require jquery_ujs
 //= require jquery.pjax
 //= require_self
@@ -8,6 +9,9 @@ $(function(){
 	}else{
 		// pjax
 		$('.js-pjax').pjax('#pjax-contain');
+		$('body').bind('pjax:end',   function() { 
+			$(document).ready();
+			})
 	}
 })
 
