@@ -1,8 +1,7 @@
 //= require refire
-//= require jquery_ujs
 //= require jquery.pjax
 //= require_self
-
+//= require bootstrap
 $(function(){
 	if(window.location.pathname === "/"){
 		//do nothing
@@ -13,6 +12,8 @@ $(function(){
 			$(document).ready();
 			})
 	}
+	
+	$('.dropdown-toggle').dropdown();
 })
 
 

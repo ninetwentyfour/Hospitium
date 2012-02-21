@@ -65,9 +65,18 @@
       </ul>
 			<ul class="nav pull-right">
 				<% if user_signed_in? %>
-					<li><a href="/admin"><%= gravatar_image_tag("#{current_user.email}", :alt => "#{current_user.email}", :gravatar => { :size => 25 }, :style => "position:absolute;top:7px") %> <span style="margin-left:30px">Admin</span></a></li>
-					<li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+					<li class="divider-vertical"></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= gravatar_image_tag("#{current_user.email}", :alt => "#{current_user.email}", :gravatar => { :size => 25 }, :style => "position:absolute;top:7px") %> <span style="margin-left:30px">Account</span> <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="/admin">Dashboard<a></li>
+							<li><a href="/admin/users/<%= current_user.id %>">User Settings<a></li>
+							<li class="divider"></li>
+							<li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+						</ul>
+					</li>
 				<% else %>
+					<li class="divider-vertical"></li>
 					<li><a href="/users/sign_in">Sign In</a></li>
 				<% end %>
       </ul>
@@ -82,44 +91,44 @@
 					<li class="nav-header">
 						Navigation
 					</li>
-					<li>
-						<a class='js-pjax' href="/admin">Dashboard</a>
+					<li class="<%= current_class?('admin/home', controller.action_name) %>">
+						<a href="/admin">Dashboard</a>
 					</li>
 					<li>
 						<a href="#">Adoption Contacts</a>
 					</li>
-					<li class="active">
-						<a class='js-pjax' href="/admin/animals">Animals</a>
+					<li class="<%= current_class?('admin/animals', controller.action_name) %>">
+						<a href="/admin/animals">Animals</a>
 					</li>
-					<li>
-						<a href="#">Animals Colors</a>
+					<li class="<%= current_class?('admin/animal_colors', controller.action_name) %>">
+						<a href="/admin/animal_colors">Animals Colors</a>
 					</li>
-					<li>
-						<a href="#">Animal Weights</a>
+					<li class="<%= current_class?('admin/animal_weights', controller.action_name) %>">
+						<a href="/admin/animal_weights">Animal Weights</a>
 					</li>
-					<li>
-						<a href="#">Organizations</a>
+					<li class="<%= current_class?('admin/organizations', controller.action_name) %>">
+						<a href="/admin/organizations">Organizations</a>
 					</li>
-					<li>
-						<a href="#">Relinquishment Contacts</a>
+					<li class="<%= current_class?('admin/relinquishment_contacts', controller.action_name) %>">
+						<a href="/admin/relinquishment_contacts">Relinquishment Contacts</a>
 					</li>
-					<li>
-						<a href="#">Shelters</a>
+					<li class="<%= current_class?('admin/shelters', controller.action_name) %>">
+						<a href="/admin/shelters">Shelters</a>
 					</li>
-					<li>
-						<a href="#">Species</a>
+					<li class="<%= current_class?('admin/species', controller.action_name) %>">
+						<a href="/admin/species">Species</a>
 					</li>
-					<li>
-						<a href="#">Statuses</a>
+					<li class="<%= current_class?('admin/statuses', controller.action_name) %>">
+						<a href="/admin/statuses">Statuses</a>
 					</li>
-					<li>
-						<a href="#">Users</a>
+					<li class="<%= current_class?('admin/users', controller.action_name) %>">
+						<a href="/admin/users">Users</a>
 					</li>
-					<li>
-						<a href="#">Vet Contacts</a>
+					<li class="<%= current_class?('admin/vet_contacts', controller.action_name) %>">
+						<a href="/admin/vet_contacts">Vet Contacts</a>
 					</li>
-					<li>
-						<a href="#">Volunteer Contacts</a>
+					<li class="<%= current_class?('admin/volunteer_contacts', controller.action_name) %>">
+						<a href="/admin/volunteer_contacts">Volunteer Contacts</a>
 					</li>
 				</ul>
 				<hr />
@@ -134,7 +143,6 @@
 				</div>
 			</div>
 	</div>
-
 
 	<footer class="subnav">
 	  <p style="padding-left:10px;"><a href="/privacy-and-terms-of-service">Privacy & Terms</a> | <a href="mailto:contact@hospitium.co">contact@hospitium.co</a> | <a href="http://twitter.com/#!/hospitium_app">@hospitium_app</a> | <a href="https://github.com/ninetwentyfour/Hospitium">Fork me on GitHub</a></p>

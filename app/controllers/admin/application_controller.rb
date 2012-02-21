@@ -41,6 +41,14 @@ class Admin::ApplicationController < ActionController::Base
     @canonical_url = canonical_url
   end
   
+  def controller?(*controller)
+     controller.include?(params[:controller])
+   end
+
+   def action?(*action)
+     action.include?(params[:action])
+   end
+  
   layout :set_layout
 
   private
