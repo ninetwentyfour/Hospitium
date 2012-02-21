@@ -21,6 +21,8 @@ $(function(){
 	$(".best_in_place").best_in_place();
 	$.datepicker.setDefaults({
 	   dateFormat: 'D, dd M yy' });
+	
+	
 })
 
 

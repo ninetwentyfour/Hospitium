@@ -45,7 +45,13 @@
 						<td><%= calculate_animal_age(animal.birthday) unless animal.birthday.blank? %></td>
 						<td><%= animal.spay_neuter.spay unless animal.spay_neuter.blank? %></td>
 						<td><%= animal.animal_color.color %></td>
-						<td><a href="/admin/animals/<%= animal.uuid %>" class="js-pjax table-actions-icons"><i class="icon-eye-open tooltip-class" rel="tooltip" title="View Animal"></i></a> <a href="" class="table-actions-icons"><i class="icon-plus-sign tooltip-class" rel="tooltip" title="Duplicate Animal"></i></a> <a href="" class="table-actions-icons"><i class="icon-remove tooltip-class" rel="tooltip" title="Delete Animal"></i></a></td>
+						<td>
+							<div class="btn-group">
+								<a class="btn tooltip-class" href="/admin/animals/<%= animal.uuid %>" rel="tooltip" title="View Animal"><i class="icon-eye-open"></i></a>
+								<a class="btn tooltip-class" href="#" rel="tooltip" title="Duplicate Animal"><i class="icon-plus-sign"></i></a>
+								<a class="btn tooltip-class" href="#" rel="tooltip" title="Delete Animal"><i class="icon-remove"></i></a>
+							</div>
+						</td>
 					</tr>
 				<% end %>
 			</tbody>
@@ -154,10 +160,3 @@
 		<% end %>
 </div>
 
-<% content_for :javascript_footer do %>
-	<script>
-	// $('#myModal').modal({
-	//   show: false
-	// })
-	</script>
-<%end%>

@@ -219,6 +219,7 @@
 			<%= f.label :weight %>
 	    <%= f.text_field :weight %>
 			<%= f.label :date_of_weight %>
+			<%#= f.datepicker 'date_of_weight' %>
 	    <%= f.text_field :date_of_weight %>
 	<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
 	<%= f.hidden_field :animal_id, :value => @animal.id %>
@@ -278,9 +279,16 @@
 					}
 					$('#best_in_place_animal_<%= @animal.id %>_'+i).css("background-color","#D1EED1");
 					$('#best_in_place_animal_<%= @animal.id %>_'+i).html(updated_text);
-					$('#best_in_place_animal_<%= @animal.id %>_'+i).delay(1500).animate({backgroundColor: "#fff"}, 1000 );
+					//setTimeout("moretext()",1000);
+					//$('#best_in_place_animal_<%= @animal.id %>_'+i).delay(1500).css("background","none");
+					$('#best_in_place_animal_<%= @animal.id %>_'+i).delay(1500).animate({backgroundColor: "#f5f5f5"}, 1000 );
 				}
 			});
 		});
+	</script>
+	<script>
+		$( "#animal_weight_date_of_weight" ).datepicker();
+		$.datepicker.setDefaults({
+		   dateFormat: 'D, dd M yy' });
 	</script>
 <% end %>
