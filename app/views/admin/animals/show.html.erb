@@ -9,13 +9,15 @@
 			<div class="row-fluid">
 				<div class="span6">
 					<h1><%= best_in_place @animal, :name, :type => :input, :nil => "Click me to add content!" %></h1>
+					<span class="public_animal_check"><%= best_in_place @animal, :public, :type => :select, :collection => [[0, "Not public"], [1, "Public"]] %></span>
 				</div>
 				<div class="span6 pull-right">
-					<%= form_tag("/twitter_accounts/send_tweet", :method => "post", :class => "form-inline float-form") do %>
+					<%= form_tag("/wordpress_accounts/send_blog_post", :method => "post", :class => "form-inline float-form") do %>
 						<input name="animal_uuid" type="hidden" value="<%= @animal.uuid %>">
 						<input name="animal_id" type="hidden" value="<%= @animal.id %>">
 						<input name="animal_name" type="hidden" value="<%= @animal.name %>">
-						<button class="btn" type="submit"><i class="icon-share"></i> Send to Twitter</button>
+						<input name="animal_picture" type="hidden" value="https://s3.amazonaws.com/hospitium-static/app/public/system/images/116/medium/Nevada.JPG?1320621202">
+						<button class="btn" type="submit"><i class="icon-share"></i> Send to Wordpress</button>
 					<%end%>
 					<%= form_tag("/facebook_accounts/send_wall_post", :method => "post", :class => "form-inline float-form") do %>
 						<input name="animal_uuid" type="hidden" value="<%= @animal.uuid %>">
@@ -23,12 +25,11 @@
 						<input name="animal_name" type="hidden" value="<%= @animal.name %>">
 						<button class="btn" type="submit"><i class="icon-share"></i> Send to Facebook</button>
 					<%end%>
-					<%= form_tag("/wordpress_accounts/send_blog_post", :method => "post", :class => "form-inline float-form") do %>
+					<%= form_tag("/twitter_accounts/send_tweet", :method => "post", :class => "form-inline float-form") do %>
 						<input name="animal_uuid" type="hidden" value="<%= @animal.uuid %>">
 						<input name="animal_id" type="hidden" value="<%= @animal.id %>">
 						<input name="animal_name" type="hidden" value="<%= @animal.name %>">
-						<input name="animal_picture" type="hidden" value="https://s3.amazonaws.com/hospitium-static/app/public/system/images/116/medium/Nevada.JPG?1320621202">
-						<button class="btn" type="submit"><i class="icon-share"></i> Send to Wordpress</button>
+						<button class="btn" type="submit"><i class="icon-share"></i> Send to Twitter</button>
 					<%end%>
 				</div>
 			</div>

@@ -164,8 +164,9 @@ list-style:none !important;
 	color:#555;
 }
 .float-form{
-	float:left;
-	padding-right:10px;
+	float:right;
+	padding-left:10px;
+	padding-top:7px;
 }
 .best_in_place {
   padding: .1m;
@@ -184,7 +185,7 @@ list-style:none !important;
 .best_in_place:hover, .do_hover {
   padding-right: 1.5em;
   background: url(/assets/pencil-best-in-place.png) no-repeat right;
-  background-color: #CCC;
+  /*background-color: #CCC;*/
 }
 .info_edit {
   float: right;
@@ -209,3 +210,12 @@ background-color: #f5f5f5 !important;
 	min-height:350px;
 }
 .nav>li>a:hover{text-decoration:none;background-color:#f5f5f5;}
+.thumbnails{
+	margin-left:0px !important;
+}
+.public_animal_check{
+	font-size:14px !important;
+	font-weight:400 !important;
+	color:#555;
+	font-style:italic;
+}

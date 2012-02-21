@@ -1,7 +1,7 @@
 <% if notice.blank? %>
 
 <% else %>
-	<div class="alert alert-info" style="margin-top:60px;"><%= notice %></div>
+	<div class="alert alert-info" style="margin-top:60px;"><a class="close" data-dismiss="alert" href="#">&times;</a> <%= notice %></div>
 <% end %>
 <!-- Main hero unit for a primary marketing message or call to action -->
 <div class="hero-unit clearfix">

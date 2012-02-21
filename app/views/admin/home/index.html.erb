@@ -1,5 +1,11 @@
 <div class="row-fluid">
 	<div class="span12">
+		<% if notice.blank? %>
+
+		<% else %>
+			<div class="alert alert-info"><a class="close" data-dismiss="alert" href="#">&times;</a> <%= notice %></div>
+		<% end %>
+		
 		<h1>Dashboard</h1>
 		<% unless @final_status_hash.blank? %>
 			<%= render :partial => "animal_status_graph", :object => @final_status_hash %>

@@ -69,8 +69,8 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= gravatar_image_tag("#{current_user.email}", :alt => "#{current_user.email}", :gravatar => { :size => 25 }, :style => "position:absolute;top:7px") %> <span style="margin-left:30px"><%= current_user.username %></span> <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="/admin">Dashboard<a></li>
-							<li><a href="/admin/users/<%= current_user.id %>">User Settings<a></li>
+							<li><a href="/admin">Dashboard</a></li>
+							<li><a href="/admin/users/<%= current_user.id %>">User Settings</a></li>
 							<li class="divider"></li>
 							<li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
 						</ul>
@@ -144,9 +144,9 @@
 			</div>
 	</div>
 
-	<footer class="subnav">
+	<!-- <footer class="subnav">
 	  <p style="padding-left:10px;"><a href="/privacy-and-terms-of-service">Privacy & Terms</a> | <a href="mailto:contact@hospitium.co">contact@hospitium.co</a> | <a href="http://twitter.com/#!/hospitium_app">@hospitium_app</a> | <a href="https://github.com/ninetwentyfour/Hospitium">Fork me on GitHub</a></p>
-	</footer>
+	</footer> -->
 </div> <!-- /container -->
 <script src="http://hospitium-juggernaut.herokuapp.com/application.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
