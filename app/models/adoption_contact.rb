@@ -8,34 +8,6 @@ class AdoptionContact < ActiveRecord::Base
   
   validates_presence_of :first_name, :last_name, :address
   
-  # settings for rails admin views
-  # rails_admin do
-  #   object_label_method do
-  #     :show_name_label_method # show the user email in the admin UI instead of the user id
-  #   end
-  #   show do
-  #     group :adopt_animals do
-  #       hide
-  #     end
-  #     exclude_fields :uuid, :organization
-  #   end
-  #   create do
-  #     group :adopt_animals do
-  #       hide
-  #     end
-  #     exclude_fields :uuid
-  #   end
-  #   edit do
-  #     group :adopt_animals do
-  #       hide
-  #     end
-  #     exclude_fields :uuid
-  #   end
-  #   list do
-  #     exclude_fields :uuid, :organization
-  #   end
-  # end
-  
   #create uuid
   def create_uuid()
     self.uuid = UUIDTools::UUID.random_create.to_s

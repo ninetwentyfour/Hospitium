@@ -7,13 +7,6 @@ class TwitterAccount < ActiveRecord::Base
   belongs_to :user
   belongs_to :organization
   
-  # settings for rails admin views
-  # rails_admin do
-  #   object_label_method do
-  #     :show_twitter_label_method # show the user email in the admin UI instead of the user id
-  #   end
-  # end
-  
   
   def authorize_url(callback_url = '')
     if self.oauth_authorize_url.blank?

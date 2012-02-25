@@ -26,63 +26,6 @@ class User < ActiveRecord::Base
   validates_presence_of :organization_name
   validates_uniqueness_of :organization_name, :if => :should_validate_organization_name?
   
-  # settings for rails admin views
-  # rails_admin do
-  #   object_label_method do
-  #     :show_username_label_method # show the user email in the admin UI instead of the user id
-  #   end
-  #   show do
-  #     group :permissions do
-  #       hide
-  #     end
-  #     group :roles do
-  #       hide
-  #     end
-  #     # group :facebook_accounts do
-  #     #   hide
-  #     # end
-  #     # group :twitter_accounts do
-  #     #   hide
-  #     # end
-  #     # group :wordpress_accounts do
-  #     #   hide
-  #     # end
-  #     group :organizations do
-  #       show
-  #     end
-  #     exclude_fields :uuid, :email, :updated_at, :sign_in_count, :remember_created_at, :reset_password_token, :reset_password_sent_at, :current_sign_in_at, :last_sign_in_at,
-  #                           :current_sign_in_ip, :last_sign_in_ip, :id, :password, :password_confirmation, :confirmation_token, :confirmed_at, :confirmation_sent_at, :organization
-  #   end
-  #   create do
-  #     group :permissions do
-  #       hide
-  #     end
-  #     exclude_fields :uuid, :owner
-  #   end
-  #   edit do
-  #     group :permissions do
-  #       hide
-  #     end
-  #     group :roles do
-  #       hide
-  #     end
-  #     group :facebook_accounts do
-  #       hide
-  #     end
-  #     group :twitter_accounts do
-  #       hide
-  #     end
-  #     group :wordpress_accounts do
-  #       hide
-  #     end
-  #     exclude_fields :uuid, :reset_password_sent_at, :confirmation_token, :confirmed_at, :confirmation_sent_at, :owner
-  #   end
-  #   list do
-  #     exclude_fields :uuid, :email, :updated_at, :sign_in_count, :remember_created_at, :reset_password_token, :reset_password_sent_at, :current_sign_in_at, :last_sign_in_at,
-  #                           :current_sign_in_ip, :last_sign_in_ip, :id, :confirmation_token, :confirmed_at, :confirmation_sent_at, :organization
-  #   end
-  # end
-  
   # show the user email in the admin UI instead of the user id
   def show_username_label_method
     "#{self.username}"

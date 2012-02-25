@@ -10,33 +10,7 @@ class Post < ActiveRecord::Base
   def to_params
     "#{id}-#{title.parameterize}"
   end
-  # settings for rails admin views
-  # rails_admin do
-  #   show do
-  #     field :title
-  #     field :author
-  #     field :content
-  #   end
-  #   create do
-  #     #field :title
-  #     #field :author
-  #     field :content, :text do
-  #       ckeditor true
-  #     end
-  #   end
-  #   edit do
-  #     #field :title
-  #     #field :author
-  #     field :content, :text do
-  #       ckeditor true
-  #     end
-  #   end
-  #   list do
-  #     field :title
-  #     field :author
-  #     field :content
-  #   end
-  # end
+  
   def send_public_tweet
     account = TwitterAccount.find_by_user_id(1)
     Twitter.configure do |config|
