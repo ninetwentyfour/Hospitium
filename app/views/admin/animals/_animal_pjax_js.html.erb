@@ -1,0 +1,46 @@
+<script type="text/javascript">
+	//setup juggernaut to handle real time updating page changes
+	//this one handles changes made with best in place
+	var jug = new Juggernaut({
+		secure: false,
+		host: 'hospitium-juggernaut.herokuapp.com',
+		port: 80,
+		transports: ['xhr-polling','jsonp-polling']
+	});
+
+	jug.subscribe("/observer/<%= animal.uuid %>", function(data){
+		var updated_text = "There was an update, but a problem displaying. Please refresh."
+		jQuery.each(data.record, function(i, val) {
+			if (i != "updated_at"){
+				updated_text = val[1];
+				if ($("#best_in_place_animal_<%= animal.id %>_"+i).attr("data-collection") !== undefined) {
+					var brand = $('#best_in_place_animal_<%= animal.id %>_'+i).attr("data-collection");
+					var test = $.parseJSON(brand);
+					$.each(test, function(index, value) {
+						if(value[0] == val[1]){
+							updated_text = value[1];
+						}
+					});
+				} else {
+				    //do nothing
+				}
+				$('#best_in_place_animal_<%= animal.id %>_'+i).css("background-color","#D1EED1");
+				$('#best_in_place_animal_<%= animal.id %>_'+i).html(updated_text);
+				$('#best_in_place_animal_<%= animal.id %>_'+i).delay(1500).animate({backgroundColor: "#f5f5f5"}, 1000 );
+			}
+		});
+	});
+</script>
+<script type="text/javascript">
+	//create the date picker for adding an animal weight
+	$( "#animal_weight_date_of_weight" ).datepicker();
+	$.datepicker.setDefaults({
+	   dateFormat: 'D, dd M yy' 
+	});
+	
+	//handle modal form submit buttons.
+	$('.submit-button').click(function() {
+		var form_id = $(this).attr("data-form-id");
+	  $("#"+form_id).submit();
+	});
+</script>

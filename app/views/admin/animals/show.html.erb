@@ -48,7 +48,7 @@
 						<div class="">
 							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newStatus" >Status</a>:</strong> <%= best_in_place @animal, :status_id, :type => :select, collection: @statuses, :nil => @animal.status.status %>
 							</p>
-							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newSpecies" >Species</a>:</strong> <%= best_in_place @animal, :species_id, :type => :select, collection: @species, :nil => @animal.species.name %></p>
+							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class model-class" data-toggle="modal" href="#newSpecies" >Species</a>:</strong> <%= best_in_place @animal, :species_id, :type => :select, collection: @species, :nil => @animal.species.name %></p>
 							<p><strong>Sex:</strong> <%= best_in_place @animal, :animal_sex_id, :type => :select, collection: [["1", "Male"], ["2", "Female"], ["3", "Unknown"]], :nil => @animal.animal_sex.sex unless @animal.animal_sex.blank? %></p>
 							<p><strong>Age:</strong> <%= best_in_place @animal, :birthday, :type => :date, :display_as => :calculate_animal_age %></p>
 							<p><strong>Spay/Neuter:</strong> <%= best_in_place @animal, :spay_neuter_id, :type => :select, collection: [["1", "No"], ["2", "Yes"], ["3", "Unknown"]], :nil => @animal.spay_neuter.spay unless @animal.spay_neuter.blank? %></p>
@@ -132,14 +132,14 @@
 	<div class="modal-body">
 		<%= form_for @status, :url => admin_statuses_path do |f| %>
 			<%= f.label :status %>
-	    <%= f.text_field :status %>
-	<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+			<%= f.text_field :status %>
+			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+		<%end%>
 	</div>
 	<div class="modal-footer">
-		<%= f.submit "Add New", :class => "btn btn-primary" %>
+		<a href="#" class="btn btn-primary submit-button" data-form-id="new_status">Save changes</a>
 		<a href="#" class="btn" data-dismiss="modal">Close</a>
 	</div>
-	<%end%>
 </div>
 
 <div class="modal" id="newSpecies" style="display: none;">
@@ -150,14 +150,14 @@
 	<div class="modal-body">
 		<%= form_for @species_model, :url => "/admin/species" do |f| %>
 			<%= f.label :name %>
-	    <%= f.text_field :name %>
-	<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+			<%= f.text_field :name %>
+			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+		<%end%>
 	</div>
 	<div class="modal-footer">
-		<%= f.submit "Add New", :class => "btn btn-primary" %>
+		<a href="#" class="btn btn-primary submit-button" data-form-id="new_species">Save changes</a>
 		<a href="#" class="btn" data-dismiss="modal">Close</a>
 	</div>
-	<%end%>
 </div>
 
 <div class="modal" id="newColor" style="display: none;">
@@ -168,14 +168,14 @@
 	<div class="modal-body">
 		<%= form_for @animal_color_model, :url => admin_animal_colors_path do |f| %>
 			<%= f.label :color %>
-	    <%= f.text_field :color %>
-	<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+			<%= f.text_field :color %>
+			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+		<%end%>
 	</div>
 	<div class="modal-footer">
-		<%= f.submit "Add New", :class => "btn btn-primary" %>
+		<a href="#" class="btn btn-primary submit-button" data-form-id="new_animal_color">Save changes</a>
 		<a href="#" class="btn" data-dismiss="modal">Close</a>
 	</div>
-	<%end%>
 </div>
 
 <div class="modal" id="newShelter" style="display: none;">
@@ -186,28 +186,28 @@
 	<div class="modal-body">
 		<%= form_for @shelter_model, :url => admin_shelters_path do |f| %>
 			<%= f.label :name %>
-	    <%= f.text_field :name %>
-	    <%= f.label :contact_first %>
-	    <%= f.text_field :contact_first %>
-	    <%= f.label :contact_last %>
-	    <%= f.text_field :contact_last %>
-	    <%= f.label :address %>
-	    <%= f.text_field :address %>
-	    <%= f.label :phone %>
-	    <%= f.text_field :phone %>
-	    <%= f.label :email %>
-	    <%= f.text_field :email %>
-	    <%= f.label :website %>
-	    <%= f.text_field :website %>
-	    <%= f.label :notes %>
-	    <%= f.text_area :notes %>
-	<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+			<%= f.text_field :name %>
+			<%= f.label :contact_first %>
+			<%= f.text_field :contact_first %>
+			<%= f.label :contact_last %>
+			<%= f.text_field :contact_last %>
+			<%= f.label :address %>
+			<%= f.text_field :address %>
+			<%= f.label :phone %>
+			<%= f.text_field :phone %>
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+			<%= f.label :website %>
+			<%= f.text_field :website %>
+			<%= f.label :notes %>
+			<%= f.text_area :notes %>
+			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+		<%end%>
 	</div>
 	<div class="modal-footer">
-		<%= f.submit "Add New", :class => "btn btn-primary" %>
+		<a href="#" class="btn btn-primary submit-button" data-form-id="new_shelter">Save changes</a>
 		<a href="#" class="btn" data-dismiss="modal">Close</a>
 	</div>
-	<%end%>
 </div>
 
 <div class="modal" id="newWeight" style="display: none;">
@@ -218,18 +218,17 @@
 	<div class="modal-body">
 		<%= form_for @animal_weight_model, :url => admin_animal_weights_path do |f| %>
 			<%= f.label :weight %>
-	    <%= f.text_field :weight %>
+			<%= f.text_field :weight %>
 			<%= f.label :date_of_weight %>
-			<%#= f.datepicker 'date_of_weight' %>
-	    <%= f.text_field :date_of_weight %>
-	<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
-	<%= f.hidden_field :animal_id, :value => @animal.id %>
+			<%= f.text_field :date_of_weight %>
+			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+			<%= f.hidden_field :animal_id, :value => @animal.id %>
+		<%end%>
 	</div>
 	<div class="modal-footer">
-		<%= f.submit "Add New", :class => "btn btn-primary" %>
+		<a href="#" class="btn btn-primary submit-button" data-form-id="new_animal_weight">Save changes</a>
 		<a href="#" class="btn" data-dismiss="modal">Close</a>
 	</div>
-	<%end%>
 </div>
 
 
@@ -239,57 +238,15 @@
 <% set_meta_description("Adopt #{@animal.name} from #{@animal.organization.name}") %>
 <% set_meta_keywords("adopt,animal,pets") %>
 <% set_head_title("Adopt #{@animal.name}") %>
-<% content_for :title, "Adopt #{@animal.name} - Hospitium" %>
-<title><%= yield (:title) %></title>
 
 
-<% content_for :head do %>
-	<link rel="stylesheet" type="text/css" href="https://d4uktpxr9m70.cloudfront.net/stylesheets/shadowbox.css">
-<% end %>
 
-<% content_for :javascript_footer do %>
-	<script type="text/javascript" src="https://d4uktpxr9m70.cloudfront.net/javascripts/shadowbox.js"></script>
-	<script type="text/javascript">
-		Shadowbox.init();
-	</script>
-	<script type="text/javascript">
-		//setup juggernaut to handle real time updating page changes
-		//this one handles changes made with best in place
-		var jug = new Juggernaut({
-			secure: false,
-			host: 'hospitium-juggernaut.herokuapp.com',
-			port: 80,
-			transports: ['xhr-polling','jsonp-polling']
-		});
-
-		jug.subscribe("/observer/<%= @animal.uuid %>", function(data){
-			var updated_text = "There was an update, but a problem displaying. Please refresh."
-			jQuery.each(data.record, function(i, val) {
-				if (i != "updated_at"){
-					updated_text = val[1];
-					if ($("#best_in_place_animal_<%= @animal.id %>_"+i).attr("data-collection") !== undefined) {
-						var brand = $('#best_in_place_animal_<%= @animal.id %>_'+i).attr("data-collection");
-						var test = $.parseJSON(brand);
-						$.each(test, function(index, value) {
-							if(value[0] == val[1]){
-								updated_text = value[1];
-							}
-						});
-					} else {
-					    //do nothing
-					}
-					$('#best_in_place_animal_<%= @animal.id %>_'+i).css("background-color","#D1EED1");
-					$('#best_in_place_animal_<%= @animal.id %>_'+i).html(updated_text);
-					//setTimeout("moretext()",1000);
-					//$('#best_in_place_animal_<%= @animal.id %>_'+i).delay(1500).css("background","none");
-					$('#best_in_place_animal_<%= @animal.id %>_'+i).delay(1500).animate({backgroundColor: "#f5f5f5"}, 1000 );
-				}
-			});
-		});
-	</script>
-	<script>
-		$( "#animal_weight_date_of_weight" ).datepicker();
-		$.datepicker.setDefaults({
-		   dateFormat: 'D, dd M yy' });
-	</script>
-<% end %>
+<% if request.headers['X-PJAX'] %>
+	<title><%= yield (:title) %></title>
+	<%= render :partial => "animal_pjax_js", :locals => { :animal => @animal } %>
+<%else%>
+	<% content_for :javascript_footer do %>
+		<% content_for :title, "Adopt #{@animal.name} - Hospitium" %>
+		<%= render :partial => "animal_pjax_js", :locals => { :animal => @animal } %>
+	<%end%>
+<%end%>
