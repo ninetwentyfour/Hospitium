@@ -96,23 +96,43 @@
 			<div class="span8 pull-right">
 				<ul class="thumbnails">
 						<li class="span4 pull-right">
-							<a href="#" class="thumbnail">
-								<img height=180 width=260 src="http://hospitium-static.s3.amazonaws.com/app/public/system/images/106/original/Washington.JPG" alt="">
+							<a class="new_link image_new_button" data-toggle="modal" href="#image_1" ><i rel="tooltip" title="Click to add new" class="icon-plus tooltip-class"></i></a>
+							<a class="thumbnail" data-toggle="modal" href="#image_display_1" >
+								<% unless @animal.image.url(:medium) == "/images/original/missing.png" %>
+									<img height=180 width=260 src="<%= @animal.image.url(:medium) %>" alt="">
+								<% else %>
+									<img height=180 width=260 src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size.jpg" alt="">
+								<%end%>
 							</a>
 						</li>
 						<li class="span4 pull-right">
-							<a href="#" class="thumbnail">
-								<img height=180 width=260 src="http://hospitium-static.s3.amazonaws.com/app/public/system/images/116/original/Nevada.JPG" alt="">
+							<a class="new_link image_new_button" data-toggle="modal" href="#image_2" ><i rel="tooltip" title="Click to add new" class="icon-plus tooltip-class"></i></a>
+							<a class="thumbnail" data-toggle="modal" href="#image_display_2" >
+								<% unless @animal.second_image.url(:medium) == "/second_images/original/missing.png" %>
+									<img height=180 width=260 src="<%= @animal.second_image.url(:medium) %>" alt="">
+								<% else %>
+									<img height=180 width=260 src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size.jpg" alt="">
+								<%end%>
 							</a>
 						</li>
 						<li class="span4 pull-right">
-							<a href="#" class="thumbnail">
-								<img height=180 width=260 src="http://hospitium-static.s3.amazonaws.com/app/public/system/images/113/original/Oregon.JPG" alt="">
+							<a class="new_link image_new_button" data-toggle="modal" href="#image_3" ><i rel="tooltip" title="Click to add new" class="icon-plus tooltip-class"></i></a>
+							<a class="thumbnail" data-toggle="modal" href="#image_display_3" >
+								<% unless @animal.third_image.url(:medium) == "/third_images/medium/missing.png" %>
+									<img height=180 width=260 src="<%= @animal.third_image.url(:medium) %>" alt="">
+								<% else %>
+									<img height=180 width=260 src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size.jpg" alt="">
+								<%end%>
 							</a>
 						</li>
 						<li class="span4 pull-right">
-							<a href="#" class="thumbnail">
-								<img height=180 width=260 src="http://hospitium-static.s3.amazonaws.com/app/public/system/images/109/original/California.JPG" alt="">
+							<a class="new_link image_new_button" data-toggle="modal" href="#image_4" ><i rel="tooltip" title="Click to add new" class="icon-plus tooltip-class"></i></a>
+							<a class="thumbnail" data-toggle="modal" href="#image_display_4" >
+								<% unless @animal.fourth_image.url(:medium) == "/fourth_images/medium/missing.png" %>
+									<img height=180 width=260 src="<%= @animal.fourth_image.url(:medium) %>" alt="">
+								<% else %>
+									<img height=180 width=260 src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size.jpg" alt="">
+								<%end%>
 							</a>
 						</li>
 				</ul>
@@ -124,112 +144,16 @@
 
 <%= link_to 'Back', admin_animals_path, :class => "js-pjax" %>
 
-<div class="modal" id="newStatus" style="display: none;">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal">×</a>
-		<h3>Add New Status</h3>
-	</div>
-	<div class="modal-body">
-		<%= form_for @status, :url => admin_statuses_path do |f| %>
-			<%= f.label :status %>
-			<%= f.text_field :status %>
-			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary submit-button" data-form-id="new_status">Save changes</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
-</div>
+<%= render :partial => "modal_forms", :locals => { :status => @status, 
+	:species_model => @species_model, 
+	:animal_color_model => @animal_color_model,
+	:shelter_model => @shelter_model,
+	:animal_weight_model => @animal_weight_model,
+	:animal => @animal } %>
+	
+<%= render :partial => "modal_images", :locals => { :animal => @animal } %>
 
-<div class="modal" id="newSpecies" style="display: none;">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal">×</a>
-		<h3>Add New Species</h3>
-	</div>
-	<div class="modal-body">
-		<%= form_for @species_model, :url => "/admin/species" do |f| %>
-			<%= f.label :name %>
-			<%= f.text_field :name %>
-			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary submit-button" data-form-id="new_species">Save changes</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
-</div>
 
-<div class="modal" id="newColor" style="display: none;">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal">×</a>
-		<h3>Add New Color</h3>
-	</div>
-	<div class="modal-body">
-		<%= form_for @animal_color_model, :url => admin_animal_colors_path do |f| %>
-			<%= f.label :color %>
-			<%= f.text_field :color %>
-			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary submit-button" data-form-id="new_animal_color">Save changes</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
-</div>
-
-<div class="modal" id="newShelter" style="display: none;">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal">×</a>
-		<h3>Add New Shelter</h3>
-	</div>
-	<div class="modal-body">
-		<%= form_for @shelter_model, :url => admin_shelters_path do |f| %>
-			<%= f.label :name %>
-			<%= f.text_field :name %>
-			<%= f.label :contact_first %>
-			<%= f.text_field :contact_first %>
-			<%= f.label :contact_last %>
-			<%= f.text_field :contact_last %>
-			<%= f.label :address %>
-			<%= f.text_field :address %>
-			<%= f.label :phone %>
-			<%= f.text_field :phone %>
-			<%= f.label :email %>
-			<%= f.text_field :email %>
-			<%= f.label :website %>
-			<%= f.text_field :website %>
-			<%= f.label :notes %>
-			<%= f.text_area :notes %>
-			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary submit-button" data-form-id="new_shelter">Save changes</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
-</div>
-
-<div class="modal" id="newWeight" style="display: none;">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal">×</a>
-		<h3>Add New Animal Weight</h3>
-	</div>
-	<div class="modal-body">
-		<%= form_for @animal_weight_model, :url => admin_animal_weights_path do |f| %>
-			<%= f.label :weight %>
-			<%= f.text_field :weight %>
-			<%= f.label :date_of_weight %>
-			<%= f.text_field :date_of_weight %>
-			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
-			<%= f.hidden_field :animal_id, :value => @animal.id %>
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary submit-button" data-form-id="new_animal_weight">Save changes</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
-</div>
 
 
 

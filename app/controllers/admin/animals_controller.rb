@@ -94,11 +94,15 @@ class Admin::AnimalsController < Admin::ApplicationController
     @animal = Animal.find_by_uuid(params[:id])
 
     respond_to do |format|
-      if @animal.update_attributes(params[:user])
-        format.html { redirect_to(@animal, :notice => 'Animal was successfully updated.') }
+      if @animal.update_attributes(params[:animal])
+        format.html { 
+          #redirect_to(@animal.uuid, :notice => 'Animal was successfully updated.')
+          redirect_to(:action => "show", :id => @animal.uuid, :notice => 'Animal was successfully updated.')
+        }
         format.json { respond_with_bip(@animal) }
       else
-        format.html { render :action => "edit" }
+        #format.html { render :action => "edit" }
+        redirect_to(:action => "show", :id => @animal.uuid, :notice => 'The was a problem updating the animal.')
         format.json { respond_with_bip(@animal) }
       end
     end
