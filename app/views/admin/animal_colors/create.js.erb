@@ -1,0 +1,13 @@
+$('.main-app-row').prepend('<div class="alert alert-info"><a class="close" data-dismiss="alert" href="#">&times;</a> Animal color was successfully created.</div>');
+var brand = $('#best_in_place_animal_93_animal_color_id').attr("data-collection");
+//alert(brand);
+var old_string = String(brand);
+//alert(old_string);
+var short_string = old_string.slice(0,-1);
+alert(short_string);
+var next_collection = short_string+',["100", "bullshit"]]';
+alert(next_collection);
+$('#best_in_place_animal_93_animal_color_id').attr("data-collection", next_collection);
+//var test = $.parseJSON(brand);
+//$.extend(test, {["6","Standard Grey"]});
+$('.modal').modal('hide');

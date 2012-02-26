@@ -6,6 +6,7 @@ class Status < ActiveRecord::Base
   #belongs_to :organization
   #default_scope :order => "created_at ASC"
   #has_many :animals
+  validates_presence_of :status
   
   # show the link in the admin UI instead of the link id
   def show_status_label_method

@@ -49,9 +49,11 @@ class Admin::SpeciesController < Admin::ApplicationController
           #redirect_to(@species, :notice => 'Species was successfully created.') 
           }
         format.xml  { render :xml => @species, :status => :created, :location => @species }
+        format.js
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @species.errors, :status => :unprocessable_entity }
+        format.js
       end
     end
   end

@@ -4,6 +4,7 @@
 //= require jquery.pjax
 //= require jquery.purr
 //= require best_in_place
+//= require rails.validations
 //= require bootstrap
 //= require_self
 $(function(){

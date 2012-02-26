@@ -49,9 +49,11 @@ class Admin::AnimalColorsController < Admin::ApplicationController
           #redirect_to(@animal_color, :notice => 'Animal color was successfully created.') 
           }
         format.xml  { render :xml => @animal_color, :status => :created, :location => @animal_color }
+        format.js
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @animal_color.errors, :status => :unprocessable_entity }
+        format.js
       end
     end
   end

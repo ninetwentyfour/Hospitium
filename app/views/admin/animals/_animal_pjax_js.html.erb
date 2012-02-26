@@ -41,6 +41,9 @@
 	//handle modal form submit buttons.
 	$('.submit-button').click(function() {
 		var form_id = $(this).attr("data-form-id");
-	  $("#"+form_id).submit();
+		$("#"+form_id).fadeOut("slow", function() {
+			$("."+form_id+"_bar").fadeIn("slow");
+		});
+		$("#"+form_id).submit();
 	});
 </script>
