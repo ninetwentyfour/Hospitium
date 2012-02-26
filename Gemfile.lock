@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/ninetwentyfour/jqplot-rails.git
+  revision: b912bda2e031432009f54adb5a75f84bf2c3f11b
+  specs:
+    jqplot-rails (0.1)
+      railties (~> 3.0)
+      thor (~> 0.14)
+
+GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: 22a2a85d117ec1c45691e225448e71af4e707f1d
   specs:
@@ -297,6 +305,7 @@ DEPENDENCIES
   devise
   gravatar_image_tag
   home_run
+  jqplot-rails!
   jquery-rails
   json
   juggernaut

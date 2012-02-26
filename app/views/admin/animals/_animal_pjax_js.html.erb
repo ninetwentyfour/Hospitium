@@ -50,4 +50,33 @@
 			});
 		}
 	});
+	
+	$('a[data-toggle="tab"]').on('shown', function (e) {
+		var line1 = <%= raw(animal_weights.to_json) %>;
+	  var plot1 = $.jqplot('chart1', [line1], {
+	      title:'Animal Weight',
+	      axes:{
+	        xaxis:{
+	          renderer:$.jqplot.DateAxisRenderer,
+	          tickOptions:{
+	            formatString:'%b&nbsp;%#d'
+	          } 
+	        },
+	        yaxis:{
+	          // tickOptions:{
+	          //   formatString:'%.2f'
+	          //   }
+	        }
+	      },
+	      highlighter: {
+	        show: true,
+	        sizeAdjust: 7.5
+	      },
+	      cursor: {
+	        show: false
+	      }
+	  });
+	});
+	
+
 </script>

@@ -68,18 +68,21 @@
 					</div>
 					<div class="tab-pane" id="4">
 						<div class="showAnimalInfo">
+							<div id="chart1" style="height: 300px; width: 100%; position: relative; " class="jqplot-target"></div>
+							<!-- <div id="chart1" style="height: 300px; width: 300px; position: relative; " class="jqplot-target"></div> -->
 							<table id="data">
 								<tfoot>
 									<tr>
-										<% @animal_weights.each do |animal_weight| %>
-											<th><%= animal_weight.date_of_weight.strftime("%m/%d/%Y")%></th>
-										<%end%>
+										<%#= @animal_weights.to_json %>
+										<%# @animal_weights.each do |animal_weight| %>
+											<th><%#= animal_weight.date_of_weight.strftime("%m/%d/%Y")%></th>
+										<%#end%>
 								</tfoot>
 								<tbody>
 									<tr>
-										<%@animal_weights.each do |animal_weight|%>
-											<td><%= animal_weight.weight%></td>
-										<%end%>
+										<%#@animal_weights.each do |animal_weight|%>
+											<td><%#= animal_weight.weight%></td>
+										<%#end%>
 									</tr>
 								</tbody>
 							</table>
@@ -153,7 +156,7 @@
 	
 <%= render :partial => "modal_images", :locals => { :animal => @animal } %>
 
-
+<!-- <div id="chart1" style="height: 300px; width: 100%; position: relative; " class="jqplot-target"></div> -->
 
 
 
@@ -164,13 +167,12 @@
 <% set_head_title("Adopt #{@animal.name}") %>
 
 
-
 <% if request.headers['X-PJAX'] %>
 	<title><%= yield (:title) %></title>
-	<%= render :partial => "animal_pjax_js", :locals => { :animal => @animal } %>
+	<%= render :partial => "animal_pjax_js", :locals => { :animal => @animal, :animal_weights => @animal_weights } %>
 <%else%>
 	<% content_for :javascript_footer do %>
 		<% content_for :title, "Adopt #{@animal.name} - Hospitium" %>
-		<%= render :partial => "animal_pjax_js", :locals => { :animal => @animal } %>
+		<%= render :partial => "animal_pjax_js", :locals => { :animal => @animal, :animal_weights => @animal_weights } %>
 	<%end%>
 <%end%>

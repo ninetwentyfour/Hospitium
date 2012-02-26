@@ -5,6 +5,15 @@
 //= require jquery.purr
 //= require best_in_place
 //= require rails.validations
+//= require jquery.jqplot.min
+//= require jqplot.highlighter.min
+//= require jqplot.cursor.min
+//= require jqplot.dateAxisRenderer.min
+//= require jqplot.pieRenderer.min
+//= require jqplot.barRenderer.min
+//= require jqplot.categoryAxisRenderer.min
+//= require jqplot.pointLabels.min
+//= require bar-chart
 //= require bootstrap
 //= require_self
 $(function(){
