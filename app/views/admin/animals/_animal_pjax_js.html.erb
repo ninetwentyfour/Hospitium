@@ -41,9 +41,13 @@
 	//handle modal form submit buttons.
 	$('.submit-button').click(function() {
 		var form_id = $(this).attr("data-form-id");
-		$("#"+form_id).fadeOut("slow", function() {
-			$("."+form_id+"_bar").fadeIn("slow");
-		});
 		$("#"+form_id).submit();
+		if ($(".field_with_errors")[0]){
+		   // Do something here if class exists
+		}else{
+			$("#"+form_id).fadeOut("slow", function() {
+				$("."+form_id+"_bar").fadeIn("slow");
+			});
+		}
 	});
 </script>

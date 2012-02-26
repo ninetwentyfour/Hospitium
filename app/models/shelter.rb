@@ -4,7 +4,7 @@ class Shelter < ActiveRecord::Base
   belongs_to :organization
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
-  validates_presence_of :name
+  validates_presence_of :name, :organization_id
   
   #create uuid
   def create_uuid()

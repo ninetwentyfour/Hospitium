@@ -6,7 +6,7 @@ div.field, div.actions {
   color: green;
 }
 
-.field_with_errors {
+.field_with_errors label, .field_with_errors input {
 /*  padding: 2px;
   background-color: red;
   display: table;*/
@@ -20,10 +20,8 @@ background-image: none;
   border-style: solid;
   border-width: 1px;
 display: table;*/
-color: 
-#B94A48;
-border-color: 
-#B94A48;
+color: #B94A48 !important;
+border-color: #B94A48 !important;
 }
 
 #error_explanation {

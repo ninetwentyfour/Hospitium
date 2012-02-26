@@ -3,6 +3,7 @@ class AnimalColor < ActiveRecord::Base
   default_scope :order => "color ASC"
   belongs_to :organization
   before_update :create_uuid
+  validates_presence_of :color, :organization_id
   
   #create uuid
   def create_uuid()

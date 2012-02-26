@@ -8,7 +8,7 @@
 			<div class="bar" style="width: 100%;"></div>
 		</div>
 		<p class="new_status_bar" style="display:none;">Loading...</p>
-		<%= form_for status, :url => admin_statuses_path, :remote => true do |f| %>
+		<%= form_for status, :url => admin_statuses_path, :validate => true do |f| %>
 			<%= f.label :status %>
 			<%= f.text_field :status %>
 			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
@@ -30,7 +30,7 @@
 			<div class="bar" style="width: 100%;"></div>
 		</div>
 		<p class="new_species_bar" style="display:none;">Loading...</p>
-		<%= form_for species_model, :url => "/admin/species", :remote => true do |f| %>
+		<%= form_for species_model, :url => "/admin/species", :validate => true do |f| %>
 			<%= f.label :name %>
 			<%= f.text_field :name %>
 			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
@@ -52,7 +52,7 @@
 			<div class="bar" style="width: 100%;"></div>
 		</div>
 		<p class="new_animal_color_bar" style="display:none;">Loading...</p>
-		<%= form_for animal_color_model, :url => admin_animal_colors_path, :remote => true do |f| %>
+		<%= form_for animal_color_model, :url => admin_animal_colors_path, :validate => true do |f| %>
 			<%= f.label :color %>
 			<%= f.text_field :color %>
 			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
@@ -110,7 +110,7 @@
 			<div class="bar" style="width: 100%;"></div>
 		</div>
 		<p class="new_animal_weight_bar" style="display:none;">Loading...</p>
-		<%= form_for animal_weight_model, :url => admin_animal_weights_path do |f| %>
+		<%= form_for animal_weight_model, :url => admin_animal_weights_path, :validate => true do |f| %>
 			<%= f.label :weight %>
 			<%= f.text_field :weight %>
 			<%= f.label :date_of_weight %>
@@ -137,7 +137,7 @@
 		</div>
 		<p class="first_image_upload_bar" style="display:none;">Loading...</p>
 		<%= form_for animal, :url => admin_animal_path, :html => { :id => "first_image_upload" } do |f| %>
-			<%= f.file_field :image %>
+			<%= f.file_field :image, :accept => "image/jpeg,image/jpg,image/png" %>
 			<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
 		<%end%>
 	</div>
@@ -157,8 +157,8 @@
 			<div class="bar" style="width: 100%;"></div>
 		</div>
 		<p class="second_image_upload_bar" style="display:none;">Loading...</p>
-		<%= form_for animal, :url => admin_animal_path, :html => { :id => "second_image_upload" } do |f| %>
-			<%= f.file_field :second_image %>
+		<%= form_for animal, :url => admin_animal_path, :html => { :id => "second_image_upload" }, :validate => true do |f| %>
+			<%= f.file_field :second_image, :accept => "image/jpeg,image/jpg,image/png" %>
 			<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
 		<%end%>
 	</div>
@@ -179,7 +179,7 @@
 		</div>
 		<p class="third_image_upload_bar" style="display:none;">Loading...</p>
 		<%= form_for animal, :url => admin_animal_path, :html => { :id => "third_image_upload" } do |f| %>
-			<%= f.file_field :third_image %>
+			<%= f.file_field :third_image, :accept => "image/jpeg,image/jpg,image/png" %>
 			<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
 		<%end%>
 	</div>
@@ -200,7 +200,7 @@
 		</div>
 		<p class="fourth_image_upload_bar" style="display:none;">Loading...</p>
 		<%= form_for animal, :url => admin_animal_path, :html => { :id => "fourth_image_upload" } do |f| %>
-			<%= f.file_field :fourth_image %>
+			<%= f.file_field :fourth_image, :accept => "image/jpeg,image/jpg,image/png" %>
 			<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
 		<%end%>
 	</div>
