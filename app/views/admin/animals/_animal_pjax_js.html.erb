@@ -59,7 +59,10 @@
 		  var plot1 = $.jqplot('chart1', [line1], {
 		      title:'Animal Weight',
 					grid: {
-	            background: '#FCF8E3'
+	            background: '#FCF8E3',
+			        gridLineColor: '#FBEED5',    // *Color of the grid lines.
+			        borderColor: '#DDD',     // CSS color spec for border around grid.
+			shadow:false
 	        },
 			    seriesDefaults: {
 			        color: '#49AFCD',      // CSS color spec to use for the line.  Determined automatically.
