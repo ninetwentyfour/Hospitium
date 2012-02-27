@@ -14,10 +14,10 @@ class Admin::HomeController < Admin::ApplicationController
     
     #get twitter feed for users twitter account if one exists
     #twitter = TwitterAccount.find_by_user_id(current_user.id)
-
-    twitter = Rails.cache.fetch("twitter_account_user_#{current_user.id}", :expires_in => 35.minutes) do
-       TwitterAccount.find(:first, :select => 'twitter_accounts.oauth_token, twitter_accounts.oauth_token_secret', :conditions => {:user_id => current_user.id})
-    end
+    #require_dependency "TwitterAccount"
+    #twitter = Rails.cache.fetch("twitter_account_user_#{current_user.id}", :expires_in => 35.minutes) do
+       twitter = TwitterAccount.find(:first, :select => 'twitter_accounts.oauth_token, twitter_accounts.oauth_token_secret', :conditions => {:user_id => current_user.id})
+    #end
     unless twitter.blank?
       Twitter.configure do |config|
         config.consumer_key = 'Is9pdOhRRNhx95wGBiWg'
