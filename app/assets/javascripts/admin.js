@@ -27,11 +27,6 @@ $(function(){
 				load_scripts();
 			})
 	}
-	// $('.dropdown-toggle').dropdown();
-	// $('.tooltip-class').tooltip();
-	// $(".best_in_place").best_in_place();
-	// $.datepicker.setDefaults({
-	//    dateFormat: 'D, dd M yy' });
 	load_scripts();
 	
 	

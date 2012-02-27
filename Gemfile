@@ -32,6 +32,7 @@ gem 'squeel'
 gem 'meta_search'
 gem 'client_side_validations'
 gem 'jqplot-rails', :git => "git://github.com/ninetwentyfour/jqplot-rails.git"
+gem 'asset_sync'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -39,6 +40,7 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
+  gem 'closure-compiler'
 end
 
 gem 'jquery-rails'

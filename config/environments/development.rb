@@ -28,11 +28,17 @@ AnimalTracker::Application.configure do
   
   # Do not compress assets
   config.assets.compress = false
+  # config.assets.js_compressor = :closure
+  # config.assets.css_compressor = :yui
+  # config.assets.digest = true
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  #config.assets.debug = true
   
   Paperclip.options[:command_path] = "/usr/local/bin/"
   Paperclip::Attachment.default_options[:command_path] = "/usr/local/bin"
+  
+  #config.action_controller.asset_host = "http://static-assets%d.hospitium.co"
+  #config.action_controller.asset_host = "http://d1pm9e0xzdmxcb.cloudfront.net"
 end
 
