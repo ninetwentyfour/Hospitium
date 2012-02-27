@@ -16,7 +16,6 @@
 //= require bar-chart
 //= require bootstrap
 //= require_self
-
 $(function(){
 	if(window.location.pathname === "/"){
 		//do nothing

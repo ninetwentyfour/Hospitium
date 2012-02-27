@@ -67,26 +67,8 @@
 						<p><strong>Date of Well Check:</strong> <%= best_in_place @animal, :date_of_well_check, :type => :date, :display_as => :formatted_well_date %></p>
 					</div>
 					<div class="tab-pane" id="4">
-						<div class="showAnimalInfo">
+						<div class="">
 							<div id="chart1" style="height: 300px; width: 100%; position: relative; " class="jqplot-target"></div>
-							<!-- <div id="chart1" style="height: 300px; width: 300px; position: relative; " class="jqplot-target"></div> -->
-							<table id="data">
-								<tfoot>
-									<tr>
-										<%#= @animal_weights.to_json %>
-										<%# @animal_weights.each do |animal_weight| %>
-											<th><%#= animal_weight.date_of_weight.strftime("%m/%d/%Y")%></th>
-										<%#end%>
-								</tfoot>
-								<tbody>
-									<tr>
-										<%#@animal_weights.each do |animal_weight|%>
-											<td><%#= animal_weight.weight%></td>
-										<%#end%>
-									</tr>
-								</tbody>
-							</table>
-							<div id="holder"></div>
 							<a class="btn" data-toggle="modal" href="#newWeight" ><i class="icon-plus"></i> Add New Weight</a>
 						</div>
 					</div>
