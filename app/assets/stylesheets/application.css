@@ -5,5 +5,5 @@
 *= require style
 *= require twitter
 *= require_tree ./admin
-*= require jquery.jqplot.min
+*= require jqplot.1.0.0b2_r792
 */

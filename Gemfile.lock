@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ninetwentyfour/jqplot-rails.git
-  revision: b912bda2e031432009f54adb5a75f84bf2c3f11b
+  revision: 964ecb4f5a920dcf08c0fa70032fa77bc6ba37e5
   specs:
     jqplot-rails (0.1)
       railties (~> 3.0)

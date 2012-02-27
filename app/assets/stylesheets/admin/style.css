@@ -411,3 +411,17 @@ list-style:none !important;
 	list-style:none !important;
 	line-height:10px;
 }
+div.jqplot-table-legend-swatch {
+width: 10px !important;
+height: 10px !important;
+margin-top:2px;
+border-radius:10px;
+border:none !important;
+}
+td.jqplot-table-legend > div {
+border:none !important;
+}
+td.jqplot-table-legend {
+vertical-align: middle;
+padding: 2px !important;
+}
