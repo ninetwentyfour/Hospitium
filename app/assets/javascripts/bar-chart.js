@@ -11,7 +11,7 @@ $(document).ready(function() {
 				var random = (Math.floor(Math.random() * 256));
 				var random2 = (Math.floor(Math.random() * 206));
 				$(this).attr("data-animate-label", "barchart_animal_species_"+random+"_"+random2);
-				$('#chartKey').append('<li id="barchart_animal_species_'+random+'_'+random2+'"><div class="circle" style="width:20px;height:20px;background-color:'+hue+';"></div>'+label+'</li>');
+				$('#chartKey').append('<li id="barchart_animal_species_'+random+'_'+random2+'"><div class="circle" style="width:10px;height:10px;margin-top:2px;background-color:'+hue+';"></div>'+label+'</li>');
    });
 	$('.countAnimal').each(function() {
 	  var bar_width;
@@ -43,7 +43,7 @@ $(document).ready(function() {
 				var random = (Math.floor(Math.random() * 256));
 				var random2 = (Math.floor(Math.random() * 206));
 				$(this).attr("data-animate-label", "barchart_animal_species_"+random+"_"+random2);
-				$('#chartKey2').append('<li id="barchart_animal_species_'+random+'_'+random2+'"><div class="circle" style="width:20px;height:20px;background-color:'+hue+';"></div>'+label+'</li>');
+				$('#chartKey2').append('<li id="barchart_animal_species_'+random+'_'+random2+'"><div class="circle" style="width:10px;height:10px;margin-top:2px;background-color:'+hue+';"></div>'+label+'</li>');
    });
 	$('.countAnimal2').each(function() {
 	  var bar_width;

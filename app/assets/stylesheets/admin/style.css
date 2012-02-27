@@ -244,7 +244,7 @@ float:left;
     .timelineAnimal li { 
       position: relative;
       float: left;
-      width: 40px; 
+      width: 30px; 
       margin: 0 0.1em;
       height: 200px; 
 list-style:none !important;
@@ -321,6 +321,7 @@ list-style:none !important;
 #chartKey li{
 	margin:10px;
 	list-style:none !important;
+	line-height:10px;
 }
 .circle{
 	float:left;
@@ -339,7 +340,7 @@ float:left;
     .timelineAnimal2 li { 
       position: relative;
       float: left;
-      width: 40px; 
+      width: 30px; 
       margin: 0 0.1em;
       height: 200px; 
 list-style:none !important;
@@ -408,4 +409,5 @@ list-style:none !important;
 #chartKey2 li{
 	margin:10px;
 	list-style:none !important;
+	line-height:10px;
 }
