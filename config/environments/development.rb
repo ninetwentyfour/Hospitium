@@ -27,7 +27,7 @@ AnimalTracker::Application.configure do
   config.cache_store = :dalli_store
   
   # Do not compress assets
-  config.assets.compress = true
+  config.assets.compress = false
   # config.assets.js_compressor = :closure
   # config.assets.css_compressor = :yui
   # config.assets.digest = true

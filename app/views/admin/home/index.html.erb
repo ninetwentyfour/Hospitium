@@ -12,15 +12,17 @@
 			<div class="span12">
 				<h2>Animal Statuses</h2>
 				<div id="chart1" style="height: 300px; width: 500px; float:left; " class="jqplot-target"></div>
-				<ul class="timelineAnimal">
-					<% @final_status_hash['bar'].each do |key, value| %>
-						<li class="barAnimal"><a href="#">
-							<span class="labelAnimal"><%= key + " count: " + value["count"]%></span>
-							<span class="countAnimal tooltip-class" data-animate-length="<%= number_to_percentage(value["percent"], :precision => 0)%>" style="height: 2%;opacity:0;" title="<%= value["count"] %>"><%= value["count"] %></span>
-						</a></li>
-					<%end%>
-				</ul>
-				<ul id="chartKey"></ul>
+				<div class="barchart">
+					<ul class="timelineAnimal">
+						<% @final_status_hash['bar'].each do |key, value| %>
+							<li class="barAnimal"><a href="#">
+								<span class="labelAnimal"><%= key + " count: " + value["count"]%></span>
+								<span class="countAnimal tooltip-class" data-animate-length="<%= number_to_percentage(value["percent"], :precision => 0)%>" style="height: 2%;opacity:0;" title="<%= value["count"] %>"><%= value["count"] %></span>
+							</a></li>
+						<%end%>
+					</ul>
+					<ul id="chartKey-bar"></ul>
+				</div>
 			</div>
 		</div>
 
@@ -28,15 +30,17 @@
 			<div class="span12">
 				<h2>Animal Species</h2>
 				<div id="chart2" style="height: 300px; width: 500px; float:left; " class="jqplot-target"></div>
-				<ul class="timelineAnimal2">
-					<% @final_species_hash['bar'].each do |key, value| %>
-						<li class="barAnimal2"><a href="#">
-							<span class="labelAnimal2"><%= key + " count: " + value["count"]%></span>
-							<span class="countAnimal2 tooltip-class" data-animate-length="<%= number_to_percentage(value["percent"], :precision => 0)%>" style="height: 2%;opacity:0;" title="<%= value["count"] %>"><%= value["count"] %></span>
-						</a></li>
-					<%end%>
-				</ul>
-				<ul id="chartKey2"></ul>
+				<div class="barchart">
+					<ul class="timelineAnimal">
+						<% @final_species_hash['bar'].each do |key, value| %>
+							<li class="barAnimal"><a href="#">
+								<span class="labelAnimal"><%= key + " count: " + value["count"]%></span>
+								<span class="countAnimal tooltip-class" data-animate-length="<%= number_to_percentage(value["percent"], :precision => 0)%>" style="height: 2%;opacity:0;" title="<%= value["count"] %>"><%= value["count"] %></span>
+							</a></li>
+						<%end%>
+					</ul>
+					<ul id="chartKey-bar"></ul>
+				</div>
 			</div>
 		</div>
 		<hr />
