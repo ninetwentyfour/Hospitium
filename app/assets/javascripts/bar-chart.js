@@ -1,5 +1,6 @@
 $(document).ready(function() { 
 	var cntt = 0;
+	//create the key of the bar chart
 	$(".barchart").each(function () {
 		$(this ).find("li.barAnimal").each(function () {
 			z = cntt++;
@@ -12,6 +13,7 @@ $(document).ready(function() {
 			$(this).parent().parent().children("#chartKey-bar").append('<li id="barchart_animal_species_'+random+'_'+random2+'"><div class="circle" style="width:10px;height:10px;margin-top:2px;background-color:'+hue+';"></div>'+label+'</li>');
 		});
 	});
+	//animate bars
 	$('.countAnimal').each(function() {
 		var bar_width;
 		bar_width = $(this).attr("data-animate-length");
@@ -20,6 +22,7 @@ $(document).ready(function() {
 		}
 		$(this).animate({height: bar_width,opacity: 1}, 1500, "swing" );
 	});
+	//handle hovers
 	$(".barAnimal").mouseenter(function(){
 		var bar_width;
 		bar_width = $(this).attr("data-animate-label");
