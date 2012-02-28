@@ -342,4 +342,12 @@ border:none !important;
 td.jqplot-table-legend {
 vertical-align: middle;
 padding: 2px !important;
+line-height: 15px !important;
+}
+table.jqplot-table-legend {
+margin-top: 12px;
+margin-bottom: 12px;
+margin-left: 12px;
+margin-right: 12px;
+top: 0px !important;
 }
