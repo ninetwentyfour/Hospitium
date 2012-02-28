@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ninetwentyfour/jqplot-rails.git
-  revision: 964ecb4f5a920dcf08c0fa70032fa77bc6ba37e5
+  revision: 6128475563cbd6789d6b489773a33128e9c7fe29
   specs:
     jqplot-rails (0.1)
       railties (~> 3.0)
@@ -142,7 +142,7 @@ GEM
     gravatar_image_tag (1.0.0)
     hike (1.2.1)
     hirb (0.5.0)
-    home_run (1.0.5)
+    home_run (1.0.6)
     httparty (0.8.1)
       multi_json
       multi_xml

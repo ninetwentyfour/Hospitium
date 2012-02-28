@@ -84,6 +84,7 @@
 							rendererOptions: {
 								// Put data labels on the pie slices.
 								// By default, labels show the percentage of the slice.
+								sliceMargin: 8,
 								showDataLabels: true
 							}
 						}, 
@@ -109,12 +110,46 @@
 							rendererOptions: {
 								// Put data labels on the pie slices.
 								// By default, labels show the percentage of the slice.
+								sliceMargin: 8,
 								showDataLabels: true
 							}
 						}, 
 						legend: { show:true, location: 'e' }
 					}
 					);
+					
+					
+					$('#chart1').bind('jqplotDataHighlight', function (ev, seriesIndex, pointIndex, data ) {
+						//alert(data[0]);
+						//$("td:contains('"+data[0]+"')").css("text-decoration", "underline");
+						$("td:contains('"+data[0]+"')").css("font-weight", "600");
+						$("td:contains('"+data[0]+"')").attr("data-highlight-chart-key", "true");
+						$("td:contains('"+data[0]+"')").parent().find('div.jqplot-table-legend-swatch').css("box-shadow", "0 0 5px #333");
+					});    
+				
+					$('#chart1').bind('jqplotDataUnhighlight', function (ev, seriesIndex, pointIndex, data) {
+						var highlighted = $("tr").find("[data-highlight-chart-key='true']");
+						highlighted.css("font-weight", "400");
+						highlighted.parent().find('div.jqplot-table-legend-swatch').css("box-shadow", "0 0 0px #333");
+						highlighted.removeAttr("data-highlight-chart-key");
+					});
+					
+					$('#chart2').bind('jqplotDataHighlight', function (ev, seriesIndex, pointIndex, data ) {
+						//alert(data[0]);
+						//$("td:contains('"+data[0]+"')").css("text-decoration", "underline");
+						$("td:contains('"+data[0]+"')").css("font-weight", "600");
+						$("td:contains('"+data[0]+"')").attr("data-highlight-chart-key", "true");
+						$("td:contains('"+data[0]+"')").parent().find('div.jqplot-table-legend-swatch').css("box-shadow", "0 0 5px #333");
+					});    
+				
+					$('#chart2').bind('jqplotDataUnhighlight', function (ev, seriesIndex, pointIndex, data) {
+						var highlighted = $("tr").find("[data-highlight-chart-key='true']");
+						highlighted.css("font-weight", "400");
+						highlighted.parent().find('div.jqplot-table-legend-swatch').css("box-shadow", "0 0 0px #333");
+						highlighted.removeAttr("data-highlight-chart-key");
+					});
+					
+					
 				});
 			</script>
 		<% end %>

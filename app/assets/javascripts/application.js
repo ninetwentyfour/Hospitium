@@ -9,7 +9,7 @@
 //= require jqplot.highlighter.min
 //= require jqplot.cursor.min
 //= require jqplot.dateAxisRenderer.min
-//= require jqplot.pieRenderer.min
+//= require jqplot.pieRenderer
 //= require jqplot.barRenderer.min
 //= require jqplot.categoryAxisRenderer.min
 //= require jqplot.pointLabels.min
