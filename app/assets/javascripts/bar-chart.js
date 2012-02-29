@@ -10,7 +10,7 @@ $(document).ready(function() {
 			var random = (Math.floor(Math.random() * 256));
 			var random2 = (Math.floor(Math.random() * 206));
 			$(this).attr("data-animate-label", "barchart_animal_species_"+random+"_"+random2);			
-			$(this).parent().parent().children("#chartKey-bar").append('<li id="barchart_animal_species_'+random+'_'+random2+'"><div class="circle" style="width:10px;height:10px;margin-top:2px;background-color:'+hue+';"></div>'+label+'</li>');
+			$(this).parent().parent().children(".chartKey-bar").append('<li id="barchart_animal_species_'+random+'_'+random2+'"><div class="circle" style="width:10px;height:10px;background-color:'+hue+';"></div>'+label+'</li>');
 		});
 	});
 	//animate bars

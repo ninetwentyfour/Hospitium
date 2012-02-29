@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ninetwentyfour/jqplot-rails.git
-  revision: 434de4e3d92173a60b9396daefcc605431b55000
+  revision: fb31573912a90388f392d48fb5c4a18f954c66c4
   specs:
     jqplot-rails (0.1)
       railties (~> 3.0)
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/thoughtbot/paperclip.git
-  revision: 17c5b8fee30d49aefe8c4de4dce54ce516bfa1b1
+  revision: 9e389588740c04bd682704cfc835f428f624b7cf
   specs:
     paperclip (2.7.0)
       activerecord (>= 2.3.0)
@@ -152,8 +152,8 @@ GEM
       git (>= 1.2.5)
       rake
     journey (1.0.3)
-    jquery-rails (2.0.0)
-      railties (>= 3.2.0.beta, < 5.0)
+    jquery-rails (2.0.1)
+      railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
     json (1.6.1)
     json_pure (1.6.5)

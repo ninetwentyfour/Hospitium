@@ -314,20 +314,24 @@ list-style:none !important;
 	border-radius: 3px 3px 3px 3px !important;
 	font-size:10px;
 }
-#chartKey-bar{
+.chartKey-bar{
 	float:left;
 	margin-left:50px;
 }
-#chartKey-bar li{
+.chartKey-bar li{
 	margin:10px;
 	list-style:none !important;
 	line-height:10px;
+}
+.pie-key{
+	position:relative;
+	left: 44%;
+	top:0px !important;
 }
 .circle{
 	float:left;
 	margin-right:10px;
 	border-radius:10px;
-	margin-top: -3px;
 }
 div.jqplot-table-legend-swatch {
 width: 10px !important;
