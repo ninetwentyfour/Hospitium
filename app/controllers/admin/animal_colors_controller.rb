@@ -1,9 +1,12 @@
 class Admin::AnimalColorsController < Admin::ApplicationController
+  load_and_authorize_resource
   # GET /animal_colors
   # GET /animal_colors.xml
   def index
-    @animal_colors = AnimalColor.all
-
+    #@animal_colors = AnimalColor.find(:all, :conditions => {:organization_id => current_user.organization_id})
+    @search = AnimalColor.search(params[:search])
+    @animal_colors = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC")
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @animal_colors }
@@ -14,6 +17,7 @@ class Admin::AnimalColorsController < Admin::ApplicationController
   # GET /animal_colors/1.xml
   def show
     @animal_color = AnimalColor.find(params[:id])
+    @animals = Animal.find(:all, :conditions => {:animal_color_id => @animal_color.id })
 
     respond_to do |format|
       format.html # show.html.erb

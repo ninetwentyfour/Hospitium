@@ -1,4 +1,5 @@
 class Admin::AdoptionContactsController < Admin::ApplicationController
+  load_and_authorize_resource
   # GET /adoption_contacts
   # GET /adoption_contacts.xml
   def index

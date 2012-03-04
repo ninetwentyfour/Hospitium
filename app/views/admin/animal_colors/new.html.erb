@@ -1,5 +1,21 @@
-<h1>New animal_color</h1>
+<div class="row-fluid">
+	<div class="span12 main-app-row">
+		<% if notice.blank? %>
 
-<%= render 'form' %>
+		<% else %>
+			<div class="alert alert-info"><a class="close" data-dismiss="alert" href="#">&times;</a> <%= notice %></div>
+		<% end %>
+		<div class="well">
+			<div class="row-fluid">
+				<div class="span12">
+					<h1>New animal color</h1>
+				</div>
+			</div>
+		</div>
 
-<%= link_to 'Back', animal_colors_path %>
+		<%= render 'form' %>
+
+
+	</div>
+</div>
+
