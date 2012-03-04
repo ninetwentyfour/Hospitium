@@ -52,12 +52,16 @@ class Animal < ActiveRecord::Base
   end
   
   def calculate_animal_age
-    age = (Time.now.year - self.birthday.year).to_s + " years"
-    if age == "0 years"
-      age = (Time.now.month - self.birthday.month).to_s + " months"
-      if age == "0 months"
-        age = (Time.now.day - self.birthday.day).to_s + " days"
+    unless self.birthday.blank?
+      age = (Time.now.year - self.birthday.year).to_s + " years"
+      if age == "0 years"
+        age = (Time.now.month - self.birthday.month).to_s + " months"
+        if age == "0 months"
+          age = (Time.now.day - self.birthday.day).to_s + " days"
+        end
       end
+    else
+      age = ""
     end
     return age
   end
