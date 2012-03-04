@@ -53,7 +53,7 @@
 							<p><strong>Age:</strong> <%= best_in_place @animal, :birthday, :type => :date, :display_as => :calculate_animal_age %></p>
 							<p><strong>Spay/Neuter:</strong> <%= best_in_place @animal, :spay_neuter_id, :type => :select, collection: [["1", "No"], ["2", "Yes"], ["3", "Unknown"]], :nil => @animal.spay_neuter.spay unless @animal.spay_neuter.blank? %></p>
 							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newColor" >Color</a>:</strong> <%= best_in_place @animal, :animal_color_id, :type => :select, collection: @colors, :nil => @animal.animal_color.color %></p>
-							<p><strong>Special Needs:</strong> <%= best_in_place @animal, :special_needs, type: :textarea %></p>
+							<p><strong>Special Needs:</strong> <%= best_in_place @animal, :special_needs, type: :textarea, :nil => "Click me to add content!" %></p>
 						</div>
 					</div>
 					<div class="tab-pane" id="2">
@@ -64,7 +64,7 @@
 					</div>
 					<div class="tab-pane" id="3">
 						<p><strong>Date of Intake:</strong> <%= best_in_place @animal, :date_of_intake, :type => :date, :display_as => :formatted_intake_date %></p>
-						<p><strong>Date of Well Check:</strong> <%= best_in_place @animal, :date_of_well_check, :type => :date, :display_as => :formatted_well_date %></p>
+						<p><strong>Date of Well Check:</strong> <%= best_in_place @animal, :date_of_well_check, :nil => "Click me to add content!", :type => :date, :display_as => :formatted_well_date %></p>
 					</div>
 					<div class="tab-pane" id="4">
 						<div class="">
@@ -84,7 +84,7 @@
 						<li class="span4 pull-right">
 							<a class="new_link image_new_button" data-toggle="modal" href="#image_1" ><i rel="tooltip" title="Click to add new" class="icon-plus tooltip-class"></i></a>
 							<a class="thumbnail" data-toggle="modal" href="#image_display_1" >
-								<% unless @animal.image.url(:medium) == "/images/original/missing.png" %>
+								<% unless @animal.image.url(:medium) == "/images/medium/missing.png" %>
 									<img height=180 width=260 src="<%= @animal.image.url(:medium) %>" alt="">
 								<% else %>
 									<img height=180 width=260 src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size.jpg" alt="">
@@ -94,7 +94,7 @@
 						<li class="span4 pull-right">
 							<a class="new_link image_new_button" data-toggle="modal" href="#image_2" ><i rel="tooltip" title="Click to add new" class="icon-plus tooltip-class"></i></a>
 							<a class="thumbnail" data-toggle="modal" href="#image_display_2" >
-								<% unless @animal.second_image.url(:medium) == "/second_images/original/missing.png" %>
+								<% unless @animal.second_image.url(:medium) == "/second_images/medium/missing.png" %>
 									<img height=180 width=260 src="<%= @animal.second_image.url(:medium) %>" alt="">
 								<% else %>
 									<img height=180 width=260 src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size.jpg" alt="">

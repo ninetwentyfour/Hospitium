@@ -66,7 +66,12 @@ class Admin::AnimalsController < Admin::ApplicationController
 
     respond_to do |format|
       if @animal.save
-        format.html { redirect_to(@animal, :notice => 'Animal was successfully created.') }
+        #format.html { redirect_to(@animal, :notice => 'Animal was successfully created.') }
+        format.html { 
+          #redirect_to(@animal.uuid, :notice => 'Animal was successfully updated.')
+          flash[:notice] = 'Animal was successfully created.'
+          redirect_to(:action => "show", :id => @animal.uuid)
+        }
         format.xml  { render :xml => @animal, :status => :created, :location => @animal }
       else
         format.html { render :action => "new" }

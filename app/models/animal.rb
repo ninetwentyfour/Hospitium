@@ -72,12 +72,20 @@ class Animal < ActiveRecord::Base
   end
   
   def formatted_intake_date
-    age = self.date_of_intake.strftime("%a, %b %e at %l:%M")
+    unless self.date_of_intake.blank?
+      age = self.date_of_intake.strftime("%a, %b %e at %l:%M")
+    else
+      age = ""
+    end
     return age
   end
   
   def formatted_well_date
-    age = self.date_of_well_check.strftime("%a, %b %e at %l:%M")
+    unless self.date_of_well_check.blank?
+      age = self.date_of_well_check.strftime("%a, %b %e at %l:%M")
+    else
+      age = ""
+    end
     return age
   end
   

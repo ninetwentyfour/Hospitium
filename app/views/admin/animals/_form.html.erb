@@ -1,85 +1,75 @@
-<%= form_for(@animal) do |f| %>
-  <% if @animal.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@animal.errors.count, "error") %> prohibited this animal from being saved:</h2>
+<div class="row-fluid">
+	<div class="span12">
+		<%= form_for @animal, :url => admin_animals_path, :validate => true do |f| %>
+		  <% if @animal.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(@animal.errors.count, "error") %> prohibited this animal from being saved:</h2>
 
-      <ul>
-      <% @animal.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+		      <ul>
+		      <% @animal.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+			<div class="span4">
+		    <%= f.label :name %>
+		    <%= f.text_field :name, :class=> "span10" %>
+				
+				
+		    <%= f.label :species %>
+				<%= collection_select(:animal, :species_id, Species.find(:all, :conditions => {:organization_id => current_user.organization_id}), :id, :name, {}, {:class=>'span10'}) %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :uuid %><br />
-    <%= f.text_field :uuid %>
-  </div>
-  <div class="field">
-    <%= f.label :previous_name %><br />
-    <%= f.text_field :previous_name %>
-  </div>
-  <div class="field">
-    <%= f.label :species %><br />
-    <%= f.text_field :species %>
-  </div>
-  <div class="field">
-    <%= f.label :sex %><br />
-    <%= f.text_field :sex %>
-  </div>
-  <div class="field">
-    <%= f.label :spay_neuter %><br />
-    <%= f.text_field :spay_neuter %>
-  </div>
-  <div class="field">
-    <%= f.label :color %><br />
-    <%= f.text_field :color %>
-  </div>
-  <div class="field">
-    <%= f.label :age %><br />
-    <%= f.text_field :age %>
-  </div>
-  <div class="field">
-    <%= f.label :biter %><br />
-    <%= f.text_field :biter %>
-  </div>
-  <div class="field">
-    <%= f.label :special_needs %><br />
-    <%= f.text_area :special_needs %>
-  </div>
-  <div class="field">
-    <%= f.label :diet %><br />
-    <%= f.text_area :diet %>
-  </div>
-  <div class="field">
-    <%= f.label :date_of_intake %><br />
-    <%= f.datetime_select :date_of_intake %>
-  </div>
-  <div class="field">
-    <%= f.label :date_of_well_check %><br />
-    <%= f.datetime_select :date_of_well_check %>
-  </div>
-  <div class="field">
-    <%= f.label :shelter %><br />
-    <%= f.text_field :shelter %>
-  </div>
-  <div class="field">
-    <%= f.label :deceased %><br />
-    <%= f.datetime_select :deceased %>
-  </div>
-  <div class="field">
-    <%= f.label :deceased_reason %><br />
-    <%= f.text_area :deceased_reason %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+		    <%= f.label :animal_sex %>
+				<%= collection_select(:animal, :animal_sex_id, AnimalSex.all, :id, :sex, {}, {:class=>'span10'}) %>
+
+		    <%= f.label :spay_neuter %>
+		    <%= collection_select(:animal, :spay_neuter_id, SpayNeuter.all, :id, :spay, {}, {:class=>'span10'}) %>
+
+		    <%= f.label :color %>
+				<%= collection_select(:animal, :animal_color_id, AnimalColor.find(:all, :conditions => {:organization_id => current_user.organization_id}), :id, :color, {}, {:class=>'span10'}) %>
+
+		    <%= f.label :birthday %>
+		    <%= f.text_field :birthday, :class=> "span10" %>
+
+		    <%= f.label :biter %>
+		    <%= collection_select(:animal, :biter_id, Biter.all, :id, :value, {}, {:class=>'span10'}) %>
+			</div>
+			<div class="span4">
+		    <%= f.label :status %>
+		    <%= collection_select(:animal, :status_id, Status.find(:all, :conditions => {:organization_id => current_user.organization_id}), :id, :status, {}, {:class=>'span10'}) %>
+
+		    <%= f.label :date_of_intake %>
+		    <%= f.text_field :date_of_intake, :class=> "span10" %>
+
+		    <%= f.label :special_needs %>
+		    <%= f.text_area :special_needs, :rows => 5, :class=> "span10" %>
+
+		    <%= f.label :diet %>
+		    <%= f.text_area :diet, :rows => 5, :class=> "span10" %>
+
+		
+				<%= f.label :public %>
+				<%= f.check_box :public, :class => "form-inline" %>
+				
+				<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+
+			</div>
+<div class="span12">
+	<hr />
+		    <%= f.submit "Add Animal", :class => "btn btn-primary submit-button" %>
+</div>
+		<% end %>
+	</div>
+</div>
+<% content_for :javascript_footer do %>
+	<script>
+	$( "#animal_birthday" ).datepicker();
+	$( "#animal_date_of_intake" ).datepicker();
+	$( "#animal_date_of_well_check" ).datepicker();
+	$( "#animal_deceased" ).datepicker();
+	$.datepicker.setDefaults({
+	   dateFormat: 'D, dd M yy' 
+	});
+	</script>
+<%end%>
