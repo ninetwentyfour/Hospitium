@@ -22,7 +22,7 @@ class Admin::AnimalsController < Admin::ApplicationController
   # GET /animals/1.xml
   def show
     require_dependency "Animal"
-    @animal = Animal.find_by_uuid(params[:id])
+    @animal = Animal.find(params[:id])
     @statuses = Status.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.status.to_s]}
     @species = Species.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.name.to_s]}
     @colors = AnimalColor.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.color.to_s]}
@@ -70,7 +70,7 @@ class Admin::AnimalsController < Admin::ApplicationController
         format.html { 
           #redirect_to(@animal.uuid, :notice => 'Animal was successfully updated.')
           flash[:notice] = 'Animal was successfully created.'
-          redirect_to(:action => "show", :id => @animal.uuid)
+          redirect_to(:action => "show", :id => @animal.id+"-"+@animal.uuid)
         }
         format.xml  { render :xml => @animal, :status => :created, :location => @animal }
       else
@@ -98,20 +98,20 @@ class Admin::AnimalsController < Admin::ApplicationController
   
   def update
     #@animal = Animal.find(params[:id])
-    @animal = Animal.find_by_uuid(params[:id])
+    @animal = Animal.find(params[:id])
 
     respond_to do |format|
       if @animal.update_attributes(params[:animal])
         format.html { 
           #redirect_to(@animal.uuid, :notice => 'Animal was successfully updated.')
           flash[:notice] = 'Animal was successfully updated.'
-          redirect_to(:action => "show", :id => @animal.uuid)
+          redirect_to(:action => "show", :id => @animal.id+"-"+@animal.uuid)
         }
         format.json { respond_with_bip(@animal) }
       else
         #format.html { render :action => "edit" }
         flash[:notice] = 'There was a problem updating the animal.'
-        redirect_to(:action => "show", :id => @animal.uuid)
+        redirect_to(:action => "show", :id => @animal.id+"-"+@animal.uuid)
         format.json { respond_with_bip(@animal) }
       end
     end
@@ -132,7 +132,7 @@ class Admin::AnimalsController < Admin::ApplicationController
   def duplicate
     #@authorization_adapter.authorize(:show, @abstract_model, @object) if @authorization_adapter
     #@object.id
-    @existing_animal = Animal.find_by_uuid(params[:id])
+    @existing_animal = Animal.find(params[:id])
     @animal = Animal.new(@existing_animal.attributes) 
     #new_record = @animal.clone
     respond_to do |format|
