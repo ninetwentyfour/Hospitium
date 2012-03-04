@@ -10,7 +10,7 @@
 				<div class="span6">
 					<a class="btn" href="/admin/animals/new"><i class="icon-plus"></i>Add New Animal</a>
 					&nbsp;
-					<a class="btn" href="#"><i class="icon-share"></i>Sync Public To Adopt-A-Pet</a>
+					<a class="btn" href="#" id="animal_sync_button"><i class="icon-share"></i>Sync Public To Adopt-A-Pet</a>
 				</div>
 				<div class="span1"> &nbsp; </div>
 				<div class="span5 pull-right">
@@ -22,7 +22,8 @@
 				</form> -->
 			</div>
 		</div>
-		<table class="table table-striped table-bordered">
+		<table class="table table-striped table-bordered" id="animal_index">
+			<col><col><col><col><col><col><col><col>
 			<thead>
 				<tr>
 					<th><%= sort_link @search, :name %></th>

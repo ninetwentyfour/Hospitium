@@ -55,35 +55,43 @@
 	<!-- <a href="https://github.com/ninetwentyfour/Hospitium"><img style="position: fixed; top: 0; left: 0; border: 0; z-index:11000;" src="https://a248.e.akamai.net/assets.github.com/img/6429057dfef9e98189338d22e7f6646c6694f032/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a> -->
 
 <div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="brand" href="/">Hospitium</a>
-      <ul class="nav">
-        <li><a class='js-pjax' href="/about">About</a></li>
-				<li><a class='js-pjax' href="/features">Features</a></li>
-				<li><a class='js-pjax' href="https://hospitium.tenderapp.com/kb">Docs</a></li>
-				<li><a href="/animals">Adopt an Animal</a></li>
-				<li><a href="/posts">Blog</a></li>
-      </ul>
-			<ul class="nav pull-right">
-				<% if user_signed_in? %>
-					<li class="divider-vertical"></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= gravatar_image_tag("#{current_user.email}", :alt => "#{current_user.email}", :gravatar => { :size => 25 }, :style => "position:absolute;top:7px") %> <span style="margin-left:30px"><%= current_user.username %></span> <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="/admin">Dashboard</a></li>
-							<li><a href="/admin/users/<%= current_user.id %>">User Settings</a></li>
-							<li class="divider"></li>
-							<li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
-						</ul>
-					</li>
-				<% else %>
-					<li class="divider-vertical"></li>
-					<li><a class='js-pjax' href="/users/sign_in">Sign In</a></li>
-				<% end %>
-      </ul>
-    </div>
-  </div>
+	<div class="navbar-inner">
+		<div class="container">
+			<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<a class="brand" href="/">Hospitium</a>
+			<div class="nav-collapse">
+				<ul class="nav">
+					<li><a class='js-pjax' href="/about">About</a></li>
+					<li><a class='js-pjax' href="/features">Features</a></li>
+					<li><a class='js-pjax' href="https://hospitium.tenderapp.com/kb">Docs</a></li>
+					<li><a href="/animals">Adopt an Animal</a></li>
+					<li><a href="/posts">Blog</a></li>
+				</ul>
+				<ul class="nav pull-right">
+					<% if user_signed_in? %>
+						<li class="divider-vertical"></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= gravatar_image_tag("#{current_user.email}", :alt => "#{current_user.email}", :gravatar => { :size => 25 }, :style => "position:absolute;top:7px") %> <span style="margin-left:30px"><%= current_user.username %></span> <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="/admin">Dashboard</a></li>
+								<li><a href="/admin/users/<%= current_user.id %>">User Settings</a></li>
+								<li class="divider"></li>
+								<li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+							</ul>
+						</li>
+					<% else %>
+						<li class="divider-vertical"></li>
+						<li><a class='js-pjax' href="/users/sign_in">Sign In</a></li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="container main-container">
