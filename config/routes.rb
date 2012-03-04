@@ -130,6 +130,8 @@ AnimalTracker::Application.routes.draw do
   
   resources :adopt_animals
   
+  resources :relinquish_animals
+  
   resource :wordpress_accounts
   match "/wordpress_accounts/send_blog_post" => "wordpress_accounts#send_blog_post", :as => "wordpress_accounts"
   

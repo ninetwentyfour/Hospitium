@@ -62,9 +62,11 @@ class RelinquishmentContactsController < ApplicationController
       if @relinquishment_contact.update_attributes(params[:relinquishment_contact])
         format.html { redirect_to(@relinquishment_contact, :notice => 'Relinquishment contact was successfully updated.') }
         format.xml  { head :ok }
+        format.json { respond_with_bip(@relinquishment_contact) }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @relinquishment_contact.errors, :status => :unprocessable_entity }
+        format.json { respond_with_bip(@relinquishment_contact) }
       end
     end
   end

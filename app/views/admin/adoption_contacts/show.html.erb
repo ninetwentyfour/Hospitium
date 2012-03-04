@@ -28,7 +28,7 @@
 					</div>
 					<div class="tab-pane" id="2">
 						<% @animals.each do |animal| %>
-							<p><a href="/admin/animals/<%= animal.uuid %>"><%= animal.name %></a></p>
+							<p><a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><%= animal.name %></a></p>
 						<%end%>
 						<hr />
 						<a class="btn" data-toggle="modal" href="#newAnimal" ><i class="icon-plus"></i> Add Animal</a>
@@ -51,7 +51,7 @@
 	<div class="modal-body">
 		<%= form_for @adoption_contact.adopt_animals.build(:adoption_contact_id => @adoption_contact.id) do |f| %>
 			<%= f.hidden_field :adoption_contact_id %>
-			<%= collection_select(:adopt_animal, :animal_id, Animal.find(:all, :conditions => {:organization_id => current_user.organization_id}), :uuid, :name) %>  
+			<%= collection_select(:adopt_animal, :animal_id, Animal.find(:all, :conditions => {:organization_id => current_user.organization_id}), :id, :name) %>  
 	</div>
 	<div class="modal-footer">
 		<%= f.submit "Submit", :class => "btn btn-primary" %>
