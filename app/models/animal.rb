@@ -28,6 +28,8 @@ class Animal < ActiveRecord::Base
   validates_presence_of :name, :date_of_intake, :organization, :species, :animal_color, :biter, :spay_neuter, :animal_sex, :status
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']
   
+  set_primary_key :uuid
+  
   
   #create uuid
   def create_uuid()

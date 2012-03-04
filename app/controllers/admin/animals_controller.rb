@@ -1,5 +1,5 @@
 class Admin::AnimalsController < Admin::ApplicationController
-
+  load_and_authorize_resource
   #layout "admin/application"
   # GET /animals
   # GET /animals.xml
