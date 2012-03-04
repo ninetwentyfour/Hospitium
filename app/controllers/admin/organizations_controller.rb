@@ -1,11 +1,12 @@
-class OrganizationsController < ApplicationController
+class Admin::OrganizationsController < Admin::ApplicationController
+  load_and_authorize_resource
   #caches_action :index, :expires_in => 1.minute
   #caches_action :show, :expires_in => 1.minute
   # GET /organizations
   # GET /organizations.xml
   def index
     #@organizations = Organization.all
-    @organizations = Organization.find(:all, :conditions => {:id => current_user.organization_ids})
+    @organizations = Organization.find(:all, :conditions => {:id => current_user.organization_id})
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,3 +1,4 @@
+include ActionView::Helpers::NumberHelper
 class Organization < ActiveRecord::Base
     has_paper_trail
     has_many :adoption_contacts
@@ -46,6 +47,15 @@ class Organization < ActiveRecord::Base
       unless self.phone_number.blank?
         self.phone_number = self.phone_number.delete("^0-9")
       end
+    end
+    
+    def formatted_phone
+      unless self.phone_number.blank?
+        phone = number_to_phone(self.phone_number)
+      else
+        phone = ""
+      end
+      return phone
     end
     
 end

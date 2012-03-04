@@ -76,9 +76,11 @@ class OrganizationsController < ApplicationController
       if @organization.update_attributes(params[:organization])
         format.html { redirect_to(@organization, :notice => 'Organization was successfully updated.') }
         format.xml  { head :ok }
+        format.json { respond_with_bip(@organization) }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @organization.errors, :status => :unprocessable_entity }
+        format.json { respond_with_bip(@organization) }
       end
     end
   end

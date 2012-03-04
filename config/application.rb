@@ -51,6 +51,6 @@ module AnimalTracker
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     
-    config.active_record.observers = :animal_observer, :adoption_contact_observer, :animal_color_observer, :animal_weight_observer
+    config.active_record.observers = :animal_observer, :adoption_contact_observer, :animal_color_observer, :animal_weight_observer, :organization_observer
   end
 end

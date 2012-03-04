@@ -1,4 +1,5 @@
 class Admin::AnimalWeightsController < Admin::ApplicationController
+  load_and_authorize_resource
   # GET /animal_weights
   # GET /animal_weights.xml
   def index
