@@ -111,6 +111,7 @@ class Ability
         can :read, Animal, :organization => { :id => user.organization_id }
         can :create, Animal
         can :update, Animal, :organization => { :id => user.organization_id }
+        can :duplicate, Animal, :organization => { :id => user.organization_id }
         #can :manage, AnimalColor, :organization => { :id => user.organization_ids }
         can :read, AnimalColor, :organization => { :id => user.organization_id }
         can :create, AnimalColor

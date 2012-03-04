@@ -124,8 +124,23 @@ class Admin::AnimalsController < Admin::ApplicationController
     @animal.destroy
 
     respond_to do |format|
-      format.html { redirect_to(animals_url) }
+      format.html { redirect_to :back, notice: 'Successfully deleted.' }
       format.xml  { head :ok }
+    end
+  end
+  
+  def duplicate
+    #@authorization_adapter.authorize(:show, @abstract_model, @object) if @authorization_adapter
+    #@object.id
+    @existing_animal = Animal.find_by_uuid(params[:id])
+    @animal = Animal.new(@existing_animal.attributes) 
+    #new_record = @animal.clone
+    respond_to do |format|
+      if @animal.save
+        format.html { redirect_to :back, notice: 'Successfully duplicated.' }
+      else
+        format.html { redirect_to :back, notice: 'There was a problem duplicating.' }
+      end
     end
   end
 end
