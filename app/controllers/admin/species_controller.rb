@@ -1,4 +1,6 @@
 class Admin::SpeciesController < Admin::ApplicationController
+  load_and_authorize_resource
+  
   # GET /species
   # GET /species.xml
   def index

@@ -38,7 +38,7 @@
 			<tbody>
 				<% @animals.each do |animal| %>
 					<tr>
-						<td><a class='js-pjax' href="/admin/animals/<%= animal.uuid %>"><%= animal.name %></a></td>
+						<td><a href="/admin/animals/<%= animal.uuid %>"><%= animal.name %></a></td>
 						<td><%= animal.status.status %></td>
 						<td><%= animal.public? ? 'yes' : 'no' %></td>
 						<td><%= animal.animal_sex.sex unless animal.animal_sex.blank? %></td>

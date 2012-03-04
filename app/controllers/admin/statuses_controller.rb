@@ -1,9 +1,9 @@
 class Admin::StatusesController < Admin::ApplicationController
-
+  load_and_authorize_resource
   # GET /statuses
   # GET /statuses.xml
   def index
-    @statuses = Status.all
+    @statuses = Status.find(:all, :conditions => {:organization_id => current_user.organization_id})
 
     respond_to do |format|
       format.html # index.html.erb
