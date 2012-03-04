@@ -15,4 +15,13 @@ class AnimalWeight < ActiveRecord::Base
     self.uuid = UUIDTools::UUID.random_create.to_s
   end
   
+  def formatted_weight_date
+    unless self.date_of_weight.blank?
+      age = self.date_of_weight.strftime("%a, %b %e at %l:%M")
+    else
+      age = ""
+    end
+    return age
+  end
+  
 end

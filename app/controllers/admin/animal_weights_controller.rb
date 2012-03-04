@@ -16,7 +16,7 @@ class Admin::AnimalWeightsController < Admin::ApplicationController
   # GET /animal_weights/1.xml
   def show
     @animal_weight = AnimalWeight.find(params[:id])
-
+    @animals = Animal.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.name.to_s]}
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @animal_weight }
