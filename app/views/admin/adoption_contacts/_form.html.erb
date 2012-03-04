@@ -1,49 +1,40 @@
-<%= form_for(@adoption_contact) do |f| %>
-  <% if @adoption_contact.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@adoption_contact.errors.count, "error") %> prohibited this adoption_contact from being saved:</h2>
+<div class="row-fluid">
+	<div class="span12">
+		<%= form_for @adoption_contact, :url => admin_adoption_contacts_path, :validate => true do |f| %>
+		  <% if @adoption_contact.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(@adoption_contact.errors.count, "error") %> prohibited this adoption_contact from being saved:</h2>
 
-      <ul>
-      <% @adoption_contact.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+		      <ul>
+		      <% @adoption_contact.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :uuid %><br />
-    <%= f.text_field :uuid %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :animal %><br />
-    <%= f.text_field :animal %>
-  </div>
-  <div class="field">
-    <%= f.label :adopted_date %><br />
-    <%= f.datetime_select :adopted_date %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+
+		    <%= f.label :first_name %>
+		    <%= f.text_field :first_name %>
+
+		    <%= f.label :last_name %>
+		    <%= f.text_field :last_name %>
+
+
+		    <%= f.label :address %>
+		    <%= f.text_field :address %>
+
+		    <%= f.label :phone %>
+		    <%= f.text_field :phone %>
+
+		    <%= f.label :email %>
+		    <%= f.text_field :email %>
+		
+		<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+
+<hr />
+		    <%= f.submit "Add Adoption Contact", :class => "btn btn-primary submit-button" %>
+		<% end %>
+	</div>
+</div>
+

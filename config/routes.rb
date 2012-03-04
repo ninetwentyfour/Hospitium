@@ -128,6 +128,8 @@ AnimalTracker::Application.routes.draw do
   
   resources :posts
   
+  resources :adopt_animals
+  
   resource :wordpress_accounts
   match "/wordpress_accounts/send_blog_post" => "wordpress_accounts#send_blog_post", :as => "wordpress_accounts"
   
@@ -153,7 +155,7 @@ AnimalTracker::Application.routes.draw do
   
   # Prefix route urls with "admin" and route names with "rails_admin_"
   namespace :admin do
-    resources :animals, :species, :statuses, :animal_colors, :shelters, :animal_weights
+    resources :animals, :species, :statuses, :animal_colors, :shelters, :animal_weights, :adoption_contacts
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,9 +1,12 @@
-class AdoptionContactsController < ApplicationController
+class Admin::AdoptionContactsController < Admin::ApplicationController
   # GET /adoption_contacts
   # GET /adoption_contacts.xml
   def index
     #@adoption_contacts = AdoptionContact.all
-    @adoption_contacts = AdoptionContact.find(:all, :conditions => {:animal_id => {:organization_id => current_user.organization_ids}})
+    @search = AdoptionContact.search(params[:search])
+    #@animals = @search.relation.where(:organization_id => current_user.organization_id)   # or @search.relation to lazy load in view
+    @adoption_contacts = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC")
+    #@adoption_contacts = AdoptionContact.find(:all, :conditions => {:organization_id => current_user.organization_id})
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,6 +18,7 @@ class AdoptionContactsController < ApplicationController
   # GET /adoption_contacts/1.xml
   def show
     @adoption_contact = AdoptionContact.find(params[:id])
+    @animals = AdoptionContact.find(params[:id]).animals
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @adoption_contact }
@@ -59,13 +63,18 @@ class AdoptionContactsController < ApplicationController
     @adoption_contact = AdoptionContact.find(params[:id])
 
     respond_to do |format|
+      
       if @adoption_contact.update_attributes(params[:adoption_contact])
-        format.html { redirect_to(@adoption_contact, :notice => 'Adoption contact was successfully updated.') }
-        format.xml  { head :ok }
+        format.html { 
+          #redirect_to(@animal.uuid, :notice => 'Animal was successfully updated.')
+          flash[:notice] = 'Animal was successfully updated.'
+          redirect_to(:action => "show", :id => @adoption_contact.id)
+        }
         format.json { respond_with_bip(@adoption_contact) }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @adoption_contact.errors, :status => :unprocessable_entity }
+        #format.html { render :action => "edit" }
+        flash[:notice] = 'There was a problem updating the animal.'
+        redirect_to(:action => "show", :id => @adoption_contact.id)
         format.json { respond_with_bip(@adoption_contact) }
       end
     end
@@ -78,7 +87,7 @@ class AdoptionContactsController < ApplicationController
     @adoption_contact.destroy
 
     respond_to do |format|
-      format.html { redirect_to(adoption_contacts_url) }
+      format.html { redirect_to :back, notice: 'Successfully deleted.' }
       format.xml  { head :ok }
     end
   end

@@ -1,3 +1,4 @@
+include ActionView::Helpers::NumberHelper
 class AdoptionContact < ActiveRecord::Base
   has_paper_trail
   has_many :adopt_animals
@@ -7,6 +8,8 @@ class AdoptionContact < ActiveRecord::Base
   before_update :modify_phone_number
   
   validates_presence_of :first_name, :last_name, :address
+  
+  accepts_nested_attributes_for :adopt_animals
   
   #create uuid
   def create_uuid()
@@ -22,4 +25,14 @@ class AdoptionContact < ActiveRecord::Base
       self.phone = self.phone.delete("^0-9")
     end
   end
+  
+  def formatted_phone
+    unless self.phone.blank?
+      phone = number_to_phone(self.phone)
+    else
+      phone = ""
+    end
+    return phone
+  end
+  
 end

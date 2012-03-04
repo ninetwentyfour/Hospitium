@@ -101,8 +101,8 @@
 					<li class="<%= current_class?('admin/home', controller.action_name) %>">
 						<a href="/admin">Dashboard</a>
 					</li>
-					<li>
-						<a href="#">Adoption Contacts</a>
+					<li class="<%= current_class?('admin/adoption_contacts', controller.action_name) %>">
+						<a href="/admin/adoption_contacts">Adoption Contacts</a>
 					</li>
 					<li class="<%= current_class?('admin/animals', controller.action_name) %>">
 						<a href="/admin/animals">Animals</a>
