@@ -1,4 +1,5 @@
 class Admin::SheltersController < Admin::ApplicationController
+  load_and_authorize_resource
   # GET /shelters
   # GET /shelters.xml
   def index

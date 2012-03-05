@@ -140,6 +140,8 @@ AnimalTracker::Application.routes.draw do
   
   resource :adopt_a_pet_accounts
   match "/send-to-adopt-a-pet" => "adopt_a_pet_accounts#send_animal", :as => "adopt_a_pet_accounts"
+  
+  match "/species.:id" => "species#update", :via => :put
 
     
   devise_for :users

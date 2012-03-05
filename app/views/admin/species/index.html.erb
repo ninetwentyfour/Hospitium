@@ -1,25 +1,42 @@
-<h1>Listing species</h1>
+<div class="row-fluid">
+	<div class="span12">
+		<% if notice.blank? %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Uuid</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @species.each do |species| %>
-  <tr>
-    <td><%= species.name %></td>
-    <td><%= species.uuid %></td>
-    <td><%= link_to 'Show', species %></td>
-    <td><%= link_to 'Edit', edit_species_path(species) %></td>
-    <td><%= link_to 'Destroy', species, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Species', new_species_path %>
+		<% else %>
+			<div class="alert alert-info"><a class="close" data-dismiss="alert" href="#">&times;</a> <%= notice %></div>
+		<% end %>
+		<div class="well">
+			<div class="row-fluid">
+				<div class="span6">
+					<a class="btn" href="/admin/species/new"><i class="icon-plus"></i>Add New Species</a>
+				</div>
+			</div>
+		</div>
+		<table class="table table-striped table-bordered">
+			<col><col><col><col><col><col><col><col>
+			<thead>
+				<tr>
+					<th><%= sort_link @search, :name %></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @species.each do |species| %>
+					<tr>
+						<td><a href="/admin/species/<%= species.id %>"><%= species.name %></a></td>
+						<td>
+							<div class="btn-group">
+								<a class="btn tooltip-class" href="/admin/species/<%= species.id %>" rel="tooltip" title="View Contact"><i class="icon-eye-open"></i></a>
+								<% if can? :delete, species %>
+									<%= link_to raw("<i class='icon-remove'></i>"), admin_species_path(species),
+									            :confirm => 'Are you sure you want to delete?', :method => :delete, :class => "btn tooltip-class", :rel => "tooltip", :title => "Delete" %>
+								<% end %>
+							</div>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<%= will_paginate @species %>
+	</div>
+</div>

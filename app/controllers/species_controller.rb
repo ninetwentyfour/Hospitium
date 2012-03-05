@@ -62,9 +62,11 @@ class SpeciesController < ApplicationController
       if @species.update_attributes(params[:species])
         format.html { redirect_to(@species, :notice => 'Species was successfully updated.') }
         format.xml  { head :ok }
+        format.json { respond_with_bip(@species) }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @species.errors, :status => :unprocessable_entity }
+        format.json { respond_with_bip(@species) }
       end
     end
   end

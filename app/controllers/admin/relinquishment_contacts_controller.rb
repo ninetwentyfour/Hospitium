@@ -1,4 +1,5 @@
 class Admin::RelinquishmentContactsController < Admin::ApplicationController
+  load_and_authorize_resource
   # GET /relinquishment_contacts
   # GET /relinquishment_contacts.xml
   def index

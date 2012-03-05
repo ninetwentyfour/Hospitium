@@ -4,8 +4,8 @@ class Admin::SpeciesController < Admin::ApplicationController
   # GET /species
   # GET /species.xml
   def index
-    @species = Species.all
-
+    @search = Species.search(params[:search])
+    @species = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC")
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @species }
@@ -16,7 +16,7 @@ class Admin::SpeciesController < Admin::ApplicationController
   # GET /species/1.xml
   def show
     @species = Species.find(params[:id])
-
+    @animals = Animal.find(:all, :conditions => {:species_id => @species.id})
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @species }
