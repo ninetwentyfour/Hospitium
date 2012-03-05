@@ -16,4 +16,13 @@ class Shelter < ActiveRecord::Base
       self.phone = self.phone.delete("^0-9")
     end
   end
+  
+  def formatted_phone
+    unless self.phone.blank?
+      phone = number_to_phone(self.phone)
+    else
+      phone = ""
+    end
+    return phone
+  end
 end

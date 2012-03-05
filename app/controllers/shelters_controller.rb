@@ -62,9 +62,11 @@ class SheltersController < ApplicationController
       if @shelter.update_attributes(params[:shelter])
         format.html { redirect_to(@shelter, :notice => 'Shelter was successfully updated.') }
         format.xml  { head :ok }
+        format.json { respond_with_bip(@shelter) }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @shelter.errors, :status => :unprocessable_entity }
+        format.json { respond_with_bip(@shelter) }
       end
     end
   end
