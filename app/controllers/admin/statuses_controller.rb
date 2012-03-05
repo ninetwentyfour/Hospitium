@@ -3,8 +3,8 @@ class Admin::StatusesController < Admin::ApplicationController
   # GET /statuses
   # GET /statuses.xml
   def index
-    @statuses = Status.find(:all, :conditions => {:organization_id => current_user.organization_id})
-
+    @search = Status.search(params[:search])
+    @statuses = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC")
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @statuses }
@@ -15,7 +15,7 @@ class Admin::StatusesController < Admin::ApplicationController
   # GET /statuses/1.xml
   def show
     @status = Status.find(params[:id])
-
+    @animals = Animal.find(:all, :conditions => {:status_id => @status.id})
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @status }
