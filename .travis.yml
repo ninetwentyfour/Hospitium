@@ -4,5 +4,5 @@ rvm:
 # uncomment this line if your project needs to run something other than `rake`:
 before_script:
   - "mysql -e 'create database animal_test;'"
-script: rake db:migrate RAILS_ENV=test
+script: bundle exec rake db:test:prepare db:migrate
 script: bundle exec rspec spec
