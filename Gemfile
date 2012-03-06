@@ -53,6 +53,13 @@ group :production do
   gem 'slim_scrooge'
 	gem 'dalli'
 end
+
+gem "rspec-rails", :group => [:test, :development]
+group :test do
+  gem "factory_girl_rails"
+  gem "capybara"
+	gem 'shoulda-matchers'
+end
 # Use unicorn as the web server
 # gem 'unicorn'
 
