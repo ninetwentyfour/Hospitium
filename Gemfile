@@ -12,7 +12,6 @@ gem 'mechanize'
 gem 'uuidtools'
 gem 'cancan'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
-#gem 'aws-s3', :require => 'aws/s3'
 gem 'aws-sdk', '~> 1.3.4'
 gem 'will_paginate'
 gem 'paper_trail'
