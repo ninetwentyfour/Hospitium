@@ -4,6 +4,8 @@ Hospitium
 
 * * *
 
+[![Build Status](https://secure.travis-ci.org/ninetwentyfour/Hospitium.png)](http://travis-ci.org/ninetwentyfour/Hospitium)
+
 Warning! This is still super beta software. Things are changing fast and you may lose data.
 
 [http://hospitium.co/](http://hospitium.co/)

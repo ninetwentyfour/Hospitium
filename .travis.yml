@@ -2,4 +2,6 @@ language: ruby
 rvm:
   - 1.9.2
 # uncomment this line if your project needs to run something other than `rake`:
+before_script:
+  - "mysql -e 'create database animal_test;'"
 script: bundle exec rspec spec
