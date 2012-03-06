@@ -19,19 +19,12 @@ gem 'oauth'
 gem 'twitter'
 gem 'rest-client'
 gem 'json'
-gem 'ckeditor'
+#gem 'ckeditor'
 gem 'libxml-xmlrpc'
 gem 'bitly'
 gem 'site_meta'
-gem 'airbrake'
-gem 'gravatar_image_tag'
-gem 'best_in_place'
-gem 'juggernaut'
-gem 'squeel'
 gem 'meta_search'
-gem 'client_side_validations'
-gem 'jqplot-rails', :git => "git://github.com/ninetwentyfour/jqplot-rails.git"
-gem 'asset_sync'
+gem 'airbrake'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -42,11 +35,17 @@ group :assets do
   gem 'closure-compiler'
 end
 
-gem 'jquery-rails'
-
 group :development do
 	gem 'metrical'
+	gem 'client_side_validations'
+	gem 'jqplot-rails', :git => "git://github.com/ninetwentyfour/jqplot-rails.git"
+	gem 'asset_sync'
+	gem 'gravatar_image_tag'
+	gem 'best_in_place'
+	gem 'juggernaut'
+	gem 'jquery-rails'
 end
+
 group :production do
 	gem 'home_run', :require=>'date'
   gem 'slim_scrooge'
@@ -59,25 +58,9 @@ group :test do
   gem "capybara"
 	gem 'shoulda-matchers'
 end
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
-
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
