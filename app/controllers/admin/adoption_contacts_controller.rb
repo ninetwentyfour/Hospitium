@@ -46,7 +46,7 @@ class Admin::AdoptionContactsController < Admin::ApplicationController
   # POST /adoption_contacts.xml
   def create
     @adoption_contact = AdoptionContact.new(params[:adoption_contact])
-
+    @adoption_contact.organization_id = current_user.organization_id
     respond_to do |format|
       if @adoption_contact.save
         format.html { redirect_to(@adoption_contact, :notice => 'Adoption contact was successfully created.') }

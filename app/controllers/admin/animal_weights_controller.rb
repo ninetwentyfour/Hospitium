@@ -45,7 +45,7 @@ class Admin::AnimalWeightsController < Admin::ApplicationController
   # POST /animal_weights.xml
   def create
     @animal_weight = AnimalWeight.new(params[:animal_weight])
-
+    @animal_weight.organization_id = current_user.organization_id
     respond_to do |format|
       if @animal_weight.save
         format.html { 

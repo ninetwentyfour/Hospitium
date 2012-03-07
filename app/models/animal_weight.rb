@@ -5,6 +5,8 @@ class AnimalWeight < ActiveRecord::Base
   before_create :create_uuid
   validates_presence_of :weight, :date_of_weight, :animal_id
   
+  attr_accessible :animal_id, :weight, :date_of_weight
+  
   # show the link in the admin UI instead of the link id
   def show_weight_label_method
     "#{self.weight}"

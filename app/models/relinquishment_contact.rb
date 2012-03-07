@@ -6,6 +6,8 @@ class RelinquishmentContact < ActiveRecord::Base
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
   
+  attr_accessible :first_name, :last_name, :address, :phone, :email, :reason
+  
   #create uuid
   def create_uuid()
     self.uuid = UUIDTools::UUID.random_create.to_s

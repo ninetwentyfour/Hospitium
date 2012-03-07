@@ -19,6 +19,8 @@ class Organization < ActiveRecord::Base
     after_create :add_default_status
     validates_uniqueness_of :name
     
+    attr_accessible :name, :phone_number, :address, :city, :state, :zip_code, :email, :website
+    
     
     #create uuid
     def create_uuid()

@@ -43,6 +43,14 @@ describe Animal do
     end
   end
   
+  # describe "#set_org_id" do
+  #   let(:animal) { Factory(:animal) }
+  #   
+  #   it "set the animal organization_id to the current user organization_id" do
+  #     animal.organization_id.should_not be_nill
+  #   end
+  # end
+  
   describe "#calculate_animal_age" do
     let(:animal) { Factory(:animal, @attr.merge(:birthday => "2001-10-20 00:50:22")) }
     
@@ -113,6 +121,24 @@ describe Animal do
     it {should validate_attachment_content_type(:fourth_image).allowing('image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png').rejecting('text/plain', 'text/xml')}
   end
   
+  describe 'protected attributes' do
+    let(:animal) { Factory(:animal) }
+    
+    it 'should deny mass-assignment to the organization_id' do
+      animal.update_attributes(:organization_id =>  10)
+      animal.organization_id.should_not == 10
+    end
+    
+    it 'should deny mass-assignment to the uuid' do
+      animal.update_attributes(:uuid =>  "test_uuid")
+      animal.organization_id.should_not == "test_uuid"
+    end
+    
+    it 'should deny mass-assignment to the id' do
+      animal.update_attributes(:id =>  100000)
+      animal.organization_id.should_not == 100000
+    end
+  end
 
   
 end

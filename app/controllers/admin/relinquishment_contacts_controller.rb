@@ -44,7 +44,7 @@ class Admin::RelinquishmentContactsController < Admin::ApplicationController
   # POST /relinquishment_contacts.xml
   def create
     @relinquishment_contact = RelinquishmentContact.new(params[:relinquishment_contact])
-
+    @relinquishment_contact.organization_id = current_user.organization_id
     respond_to do |format|
       if @relinquishment_contact.save
         format.html { redirect_to(@relinquishment_contact, :notice => 'Relinquishment contact was successfully created.') }

@@ -11,6 +11,8 @@ class AdoptionContact < ActiveRecord::Base
   
   accepts_nested_attributes_for :adopt_animals
   
+  attr_accessible :first_name, :last_name, :address, :phone, :email, :adopted_date
+  
   #create uuid
   def create_uuid()
     self.uuid = UUIDTools::UUID.random_create.to_s

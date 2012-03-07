@@ -63,14 +63,14 @@ class Admin::AnimalsController < Admin::ApplicationController
   # POST /animals.xml
   def create
     @animal = Animal.new(params[:animal])
-
+    @animal.organization_id = current_user.organization_id
     respond_to do |format|
       if @animal.save
         #format.html { redirect_to(@animal, :notice => 'Animal was successfully created.') }
         format.html { 
           #redirect_to(@animal.uuid, :notice => 'Animal was successfully updated.')
           flash[:notice] = 'Animal was successfully created.'
-          redirect_to(:action => "show", :id => @animal.id+"-"+@animal.uuid)
+          redirect_to(:action => "show", :id => @animal.id.to_s+"-"+@animal.uuid)
         }
         format.xml  { render :xml => @animal, :status => :created, :location => @animal }
       else

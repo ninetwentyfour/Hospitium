@@ -45,7 +45,7 @@ class Admin::AnimalColorsController < Admin::ApplicationController
   # POST /animal_colors.xml
   def create
     @animal_color = AnimalColor.new(params[:animal_color])
-
+    @animal_color.organization_id = current_user.organization_id
     respond_to do |format|
       if @animal_color.save
         format.html { 
