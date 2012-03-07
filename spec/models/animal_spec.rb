@@ -43,14 +43,6 @@ describe Animal do
     end
   end
   
-  # describe "#set_org_id" do
-  #   let(:animal) { Factory(:animal) }
-  #   
-  #   it "set the animal organization_id to the current user organization_id" do
-  #     animal.organization_id.should_not be_nill
-  #   end
-  # end
-  
   describe "#calculate_animal_age" do
     let(:animal) { Factory(:animal, @attr.merge(:birthday => "2001-10-20 00:50:22")) }
     
