@@ -27,6 +27,9 @@ class Animal < ActiveRecord::Base
   after_update :send_public_tweet
   validates_presence_of :name, :date_of_intake, :organization, :species, :animal_color, :biter, :spay_neuter, :animal_sex, :status
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']
+  validates_attachment_content_type :second_image, :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']
+  validates_attachment_content_type :third_image, :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']
+  validates_attachment_content_type :fourth_image, :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']
   
   #set_primary_key :uuid
   def to_params
