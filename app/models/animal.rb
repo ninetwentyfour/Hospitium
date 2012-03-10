@@ -48,18 +48,22 @@ class Animal < ActiveRecord::Base
   
   def send_public_tweet
     if self.public == 1
-      account = TwitterAccount.find_by_user_id(1)
-      Twitter.configure do |config|
-        config.consumer_key = TwitterAccount::CONSUMER_KEY
-        config.consumer_secret = TwitterAccount::CONSUMER_SECRET
-        config.oauth_token = account.oauth_token
-        config.oauth_token_secret = account.oauth_token_secret
+      begin
+        account = TwitterAccount.find_by_user_id(1)
+        Twitter.configure do |config|
+          config.consumer_key = TwitterAccount::CONSUMER_KEY
+          config.consumer_secret = TwitterAccount::CONSUMER_SECRET
+          config.oauth_token = account.oauth_token
+          config.oauth_token_secret = account.oauth_token_secret
+        end
+        client = Twitter::Client.new
+        #begin
+        link = TwitterAccount.shorten_link("http://hospitium.co/animals/#{self.uuid}")
+        client.update("#{self.name} is ready for adoption at #{link}")
+        return true
+      rescue Twitter::Error
+        
       end
-      client = Twitter::Client.new
-      #begin
-      link = TwitterAccount.shorten_link("http://hospitium.co/animals/#{self.uuid}")
-      client.update("#{self.name} is ready for adoption at #{link}")
-      return true
     end
   end
   
