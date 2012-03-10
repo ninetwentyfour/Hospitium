@@ -8,7 +8,11 @@
 			<div class="well">
 				<div class="row-fluid">
 					<div class="span6">
-						<h1><%= best_in_place @user, :username, :type => :input, :nil => "Click me to add content!" %></h1>
+						<% if can? :update, @user %>
+							<h1><%= best_in_place @user, :username, :type => :input, :nil => "Click me to add content!" %></h1>
+						<% else %>
+							<h1><%= @user.username %></h1>
+						<% end %>
 					</div>
 				</div>
 			</div>
@@ -16,13 +20,57 @@
 				<div class="tabbable span4 ">
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#1" data-toggle="tab">Details</a></li>
+						<% if can? :update, @user %>
+							<li><a href="#2" data-toggle="tab">Accounts</a></li>
+						<%end%>
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane active" id="1">
 							<div class="">
-								<p><strong>Email:</strong> <%= best_in_place @user, :email, :type => :input, :nil => "Click me to add content!" %></p>
-								<a class="btn" data-toggle="modal" href="#editPass" ><i class="icon-pencil"></i> Change Password</a>
+								<% if can? :update, @user %>
+									<p><strong>Email:</strong> <%= best_in_place @user, :email, :type => :input, :nil => "Click me to add content!" %></p>
+								<% else %>
+									<p><strong>Email:</strong> <%= @user.email %></p>
+								<% end %>
+								
+								<% if can? :update, @user %>
+									<hr />
+									<a class="btn" data-toggle="modal" href="#editPass" ><i class="icon-pencil"></i> Change Password</a>
+								<% end %>
 							</div>
+						</div>
+						<div class="tab-pane" id="2">
+							<% if @user.wordpress_accounts.first.blank? %>
+								<% if can? :update, @user %>
+									<a class="btn" data-toggle="modal" href="#wordpress" ><i class="icon-plus"></i> Add Wordpress Account</a>
+									<hr />
+								<% end %>
+							<%else%>
+								<p><a href="/wordpress_accounts/<%= @user.wordpress_accounts.first.id %>" class="tooltip-class" data-confirm="Are you sure you want to delete?" data-method="delete" rel="tooltip nofollow" data-original-title="Delete"><i class="icon-remove"></i></a> <strong>WordPress Account:</strong> <%= @user.wordpress_accounts.first.site_url %></p>
+								<a class="btn" data-toggle="modal" href="#wordpress-edit" ><i class="icon-pencil"></i> Edit Wordpress Account</a>
+								<hr />
+							<%end%>
+							
+							<% if @user.adopt_a_pet_accounts.first.blank? %>
+								<% if can? :update, @user %>
+									<a class="btn" data-toggle="modal" href="#adopt_a_pet" ><i class="icon-plus"></i> Add Adopt-A-Pet Account</a>
+									<hr />
+								<% end %>
+							<%else%>
+								<p><a href="/adopt_a_pet_accounts/<%= @user.adopt_a_pet_accounts.first.id %>" class="tooltip-class" data-confirm="Are you sure you want to delete?" data-method="delete" rel="tooltip nofollow" data-original-title="Delete"><i class="icon-remove"></i></a> <strong>Adopt-A-Pet Account:</strong> <%= @user.adopt_a_pet_accounts.first.user_name %></p>
+								<a class="btn" data-toggle="modal" href="#adopt_a_pet-edit" ><i class="icon-pencil"></i> Edit Adopt A Pet Account</a>
+								<hr />
+							<%end%>
+							
+							<% unless @user.facebook_accounts.first.blank? %>
+								<p><a href="/facebook_accounts/<%= @user.facebook_accounts.first.id %>" class="tooltip-class" data-confirm="Are you sure you want to delete?" data-method="delete" rel="tooltip nofollow" data-original-title="Delete"><i class="icon-remove"></i></a> <strong>Facebook Account:</strong> <%= @user.facebook_accounts.first.stream_url %></p>
+								<hr />
+							<%end%>
+							
+							<% unless @user.twitter_accounts.first.blank? %>
+								<p><a href="/twitter_accounts/<%= @user.twitter_accounts.first.id %>" class="tooltip-class" data-confirm="Are you sure you want to delete?" data-method="delete" rel="tooltip nofollow" data-original-title="Delete"><i class="icon-remove"></i></a> <strong>Twitter Account:</strong> <%= @user.twitter_accounts.first.stream_url %></p>
+								<hr />
+							<%end%>
 						</div>
 					</div>
 				</div>
@@ -44,17 +92,11 @@
 		</div>
 		<p class="new_animal_weight_bar" style="display:none;">Loading...</p>
 		<%= form_for @user, :url => admin_user_path, :validate => true, :html => {:id => "pass_rest_form" } do |f| %>
-		<div><%= f.label :password, "New password" %>
-	  <%= f.password_field :password %></div>
+			<%= f.label :password, "New password" %>
+			<%= f.password_field :password %>
 
-	  <div><%= f.label :password_confirmation, "Confirm new password" %>
-	  <%= f.password_field :password_confirmation %></div>
-			<%#= f.label :weight %>
-			<%#= f.text_field :weight %>
-			<%#= f.label :date_of_weight %>
-			<%#= f.text_field :date_of_weight %>
-			<%#= f.hidden_field :organization_id, :value => current_user.organization_id %>
-			<%#= f.hidden_field :animal_id, :value => @animal.id %>
+			<%= f.label :password_confirmation, "Confirm new password" %>
+			<%= f.password_field :password_confirmation %>
 		<%end%>
 	</div>
 	<div class="modal-footer">
@@ -62,7 +104,138 @@
 		<a href="#" class="btn" data-dismiss="modal">Close</a>
 	</div>
 </div>
-	
+
+<div class="modal" id="wordpress" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>New Wordpress Account</h3>
+	</div>
+	<div class="modal-body">
+		<div class="progress progress-danger progress-striped active new_animal_weight_bar" style="display:none;">
+			<div class="bar" style="width: 100%;"></div>
+		</div>
+		<p class="new_animal_weight_bar" style="display:none;">Loading...</p>
+		<%= form_tag("/wordpress_accounts", :method => "post", :class => "form", :id => "new_wordpress_form") do %>
+			<div class='field' id='user_username_field'>
+			  <label for='site_url'>Site URL</label>
+			  <input class='string' id='site_url' name='wordpress_account[site_url]' size='50' style='width:px' type='text' />
+			</div>
+			<div class='field' id='user_username_field'>
+			  <label for='blog_user'>Blog User</label>
+			  <input class='string' id='blog_user' name='wordpress_account[blog_user]' size='50' style='width:px' type='text' />
+			</div>
+			<div class='field' id='user_username_field'>
+			  <label for='blog_password'>Blog Password</label>
+			  <input class='string' id='blog_password' name='wordpress_account[blog_password]' size='50' style='width:px' type='password' />
+			</div>
+			<br />
+		<%end%>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-primary submit-button" data-form-id="new_wordpress_form">Save changes</a>
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>
+
+<% unless @user.wordpress_accounts.first.blank? %>
+	<div class="modal" id="wordpress-edit" style="display: none;">
+		<div class="modal-header">
+			<a class="close" data-dismiss="modal">×</a>
+			<h3>Edit Wordpress Account</h3>
+		</div>
+		<div class="modal-body">
+			<div class="progress progress-danger progress-striped active new_animal_weight_bar" style="display:none;">
+				<div class="bar" style="width: 100%;"></div>
+			</div>
+			<p class="new_animal_weight_bar" style="display:none;">Loading...</p>
+			<%= form_tag("/wordpress_accounts/#{@user.wordpress_accounts.first.id}", :method => "put", :class => "form", :id => "edit_wordpress_form") do %>
+				<div class='field' id='user_username_field'>
+				  <label for='site_url'>Site URL</label>
+				  <input class='string' id='site_url' name='wordpress_account[site_url]' size='50' style='width:px' type='text' value="<%= @user.wordpress_accounts.first.site_url %>" />
+				</div>
+				<div class='field' id='user_username_field'>
+				  <label for='blog_user'>Blog User</label>
+				  <input class='string' id='blog_user' name='wordpress_account[blog_user]' size='50' style='width:px' type='text' value="<%= @user.wordpress_accounts.first.blog_user %>" />
+				</div>
+				<div class='field' id='user_username_field'>
+				  <label for='blog_password'>Blog Password</label>
+				  <input class='string' id='blog_password' name='wordpress_account[blog_password]' size='50' style='width:px' type='password' value="<%= Base64.decode64(@user.wordpress_accounts.first.blog_password).split("~").first %>" />
+				</div>
+				<br />
+			<%end%>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn btn-primary submit-button" data-form-id="edit_wordpress_form">Save changes</a>
+			<a href="#" class="btn" data-dismiss="modal">Close</a>
+		</div>
+	</div>
+<%end%>
+
+
+<div class="modal" id="adopt_a_pet" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>New Wordpress Account</h3>
+	</div>
+	<div class="modal-body">
+		<div class="progress progress-danger progress-striped active new_animal_weight_bar" style="display:none;">
+			<div class="bar" style="width: 100%;"></div>
+		</div>
+		<p class="new_animal_weight_bar" style="display:none;">Loading...</p>
+		<%= form_tag("/adopt_a_pet_accounts", :method => "post", :class => "form", :id => "adopt_a_pet_form") do %>
+			Please enter your Adopt A Pet
+			<a href='http://www.adoptapet.com/shelter/pointers/about_autouploading.html' target='blank'>Auto Upload</a>
+			Username, and Password.
+			<div class='field' id='user_username_field'>
+			  <label for='blog_user'>Username</label>
+			  <input class='string' id='blog_user' name='adopt_a_pet_account[user_name]' size='50' style='width:px' type='text' />
+			</div>
+			<div class='field' id='user_username_field'>
+			  <label for='blog_password'>Password</label>
+			  <input class='string' id='blog_password' name='adopt_a_pet_account[password]' size='50' style='width:px' type='password' />
+			</div>
+		<%end%>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-primary submit-button" data-form-id="adopt_a_pet_form">Save changes</a>
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>
+
+<% unless @user.adopt_a_pet_accounts.first.blank? %>
+	<div class="modal" id="adopt_a_pet-edit" style="display: none;">
+		<div class="modal-header">
+			<a class="close" data-dismiss="modal">×</a>
+			<h3>Edit Wordpress Account</h3>
+		</div>
+		<div class="modal-body">
+			<div class="progress progress-danger progress-striped active new_animal_weight_bar" style="display:none;">
+				<div class="bar" style="width: 100%;"></div>
+			</div>
+			<p class="new_animal_weight_bar" style="display:none;">Loading...</p>
+			<%= form_tag("/adopt_a_pet_accounts/#{@user.adopt_a_pet_accounts.first.id}", :method => "put", :class => "form", :id => "edit_adopt_a_pet_accounts_form") do %>
+				Please enter your Adopt A Pet
+				<a href='http://www.adoptapet.com/shelter/pointers/about_autouploading.html' target='blank'>Auto Upload</a>
+				Username, and Password.
+				<div class='field' id='user_username_field'>
+				  <label for='blog_user'>Username</label>
+				  <input class='string' id='blog_user' name='adopt_a_pet_account[user_name]' size='50' style='width:px' type='text' value="<%= @user.adopt_a_pet_accounts.first.user_name %>" />
+				</div>
+				<div class='field' id='user_username_field'>
+				  <label for='blog_password'>Password</label>
+				  <input class='string' id='blog_password' name='adopt_a_pet_account[password]' size='50' style='width:px' type='password' value="<%= Base64.decode64(@user.adopt_a_pet_accounts.first.password).split("~").first %>" />
+				</div>
+			<%end%>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn btn-primary submit-button" data-form-id="edit_adopt_a_pet_accounts_form">Save changes</a>
+			<a href="#" class="btn" data-dismiss="modal">Close</a>
+		</div>
+	</div>
+<%end%>
+
+
+
 <% content_for :javascript_footer do %>
 	<script type="text/javascript">
 		//setup juggernaut to handle real time updating page changes

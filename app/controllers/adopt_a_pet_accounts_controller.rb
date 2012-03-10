@@ -8,7 +8,19 @@ class AdoptAPetAccountsController < ApplicationController
     @adopt_a_pet_account.password = Base64.encode64("#{@adopt_a_pet_account.password}~#{current_user.username}")
     respond_to do |format|
       if  @adopt_a_pet_account.save
-        format.html {redirect_to("#{root_url}admin/user/#{current_user.id}", :notice => 'Adopt A Pet Account Connected!')}
+        format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Adopt A Pet Account Connected!')}
+      else
+        format.html { render :action => "new" }
+      end
+    end
+  end
+  
+  def update
+    @adopt_a_pet = AdoptAPetAccount.find(params[:id])
+    params[:adopt_a_pet_account]["password"] = Base64.encode64("#{params[:adopt_a_pet_account]["password"]}~#{current_user.username}")
+    respond_to do |format|
+      if  @adopt_a_pet.update_attributes(params[:adopt_a_pet_account])
+        format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Adopt A Pet Account updated!')}
       else
         format.html { render :action => "new" }
       end
@@ -20,7 +32,7 @@ class AdoptAPetAccountsController < ApplicationController
     @account = AdoptAPetAccount.find_by_user_id(current_user.id)
     #@account.password = Base64.decode64(@account.password).split("~").first
     if @account.blank?
-      redirect_to("#{root_url}admin/user/#{current_user.id}", :notice => 'Please Add Adopt A Pet Credentials!')
+      redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Please Add Adopt A Pet Credentials!')
     else
       #get all animals for an organization
       @animals = Animal.find(:all, :conditions => {:organization_id => current_user.organization.id, :public => 1}) 
@@ -55,6 +67,16 @@ class AdoptAPetAccountsController < ApplicationController
     
     #delete the tmp file
     File.delete("#{RAILS_ROOT}/tmp/#{current_user.id}_adopt_a_pet_export_temp.csv")
+  end
+  
+  def destroy
+    @account = AdoptAPetAccount.find(params[:id])
+    @account.destroy
+
+    respond_to do |format|
+      format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Adopt A Pet Account Deleted!')}
+      format.xml  { head :ok }
+    end
   end
 
 end

@@ -34,5 +34,15 @@ class TwitterAccountsController < ApplicationController
       redirect_to("#{root_url}admin/animals/#{params[:animal_uuid]}", :notice => 'Tweet Sent')
     end
   end
+  
+  def destroy
+    @account = TwitterAccount.find(params[:id])
+    @account.destroy
+
+    respond_to do |format|
+      format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Twitter Account destroyed!')}
+      format.xml  { head :ok }
+    end
+  end
  
 end

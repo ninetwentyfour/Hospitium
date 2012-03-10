@@ -4,11 +4,13 @@ AnimalTracker::Application.routes.draw do
   resource :facebook_accounts
   match '/callback/facebook/:id' => "facebook_accounts#callback", :as => :facebook_callback
   match "/facebook_accounts/send_wall_post" => "facebook_accounts#send_wall_post", :as => "facebook_accounts"
+  match "/facebook_accounts/:id" => "facebook_accounts#destroy", :via => :delete
 
   
   resource :twitter_accounts
   match '/callback/twitter/' => "twitter_accounts#callback", :as => :twitter_callback
   match "/twitter_accounts/send_tweet" => "twitter_accounts#send_tweet", :as => "twitter_accounts"
+  match "/twitter_accounts/:id" => "twitter_accounts#destroy", :via => :delete
   
   post "versions/:id/revert" => "versions#revert", :as => "revert_version"
   
@@ -136,12 +138,16 @@ AnimalTracker::Application.routes.draw do
   
   resource :wordpress_accounts
   match "/wordpress_accounts/send_blog_post" => "wordpress_accounts#send_blog_post", :as => "wordpress_accounts"
+  match "/wordpress_accounts/:id" => "wordpress_accounts#update", :via => :put
+  match "/wordpress_accounts/:id" => "wordpress_accounts#destroy", :via => :delete
   
   resource :petfinder_accounts
   match "/petfinder_accounts/send_animal_post" => "petfinder_accounts#send_animal_post", :as => "petfinder_accounts"
   
   resource :adopt_a_pet_accounts
   match "/send-to-adopt-a-pet" => "adopt_a_pet_accounts#send_animal", :as => "adopt_a_pet_accounts"
+  match "/adopt_a_pet_accounts/:id" => "adopt_a_pet_accounts#update", :via => :put
+  match "/adopt_a_pet_accounts/:id" => "adopt_a_pet_accounts#destroy", :via => :delete
   
   match "/species.:id" => "species#update", :via => :put
 
