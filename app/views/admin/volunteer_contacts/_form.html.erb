@@ -1,49 +1,47 @@
-<%= form_for(@volunteer_contact) do |f| %>
-  <% if @volunteer_contact.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@volunteer_contact.errors.count, "error") %> prohibited this volunteer_contact from being saved:</h2>
+<div class="row-fluid">
+	<div class="span12">
+		<%= form_for @volunteer_contact, :url => admin_volunteer_contacts_path, :validate => true do |f| %>
+		  <% if @volunteer_contact.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(@volunteer_contact.errors.count, "error") %> prohibited this volunteer_contact from being saved:</h2>
 
-      <ul>
-      <% @volunteer_contact.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+		      <ul>
+		      <% @volunteer_contact.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :uuid %><br />
-    <%= f.text_field :uuid %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :application_date %><br />
-    <%= f.datetime_select :application_date %>
-  </div>
-  <div class="field">
-    <%= f.label :organization %><br />
-    <%= f.text_field :organization %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+		    <%= f.label :first_name %>
+		    <%= f.text_field :first_name %>
+
+		    <%= f.label :last_name %>
+		    <%= f.text_field :last_name %>
+
+		    <%= f.label :address %>
+		    <%= f.text_field :address %>
+
+		    <%= f.label :phone %>
+		    <%= f.text_field :phone %>
+
+		    <%= f.label :email %>
+		    <%= f.text_field :email %>
+
+		    <%= f.label :application_date %>
+		    <%= f.text_field :application_date %>
+
+				<hr />
+						    <%= f.submit "Add Volunteer Contact", :class => "btn btn-primary submit-button" %>
+
+		<% end %>
+	</div>
+</div>
+<% content_for :javascript_footer do %>
+	<script>
+	$( "#volunteer_contact_application_date" ).datepicker();
+	$.datepicker.setDefaults({
+	   dateFormat: 'D, dd M yy' 
+	});
+	</script>
+<%end%>

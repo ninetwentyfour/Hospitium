@@ -46,21 +46,23 @@
 		<hr />
 		<div class="row-fluid">
 			<div class="span12">
-				<h2>Recent Tweets</h2>
-				<table class="table table-striped table-bordered">
-					<thead>
-						<th>User</th>
-						<th>Tweet</th>
-					</thead>
-					<tbody>
-						<% @tweets.each do |tweet| %>
-							<tr>
-								<td><%= tweet.user.name %></td>
-								<td><%= tweet.text %></td>
-							</tr>
-						<%end%>
-					</tbody>
-				</table>
+				<%unless @tweets.blank?%>
+					<h2>Recent Tweets</h2>
+					<table class="table table-striped table-bordered">
+						<thead>
+							<th>User</th>
+							<th>Tweet</th>
+						</thead>
+						<tbody>
+							<% @tweets.each do |tweet| %>
+								<tr>
+									<td><%= tweet.user.name %></td>
+									<td><%= tweet.text %></td>
+								</tr>
+							<%end%>
+						</tbody>
+					</table>
+				<%end%>
 			</div>
 		</div>
 

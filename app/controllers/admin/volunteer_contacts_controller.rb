@@ -1,8 +1,11 @@
-class VolunteerContactsController < ApplicationController
+class Admin::VolunteerContactsController < Admin::ApplicationController
+  load_and_authorize_resource
   # GET /volunteer_contacts
   # GET /volunteer_contacts.xml
   def index
-    @volunteer_contacts = VolunteerContact.all
+    #@volunteer_contacts = VolunteerContact.all
+    @search = VolunteerContact.search(params[:search])
+    @volunteer_contacts = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,7 +44,7 @@ class VolunteerContactsController < ApplicationController
   # POST /volunteer_contacts.xml
   def create
     @volunteer_contact = VolunteerContact.new(params[:volunteer_contact])
-
+    @volunteer_contact.organization_id = current_user.organization_id
     respond_to do |format|
       if @volunteer_contact.save
         format.html { redirect_to(@volunteer_contact, :notice => 'Volunteer contact was successfully created.') }
@@ -62,11 +65,9 @@ class VolunteerContactsController < ApplicationController
       if @volunteer_contact.update_attributes(params[:volunteer_contact])
         format.html { redirect_to(@volunteer_contact, :notice => 'Volunteer contact was successfully updated.') }
         format.xml  { head :ok }
-        format.json { respond_with_bip(@volunteer_contact) }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @volunteer_contact.errors, :status => :unprocessable_entity }
-        format.json { respond_with_bip(@volunteer_contact) }
       end
     end
   end

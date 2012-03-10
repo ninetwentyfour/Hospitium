@@ -4,7 +4,9 @@ class VolunteerContact < ActiveRecord::Base
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
   
-  validates_presence_of :first_name, :last_name, :address
+  validates_presence_of :first_name, :last_name, :address, :organization_id
+  
+  attr_accessible :first_name, :last_name, :address, :phone, :email, :application_date
   
   
   #create uuid
@@ -20,6 +22,24 @@ class VolunteerContact < ActiveRecord::Base
     unless self.phone.blank?
       self.phone = self.phone.delete("^0-9")
     end
+  end
+  
+  def formatted_phone
+    unless self.phone.blank?
+      phone = number_to_phone(self.phone)
+    else
+      phone = ""
+    end
+    return phone
+  end
+  
+  def formatted_application_date
+    unless self.application_date.blank?
+      age = self.application_date.strftime("%a, %b %e at %l:%M")
+    else
+      age = ""
+    end
+    return age
   end
   
 end

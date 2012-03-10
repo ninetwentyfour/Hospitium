@@ -75,7 +75,11 @@
 					</div>
 				</div>
 				<div class="span8 map-block">
-					<div id="map_canvas" style="height:409px;width:400px;"></div>
+					<ul class="thumbnails">
+						<li>
+							<a class="thumbnail" href="#"><%= gravatar_image_tag("#{@user.email}", :alt => "#{@user.email}", :gravatar => { :size => 400 }, :style => "") %></a>
+						</li>
+					</ul>
 				</div>
 			</div>
 	</div>
