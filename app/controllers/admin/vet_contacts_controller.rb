@@ -1,8 +1,11 @@
-class VetContactsController < ApplicationController
+class Admin::VetContactsController < Admin::ApplicationController
+  load_and_authorize_resource
   # GET /vet_contacts
   # GET /vet_contacts.xml
   def index
-    @vet_contacts = VetContact.all
+    #@vet_contacts = VetContact.all
+    @search = VetContact.search(params[:search])
+    @vet_contacts = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,7 +44,7 @@ class VetContactsController < ApplicationController
   # POST /vet_contacts.xml
   def create
     @vet_contact = VetContact.new(params[:vet_contact])
-
+    @vet_contact.organization_id = current_user.organization_id
     respond_to do |format|
       if @vet_contact.save
         format.html { redirect_to(@vet_contact, :notice => 'Vet contact was successfully created.') }
@@ -62,11 +65,9 @@ class VetContactsController < ApplicationController
       if @vet_contact.update_attributes(params[:vet_contact])
         format.html { redirect_to(@vet_contact, :notice => 'Vet contact was successfully updated.') }
         format.xml  { head :ok }
-        format.json { respond_with_bip(@vet_contact) }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @vet_contact.errors, :status => :unprocessable_entity }
-        format.json { respond_with_bip(@vet_contact) }
       end
     end
   end

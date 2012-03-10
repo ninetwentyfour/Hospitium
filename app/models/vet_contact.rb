@@ -4,6 +4,8 @@ class VetContact < ActiveRecord::Base
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
   
+  attr_accessible :clinic_name, :address, :phone, :email, :website, :hours, :emergency
+  
   #create uuid
   def create_uuid()
     self.uuid = UUIDTools::UUID.random_create.to_s
@@ -17,6 +19,15 @@ class VetContact < ActiveRecord::Base
     unless self.phone.blank?
       self.phone = self.phone.delete("^0-9")
     end
+  end
+  
+  def formatted_phone
+    unless self.phone.blank?
+      phone = number_to_phone(self.phone)
+    else
+      phone = ""
+    end
+    return phone
   end
   
 end

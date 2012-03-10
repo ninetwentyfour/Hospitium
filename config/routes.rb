@@ -172,7 +172,8 @@ AnimalTracker::Application.routes.draw do
   
   # Prefix route urls with "admin" and route names with "rails_admin_"
   namespace :admin do
-    resources :animals, :species, :statuses, :animal_colors, :shelters, :animal_weights, :adoption_contacts, :organizations, :relinquishment_contacts, :users
+    resources :animals, :species, :statuses, :animal_colors, :shelters, :animal_weights, :adoption_contacts, :organizations, :relinquishment_contacts, :users,
+      :vet_contacts
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.

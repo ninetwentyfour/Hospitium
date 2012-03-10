@@ -3,11 +3,8 @@ class Admin::AdoptionContactsController < Admin::ApplicationController
   # GET /adoption_contacts
   # GET /adoption_contacts.xml
   def index
-    #@adoption_contacts = AdoptionContact.all
     @search = AdoptionContact.search(params[:search])
-    #@animals = @search.relation.where(:organization_id => current_user.organization_id)   # or @search.relation to lazy load in view
     @adoption_contacts = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC")
-    #@adoption_contacts = AdoptionContact.find(:all, :conditions => {:organization_id => current_user.organization_id})
 
     respond_to do |format|
       format.html # index.html.erb
