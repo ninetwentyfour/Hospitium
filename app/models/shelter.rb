@@ -6,6 +6,8 @@ class Shelter < ActiveRecord::Base
   before_update :modify_phone_number
   validates_presence_of :name, :organization_id
   
+  attr_accessible :name, :contact_first, :contact_last, :address, :phone, :email, :website, :notes
+  
   #create uuid
   def create_uuid()
     self.uuid = UUIDTools::UUID.random_create.to_s

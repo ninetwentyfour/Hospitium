@@ -42,7 +42,7 @@ class Admin::StatusesController < Admin::ApplicationController
   # POST /statuses.xml
   def create
     @status = Status.new(params[:status])
-
+    @status.organization_id = current_user.organization_id
     respond_to do |format|
       if @status.save
         #redirect_to(:back)

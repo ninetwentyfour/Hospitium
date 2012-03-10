@@ -43,7 +43,7 @@ class Admin::SheltersController < Admin::ApplicationController
   # POST /shelters.xml
   def create
     @shelter = Shelter.new(params[:shelter])
-
+    @shelter.organization_id = current_user.organization_id
     respond_to do |format|
       if @shelter.save
         format.html { 

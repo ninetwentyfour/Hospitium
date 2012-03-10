@@ -8,6 +8,8 @@ class Status < ActiveRecord::Base
   #has_many :animals
   validates_presence_of :status, :organization_id
   
+  attr_accessible :status
+  
   # show the link in the admin UI instead of the link id
   def show_status_label_method
     "#{self.status}"

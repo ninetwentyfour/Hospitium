@@ -1,6 +1,6 @@
 <div class="row-fluid">
 	<div class="span12">
-	<%= form_for @species, :validate => true do |f| %>
+	<%= form_for @species, :url => "/admin/species", :validate => true do |f| %>
 	  <% if @species.errors.any? %>
 	    <div id="error_explanation">
 	      <h2><%= pluralize(@species.errors.count, "error") %> prohibited this species from being saved:</h2>
@@ -15,7 +15,6 @@
 
 	    <%= f.label :name %>
 	    <%= f.text_field :name %>
-<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
 <hr />
 	   <%= f.submit "Add Species", :class => "btn btn-primary submit-button" %>
 

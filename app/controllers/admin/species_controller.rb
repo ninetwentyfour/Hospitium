@@ -43,7 +43,7 @@ class Admin::SpeciesController < Admin::ApplicationController
   # POST /species.xml
   def create
     @species = Species.new(params[:species])
-
+    @species.organization_id = current_user.organization_id
     respond_to do |format|
       if @species.save
         format.html { 
