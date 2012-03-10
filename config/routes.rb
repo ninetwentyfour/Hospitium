@@ -132,6 +132,8 @@ AnimalTracker::Application.routes.draw do
   
   resources :relinquish_animals
   
+  #resources :users
+  
   resource :wordpress_accounts
   match "/wordpress_accounts/send_blog_post" => "wordpress_accounts#send_blog_post", :as => "wordpress_accounts"
   
@@ -144,7 +146,7 @@ AnimalTracker::Application.routes.draw do
   match "/species.:id" => "species#update", :via => :put
 
     
-  devise_for :users
+  devise_for :users#, :controllers => { :sessions => 'users/sessions' } 
   get "home/index"
   root :to => "home#index"
   match "/about" => "home#about", :as => "about"
@@ -154,12 +156,17 @@ AnimalTracker::Application.routes.draw do
   match "/admin" => "admin/home#index", :as => "index"
   match "/admin/animals/:id/duplicate" => "admin/animals#duplicate", :via => :get
   
+  devise_scope :user do
+    match '/users/:id', :to => 'users#update', :via => :put
+  end
+  
+  resources :users, :only => [:show, :update]
   
   
   
   # Prefix route urls with "admin" and route names with "rails_admin_"
   namespace :admin do
-    resources :animals, :species, :statuses, :animal_colors, :shelters, :animal_weights, :adoption_contacts, :organizations, :relinquishment_contacts
+    resources :animals, :species, :statuses, :animal_colors, :shelters, :animal_weights, :adoption_contacts, :organizations, :relinquishment_contacts, :users
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.
