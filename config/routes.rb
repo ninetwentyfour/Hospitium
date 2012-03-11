@@ -164,6 +164,7 @@ AnimalTracker::Application.routes.draw do
   
   devise_scope :user do
     match '/users/:id', :to => 'users#update', :via => :put
+    match '/users/sign_out' => 'devise/sessions#destroy'
   end
   
   resources :users, :only => [:show, :update]
