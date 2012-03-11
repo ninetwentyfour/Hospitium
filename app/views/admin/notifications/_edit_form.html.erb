@@ -1,4 +1,4 @@
-<%= form_for @notification, :url => admin_notifications_path do |f| %>
+<%= form_for @notification, :url => admin_notification_path(@notification) do |f| %>
   <% if @notification.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@notification.errors.count, "error") %> prohibited this notification from being saved:</h2>

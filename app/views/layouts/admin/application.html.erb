@@ -137,6 +137,14 @@
 					<li class="<%= current_class?('admin/volunteer_contacts', controller.action_name) %>">
 						<a href="/admin/volunteer_contacts">Volunteer Contacts</a>
 					</li>
+					<%- if current_user.permissions.first.role_id == 1 %>
+						<li class="<%= current_class?('admin/notifications', controller.action_name) %>">
+							<a href="/admin/notifications">Notifications</a>
+						</li>
+						<li class="<%= current_class?('admin/posts', controller.action_name) %>">
+							<a href="/admin/posts">Posts</a>
+						</li>
+					<%end%>
 				</ul>
 				<hr />
 				<div class="alert alert-block notification-sidebar-block">
