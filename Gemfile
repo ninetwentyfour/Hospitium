@@ -26,6 +26,13 @@ gem 'site_meta'
 gem 'meta_search'
 gem 'airbrake'
 gem 'spork', '~> 1.0rc'
+gem 'client_side_validations'
+gem 'jqplot-rails', :git => "git://github.com/ninetwentyfour/jqplot-rails.git"
+gem 'asset_sync'
+gem 'gravatar_image_tag'
+gem 'best_in_place'
+gem 'juggernaut'
+gem 'jquery-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -38,13 +45,6 @@ end
 
 group :development do
 	gem 'metrical'
-	gem 'client_side_validations'
-	gem 'jqplot-rails', :git => "git://github.com/ninetwentyfour/jqplot-rails.git"
-	gem 'asset_sync'
-	gem 'gravatar_image_tag'
-	gem 'best_in_place'
-	gem 'juggernaut'
-	gem 'jquery-rails'
 end
 
 group :production do

@@ -105,13 +105,13 @@ class Admin::AnimalsController < Admin::ApplicationController
         format.html { 
           #redirect_to(@animal.uuid, :notice => 'Animal was successfully updated.')
           flash[:notice] = 'Animal was successfully updated.'
-          redirect_to(:action => "show", :id => @animal.id+"-"+@animal.uuid)
+          redirect_to(:action => "show", :id => @animal.id.to_s+"-"+@animal.uuid)
         }
         format.json { respond_with_bip(@animal) }
       else
         #format.html { render :action => "edit" }
         flash[:notice] = 'There was a problem updating the animal.'
-        redirect_to(:action => "show", :id => @animal.id+"-"+@animal.uuid)
+        redirect_to(:action => "show", :id => @animal.id.to_s+"-"+@animal.uuid)
         format.json { respond_with_bip(@animal) }
       end
     end
