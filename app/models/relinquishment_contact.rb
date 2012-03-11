@@ -6,6 +6,8 @@ class RelinquishmentContact < ActiveRecord::Base
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
   
+  validates_presence_of :first_name, :last_name, :organization_id
+  
   attr_accessible :first_name, :last_name, :address, :phone, :email, :reason
   
   #create uuid

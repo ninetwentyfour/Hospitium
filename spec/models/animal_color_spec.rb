@@ -37,12 +37,12 @@ describe AnimalColor do
     
     it 'should deny mass-assignment to the uuid' do
       animal_color.update_attributes(:uuid =>  "test_uuid")
-      animal_color.organization_id.should_not == "test_uuid"
+      animal_color.uuid.should_not == "test_uuid"
     end
     
     it 'should deny mass-assignment to the id' do
       animal_color.update_attributes(:id =>  100000)
-      animal_color.organization_id.should_not == 100000
+      animal_color.id.should_not == 100000
     end
   end
 

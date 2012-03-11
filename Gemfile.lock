@@ -310,6 +310,7 @@ GEM
     site_meta (1.0.0)
       rails (>= 2.3.5)
     slim_scrooge (1.0.12)
+    spork (1.0.0rc2)
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -379,6 +380,7 @@ DEPENDENCIES
   shoulda-matchers
   site_meta
   slim_scrooge
+  spork (~> 1.0rc)
   twitter
   uglifier
   uuidtools

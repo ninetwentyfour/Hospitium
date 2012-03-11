@@ -123,12 +123,12 @@ describe Animal do
     
     it 'should deny mass-assignment to the uuid' do
       animal.update_attributes(:uuid =>  "test_uuid")
-      animal.organization_id.should_not == "test_uuid"
+      animal.uuid.should_not == "test_uuid"
     end
     
     it 'should deny mass-assignment to the id' do
       animal.update_attributes(:id =>  100000)
-      animal.organization_id.should_not == 100000
+      animal.id.should_not == 100000
     end
   end
 

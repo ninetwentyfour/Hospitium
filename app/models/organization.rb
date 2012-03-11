@@ -9,6 +9,7 @@ class Organization < ActiveRecord::Base
     has_many :relinquishment_contacts
     has_many :shelters
     has_many :species
+    has_many :statuses
     has_many :twitter_accounts
     has_many :vet_contacts
     has_many :volunteer_contacts
@@ -30,19 +31,26 @@ class Organization < ActiveRecord::Base
     #create the default statuses and assign them to the new organization
     def add_default_status
       @status = Status.new
-      @status.update_attributes(:status => "Adoptable", :organization_id => self.id)
+      @status.organization_id = self.id
+      @status.update_attributes(:status => "Adoptable")
       @status = Status.new
-      @status.update_attributes(:status => "New Intake", :organization_id => self.id)
+      @status.organization_id = self.id
+      @status.update_attributes(:status => "New Intake")
       @status = Status.new
-      @status.update_attributes(:status => "Sanctuary", :organization_id => self.id)
+      @status.organization_id = self.id
+      @status.update_attributes(:status => "Sanctuary")
       @status = Status.new
-      @status.update_attributes(:status => "Sick", :organization_id => self.id)
+      @status.organization_id = self.id
+      @status.update_attributes(:status => "Sick")
       @status = Status.new
-      @status.update_attributes(:status => "Deceased", :organization_id => self.id)
+      @status.organization_id = self.id
+      @status.update_attributes(:status => "Deceased")
       @status = Status.new
-      @status.update_attributes(:status => "Adopted", :organization_id => self.id)
+      @status.organization_id = self.id
+      @status.update_attributes(:status => "Adopted")
       @status = Status.new
-      @status.update_attributes(:status => "Foster Care", :organization_id => self.id)
+      @status.organization_id = self.id
+      @status.update_attributes(:status => "Foster Care")
     end
     
     def modify_phone_number

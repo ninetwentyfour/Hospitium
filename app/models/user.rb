@@ -46,18 +46,26 @@ class User < ActiveRecord::Base
     if self.owner == 1
       @user = self.id
       @permission = Permission.new
-      @permission.update_attributes(:user_id => @user, :role_id => 2)
+      #@permission.update_attributes(:user_id => @user, :role_id => 2)
+      @permission.user_id = @user
+      @permission.role_id = 2
+      @permission.save!
     else
       @user = self.id
       @permission = Permission.new
-      @permission.update_attributes(:user_id => @user, :role_id => 3)
+      #@permission.update_attributes(:user_id => @user, :role_id => 3)
+      @permission.user_id = @user
+      @permission.role_id = 2
+      @permission.save!
     end
   end
   
   def add_to_organization
     if self.organization_id.nil?
       @organization = Organization.new
-      @organization.update_attributes(:name => "#{self.organization_name}") 
+      @organization.name = self.organization_name
+      #@organization.update_attributes(:name => "#{self.organization_name}") 
+      @organization.save!
       self.organization_id = @organization.id
     else
       #do nothing

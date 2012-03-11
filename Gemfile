@@ -25,6 +25,7 @@ gem 'bitly'
 gem 'site_meta'
 gem 'meta_search'
 gem 'airbrake'
+gem 'spork', '~> 1.0rc'
 
 # Gems used only for assets and not required
 # in production environments by default.

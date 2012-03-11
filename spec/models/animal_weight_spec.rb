@@ -53,12 +53,12 @@ describe AnimalWeight do
     
     it 'should deny mass-assignment to the uuid' do
       animal_weight.update_attributes(:uuid =>  "test_uuid")
-      animal_weight.organization_id.should_not == "test_uuid"
+      animal_weight.uuid.should_not == "test_uuid"
     end
     
     it 'should deny mass-assignment to the id' do
       animal_weight.update_attributes(:id =>  100000)
-      animal_weight.organization_id.should_not == 100000
+      animal_weight.id.should_not == 100000
     end
   end
 
