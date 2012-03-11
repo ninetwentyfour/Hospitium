@@ -1,4 +1,5 @@
 class Admin::PostsController < Admin::ApplicationController
+  load_and_authorize_resource
   # GET /posts
   #caches_action :index, :cache_path => Proc.new { |controller| controller.params },:layout => false, :expires_in => 180.minutes
   
