@@ -25,6 +25,13 @@ FactoryGirl.define do
     association :organization
   end
   
+  factory :animal_weight do
+    weight 100
+    date_of_weight "2011-10-20 00:50:22"
+    association :organization
+    association :animal
+  end
+  
   factory :status do
     sequence(:status) { |n| "test_name_#{n}"}
     association :organization
