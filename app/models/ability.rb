@@ -25,6 +25,7 @@ class Ability
         can :destroy, Animal, :organization => { :id => user.organization_id }
         can :export, Animal, :organization => { :id => user.organization_id }
         can :bulk_action, Animal, :organization => { :id => user.organization_id }
+        can :duplicate, Animal, :organization => { :id => user.organization_id }
         #can :manage, AnimalColor, :organization => { :id => user.organization_ids }
         can :read, AnimalColor, :organization => { :id => user.organization_id }
         can :create, AnimalColor

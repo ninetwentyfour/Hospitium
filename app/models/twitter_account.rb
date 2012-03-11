@@ -7,6 +7,7 @@ class TwitterAccount < ActiveRecord::Base
   belongs_to :user
   belongs_to :organization
   
+  attr_accessible :user_id
   
   def authorize_url(callback_url = '')
     if self.oauth_authorize_url.blank?

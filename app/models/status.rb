@@ -1,6 +1,6 @@
 class Status < ActiveRecord::Base
   has_paper_trail
-  default_scope :order => "status ASC"
+
   belongs_to :organization
   has_many :animals
   #default_scope :order => "created_at ASC"

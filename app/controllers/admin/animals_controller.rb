@@ -133,10 +133,11 @@ class Admin::AnimalsController < Admin::ApplicationController
     #@authorization_adapter.authorize(:show, @abstract_model, @object) if @authorization_adapter
     #@object.id
     @existing_animal = Animal.find(params[:id])
-    @animal = Animal.new(@existing_animal.attributes) 
+    #@animal = Animal.new(@existing_animal.attributes) 
     #new_record = @animal.clone
+    new_record = @existing_animal.dup
     respond_to do |format|
-      if @animal.save
+      if new_record.save
         format.html { redirect_to :back, notice: 'Successfully duplicated.' }
       else
         format.html { redirect_to :back, notice: 'There was a problem duplicating.' }

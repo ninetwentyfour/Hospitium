@@ -86,7 +86,7 @@ class Admin::UsersController < Admin::ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to(users_url) }
+      format.html { redirect_to(:back, :notice => 'User was successfully deleted.') }
       format.xml  { head :ok }
     end
   end
