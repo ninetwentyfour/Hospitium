@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
       @permission = Permission.new
       #@permission.update_attributes(:user_id => @user, :role_id => 3)
       @permission.user_id = @user
-      @permission.role_id = 2
+      @permission.role_id = 3
       @permission.save!
     end
   end

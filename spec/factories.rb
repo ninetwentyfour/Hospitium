@@ -77,6 +77,33 @@ FactoryGirl.define do
     website "www.example.com"
     association :organization
   end
+  
+  factory :user do
+    sequence(:username)               { |n| "test_name_#{n}"}
+    sequence(:email)                  { |n| "user_#{n}@example.com"}
+    sequence(:organization_name)                  { |n| "test_name_#{n}"}
+    password               "password"
+    password_confirmation  "password"
+    association :organization
+    owner 1
+  end
+  
+  factory :vet_contact do
+    sequence(:clinic_name) { |n| "test_name_#{n}"}
+    address "511 Broadway Denver CO 80203"
+    phone "5555555555"
+    email "example@example.com"
+    association :organization
+  end
+  
+  factory :volunteer_contact do
+    sequence(:first_name) { |n| "test_name_#{n}"}
+    last_name "last name"
+    address "511 Broadway Denver CO 80203"
+    phone "5555555555"
+    email "example@example.com"
+    association :organization
+  end
 
 
 end

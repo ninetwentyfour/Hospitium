@@ -4,6 +4,8 @@ class VetContact < ActiveRecord::Base
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
   
+  validates_presence_of :clinic_name
+  
   attr_accessible :clinic_name, :address, :phone, :email, :website, :hours, :emergency
   
   #create uuid
