@@ -7,7 +7,7 @@ class AdoptionContact < ActiveRecord::Base
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
   
-  validates_presence_of :first_name, :last_name, :address
+  validates_presence_of :first_name, :last_name, :address, :organization_id
   
   accepts_nested_attributes_for :adopt_animals
   
