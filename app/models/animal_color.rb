@@ -2,6 +2,7 @@ class AnimalColor < ActiveRecord::Base
   has_paper_trail
   #default_scope :order => "color ASC"
   belongs_to :organization
+  has_many :animals
   before_create :create_uuid
   validates_presence_of :color, :organization_id
   
