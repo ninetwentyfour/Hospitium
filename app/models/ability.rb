@@ -72,6 +72,7 @@ class Ability
         can :create, User
         can :update, User, :organization => { :id => user.organization_id }
         can :export, User, :organization => { :id => user.organization_id }
+        can :destroy, User, :organization => { :id => user.organization_id }
         can :bulk_action, User, :organization => { :id => user.organization_id }
         #can :manage, VetContact, :organization => { :id => user.organization_ids }
         can :read, VetContact, :organization => { :id => user.organization_id }

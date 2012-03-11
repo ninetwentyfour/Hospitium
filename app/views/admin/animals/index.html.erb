@@ -50,7 +50,7 @@
 							<div class="btn-group">
 								<a class="btn tooltip-class" href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>" rel="tooltip" title="View Animal"><i class="icon-eye-open"></i></a>
 								<a class="btn tooltip-class" href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>/duplicate" rel="tooltip" title="Duplicate Animal"><i class="icon-plus-sign"></i></a>
-								<% if can? :delete, animal %>
+								<% if can? :destroy, animal %>
 									<%= link_to raw("<i class='icon-remove'></i>"), admin_animal_path(animal),
 									            :confirm => 'Are you sure you want to delete?', :method => :delete, :class => "btn tooltip-class", :rel => "tooltip", :title => "Delete Animal" %>
 								<% end %>

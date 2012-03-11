@@ -1,46 +1,34 @@
-<div class="row-fluid">
-	<div class="span12">
-		<%= form_for @shelter, :url => admin_shelters_path, :validate => true do |f| %>
-		  <% if @shelter.errors.any? %>
-		    <div id="error_explanation">
-		      <h2><%= pluralize(@shelter.errors.count, "error") %> prohibited this shelter from being saved:</h2>
+<%#= render 'devise/sessions/form' %>
 
-		      <ul>
-		      <% @shelter.errors.full_messages.each do |msg| %>
-		        <li><%= msg %></li>
-		      <% end %>
-		      </ul>
-		    </div>
-		  <% end %>
+<%= form_for @user, :url => "/admin/users", :validate => true do |f| %>
+	<% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-
-		    <%= f.label :name %>
-		    <%= f.text_field :name %>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
 
-		    <%= f.label :contact_first %>
-		    <%= f.text_field :contact_first %>
+  <%= f.hidden_field :organization_name, :value => "#{current_user.organization.name}" %></div>
 
-		    <%= f.label :contact_last %>
-		    <%= f.text_field :contact_last %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
 
-		    <%= f.label :address %>
-		    <%= f.text_field :address %>
+	<%= f.label :email %>
+  <%= f.email_field :email %>
 
-		    <%= f.label :phone %>
-		    <%= f.text_field :phone %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
 
-		    <%= f.label :email %>
-		    <%= f.text_field :email %>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+  <input type="hidden" value="0" name="user[owner]" id="new_user_admin">
 
-		    <%= f.label :website %>
-		    <%= f.text_field :website %>
-
-		    <%= f.label :notes %>
-		    <%= f.text_area :notes, :rows => 5 %>
-<hr />
-		    <%= f.submit "Add Shelter", :class => "btn btn-primary submit-button" %>
-
-		<% end %>
-	</div>
-</div>
+	<hr />
+<%= f.submit "Add New User", :class => "btn btn-primary btn-large" %>
+<% end %>

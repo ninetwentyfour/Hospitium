@@ -40,7 +40,21 @@ class UsersController < Devise::SessionsController
   # POST /users
   # POST /users.xml
   def create
-    super
+    #super
+    
+    @user = User.new(params[:user])
+    unless current_user.organization_id.blank?
+      @user.organization_id = current_user.organization_id
+    end
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to(@user, :notice => 'Status was successfully created.') }
+        format.xml  { render :xml => @user, :status => :created, :location => @status }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
+    end
   end
   
   def sign_out

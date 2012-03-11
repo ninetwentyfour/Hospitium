@@ -27,7 +27,7 @@
 						<td>
 							<div class="btn-group">
 								<a class="btn tooltip-class" href="/admin/animal_colors/<%= animal_color.id %>" rel="tooltip" title="View Contact"><i class="icon-eye-open"></i></a>
-								<% if can? :delete, animal_color %>
+								<% if can? :destroy, animal_color %>
 									<%= link_to raw("<i class='icon-remove'></i>"), admin_animal_color_path(animal_color),
 									            :confirm => 'Are you sure you want to delete?', :method => :delete, :class => "btn tooltip-class", :rel => "tooltip", :title => "Delete" %>
 								<% end %>
