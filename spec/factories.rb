@@ -104,6 +104,11 @@ FactoryGirl.define do
     email "example@example.com"
     association :organization
   end
+  
+  factory :notification do
+    message "test notification"
+    status_type "Tip"
+  end
 
 
 end

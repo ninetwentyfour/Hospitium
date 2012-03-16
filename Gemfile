@@ -49,15 +49,20 @@ end
 
 group :production do
 	gem 'home_run', :require=>'date'
-  gem 'slim_scrooge'
+	gem 'slim_scrooge'
 	gem 'dalli'
 end
 
 gem "rspec-rails", :group => [:test, :development]
 group :test do
-  gem "factory_girl_rails"
-  gem "capybara"
+	gem "factory_girl_rails"
+	gem "capybara"
 	gem 'shoulda-matchers'
+	gem 'cucumber-rails'
+	# database_cleaner is not required, but highly recommended
+	gem 'database_cleaner'
+	gem 'launchy'
+	gem 'email_spec'
 end
 
 # Use unicorn as the web server
