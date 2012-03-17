@@ -77,5 +77,20 @@ describe User do
     end
   end
 
+  describe 'permissions and roles' do
+    it "should have 2 hives" do
+      @user = Factory(:user)
+      @user.roles << Factory(:role)
+      assert_equal 1, @user.roles.length
+    end
+
+    it "should have 2 bees" do
+      @user = Factory(:user)
+      @permission = Factory(:permission)
+      #puts @permission
+      assert_equal 1, @user.permissions.length
+    end
+  end
+
   
 end

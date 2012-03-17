@@ -109,6 +109,16 @@ FactoryGirl.define do
     message "test notification"
     status_type "Tip"
   end
+  
+  factory :role do
+    name "Admin"
+  end
+  
+  Factory.define :permission do |b|
+    b.user {|a| a.association(:user)}
+    b.role {|a| a.association(:role)}
+  end
+
 
 
 end

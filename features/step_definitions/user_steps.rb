@@ -21,7 +21,9 @@ def create_user
   create_visitor
   delete_user
   #@user = FactoryGirl.create(:user, email: @visitor[:email])
-  @user = Factory(:user, @attr.merge(email: @visitor[:email], :password => "123456789", :password_confirmation => "123456789" ))
+  @user = Factory(:user, @attr.merge(:email => @visitor[:email], :password => "123456789", :password_confirmation => "123456789" ))
+  @user.roles << Factory(:role)
+  @permission = Factory(:permission)
 end
 
 def delete_user
@@ -60,8 +62,10 @@ end
 
 Given /^I exist as a user$/ do
   #create_user
-  @attr = { }
+  @attr = { }    
   @user = Factory(:user, @attr.merge(email: "example_cuc@example.com", :password => "123456789", :password_confirmation => "123456789" ))
+  @user.roles << Factory(:role)
+  @permission = Factory(:permission)
 end
 
 Given /^I do not exist as a user$/ do
