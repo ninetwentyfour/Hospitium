@@ -44,7 +44,7 @@ And /^An animal exists$/ do
 end
 
 When /^I view the animal$/ do
-  visit '/admin/animals/'+@animal.id.to_s+"-"+@animal.uuid
+  visit '/admin/animals/'+@animal.id.to_s
 end
 
 When /^I click the animal name$/ do

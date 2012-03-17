@@ -24,7 +24,7 @@ class AnimalsController < ApplicationController
   # GET /animals/1.xml
   def show
     canonical_url("/animals/#{params[:id]}")
-    require_dependency "Animal"
+    #require_dependency "Animal"
     @animal = Rails.cache.fetch("public_animal_#{params[:id]}", :expires_in => 15.minutes) do
       Animal.find_by_uuid(params[:id])
     end
