@@ -57,6 +57,7 @@ gem "rspec-rails", :group => [:test, :development]
 group :test do
 	gem "factory_girl_rails"
 	gem "capybara"
+	gem 'capybara-webkit'
 	gem 'shoulda-matchers'
 	gem 'cucumber-rails', require: false
 	# database_cleaner is not required, but highly recommended
