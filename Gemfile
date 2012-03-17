@@ -58,7 +58,7 @@ group :test do
 	gem "factory_girl_rails"
 	gem "capybara"
 	gem 'shoulda-matchers'
-	gem 'cucumber-rails'
+	gem 'cucumber-rails', require: false
 	# database_cleaner is not required, but highly recommended
 	gem 'database_cleaner'
 	gem 'launchy'
