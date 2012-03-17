@@ -44,10 +44,8 @@ class Admin::UsersController < Admin::ApplicationController
     @user.organization_id = current_user.organization_id
     respond_to do |format|
       if @user.save
-        #redirect_to(:back)
         format.html { 
           redirect_to(:back, :notice => 'User was successfully created.')
-          #redirect_to(@user, :notice => 'User was successfully created.') 
           }
         format.xml  { render :xml => @user, :user => :created, :location => @user }
         format.js
@@ -66,10 +64,8 @@ class Admin::UsersController < Admin::ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        #format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
         format.html { 
           redirect_to(:back, :notice => 'User was successfully created.')
-          #redirect_to(@animal_color, :notice => 'Animal color was successfully created.') 
           }
         format.xml  { head :ok }
       else

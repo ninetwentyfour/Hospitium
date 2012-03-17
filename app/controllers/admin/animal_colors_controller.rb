@@ -3,7 +3,6 @@ class Admin::AnimalColorsController < Admin::ApplicationController
   # GET /animal_colors
   # GET /animal_colors.xml
   def index
-    #@animal_colors = AnimalColor.find(:all, :conditions => {:organization_id => current_user.organization_id})
     @search = AnimalColor.search(params[:search])
     @animal_colors = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC")
     
@@ -50,7 +49,6 @@ class Admin::AnimalColorsController < Admin::ApplicationController
       if @animal_color.save
         format.html { 
           redirect_to(:back, :notice => 'Animal Color was successfully created.')
-          #redirect_to(@animal_color, :notice => 'Animal color was successfully created.') 
           }
         format.xml  { render :xml => @animal_color, :status => :created, :location => @animal_color }
         format.js

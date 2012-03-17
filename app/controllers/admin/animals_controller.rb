@@ -1,15 +1,11 @@
 class Admin::AnimalsController < Admin::ApplicationController
   load_and_authorize_resource
-  #layout "admin/application"
+
   # GET /animals
   # GET /animals.xml
   def index
-
-    #@animals = Animal.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
     @search = Animal.search(params[:search])
-    #@animals = @search.relation.where(:organization_id => current_user.organization_id)   # or @search.relation to lazy load in view
     @animals = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
-
 
     respond_to do |format|
       format.html # index.html.erb
@@ -66,9 +62,7 @@ class Admin::AnimalsController < Admin::ApplicationController
     @animal.organization_id = current_user.organization_id
     respond_to do |format|
       if @animal.save
-        #format.html { redirect_to(@animal, :notice => 'Animal was successfully created.') }
         format.html { 
-          #redirect_to(@animal.uuid, :notice => 'Animal was successfully updated.')
           flash[:notice] = 'Animal was successfully created.'
           redirect_to(:action => "show", :id => @animal.id.to_s+"-"+@animal.uuid)
         }
@@ -79,37 +73,18 @@ class Admin::AnimalsController < Admin::ApplicationController
       end
     end
   end
-
-  # PUT /animals/1
-  # PUT /animals/1.xml
-  # def update
-  #   @animal = Animal.find(params[:id])
-  # 
-  #   respond_to do |format|
-  #     if @animal.update_attributes(params[:animal])
-  #       format.html { redirect_to(@animal, :notice => 'Animal was successfully updated.') }
-  #       format.xml  { head :ok }
-  #     else
-  #       format.html { render :action => "edit" }
-  #       format.xml  { render :xml => @animal.errors, :status => :unprocessable_entity }
-  #     end
-  #   end
-  # end
   
   def update
-    #@animal = Animal.find(params[:id])
     @animal = Animal.find(params[:id])
 
     respond_to do |format|
       if @animal.update_attributes(params[:animal])
         format.html { 
-          #redirect_to(@animal.uuid, :notice => 'Animal was successfully updated.')
           flash[:notice] = 'Animal was successfully updated.'
           redirect_to(:action => "show", :id => @animal.id.to_s+"-"+@animal.uuid)
         }
         format.json { respond_with_bip(@animal) }
       else
-        #format.html { render :action => "edit" }
         flash[:notice] = 'There was a problem updating the animal.'
         redirect_to(:action => "show", :id => @animal.id.to_s+"-"+@animal.uuid)
         format.json { respond_with_bip(@animal) }
@@ -130,11 +105,7 @@ class Admin::AnimalsController < Admin::ApplicationController
   end
   
   def duplicate
-    #@authorization_adapter.authorize(:show, @abstract_model, @object) if @authorization_adapter
-    #@object.id
     @existing_animal = Animal.find(params[:id])
-    #@animal = Animal.new(@existing_animal.attributes) 
-    #new_record = @animal.clone
     new_record = @existing_animal.dup
     respond_to do |format|
       if new_record.save

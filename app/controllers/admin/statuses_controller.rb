@@ -45,10 +45,8 @@ class Admin::StatusesController < Admin::ApplicationController
     @status.organization_id = current_user.organization_id
     respond_to do |format|
       if @status.save
-        #redirect_to(:back)
         format.html { 
           redirect_to(:back, :notice => 'Status was successfully created.')
-          #redirect_to(@status, :notice => 'Status was successfully created.') 
           }
         format.xml  { render :xml => @status, :status => :created, :location => @status }
         format.js

@@ -1,11 +1,9 @@
 class Admin::OrganizationsController < Admin::ApplicationController
   load_and_authorize_resource
-  #caches_action :index, :expires_in => 1.minute
-  #caches_action :show, :expires_in => 1.minute
+
   # GET /organizations
   # GET /organizations.xml
   def index
-    #@organizations = Organization.all
     @organizations = Organization.find(:all, :conditions => {:id => current_user.organization_id})
 
     respond_to do |format|
@@ -26,9 +24,6 @@ class Admin::OrganizationsController < Admin::ApplicationController
     @animals = Rails.cache.fetch("public_org_animals_#{params[:id]}", :expires_in => 15.minutes) do
       Animal.find(:all, :conditions => {'public' => 1, :organization_id => @organization.id})
     end
-    #@organization = Organization.find_by_uuid(params[:id])
-    #@animals = Animal.find(:all, :conditions => {'public' => 1, :organization_id => @organization.id})
-    
 
     respond_to do |format|
       format.html # show.html.erb

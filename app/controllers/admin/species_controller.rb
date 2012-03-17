@@ -48,7 +48,6 @@ class Admin::SpeciesController < Admin::ApplicationController
       if @species.save
         format.html { 
           redirect_to(:back, :notice => 'Species was successfully created.')
-          #redirect_to(@species, :notice => 'Species was successfully created.') 
           }
         format.xml  { render :xml => @species, :status => :created, :location => @species }
         format.js

@@ -3,7 +3,6 @@ class Admin::AnimalWeightsController < Admin::ApplicationController
   # GET /animal_weights
   # GET /animal_weights.xml
   def index
-    #@animal_weights = AnimalWeight.all
     @search = AnimalWeight.search(params[:search])
     @animal_weights = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC")
 
@@ -50,7 +49,6 @@ class Admin::AnimalWeightsController < Admin::ApplicationController
       if @animal_weight.save
         format.html { 
           redirect_to(:back, :notice => 'Animal Weight was successfully created.')
-          #redirect_to(@animal_weight, :notice => 'Animal weight was successfully created.') 
           }
         format.xml  { render :xml => @animal_weight, :status => :created, :location => @animal_weight }
         format.js

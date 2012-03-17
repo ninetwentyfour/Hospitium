@@ -1,15 +1,10 @@
 class Admin::PostsController < Admin::ApplicationController
   load_and_authorize_resource
-  # GET /posts
-  #caches_action :index, :cache_path => Proc.new { |controller| controller.params },:layout => false, :expires_in => 180.minutes
   
+  # GET /posts  
   # GET /posts.xml
   def index
     canonical_url("/posts")
-    #@posts = Rails.cache.fetch('public_posts_listing', :expires_in => 10.minutes) do
-      #@posts = Post.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
-    #end
-    #@posts = Post.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
     @posts = Post.all
 
     respond_to do |format|
@@ -27,7 +22,6 @@ class Admin::PostsController < Admin::ApplicationController
     @post = Rails.cache.fetch("public_post_#{params[:id]}", :expires_in => 180.minutes) do
       Post.find(params[:id])
     end
-    #@post = Post.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

@@ -3,7 +3,6 @@ class Admin::RelinquishmentContactsController < Admin::ApplicationController
   # GET /relinquishment_contacts
   # GET /relinquishment_contacts.xml
   def index
-    #@relinquishment_contacts = RelinquishmentContact.all
     @search = RelinquishmentContact.search(params[:search])
     @relinquishment_contacts = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC")
 

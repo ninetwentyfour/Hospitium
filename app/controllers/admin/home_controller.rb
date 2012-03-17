@@ -7,13 +7,11 @@ class Admin::HomeController < Admin::ApplicationController
     @final_status_hash = Rails.cache.fetch("animal_status_hash_user_#{current_user.organization_id}_#{@animals_count}_#{@animal_update}") do
       Report.animals_by_status(current_user.organization_id)
     end
-    #@final_status_hash = Report.animals_by_status(current_user.organization.id)
     @final_species_hash = Rails.cache.fetch("animal_species_hash_user_#{current_user.organization_id}_#{@animals_count}_#{@animal_update}") do
       Report.animals_by_species(current_user.organization_id)
     end
     
     #get twitter feed for users twitter account if one exists
-    #twitter = TwitterAccount.find_by_user_id(current_user.id)
     #require_dependency "TwitterAccount"
     #twitter = Rails.cache.fetch("twitter_account_user_#{current_user.id}", :expires_in => 35.minutes) do
        twitter = TwitterAccount.find(:first, :select => 'twitter_accounts.oauth_token, twitter_accounts.oauth_token_secret', :conditions => {:user_id => current_user.id})
