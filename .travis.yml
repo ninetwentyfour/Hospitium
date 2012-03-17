@@ -6,4 +6,4 @@ before_script:
   - "mysql -e 'create database animal_test;'"
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
-script: bundle exec rake db:drop db:create db:migrate spec cucumber
+script: bundle exec rake db:drop db:create db:migrate travis
