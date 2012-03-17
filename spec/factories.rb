@@ -114,9 +114,14 @@ FactoryGirl.define do
     name "Admin"
   end
   
-  Factory.define :permission do |b|
-    b.user {|a| a.association(:user)}
-    b.role {|a| a.association(:role)}
+  # Factory.define :permission do |b|
+  #   b.user {|a| a.association(:user)}
+  #   b.role {|a| a.association(:role)}
+  # end
+  
+  factory :permission do
+    user {|a| a.association(:user)}
+    role {|a| a.association(:role)}
   end
 
 
