@@ -21,7 +21,7 @@ class Admin::AnimalsController < Admin::ApplicationController
   # GET /animals/1
   # GET /animals/1.xml
   def show
-    require_dependency "Animal"
+    #require_dependency "Animal"
     @animal = Animal.find(params[:id])
     @statuses = Status.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.status.to_s]}
     @species = Species.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.name.to_s]}
