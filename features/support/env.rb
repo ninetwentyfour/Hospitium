@@ -5,6 +5,7 @@
 # files.
 
 require 'cucumber/rails'
+require 'capybara'
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
@@ -58,13 +59,13 @@ end
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
 
-if ENV['HEADLESS'] == 'true'
-  require 'headless'
-
-  headless = Headless.new
-  headless.start
-
-  at_exit do
-    headless.destroy
-  end
-end
+# if ENV['HEADLESS'] == 'true'
+#   require 'headless'
+# 
+#   headless = Headless.new
+#   headless.start
+# 
+#   at_exit do
+#     headless.destroy
+#   end
+# end
