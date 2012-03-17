@@ -63,6 +63,7 @@ group :test do
 	gem 'database_cleaner'
 	gem 'launchy'
 	gem 'email_spec'
+	gem 'headless'
 end
 
 # Use unicorn as the web server
