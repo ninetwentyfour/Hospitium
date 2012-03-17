@@ -59,7 +59,9 @@ Given /^I am logged in$/ do
 end
 
 Given /^I exist as a user$/ do
-  create_user
+  #create_user
+  @attr = { }
+  @user = Factory(:user, @attr.merge(email: "example_cuc@example.com", :password => "123456789", :password_confirmation => "123456789" ))
 end
 
 Given /^I do not exist as a user$/ do
