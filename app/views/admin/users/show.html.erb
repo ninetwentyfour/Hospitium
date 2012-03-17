@@ -87,7 +87,7 @@
 
 <div class="modal" id="editPass" style="display: none;">
 	<div class="modal-header">
-		<a class="close" data-dismiss="modal">×</a>
+		<a class="close" data-dismiss="modal" href="#">×</a>
 		<h3>Change Password</h3>
 	</div>
 	<div class="modal-body">
@@ -111,7 +111,7 @@
 
 <div class="modal" id="wordpress" style="display: none;">
 	<div class="modal-header">
-		<a class="close" data-dismiss="modal">×</a>
+		<a class="close" data-dismiss="modal" href="#">×</a>
 		<h3>New Wordpress Account</h3>
 	</div>
 	<div class="modal-body">
@@ -144,7 +144,7 @@
 <% unless @user.wordpress_accounts.first.blank? %>
 	<div class="modal" id="wordpress-edit" style="display: none;">
 		<div class="modal-header">
-			<a class="close" data-dismiss="modal">×</a>
+			<a class="close" data-dismiss="modal" href="#">×</a>
 			<h3>Edit Wordpress Account</h3>
 		</div>
 		<div class="modal-body">
@@ -178,7 +178,7 @@
 
 <div class="modal" id="adopt_a_pet" style="display: none;">
 	<div class="modal-header">
-		<a class="close" data-dismiss="modal">×</a>
+		<a class="close" data-dismiss="modal" href="#">×</a>
 		<h3>New Wordpress Account</h3>
 	</div>
 	<div class="modal-body">
@@ -209,7 +209,7 @@
 <% unless @user.adopt_a_pet_accounts.first.blank? %>
 	<div class="modal" id="adopt_a_pet-edit" style="display: none;">
 		<div class="modal-header">
-			<a class="close" data-dismiss="modal">×</a>
+			<a class="close" data-dismiss="modal" href="#">×</a>
 			<h3>Edit Wordpress Account</h3>
 		</div>
 		<div class="modal-body">

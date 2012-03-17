@@ -19,7 +19,6 @@ gem 'oauth'
 gem 'twitter'
 gem 'rest-client'
 gem 'json'
-#gem 'ckeditor'
 gem 'libxml-xmlrpc'
 gem 'bitly'
 gem 'site_meta'
@@ -60,11 +59,9 @@ group :test do
 	gem 'capybara-webkit'
 	gem 'shoulda-matchers'
 	gem 'cucumber-rails', require: false
-	# database_cleaner is not required, but highly recommended
 	gem 'database_cleaner'
 	gem 'launchy'
 	gem 'email_spec'
-	#gem 'headless'
 end
 
 # Use unicorn as the web server
