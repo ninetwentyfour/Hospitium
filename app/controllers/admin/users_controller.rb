@@ -14,7 +14,7 @@ class Admin::UsersController < Admin::ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(:first, :conditions => {:id => params[:id]},:include => [:wordpress_accounts, :facebook_accounts, :twitter_accounts, :roles, :adopt_a_pet_accounts], :select => "users.adopt_a_pets.name")
+    @user = User.find(:first, :conditions => {:id => params[:id]},:include => [:wordpress_accounts, :facebook_accounts, :twitter_accounts, :roles, :adopt_a_pet_accounts], :select => "users.adopt_a_pets.name, users.username")
     #@user = User.where(:id => params[:id]).first
     respond_to do |format|
       format.html # show.html.erb

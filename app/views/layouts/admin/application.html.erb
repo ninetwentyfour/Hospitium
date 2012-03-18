@@ -46,9 +46,9 @@
 
 	<!-- Le fav and touch icons -->
 	<link rel="shortcut icon" href="https://d4uktpxr9m70.cloudfront.net/icons/favicon.ico">
-	<link rel="apple-touch-icon" sizes="57x57" href="https://d4uktpxr9m70.cloudfront.net/icons/hospitium_57.jpg">
-	<link rel="apple-touch-icon" sizes="72x72" href="https://d4uktpxr9m70.cloudfront.net/icons/hospitium_72.jpg">
-	<link rel="apple-touch-icon" sizes="114x114" href="https://d4uktpxr9m70.cloudfront.net/icons/hospitium_114.jpg">
+	<%= favicon_link_tag 'apple-touch/57.png', :rel => 'apple-touch-icon', :type => 'image/png', :sizes => '57x57' %>
+	<%= favicon_link_tag 'apple-touch/72.png', :rel => 'apple-touch-icon', :type => 'image/png', :sizes => '72x72' %>
+	<%= favicon_link_tag 'apple-touch/114.png', :rel => 'apple-touch-icon', :type => 'image/png', :sizes => '114x114' %>
 </head>
 <body>
 	<noscript>
@@ -66,7 +66,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a class="brand" href="/">Hospitium</a>
+			<a class="brand" href="/" style="padding:2px 20px 0px 0px;"><%= image_tag("hos-logo4.png", :size => "108x30")%></a>
 			<div class="nav-collapse">
 				<ul class="nav">
 					<li><a href="/about">About</a></li>
@@ -75,24 +75,24 @@
 					<li><a href="/animals">Adopt an Animal</a></li>
 					<li><a href="/posts">Blog</a></li>
 				</ul>
-				<ul class="nav pull-right">
-					<% if user_signed_in? %>
-						<li class="divider-vertical"></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= gravatar_image_tag("#{current_user.email}", :alt => "#{current_user.email}", :gravatar => { :size => 25 }, :style => "position:absolute;top:7px") %> <span style="margin-left:30px"><%= current_user.username %></span> <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="/admin">Dashboard</a></li>
-								<li><a href="/admin/users/<%= current_user.id %>">User Settings</a></li>
-								<li class="divider"></li>
-								<li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
-							</ul>
-						</li>
-					<% else %>
-						<li class="divider-vertical"></li>
-						<li><a href="/users/sign_in">Sign In</a></li>
-					<% end %>
-				</ul>
 			</div>
+			<ul class="nav pull-right">
+				<% if user_signed_in? %>
+					<li class="divider-vertical"></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= gravatar_image_tag("#{current_user.email}", :alt => "#{current_user.email}", :gravatar => { :size => 25 }, :style => "position:absolute;top:7px") %> <span style="margin-left:30px"><%= current_user.username %></span> <b class="caret"></b></a>
+						<ul class="dropdown-menu" data-no-collapse="true">
+							<li><a href="/admin">Dashboard</a></li>
+							<li><a href="/admin/users/<%= current_user.id %>">User Settings</a></li>
+							<li class="divider"></li>
+							<li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+						</ul>
+					</li>
+				<% else %>
+					<li class="divider-vertical"></li>
+					<li><a href="/users/sign_in">Sign In</a></li>
+				<% end %>
+			</ul>
 		</div>
 	</div>
 </div>

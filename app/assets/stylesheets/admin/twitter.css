@@ -350,7 +350,7 @@
   .navbar .nav > .divider-vertical {
     display: none;
   }
-  .navbar .nav > li > a, .navbar .dropdown-menu a {
+  .navbar .nav > li > a, .navbar .dropdown-menu:not([data-no-collapse="true"]) a {
     padding: 6px 15px;
     font-weight: bold;
     color: #999999;
@@ -358,13 +358,13 @@
     -moz-border-radius: 3px;
     border-radius: 3px;
   }
-  .navbar .dropdown-menu li + li a {
+  .navbar .dropdown-menu:not([data-no-collapse="true"]) li + li a {
     margin-bottom: 2px;
   }
-  .navbar .nav > li > a:hover, .navbar .dropdown-menu a:hover {
+  .navbar .nav > li > a:hover, .navbar .dropdown-menu:not([data-no-collapse="true"]) a:hover {
     background-color: #222222;
   }
-  .navbar .dropdown-menu {
+  .navbar .dropdown-menu:not([data-no-collapse="true"]) {
     position: static;
     top: auto;
     left: auto;

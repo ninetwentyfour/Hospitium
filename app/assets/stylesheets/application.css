@@ -3,7 +3,7 @@
 *= require nivo-slider
 *= require scaffold
 *= require style
-*= require twitter
+*= require testless
 *= require_tree ./admin
 *= require jqplot.1.0.0b2_r792
 */
