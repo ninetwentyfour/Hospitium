@@ -9,6 +9,7 @@ class Admin::AdoptionContactsController < Admin::ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @adoption_contacts }
+      format.xls { send_data AdoptionContact.find(:all, :conditions => {:organization_id => current_user.organization_id}).to_xls, content_type: 'application/vnd.ms-excel', filename: 'adoption_contacts.xls' }
     end
   end
 

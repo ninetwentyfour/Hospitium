@@ -12,4 +12,5 @@ class Species < ActiveRecord::Base
   def create_uuid()
     self.uuid = UUIDTools::UUID.random_create.to_s
   end
+  
 end

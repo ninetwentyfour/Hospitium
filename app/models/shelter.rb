@@ -27,4 +27,18 @@ class Shelter < ActiveRecord::Base
     end
     return phone
   end
+  
+  def as_xls(options = {})
+    {
+        "Id" => id.to_s,
+        "Name" => name,
+        "Contact First Name" => contact_first,
+        "Contact Last Name" => contact_last,
+        "Address" => address,
+        "Phone" => phone,
+        "Email" => email,
+        "Website" => website,
+        "Notes" => notes
+    }
+  end
 end

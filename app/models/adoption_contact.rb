@@ -37,4 +37,15 @@ class AdoptionContact < ActiveRecord::Base
     return phone
   end
   
+  def as_xls(options = {})
+    {
+        "Id" => id.to_s,
+        "First Name" => first_name,
+        "Last Name" => last_name,
+        "Address" => address,
+        "Phone" => phone,
+        "Email" => email
+    }
+  end
+  
 end

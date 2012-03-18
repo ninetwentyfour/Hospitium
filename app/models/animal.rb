@@ -131,11 +131,6 @@ class Animal < ActiveRecord::Base
         "Deceased Date" => deceased,
         "Deceased Reason" => deceased_reason,
         "Adopted Date" => adopted_date
-        
-        
-        # :name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased, 
-        #   :deceased_reason, :adopted_date, :animal_color_id, :image, :second_image, :third_image, :fourth_image, :public, :birthday, :animal_sex_id, :spay_neuter_id,
-        #   :biter_id, :status_id
     }
   end
   

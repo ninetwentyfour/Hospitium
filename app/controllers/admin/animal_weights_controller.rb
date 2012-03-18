@@ -9,6 +9,7 @@ class Admin::AnimalWeightsController < Admin::ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @animal_weights }
+      format.xls { send_data AnimalWeight.find(:all, :conditions => {:organization_id => current_user.organization_id}).to_xls, content_type: 'application/vnd.ms-excel', filename: 'animal_weight.xls' }
     end
   end
 

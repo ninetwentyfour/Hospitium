@@ -26,4 +26,13 @@ class AnimalWeight < ActiveRecord::Base
     return age
   end
   
+  def as_xls(options = {})
+    {
+        "Id" => id.to_s,
+        "Weight" => weight,
+        "Animal" => animal["name"],
+        "Date of Weight" => date_of_weight
+    }
+  end
+  
 end
