@@ -32,7 +32,6 @@ gem 'gravatar_image_tag'
 gem 'best_in_place'
 gem 'juggernaut'
 gem 'jquery-rails'
-#gem 'slim_scrooge', :git => "git://github.com/sdsykes/slim_scrooge.git"
 gem 'less-rails-bootstrap'
 gem "spreadsheet", "0.6.5.8"
 gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls-on-models"
