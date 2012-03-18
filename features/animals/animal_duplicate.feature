@@ -6,5 +6,4 @@ Feature: Delete Animals
 			Given I am logged in
 			When I look at the list of animals
 			And I click duplicate
-			And show me the page
-			#Then I should see the same animal twice
+			Then I should see the same animal twice

@@ -93,5 +93,5 @@ end
 
 Then /^I should see the same animal twice$/ do
   page.should have_content "Successfully duplicated."
-  page.should have_content(@animal[:name], :count => 2)
+  page.should have_xpath('//a', :text => @animal[:name], :count => 2)
 end
