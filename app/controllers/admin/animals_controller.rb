@@ -11,6 +11,9 @@ class Admin::AnimalsController < Admin::ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @animals }
       format.json  { render :json => @animals }
+      #format.csv { render :csv => Animal.all.to_comma, :filename => 'books.csv' }
+      format.xls { send_data Animal.find(:all, :conditions => {:organization_id => current_user.organization_id}).to_xls, content_type: 'application/vnd.ms-excel', filename: 'animals.xls' }
+       # provide better names for the associated columns
     end
   end
 

@@ -16,6 +16,15 @@ GIT
       cocaine (>= 0.0.2)
       mime-types
 
+GIT
+  remote: https://github.com/dblock/to_xls.git
+  revision: c7ef31174947b7b1459b0bb7bda3dd43f83aaa64
+  branch: to-xls-on-models
+  specs:
+    to_xls (1.0.0)
+      spreadsheet (> 0)
+      spreadsheet
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -319,6 +328,7 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.9.0)
     ruby-hmac (0.4.0)
+    ruby-ole (1.2.11.3)
     ruby2ruby (1.3.1)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
@@ -341,6 +351,8 @@ GEM
     site_meta (1.0.0)
       rails (>= 2.3.5)
     spork (1.0.0rc2)
+    spreadsheet (0.6.5.8)
+      ruby-ole (>= 1.0)
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -419,6 +431,8 @@ DEPENDENCIES
   shoulda-matchers
   site_meta
   spork (~> 1.0rc)
+  spreadsheet (= 0.6.5.8)
+  to_xls!
   twitter
   uglifier
   uuidtools

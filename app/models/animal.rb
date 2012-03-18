@@ -34,6 +34,9 @@ class Animal < ActiveRecord::Base
   attr_accessible :name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased, 
     :deceased_reason, :adopted_date, :animal_color_id, :image, :second_image, :third_image, :fourth_image, :public, :birthday, :animal_sex_id, :spay_neuter_id,
     :biter_id, :status_id
+    
+  scope :recent,
+                 lambda { { :conditions => ['created_at > ?', 1.year.ago] } }
   
   #set_primary_key :uuid
   def to_params
@@ -107,6 +110,33 @@ class Animal < ActiveRecord::Base
       age = ""
     end
     return age
+  end
+  
+  def as_xls(options = {})
+    {
+        "Id" => id.to_s,
+        "Name" => name,
+        "Previous Name" => previous_name,
+        "Birthday" => birthday,
+        "Species" => species["name"],
+        "Animal Color" => animal_color["color"],
+        "Spay / Neuter" => spay_neuter["spay"],
+        "Biter" => biter["value"],
+        "Sex" => animal_sex["sex"],
+        "Public" => public,
+        "Status" => status["status"],
+        "Special Needs" => special_needs,
+        "Diet" => diet,
+        "Date of Well Check" => date_of_well_check,
+        "Deceased Date" => deceased,
+        "Deceased Reason" => deceased_reason,
+        "Adopted Date" => adopted_date
+        
+        
+        # :name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased, 
+        #   :deceased_reason, :adopted_date, :animal_color_id, :image, :second_image, :third_image, :fourth_image, :public, :birthday, :animal_sex_id, :spay_neuter_id,
+        #   :biter_id, :status_id
+    }
   end
   
   
