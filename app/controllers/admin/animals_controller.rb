@@ -5,7 +5,7 @@ class Admin::AnimalsController < Admin::ApplicationController
   # GET /animals.xml
   def index
     @search = Animal.search(params[:search])
-    @animals = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
+    @animals = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter], :select => 'animals.name, animals.birthday, animals.uuid, animals.id, animals.status_id, animals.animal_color_id, animals.animal_sex_id, animals.spay_neuter_id')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,7 +18,7 @@ class Admin::AnimalsController < Admin::ApplicationController
   # GET /animals/1.xml
   def show
     #require_dependency "Animal"
-    @animal = Animal.find(params[:id])
+    @animal = Animal.find(params[:id], :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :shelter])
     @statuses = Status.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.status.to_s]}
     @species = Species.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.name.to_s]}
     @colors = AnimalColor.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.color.to_s]}

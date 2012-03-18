@@ -32,6 +32,7 @@ gem 'gravatar_image_tag'
 gem 'best_in_place'
 gem 'juggernaut'
 gem 'jquery-rails'
+gem 'slim_scrooge', :git => "git://github.com/sdsykes/slim_scrooge.git"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -48,7 +49,7 @@ end
 
 group :production do
 	gem 'home_run', :require=>'date'
-	gem 'slim_scrooge'
+	#gem 'slim_scrooge'
 	gem 'dalli'
 end
 
