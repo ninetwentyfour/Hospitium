@@ -198,6 +198,19 @@ ActiveRecord::Schema.define(:version => 20120225202132) do
     t.datetime "updated_at"
   end
 
+  create_table "photos", :force => true do |t|
+    t.integer  "animal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "photos", ["animal_id"], :name => "index_photos_on_animal_id"
+
   create_table "posts", :force => true do |t|
     t.string   "author"
     t.string   "title"

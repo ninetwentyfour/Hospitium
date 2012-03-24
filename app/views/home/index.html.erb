@@ -33,15 +33,52 @@
 	<br />
 	<ul class="media-grid">
   <li>
-		<a href="https://d4uktpxr9m70.cloudfront.net/images/homepage/pic1.jpg" rel="shadowbox[HomeGallery]"><img src="https://d4uktpxr9m70.cloudfront.net/images/homepage/pic1-thumb.jpg" width=135 height=120 /></a>
+		<a data-toggle="modal" href="#image_1"><img src="https://d4uktpxr9m70.cloudfront.net/images/thumb-1-home.jpg" width=135 height=120 /></a>
   </li>
   <li>
-		<a href="https://d4uktpxr9m70.cloudfront.net/images/homepage/pic3.jpg" rel="shadowbox[HomeGallery]"><img src="https://d4uktpxr9m70.cloudfront.net/images/homepage/pic3-thumb.jpg" width=135 height=120 /></a>
+		<a data-toggle="modal" href="#image_2"><img src="https://d4uktpxr9m70.cloudfront.net/images/thumb-2-home.jpg" width=135 height=120 /></a>
   </li>
   <li>
-		<a href="https://d4uktpxr9m70.cloudfront.net/images/homepage/pic2.jpg" rel="shadowbox[HomeGallery]"><img src="https://d4uktpxr9m70.cloudfront.net/images/homepage/pic2-thumb.jpg" width=135 height=120 /></a>
+		<a data-toggle="modal" href="#image_3"><img src="https://d4uktpxr9m70.cloudfront.net/images/thumb-3-home.jpg" width=135 height=120 /></a>
   </li>
   </ul>
+</div>
+
+<div class="modal" id="image_1" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" href="#">×</a>
+		<h3>Manage Animals</h3>
+	</div>
+	<div class="modal-body">
+			<img src="https://d4uktpxr9m70.cloudfront.net/images/test-home-pic-large.jpg" alt="" style="max-width: 100%;">
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>
+<div class="modal" id="image_2" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" href="#">×</a>
+		<h3>Manage Animals</h3>
+	</div>
+	<div class="modal-body">
+			<img src="https://d4uktpxr9m70.cloudfront.net/images/home-large-2.jpg" alt="" style="max-width: 100%;">
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>
+<div class="modal" id="image_3" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" href="#">×</a>
+		<h3>Manage Animals</h3>
+	</div>
+	<div class="modal-body">
+			<img src="https://d4uktpxr9m70.cloudfront.net/images/home-large-3.jpg" alt="" style="max-width: 100%;">
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
 </div>
 <% set_meta_description("Hospitium was created with the simple goal of being an animal management system that doesn't suck.") %>
 <% set_meta_keywords("animal,management,software,online,hosted") %>
@@ -49,7 +86,6 @@
 
 <% content_for :head do %>
   <link href="https://d4uktpxr9m70.cloudfront.net/stylesheets/homepage.css" media="screen" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" type="text/css" href="https://d4uktpxr9m70.cloudfront.net/stylesheets/shadowbox.css">
 <% end %>
 <% content_for :javascript_footer do %>
   <script>
@@ -63,9 +99,5 @@
 	$('#'+animal+'-quote').attr('style', 'display:block;');
 	$('#'+animal+'-quote-name').attr('style', 'display:block;');
 	 });
-	</script>
-	<script type="text/javascript" src="https://d4uktpxr9m70.cloudfront.net/javascripts/shadowbox.js"></script>
-	<script type="text/javascript">
-	Shadowbox.init();
 	</script>
 <% end %>

@@ -87,3 +87,11 @@ footer {
     border-color: #0069D6;
     box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
 }
+.modal{
+	top: 10% !important;
+	left: 5% !important;
+	z-index: 1050 !important;
+	overflow: auto !important;
+	width: 90% !important;
+	margin: 0px !important;
+}

@@ -6,7 +6,7 @@ class OrganizationObserver < ActiveRecord::Observer
   end
   
   def publish(type, organization)
-    Juggernaut.url = "redis://redistogo:c1e5ec10fe92d5ed2ff683e28a4eb809@carp.redistogo.com:9525/"
+    Juggernaut.url = "redis://redistogo:6d5dd92f93438cd7b67139a6c57acd16@stingfish.redistogo.com:9535/"
     Juggernaut.publish("/observer/organization/#{organization.id}", {
       :id     => organization.id, 
       :type   => type, 

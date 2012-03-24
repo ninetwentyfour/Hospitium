@@ -52,6 +52,7 @@
 							<p><strong>Sex:</strong> <%= best_in_place @animal, :animal_sex_id, :type => :select, collection: [["1", "Male"], ["2", "Female"], ["3", "Unknown"]], :nil => @animal.animal_sex.sex unless @animal.animal_sex.blank? %></p>
 							<p><strong>Age:</strong> <%= best_in_place @animal, :birthday, :type => :date, :display_as => :calculate_animal_age, :nil => "Click me to add content!" %></p>
 							<p><strong>Spay/Neuter:</strong> <%= best_in_place @animal, :spay_neuter_id, :type => :select, collection: [["1", "No"], ["2", "Yes"], ["3", "Unknown"]], :nil => @animal.spay_neuter.spay unless @animal.spay_neuter.blank? %></p>
+							<p><strong>Biter:</strong> <%= best_in_place @animal, :biter_id, :type => :select, collection: [["1", "No"], ["2", "Yes"], ["3", "Unknown"]], :nil => @animal.biter.value unless @animal.biter.blank? %></p>
 							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newColor" >Color</a>:</strong> <%= best_in_place @animal, :animal_color_id, :type => :select, collection: @colors, :nil => @animal.animal_color.color %></p>
 							<p><strong>Special Needs:</strong> <%= best_in_place @animal, :special_needs, type: :textarea, :nil => "Click me to add content!" %></p>
 						</div>
