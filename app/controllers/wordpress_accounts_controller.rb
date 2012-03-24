@@ -52,7 +52,7 @@ class WordpressAccountsController < ApplicationController
     @wordpress.destroy
 
     respond_to do |format|
-      format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Wordpress Account Connected!')}
+      format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Wordpress Account deleted!')}
       format.xml  { head :ok }
     end
   end

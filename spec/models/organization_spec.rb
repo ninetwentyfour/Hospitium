@@ -42,6 +42,22 @@ describe Organization do
       organization.statuses.size.should eql(7)
     end
   end
+  
+  describe "#add_default_animal_colors" do
+    let(:organization) { Factory(:organization) }
+    
+    it "should create default animal colors" do
+      organization.animal_colors.size.should eql(4)
+    end
+  end
+  
+  describe "#add_default_species" do
+    let(:organization) { Factory(:organization) }
+    
+    it "should create default species" do
+      organization.species.size.should eql(8)
+    end
+  end
 
   describe "#modify_phone_number" do
     let(:organization) { Factory(:organization) }

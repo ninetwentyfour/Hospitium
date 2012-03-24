@@ -17,7 +17,7 @@ class Organization < ActiveRecord::Base
     has_many :users
     before_create :create_uuid
     before_update :modify_phone_number
-    after_create :add_default_status
+    after_create :add_default_status, :add_default_animal_colors, :add_default_species
     validates_uniqueness_of :name
     
     attr_accessible :name, :phone_number, :address, :city, :state, :zip_code, :email, :website
@@ -51,6 +51,50 @@ class Organization < ActiveRecord::Base
       @status = Status.new
       @status.organization_id = self.id
       @status.update_attributes(:status => "Foster Care")
+    end
+    
+    #create the default animal colors and assign them to the new organization
+    def add_default_animal_colors
+      @animal_color = AnimalColor.new
+      @animal_color.organization_id = self.id
+      @animal_color.update_attributes(:color => "Black")
+      @animal_color = AnimalColor.new
+      @animal_color.organization_id = self.id
+      @animal_color.update_attributes(:color => "White")
+      @animal_color = AnimalColor.new
+      @animal_color.organization_id = self.id
+      @animal_color.update_attributes(:color => "Gray")
+      @animal_color = AnimalColor.new
+      @animal_color.organization_id = self.id
+      @animal_color.update_attributes(:color => "Brown")
+    end
+    
+    #create the default species and assign them to the new organization
+    def add_default_species
+      @species = Species.new
+      @species.organization_id = self.id
+      @species.update_attributes(:name => "Cat")
+      @species = Species.new
+      @species.organization_id = self.id
+      @species.update_attributes(:name => "Dog")
+      @species = Species.new
+      @species.organization_id = self.id
+      @species.update_attributes(:name => "Hamster")
+      @species = Species.new
+      @species.organization_id = self.id
+      @species.update_attributes(:name => "Gerbil")
+      @species = Species.new
+      @species.organization_id = self.id
+      @species.update_attributes(:name => "Chinchilla")
+      @species = Species.new
+      @species.organization_id = self.id
+      @species.update_attributes(:name => "Bird")
+      @species = Species.new
+      @species.organization_id = self.id
+      @species.update_attributes(:name => "Rat")
+      @species = Species.new
+      @species.organization_id = self.id
+      @species.update_attributes(:name => "Mouse")
     end
     
     def modify_phone_number
