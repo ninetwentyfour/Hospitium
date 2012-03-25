@@ -15,6 +15,7 @@
 //= require jqplot.pointLabels.min
 //= require bar-chart
 //= require bootstrap
+//= require jquery.mailcheck.min
 //= require_self
 
 //prevent ipad webapps opening in safari

@@ -86,6 +86,7 @@ FactoryGirl.define do
     password_confirmation  "password"
     association :organization
     owner 1
+    confirmed_at "2011-10-05 10:34:01"
   end
   
   factory :vet_contact do
