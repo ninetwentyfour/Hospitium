@@ -69,6 +69,15 @@
 									</a>
 								</li>
 							<%end%>
+							<% unless @animal.video_embed.blank? %>
+								<li class="span8 pull-right animal_thumb">
+									<a class="thumbnail" href="#" >
+										<div class="embed-container">
+											<%= raw Sanitize.clean(@animal.video_embed, Sanitize::Config::YOUTUBE) %>
+										</div>
+									</a>
+								</li>
+							<%end%>
 					</ul>
 				</div>
 			</div>

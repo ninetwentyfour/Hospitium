@@ -44,7 +44,7 @@ class AdoptAPetAccountsController < ApplicationController
 
         # data rows 
         @animals.each do |animal|
-          csv << [animal.uuid, animal.species.name, animal.species.name, "", animal.name, animal.animal_sex.sex, animal.special_needs, "Available", animal.spay_neuter.spay,  animal.image.url(:medium).sub(/https:/, "http:")] 
+          csv << [animal.uuid, animal.species.name, animal.species.name, "", animal.name, animal.animal_sex.sex, animal.special_needs, "Available", animal.spay_neuter.spay,  animal.image.url(:large).sub(/https:/, "http:")] 
         end 
       end 
       

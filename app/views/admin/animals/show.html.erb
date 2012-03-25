@@ -129,6 +129,18 @@
 								<%end%>
 							</a>
 						</li>
+						<li class="span8 pull-right animal_thumb">
+							<% unless @animal.video_embed.blank? %>
+								<a class="thumbnail" href="#" >
+									<div class="embed-container">
+										<%= raw Sanitize.clean(@animal.video_embed, Sanitize::Config::YOUTUBE) %>
+									</div>
+								</a>
+								<a class="btn" data-toggle="modal" href="#video_upload" ><i class="icon-plus"></i> Add Video</a>
+							<%else%>
+								<a class="btn" data-toggle="modal" href="#video_upload" ><i class="icon-plus"></i> Add Video</a>
+							<%end%>
+						</li>
 				</ul>
 			</div>
 		</div>

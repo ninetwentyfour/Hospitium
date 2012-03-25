@@ -209,3 +209,26 @@
 		<a href="#" class="btn" data-dismiss="modal">Close</a>
 	</div>
 </div>
+
+
+<div class="modal" id="video_upload" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" href="#">×</a>
+		<h3>Add New Animal Video</h3>
+	</div>
+	<div class="modal-body">
+		<div class="progress progress-danger progress-striped active second_image_upload_bar" style="display:none;">
+			<div class="bar" style="width: 100%;"></div>
+		</div>
+		<p class="second_image_upload_bar" style="display:none;">Loading...</p>
+		<%= form_for animal, :url => admin_animal_path, :html => { :id => "video_upload_form" }, :validate => true do |f| %>
+			<%= f.label :video_embed %>
+			<%= f.text_area :video_embed, :rows => 5, :placeholder => '<iframe width="560" height="315" src="http://www.youtube.com/embed/example?rel=0" frameborder="0" allowfullscreen></iframe>' %>
+			<p>Paste YouTube embed here. Iframe code only.</p>
+		<%end%>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-primary submit-button" data-form-id="video_upload_form">Save changes</a>
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>

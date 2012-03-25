@@ -33,7 +33,7 @@ class Animal < ActiveRecord::Base
   
   attr_accessible :name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased, 
     :deceased_reason, :adopted_date, :animal_color_id, :image, :second_image, :third_image, :fourth_image, :public, :birthday, :animal_sex_id, :spay_neuter_id,
-    :biter_id, :status_id
+    :biter_id, :status_id, :video_embed
     
   scope :recent,
                  lambda { { :conditions => ['created_at > ?', 1.year.ago] } }
@@ -142,6 +142,7 @@ class Animal < ActiveRecord::Base
         "Adopted Date" => adopted_date
     }
   end
+  
   
   
 end
