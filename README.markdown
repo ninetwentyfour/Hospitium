@@ -111,15 +111,13 @@ Todo:
 
 - <del>move colors to own mvc</del>
 
-- add photo and video uploads (got a simple paperclip running on animals - possibly to a separate model : possibly use youtube or some other service to handle video)
-
-- city state and zip fields
+- <del>add photo and video uploads (got a simple paperclip running on animals - possibly to a separate model : possibly use youtube or some other service to handle video)</del>
 
 - <del>make new users default to admin role</del>
 
 - <del>force unique names on organizations and emails</del>
 
-- user docs (started at [https://github.com/ninetwentyfour/Hospitium/wiki/User-Docs](https://github.com/ninetwentyfour/Hospitium/wiki/User-Docs))
+- user docs (started at [https://hospitium.tenderapp.com/kb](https://hospitium.tenderapp.com/kb))
 
 - <del>style uploaded images and show pages</del>
 
@@ -159,13 +157,9 @@ Todo:
 
 - add search to adopt list (search by location and species)
 
-- performance tweaks (limit data in calls, cache where we can, etc)
-
 - add image to organization and contacts
 
 - mailchimp email list integration
-
-- Need to hide twitter accounts from rails admin
 
 - create check for memcached server being up or available, if not, kick to db sessions
 
@@ -185,7 +179,7 @@ Todo:
 
 - <del>scope data in dashboard</del>
 
-- standardize address before saving with google maps api, and show map on show pages with locations
+- <del>standardize address before saving with google maps api, and show map on show pages with locations</del>
 
 - <del>show twitter and fb on dashboard and do pie charts of animals in statuses (adopted - etc)</del>
 
@@ -215,8 +209,6 @@ Todo:
 
 - mark what fields are public
 
-- rabies boolean on animal
-
 - <del>privacy policy and terms of service</del>
 
 - donations and fundraising MVC 
@@ -239,13 +231,13 @@ Todo:
 
 - track vet visits over time w/ notes
 
-- create some dummy default data for things like species / animal colors (maybe map to adopt a pet fields?)
+- <del>create some dummy default data for things like species / animal colors (maybe map to adopt a pet fields?)</del>
 
 - calculate most adopted species and do percentages of it
 
 - calculate average time from intake to adoption/death
 
-- tag via @hospitium_app to sent tweets (make customizable messages / no via for premium accounts)
+- <del>tag via @hospitium_app to sent tweets (make customizable messages / no via for premium accounts)</del>
 
 - add text area sizer
 
