@@ -6,15 +6,13 @@ Hospitium
 
 [![Build Status](https://secure.travis-ci.org/ninetwentyfour/Hospitium.png)](http://travis-ci.org/ninetwentyfour/Hospitium)
 
-Warning! This is still super beta software. Things are changing fast and you may lose data.
-
 [http://hospitium.co/](http://hospitium.co/)
 
 Created By: [Travis Berry](http://www.travisberry.com), [Apple Wood Rescue](http://www.applewoodrescue.org)
 
 Hospitium is Licensed under the MIT license: [http://www.opensource.org/licenses/mit-license.php](http://www.opensource.org/licenses/mit-license.php)
 
-RoR, Rails Admin, Twitter Bootstrap, and others licensed under their respective licenses. 
+RoR, Twitter Bootstrap, and others licensed under their respective licenses. 
 
 * * *
 
@@ -154,8 +152,6 @@ Todo:
 - <del>no follow all links created by users (e.g. organization website) / make do follow for future paid accounts</del>
 
 - <del>add adopt link to animals to set what the canonical adopt page is for adoptable animals</del>
-
-- rpsec and cucumber tests
 
 - <del>move sessions to database</del>
 
