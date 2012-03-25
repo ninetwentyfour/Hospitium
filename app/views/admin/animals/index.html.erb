@@ -29,6 +29,7 @@
 			<thead>
 				<tr>
 					<th><%= sort_link @search, :name %></th>
+					<th><%= sort_link @search, :microchip %></th>
 					<th><%= sort_link @search, :status_status, "Status", {}, :class => "status" %></th>
 					<th><%= sort_link @search, :animal_sex_sex, "Sex", {}, :class => "animal_sex" %></th>
 					<th><%= sort_link @search, :birthday, "Age" %></th>
@@ -41,6 +42,7 @@
 				<% @animals.each do |animal| %>
 					<tr>
 						<td><a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><%= animal.name %></a></td>
+						<td><%= animal.microchip unless animal.microchip.blank? %></td>
 						<td><%= animal.status.status %></td>
 						<td><%= animal.animal_sex.sex unless animal.animal_sex.blank? %></td>
 						<td><%= calculate_animal_age(animal.birthday) unless animal.birthday.blank? %></td>
@@ -74,7 +76,30 @@
 	</div>
 	<div class="modal-body">
 		<%= form_for @search, :url => admin_animals_path, :html => { :class => "form-vertical"} do |f| %>
-				<div class="accordion" id="accordion2">
+				<div class="accordion" id="accordion4">
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4" href="#collapseFour">
+								Search IDs
+							</a>
+						</div>
+						<div id="collapseFour" class="accordion-body collapse" style="height: 0px; ">
+							<div class="accordion-inner">
+								<%= f.label :id_equals %>
+								<%= f.text_field :id_equals %>
+								
+								<%= f.label :uuid_contains %>
+								<%= f.text_field :uuid_contains %>
+								<%= f.label :uuid_equals %>
+								<%= f.text_field :uuid_equals %>
+								
+								<%= f.label :microchip_contains %>
+								<%= f.text_field :microchip_contains %>
+								<%= f.label :microchip_equals %>
+								<%= f.text_field :microchip_equals %>
+							</div>
+						</div>
+					</div>
 					<div class="accordion-group">
 						<div class="accordion-heading">
 							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">

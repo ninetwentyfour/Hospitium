@@ -58,6 +58,7 @@
 						</div>
 					</div>
 					<div class="tab-pane" id="2">
+						<p><strong>Microchip:</strong> <%= best_in_place @animal, :microchip, :type => :input, :nil => "Click me to add content!" %></p>
 						<%unless @animal.shelter.blank?%>
 							<%@sheltername = @animal.shelter.name %>
 						<%else%>
