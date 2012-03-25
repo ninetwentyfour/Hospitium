@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120325204154) do
+ActiveRecord::Schema.define(:version => 20120325211505) do
 
   create_table "adopt_a_pet_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -152,6 +152,15 @@ ActiveRecord::Schema.define(:version => 20120325204154) do
   end
 
   add_index "facebook_accounts", ["user_id"], :name => "index_facebook_accounts_on_user_id"
+
+  create_table "notes", :force => true do |t|
+    t.integer  "animal_id"
+    t.integer  "user_id"
+    t.string   "uuid"
+    t.text     "note"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "notifications", :force => true do |t|
     t.text     "message"

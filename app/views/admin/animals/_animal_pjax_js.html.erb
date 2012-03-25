@@ -32,6 +32,43 @@
 	});
 </script>
 <script type="text/javascript">
+	//setup juggernaut to handle real time updating page changes
+	//this one handles changes made with best in place
+	var jug = new Juggernaut({
+		secure: false,
+		host: 'juggernaut-hospitium2.herokuapp.com',
+		port: 80,
+		transports: ['xhr-polling','jsonp-polling']
+	});
+
+	jug.subscribe("/observer/note/<%= animal.id %>", function(data){
+		var updated_text = "There was an update, but a problem displaying. Please refresh."
+		jQuery.each(data.record, function(i, val) {
+			//alert(i);
+			//alert(val["note"]);
+			
+			$("#animal_notes_list").append('<li id="note_'+val["id"]+'"><strong>'+data.user+'</strong> '+data.created_at+' <br />'+val["note"]+'</li>');
+			// 
+			$("#animal_notes_list").scrollTop($("#animal_notes_list")[0].scrollHeight);
+			// /* Highlight the new comment */
+			$('#note_'+val["id"]).css("background-color","#c7f464");
+			if ($('#note_'+val["id"]).prev("li").css("background-color") == "rgb(255, 255, 255)"){
+				var bg_color = "#f5f5f5";
+			}else{
+				var bg_color = "#ffffff";
+			}
+			$('#note_'+val["id"]).delay(1500).animate({backgroundColor: bg_color}, 1000 );
+
+			// 
+			// /* Reset the comment form */
+			$("#new_note_<%= current_user.id %>")[0].reset();
+			// if (i != "updated_at"){
+			// 	alert(val[1]);
+			// }
+		});
+	});
+</script>
+<script type="text/javascript">
 	//create the date picker for adding an animal weight
 	$( "#animal_weight_date_of_weight" ).datepicker();
 	$.datepicker.setDefaults({
@@ -90,5 +127,5 @@
 		  });
 	  }
 	});
-	
+
 </script>

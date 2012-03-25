@@ -101,3 +101,12 @@ noscript {
 :-moz-placeholder {
     color:    #ccc !important;
 }
+#animal_notes_list{
+	max-height:250px;
+	overflow:auto;
+	border:1px solid #eee;
+}
+#animal_notes_list li{
+	padding:10px;
+}
+#animal_notes_list li:nth-child(odd) { background-color: #fff; }

@@ -314,6 +314,7 @@ GEM
     rcov (0.9.11)
     rdoc (3.12)
       json (~> 1.4)
+    redcarpet (2.1.1)
     redis (2.2.2)
     reek (1.2.8)
       ruby2ruby (~> 1.2)
@@ -443,6 +444,7 @@ DEPENDENCIES
   paperclip!
   pg
   rails (= 3.2.0)
+  redcarpet
   rest-client
   rspec-rails
   sanitize

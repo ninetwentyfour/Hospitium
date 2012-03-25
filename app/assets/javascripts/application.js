@@ -16,6 +16,7 @@
 //= require bar-chart
 //= require bootstrap
 //= require jquery.mailcheck.min
+//= require showdown
 //= require_self
 
 //prevent ipad webapps opening in safari

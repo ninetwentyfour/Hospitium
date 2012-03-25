@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :facebook_accounts
   has_many :wordpress_accounts
   has_many :adopt_a_pet_accounts
+  has_many :notes
   has_many :roles, :through => :permissions
   #has_and_belongs_to_many :organizations
   belongs_to :organization

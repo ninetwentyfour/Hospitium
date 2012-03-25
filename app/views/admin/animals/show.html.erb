@@ -83,7 +83,20 @@
 						</div>
 					</div>
 					<div class="tab-pane" id="5">
-						<p>Notes coming soon.</p>
+						<%unless @animal.notes.blank?%>
+							<ul class="unstyled" id="animal_notes_list">
+								<%@animal.notes.each do |note| %>
+									<li><strong><%= note.user.username %></strong> <%= note.created_at.strftime("%a, %b %e at %l:%M") %> <br /><%= raw note.note %></li>
+								<%end%>
+							</ul>
+						<%end%>
+						<hr />
+						<h2>Say something!</h2>
+						<%= form_for Note.new, :remote => true, :html => {:id => "new_note_#{current_user.id}"} do |f| %>
+							<%= f.text_area :note, :rows => 5, :style => "width:95%;" %>
+							<%= f.hidden_field :animal_id, :value => @animal.id %><br />
+							<%= f.submit "Add Note", :class => "btn btn-primary submit-button" %>
+						<% end %>
 					</div>
 				</div>
 			</div>

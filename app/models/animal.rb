@@ -17,6 +17,7 @@ class Animal < ActiveRecord::Base
   belongs_to :biter
   belongs_to :status
   has_many :animal_weights
+  has_many :notes
   has_many :adopt_animals
   has_many :adoption_contacts, :through => :adopt_animals
   has_many :relinquish_animals
