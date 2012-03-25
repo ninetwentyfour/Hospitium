@@ -56,6 +56,7 @@ group :production do
 	gem 'thin'
 	gem 'pg'
 	gem 'newrelic_rpm'
+	gem 'heroku'
 end
 
 gem "rspec-rails", :group => [:test, :development]
