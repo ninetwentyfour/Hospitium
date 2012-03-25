@@ -17,7 +17,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1.xml
   def show
     canonical_url("/organizations/#{params[:id]}")
-    require_dependency "Organization"
+    #require_dependency "Organization"
     @organization = Rails.cache.fetch("public_org_#{params[:id]}", :expires_in => 15.minutes) do
       Organization.find_by_uuid(params[:id])
     end
