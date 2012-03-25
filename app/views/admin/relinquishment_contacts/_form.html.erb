@@ -1,0 +1,37 @@
+<%= form_for @relinquishment_contact, :url => admin_relinquishment_contacts_path, :validate => true do |f| %>
+  <% if @relinquishment_contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@relinquishment_contact.errors.count, "error") %> prohibited this relinquishment_contact from being saved:</h2>
+
+      <ul>
+      <% @relinquishment_contact.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+
+
+    <%= f.label :reason %>
+    <%= f.text_area :reason, :rows => 5 %>
+
+		<hr />
+			   <%= f.submit "Add Relinquishment Contact", :class => "btn btn-primary submit-button" %>
+
+<% end %>

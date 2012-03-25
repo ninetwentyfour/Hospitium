@@ -30,8 +30,31 @@
 <% end %>
 <!-- <hr /> -->
 <br /><br />
-<p>By signing up you agree to our <a href="/privacy-and-terms-of-service">privacy policy & terms of service</a>.</p>
+<p>By signing up you agree to our <a class="js-pjax" href="/privacy-and-terms-of-service">privacy policy & terms of service</a>.</p>
 <p> <a href="https://hospitium.tenderapp.com/kb" target="blank">Click here</a> for help getting started.</p>
-<p>Already have an account? <a href="/users/sign_in">Sign In Here</a>.</p>
+<p>Already have an account? <a class="js-pjax" href="/users/sign_in">Sign In Here</a>.</p>
 </div>
-<!-- <%= render :partial => "devise/shared/links" %> -->
+<% set_head_title("Sign Up") %>
+<% content_for :title, "Sign Up - Hospitium" %>
+<title><%= yield (:title) %></title>
+
+<% content_for :javascript_footer do %>
+	<script>
+		$('#user_email').on('blur', function() {
+			$(this).mailcheck({
+				suggested: function(element, suggestion) {
+					// callback code
+					if ($('#bad_email_spel').length != 0) {
+						$('#bad_email_spel').remove();
+					} else {
+						
+					}
+					$('#user_email').parent().append('<p style="font-size:10px;margin-top:-10px;" id="bad_email_spel">Did you mean '+suggestion["full"]+'</p>')
+				},
+				empty: function(element) {
+					// callback code
+				}
+			});
+		});
+	</script>
+<%end%>

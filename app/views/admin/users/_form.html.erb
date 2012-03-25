@@ -1,0 +1,34 @@
+<%#= render 'devise/sessions/form' %>
+
+<%= form_for @user, :url => "/admin/users", :validate => true do |f| %>
+	<% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <%= f.hidden_field :organization_name, :value => "#{current_user.organization.name}" %></div>
+
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+	<%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+  <input type="hidden" value="0" name="user[owner]" id="new_user_admin">
+
+	<hr />
+<%= f.submit "Add New User", :class => "btn btn-primary btn-large" %>
+<% end %>

@@ -15,4 +15,12 @@ module ApplicationHelper
       tag(:link, :rel => :canonical, :href => "http://hospitium.co"+@canonical_url) if @canonical_url
     end
     
+    def current_class?(con, act)
+      if current_page?(:controller => con, :action => act)
+        return 'active' 
+      else
+       return ''
+      end
+    end
+    
 end

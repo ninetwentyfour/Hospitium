@@ -1,0 +1,39 @@
+<div class="row-fluid">
+	<div class="span12">
+		<%= form_for @adoption_contact, :url => admin_adoption_contacts_path, :validate => true do |f| %>
+		  <% if @adoption_contact.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(@adoption_contact.errors.count, "error") %> prohibited this adoption_contact from being saved:</h2>
+
+		      <ul>
+		      <% @adoption_contact.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+
+
+		    <%= f.label :first_name %>
+		    <%= f.text_field :first_name %>
+
+		    <%= f.label :last_name %>
+		    <%= f.text_field :last_name %>
+
+
+		    <%= f.label :address %>
+		    <%= f.text_field :address %>
+
+		    <%= f.label :phone %>
+		    <%= f.text_field :phone %>
+
+		    <%= f.label :email %>
+		    <%= f.text_field :email %>
+		
+
+<hr />
+		    <%= f.submit "Add Adoption Contact", :class => "btn btn-primary submit-button" %>
+		<% end %>
+	</div>
+</div>
+

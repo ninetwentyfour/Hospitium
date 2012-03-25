@@ -1,0 +1,124 @@
+<% @organizations.each do |organization| %>
+	<div class="row-fluid">
+		<div class="span12 main-app-row">
+			<% if notice.blank? %>
+
+			<% else %>
+				<div class="alert alert-info"><a class="close" data-dismiss="alert" href="#">&times;</a> <%= notice %></div>
+			<% end %>
+				<div class="well">
+					<div class="row-fluid">
+						<div class="span6">
+							<h1><%= best_in_place organization, :name, :type => :input, :nil => "Click me to add content!" %></h1>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="tabbable span4 ">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#1" data-toggle="tab">Details</a></li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="1">
+								<div class="">
+									<p><strong>Website:</strong> <%= best_in_place organization, :website, :type => :input, :nil => "Click me to add content!" %></p>
+									<p><strong>Email:</strong> <%= best_in_place organization, :email, :type => :input, :nil => "Click me to add content!" %></p>
+									<p><strong>Phone #:</strong> <%= best_in_place organization, :phone_number, :type => :input, :nil => "Click me to add content!", :display_as => :formatted_phone %></p>
+									<p><strong>Street:</strong> <%= best_in_place organization, :address, :type => :input, :nil => "Click me to add content!" %></p>
+									<p><strong>City:</strong> <%= best_in_place organization, :city, :type => :input, :nil => "Click me to add content!" %></p>
+									<p><strong>State:</strong> <%= best_in_place organization, :state, :type => :input, :nil => "Click me to add content!" %></p>
+									<p><strong>Zip:</strong> <%= best_in_place organization, :zip_code, :type => :input, :nil => "Click me to add content!" %></p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="span8 map-block">
+						<div id="map_canvas" style="height:409px;width:400px;"></div>
+					</div>
+				</div>
+		</div>
+	</div>
+	
+	<% content_for :javascript_footer do %>
+		<script type="text/javascript">
+			//setup juggernaut to handle real time updating page changes
+			//this one handles changes made with best in place
+			var jug = new Juggernaut({
+				secure: false,
+				host: 'juggernaut-hospitium2.herokuapp.com',
+				port: 80,
+				transports: ['xhr-polling','jsonp-polling']
+			});
+
+			jug.subscribe("/observer/organization/<%= organization.id %>", function(data){
+				var updated_text = "There was an update, but a problem displaying. Please refresh."
+				jQuery.each(data.record, function(i, val) {
+					if (i != "updated_at"){
+						updated_text = val[1];
+						if ($("#best_in_place_organization_<%= organization.id %>_"+i).attr("data-collection") !== undefined) {
+							var brand = $('#best_in_place_organization_<%= organization.id %>_'+i).attr("data-collection");
+							var test = $.parseJSON(brand);
+							$.each(test, function(index, value) {
+								if(value[0] == val[1]){
+									updated_text = value[1];
+								}
+							});
+						} else {
+						    //do nothing
+						}
+						$('#best_in_place_organization_<%= organization.id %>_'+i).css("background-color","#c7f464");
+						$('#best_in_place_organization_<%= organization.id %>_'+i).html(updated_text);
+						$('#best_in_place_organization_<%= organization.id %>_'+i).delay(1500).animate({backgroundColor: "#f5f5f5"}, 1000 );
+					}
+				});
+			});
+		</script>
+		
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				geocoder = new google.maps.Geocoder();
+				geocoder.geocode( { 'address': '<%= organization.address unless organization.address.blank? %> <%= organization.city unless organization.city.blank? %> <%= organization.state unless organization.state.blank? %> <%= organization.zip_code unless organization.zip_code.blank? %>'}, function(results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
+						var latlng = new google.maps.LatLng(results[0].geometry.location);
+						var myOptions = {
+							zoom: 12,
+							center: latlng,
+							mapTypeId: google.maps.MapTypeId.ROADMAP
+						}
+						map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+						map.setCenter(results[0].geometry.location);
+
+						var contentString = '<div id="content">'+
+							'<div id="siteNotice">'+
+							'</div>'+
+							'<h3 id="firstHeading" class="firstHeading"><%= organization.name %></h3>'+
+							'<div id="bodyContent">'+
+							'<p><%= organization.address unless organization.address.blank? %><br /><%= organization.city unless organization.city.blank? %> <%= organization.state unless organization.state.blank? %> <%= organization.zip_code unless organization.zip_code.blank? %></p>'+
+							'</div>'+
+						'</div>';
+
+						var infowindow = new google.maps.InfoWindow({
+							content: contentString
+						});
+
+						var marker = new google.maps.Marker({
+							map: map, 
+							position: results[0].geometry.location,
+							title: '<%= organization.name %>'
+						});
+
+						google.maps.event.addListener(marker, 'click', function() {
+							infowindow.open(map,marker);
+						});
+					} else {
+						//alert("Geocode was not successful for the following reason: " + status);
+					}
+				});
+			});
+		</script>
+	<%end%>
+	
+<%end%>
+
+

@@ -1,0 +1,23 @@
+<%= form_for(@animal_weight) do |f| %>
+  <% if @animal_weight.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@animal_weight.errors.count, "error") %> prohibited this animal_weight from being saved:</h2>
+
+      <ul>
+      <% @animal_weight.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <%= f.label :animal %><br />
+    <%= f.text_field :animal %>
+
+    <%= f.label :weight %><br />
+    <%= f.text_field :weight %>
+
+    <%= f.submit %>
+
+<% end %>

@@ -1,12 +1,12 @@
 <% if notice.blank? %>
 
 <% else %>
-	<div class="alert alert-info" style="margin-top:60px;"><%= notice %></div>
+	<div class="alert alert-info" style="margin-top:60px;"><a class="close" data-dismiss="alert" href="#">&times;</a> <%= notice %></div>
 <% end %>
 <!-- Main hero unit for a primary marketing message or call to action -->
 <div class="hero-unit clearfix">
 	<div class="page-header">
-  	<h1>Hello, Hospitium!</h1>
+  	<%= image_tag("home-hos-logo2.png")%><h1 style="display:inline">Hello, Hospitium!</h1>
 	</div>
 	<p id="duck-quote" class="big-quote" style="display:none;"><span style="margin-left: -10px;">“</span>I'm gonna be Internet famous when I'm older. With Hospitium it's super simple to share my adopt link on major social networks.”</p>
 	<p id="duck-quote-name" style="display:none;">- Quackers the duck</p>
@@ -19,12 +19,12 @@
 	<p id="dog-quote" class="big-quote" style="display:none;"><span style="margin-left: -10px;">“</span>Thanks to Hospitium I found a new home! It handled all the tracking of my potential adoptions.”</p>
 	<p id="dog-quote-name" style="display:none;">- Chloe the dog</p>
 	<br />
-  <p>Hospitium was created with the simple goal of being an animal management system that doesn't suck. Our system is easy to use and is flexible enough for rescues of all types.</p>
+  <p>Keeping track of animals shouldn't be a pain. Hospitium was built to make managing animal shelters and rescues simple and pain free. Our software is easy to use and is flexible enough for rescues of all types.</p>
   <!-- <p class="clearfix"><a class="btn info large" href="/features">Learn more &raquo;</a></p><br /> -->
 	<ul class="unstyled" style="float:right">
-		<li style="font-size:28px;line-height:1.6em !important;"><span style="color:#008A00;font-size:28px">&#x2713</span> <a href="/features#animals">Manage Animals</a></li>
-		<li style="font-size:28px;line-height:1.6em !important;"><span style="color:#008A00;font-size:28px">&#x2713</span> <a href="/features#contacts">Manage People</a></li>
-		<li style="font-size:28px;line-height:1.6em !important;"><span style="color:#008A00;font-size:28px">&#x2713</span> <a href="/features#report">Report Everything</a></li>
+		<li style="font-size:28px;line-height:1.6em !important;"><span style="color:#b2da59;font-size:28px">&#x2713</span> <a href="/features#animals">Manage Animals</a></li>
+		<li style="font-size:28px;line-height:1.6em !important;"><span style="color:#b2da59;font-size:28px">&#x2713</span> <a href="/features#contacts">Manage People</a></li>
+		<li style="font-size:28px;line-height:1.6em !important;"><span style="color:#b2da59;font-size:28px">&#x2713</span> <a href="/features#report">Report Everything</a></li>
 	</ul>
 	<p class="clearfix"></p>
 	<p class="clearfix"><a class="btn btn-success btn-large" href="/users/sign_up">Try It Now &raquo;</a></p>
@@ -33,23 +33,59 @@
 	<br />
 	<ul class="media-grid">
   <li>
-		<a href="https://d4uktpxr9m70.cloudfront.net/images/homepage/pic1.jpg" rel="shadowbox[HomeGallery]"><img src="https://d4uktpxr9m70.cloudfront.net/images/homepage/pic1-thumb.jpg" width=135 height=120 /></a>
+		<a data-toggle="modal" href="#image_1"><img src="https://d4uktpxr9m70.cloudfront.net/images/thumb-1-home.jpg" width=135 height=120 /></a>
   </li>
   <li>
-		<a href="https://d4uktpxr9m70.cloudfront.net/images/homepage/pic3.jpg" rel="shadowbox[HomeGallery]"><img src="https://d4uktpxr9m70.cloudfront.net/images/homepage/pic3-thumb.jpg" width=135 height=120 /></a>
+		<a data-toggle="modal" href="#image_2"><img src="https://d4uktpxr9m70.cloudfront.net/images/thumb-2-home.jpg" width=135 height=120 /></a>
   </li>
   <li>
-		<a href="https://d4uktpxr9m70.cloudfront.net/images/homepage/pic2.jpg" rel="shadowbox[HomeGallery]"><img src="https://d4uktpxr9m70.cloudfront.net/images/homepage/pic2-thumb.jpg" width=135 height=120 /></a>
+		<a data-toggle="modal" href="#image_3"><img src="https://d4uktpxr9m70.cloudfront.net/images/thumb-3-home.jpg" width=135 height=120 /></a>
   </li>
   </ul>
 </div>
-<% set_meta_description("Hospitium was created with the simple goal of being an animal management system that doesn't suck.") %>
-<% set_meta_keywords("animal,management,software,online,hosted") %>
+
+<div class="modal" id="image_1" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" href="#">×</a>
+		<h3>Manage Animals</h3>
+	</div>
+	<div class="modal-body">
+			<img src="https://d4uktpxr9m70.cloudfront.net/images/test-home-pic-large.jpg" alt="Manage Animals" style="max-width: 100%;">
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>
+<div class="modal" id="image_2" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" href="#">×</a>
+		<h3>Manage People</h3>
+	</div>
+	<div class="modal-body">
+			<img src="https://d4uktpxr9m70.cloudfront.net/images/home-large-2.jpg" alt="Manage People" style="max-width: 100%;">
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>
+<div class="modal" id="image_3" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" href="#">×</a>
+		<h3>Report Everything</h3>
+	</div>
+	<div class="modal-body">
+			<img src="https://d4uktpxr9m70.cloudfront.net/images/home-large-3.jpg" alt="Report Everything" style="max-width: 100%;">
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>
+<% set_meta_description("Hospitium was created with the simple goal of being an animal management system that doesn't suck. Our software is easy to use and is flexible enough for rescues or shelters of all types.") %>
+<% set_meta_keywords("animal,management,software,online,hosted,shelter,rescue") %>
 <% set_head_title("Animal Shelter Management Software") %>
 
 <% content_for :head do %>
   <link href="https://d4uktpxr9m70.cloudfront.net/stylesheets/homepage.css" media="screen" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" type="text/css" href="https://d4uktpxr9m70.cloudfront.net/stylesheets/shadowbox.css">
 <% end %>
 <% content_for :javascript_footer do %>
   <script>
@@ -63,9 +99,5 @@
 	$('#'+animal+'-quote').attr('style', 'display:block;');
 	$('#'+animal+'-quote-name').attr('style', 'display:block;');
 	 });
-	</script>
-	<script type="text/javascript" src="https://d4uktpxr9m70.cloudfront.net/javascripts/shadowbox.js"></script>
-	<script type="text/javascript">
-	Shadowbox.init();
 	</script>
 <% end %>

@@ -1,0 +1,97 @@
+body{
+	/*background:none !important;*/
+	/*background-image:none !important;*/
+	background:none repeat scroll 0 0 transparent !important
+}
+html{
+	background-image:none !important;
+	background-color:#fff !important;
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	background-position:left bottom;
+	-moz-background-size: contain;
+  background-size: contain;
+}
+.pig{
+	background-image:url(https://d4uktpxr9m70.cloudfront.net/images/homepage/pig2-bg.jpg) !important;
+}
+.cat{
+	background-image:url(https://d4uktpxr9m70.cloudfront.net/images/homepage/cat3-bg.jpg) !important;
+}
+.dog{
+	background-image:url(https://d4uktpxr9m70.cloudfront.net/images/homepage/dog3-bg.jpg) !important;
+}
+.rat{
+	background-image:url(https://d4uktpxr9m70.cloudfront.net/images/homepage/rat2-bg.jpg) !important;
+}
+.duck{
+	background-image:url(https://d4uktpxr9m70.cloudfront.net/images/homepage/duck-bg.jpg) !important;
+}
+.hero-unit {
+	background:none;
+	border:none;
+	box-shadow:none;
+	background: none repeat scroll 0 0 rgba(255, 255, 255, 0.5);
+}
+
+.hero-unit h1{
+	font-size:53px;
+	vertical-align: middle;
+}
+footer {
+    border-top:none;
+    margin-top: 17px;
+    padding-top: 17px;
+    text-align: right;
+}
+.btn{
+	float:right;
+}
+.main-container{
+	padding-left:300px;
+	width: 600px;
+}
+.row{
+	padding: 60px;
+}
+.big-quote{
+	font-size:28px !important;
+	width:400px;
+}
+.media-grid {
+    margin-bottom: 0;
+    margin-left: -20px;
+}
+.media-grid:before, .media-grid:after {
+    content: "";
+    display: table;
+}
+.media-grid:after {
+    clear: both;
+}
+.media-grid li {
+    display: inline;
+}
+.media-grid a {
+    border: 1px solid #DDDDDD;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+    float: left;
+    margin: 0 0 18px 20px;
+    padding: 4px;
+}
+.media-grid a img {
+    display: block;
+}
+.media-grid a:hover {
+    border-color: #0069D6;
+    box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+}
+.modal{
+	top: 10% !important;
+	left: 5% !important;
+	z-index: 1050 !important;
+	overflow: auto !important;
+	width: 90% !important;
+	margin: 0px !important;
+}

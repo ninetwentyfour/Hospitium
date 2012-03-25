@@ -3,26 +3,9 @@ class AnimalWeight < ActiveRecord::Base
   belongs_to :animal
   belongs_to :organization
   before_create :create_uuid
-  validates_presence_of :weight, :date_of_weight, :animal_id
+  validates_presence_of :weight, :date_of_weight, :animal_id, :organization_id
   
-  # settings for rails admin views
-  rails_admin do
-    object_label_method do
-      :show_weight_label_method # show the link in the admin UI instead of the link id
-    end
-    show do
-      exclude_fields :uuid, :organization
-    end
-    create do
-      exclude_fields :uuid
-    end
-    edit do
-      exclude_fields :uuid
-    end
-    list do
-      exclude_fields :uuid, :organization
-    end
-  end
+  attr_accessible :animal_id, :weight, :date_of_weight
   
   # show the link in the admin UI instead of the link id
   def show_weight_label_method
@@ -32,6 +15,24 @@ class AnimalWeight < ActiveRecord::Base
   #create uuid
   def create_uuid()
     self.uuid = UUIDTools::UUID.random_create.to_s
+  end
+  
+  def formatted_weight_date
+    unless self.date_of_weight.blank?
+      age = self.date_of_weight.strftime("%a, %b %e at %l:%M")
+    else
+      age = ""
+    end
+    return age
+  end
+  
+  def as_xls(options = {})
+    {
+        "Id" => id.to_s,
+        "Weight" => weight,
+        "Animal" => animal["name"],
+        "Date of Weight" => date_of_weight
+    }
   end
   
 end

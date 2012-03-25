@@ -1,0 +1,24 @@
+<%= form_for @notification, :url => admin_notification_path(@notification) do |f| %>
+  <% if @notification.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@notification.errors.count, "error") %> prohibited this notification from being saved:</h2>
+
+      <ul>
+      <% @notification.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :status_type %>
+    <%= f.text_field:status_type %>
+  </div>
+  <div class="field">
+    <%= f.label :message %>
+    <%= f.text_area :message, :rows => 5 %>
+  </div>
+	<hr />
+			    <%= f.submit "Add Notification", :class => "btn btn-primary submit-button" %>
+<% end %>

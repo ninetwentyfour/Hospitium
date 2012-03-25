@@ -1,0 +1,168 @@
+<div class="row-fluid">
+	<div class="span12">
+		<% if notice.blank? %>
+
+		<% else %>
+			<div class="alert alert-info"><a class="close" data-dismiss="alert" href="#">&times;</a> <%= notice %></div>
+		<% end %>
+		<div class="well">
+			<div class="row-fluid">
+				<div class="span6">
+					<a class="btn" href="/admin/animals/new"><i class="icon-plus"></i> Add New Animal</a>
+					&nbsp;
+					<a class="btn" href="/send-to-adopt-a-pet" id="animal_sync_button"><i class="icon-share"></i> Sync Public To Adopt-A-Pet</a>
+					&nbsp;
+					<a class="btn" href="/admin/animals.xls" id="animal_sync_button"><i class="icon-download"></i> Export</a>
+				</div>
+				<div class="span1"> &nbsp; </div>
+				<div class="span5 pull-right">
+				<a class="btn pull-right" data-toggle="modal" href="#myModal" ><i class="icon-search"></i> Advanced Search</a>
+				</div>
+				<!-- <form class="form-search">
+				  <input type="text" class="input-medium search-query">
+				  <button type="submit" class="btn">Search</button>
+				</form> -->
+			</div>
+		</div>
+		<table class="table table-striped table-bordered" id="animal_index">
+			<col><col><col><col><col><col><col><col>
+			<thead>
+				<tr>
+					<th><%= sort_link @search, :name %></th>
+					<th><%= sort_link @search, :status_status, "Status", {}, :class => "status" %></th>
+					<th><%= sort_link @search, :public %></th>
+					<th><%= sort_link @search, :animal_sex_sex, "Sex", {}, :class => "animal_sex" %></th>
+					<th><%= sort_link @search, :birthday, "Age" %></th>
+					<th><%= sort_link @search, :spay_neuter_spay, "Spay / Neuter", {}, :class => "spay_neuter" %></th>
+					<th><%= sort_link @search, :animal_color_color, "Color", {}, :class => "animal_color" %></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @animals.each do |animal| %>
+					<tr>
+						<td><a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><%= animal.name %></a></td>
+						<td><%= animal.status.status %></td>
+						<td><%= animal.public? ? 'yes' : 'no' %></td>
+						<td><%= animal.animal_sex.sex unless animal.animal_sex.blank? %></td>
+						<td><%= calculate_animal_age(animal.birthday) unless animal.birthday.blank? %></td>
+						<td><%= animal.spay_neuter.spay unless animal.spay_neuter.blank? %></td>
+						<td><%= animal.animal_color.color %></td>
+						<td>
+							<div class="btn-group">
+								<a class="btn tooltip-class" href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>" rel="tooltip" title="View Animal"><i class="icon-eye-open"></i></a>
+								<a class="btn tooltip-class duplicate-button" href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>/duplicate" rel="tooltip" title="Duplicate Animal"><i class="icon-plus-sign"></i></a>
+								<% if can? :destroy, animal %>
+									<%= link_to raw("<i class='icon-remove'></i>"), admin_animal_path(animal),
+									            :confirm => 'Are you sure you want to delete?', :method => :delete, :class => "btn tooltip-class", :rel => "tooltip", :title => "Delete Animal" %>
+								<% end %>
+							</div>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<%= will_paginate @animals %>
+	</div>
+</div>
+
+
+
+
+<div class="modal" id="myModal" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" href="#">×</a>
+		<h3>Advanced Search</h3>
+	</div>
+	<div class="modal-body">
+		<%= form_for @search, :url => admin_animals_path, :html => { :class => "form-vertical"} do |f| %>
+				<div class="accordion" id="accordion2">
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+								Search Names
+							</a>
+						</div>
+						<div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">
+							<div class="accordion-inner">
+								<%= f.label :name_contains %>
+								<%= f.text_field :name_contains %>
+								<%= f.label :name_equals %>
+								<%= f.text_field :name_equals %>
+
+								<%= f.label :previous_name_contains %>
+								<%= f.text_field :previous_name_contains %>
+								<%= f.label :previous_name_equals %>
+								<%= f.text_field :previous_name_equals %>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+								Search Related Objects
+							</a>
+						</div>
+						<div id="collapseTwo" class="accordion-body collapse" style="height: 0px; ">
+							<div class="accordion-inner">
+								<%= f.label :status_id_equals %>
+								<%= f.collection_select :status_id_equals, Status.where(:organization_id => current_user.organization_id), :id, :status, :include_blank => true %>
+
+								<%= f.label :animal_sex_id_equals %>
+								<%= f.collection_select :animal_sex_id_equals, AnimalSex.all, :id, :sex, :include_blank => true %>
+
+								<%= f.label :animal_color_id_equals %>
+								<%= f.collection_select :animal_color_id_equals, AnimalColor.where(:organization_id => current_user.organization_id), :id, :color, :include_blank => true %>
+
+								<%= f.label :species_id_equals %>
+								<%= f.collection_select :species_id_equals, Species.where(:organization_id => current_user.organization_id), :id, :name, :include_blank => true %>
+
+								<%= f.label :spay_neuter_id_equals %>
+								<%= f.collection_select :spay_neuter_id_equals, SpayNeuter.all, :id, :spay, :include_blank => true %>
+
+								<%= f.label :shelter_id_equals %>
+								<%= f.collection_select :shelter_id_equals, Shelter.where(:organization_id => current_user.organization_id), :id, :name, :include_blank => true %>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+								Search Dates
+							</a>
+						</div>
+						<div id="collapseThree" class="accordion-body collapse" style="height: 0px; ">
+							<div class="accordion-inner">
+													<%= f.label :birthday_gte, "Birthday From" %>
+													<%= f.text_field :birthday_gte, :size => 8 %>
+													<%= f.label :birthday_lte, "To" %>
+													<%= f.text_field :birthday_lte, :size => 8 %>
+											<hr />
+													<%= f.label :deceased_gte, "Deceased From" %>
+													<%= f.text_field :deceased_gte, :size => 8 %>
+													<%= f.label :deceased_lte, "To" %>
+													<%= f.text_field :deceased_lte, :size => 8 %>
+								<hr />
+												<%= f.label :date_of_well_check_gte, "Date of Well Check From" %>
+												<%= f.text_field :date_of_well_check_gte, :size => 8 %>
+												<%= f.label :date_of_well_check_lte, "To" %>
+												<%= f.text_field :date_of_well_check_lte, :size => 8 %>
+											<hr />
+
+												<%= f.label :date_of_intake_gte, "Date of Intake From" %>
+												<%= f.text_field :date_of_intake_gte, :size => 8 %>
+												<%= f.label :date_of_intake_lte, "To" %>
+												<%= f.text_field :date_of_intake_lte, :size => 8 %>
+							</div>
+						</div>
+					</div>
+				</div>
+	  
+	</div>
+	<div class="modal-footer">
+		<%= f.submit "Submit", :class => "btn btn-primary" %>
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+		<% end %>
+</div>
+

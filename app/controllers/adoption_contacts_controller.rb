@@ -15,7 +15,6 @@ class AdoptionContactsController < ApplicationController
   # GET /adoption_contacts/1.xml
   def show
     @adoption_contact = AdoptionContact.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @adoption_contact }
@@ -63,9 +62,11 @@ class AdoptionContactsController < ApplicationController
       if @adoption_contact.update_attributes(params[:adoption_contact])
         format.html { redirect_to(@adoption_contact, :notice => 'Adoption contact was successfully updated.') }
         format.xml  { head :ok }
+        format.json { respond_with_bip(@adoption_contact) }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @adoption_contact.errors, :status => :unprocessable_entity }
+        format.json { respond_with_bip(@adoption_contact) }
       end
     end
   end

@@ -59,4 +59,15 @@ AnimalTracker::Application.configure do
   }
   
   config.action_controller.asset_host = "https://d4uktpxr9m70.cloudfront.net"
+  
+  # Compress JavaScripts and CSS
+  config.assets.compress = true
+  config.assets.js_compressor = :closure
+  config.assets.css_compressor = :yui
+
+  # Don't fallback to assets pipeline if a precompiled asset is missed
+  config.assets.compile = false
+
+  # Generate digests for assets URLs
+  config.assets.digest = true
 end

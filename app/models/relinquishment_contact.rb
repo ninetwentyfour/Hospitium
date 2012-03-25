@@ -6,33 +6,9 @@ class RelinquishmentContact < ActiveRecord::Base
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
   
-  # settings for rails admin views
-  rails_admin do
-    object_label_method do
-      :show_name_label_method # show the user email in the admin UI instead of the user id
-    end
-    show do
-      group :relinquish_animals do
-        hide
-      end
-      exclude_fields :uuid, :organization
-    end
-    create do
-      group :relinquish_animals do
-        hide
-      end
-      exclude_fields :uuid
-    end
-    edit do
-      group :relinquish_animals do
-        hide
-      end
-      exclude_fields :uuid
-    end
-    list do
-      exclude_fields :uuid, :organization
-    end
-  end
+  validates_presence_of :first_name, :last_name, :organization_id
+  
+  attr_accessible :first_name, :last_name, :address, :phone, :email, :reason
   
   #create uuid
   def create_uuid()
@@ -48,4 +24,26 @@ class RelinquishmentContact < ActiveRecord::Base
       self.phone = self.phone.delete("^0-9")
     end
   end
+  
+  def formatted_phone
+    unless self.phone.blank?
+      phone = number_to_phone(self.phone)
+    else
+      phone = ""
+    end
+    return phone
+  end
+  
+  def as_xls(options = {})
+    {
+        "Id" => id.to_s,
+        "First Name" => first_name,
+        "Last Name" => last_name,
+        "Address" => address,
+        "Phone" => phone,
+        "Email" => email,
+        "Reason" => reason
+    }
+  end
+  
 end

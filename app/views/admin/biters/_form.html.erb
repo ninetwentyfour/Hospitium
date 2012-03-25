@@ -1,0 +1,21 @@
+<%= form_for(@biter) do |f| %>
+  <% if @biter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@biter.errors.count, "error") %> prohibited this biter from being saved:</h2>
+
+      <ul>
+      <% @biter.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :value %><br />
+    <%= f.text_field :value %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

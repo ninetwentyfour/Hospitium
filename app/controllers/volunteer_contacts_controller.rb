@@ -62,9 +62,11 @@ class VolunteerContactsController < ApplicationController
       if @volunteer_contact.update_attributes(params[:volunteer_contact])
         format.html { redirect_to(@volunteer_contact, :notice => 'Volunteer contact was successfully updated.') }
         format.xml  { head :ok }
+        format.json { respond_with_bip(@volunteer_contact) }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @volunteer_contact.errors, :status => :unprocessable_entity }
+        format.json { respond_with_bip(@volunteer_contact) }
       end
     end
   end

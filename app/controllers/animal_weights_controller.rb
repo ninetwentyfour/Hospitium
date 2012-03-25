@@ -64,9 +64,11 @@ class AnimalWeightsController < ApplicationController
       if @animal_weight.update_attributes(params[:animal_weight])
         format.html { redirect_to(@animal_weight, :notice => 'Animal weight was successfully updated.') }
         format.xml  { head :ok }
+        format.json { respond_with_bip(@animal_weight) }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @animal_weight.errors, :status => :unprocessable_entity }
+        format.json { respond_with_bip(@animal_weight) }
       end
     end
   end

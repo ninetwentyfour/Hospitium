@@ -31,7 +31,7 @@
 		<p>Special Needs: <%= @animal.special_needs %></p>
 		<hr />
 		<p>Adoption Contact</p>
-		<p>Organization: <a href="/organizations/<%= @animal.organization.uuid %>"><%= @animal.organization.name %></a></p>
+		<p>Organization: <a class='js-pjax' href="/organizations/<%= @animal.organization.uuid %>"><%= @animal.organization.name %></a></p>
 		<p>Website: <a href="<%= @animal.organization.website %>"><%= @animal.organization.website %></a></p>
 		<p>Email: <a href="mailto:<%= @animal.organization.email %>"><%= @animal.organization.email %></a></p>
 		<p>Phone Number: <%= number_to_phone(@animal.organization.phone_number, :area_code => true) %></p>
@@ -67,6 +67,8 @@
 <% set_meta_description("Adopt #{@animal.name} from #{@animal.organization.name}") %>
 <% set_meta_keywords("adopt,animal,pets") %>
 <% set_head_title("Adopt #{@animal.name}") %>
+<% content_for :title, "Adopt #{@animal.name} - Hospitium" %>
+<title><%= yield (:title) %></title>
 
 
 <% content_for :head do %>

@@ -1,25 +1,12 @@
 class Shelter < ActiveRecord::Base
   has_paper_trail
-  default_scope :order => "name ASC"
   belongs_to :organization
+  has_many :animals
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
+  validates_presence_of :name, :organization_id
   
-  # settings for rails admin views
-  rails_admin do
-    show do
-      exclude_fields :uuid, :organization
-    end
-    create do
-      exclude_fields :uuid
-    end
-    edit do
-      exclude_fields :uuid
-    end
-    list do
-      exclude_fields :uuid, :organization
-    end
-  end
+  attr_accessible :name, :contact_first, :contact_last, :address, :phone, :email, :website, :notes
   
   #create uuid
   def create_uuid()
@@ -30,5 +17,28 @@ class Shelter < ActiveRecord::Base
     unless self.phone.blank?
       self.phone = self.phone.delete("^0-9")
     end
+  end
+  
+  def formatted_phone
+    unless self.phone.blank?
+      phone = number_to_phone(self.phone)
+    else
+      phone = ""
+    end
+    return phone
+  end
+  
+  def as_xls(options = {})
+    {
+        "Id" => id.to_s,
+        "Name" => name,
+        "Contact First Name" => contact_first,
+        "Contact Last Name" => contact_last,
+        "Address" => address,
+        "Phone" => phone,
+        "Email" => email,
+        "Website" => website,
+        "Notes" => notes
+    }
   end
 end

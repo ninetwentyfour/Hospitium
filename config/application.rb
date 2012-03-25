@@ -1,13 +1,25 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'sprockets/railtie'
 
-# If you have a Gemfile, require the gems listed there, including any gems
-# you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+if defined?(Bundler)
+  # If you precompile assets before deploying to production, use this line
+  Bundler.require *Rails.groups(:assets => %w(development test))
+  # If you want your assets lazily compiled in production, use this line
+  # Bundler.require(:default, :assets, Rails.env)
+end
+
 
 module AnimalTracker
   class Application < Rails::Application
+    # Enable the asset pipeline
+    config.assets.enabled = true
+
+    # Version of your assets, change this if you want to expire all your assets
+    config.assets.version = '1.0'
+    
+    config.assets.initialize_on_precompile = false
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -38,5 +50,10 @@ module AnimalTracker
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    
+    config.active_record.observers = :animal_observer, :adoption_contact_observer, :animal_color_observer, :animal_weight_observer, :organization_observer, 
+      :relinquishment_contact_observer, :shelter_observer, :species_observer, :status_observer, :user_observer, :vet_contact_observer, :volunteer_contact_observer
+      
+    config.active_record.whitelist_attributes = true
   end
 end

@@ -1,0 +1,211 @@
+<div class="modal" id="newStatus" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" href="#">×</a>
+		<h3>Add New Status</h3>
+	</div>
+	<div class="modal-body">
+		<div class="progress progress-danger progress-striped active new_status_bar" style="display:none;">
+			<div class="bar" style="width: 100%;"></div>
+		</div>
+		<p class="new_status_bar" style="display:none;">Loading...</p>
+		<%= form_for status, :url => admin_statuses_path, :validate => true do |f| %>
+			<%= f.label :status %>
+			<%= f.text_field :status %>
+			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+		<%end%>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-primary submit-button" data-form-id="new_status">Save changes</a>
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>
+
+<div class="modal" id="newSpecies" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" href="#">×</a>
+		<h3>Add New Species</h3>
+	</div>
+	<div class="modal-body">
+		<div class="progress progress-danger progress-striped active new_species_bar" style="display:none;">
+			<div class="bar" style="width: 100%;"></div>
+		</div>
+		<p class="new_species_bar" style="display:none;">Loading...</p>
+		<%= form_for species_model, :url => "/admin/species", :validate => true do |f| %>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+		<%end%>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-primary submit-button" data-form-id="new_species">Save changes</a>
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>
+
+<div class="modal" id="newColor" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" href="#">×</a>
+		<h3>Add New Color</h3>
+	</div>
+	<div class="modal-body">
+		<div class="progress progress-danger progress-striped active new_animal_color_bar" style="display:none;">
+			<div class="bar" style="width: 100%;"></div>
+		</div>
+		<p class="new_animal_color_bar" style="display:none;">Loading...</p>
+		<%= form_for animal_color_model, :url => admin_animal_colors_path, :validate => true do |f| %>
+			<%= f.label :color %>
+			<%= f.text_field :color %>
+			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+		<%end%>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-primary submit-button" data-form-id="new_animal_color">Save changes</a>
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>
+
+<div class="modal" id="newShelter" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" href="#">×</a>
+		<h3>Add New Shelter</h3>
+	</div>
+	<div class="modal-body">
+		<div class="progress progress-danger progress-striped active new_shelter_bar" style="display:none;">
+			<div class="bar" style="width: 100%;"></div>
+		</div>
+		<p class="new_shelter_bar" style="display:none;">Loading...</p>
+		<%= form_for shelter_model, :url => admin_shelters_path, :validate => true do |f| %>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+			<%= f.label :contact_first %>
+			<%= f.text_field :contact_first %>
+			<%= f.label :contact_last %>
+			<%= f.text_field :contact_last %>
+			<%= f.label :address %>
+			<%= f.text_field :address %>
+			<%= f.label :phone %>
+			<%= f.text_field :phone %>
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+			<%= f.label :website %>
+			<%= f.text_field :website %>
+			<%= f.label :notes %>
+			<%= f.text_area :notes %>
+			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+		<%end%>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-primary submit-button" data-form-id="new_shelter">Save changes</a>
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>
+
+<div class="modal" id="newWeight" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" href="#">×</a>
+		<h3>Add New Animal Weight</h3>
+	</div>
+	<div class="modal-body">
+		<div class="progress progress-danger progress-striped active new_animal_weight_bar" style="display:none;">
+			<div class="bar" style="width: 100%;"></div>
+		</div>
+		<p class="new_animal_weight_bar" style="display:none;">Loading...</p>
+		<%= form_for animal_weight_model, :url => admin_animal_weights_path, :validate => true do |f| %>
+			<%= f.label :weight %>
+			<%= f.text_field :weight %>
+			<%= f.label :date_of_weight %>
+			<%= f.text_field :date_of_weight %>
+			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+			<%= f.hidden_field :animal_id, :value => @animal.id %>
+		<%end%>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-primary submit-button" data-form-id="new_animal_weight">Save changes</a>
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>
+
+
+<div class="modal" id="image_1" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" href="#">×</a>
+		<h3>Add New Animal Image</h3>
+	</div>
+	<div class="modal-body">
+		<div class="progress progress-danger progress-striped active first_image_upload_bar" style="display:none;">
+			<div class="bar" style="width: 100%;"></div>
+		</div>
+		<p class="first_image_upload_bar" style="display:none;">Loading...</p>
+		<%= form_for animal, :url => admin_animal_path, :html => { :id => "first_image_upload" } do |f| %>
+			<%= f.file_field :image, :accept => "image/jpeg,image/jpg,image/png" %>
+			<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
+		<%end%>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-primary submit-button" data-form-id="first_image_upload">Save changes</a>
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>
+
+<div class="modal" id="image_2" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" href="#">×</a>
+		<h3>Add New Animal Image</h3>
+	</div>
+	<div class="modal-body">
+		<div class="progress progress-danger progress-striped active second_image_upload_bar" style="display:none;">
+			<div class="bar" style="width: 100%;"></div>
+		</div>
+		<p class="second_image_upload_bar" style="display:none;">Loading...</p>
+		<%= form_for animal, :url => admin_animal_path, :html => { :id => "second_image_upload" }, :validate => true do |f| %>
+			<%= f.file_field :second_image, :accept => "image/jpeg,image/jpg,image/png" %>
+			<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
+		<%end%>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-primary submit-button" data-form-id="second_image_upload">Save changes</a>
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>
+
+<div class="modal" id="image_3" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" href="#">×</a>
+		<h3>Add New Animal Image</h3>
+	</div>
+	<div class="modal-body">
+		<div class="progress progress-danger progress-striped active third_image_upload_bar" style="display:none;">
+			<div class="bar" style="width: 100%;"></div>
+		</div>
+		<p class="third_image_upload_bar" style="display:none;">Loading...</p>
+		<%= form_for animal, :url => admin_animal_path, :html => { :id => "third_image_upload" } do |f| %>
+			<%= f.file_field :third_image, :accept => "image/jpeg,image/jpg,image/png" %>
+			<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
+		<%end%>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-primary submit-button" data-form-id="third_image_upload">Save changes</a>
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>
+
+<div class="modal" id="image_4" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" href="#">×</a>
+		<h3>Add New Animal Image</h3>
+	</div>
+	<div class="modal-body">
+		<div class="progress progress-danger progress-striped active fourth_image_upload_bar" style="display:none;">
+			<div class="bar" style="width: 100%;"></div>
+		</div>
+		<p class="fourth_image_upload_bar" style="display:none;">Loading...</p>
+		<%= form_for animal, :url => admin_animal_path, :html => { :id => "fourth_image_upload" } do |f| %>
+			<%= f.file_field :fourth_image, :accept => "image/jpeg,image/jpg,image/png" %>
+			<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
+		<%end%>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-primary submit-button" data-form-id="fourth_image_upload">Save changes</a>
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>

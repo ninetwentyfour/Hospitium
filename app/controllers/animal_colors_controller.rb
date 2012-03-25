@@ -62,9 +62,11 @@ class AnimalColorsController < ApplicationController
       if @animal_color.update_attributes(params[:animal_color])
         format.html { redirect_to(@animal_color, :notice => 'Animal color was successfully updated.') }
         format.xml  { head :ok }
+        format.json { respond_with_bip(@animal_color) }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @animal_color.errors, :status => :unprocessable_entity }
+        format.json { respond_with_bip(@animal_color) }
       end
     end
   end

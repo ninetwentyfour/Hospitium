@@ -1,0 +1,52 @@
+<div class="row-fluid">
+	<div class="span12">
+		<% if notice.blank? %>
+
+		<% else %>
+			<div class="alert alert-info"><a class="close" data-dismiss="alert" href="#">&times;</a> <%= notice %></div>
+		<% end %>
+		<div class="well">
+			<div class="row-fluid">
+				<div class="span6">
+					<a class="btn" href="/admin/notifications/new"><i class="icon-plus"></i>Add New Notification</a>
+				</div>
+				<div class="span1"> &nbsp; </div>
+				<div class="span5 pull-right">
+				
+				</div>
+				<!-- <form class="form-search">
+				  <input type="text" class="input-medium search-query">
+				  <button type="submit" class="btn">Search</button>
+				</form> -->
+			</div>
+		</div>
+		<table class="table table-striped table-bordered">
+			<col><col><col><col><col><col><col><col>
+			<thead>
+				<tr>
+					<th>Status Type</th>
+					<th>Message</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @notifications.each do |notification| %>
+					<tr>
+						<td><%= notification.status_type %></td>
+						<td><%= notification.message %></td>
+						<td>
+							<div class="btn-group">
+								<a class="btn tooltip-class" href="/admin/notifications/<%= notification.id %>" rel="tooltip" title="View Contact"><i class="icon-eye-open"></i></a>
+								<a class="btn tooltip-class" href="/admin/notifications/<%= notification.id %>/edit" rel="tooltip" title="Edit Contact"><i class="icon-pencil"></i></a>
+								<% if can? :manage, notification %>
+									<%= link_to raw("<i class='icon-remove'></i>"), admin_notification_path(notification),
+									            :confirm => 'Are you sure you want to delete?', :method => :delete, :class => "btn tooltip-class", :rel => "tooltip", :title => "Delete" %>
+								<% end %>
+							</div>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

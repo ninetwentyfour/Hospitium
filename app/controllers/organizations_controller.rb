@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
-  caches_action :index, :expires_in => 1.minute
-  caches_action :show, :expires_in => 1.minute
+  #caches_action :index, :expires_in => 1.minute
+  #caches_action :show, :expires_in => 1.minute
   # GET /organizations
   # GET /organizations.xml
   def index
@@ -17,8 +17,16 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1.xml
   def show
     canonical_url("/organizations/#{params[:id]}")
-    @organization = Organization.find_by_uuid(params[:id])
-    @animals = Animal.find(:all, :conditions => {'public' => 1, :organization_id => @organization.id})
+    require_dependency "Organization"
+    @organization = Rails.cache.fetch("public_org_#{params[:id]}", :expires_in => 15.minutes) do
+      Organization.find_by_uuid(params[:id])
+    end
+    require_dependency "Animal"
+    @animals = Rails.cache.fetch("public_org_animals_#{params[:id]}", :expires_in => 15.minutes) do
+      Animal.find(:all, :conditions => {'public' => 1, :organization_id => @organization.id})
+    end
+    #@organization = Organization.find_by_uuid(params[:id])
+    #@animals = Animal.find(:all, :conditions => {'public' => 1, :organization_id => @organization.id})
     
 
     respond_to do |format|
@@ -68,9 +76,11 @@ class OrganizationsController < ApplicationController
       if @organization.update_attributes(params[:organization])
         format.html { redirect_to(@organization, :notice => 'Organization was successfully updated.') }
         format.xml  { head :ok }
+        format.json { respond_with_bip(@organization) }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @organization.errors, :status => :unprocessable_entity }
+        format.json { respond_with_bip(@organization) }
       end
     end
   end

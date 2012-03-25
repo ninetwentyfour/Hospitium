@@ -1,3 +1,4 @@
+include ActionView::Helpers::NumberHelper
 class AdoptionContact < ActiveRecord::Base
   has_paper_trail
   has_many :adopt_animals
@@ -6,35 +7,11 @@ class AdoptionContact < ActiveRecord::Base
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
   
-  validates_presence_of :first_name, :last_name, :address
+  validates_presence_of :first_name, :last_name, :address, :organization_id
   
-  # settings for rails admin views
-  rails_admin do
-    object_label_method do
-      :show_name_label_method # show the user email in the admin UI instead of the user id
-    end
-    show do
-      group :adopt_animals do
-        hide
-      end
-      exclude_fields :uuid, :organization
-    end
-    create do
-      group :adopt_animals do
-        hide
-      end
-      exclude_fields :uuid
-    end
-    edit do
-      group :adopt_animals do
-        hide
-      end
-      exclude_fields :uuid
-    end
-    list do
-      exclude_fields :uuid, :organization
-    end
-  end
+  accepts_nested_attributes_for :adopt_animals
+  
+  attr_accessible :first_name, :last_name, :address, :phone, :email, :adopted_date
   
   #create uuid
   def create_uuid()
@@ -50,4 +27,25 @@ class AdoptionContact < ActiveRecord::Base
       self.phone = self.phone.delete("^0-9")
     end
   end
+  
+  def formatted_phone
+    unless self.phone.blank?
+      phone = number_to_phone(self.phone)
+    else
+      phone = ""
+    end
+    return phone
+  end
+  
+  def as_xls(options = {})
+    {
+        "Id" => id.to_s,
+        "First Name" => first_name,
+        "Last Name" => last_name,
+        "Address" => address,
+        "Phone" => phone,
+        "Email" => email
+    }
+  end
+  
 end

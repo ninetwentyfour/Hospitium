@@ -22,6 +22,7 @@ class PostsController < ApplicationController
   # GET /posts/1.xml
   def show
     canonical_url("/posts/#{params[:id]}")
+    require_dependency "Post"
     @post = Rails.cache.fetch("public_post_#{params[:id]}", :expires_in => 180.minutes) do
       Post.find(params[:id])
     end

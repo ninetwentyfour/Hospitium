@@ -2,10 +2,7 @@
 class AdoptAnimal < ActiveRecord::Base
   belongs_to :animal
   belongs_to :adoption_contact
-  
-  # settings for rails admin views
-  rails_admin do
-    visible false # dont show permissions to users in rails admin UI
-  end
-  
+
+  attr_accessible :adoption_contact_id, :animal_id
+
 end

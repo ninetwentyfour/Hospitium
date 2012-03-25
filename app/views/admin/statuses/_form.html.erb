@@ -1,0 +1,24 @@
+<div class="row-fluid">
+	<div class="span12">
+	<%= form_for @status, :url => admin_statuses_path, :validate => true do |f| %>
+	  <% if @status.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@status.errors.count, "error") %> prohibited this species from being saved:</h2>
+
+	      <ul>
+	      <% @status.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+
+	    <%= f.label :status %>
+	    <%= f.text_field :status %>
+<hr />
+	   <%= f.submit "Add Status", :class => "btn btn-primary submit-button" %>
+
+	<% end %>
+	</div>
+</div>
+

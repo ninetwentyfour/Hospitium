@@ -4,25 +4,9 @@ class VetContact < ActiveRecord::Base
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
   
+  validates_presence_of :clinic_name
   
-  # settings for rails admin views
-  rails_admin do
-    object_label_method do
-      :show_name_label_method # show the user email in the admin UI instead of the user id
-    end
-    show do
-      exclude_fields :uuid, :organization
-    end
-    create do
-      exclude_fields :uuid
-    end
-    edit do
-      exclude_fields :uuid
-    end
-    list do
-      exclude_fields :uuid, :organization
-    end
-  end
+  attr_accessible :clinic_name, :address, :phone, :email, :website, :hours, :emergency
   
   #create uuid
   def create_uuid()
@@ -37,6 +21,28 @@ class VetContact < ActiveRecord::Base
     unless self.phone.blank?
       self.phone = self.phone.delete("^0-9")
     end
+  end
+  
+  def formatted_phone
+    unless self.phone.blank?
+      phone = number_to_phone(self.phone)
+    else
+      phone = ""
+    end
+    return phone
+  end
+  
+  def as_xls(options = {})
+    {
+        "Id" => id.to_s,
+        "Clinic Name" => clinic_name,
+        "Address" => address,
+        "Phone" => phone,
+        "Email" => email,
+        "Website" => website,
+        "Hours" => hours,
+        "Emergency" => emergency
+    }
   end
   
 end

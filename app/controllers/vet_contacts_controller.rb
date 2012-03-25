@@ -62,9 +62,11 @@ class VetContactsController < ApplicationController
       if @vet_contact.update_attributes(params[:vet_contact])
         format.html { redirect_to(@vet_contact, :notice => 'Vet contact was successfully updated.') }
         format.xml  { head :ok }
+        format.json { respond_with_bip(@vet_contact) }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @vet_contact.errors, :status => :unprocessable_entity }
+        format.json { respond_with_bip(@vet_contact) }
       end
     end
   end

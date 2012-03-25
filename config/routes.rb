@@ -4,11 +4,13 @@ AnimalTracker::Application.routes.draw do
   resource :facebook_accounts
   match '/callback/facebook/:id' => "facebook_accounts#callback", :as => :facebook_callback
   match "/facebook_accounts/send_wall_post" => "facebook_accounts#send_wall_post", :as => "facebook_accounts"
+  match "/facebook_accounts/:id" => "facebook_accounts#destroy", :via => :delete
 
   
   resource :twitter_accounts
   match '/callback/twitter/' => "twitter_accounts#callback", :as => :twitter_callback
   match "/twitter_accounts/send_tweet" => "twitter_accounts#send_tweet", :as => "twitter_accounts"
+  match "/twitter_accounts/:id" => "twitter_accounts#destroy", :via => :delete
   
   post "versions/:id/revert" => "versions#revert", :as => "revert_version"
   
@@ -128,59 +130,51 @@ AnimalTracker::Application.routes.draw do
   
   resources :posts
   
+  resources :adopt_animals
+  
+  resources :relinquish_animals
+  
+  #resources :users
+  
   resource :wordpress_accounts
   match "/wordpress_accounts/send_blog_post" => "wordpress_accounts#send_blog_post", :as => "wordpress_accounts"
+  match "/wordpress_accounts/:id" => "wordpress_accounts#update", :via => :put
+  match "/wordpress_accounts/:id" => "wordpress_accounts#destroy", :via => :delete
   
   resource :petfinder_accounts
   match "/petfinder_accounts/send_animal_post" => "petfinder_accounts#send_animal_post", :as => "petfinder_accounts"
   
   resource :adopt_a_pet_accounts
   match "/send-to-adopt-a-pet" => "adopt_a_pet_accounts#send_animal", :as => "adopt_a_pet_accounts"
+  match "/adopt_a_pet_accounts/:id" => "adopt_a_pet_accounts#update", :via => :put
+  match "/adopt_a_pet_accounts/:id" => "adopt_a_pet_accounts#destroy", :via => :delete
+  
+  match "/species.:id" => "species#update", :via => :put
 
     
-  devise_for :users
+  devise_for :users#, :controllers => { :sessions => 'users/sessions' } 
   get "home/index"
   root :to => "home#index"
   match "/about" => "home#about", :as => "about"
   match "/features" => "home#features", :as => "features"
   match "/privacy-and-terms-of-service" => "home#privacy", :as => "privacy"
   match "/ftp-test" => "adopt_a_pets#send_to_site", :as => "send_to_site"
+  match "/admin" => "admin/home#index", :as => "index"
+  match "/admin/animals/:id/duplicate" => "admin/animals#duplicate", :via => :get
   
+  devise_scope :user do
+    match '/users/:id', :to => 'users#update', :via => :put
+    match '/users/sign_out' => 'devise/sessions#destroy'
+  end
+  
+  resources :users, :only => [:show, :update]
   
   
   
   # Prefix route urls with "admin" and route names with "rails_admin_"
-  scope "admin", :module => :rails_admin, :as => "rails_admin" do
-    scope "history", :as => "history" do
-      controller "history" do
-        match "/list", :to => :list, :as => "list"
-        match "/slider", :to => :slider, :as => "slider"
-        match "/:model_name", :to => :for_model, :as => "model"
-        match "/:model_name/:id", :to => :for_object, :as => "object"
-      end
-    end
-
-    # Routes for rails_admin controller
-    controller "main" do
-      match "/", :to => :index, :as => "dashboard"
-      get "/:model_name", :to => :list, :as => "list"
-      post "/:model_name/list", :to => :list, :as => "list_post"
-      match "/:model_name/export", :to => :export, :as => "export"
-      get "/:model_name/new", :to => :new, :as => "new"
-      match "/:model_name/get_pages", :to => :get_pages, :as => "get_pages"
-      post "/:model_name", :to => :create, :as => "create"
-
-      get "/:model_name/:id", :to => :show, :as => "show"
-      get "/:model_name/:id/edit", :to => :edit, :as => "edit"
-      put "/:model_name/:id", :to => :update, :as => "update"
-      get "/:model_name/:id/delete", :to => :delete, :as => "delete"
-      delete "/:model_name/:id", :to => :destroy, :as => "destroy"
-
-      post "/:model_name/bulk_action", :to => :bulk_action, :as => "bulk_action"
-      post "/:model_name/bulk_destroy", :to => :bulk_destroy, :as => "bulk_destroy"
-      
-      get "/:model_name/:id/duplicate", :to => :duplicate, :as => "duplicate"
-    end
+  namespace :admin do
+    resources :animals, :species, :statuses, :animal_colors, :shelters, :animal_weights, :adoption_contacts, :organizations, :relinquishment_contacts, :users,
+      :vet_contacts, :volunteer_contacts, :notifications, :posts
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.

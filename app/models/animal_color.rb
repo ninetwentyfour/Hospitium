@@ -1,26 +1,12 @@
 class AnimalColor < ActiveRecord::Base
   has_paper_trail
-  default_scope :order => "color ASC"
+  #default_scope :order => "color ASC"
   belongs_to :organization
-  before_update :create_uuid
-  # settings for rails admin views
-  rails_admin do
-    object_label_method do
-      :show_color_label_method # show the link in the admin UI instead of the link id
-    end
-    show do
-      exclude_fields :uuid, :organization
-    end
-    create do
-      exclude_fields :uuid
-    end
-    edit do
-      exclude_fields :uuid
-    end
-    list do
-      exclude_fields :uuid, :organization
-    end
-  end
+  has_many :animals
+  before_create :create_uuid
+  validates_presence_of :color, :organization_id
+  
+  attr_accessible :color
   
   #create uuid
   def create_uuid()

@@ -13,9 +13,9 @@ class TwitterAccountsController < ApplicationController
       twitter_account.validate_oauth_token(params[:oauth_verifier], twitter_callback_url)
       twitter_account.save
       if twitter_account.active?
-        redirect_to("#{root_url}admin/user/#{current_user.id}", :notice => 'Twitter account activated! You will need to resend the last tweet.')
+        redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Twitter account activated! You will need to resend the last tweet.')
       else
-        redirect_to("#{root_url}admin/user/#{current_user.id}", :notice => "Unable to activate twitter account.")
+        redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => "Unable to activate twitter account.")
       end
     end
   end
@@ -26,12 +26,22 @@ class TwitterAccountsController < ApplicationController
     end
     #account = TwitterAccount.find_by_user_id(current_user.id)
     if account.blank?
-      twitter_account = TwitterAccount.create(:user => current_user)
+      twitter_account = TwitterAccount.create(:user_id => current_user.id)
       redirect_to(twitter_account.authorize_url(twitter_callback_url))
     else
       link = TwitterAccount.shorten_link("#{root_url}animals/#{params[:animal_uuid]}")
       TwitterAccount.twitter_post("#{params[:animal_name]} is ready for adoption at #{link} via @hospitium_app", current_user.id)
-      redirect_to("#{root_url}admin/animals/#{params[:animal_id]}", :notice => 'Tweet Sent')
+      redirect_to("#{root_url}admin/animals/#{params[:animal_uuid]}", :notice => 'Tweet Sent')
+    end
+  end
+  
+  def destroy
+    @account = TwitterAccount.find(params[:id])
+    @account.destroy
+
+    respond_to do |format|
+      format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Twitter Account destroyed!')}
+      format.xml  { head :ok }
     end
   end
  

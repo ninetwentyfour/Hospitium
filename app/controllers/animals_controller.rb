@@ -24,6 +24,7 @@ class AnimalsController < ApplicationController
   # GET /animals/1.xml
   def show
     canonical_url("/animals/#{params[:id]}")
+    #require_dependency "Animal"
     @animal = Rails.cache.fetch("public_animal_#{params[:id]}", :expires_in => 15.minutes) do
       Animal.find_by_uuid(params[:id])
     end
@@ -71,14 +72,15 @@ class AnimalsController < ApplicationController
   # PUT /animals/1.xml
   def update
     @animal = Animal.find(params[:id])
+    #@animal = Animal.find_by_uuid(params[:id])
 
     respond_to do |format|
       if @animal.update_attributes(params[:animal])
         format.html { redirect_to(@animal, :notice => 'Animal was successfully updated.') }
-        format.xml  { head :ok }
+        format.json { respond_with_bip(@animal) }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @animal.errors, :status => :unprocessable_entity }
+        format.json { respond_with_bip(@animal) }
       end
     end
   end
@@ -94,4 +96,5 @@ class AnimalsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
 end

@@ -1,0 +1,7 @@
+/*
+*= require_self
+*= require scaffold
+*= require twitter
+*= require_tree ./admin
+*= require jquery.jqplot.min
+*/
