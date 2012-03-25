@@ -199,7 +199,7 @@ Todo:
 
 - make weights decimals and make suffix user configurable 
 
-- add microchip field to animal
+- <del>add microchip field to animal</del>
 
 - graph of animal ages
 
