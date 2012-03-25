@@ -53,6 +53,9 @@ group :production do
 	gem 'home_run', :require=>'date'
 	#gem 'slim_scrooge', :git => "git://github.com/sdsykes/slim_scrooge.git"
 	gem 'dalli'
+	gem 'thin'
+	gem 'pg'
+	gem 'newrelic_rpm'
 end
 
 gem "rspec-rails", :group => [:test, :development]
