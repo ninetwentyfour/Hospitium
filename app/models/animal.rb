@@ -112,6 +112,15 @@ class Animal < ActiveRecord::Base
     return age
   end
   
+  def formatted_adopted_date
+    unless self.adopted_date.blank?
+      age = self.adopted_date.strftime("%a, %b %e at %l:%M")
+    else
+      age = ""
+    end
+    return age
+  end
+  
   def as_xls(options = {})
     {
         "Id" => id.to_s,

@@ -99,6 +99,20 @@ describe Animal do
     end
   end
   
+  describe "#formatted_adopted_date" do
+    let(:animal) { Factory(:animal, @attr.merge(:adopted_date => "2001-10-20 00:50:22")) }
+    
+    it "should format adopted date" do
+      age = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e at %l:%M")
+      animal.formatted_adopted_date.should eql(age)
+    end
+    
+    it "should return empty string if nil" do
+      animal.adopted_date = nil
+      animal.formatted_adopted_date.should eql("")
+    end
+  end
+  
   describe "upload image" do
     it {should have_attached_file(:image)}
     it {should validate_attachment_content_type(:image).allowing('image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png').rejecting('text/plain', 'text/xml')}
