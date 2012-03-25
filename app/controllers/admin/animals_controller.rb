@@ -1,12 +1,11 @@
 class Admin::AnimalsController < Admin::ApplicationController
   load_and_authorize_resource
-
   # GET /animals
   # GET /animals.xml
   def index
     @search = Animal.search(params[:search])
     @animals = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter], :select => 'animals.name, animals.birthday, animals.uuid, animals.id, animals.status_id, animals.animal_color_id, animals.animal_sex_id, animals.spay_neuter_id, animals.updated_at')
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @animals }

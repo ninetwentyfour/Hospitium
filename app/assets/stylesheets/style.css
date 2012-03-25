@@ -75,3 +75,7 @@ noscript {
 }
 .best_in_place form input[type="submit"]:hover{color:#333333;text-decoration:none;background-color:#e6e6e6;background-position:0 -15px;-webkit-transition:background-position 0.1s linear;-moz-transition:background-position 0.1s linear;-ms-transition:background-position 0.1s linear;-o-transition:background-position 0.1s linear;transition:background-position 0.1s linear;}
 .best_in_place form input[type="submit"]:focus{outline:thin dotted;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px;}
+.nav-tabs > li > a, .nav-pills > li > a {
+	padding-right: 9px !important;
+	padding-left: 9px !important;
+}
