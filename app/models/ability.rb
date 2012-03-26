@@ -38,7 +38,7 @@ class Ability
         can :bulk_action, AnimalWeight, :organization => { :id => user.organization_id }
         
         can :read, Note, :animal => { :organization => {:id => user.organization_id} }
-        can :create, Note
+        can :create, Note, :animal => { :organization => {:id => user.organization_id} }
         can :update, Note, :animal => { :organization => {:id => user.organization_id} }
         can :destroy, Note, :animal => { :organization => {:id => user.organization_id} }
 
@@ -120,7 +120,7 @@ class Ability
         can :update, AnimalWeight, :organization => { :id => user.organization_id }
         
         can :read, Note, :animal => { :organization => {:id => user.organization_id} }
-        can :create, Note
+        can :create, Note, :animal => { :organization => {:id => user.organization_id} }
         can :update, Note, :animal => { :organization => {:id => user.organization_id} }
         can :destroy, Note, :animal => { :organization => {:id => user.organization_id} }
 

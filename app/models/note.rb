@@ -4,7 +4,7 @@ class Note < ActiveRecord::Base
   
   before_create :create_uuid
   
-  attr_accessible :note, :user_id, :animal_id
+  attr_accessible :note, :animal_id
   
   #create uuid
   def create_uuid()
