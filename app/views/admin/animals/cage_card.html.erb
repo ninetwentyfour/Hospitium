@@ -1,0 +1,48 @@
+<table>
+	<thead>
+		<th>Name</th>
+		<th>Sex</th>
+		<th>Species</th>
+		<th>Spay/Neuter</th>
+		<th>Biter</th>
+		<th>Color</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<%= @animal.name %>
+			</td>
+			<td>
+				<%= @animal.animal_sex.sex %>
+			</td>
+			<td>
+				<%= @animal.species.name %>
+			</td>
+			<td>
+				<%= @animal.spay_neuter.spay %>
+			</td>
+			<td>
+				<%= @animal.biter.value %>
+			</td>
+			<td>
+				<%= @animal.animal_color.color %>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<table>
+	<thead>
+		<th>Comments</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="height:250px;">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= @animal.organization.name %>
+			</td>
+		<tr>
+	</tbody>
+</table>

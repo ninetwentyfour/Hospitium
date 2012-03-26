@@ -110,4 +110,14 @@ class Admin::AnimalsController < Admin::ApplicationController
       end
     end
   end
+  
+  def cage_card
+    #require_dependency "Animal"
+    @animal = Animal.find(params[:id], :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :shelter])
+
+    respond_to do |format|
+      format.html {render :action => "cage_card", :layout => "cage_card"}
+      format.xml  { render :xml => @animal }
+    end
+  end
 end
