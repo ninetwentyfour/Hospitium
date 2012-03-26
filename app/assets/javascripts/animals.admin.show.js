@@ -1,4 +1,3 @@
-<script type="text/javascript">
 var animal_uuid = $('#animal_holder').data('animal_uuid');
 var animal_id = $('#animal_holder').data('animal_id');
 //setup juggernaut to handle real time updating page changes
@@ -20,15 +19,14 @@ jug.subscribe("/observer/"+animal_uuid, function(data){
 				var brand = $('#best_in_place_animal_'+animal_id+'_'+i).attr("data-collection");
 				var test = $.parseJSON(brand);
 				$.each(test, function(index, value) {
-					if(value[0] == val[1]){
+					if(value[0] === val[1]){
 						updated_text = value[1];
 					}
 				});
-			}else if (Date.parse(updated_text)) {
-				var d = new Date(updated_text); d.setDate( d.getDate() + 1 );
-				updated_text = dateFormat(d, "ddd, mmm d 'at' hh:MM");
 			}
-			$('#best_in_place_animal_'+animal_id+'_'+i).css("background-color","#c7f464").html(updated_text).delay(1500).animate({backgroundColor: "#f5f5f5"}, 1000 );
+			$('#best_in_place_animal_'+animal_id+'_'+i).css("background-color","#c7f464");
+			$('#best_in_place_animal_'+animal_id+'_'+i).html(updated_text);
+			$('#best_in_place_animal_'+animal_id+'_'+i).delay(1500).animate({backgroundColor: "#f5f5f5"}, 1000 );
 		}
 	});
 });
@@ -107,5 +105,3 @@ $('a[data-toggle="tab"]').on('shown', function (e) {
 		});
 	}
 });
-
-</script>

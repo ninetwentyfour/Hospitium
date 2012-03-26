@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require jquery.mailcheck.min
 //= require showdown
+//= require date
 //= require_self
 
 //prevent ipad webapps opening in safari
@@ -23,30 +24,31 @@ var iWebkit;if(!iWebkit){iWebkit=window.onload=function(){function fullscreen(){
 
 
 $(function(){
-	if(window.location.pathname === "/"){
-		//do nothing
-	}else{
+	"use strict";
+	if(window.location.pathname !== "/"){
 		// pjax
 		$('.js-pjax').pjax('#pjax-contain');
 		$('body').bind('pjax:end',   function() { 
-				//$(document).ready();
-				load_scripts();
-			})
+			//$(document).ready();
+			load_scripts();
+		});
 	}
 	load_scripts();
 	
 	
-})
+});
 
 function load_scripts(){
-  	$('.dropdown-toggle').dropdown();
+	"use strict";
+	$('.dropdown-toggle').dropdown();
 	$('.tooltip-class').tooltip();
 	$('.popover-class').popover();
 	$('.model-class').modal({
-	  show: false,
-	backdrop: false
+		show: false,
+		backdrop: false
 	});
 	$(".best_in_place").best_in_place();
 	$.datepicker.setDefaults({
-	   dateFormat: 'D, dd M yy' });
+		dateFormat: 'D, dd M yy'
+	});
 }

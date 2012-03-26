@@ -3,13 +3,13 @@ $(document).ready(function(){
 	var data = <%= raw(final_status_hash['pie'].to_json) %>;
 	var plot1 = jQuery.jqplot ('chart1', [data], { 
 		grid: {
-        drawBorder: false,
-        drawGridlines: false,
-        background: 'none',
-        shadow:false
-    },
+			drawBorder: false,
+			drawGridlines: false,
+			background: 'none',
+			shadow:false
+		},
 		seriesColors: [ "#006DCC", "#49AFCD", "#5BB75B", "#FAA732", "#DA4F49", "#ff6138",
-		        "#ffff9d", "#beeb9f", "#79bd8f", "#00a387", "#0085cc"],
+			"#ffff9d", "#beeb9f", "#79bd8f", "#00a387", "#0085cc"],
 		seriesDefaults: {
 			// Make this a pie chart.
 			renderer: jQuery.jqplot.PieRenderer, 
@@ -30,13 +30,13 @@ $(document).ready(function(){
 	var data2 = <%= raw(final_species_hash['pie'].to_json) %>;
 	var plot2 = jQuery.jqplot ('chart2', [data2], { 
 		grid: {
-        drawBorder: false,
-        drawGridlines: false,
-        background: 'none',
-        shadow:false
-    },
+			drawBorder: false,
+			drawGridlines: false,
+			background: 'none',
+			shadow:false
+		},
 		seriesColors: [ "#006DCC", "#49AFCD", "#5BB75B", "#FAA732", "#DA4F49", "#ff6138",
-		        "#ffff9d", "#beeb9f", "#79bd8f", "#00a387", "#0085cc"],
+			"#ffff9d", "#beeb9f", "#79bd8f", "#00a387", "#0085cc"],
 		seriesDefaults: {
 			// Make this a pie chart.
 			renderer: jQuery.jqplot.PieRenderer, 

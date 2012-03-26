@@ -170,7 +170,8 @@
 
 <!-- <div id="chart1" style="height: 300px; width: 100%; position: relative; " class="jqplot-target"></div> -->
 
-
+<div id="animal_weights_holder" data-animal_weights='<%= raw(@animal_weights.to_json) %>'></div>
+<div id="animal_holder" data-animal_id='<%= raw @animal.id %>' data-animal_uuid='<%= raw @animal.uuid %>'></div>
 
 
 
@@ -185,6 +186,6 @@
 <%else%>
 	<% content_for :javascript_footer do %>
 		<% content_for :title, "Adopt #{@animal.name} - Hospitium" %>
-		<%= render :partial => "animal_pjax_min_js", :locals => { :animal => @animal, :animal_weights => @animal_weights } %>
+		<%= render :partial => "animal_pjax_js", :locals => { :animal => @animal, :animal_weights => @animal_weights } %>
 	<%end%>
 <%end%>
