@@ -84,8 +84,11 @@ class NotesController < ApplicationController
     @note.destroy
 
     respond_to do |format|
-      format.html { redirect_to notes_url }
+      format.html { 
+        redirect_to(:back, :notice => 'Note was successfully deleted.')
+        }
       format.json { head :no_content }
+      format.js
     end
   end
 end

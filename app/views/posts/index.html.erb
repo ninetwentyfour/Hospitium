@@ -11,7 +11,7 @@
 				<h1><a class="js-pjax" href="/posts/<%= post.id %>-<%= post.title.parameterize %>"><%= post.title %></a></h1>
 				<strong><%= post.author %> posted on <%= post.created_at.strftime("%m-%d-%Y") %></strong>
 				<hr />
-				<p><%= raw(truncate(post.content, :length => 140)) %> <a class="js-pjax" href="/posts/<%= post.id %>-<%= post.title.parameterize %>">Read More</a></p>
+				<p><%= markdown(truncate(post.content, :length => 140)) %> <a class="js-pjax" href="/posts/<%= post.id %>-<%= post.title.parameterize %>">Read More</a></p>
 			</li>
 		<% end %>
 		<%= will_paginate @posts %>

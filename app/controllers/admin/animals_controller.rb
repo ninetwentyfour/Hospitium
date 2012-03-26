@@ -26,6 +26,7 @@ class Admin::AnimalsController < Admin::ApplicationController
     @animal_weights = AnimalWeight.find(:all, :conditions => {:animal_id => @animal.id}, :order => "date_of_weight ASC").map do |record|
           [ record.date_of_weight.strftime("%m/%d/%Y"), record.weight ]
     end
+    @notes = Note.find(:all, :conditions => {:animal_id => @animal.id}, :include => [:user])
     
     @status = Status.new
     @species_model = Species.new

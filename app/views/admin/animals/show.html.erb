@@ -83,13 +83,13 @@
 						</div>
 					</div>
 					<div class="tab-pane" id="5">
-						<%unless @animal.notes.blank?%>
-							<ul class="unstyled" id="animal_notes_list">
-								<%@animal.notes.each do |note| %>
-									<li><strong><%= note.user.username %></strong> <%= note.created_at.strftime("%a, %b %e at %l:%M") %> <br /><%= raw note.note %></li>
-								<%end%>
-							</ul>
-						<%end%>
+						<ul class="unstyled" id="animal_notes_list">
+							<%unless @animal.notes.blank?%>
+									<%@notes.each do |note| %>
+										<li><%= link_to raw("<i class='icon-remove'></i>"), note_path(note), :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Delete Note"  %><strong><%= note.user.username %></strong> <%= note.created_at.strftime("%a, %b %e at %l:%M") %> <br /><%= raw note.note %></li>
+									<%end%>
+							<%end%>
+						</ul>
 						<hr />
 						<h2>Say something!</h2>
 						<%= form_for Note.new, :remote => true, :html => {:id => "new_note_#{current_user.id}"} do |f| %>
