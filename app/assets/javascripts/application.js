@@ -1,4 +1,4 @@
-//= require jquery-ui
+//= require jquery-ui-1.8.18.custom.min
 //= require jquery_ujs
 //= require jquery.pjax
 //= require jquery.purr

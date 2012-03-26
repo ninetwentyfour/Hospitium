@@ -164,12 +164,7 @@
 
 
 
-<%= render :partial => "modal_forms", :locals => { :status => @status, 
-	:species_model => @species_model, 
-	:animal_color_model => @animal_color_model,
-	:shelter_model => @shelter_model,
-	:animal_weight_model => @animal_weight_model,
-	:animal => @animal } %>
+<%= render :partial => "modal_forms", :locals => {  :animal => @animal } %>
 	
 <%= render :partial => "modal_images", :locals => { :animal => @animal } %>
 

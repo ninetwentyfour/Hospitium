@@ -8,7 +8,7 @@
 			<div class="bar" style="width: 100%;"></div>
 		</div>
 		<p class="new_status_bar" style="display:none;">Loading...</p>
-		<%= form_for status, :url => admin_statuses_path, :validate => true do |f| %>
+		<%= form_for Status.new, :url => admin_statuses_path, :validate => true do |f| %>
 			<%= f.label :status %>
 			<%= f.text_field :status %>
 			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
@@ -30,7 +30,7 @@
 			<div class="bar" style="width: 100%;"></div>
 		</div>
 		<p class="new_species_bar" style="display:none;">Loading...</p>
-		<%= form_for species_model, :url => "/admin/species", :validate => true do |f| %>
+		<%= form_for Species.new, :url => "/admin/species", :validate => true do |f| %>
 			<%= f.label :name %>
 			<%= f.text_field :name %>
 			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
@@ -52,7 +52,7 @@
 			<div class="bar" style="width: 100%;"></div>
 		</div>
 		<p class="new_animal_color_bar" style="display:none;">Loading...</p>
-		<%= form_for animal_color_model, :url => admin_animal_colors_path, :validate => true do |f| %>
+		<%= form_for AnimalColor.new, :url => admin_animal_colors_path, :validate => true do |f| %>
 			<%= f.label :color %>
 			<%= f.text_field :color %>
 			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
@@ -74,7 +74,7 @@
 			<div class="bar" style="width: 100%;"></div>
 		</div>
 		<p class="new_shelter_bar" style="display:none;">Loading...</p>
-		<%= form_for shelter_model, :url => admin_shelters_path, :validate => true do |f| %>
+		<%= form_for Shelter.new, :url => admin_shelters_path, :validate => true do |f| %>
 			<%= f.label :name %>
 			<%= f.text_field :name %>
 			<%= f.label :contact_first %>
@@ -110,7 +110,7 @@
 			<div class="bar" style="width: 100%;"></div>
 		</div>
 		<p class="new_animal_weight_bar" style="display:none;">Loading...</p>
-		<%= form_for animal_weight_model, :url => admin_animal_weights_path, :validate => true do |f| %>
+		<%= form_for AnimalWeight.new, :url => admin_animal_weights_path, :validate => true do |f| %>
 			<%= f.label :weight %>
 			<%= f.text_field :weight %>
 			<%= f.label :date_of_weight %>

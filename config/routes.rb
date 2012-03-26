@@ -152,6 +152,7 @@ AnimalTracker::Application.routes.draw do
   match "/adopt_a_pet_accounts/:id" => "adopt_a_pet_accounts#destroy", :via => :delete
   
   match "/species.:id" => "species#update", :via => :put
+  match "/admin/statuses.:id" => "admin/statuses#destroy", :via => :delete
 
     
   devise_for :users#, :controllers => { :sessions => 'users/sessions' } 

@@ -27,12 +27,6 @@ class Admin::AnimalsController < Admin::ApplicationController
           [ record.date_of_weight.strftime("%m/%d/%Y"), record.weight ]
     end
     @notes = Note.find(:all, :conditions => {:animal_id => @animal.id}, :include => [:user])
-    
-    @status = Status.new
-    @species_model = Species.new
-    @animal_color_model = AnimalColor.new
-    @shelter_model = Shelter.new
-    @animal_weight_model = AnimalWeight.new
 
     respond_to do |format|
       format.html # show.html.erb
