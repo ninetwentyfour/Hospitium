@@ -124,6 +124,12 @@ FactoryGirl.define do
     user {|a| a.association(:user)}
     role {|a| a.association(:role)}
   end
+  
+  factory :note do
+    note "example"
+    association :user
+    association :animal
+  end
 
 
 

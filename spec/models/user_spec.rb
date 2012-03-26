@@ -15,6 +15,7 @@ describe User do
     it{should have_many(:facebook_accounts)}
     it{should have_many(:wordpress_accounts)}
     it{should have_many(:adopt_a_pet_accounts)}
+    it{should have_many(:notes)}
     it{should have_many(:roles)}
   end
 

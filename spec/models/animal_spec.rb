@@ -20,6 +20,7 @@ describe Animal do
     it{should have_many(:animal_weights)}
     it{should have_many(:adopt_animals)}
     it{should have_many(:relinquish_animals)}
+    it{should have_many(:notes)}
   end
 
   describe "validations" do
