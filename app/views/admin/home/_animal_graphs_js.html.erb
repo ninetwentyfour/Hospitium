@@ -1,0 +1,88 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	var data = <%= raw(final_status_hash['pie'].to_json) %>;
+	var plot1 = jQuery.jqplot ('chart1', [data], { 
+		grid: {
+        drawBorder: false,
+        drawGridlines: false,
+        background: 'none',
+        shadow:false
+    },
+		seriesColors: [ "#006DCC", "#49AFCD", "#5BB75B", "#FAA732", "#DA4F49", "#ff6138",
+		        "#ffff9d", "#beeb9f", "#79bd8f", "#00a387", "#0085cc"],
+		seriesDefaults: {
+			// Make this a pie chart.
+			renderer: jQuery.jqplot.PieRenderer, 
+			rendererOptions: {
+				// Put data labels on the pie slices.
+				// By default, labels show the percentage of the slice.
+				diameter: 190,
+				sliceMargin: 8,
+				showDataLabels: false
+			}
+		}, 
+		legend: { show:true, location: 'e' }
+	}
+	);
+});
+
+$(document).ready(function(){
+	var data2 = <%= raw(final_species_hash['pie'].to_json) %>;
+	var plot2 = jQuery.jqplot ('chart2', [data2], { 
+		grid: {
+        drawBorder: false,
+        drawGridlines: false,
+        background: 'none',
+        shadow:false
+    },
+		seriesColors: [ "#006DCC", "#49AFCD", "#5BB75B", "#FAA732", "#DA4F49", "#ff6138",
+		        "#ffff9d", "#beeb9f", "#79bd8f", "#00a387", "#0085cc"],
+		seriesDefaults: {
+			// Make this a pie chart.
+			renderer: jQuery.jqplot.PieRenderer, 
+			rendererOptions: {
+				// Put data labels on the pie slices.
+				// By default, labels show the percentage of the slice.
+				diameter: 190,
+				sliceMargin: 8,
+				showDataLabels: false
+			}
+		}, 
+		legend: { show:true, location: 'e' }
+	}
+	);
+	
+	
+	$('#chart1').bind('jqplotDataHighlight', function (ev, seriesIndex, pointIndex, data ) {
+		//alert(data[0]);
+		//$("td:contains('"+data[0]+"')").css("text-decoration", "underline");
+		$("span:contains('"+data[0]+"')").css("font-weight", "600");
+		$("span:contains('"+data[0]+"')").attr("data-highlight-chart-key", "true");
+		$("span:contains('"+data[0]+"')").parent().find('div.jqplot-table-legend-swatch').css("box-shadow", "0 0 5px #333");
+	});    
+
+	$('#chart1').bind('jqplotDataUnhighlight', function (ev, seriesIndex, pointIndex, data) {
+		var highlighted = $("li").find("[data-highlight-chart-key='true']");
+		highlighted.css("font-weight", "400");
+		highlighted.parent().find('div.jqplot-table-legend-swatch').css("box-shadow", "0 0 0px #333");
+		highlighted.removeAttr("data-highlight-chart-key");
+	});
+	
+	$('#chart2').bind('jqplotDataHighlight', function (ev, seriesIndex, pointIndex, data ) {
+		//alert(data[0]);
+		//$("td:contains('"+data[0]+"')").css("text-decoration", "underline");
+		$("span:contains('"+data[0]+"')").css("font-weight", "600");
+		$("span:contains('"+data[0]+"')").attr("data-highlight-chart-key", "true");
+		$("span:contains('"+data[0]+"')").parent().find('div.jqplot-table-legend-swatch').css("box-shadow", "0 0 5px #333");
+	});    
+
+	$('#chart2').bind('jqplotDataUnhighlight', function (ev, seriesIndex, pointIndex, data) {
+		var highlighted = $("li").find("[data-highlight-chart-key='true']");
+		highlighted.css("font-weight", "400");
+		highlighted.parent().find('div.jqplot-table-legend-swatch').css("box-shadow", "0 0 0px #333");
+		highlighted.removeAttr("data-highlight-chart-key");
+	});
+	
+	
+});
+</script>
