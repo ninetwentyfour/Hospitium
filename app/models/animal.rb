@@ -66,7 +66,7 @@ class Animal < ActiveRecord::Base
         client.update("#{self.name} is ready for adoption at #{link}")
         return true
       rescue Twitter::Error
-        
+        return true
       end
     end
   end
