@@ -227,7 +227,7 @@ Todo:
 
 - <del>fix bulk delete for non super admins</del>
 
-- add comments section that grows over time for animal
+- <del>add comments section that grows over time for animal</del>
 
 - track vet visits over time w/ notes
 
