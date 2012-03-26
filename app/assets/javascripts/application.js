@@ -49,6 +49,8 @@ function load_scripts(){
 	});
 	$(".best_in_place").best_in_place();
 	$.datepicker.setDefaults({
-		dateFormat: 'D, dd M yy'
+		dateFormat: 'D, dd M yy',
+		changeMonth: true,
+		changeYear: true
 	});
 }
