@@ -42,6 +42,7 @@ $(function(){
 function load_scripts(){
   	$('.dropdown-toggle').dropdown();
 	$('.tooltip-class').tooltip();
+	$('.popover-class').popover();
 	$('.model-class').modal({
 	  show: false,
 	backdrop: false
