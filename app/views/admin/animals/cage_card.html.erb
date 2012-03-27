@@ -11,8 +11,8 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>
-				<img src="<%= @animal.image.url(:thumbnail) %>" alt="">
+			<td rowspan="3">
+				<img src="<%= @animal.image.url(:thumb) %>" alt="">
 			</td>
 			<td>
 				<%= @animal.name %>
@@ -36,9 +36,17 @@
 				<%= @animal.birthday %>
 			</td>
 		</tr>
+		<tr>
+			<td colspan="7" style="text-align:center;font-weight:bold">Special Needs</td>
+		</tr>
+		<tr>
+			<td colspan="7">
+				<%= markdown(@animal.special_needs) %>
+			</td>
+		<tr>
 	</tbody>
 </table>
-<table>
+<!-- <table>
 	<thead>
 		<th>Special Needs</th>
 	</thead>
@@ -49,7 +57,7 @@
 			</td>
 		<tr>
 	</tbody>
-</table>
+</table> -->
 <table>
 	<thead>
 		<th>Comments</th>
