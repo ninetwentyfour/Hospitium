@@ -33,7 +33,7 @@
 				<%= @animal.animal_color.color %>
 			</td>
 			<td>
-				<%= @animal.birthday %>
+				<%= @animal.birthday.strftime("%b %e %Y") %>
 			</td>
 		</tr>
 		<tr>
@@ -43,32 +43,16 @@
 			<td colspan="7">
 				<%= markdown(@animal.special_needs) %>
 			</td>
+		</tr>
 		<tr>
-	</tbody>
-</table>
-<!-- <table>
-	<thead>
-		<th>Special Needs</th>
-	</thead>
-	<tbody>
+			<td colspan="8" style="text-align:center;font-weight:bold">Comments</td>
+		</tr>
 		<tr>
-			<td>
-				<%= markdown(@animal.special_needs) %>
-			</td>
-		<tr>
-	</tbody>
-</table> -->
-<table>
-	<thead>
-		<th>Comments</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td style="height:250px;">
+			<td colspan="8" style="height:250px;">
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan="8">
 				<%= @animal.organization.name %>
 			</td>
 		<tr>
