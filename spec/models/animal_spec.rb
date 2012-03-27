@@ -62,7 +62,7 @@ describe Animal do
     let(:animal) { Factory(:animal, @attr.merge(:deceased => "2001-10-20 00:50:22")) }
     
     it "should format deceased date" do
-      age = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e at %l:%M")
+      age = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e %Y")
       animal.formatted_deceased_date.should eql(age)
     end
     
@@ -76,7 +76,7 @@ describe Animal do
     let(:animal) { Factory(:animal, @attr.merge(:date_of_intake => "2001-10-20 00:50:22")) }
     
     it "should format intake date" do
-      age = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e at %l:%M")
+      age = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e %Y")
       animal.formatted_intake_date.should eql(age)
     end
     
@@ -90,7 +90,7 @@ describe Animal do
     let(:animal) { Factory(:animal, @attr.merge(:date_of_well_check => "2001-10-20 00:50:22")) }
     
     it "should format well check date" do
-      age = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e at %l:%M")
+      age = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e %Y")
       animal.formatted_well_date.should eql(age)
     end
     
@@ -104,7 +104,7 @@ describe Animal do
     let(:animal) { Factory(:animal, @attr.merge(:adopted_date => "2001-10-20 00:50:22")) }
     
     it "should format adopted date" do
-      age = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e at %l:%M")
+      age = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e %Y")
       animal.formatted_adopted_date.should eql(age)
     end
     

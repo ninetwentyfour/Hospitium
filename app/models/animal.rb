@@ -88,7 +88,7 @@ class Animal < ActiveRecord::Base
   
   def formatted_deceased_date
     unless self.deceased.blank?
-      age = self.deceased.strftime("%a, %b %e at %l:%M")
+      age = self.deceased.strftime("%a, %b %e %Y")
     else
       age = ""
     end
@@ -97,7 +97,7 @@ class Animal < ActiveRecord::Base
   
   def formatted_intake_date
     unless self.date_of_intake.blank?
-      age = self.date_of_intake.strftime("%a, %b %e at %l:%M")
+      age = self.date_of_intake.strftime("%a, %b %e %Y")
     else
       age = ""
     end
@@ -106,7 +106,7 @@ class Animal < ActiveRecord::Base
   
   def formatted_well_date
     unless self.date_of_well_check.blank?
-      age = self.date_of_well_check.strftime("%a, %b %e at %l:%M")
+      age = self.date_of_well_check.strftime("%a, %b %e %Y")
     else
       age = ""
     end
@@ -115,7 +115,7 @@ class Animal < ActiveRecord::Base
   
   def formatted_adopted_date
     unless self.adopted_date.blank?
-      age = self.adopted_date.strftime("%a, %b %e at %l:%M")
+      age = self.adopted_date.strftime("%a, %b %e %Y")
     else
       age = ""
     end
