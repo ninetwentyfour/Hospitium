@@ -128,7 +128,9 @@ class Admin::AnimalsController < Admin::ApplicationController
     respond_to do |format|
       format.html {render :action => "qr_code", :layout => "qr_code"}
       format.svg { render :qrcode => "
-        #{@animal.name} 
+        #{@animal.name}
+        #{@animal.species.name}
+        ----
         #{@animal.organization.name} 
         #{number_to_phone(@animal.organization.phone_number) unless @animal.organization.phone_number.blank?}
         #{@animal.organization.address unless @animal.organization.address.blank?}
