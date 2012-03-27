@@ -132,5 +132,6 @@ class Admin::AnimalsController < Admin::ApplicationController
 
     respond_to do |format|
       format.html {render :action => "qr_code", :layout => "qr_code"}
+    end
   end
 end
