@@ -38,9 +38,6 @@ gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls
 gem 'sanitize'
 gem 'redcarpet'
 gem 'rqrcode-rails3'
-gem 'wicked_pdf'
-#gem 'wkhtmltopdf-binary'
-gem 'wkhtmltopdf-heroku'
 
 
 # Gems used only for assets and not required
