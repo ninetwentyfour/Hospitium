@@ -1,14 +1,19 @@
 <table>
 	<thead>
+		<th></th>
 		<th>Name</th>
 		<th>Sex</th>
 		<th>Species</th>
 		<th>Spay/Neuter</th>
 		<th>Biter</th>
 		<th>Color</th>
+		<th>Birthday</th>
 	</thead>
 	<tbody>
 		<tr>
+			<td>
+				<img src="<%= @animal.image.url(:thumbnail) %>" alt="">
+			</td>
 			<td>
 				<%= @animal.name %>
 			</td>
@@ -26,6 +31,9 @@
 			</td>
 			<td>
 				<%= @animal.animal_color.color %>
+			</td>
+			<td>
+				<%= @animal.birthday %>
 			</td>
 		</tr>
 	</tbody>

@@ -39,7 +39,8 @@ gem 'sanitize'
 gem 'redcarpet'
 gem 'rqrcode-rails3'
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+#gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-heroku'
 
 
 # Gems used only for assets and not required
