@@ -37,6 +37,7 @@ gem "spreadsheet", "0.6.5.8"
 gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls-on-models"
 gem 'sanitize'
 gem 'redcarpet'
+gem 'rqrcode-rails3'
 
 # Gems used only for assets and not required
 # in production environments by default.

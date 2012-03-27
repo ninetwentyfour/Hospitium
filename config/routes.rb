@@ -155,6 +155,7 @@ AnimalTracker::Application.routes.draw do
   match "/admin/statuses.:id" => "admin/statuses#destroy", :via => :delete
 
   match "/admin/animals/:id/cage_card" => "admin/animals#cage_card", :as => "animals"
+  match "/admin/animals/:id/qr_code" => "admin/animals#qr_code", :as => "animals"
     
   devise_for :users#, :controllers => { :sessions => 'users/sessions' } 
   get "home/index"
