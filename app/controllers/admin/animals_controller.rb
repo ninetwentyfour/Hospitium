@@ -118,6 +118,11 @@ class Admin::AnimalsController < Admin::ApplicationController
     respond_to do |format|
       format.html {render :action => "cage_card", :layout => "cage_card"}
       format.xml  { render :xml => @animal }
+      format.pdf do
+        render :pdf => "#{@animal.name}_cage_card",
+        :layout => 'cage_card.html',
+                         :template => 'admin/animals/cage_card.html.erb'
+      end
     end
   end
   

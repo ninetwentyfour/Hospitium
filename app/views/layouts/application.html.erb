@@ -28,6 +28,32 @@
 		font-size:14px;
 		line-height:1em !important;
 	}
+	@media print {
+	  body {
+	    background-color: #FFF !important;
+	  }
+
+	  #container {
+	    width: auto !important;
+	    margin: 0 !important;
+	    padding: 0 !important;
+	    border: none !important;
+	  }
+
+	  #line_items {
+	    page-break-before: always !important;
+	  }
+
+	  #navbar {
+	    display: none !important;
+	  }
+	  .btn, nav, .alert {
+	    display: none !important;
+	  }
+	  input,textarea {
+	    display: none !important;
+	  }
+	}
 	</style>
 	<%= yield :head %>
 	<%= csrf_meta_tag %>
