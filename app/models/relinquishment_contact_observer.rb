@@ -6,7 +6,7 @@ class RelinquishmentContactObserver < ActiveRecord::Observer
   end
   
   def publish(type, relinquishment_contact)
-    Juggernaut.url = "redis://redistogo:6d5dd92f93438cd7b67139a6c57acd16@stingfish.redistogo.com:9535/"
+    Juggernaut.url = ENV['JUGG_URL']
     Juggernaut.publish("/observer/relinquishment_contact/#{relinquishment_contact.id}", {
       :id     => relinquishment_contact.id, 
       :type   => type, 

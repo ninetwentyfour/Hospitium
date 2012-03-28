@@ -18,10 +18,7 @@ class AdoptionContact < ActiveRecord::Base
     self.uuid = UUIDTools::UUID.random_create.to_s
   end
   
-  def show_name_label_method
-    "#{self.first_name} #{self.last_name}"
-  end
-  
+  #remove all characters from phone number except digits
   def modify_phone_number
     unless self.phone.blank?
       self.phone = self.phone.delete("^0-9")
@@ -37,6 +34,7 @@ class AdoptionContact < ActiveRecord::Base
     return phone
   end
   
+  #define content for xml downloads
   def as_xls(options = {})
     {
         "Id" => id.to_s,

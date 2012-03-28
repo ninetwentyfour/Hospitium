@@ -36,7 +36,7 @@ class WordpressAccount < ActiveRecord::Base
   #create a bitly link
   def self.shorten_link(link)
     #change user and api key to one for biemedia
-    bitly = Bitly.new('hospitium','R_93a2ce1be0ecee1cc264afb2bac4381c')
+    bitly = Bitly.new('hospitium',ENV['BITLY_API'])
     page_url = bitly.shorten(link)
     short_url = page_url.short_url
     #fall back to tinyurl if bitly fails

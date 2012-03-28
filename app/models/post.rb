@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
-  CONSUMER_KEY = 'Is9pdOhRRNhx95wGBiWg'
-  CONSUMER_SECRET = 'D2WLDX0Fh9EOGAhBJSQFkKs1U2c3ET2a5z2t9JZCrM'
+  CONSUMER_KEY = ENV['TWITTER_CONSUMER_KEY']
+  CONSUMER_SECRET = ENV['TWITTER_CONSUMER_SECRET']
   OPTIONS = {:site => "http://api.twitter.com", :request_endpoint => "http://api.twitter.com"}
   
   has_paper_trail
@@ -22,7 +22,6 @@ class Post < ActiveRecord::Base
       config.oauth_token_secret = account.oauth_token_secret
     end
     client = Twitter::Client.new
-    #begin
     link = TwitterAccount.shorten_link("http://hospitium.co/posts/#{self.id}-#{self.title.parameterize}")
     begin
        client.update("#{self.title.slice(0, 100)} - #{link}")

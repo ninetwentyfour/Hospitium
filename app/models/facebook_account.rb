@@ -6,8 +6,8 @@ class FacebookAccount < ActiveRecord::Base
   # Stubbed out! Does no (good) error checking!
 
   # Get these from facebook!
-  FACEBOOK_CLIENT_ID = '251551181558533'
-  FACEBOOK_CLIENT_SECRET = '7a851adba5a39b9862204971d8c16ea2'
+  FACEBOOK_CLIENT_ID = ENV['FACEBOOK_CLIENT_ID']
+  FACEBOOK_CLIENT_SECRET = ENV['FACEBOOK_CLIENT_SECRET']
 
   def authorize_url(callback_url = '')
     if self.oauth_authorize_url.blank?
@@ -51,7 +51,7 @@ class FacebookAccount < ActiveRecord::Base
   #create a bitly link
   def self.shorten_link(link)
     #change user and api key to one for biemedia
-    bitly = Bitly.new('hospitium','R_93a2ce1be0ecee1cc264afb2bac4381c')
+    bitly = Bitly.new('hospitium',ENV['BITLY_API'])
     page_url = bitly.shorten(link)
     short_url = page_url.short_url
     #fall back to tinyurl if bitly fails

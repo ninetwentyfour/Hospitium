@@ -1,5 +1,6 @@
 class Admin::AdoptionContactsController < Admin::ApplicationController
   load_and_authorize_resource
+  
   # GET /adoption_contacts
   # GET /adoption_contacts.xml
   def index
@@ -65,7 +66,7 @@ class Admin::AdoptionContactsController < Admin::ApplicationController
       
       if @adoption_contact.update_attributes(params[:adoption_contact])
         format.html { 
-          flash[:notice] = 'Animal was successfully updated.'
+          flash[:notice] = 'Adoption contact was successfully updated.'
           redirect_to(:action => "show", :id => @adoption_contact.id)
         }
         format.json { respond_with_bip(@adoption_contact) }
@@ -84,7 +85,7 @@ class Admin::AdoptionContactsController < Admin::ApplicationController
     @adoption_contact.destroy
 
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Successfully deleted.' }
+      format.html { redirect_to :back, notice: 'Adoption contact successfully deleted.' }
       format.xml  { head :ok }
     end
   end

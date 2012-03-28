@@ -6,7 +6,7 @@ class NoteObserver < ActiveRecord::Observer
   # end
   # 
   # def publish(type, status)
-  #   Juggernaut.url = "redis://redistogo:6d5dd92f93438cd7b67139a6c57acd16@stingfish.redistogo.com:9535/"
+  #   Juggernaut.url = ENV['JUGG_URL']
   #   Juggernaut.publish("/observer/status/#{status.id}", {
   #     :id     => status.id, 
   #     :type   => type, 
@@ -26,7 +26,7 @@ class NoteObserver < ActiveRecord::Observer
    end
 
    def publish(type, note)
-     Juggernaut.url = "redis://redistogo:6d5dd92f93438cd7b67139a6c57acd16@stingfish.redistogo.com:9535/"
+     Juggernaut.url = ENV['JUGG_URL']
      Juggernaut.publish("/observer/note/#{note.animal.id}", {
        :id     => note.id, 
        :type   => type, 
