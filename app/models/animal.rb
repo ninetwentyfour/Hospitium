@@ -1,7 +1,4 @@
 class Animal < ActiveRecord::Base
-  CONSUMER_KEY = ENV['TWITTER_CONSUMER_KEY']
-  CONSUMER_SECRET = ENV['TWITTER_CONSUMER_SECRET']
-  OPTIONS = {:site => "http://api.twitter.com", :request_endpoint => "http://api.twitter.com"}
   
   has_paper_trail
   
@@ -52,23 +49,6 @@ class Animal < ActiveRecord::Base
   
   #anytime a public animal is updated, send a tweet with its link from @hospitium_app
   def send_public_tweet
-    # if self.public == 1
-    #   begin
-    #     account = TwitterAccount.find_by_user_id(1)
-    #     Twitter.configure do |config|
-    #       config.consumer_key = TwitterAccount::CONSUMER_KEY
-    #       config.consumer_secret = TwitterAccount::CONSUMER_SECRET
-    #       config.oauth_token = account.oauth_token
-    #       config.oauth_token_secret = account.oauth_token_secret
-    #     end
-    #     client = Twitter::Client.new
-    #     link = TwitterAccount.shorten_link("http://hospitium.co/animals/#{self.uuid}")
-    #     client.update("#{self.name} is ready for adoption at #{link}")
-    #     return true
-    #   rescue Twitter::Error
-    #     return true #don't care if tweet doesn't send - just don't throw app error
-    #   end
-    # end
     if self.public == 1
       TwitterAccount.send_public_update_tweet(self)
     end

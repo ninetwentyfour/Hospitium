@@ -76,9 +76,24 @@ class TwitterAccount < ActiveRecord::Base
     end
   end
   
-  # show the user email in the admin UI instead of the user id
-  def show_twitter_label_method
-    "#{self.stream_url}"
+  def self.send_post_tweet(post)
+    account = TwitterAccount.find_by_user_id(1)
+    Twitter.configure do |config|
+      config.consumer_key = TwitterAccount::CONSUMER_KEY
+      config.consumer_secret = TwitterAccount::CONSUMER_SECRET
+      config.oauth_token = account.oauth_token
+      config.oauth_token_secret = account.oauth_token_secret
+    end
+    client = Twitter::Client.new
+    link = TwitterAccount.shorten_link("http://hospitium.co/posts/#{post.id}-#{post.title.parameterize}")
+    begin
+       client.update("#{post.title.slice(0, 100)} - #{link}")
+       return true
+     rescue Twitter::Error
+       return true
+     rescue Exception
+       return true
+     end
   end
   
   #create a bitly link
