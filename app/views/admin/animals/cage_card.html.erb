@@ -41,7 +41,7 @@
 		</tr>
 		<tr>
 			<td colspan="7">
-				<%= markdown(@animal.special_needs) %>
+				<%= markdown(@animal.special_needs) unless @animal.special_needs.blank? %>
 			</td>
 		</tr>
 		<tr>
