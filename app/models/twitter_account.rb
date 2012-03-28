@@ -58,7 +58,7 @@ class TwitterAccount < ActiveRecord::Base
   end
   
   #anytime a public animal is updated, send a tweet with its link from @hospitium_app
-  def send_public_update_tweet(animal)
+  def self.send_public_update_tweet(animal)
     begin
       account = TwitterAccount.find_by_user_id(1)
       Twitter.configure do |config|
