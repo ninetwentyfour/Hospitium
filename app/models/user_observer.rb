@@ -5,6 +5,7 @@ class UserObserver < ActiveRecord::Observer
       publish(:update, user)
   end
   
+  
   def publish(type, user)
     Juggernaut.url = ENV['JUGG_URL']
     Juggernaut.publish("/observer/user/#{user.id}", {
@@ -20,6 +21,7 @@ class UserObserver < ActiveRecord::Observer
     #   :record => animal.changes
     # })
   end
+  
   
   
 end
