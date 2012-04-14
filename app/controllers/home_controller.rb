@@ -18,5 +18,9 @@ class HomeController < ApplicationController
   def privacy
     canonical_url("/privacy-and-terms-of-service")
   end
+  
+  def why
+    canonical_url("/why-hospitium")
+  end
 
 end
