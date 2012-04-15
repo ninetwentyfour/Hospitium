@@ -29,7 +29,7 @@
 
 <div id="recent-changes" class="span3">
 	<h2>Recent Changes</h2>
-	<pre><%= Octokit.commits("ninetwentyfour/Hospitium", branch = "master", options = {}).first.commit.message %></pre>
+	<div style="font-size: 12px;background-color:#fff;border:1px solid rgba(0, 0, 0, 0.15);border-radius:4px;padding:8.5px;margin:0 0 9px;font-family:Menlo,Monaco,'Courier New',monospace;"><%= Octokit.commits("ninetwentyfour/Hospitium", branch = "master", options = {}).first.commit.message %></div>
 	<%= Octokit.commits("ninetwentyfour/Hospitium", branch = "master", options = {}).first.commit.author.date.split('T', 2).first %>
 </div>
 
