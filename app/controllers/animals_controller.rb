@@ -16,7 +16,7 @@ class AnimalsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @animals }
-      format.json  { render :json => @animals }
+      #format.json  { render :json => @animals }
     end
   end
 
