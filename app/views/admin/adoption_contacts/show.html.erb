@@ -28,7 +28,7 @@
 					</div>
 					<div class="tab-pane" id="2">
 						<% @animals.each do |animal| %>
-							<p><a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><%= animal.name %></a></p>
+							<p><%= link_to raw("<i class='icon-remove'></i>"), "/adopt_animals/#{animal.id}?adopt=#{@adoption_contact.id}", :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Remove Animal"  %> <a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><%= animal.name %></a></p>
 						<%end%>
 						<hr />
 						<a class="btn" data-toggle="modal" href="#newAnimal" ><i class="icon-plus"></i> Add Animal</a>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120326003800) do
+ActiveRecord::Schema.define(:version => 20120415184853) do
 
   create_table "adopt_a_pet_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -57,6 +57,20 @@ ActiveRecord::Schema.define(:version => 20120326003800) do
   end
 
   add_index "animal_colors", ["organization_id"], :name => "index_animal_colors_on_organization_id"
+
+  create_table "animal_events", :force => true do |t|
+    t.integer  "animal_id"
+    t.string   "event_type"
+    t.text     "event_message"
+    t.integer  "related_model_id"
+    t.string   "related_model_name"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "animal_events", ["animal_id"], :name => "index_animal_events_on_animal_id"
+  add_index "animal_events", ["event_type"], :name => "index_animal_events_on_event_type"
+  add_index "animal_events", ["related_model_id"], :name => "index_animal_events_on_related_model_id"
 
   create_table "animal_sexes", :force => true do |t|
     t.string   "sex"
@@ -355,8 +369,8 @@ ActiveRecord::Schema.define(:version => 20120326003800) do
   add_index "twitter_accounts", ["user_id"], :name => "index_twitter_accounts_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "email",                                                :null => false
+    t.string   "encrypted_password",     :limit => 128,                :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

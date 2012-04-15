@@ -75,11 +75,14 @@ class AdoptAnimalsController < ApplicationController
   # DELETE /biters/1
   # DELETE /biters/1.xml
   def destroy
-    @adopt_animal = AdoptAnimal.find(params[:id])
+    @adopt_animal = AdoptAnimal.find(:first, :conditions => {:animal_id => params[:id], :adoption_contact_id => params[:adopt]})
     @adopt_animal.destroy
 
     respond_to do |format|
-      format.html { redirect_to(biters_url) }
+      format.html { 
+        redirect_to(:back, :notice => 'Animal successfully removed.')
+        #redirect_to(@species, :notice => 'Species was successfully created.') 
+        }
       format.xml  { head :ok }
     end
   end
