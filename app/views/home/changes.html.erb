@@ -13,8 +13,10 @@
 		
 		<p>
 			<ul>
-				<% @commits.each do |commit|%>
-					<li><strong><%= commit.commit.author.date.split('T', 2).first %>:</strong> <%= commit.commit.message %></li>
+				<% cache("recent_changes_frag", :expires_in => 60.minutes) do %>
+					<% Octokit.commits("ninetwentyfour/Hospitium", branch = "master", options = {}).each do |commit|%>
+						<li><strong><%= commit.commit.author.date.split('T', 2).first %>:</strong> <%= commit.commit.message %></li>
+					<%end%>
 				<%end%>
 			</ul>
 		</p>
