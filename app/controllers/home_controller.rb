@@ -25,7 +25,7 @@ class HomeController < ApplicationController
   
   def changes
     canonical_url("/recent-changes")
-    require_dependency 'Hashie'
+    require_dependency 'Octokit'
     @commits = Rails.cache.fetch('recent_app_changes', :expires_in => 180.minutes) do
       Octokit.commits("ninetwentyfour/Hospitium", branch = "master", options = {})
     end
