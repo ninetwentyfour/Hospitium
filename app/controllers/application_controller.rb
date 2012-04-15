@@ -1,6 +1,16 @@
 class ApplicationController < ActionController::Base
   before_filter :ensure_domain
+  before_filter :get_notice
   protect_from_forgery # Turn on request forgery protection. Bear in mind that only non-GET, HTML/JavaScript requests are checked.
+  
+  
+  #display notice on every admin page
+  def get_notice
+    #require_dependency "Notification"
+    @random_notice = Rails.cache.fetch('random_notifications', :expires_in => 1.minutes) do
+      Notification.offset(rand(Notification.count)).first(:select => 'notifications.message, notifications.status_type') unless Notification.count == 0
+    end
+  end
   
   # redirect to /admin after all logins
   def after_sign_in_path_for(resource_or_scope)

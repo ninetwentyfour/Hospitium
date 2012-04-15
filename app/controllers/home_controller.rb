@@ -22,5 +22,13 @@ class HomeController < ApplicationController
   def why
     canonical_url("/why-hospitium")
   end
+  
+  def changes
+    canonical_url("/recent-changes")
+    @commits = Rails.cache.fetch('recent_app_changes', :expires_in => 180.minutes) do
+      Octokit.commits("ninetwentyfour/Hospitium", branch = "master", options = {})
+    end
+    #@commits = Octokit.commits("ninetwentyfour/Hospitium", branch = "master", options = {})
+  end
 
 end

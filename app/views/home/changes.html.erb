@@ -1,0 +1,29 @@
+	<% if notice.blank? %>
+
+	<% else %>
+		<div class="alert alert-info" style="margin-top:60px;"><%= notice %></div>
+	<% end %>
+	<!-- Main hero unit for a primary marketing message or call to action -->
+	<div class="hero-unit clearfix">
+		<div class="page-header">
+			<h1>Recent Changes!</h1>
+		</div>
+		<p style="text-align:right;"><a class="btn btn-success btn-large js-pjax" href="/users/sign_up">Try It Now &raquo;</a></p>
+
+		
+		<p>
+			<ul>
+				<% @commits.each do |commit|%>
+					<li><strong><%= commit.commit.author.date.split('T', 2).first %>:</strong> <%= commit.commit.message %></li>
+				<%end%>
+			</ul>
+		</p>
+
+
+	</div>
+
+<% set_meta_description("Need a reason to use Hospitium? We have several for you here.") %>
+<% set_meta_keywords("animal,management,software,online,hosted,hospitium") %>
+<% set_head_title("Why Hospitium") %>
+<% content_for :title, "Why Hospitium" %>
+<title><%= yield (:title) %></title>

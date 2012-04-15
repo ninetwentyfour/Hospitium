@@ -28,9 +28,11 @@
 <!-- <hr /> -->
 
 <div id="recent-changes" class="span3">
-	<h2>Recent Changes</h2>
-	<div style="font-size: 12px;background-color:#fff;border:1px solid rgba(0, 0, 0, 0.15);border-radius:4px;padding:8.5px;margin:0 0 9px;font-family:Menlo,Monaco,'Courier New',monospace;"><%= Octokit.commits("ninetwentyfour/Hospitium", branch = "master", options = {}).first.commit.message %></div>
-	<%= Octokit.commits("ninetwentyfour/Hospitium", branch = "master", options = {}).first.commit.author.date.split('T', 2).first %>
+	<div class="alert alert-block notification-sidebar-block">
+		<strong><%= @random_notice.status_type + "!" unless @random_notice.blank? %></strong>
+		<%= raw(@random_notice.message)  unless @random_notice.blank? %>
+	</div>
+	<a href="/recent-changes" style="float:right;font-size:10px">Recent Changes</a>
 </div>
 
 <br /><br />

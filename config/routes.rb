@@ -164,6 +164,7 @@ AnimalTracker::Application.routes.draw do
   match "/features" => "home#features", :as => "features"
   match "/privacy-and-terms-of-service" => "home#privacy", :as => "privacy"
   match "/why-hospitium" => "home#why", :as => "why"
+  match "/recent-changes" => "home#changes", :as => "changes"
   match "/ftp-test" => "adopt_a_pets#send_to_site", :as => "send_to_site"
   match "/admin" => "admin/home#index", :as => "index"
   match "/admin/animals/:id/duplicate" => "admin/animals#duplicate", :via => :get
