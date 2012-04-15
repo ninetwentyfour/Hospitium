@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   # GET /posts
-  caches_action :index, :cache_path => Proc.new { |controller| controller.params },:layout => false, :expires_in => 180.minutes
+  caches_action :index, :cache_path => Proc.new { |controller| controller.params },:layout => false, :expires_in => 60.minutes
   
   # GET /posts.xml
   def index
@@ -23,7 +23,7 @@ class PostsController < ApplicationController
   def show
     canonical_url("/posts/#{params[:id]}")
     #require_dependency "Post"
-    @post = Rails.cache.fetch("public_post_#{params[:id]}", :expires_in => 180.minutes) do
+    @post = Rails.cache.fetch("public_post_#{params[:id]}", :expires_in => 60.minutes) do
       Post.find(params[:id])
     end
     #@post = Post.find(params[:id])
