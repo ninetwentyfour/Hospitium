@@ -161,6 +161,8 @@ GEM
       addressable (~> 2.2)
       multipart-post (~> 1.1)
       rack (~> 1.1)
+    faraday_middleware (0.8.6)
+      faraday (>= 0.7.4, < 0.9)
     fattr (2.2.0)
     ffi (1.0.11)
     flay (1.4.3)
@@ -184,6 +186,7 @@ GEM
       json (>= 1.4.6)
     git (1.2.5)
     gravatar_image_tag (1.0.0)
+    hashie (1.2.0)
     heroku (2.20.1)
       launchy (>= 0.3.2)
       rest-client (~> 1.6.1)
@@ -272,6 +275,12 @@ GEM
     oauth (0.4.5)
     oauth2 (0.5.2)
       faraday (~> 0.7)
+      multi_json (~> 1.0)
+    octokit (1.0.1)
+      addressable (~> 2.2)
+      faraday (~> 0.7)
+      faraday_middleware (~> 0.8)
+      hashie (~> 1.2)
       multi_json (~> 1.0)
     orm_adapter (0.0.6)
     paper_trail (2.6.2)
@@ -443,6 +452,7 @@ DEPENDENCIES
   newrelic_rpm
   nokogiri
   oauth
+  octokit
   paper_trail
   paperclip!
   pg

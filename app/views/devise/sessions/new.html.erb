@@ -3,7 +3,7 @@
 <% else %>
 	<div class="alert alert-info" style="margin-top:60px;"><%= notice %></div>
 <% end %>
-<div class="hero-unit">
+<div class="hero-unit clearfix">
 	<div class="page-header">
 		<h1>Sign In!</h1>
 	</div>
@@ -12,7 +12,7 @@
         <p><strong>Warning!</strong> This is still super beta software.</p>
 </div> -->
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-stacked"}) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-stacked span4"}) do |f| %>
 
 	<div class="clearfix"><%= f.label :login %>
 		<%= f.text_field :login %></div>
@@ -26,9 +26,18 @@
   <div><%= f.submit "Sign in", :class => "btn btn-primary btn-large" %></div>
 <% end %>
 <!-- <hr /> -->
+
+<div id="recent-changes" class="span3">
+	<h2>Recent Changes</h2>
+	<pre><%= Octokit.commits("ninetwentyfour/Hospitium", branch = "master", options = {}).first.commit.message %></pre>
+	<%= Octokit.commits("ninetwentyfour/Hospitium", branch = "master", options = {}).first.commit.author.date.split('T', 2).first %>
+</div>
+
 <br /><br />
+<div class="span12" style="margin-top:40px">
 <p>If you don't have an account <a class="js-pjax" href="/users/sign_up">Sign Up Here</a>.</p>
 <p><a class="js-pjax" href="/users/password/new">Forgot your password?</a></p>
+</div>
 </div>
 <% set_head_title("Sign In") %>
 <% content_for :title, "Sign In - Hospitium" %>
