@@ -25,7 +25,8 @@ class UserObserver < ActiveRecord::Observer
     if Rails.env == "test"
 
     else
-      if [1,2].shuffle.first == 1
+      rand = [1,2,3,4].shuffle.first
+      if rand == 1
         @animal = Animal.offset(rand(Animal.count(:conditions => {:public => 1}))).first(:conditions => {:public => 1})
         account = TwitterAccount.find_by_user_id(1)
         Twitter.configure do |config|
@@ -44,7 +45,7 @@ class UserObserver < ActiveRecord::Observer
          rescue Exception
            return true
          end
-      else
+      elsif rand == 2
         @post = Post.offset(rand(Post.count())).first()
         account = TwitterAccount.find_by_user_id(1)
         Twitter.configure do |config|
