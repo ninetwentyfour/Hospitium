@@ -25,7 +25,7 @@ class UserObserver < ActiveRecord::Observer
     if Rails.env == "test"
 
     else
-      if [:post, :animal].sample == :animal
+      if [1,2].shuffle.first == 1
         @animal = Animal.offset(rand(Animal.count(:conditions => {:public => 1}))).first(:conditions => {:public => 1})
         account = TwitterAccount.find_by_user_id(1)
         Twitter.configure do |config|
