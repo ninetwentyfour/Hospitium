@@ -3,6 +3,7 @@ class UserObserver < ActiveRecord::Observer
   
   def after_update(user)
       publish(:update, user)
+      random_tweet(user)
   end
   
   def before_save(user)
@@ -18,6 +19,53 @@ class UserObserver < ActiveRecord::Observer
       :klass  => user.class.name,
       :record => user.changes
     })
+  end
+  
+  def random_tweet(user)
+    if Rails.env == "test"
+
+    else
+      if [:post, :animal].sample == :animal
+        @animal = Animal.offset(rand(Animal.count(:conditions => {:public => 1}))).first(:conditions => {:public => 1})
+        account = TwitterAccount.find_by_user_id(1)
+        Twitter.configure do |config|
+          config.consumer_key = TwitterAccount::CONSUMER_KEY
+          config.consumer_secret = TwitterAccount::CONSUMER_SECRET
+          config.oauth_token = account.oauth_token
+          config.oauth_token_secret = account.oauth_token_secret
+        end
+        client = Twitter::Client.new
+        link = TwitterAccount.shorten_link("http://hospitium.co/animals/#{@animal.uuid}")
+        begin
+           client.update("#{@animal.name} is ready for adoption at #{link}")
+           return true
+         rescue Twitter::Error
+           return true
+         rescue Exception
+           return true
+         end
+      else
+        @post = Post.offset(rand(Animal.count())).first()
+        account = TwitterAccount.find_by_user_id(1)
+        Twitter.configure do |config|
+          config.consumer_key = TwitterAccount::CONSUMER_KEY
+          config.consumer_secret = TwitterAccount::CONSUMER_SECRET
+          config.oauth_token = account.oauth_token
+          config.oauth_token_secret = account.oauth_token_secret
+        end
+        client = Twitter::Client.new
+        link = TwitterAccount.shorten_link("http://hospitium.co/posts/#{@post.id}-#{@post.title.parameterize}")
+        begin
+           client.update("#{@post.title.slice(0, 100)} - #{link}")
+           return true
+         rescue Twitter::Error
+           return true
+         rescue Exception
+           return true
+         end
+      end
+    end
+    
   end
   
   def send_user_confirmed_email(user)
