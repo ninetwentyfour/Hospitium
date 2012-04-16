@@ -45,7 +45,7 @@ class UserObserver < ActiveRecord::Observer
            return true
          end
       else
-        @post = Post.offset(rand(Animal.count())).first()
+        @post = Post.offset(rand(Post.count())).first()
         account = TwitterAccount.find_by_user_id(1)
         Twitter.configure do |config|
           config.consumer_key = TwitterAccount::CONSUMER_KEY
