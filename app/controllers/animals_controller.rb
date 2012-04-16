@@ -26,7 +26,7 @@ class AnimalsController < ApplicationController
     canonical_url("/animals/#{params[:id]}")
     #require_dependency "Animal"
     @animal = Rails.cache.fetch("public_animal_#{params[:id]}", :expires_in => 15.minutes) do
-      Animal.find_by_uuid(params[:id])
+      Animal.find_by_uuid(params[:id], :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter])
     end
     #@animal = Animal.find_by_uuid(params[:id])
 
