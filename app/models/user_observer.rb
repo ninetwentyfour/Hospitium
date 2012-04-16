@@ -64,6 +64,8 @@ class UserObserver < ActiveRecord::Observer
          rescue Exception
            return true
          end
+      else
+        #do nothing
       end
     end
     
