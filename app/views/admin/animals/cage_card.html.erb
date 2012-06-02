@@ -33,7 +33,7 @@
 				<%= @animal.animal_color.color %>
 			</td>
 			<td>
-				<%= @animal.birthday.strftime("%b %e %Y") %>
+				<%= @animal.birthday.strftime("%b %e %Y") unless @animal.birthday.blank? %>
 			</td>
 		</tr>
 		<tr>
