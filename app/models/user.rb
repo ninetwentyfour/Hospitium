@@ -90,10 +90,8 @@ class User < ActiveRecord::Base
   end
   
   def send_new_email
-    if Rails.env == "test"
-
-    else
-      url = "http://sendgrid.com/api/mail.send.json?api_user=#{ENV['SENDGRID_USERNAME']}&api_key=#{ENV['SENDGRID_PASSWORD']}&to=contact@travisberry.com&subject=Hospitium%20-%20New%20User&text=#{self.username}%20created%20an%20account.%20#{self.email}%20in%20organization%20#{URI::encode(self.organization.name)}&from=contact@hospitium.co"
+    unless Rails.env == "test"
+      url = "http://sendgrid.com/api/mail.send.json?api_user=#{ENV['SENDGRID_USERNAME']}&api_key=#{ENV['SENDGRID_PASSWORD']}&to=contact@travisberry.com&subject=Hospitium%20-%20New%20User&text=#{URI::encode(self.username)}%20created%20an%20account.%20#{URI::encode(self.email)}%20in%20organization%20#{URI::encode(self.organization.name)}&from=contact@hospitium.co"
       resp = Net::HTTP.get_response(URI.parse(url))
       data = resp.body
       result = JSON.parse(data)
