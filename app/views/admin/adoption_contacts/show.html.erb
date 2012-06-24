@@ -51,7 +51,7 @@
 	<div class="modal-body">
 		<%= form_for @adoption_contact.adopt_animals.build(:adoption_contact_id => @adoption_contact.id) do |f| %>
 			<%= f.hidden_field :adoption_contact_id %>
-			<%= collection_select(:adopt_animal, :animal_id, Animal.find(:all, :conditions => {:organization_id => current_user.organization_id}), :id, :name) %>  
+			<%= collection_select(:adopt_animal, :animal_id, @adoptable_animals, :id, :name) %>  
 	</div>
 	<div class="modal-footer">
 		<%= f.submit "Submit", :class => "btn btn-primary" %>

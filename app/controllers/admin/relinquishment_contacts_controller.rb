@@ -18,6 +18,7 @@ class Admin::RelinquishmentContactsController < Admin::ApplicationController
   def show
     @relinquishment_contact = RelinquishmentContact.find(params[:id])
     @animals = RelinquishmentContact.find(params[:id]).animals
+    @relatable_animals = Animal.find(:all, :conditions => {:organization_id => current_user.organization_id})
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @relinquishment_contact }

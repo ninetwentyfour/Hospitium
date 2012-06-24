@@ -19,15 +19,15 @@
 					</li>
 				</ul>
 				<div class="span7 pull-right animal-pics">
-					<h1><a class='js-pjax' href="animals/<%= animal.uuid %>"><%= animal.name %></a></h1><h4><%= animal.species.name %></h4>
+					<h1><a class='js-pjax' href="animals/<%= animal.uuid %>"><%= animal.name %></a></h1><h4><%= animal.species_name %></h4>
 					<div class="otherAnimalInfo">
 						<p>Status: <%= animal.status.status %></p>
-						<p>Location: <%= animal.organization.city %>, <%= animal.organization.state %> <%= animal.organization.zip_code %></p>
-						<p>Organization: <a class='js-pjax' href="/organizations/<%= animal.organization.uuid %>"><%= animal.organization.name %></a></p>
-						<p>Sex: <%= animal.animal_sex.sex unless animal.animal_sex.blank? %></p>
+						<p>Location: <%= animal.organization_city %>, <%= animal.organization_state %> <%= animal.organization_zip_code %></p>
+						<p>Organization: <a class='js-pjax' href="/organizations/<%= animal.organization.uuid %>"><%= animal.organization_name %></a></p>
+						<p>Sex: <%= animal.sex unless animal.animal_sex.blank? %></p>
 						<p>Age: <%= calculate_animal_age(animal.birthday) unless animal.birthday.blank? %></p>
-						<p>Spay/Neuter: <%= animal.spay_neuter.spay unless animal.spay_neuter.blank? %></p>
-						<p>Color: <%= animal.animal_color.color %></p>
+						<p>Spay/Neuter: <%= animal.spay unless animal.spay_neuter.blank? %></p>
+						<p>Color: <%= animal.color %></p>
 						<p>Special Needs: <%= animal.special_needs %></p>
 					</div>
 				</div>

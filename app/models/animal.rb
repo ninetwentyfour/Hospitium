@@ -38,7 +38,7 @@ class Animal < ActiveRecord::Base
     :biter_id, :status_id, :video_embed, :microchip
     
   delegate :name, :to => :species, :prefix => :species, :allow_nil => true
-  delegate :name, :phone_number, :address, :city, :state, :zip_code, :to => :organization, :prefix => :organization, :allow_nil => true
+  delegate :name, :phone_number, :address, :city, :state, :zip_code, :website, :email, :to => :organization, :prefix => :organization, :allow_nil => true
   delegate :sex, :to => :animal_sex, :allow_nil => true
   delegate :spay, :to => :spay_neuter, :allow_nil => true
   delegate :color, :to => :animal_color, :allow_nil => true

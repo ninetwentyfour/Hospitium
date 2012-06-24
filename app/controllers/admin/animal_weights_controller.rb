@@ -5,7 +5,7 @@ class Admin::AnimalWeightsController < Admin::ApplicationController
   def index
     @search = AnimalWeight.search(params[:search])
     @animal_weights = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC")
-
+    @animals = Animal.find(:all, :conditions => {:organization_id => current_user.organization_id},:order => 'name')
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @animal_weights }

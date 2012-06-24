@@ -51,7 +51,7 @@
 	<div class="modal-body">
 		<%= form_for @relinquishment_contact.relinquish_animals.build(:relinquishment_contact_id => @relinquishment_contact.id) do |f| %>
 			<%= f.hidden_field :relinquishment_contact_id %>
-			<%= collection_select(:relinquish_animal, :animal_id, Animal.find(:all, :conditions => {:organization_id => current_user.organization_id}), :id, :name) %>  
+			<%= collection_select(:relinquish_animal, :animal_id, @relatable_animals, :id, :name) %>  
 	</div>
 	<div class="modal-footer">
 		<%= f.submit "Submit", :class => "btn btn-primary" %>

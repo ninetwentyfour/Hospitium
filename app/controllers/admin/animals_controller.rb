@@ -38,7 +38,12 @@ class Admin::AnimalsController < Admin::ApplicationController
   # GET /animals/new.xml
   def new
     @animal = Animal.new
-
+    @species = Species.find(:all, :conditions => {:organization_id => current_user.organization_id})
+    @sex = AnimalSex.all
+    @spay = SpayNeuter.all
+    @color = AnimalColor.find(:all, :conditions => {:organization_id => current_user.organization_id})
+    @biter = Biter.all
+    @status = Status.find(:all, :conditions => {:organization_id => current_user.organization_id})
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @animal }

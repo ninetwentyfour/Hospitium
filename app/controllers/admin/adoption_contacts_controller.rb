@@ -19,6 +19,7 @@ class Admin::AdoptionContactsController < Admin::ApplicationController
   def show
     @adoption_contact = AdoptionContact.find(params[:id])
     @animals = AdoptionContact.find(params[:id]).animals
+    @adoptable_animals = Animal.find(:all, :conditions => {:organization_id => current_user.organization_id})
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @adoption_contact }
