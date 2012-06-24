@@ -22,7 +22,7 @@ describe AdoptionContact do
   
   
   describe "#create_uuid" do
-    let(:adoption_contact) { Factory(:adoption_contact) }
+    let(:adoption_contact) { FactoryGirl.create(:adoption_contact) }
     
     it "generates a uuid on creation" do
       adoption_contact.uuid.should_not be_nil
@@ -30,7 +30,7 @@ describe AdoptionContact do
   end
   
   describe "#modify_phone_number" do
-    let(:adoption_contact) { Factory(:adoption_contact, @attr.merge(:phone => "123-456-7890")) }
+    let(:adoption_contact) { FactoryGirl.create(:adoption_contact, @attr.merge(:phone => "123-456-7890")) }
     
     it "should strip characters from the phone number" do
       adoption_contact.phone.should eql("1234567890")
@@ -38,7 +38,7 @@ describe AdoptionContact do
   end
   
   describe "#formatted_phone" do
-    let(:adoption_contact) { Factory(:adoption_contact) }
+    let(:adoption_contact) { FactoryGirl.create(:adoption_contact) }
     
     it "should format phone number" do
       number = "555-555-5555"
@@ -52,7 +52,7 @@ describe AdoptionContact do
   end
   
   describe 'protected attributes' do
-    let(:adoption_contact) { Factory(:adoption_contact) }
+    let(:adoption_contact) { FactoryGirl.create(:adoption_contact) }
     
     it 'should deny mass-assignment to the organization_id' do
       adoption_contact.update_attributes(:organization_id =>  10000)

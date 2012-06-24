@@ -20,7 +20,7 @@ describe Species do
   
   
   describe "#create_uuid" do
-    let(:species) { Factory(:species) }
+    let(:species) { FactoryGirl.create(:species) }
     
     it "generates a uuid on creation" do
       species.uuid.should_not be_nil
@@ -29,7 +29,7 @@ describe Species do
   
   
   describe 'protected attributes' do
-    let(:species) { Factory(:species) }
+    let(:species) { FactoryGirl.create(:species) }
     
     it 'should deny mass-assignment to the organization_id' do
       species.update_attributes(:organization_id =>  10000)

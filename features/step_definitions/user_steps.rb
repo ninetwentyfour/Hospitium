@@ -20,10 +20,10 @@ def create_user
   @attr = { }
   create_visitor
   delete_user
-  #@user = FactoryGirl.create(:user, email: @visitor[:email])
-  @user = Factory(:user, @attr.merge(:email => @visitor[:email], :password => "123456789", :password_confirmation => "123456789" ))
-  @user.roles << Factory(:role)
-  @permission = Factory(:permission)
+  #@user = FactoryGirlGirl.create(:user, email: @visitor[:email])
+  @user = FactoryGirl.create(:user, @attr.merge(:email => @visitor[:email], :password => "123456789", :password_confirmation => "123456789" ))
+  @user.roles << FactoryGirl.create(:role)
+  @permission = FactoryGirl.create(:permission)
 end
 
 def delete_user
@@ -63,9 +63,9 @@ end
 Given /^I exist as a user$/ do
   #create_user
   @attr = { }    
-  @user = Factory(:user, @attr.merge(email: "example_cuc@example.com", :password => "123456789", :password_confirmation => "123456789" ))
-  @user.roles << Factory(:role)
-  @permission = Factory(:permission)
+  @user = FactoryGirl.create(:user, @attr.merge(email: "example_cuc@example.com", :password => "123456789", :password_confirmation => "123456789" ))
+  @user.roles << FactoryGirl.create(:role)
+  @permission = FactoryGirl.create(:permission)
 end
 
 Given /^I do not exist as a user$/ do

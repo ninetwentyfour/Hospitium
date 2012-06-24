@@ -22,7 +22,7 @@ describe AnimalWeight do
   
   
   describe "#create_uuid" do
-    let(:animal_weight) { Factory(:animal_weight) }
+    let(:animal_weight) { FactoryGirl.create(:animal_weight) }
     
     it "generates a uuid on creation" do
       animal_weight.uuid.should_not be_nil
@@ -30,7 +30,7 @@ describe AnimalWeight do
   end
   
   describe "#formatted_weight_date" do
-    let(:animal_weight) { Factory(:animal_weight, @attr.merge(:date_of_weight => "2001-10-20 00:50:22")) }
+    let(:animal_weight) { FactoryGirl.create(:animal_weight, @attr.merge(:date_of_weight => "2001-10-20 00:50:22")) }
     
     it "should format weight date" do
       weight_date = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e at %l:%M")
@@ -44,7 +44,7 @@ describe AnimalWeight do
   end
 
   describe 'protected attributes' do
-    let(:animal_weight) { Factory(:animal_weight) }
+    let(:animal_weight) { FactoryGirl.create(:animal_weight) }
     
     it 'should deny mass-assignment to the organization_id' do
       animal_weight.update_attributes(:organization_id =>  10000)

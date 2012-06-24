@@ -26,7 +26,7 @@ describe User do
   
   
   describe "#add_default_role owner" do
-    let(:user) { Factory(:user) }
+    let(:user) { FactoryGirl.create(:user) }
     
     it "should create default role for the org owner" do
       user.permissions.first.role_id.should eql(2)
@@ -34,7 +34,7 @@ describe User do
   end
   
   describe "#add_default_role user" do
-    let(:user) { Factory(:user, @attr.merge(:owner => 0)) }
+    let(:user) { FactoryGirl.create(:user, @attr.merge(:owner => 0)) }
     
     it "should create default role for the org user" do
       user.permissions.first.role_id.should eql(3)
@@ -42,7 +42,7 @@ describe User do
   end
   
   describe "#add_to_organization" do
-    let(:user) { Factory(:user) }
+    let(:user) { FactoryGirl.create(:user) }
     
     it "should add user to an organization" do
       user.organization_id.should_not be_nil
@@ -50,7 +50,7 @@ describe User do
   end
   
   describe 'protected attributes' do
-    let(:user) { Factory(:user) }
+    let(:user) { FactoryGirl.create(:user) }
     
     it 'should deny mass-assignment to the organization_id' do
       user.update_attributes(:organization_id =>  10000)
@@ -80,14 +80,14 @@ describe User do
 
   describe 'permissions and roles' do
     it "should have 2 hives" do
-      @user = Factory(:user)
-      @user.roles << Factory(:role)
+      @user = FactoryGirl.create(:user)
+      @user.roles << FactoryGirl.create(:role)
       assert_equal 1, @user.roles.length
     end
 
     it "should have 2 bees" do
-      @user = Factory(:user)
-      @permission = Factory(:permission)
+      @user = FactoryGirl.create(:user)
+      @permission = FactoryGirl.create(:permission)
       #puts @permission
       assert_equal 1, @user.permissions.length
     end

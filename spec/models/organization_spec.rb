@@ -28,7 +28,7 @@ describe Organization do
   
   
   describe "#create_uuid" do
-    let(:organization) { Factory(:organization) }
+    let(:organization) { FactoryGirl.create(:organization) }
     
     it "generates a uuid on creation" do
       organization.uuid.should_not be_nil
@@ -36,7 +36,7 @@ describe Organization do
   end
   
   describe "#add_default_status" do
-    let(:organization) { Factory(:organization) }
+    let(:organization) { FactoryGirl.create(:organization) }
     
     it "should create default statuses" do
       organization.statuses.size.should eql(7)
@@ -44,7 +44,7 @@ describe Organization do
   end
   
   describe "#add_default_animal_colors" do
-    let(:organization) { Factory(:organization) }
+    let(:organization) { FactoryGirl.create(:organization) }
     
     it "should create default animal colors" do
       organization.animal_colors.size.should eql(4)
@@ -52,7 +52,7 @@ describe Organization do
   end
   
   describe "#add_default_species" do
-    let(:organization) { Factory(:organization) }
+    let(:organization) { FactoryGirl.create(:organization) }
     
     it "should create default species" do
       organization.species.size.should eql(8)
@@ -60,7 +60,7 @@ describe Organization do
   end
 
   describe "#modify_phone_number" do
-    let(:organization) { Factory(:organization) }
+    let(:organization) { FactoryGirl.create(:organization) }
     
     it "should strip characters from the phone number" do
       organization.update_attributes(:phone_number => "123-456-7890")
@@ -69,7 +69,7 @@ describe Organization do
   end
   
   describe "#formatted_phone" do
-    let(:organization) { Factory(:organization) }
+    let(:organization) { FactoryGirl.create(:organization) }
     
     it "should format phone number" do
       organization.update_attributes(:phone_number => "123-456-7890")
@@ -83,7 +83,7 @@ describe Organization do
   end
   
   describe 'protected attributes' do
-    let(:organization) { Factory(:organization) }
+    let(:organization) { FactoryGirl.create(:organization) }
     
     it 'should deny mass-assignment to the uuid' do
       organization.update_attributes(:uuid =>  "test_uuid")

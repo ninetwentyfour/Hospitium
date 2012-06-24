@@ -37,7 +37,7 @@ describe Animal do
   
   
   describe "#create_uuid" do
-    let(:animal) { Factory(:animal) }
+    let(:animal) { FactoryGirl.create(:animal) }
     
     it "generates a uuid on creation" do
       animal.uuid.should_not be_nil
@@ -45,7 +45,7 @@ describe Animal do
   end
   
   describe "#calculate_animal_age" do
-    let(:animal) { Factory(:animal, @attr.merge(:birthday => "2001-10-20 00:50:22")) }
+    let(:animal) { FactoryGirl.create(:animal, @attr.merge(:birthday => "2001-10-20 00:50:22")) }
     
     it "should format birthday" do
       age = (Time.now.year - 2001).to_s + " years"
@@ -59,7 +59,7 @@ describe Animal do
   end
   
   describe "#formatted_deceased_date" do
-    let(:animal) { Factory(:animal, @attr.merge(:deceased => "2001-10-20 00:50:22")) }
+    let(:animal) { FactoryGirl.create(:animal, @attr.merge(:deceased => "2001-10-20 00:50:22")) }
     
     it "should format deceased date" do
       age = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e %Y")
@@ -73,7 +73,7 @@ describe Animal do
   end
   
   describe "#formatted_intake_date" do
-    let(:animal) { Factory(:animal, @attr.merge(:date_of_intake => "2001-10-20 00:50:22")) }
+    let(:animal) { FactoryGirl.create(:animal, @attr.merge(:date_of_intake => "2001-10-20 00:50:22")) }
     
     it "should format intake date" do
       age = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e %Y")
@@ -87,7 +87,7 @@ describe Animal do
   end
   
   describe "#formatted_well_date" do
-    let(:animal) { Factory(:animal, @attr.merge(:date_of_well_check => "2001-10-20 00:50:22")) }
+    let(:animal) { FactoryGirl.create(:animal, @attr.merge(:date_of_well_check => "2001-10-20 00:50:22")) }
     
     it "should format well check date" do
       age = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e %Y")
@@ -101,7 +101,7 @@ describe Animal do
   end
   
   describe "#formatted_adopted_date" do
-    let(:animal) { Factory(:animal, @attr.merge(:adopted_date => "2001-10-20 00:50:22")) }
+    let(:animal) { FactoryGirl.create(:animal, @attr.merge(:adopted_date => "2001-10-20 00:50:22")) }
     
     it "should format adopted date" do
       age = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e %Y")
@@ -129,7 +129,7 @@ describe Animal do
   end
   
   describe 'protected attributes' do
-    let(:animal) { Factory(:animal) }
+    let(:animal) { FactoryGirl.create(:animal) }
     
     it 'should deny mass-assignment to the organization_id' do
       animal.update_attributes(:organization_id =>  10)

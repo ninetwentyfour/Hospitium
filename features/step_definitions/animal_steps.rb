@@ -1,11 +1,11 @@
 def create_public_animal
   @attr = { }
-  @animal = Factory(:animal, @attr.merge(:public => 1, :name => "Public Animal Name"))
+  @animal = FactoryGirl.create(:animal, @attr.merge(:public => 1, :name => "Public Animal Name"))
 end
 
 def create_animal
   @attr = { }
-  @animal = Factory(:animal, @attr.merge(:name => "Animal Name", :organization => Organization.first))
+  @animal = FactoryGirl.create(:animal, @attr.merge(:name => "Animal Name", :organization => Organization.first))
 end
 
 
@@ -61,8 +61,8 @@ Then /^the animal name should change$/ do
 end
 
 And /^I click the add new animal button$/ do
-  @species = Factory(:species, @attr.merge(:name => "test species", :organization => Organization.first))
-  @animal_color = Factory(:animal_color, @attr.merge(:color => "yellow", :organization => Organization.first))
+  @species = FactoryGirl.create(:species, @attr.merge(:name => "test species", :organization => Organization.first))
+  @animal_color = FactoryGirl.create(:animal_color, @attr.merge(:color => "yellow", :organization => Organization.first))
   click_link "Add New Animal"
 end
 

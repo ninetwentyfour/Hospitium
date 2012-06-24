@@ -20,7 +20,7 @@ describe AnimalColor do
   
   
   describe "#create_uuid" do
-    let(:animal_color) { Factory(:animal_color) }
+    let(:animal_color) { FactoryGirl.create(:animal_color) }
     
     it "generates a uuid on creation" do
       animal_color.uuid.should_not be_nil
@@ -28,7 +28,7 @@ describe AnimalColor do
   end
   
   describe 'protected attributes' do
-    let(:animal_color) { Factory(:animal_color) }
+    let(:animal_color) { FactoryGirl.create(:animal_color) }
     
     it 'should deny mass-assignment to the organization_id' do
       animal_color.update_attributes(:organization_id =>  10000)

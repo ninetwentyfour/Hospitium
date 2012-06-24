@@ -13,7 +13,7 @@ describe Note do
   end
   
   describe "#create_uuid" do
-    let(:note) { Factory(:note) }
+    let(:note) { FactoryGirl.create(:note) }
     
     it "generates a uuid on creation" do
       note.uuid.should_not be_nil
@@ -21,7 +21,7 @@ describe Note do
   end
   
   describe 'protected attributes' do
-    let(:note) { Factory(:note) }
+    let(:note) { FactoryGirl.create(:note) }
     
     it 'should deny mass-assignment to the user_id' do
       note.update_attributes(:user_id =>  10)
