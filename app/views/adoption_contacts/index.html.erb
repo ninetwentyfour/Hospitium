@@ -27,7 +27,7 @@
     <td><%= adoption_contact.adopted_date %></td>
     <td><%= link_to 'Show', adoption_contact %></td>
     <td><%= link_to 'Edit', edit_adoption_contact_path(adoption_contact) %></td>
-    <td><%= link_to 'Destroy', adoption_contact, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', adoption_contact, :data => {:confirm => 'Are you sure?'}, :method => :delete %></td>
   </tr>
 <% end %>
 </table>

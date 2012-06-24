@@ -15,7 +15,7 @@
     <td><%= species.uuid %></td>
     <td><%= link_to 'Show', species %></td>
     <td><%= link_to 'Edit', edit_species_path(species) %></td>
-    <td><%= link_to 'Destroy', species, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', species, :data => {:confirm => 'Are you sure?'}, :method => :delete %></td>
   </tr>
 <% end %>
 </table>

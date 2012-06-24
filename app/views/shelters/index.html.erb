@@ -29,7 +29,7 @@
     <td><%= shelter.notes %></td>
     <td><%= link_to 'Show', shelter %></td>
     <td><%= link_to 'Edit', edit_shelter_path(shelter) %></td>
-    <td><%= link_to 'Destroy', shelter, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', shelter, :data => {:confirm => 'Are you sure?'}, :method => :delete %></td>
   </tr>
 <% end %>
 </table>

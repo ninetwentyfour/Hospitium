@@ -13,7 +13,7 @@
     <td><%= notification.message %></td>
     <td><%= link_to 'Show', notification %></td>
     <td><%= link_to 'Edit', edit_notification_path(notification) %></td>
-    <td><%= link_to 'Destroy', notification, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', notification, :data => {:confirm => 'Are you sure?'}, :method => :delete %></td>
   </tr>
 <% end %>
 </table>

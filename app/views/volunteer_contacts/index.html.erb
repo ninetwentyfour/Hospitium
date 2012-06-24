@@ -27,7 +27,7 @@
     <td><%= volunteer_contact.organization %></td>
     <td><%= link_to 'Show', volunteer_contact %></td>
     <td><%= link_to 'Edit', edit_volunteer_contact_path(volunteer_contact) %></td>
-    <td><%= link_to 'Destroy', volunteer_contact, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', volunteer_contact, :data => {:confirm => 'Are you sure?'}, :method => :delete %></td>
   </tr>
 <% end %>
 </table>

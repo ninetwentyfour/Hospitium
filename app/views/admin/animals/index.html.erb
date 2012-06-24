@@ -50,7 +50,7 @@
 								<a class="btn tooltip-class duplicate-button" href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>/duplicate" rel="tooltip" title="Duplicate Animal"><i class="icon-plus-sign"></i></a>
 								<% unless current_user.permissions.first.role_id == 3 %>
 									<%= link_to raw("<i class='icon-remove'></i>"), admin_animal_path(animal),
-									            :confirm => 'Are you sure you want to delete?', :method => :delete, :class => "btn tooltip-class", :rel => "tooltip", :title => "Delete Animal" %>
+									            :data => {:confirm => 'Are you sure you want to delete?'}, :method => :delete, :class => "btn tooltip-class", :rel => "tooltip", :title => "Delete Animal" %>
 								<% end %>
 							</div>
 						</td>

@@ -13,7 +13,7 @@
     <td><%= spay_neuter.value %></td>
     <td><%= link_to 'Show', spay_neuter %></td>
     <td><%= link_to 'Edit', edit_spay_neuter_path(spay_neuter) %></td>
-    <td><%= link_to 'Destroy', spay_neuter, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', spay_neuter, :data => {:confirm => 'Are you sure?'}, :method => :delete %></td>
   </tr>
 <% end %>
 </table>

@@ -29,7 +29,7 @@
     <td><%= vet_contact.organization %></td>
     <td><%= link_to 'Show', vet_contact %></td>
     <td><%= link_to 'Edit', edit_vet_contact_path(vet_contact) %></td>
-    <td><%= link_to 'Destroy', vet_contact, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', vet_contact, :data => {:confirm => 'Are you sure?'}, :method => :delete %></td>
   </tr>
 <% end %>
 </table>

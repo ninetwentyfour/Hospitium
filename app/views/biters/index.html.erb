@@ -13,7 +13,7 @@
     <td><%= biter.value %></td>
     <td><%= link_to 'Show', biter %></td>
     <td><%= link_to 'Edit', edit_biter_path(biter) %></td>
-    <td><%= link_to 'Destroy', biter, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', biter, :data => {:confirm => 'Are you sure?'}, :method => :delete %></td>
   </tr>
 <% end %>
 </table>

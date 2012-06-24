@@ -15,7 +15,7 @@
     <td><%= animal_color.uuid %></td>
     <td><%= link_to 'Show', animal_color %></td>
     <td><%= link_to 'Edit', edit_animal_color_path(animal_color) %></td>
-    <td><%= link_to 'Destroy', animal_color, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', animal_color, :data => {:confirm => 'Are you sure?'}, :method => :delete %></td>
   </tr>
 <% end %>
 </table>

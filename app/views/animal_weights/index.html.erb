@@ -17,7 +17,7 @@
     <td><%= animal_weight.weight %></td>
     <td><%= link_to 'Show', animal_weight %></td>
     <td><%= link_to 'Edit', edit_animal_weight_path(animal_weight) %></td>
-    <td><%= link_to 'Destroy', animal_weight, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', animal_weight, :data => {:confirm => 'Are you sure?'}, :method => :delete %></td>
   </tr>
 <% end %>
 </table>

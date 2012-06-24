@@ -27,7 +27,7 @@
     <td><%= relinquishment_contact.reason %></td>
     <td><%= link_to 'Show', relinquishment_contact %></td>
     <td><%= link_to 'Edit', edit_relinquishment_contact_path(relinquishment_contact) %></td>
-    <td><%= link_to 'Destroy', relinquishment_contact, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', relinquishment_contact, :data => {:confirm => 'Are you sure?'}, :method => :delete %></td>
   </tr>
 <% end %>
 </table>
