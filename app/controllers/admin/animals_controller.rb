@@ -129,12 +129,12 @@ class Admin::AnimalsController < Admin::ApplicationController
       format.html {render :action => "qr_code", :layout => "qr_code"}
       format.svg { render :qrcode => "
         #{@animal.name}
-        #{@animal.species.name}
+        #{@animal.species_name}
         ----
-        #{@animal.organization.name} 
-        #{number_to_phone(@animal.organization.phone_number) unless @animal.organization.phone_number.blank?}
-        #{@animal.organization.address unless @animal.organization.address.blank?}
-        #{@animal.organization.city unless @animal.organization.city.blank?} #{@animal.organization.state unless @animal.organization.state.blank?} #{@animal.organization.zip_code unless @animal.organization.zip_code.blank?}", :level => :h, :unit => 6 }
+        #{@animal.organization_name} 
+        #{number_to_phone(@animal.organization_phone_number) unless @animal.organization_phone_number.blank?}
+        #{@animal.organization_address unless @animal.organization_address.blank?}
+        #{@animal.organization_city unless @animal.organization_city.blank?} #{@animal.organization_state unless @animal.organization_state.blank?} #{@animal.organization_zip_code unless @animal.organization_zip_code.blank?}", :level => :h, :unit => 6 }
     end
   end
 end

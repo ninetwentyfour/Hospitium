@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120415184853) do
+ActiveRecord::Schema.define(:version => 20120624204951) do
 
   create_table "adopt_a_pet_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -23,11 +23,14 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
     t.datetime "updated_at"
   end
 
+  add_index "adopt_a_pet_accounts", ["organization_id"], :name => "index_adopt_a_pet_accounts_on_organization_id"
+  add_index "adopt_a_pet_accounts", ["user_id"], :name => "index_adopt_a_pet_accounts_on_user_id"
+
   create_table "adopt_animals", :force => true do |t|
     t.integer  "animal_id"
     t.integer  "adoption_contact_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "adopt_animals", ["adoption_contact_id"], :name => "index_adopt_animals_on_adoption_contact_id"
@@ -41,8 +44,8 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
     t.string   "phone"
     t.string   "email"
     t.datetime "adopted_date"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "organization_id"
   end
 
@@ -51,8 +54,8 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
   create_table "animal_colors", :force => true do |t|
     t.string   "color"
     t.string   "uuid"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "organization_id"
   end
 
@@ -74,20 +77,21 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
 
   create_table "animal_sexes", :force => true do |t|
     t.string   "sex"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "animal_weights", :force => true do |t|
     t.integer  "animal_id"
     t.string   "uuid"
     t.integer  "weight"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "organization_id"
     t.datetime "date_of_weight"
   end
 
+  add_index "animal_weights", ["animal_id"], :name => "index_animal_weights_on_animal_id"
   add_index "animal_weights", ["organization_id"], :name => "index_animal_weights_on_organization_id"
 
   create_table "animals", :force => true do |t|
@@ -102,8 +106,8 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
     t.integer  "shelter_id"
     t.datetime "deceased"
     t.text     "deceased_reason"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "organization_id"
     t.datetime "adopted_date"
     t.integer  "animal_color_id"
@@ -150,8 +154,8 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
 
   create_table "biters", :force => true do |t|
     t.string   "value"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "facebook_accounts", :force => true do |t|
@@ -165,6 +169,7 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
     t.integer  "organization_id"
   end
 
+  add_index "facebook_accounts", ["organization_id"], :name => "index_facebook_accounts_on_organization_id"
   add_index "facebook_accounts", ["user_id"], :name => "index_facebook_accounts_on_user_id"
 
   create_table "notes", :force => true do |t|
@@ -182,16 +187,16 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
 
   create_table "notifications", :force => true do |t|
     t.text     "message"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "status_type"
   end
 
   create_table "organizations", :force => true do |t|
     t.string   "name"
     t.string   "uuid"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "phone_number"
     t.string   "address"
     t.string   "city"
@@ -208,11 +213,14 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
     t.integer "user_id"
   end
 
+  add_index "organizations_users", ["organization_id"], :name => "index_organizations_users_on_organization_id"
+  add_index "organizations_users", ["user_id"], :name => "index_organizations_users_on_user_id"
+
   create_table "permissions", :force => true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "permissions", ["role_id"], :name => "index_permissions_on_role_id"
@@ -227,12 +235,25 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
     t.datetime "updated_at"
   end
 
+  create_table "photos", :force => true do |t|
+    t.integer  "animal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "photos", ["animal_id"], :name => "index_photos_on_animal_id"
+
   create_table "posts", :force => true do |t|
     t.string   "author"
     t.string   "title"
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -240,10 +261,10 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month",      :limit => 2
+    t.integer  "month"
     t.integer  "year",       :limit => 8
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
@@ -251,8 +272,8 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
   create_table "relinquish_animals", :force => true do |t|
     t.integer  "animal_id"
     t.integer  "relinquishment_contact_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "relinquish_animals", ["animal_id"], :name => "index_relinquish_animals_on_animal_id"
@@ -266,8 +287,8 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
     t.string   "phone"
     t.string   "email"
     t.text     "reason"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "organization_id"
   end
 
@@ -275,15 +296,17 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
 
   create_table "reports", :force => true do |t|
     t.string   "report"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "organization_id"
   end
 
+  add_index "reports", ["organization_id"], :name => "index_reports_on_organization_id"
+
   create_table "roles", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "roles", ["name"], :name => "index_roles_on_name"
@@ -291,8 +314,8 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
@@ -308,8 +331,8 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
     t.string   "email"
     t.string   "website"
     t.text     "notes"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "organization_id"
   end
 
@@ -317,15 +340,15 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
 
   create_table "spay_neuters", :force => true do |t|
     t.string   "spay"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "species", :force => true do |t|
     t.string   "name"
     t.string   "uuid"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "organization_id"
   end
 
@@ -334,8 +357,8 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
   create_table "statuses", :force => true do |t|
     t.string   "status"
     t.integer  "organization_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "statuses", ["organization_id"], :name => "index_statuses_on_organization_id"
@@ -353,11 +376,12 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
     t.datetime "updated_at"
   end
 
+  add_index "twitter_accounts", ["organization_id"], :name => "index_twitter_accounts_on_organization_id"
   add_index "twitter_accounts", ["user_id"], :name => "index_twitter_accounts_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "email",                                                :null => false
+    t.string   "encrypted_password",     :limit => 128,                :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -366,8 +390,8 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                            :null => false
-    t.datetime "updated_at",                                            :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "username"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
@@ -403,8 +427,8 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
     t.string   "hours"
     t.string   "emergency"
     t.integer  "organization_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "vet_contacts", ["organization_id"], :name => "index_vet_contacts_on_organization_id"
@@ -418,8 +442,8 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
     t.string   "email"
     t.datetime "application_date"
     t.integer  "organization_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "volunteer_contacts", ["organization_id"], :name => "index_volunteer_contacts_on_organization_id"
@@ -435,6 +459,7 @@ ActiveRecord::Schema.define(:version => 20120415184853) do
     t.integer  "organization_id"
   end
 
+  add_index "wordpress_accounts", ["organization_id"], :name => "index_wordpress_accounts_on_organization_id"
   add_index "wordpress_accounts", ["user_id"], :name => "index_wordpress_accounts_on_user_id"
 
 end

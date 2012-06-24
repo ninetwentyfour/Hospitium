@@ -6,6 +6,8 @@ class Note < ActiveRecord::Base
   
   attr_accessible :note, :animal_id
   
+  delegate :username, :to => :user, :allow_nil => true
+  
   #create uuid
   def create_uuid()
     self.uuid = UUIDTools::UUID.random_create.to_s

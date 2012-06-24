@@ -5,4 +5,7 @@ class RelinquishAnimal < ActiveRecord::Base
   
   attr_accessible :relinquishment_contact_id, :animal_id
   
+  delegate :name, :to => :animal, :allow_nil => true
+  delegate :first_name, :last_name, :to => :relinquishment_contact, :allow_nil => true
+  
 end

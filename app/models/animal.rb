@@ -36,6 +36,15 @@ class Animal < ActiveRecord::Base
   attr_accessible :name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased, 
     :deceased_reason, :adopted_date, :animal_color_id, :image, :second_image, :third_image, :fourth_image, :public, :birthday, :animal_sex_id, :spay_neuter_id,
     :biter_id, :status_id, :video_embed, :microchip
+    
+  delegate :name, :to => :species, :prefix => :species, :allow_nil => true
+  delegate :name, :phone_number, :address, :city, :state, :zip_code, :to => :organization, :prefix => :organization, :allow_nil => true
+  delegate :sex, :to => :animal_sex, :allow_nil => true
+  delegate :spay, :to => :spay_neuter, :allow_nil => true
+  delegate :color, :to => :animal_color, :allow_nil => true
+  delegate :value, :to => :biter, :prefix => :biter, :allow_nil => true
+  #delegate :status, :to => :status, :allow_nil => true
+  delegate :name, :to => :shelter, :prefix => :shelter, :allow_nil => true
   
   #set_primary_key :uuid
   def to_params

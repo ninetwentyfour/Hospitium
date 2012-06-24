@@ -40,10 +40,10 @@
 						<td><a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>" class="<% unless animal.image.url(:thumb) == "/images/thumb/missing.png" %>popover-class<%end%>" rel="popover" data-trigger="hover" data-placement="right" data-content='<p><a class="thumbnail" href="#" style="height:140px;background-image:url(<% unless animal.image.url(:thumb) == "/images/thumb/missing.png" %><%= animal.image.url(:thumb) %><%end%>);background-repeat:no-repeat;background-position:center;"></a></p>'><%= animal.name %></a></td>
 						<td><%= animal.microchip unless animal.microchip.blank? %></td>
 						<td><%= animal.status.status %></td>
-						<td><%= animal.animal_sex.sex unless animal.animal_sex.blank? %></td>
+						<td><%= animal.sex unless animal.animal_sex.blank? %></td>
 						<td><%= calculate_animal_age(animal.birthday) unless animal.birthday.blank? %></td>
-						<td><%= animal.spay_neuter.spay unless animal.spay_neuter.blank? %></td>
-						<td><%= animal.animal_color.color %></td>
+						<td><%= animal.spay unless animal.spay_neuter.blank? %></td>
+						<td><%= animal.color %></td>
 						<td>
 							<div class="btn-group">
 								<a class="btn tooltip-class" href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>" rel="tooltip" title="View Animal"><i class="icon-eye-open"></i></a>

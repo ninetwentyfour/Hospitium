@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   validates_presence_of :organization_name
   validates_uniqueness_of :organization_name, :if => :should_validate_organization_name?
   
+  
   # show the user email in the admin UI instead of the user id
   def show_username_label_method
     "#{self.username}"

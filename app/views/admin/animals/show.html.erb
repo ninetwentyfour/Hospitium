@@ -46,21 +46,21 @@
 				<div class="tab-content">
 					<div class="tab-pane active" id="1">
 						<div class="">
-							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newStatus" >Status</a>:</strong> <%= best_in_place @animal, :status_id, :type => :select, collection: @statuses, :nil => @animal.status.status %>
+							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newStatus" >Status</a>:</strong> <%= best_in_place @animal, :status_id, :type => :select, collection: @statuses, :nil => @animal.status %>
 							</p>
-							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class model-class" data-toggle="modal" href="#newSpecies" >Species</a>:</strong> <%= best_in_place @animal, :species_id, :type => :select, collection: @species, :nil => @animal.species.name %></p>
-							<p><strong>Sex:</strong> <%= best_in_place @animal, :animal_sex_id, :type => :select, collection: [["1", "Male"], ["2", "Female"], ["3", "Unknown"]], :nil => @animal.animal_sex.sex unless @animal.animal_sex.blank? %></p>
+							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class model-class" data-toggle="modal" href="#newSpecies" >Species</a>:</strong> <%= best_in_place @animal, :species_id, :type => :select, collection: @species, :nil => @animal.species_name %></p>
+							<p><strong>Sex:</strong> <%= best_in_place @animal, :animal_sex_id, :type => :select, collection: [["1", "Male"], ["2", "Female"], ["3", "Unknown"]], :nil => @animal.sex unless @animal.animal_sex.blank? %></p>
 							<p><strong>Age:</strong> <%= best_in_place @animal, :birthday, :type => :date, :display_as => :calculate_animal_age, :nil => "Click me to add content!" %></p>
-							<p><strong>Spay/Neuter:</strong> <%= best_in_place @animal, :spay_neuter_id, :type => :select, collection: [["1", "No"], ["2", "Yes"], ["3", "Unknown"]], :nil => @animal.spay_neuter.spay unless @animal.spay_neuter.blank? %></p>
-							<p><strong>Biter:</strong> <%= best_in_place @animal, :biter_id, :type => :select, collection: [["1", "No"], ["2", "Yes"], ["3", "Unknown"]], :nil => @animal.biter.value unless @animal.biter.blank? %></p>
-							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newColor" >Color</a>:</strong> <%= best_in_place @animal, :animal_color_id, :type => :select, collection: @colors, :nil => @animal.animal_color.color %></p>
+							<p><strong>Spay/Neuter:</strong> <%= best_in_place @animal, :spay_neuter_id, :type => :select, collection: [["1", "No"], ["2", "Yes"], ["3", "Unknown"]], :nil => @animal.spay unless @animal.spay_neuter.blank? %></p>
+							<p><strong>Biter:</strong> <%= best_in_place @animal, :biter_id, :type => :select, collection: [["1", "No"], ["2", "Yes"], ["3", "Unknown"]], :nil => @animal.biter_value unless @animal.biter.blank? %></p>
+							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newColor" >Color</a>:</strong> <%= best_in_place @animal, :animal_color_id, :type => :select, collection: @colors, :nil => @animal.color %></p>
 							<p><strong>Special Needs:</strong> <%= best_in_place @animal, :special_needs, type: :textarea, :nil => "Click me to add content!" %></p>
 						</div>
 					</div>
 					<div class="tab-pane" id="2">
 						<p><strong>Microchip:</strong> <%= best_in_place @animal, :microchip, :type => :input, :nil => "Click me to add content!" %></p>
 						<%unless @animal.shelter.blank?%>
-							<%@sheltername = @animal.shelter.name %>
+							<%@sheltername = @animal.shelter_name %>
 						<%else%>
 							<%@sheltername = "Click me to add content!" %>
 						<%end%>
@@ -86,7 +86,7 @@
 						<ul class="unstyled" id="animal_notes_list">
 							<%unless @animal.notes.blank?%>
 									<%@notes.each do |note| %>
-										<li><%= link_to raw("<i class='icon-remove'></i>"), note_path(note), :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Delete Note"  %><strong><%= note.user.username %></strong> <%= note.created_at.strftime("%a, %b %e at %l:%M") %> <br /><%= raw note.note %></li>
+										<li><%= link_to raw("<i class='icon-remove'></i>"), note_path(note), :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Delete Note"  %><strong><%= note.username %></strong> <%= note.created_at.strftime("%a, %b %e at %l:%M") %> <br /><%= raw note.note %></li>
 									<%end%>
 							<%end%>
 						</ul>
@@ -178,7 +178,7 @@
 
 
 
-<% set_meta_description("Adopt #{@animal.name} from #{@animal.organization.name}") %>
+<% set_meta_description("Adopt #{@animal.name} from #{@animal.organization_name}") %>
 <% set_meta_keywords("adopt,animal,pets") %>
 <% set_head_title("Adopt #{@animal.name}") %>
 
