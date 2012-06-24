@@ -41,29 +41,64 @@ Install:
 
 * * *
 
-**These instruction are a bit out of date. I'll work on new ones and post as soon as I can.**
+There are several dependencies on other apps/services. 
 
-Set db connection in `/config/database.yml`
+- Ruby 1.9.2 and up.
+- [Juggernaut](https://github.com/maccman/juggernaut): I recommend hosting on heroku following these [instructions](https://gist.github.com/1003748). used for real time edits
+- [SendGrid](http://sendgrid.com/): A sendgrid account is required to send emails. [http://sendgrid.com/](http://sendgrid.com/)
+- [Bitly](https://bitly.com/): A bitly account is needed for link shortening. [http://bitly.com/a/your\_api\_key](http://bitly.com/a/your\_api\_key)
+- [Twitter](https://twitter.com/): A twitter developer account is required for twitter integration. [https://dev.twitter.com/](https://dev.twitter.com/)
+- [Facebook](http://www.facebook.com/): A facebook developer accoutn is required for facebook integration. [http://developers.facebook.com/](http://developers.facebook.com/)
+- [S3](http://aws.amazon.com/s3/): A s3 account is used for asset hosting. [http://aws.amazon.com/s3/](http://aws.amazon.com/s3/)
 
-`$ cd /foo/bar/app_location/`
+Setup env variables. Good how to [here](http://devcenter.heroku.com/articles/config-vars#local_setup).
 
-`$ bundle install`
+- S3\_KEY (your s3 Key)
+- S3\_SECRET (your s3 secret)
+- FOG\_DIRECTORY (the bucket to store your assets on s3)
+- SENDGRID\_PASSWORD (the password of you sendgrid account)
+- SENDGRID\_USERNAME (the username of you sendgrid account)
+- JUGG_URL (the redis url from the heroku redis account)
+- TWITTER\_CONSUMER_KEY (the consumer key for twitter)
+- TWITTER\_CONSUMER_SECRET (the consumer secret for twitter)
+- FACEBOOK\_CLIENT\_ID (the facebook client id)
+- FACEBOOK\_CLIENT\_SECRET (the facebook client secret)
+- BITLY\_API (the bitly api key)
 
-`$ rake db:migrate`
+Clone repo
 
-For the time being (until I or someone create a migration to create default data) you need to manually add the roles to the database.
+`git clone git://github.com/ninetwentyfour/Hospitium.git`
 
-Add a row and with SuperAdmin as the name. Then create row 2 with name Admin.
+`cd Hospitium`
 
-`$ rails server`
+`bundle install`
 
-Go to [http://localhost:3000](http://localhost:3000)
+create a database called animal_development, or change db connection in `/config/database.yml`
 
-Sign up for a user if first install or empty db
+`rake db:migrate`
 
-Dashboard can be found at [http://localhost:3000/admin](http://localhost:3000/admin)
+`rake db:seed`
 
-Hospitium uses Amazon s3 for file storage. It currently relies on `ENV['S3_SECRET']` and `ENV['S3_KEY']` being set. You can see an example of how to use for development [here](http://devcenter.heroku.com/articles/config-vars#local_setup).
+need to change assets setup
+
+- comment out line 50 `/config/environments/development.rb`
+
+In production change
+
+- `config.action_controller.asset\_host = "http://static-assets%d.hospitium.co"` to `= "your s3 account url here"`
+
+`rails s`
+
+Visit [http://localhost:3000](http://localhost:3000)
+
+Sign in with 
+
+- Login: admin 
+- Password: pleasechange
+
+Dashboard can be found at [http://localhost:3000/admin](http://localhost:3000/admin).
+
+Please change your admin password and the organization name if you so choose.
 
 
 * * *
