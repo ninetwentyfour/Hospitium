@@ -2,6 +2,8 @@ class FacebookAccount < ActiveRecord::Base
   belongs_to :user
   belongs_to :organization
   
+  attr_accessible :user_id, :active, :stream_url, :access_token, :oauth_authorize_url
+  
   
   # Stubbed out! Does no (good) error checking!
 
