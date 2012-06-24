@@ -15,10 +15,10 @@ class Ability
         can :export, AdoptionContact, :organization => { :id => user.organization_id }
         can :bulk_action, AdoptionContact, :organization => { :id => user.organization_id }
 
+        can :destroy, Animal, :organization => { :id => user.organization_id }
         can :read, Animal, :organization => { :id => user.organization_id }
         can :create, Animal
         can :update, Animal, :organization => { :id => user.organization_id }
-        can :destroy, Animal, :organization => { :id => user.organization_id }
         can :export, Animal, :organization => { :id => user.organization_id }
         can :bulk_action, Animal, :organization => { :id => user.organization_id }
         can :duplicate, Animal, :organization => { :id => user.organization_id }
