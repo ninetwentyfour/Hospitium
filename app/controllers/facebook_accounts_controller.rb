@@ -4,13 +4,13 @@ class FacebookAccountsController < ApplicationController
 
   def new
     facebook_account = FacebookAccount.create(:user => current_user)
-    redirect_to(facebook_account.authorize_url(facebook_callback_url(:id => facebook_account.id)), :only_path => true)
+    redirect_to(facebook_account.authorize_url(facebook_callback_url(:id => facebook_account.id)))
   end
 
   def callback
     if params[:error_reason] && !params[:error_reason].empty?
       # We have a problem!
-      redirect_to(:root, :notice => "Unable to activate facebook: #{params[:error_reason]}", :only_path => true)
+      redirect_to(:root, :notice => "Unable to activate facebook: #{params[:error_reason]}")
     elsif params[:code] && !params[:code].empty?
       # This is the callback, we have an id and an access code
       facebook_account = FacebookAccount.find(params[:id])
@@ -23,11 +23,11 @@ class FacebookAccountsController < ApplicationController
     account = FacebookAccount.find_by_user_id(current_user.id)
     if account.blank?
       facebook_account = FacebookAccount.create(:user_id => current_user.id)
-      redirect_to(facebook_account.authorize_url(facebook_callback_url(:id => facebook_account.id)), :only_path => true)
+      redirect_to(facebook_account.authorize_url(facebook_callback_url(:id => facebook_account.id)))
     else
       link = FacebookAccount.shorten_link("#{root_url}animals/#{params[:animal_uuid]}")
       FacebookAccount.post("#{params[:animal_name]} is ready for adoption at #{link} via @hospitium_app.", current_user.id)
-      redirect_to("#{root_url}admin/animals/#{params[:animal_id]}-#{params[:animal_uuid]}", :notice => 'Facebook Post Sent', :only_path => true)
+      redirect_to("#{root_url}admin/animals/#{params[:animal_id]}-#{params[:animal_uuid]}", :notice => 'Facebook Post Sent')
     end
   end
   
