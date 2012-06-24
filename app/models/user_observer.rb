@@ -2,12 +2,16 @@ require "juggernaut"
 class UserObserver < ActiveRecord::Observer
   
   def after_update(user)
+    unless user.no_send_email == true
       publish(:update, user)
       random_tweet(user)
+    end
   end
   
   def before_save(user)
-    send_user_confirmed_email(user) if user.confirmed_at_changed?
+    unless user.no_send_email == true
+      send_user_confirmed_email(user) if user.confirmed_at_changed?
+    end
   end
   
   

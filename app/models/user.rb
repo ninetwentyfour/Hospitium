@@ -15,10 +15,11 @@ class User < ActiveRecord::Base
          :recoverable, :trackable, :validatable, :confirmable
  # Virtual attribute for authenticating by either username or email
  # This is in addition to a real persisted field like 'username'
- attr_accessor :login
+ attr_accessor :login, :no_send_email, :skip_default_role
          
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :login, :organization_name, :owner
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :login, :organization_name, :owner,
+                   :no_send_email, :skip_default_role
   
   before_create :add_to_organization
   after_create :add_default_role, :send_new_email
@@ -44,20 +45,22 @@ class User < ActiveRecord::Base
   end
   
   def add_default_role
-    if self.owner == 1
-      @user = self.id
-      @permission = Permission.new
-      #@permission.update_attributes(:user_id => @user, :role_id => 2)
-      @permission.user_id = @user
-      @permission.role_id = 2
-      @permission.save!
-    else
-      @user = self.id
-      @permission = Permission.new
-      #@permission.update_attributes(:user_id => @user, :role_id => 3)
-      @permission.user_id = @user
-      @permission.role_id = 3
-      @permission.save!
+    unless self.skip_default_role == true
+      if self.owner == 1
+        @user = self.id
+        @permission = Permission.new
+        #@permission.update_attributes(:user_id => @user, :role_id => 2)
+        @permission.user_id = @user
+        @permission.role_id = 2
+        @permission.save!
+      else
+        @user = self.id
+        @permission = Permission.new
+        #@permission.update_attributes(:user_id => @user, :role_id => 3)
+        @permission.user_id = @user
+        @permission.role_id = 3
+        @permission.save!
+      end
     end
   end
   
@@ -90,7 +93,7 @@ class User < ActiveRecord::Base
   end
   
   def send_new_email
-    unless Rails.env == "test"
+    unless Rails.env == "test" or self.no_send_email == true
       url = "http://sendgrid.com/api/mail.send.json?api_user=#{ENV['SENDGRID_USERNAME']}&api_key=#{ENV['SENDGRID_PASSWORD']}&to=contact@travisberry.com&subject=Hospitium%20-%20New%20User&text=#{URI::encode(self.username)}%20created%20an%20account.%20#{URI::encode(self.email)}%20in%20organization%20#{URI::encode(self.organization.name)}&from=contact@hospitium.co"
       resp = Net::HTTP.get_response(URI.parse(url))
       data = resp.body

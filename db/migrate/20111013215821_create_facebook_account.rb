@@ -1,6 +1,6 @@
 class CreateFacebookAccount < ActiveRecord::Migration
   def self.up
-    create_table "facebook_accounts", do |t|
+    create_table "facebook_accounts" do |t|
       t.integer "user_id"
       t.boolean "active", :default => false
       t.text "stream_url"

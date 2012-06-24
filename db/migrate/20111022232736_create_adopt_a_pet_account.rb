@@ -1,6 +1,6 @@
 class CreateAdoptAPetAccount < ActiveRecord::Migration
   def self.up
-    create_table "adopt_a_pet_accounts", do |t|
+    create_table "adopt_a_pet_accounts" do |t|
       t.integer "user_id"
       t.integer "organization_id"
       t.boolean "active", :default => false

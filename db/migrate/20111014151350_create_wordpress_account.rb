@@ -1,6 +1,6 @@
 class CreateWordpressAccount < ActiveRecord::Migration
   def self.up
-    create_table "wordpress_accounts", do |t|
+    create_table "wordpress_accounts" do |t|
       t.integer "user_id"
       t.boolean "active", :default => false
       t.text "site_url"
