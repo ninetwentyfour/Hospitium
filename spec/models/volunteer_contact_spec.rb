@@ -20,7 +20,7 @@ describe VolunteerContact do
   
   
   describe "#create_uuid" do
-    let(:volunteer_contact) { Factory(:volunteer_contact) }
+    let(:volunteer_contact) { FactoryGirl.create(:volunteer_contact) }
     
     it "generates a uuid on creation" do
       volunteer_contact.uuid.should_not be_nil
@@ -28,7 +28,7 @@ describe VolunteerContact do
   end
   
   describe "#modify_phone_number" do
-    let(:volunteer_contact) { Factory(:volunteer_contact, @attr.merge(:phone => "123-456-7890")) }
+    let(:volunteer_contact) { FactoryGirl.create(:volunteer_contact, @attr.merge(:phone => "123-456-7890")) }
     
     it "should strip characters from the phone number" do
       volunteer_contact.phone.should eql("1234567890")
@@ -36,7 +36,7 @@ describe VolunteerContact do
   end
   
   describe "#formatted_phone" do
-    let(:volunteer_contact) { Factory(:volunteer_contact) }
+    let(:volunteer_contact) { FactoryGirl.create(:volunteer_contact) }
     
     it "should format phone number" do
       number = "555-555-5555"
@@ -50,7 +50,7 @@ describe VolunteerContact do
   end
   
   describe "#formatted_application_date" do
-    let(:volunteer_contact) { Factory(:volunteer_contact, @attr.merge(:application_date => "2001-10-20 00:50:22")) }
+    let(:volunteer_contact) { FactoryGirl.create(:volunteer_contact, @attr.merge(:application_date => "2001-10-20 00:50:22")) }
     
     it "should format application date" do
       application_date = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e at %l:%M")
@@ -64,7 +64,7 @@ describe VolunteerContact do
   end  
   
   describe 'protected attributes' do
-    let(:volunteer_contact) { Factory(:volunteer_contact) }
+    let(:volunteer_contact) { FactoryGirl.create(:volunteer_contact) }
     
     it 'should deny mass-assignment to the organization_id' do
       volunteer_contact.update_attributes(:organization_id =>  10000)

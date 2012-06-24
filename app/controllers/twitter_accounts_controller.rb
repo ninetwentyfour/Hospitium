@@ -2,7 +2,7 @@ class TwitterAccountsController < ApplicationController
   
   def new
     twitter_account = TwitterAccount.create(:user => current_user)
-    redirect_to(twitter_account.authorize_url(twitter_callback_url))
+    redirect_to(twitter_account.authorize_url(twitter_callback_url), :only_path => true)
   end
   
   def callback
@@ -27,11 +27,11 @@ class TwitterAccountsController < ApplicationController
     #account = TwitterAccount.find_by_user_id(current_user.id)
     if account.blank?
       twitter_account = TwitterAccount.create(:user_id => current_user.id)
-      redirect_to(twitter_account.authorize_url(twitter_callback_url))
+      redirect_to(twitter_account.authorize_url(twitter_callback_url), :only_path => true)
     else
       link = TwitterAccount.shorten_link("#{root_url}animals/#{params[:animal_uuid]}")
       TwitterAccount.twitter_post("#{params[:animal_name]} is ready for adoption at #{link} via @hospitium_app", current_user.id)
-      redirect_to("#{root_url}admin/animals/#{params[:animal_id]}-#{params[:animal_uuid]}", :notice => 'Tweet Sent')
+      redirect_to("#{root_url}admin/animals/#{params[:animal_id]}-#{params[:animal_uuid]}", :notice => 'Tweet Sent', :only_path => true)
     end
   end
   

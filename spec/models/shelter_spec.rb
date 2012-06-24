@@ -20,7 +20,7 @@ describe Shelter do
   
   
   describe "#create_uuid" do
-    let(:shelter) { Factory(:shelter) }
+    let(:shelter) { FactoryGirl.create(:shelter) }
     
     it "generates a uuid on creation" do
       shelter.uuid.should_not be_nil
@@ -28,7 +28,7 @@ describe Shelter do
   end
   
   describe "#modify_phone_number" do
-    let(:shelter) { Factory(:shelter, @attr.merge(:phone => "123-456-7890")) }
+    let(:shelter) { FactoryGirl.create(:shelter, @attr.merge(:phone => "123-456-7890")) }
     
     it "should strip characters from the phone number" do
       shelter.phone.should eql("1234567890")
@@ -36,7 +36,7 @@ describe Shelter do
   end
   
   describe "#formatted_phone" do
-    let(:shelter) { Factory(:shelter) }
+    let(:shelter) { FactoryGirl.create(:shelter) }
     
     it "should format phone number" do
       number = "555-555-5555"
@@ -50,7 +50,7 @@ describe Shelter do
   end
   
   describe 'protected attributes' do
-    let(:shelter) { Factory(:shelter) }
+    let(:shelter) { FactoryGirl.create(:shelter) }
     
     it 'should deny mass-assignment to the organization_id' do
       shelter.update_attributes(:organization_id =>  10000)

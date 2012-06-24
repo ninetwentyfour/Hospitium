@@ -39,6 +39,7 @@ gem 'sanitize'
 gem 'redcarpet'
 gem 'rqrcode-rails3'
 gem 'octokit'
+gem 'therubyracer'
 
 
 # Gems used only for assets and not required

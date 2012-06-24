@@ -59,7 +59,7 @@ class Admin::AnimalsController < Admin::ApplicationController
       if @animal.save
         format.html { 
           flash[:notice] = 'Animal was successfully created.'
-          redirect_to(:action => "show", :id => @animal.id.to_s+"-"+@animal.uuid)
+          redirect_to(:action => "show", :id => @animal.id.to_s+"-"+@animal.uuid, :only_path => true)
         }
         format.xml  { render :xml => @animal, :status => :created, :location => @animal }
       else
@@ -76,12 +76,12 @@ class Admin::AnimalsController < Admin::ApplicationController
       if @animal.update_attributes(params[:animal])
         format.html { 
           flash[:notice] = 'Animal was successfully updated.'
-          redirect_to(:action => "show", :id => @animal.id.to_s+"-"+@animal.uuid)
+          redirect_to(:action => "show", :id => @animal.id.to_s+"-"+@animal.uuid, :only_path => true)
         }
         format.json { respond_with_bip(@animal) }
       else
         flash[:notice] = 'There was a problem updating the animal.'
-        redirect_to(:action => "show", :id => @animal.id.to_s+"-"+@animal.uuid)
+        redirect_to(:action => "show", :id => @animal.id.to_s+"-"+@animal.uuid, :only_path => true)
         format.json { respond_with_bip(@animal) }
       end
     end

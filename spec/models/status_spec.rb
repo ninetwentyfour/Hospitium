@@ -19,7 +19,7 @@ describe Status do
   end
   
   describe 'protected attributes' do
-    let(:status) { Factory(:status) }
+    let(:status) { FactoryGirl.create(:status) }
     
     it 'should deny mass-assignment to the organization_id' do
       status.update_attributes(:organization_id =>  10000)

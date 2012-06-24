@@ -35,7 +35,7 @@
 					<tr>
 						<td><%= post.author %></td>
 						<td><%= post.title %></td>
-						<td><%= raw(truncate(post.content, :length => 140)) %> </td>
+						<td><%= markdown(truncate(post.content, :length => 140)) %> </td>
 						<td>
 							<div class="btn-group">
 								<a class="btn tooltip-class" href="/admin/posts/<%= post.id %>" rel="tooltip" title="View Contact"><i class="icon-eye-open"></i></a>

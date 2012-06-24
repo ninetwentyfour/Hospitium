@@ -67,12 +67,12 @@ class Admin::AdoptionContactsController < Admin::ApplicationController
       if @adoption_contact.update_attributes(params[:adoption_contact])
         format.html { 
           flash[:notice] = 'Adoption contact was successfully updated.'
-          redirect_to(:action => "show", :id => @adoption_contact.id)
+          redirect_to(:action => "show", :id => @adoption_contact.id, :only_path => true)
         }
         format.json { respond_with_bip(@adoption_contact) }
       else
         flash[:notice] = 'There was a problem updating the animal.'
-        redirect_to(:action => "show", :id => @adoption_contact.id)
+        redirect_to(:action => "show", :id => @adoption_contact.id, :only_path => true)
         format.json { respond_with_bip(@adoption_contact) }
       end
     end
