@@ -1,14 +1,14 @@
 class Admin::NotificationsController < Admin::ApplicationController
   load_and_authorize_resource
+  
+  respond_to :html, :xml, :json
+  
   # GET /notifications
   # GET /notifications.xml
   def index
     @notifications = Notification.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @notifications }
-    end
+    respond_with(@notifications)
   end
 
   # GET /notifications/1
@@ -16,10 +16,7 @@ class Admin::NotificationsController < Admin::ApplicationController
   def show
     @notification = Notification.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @notification }
-    end
+    respond_with(@notification)
   end
 
   # GET /notifications/new
@@ -27,10 +24,7 @@ class Admin::NotificationsController < Admin::ApplicationController
   def new
     @notification = Notification.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @notification }
-    end
+    respond_with(@notification)
   end
 
   # GET /notifications/1/edit
@@ -42,32 +36,22 @@ class Admin::NotificationsController < Admin::ApplicationController
   # POST /notifications.xml
   def create
     @notification = Notification.new(params[:notification])
-
-    respond_to do |format|
-      if @notification.save
-        format.html { redirect_to(@notification, :notice => 'Notification was successfully created.') }
-        format.xml  { render :xml => @notification, :status => :created, :location => @notification }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @notification.errors, :status => :unprocessable_entity }
-      end
+    if @notification.save
+      flash[:notice] = 'Notification was successfully created.'
+    else
+      flash[:error] = 'Notification was not successfully created.'
     end
+    
+    respond_with(@notification, :location => admin_notification_path(@notification))
   end
 
   # PUT /notifications/1
   # PUT /notifications/1.xml
   def update
     @notification = Notification.find(params[:id])
-
-    respond_to do |format|
-      if @notification.update_attributes(params[:notification])
-        format.html { redirect_to(@notification, :notice => 'Notification was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @notification.errors, :status => :unprocessable_entity }
-      end
-    end
+    @notification.update_attributes(params[:notification])
+    
+    respond_with(@notification, :location => admin_notification_path(@notification)) 
   end
 
   # DELETE /notifications/1
@@ -75,10 +59,8 @@ class Admin::NotificationsController < Admin::ApplicationController
   def destroy
     @notification = Notification.find(params[:id])
     @notification.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(notifications_url) }
-      format.xml  { head :ok }
-    end
+    flash[:notice] = 'Successfully destroyed notification.'
+    
+    respond_with(@notification, :location => admin_notifications_path)
   end
 end
