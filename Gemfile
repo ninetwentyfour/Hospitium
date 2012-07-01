@@ -23,8 +23,8 @@ gem 'libxml-xmlrpc'
 gem 'bitly'
 gem 'site_meta'
 gem 'meta_search'
-gem 'airbrake'
-gem 'spork', '~> 1.0rc'
+#gem 'airbrake'
+#gem 'spork', '~> 1.0rc'
 gem 'client_side_validations'
 gem 'jqplot-rails', :git => "git://github.com/ninetwentyfour/jqplot-rails.git"
 gem 'asset_sync'
@@ -56,6 +56,7 @@ group :development do
 end
 
 group :production do
+	gem 'airbrake'
 	gem 'home_run', :require=>'date'
 	#gem 'slim_scrooge', :git => "git://github.com/sdsykes/slim_scrooge.git"
 	gem 'dalli'
