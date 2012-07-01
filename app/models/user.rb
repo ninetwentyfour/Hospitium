@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include CommonScopes
+  
   has_paper_trail
   has_many :permissions
   has_many :twitter_accounts

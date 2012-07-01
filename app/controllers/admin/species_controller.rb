@@ -1,15 +1,15 @@
 class Admin::SpeciesController < Admin::ApplicationController
   load_and_authorize_resource
   
+  respond_to :html, :xml, :json
+  
   # GET /species
   # GET /species.xml
   def index
-    @search = Species.search(params[:search])
-    @species = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC")
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @species }
-    end
+    @search = Species.organization(current_user).search(params[:search])
+    @species = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
+    
+    respond_with(@species)
   end
 
   # GET /species/1
@@ -17,10 +17,8 @@ class Admin::SpeciesController < Admin::ApplicationController
   def show
     @species = Species.find(params[:id])
     @animals = Animal.where(:species_id => @species.id)
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @species }
-    end
+    
+    respond_with(@species)
   end
 
   # GET /species/new
@@ -28,10 +26,7 @@ class Admin::SpeciesController < Admin::ApplicationController
   def new
     @species = Species.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @species }
-    end
+    respond_with(@species)
   end
 
   # GET /species/1/edit
@@ -42,37 +37,23 @@ class Admin::SpeciesController < Admin::ApplicationController
   # POST /species
   # POST /species.xml
   def create
-    @species = Species.new(params[:species])
-    @species.organization_id = current_user.organization_id
-    respond_to do |format|
-      if @species.save
-        format.html { 
-          redirect_to(:back, :notice => 'Species was successfully created.')
-          }
-        format.xml  { render :xml => @species, :status => :created, :location => @species }
-        format.js
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @species.errors, :status => :unprocessable_entity }
-        format.js
-      end
+    @species = current_user.organization.species.new(params[:species])
+    if @species.save
+      flash[:notice] = 'Species was successfully created.'
+    else
+      flash[:error] = 'Species was not successfully created.'
     end
+    
+    redirect_to :back
   end
 
   # PUT /species/1
   # PUT /species/1.xml
   def update
     @species = Species.find(params[:id])
-
-    respond_to do |format|
-      if @species.update_attributes(params[:species])
-        format.html { redirect_to(@species, :notice => 'Species was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @species.errors, :status => :unprocessable_entity }
-      end
-    end
+    @species.update_attributes(params[:species])
+    
+    respond_with(@species, :location => admin_species_path(@species))
   end
 
   # DELETE /species/1
@@ -80,10 +61,8 @@ class Admin::SpeciesController < Admin::ApplicationController
   def destroy
     @species = Species.find(params[:id])
     @species.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(species_index_url) }
-      format.xml  { head :ok }
-    end
+    flash[:notice] = 'Successfully destroyed species.'
+    
+    redirect_to :back
   end
 end

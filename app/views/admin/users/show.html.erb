@@ -4,7 +4,7 @@
 				<div class="row-fluid">
 					<div class="span6">
 						<% if can? :update, @user %>
-							<h1><%= best_in_place @user, :username, :type => :input, :nil => "Click me to add content!" %></h1>
+							<h1><%= best_in_place @user, :username, :type => :input, :nil => "Click me to add content!", :path => admin_user_path %></h1>
 						<% else %>
 							<h1><%= @user.username %></h1>
 						<% end %>
@@ -23,7 +23,7 @@
 						<div class="tab-pane active" id="1">
 							<div class="">
 								<% if can? :update, @user %>
-									<p><strong>Email:</strong> <%= best_in_place @user, :email, :type => :input, :nil => "Click me to add content!" %></p>
+									<p><strong>Email:</strong> <%= best_in_place @user, :email, :type => :input, :nil => "Click me to add content!", :path => admin_user_path %></p>
 								<% else %>
 									<p><strong>Email:</strong> <%= @user.email %></p>
 								<% end %>
