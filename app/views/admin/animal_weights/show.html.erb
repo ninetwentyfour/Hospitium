@@ -3,7 +3,7 @@
 		<div class="well">
 			<div class="row-fluid">
 				<div class="span6">
-					<h1><%= best_in_place @animal_weight, :weight, :type => :input, :nil => "Click me to add content!" %></h1>
+					<h1><%= best_in_place @animal_weight, :weight, :type => :input, :nil => "Click me to add content!", :path => admin_animal_weight_path %></h1>
 				</div>
 			</div>
 		</div>
@@ -20,8 +20,8 @@
 							<%else%>
 								<%@animal_name = "Click me to add content!" %>
 							<%end%>
-							<p><strong>Date of Weight:</strong> <%= best_in_place @animal_weight, :date_of_weight, :type => :date, :display_as => :formatted_weight_date %></p>
-							<p><strong>Animal:</strong> <%= best_in_place @animal_weight, :animal_id, :type => :select, collection: @animals, :nil => @animal_name %></p>
+							<p><strong>Date of Weight:</strong> <%= best_in_place @animal_weight, :date_of_weight, :type => :date, :display_as => :formatted_weight_date, :path => admin_animal_weight_path %></p>
+							<p><strong>Animal:</strong> <%= best_in_place @animal_weight, :animal_id, :type => :select, collection: @animals, :nil => @animal_name, :path => admin_animal_weight_path %></p>
 						</div>
 					</div>
 				</div>

@@ -1,15 +1,20 @@
 class Admin::AnimalWeightsController < Admin::ApplicationController
   load_and_authorize_resource
+  
+  respond_to :html, :xml, :json, :xls
+  
   # GET /animal_weights
   # GET /animal_weights.xml
   def index
-    @search = AnimalWeight.search(params[:search])
-    @animal_weights = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC")
+    @search = AnimalWeight.includes(:animal).organization(current_user).search(params[:search])
+    @animal_weights = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
     @animals = Animal.organization(current_user).order("name")
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @animal_weights }
-      format.xls { send_data AnimalWeight.organization(current_user).to_xls, content_type: 'application/vnd.ms-excel', filename: 'animal_weight.xls' }
+    respond_with(@animal_weights) do |format|
+      format.html
+      format.xls { send_data AnimalWeight.organization(current_user).to_xls, 
+                             content_type: 'application/vnd.ms-excel', 
+                             filename: 'adoption_contacts.xls' 
+                 }
     end
   end
 
@@ -18,10 +23,8 @@ class Admin::AnimalWeightsController < Admin::ApplicationController
   def show
     @animal_weight = AnimalWeight.find(params[:id])
     @animals = Animal.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.name.to_s]}
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @animal_weight }
-    end
+    
+    respond_with(@animal_weight, @animals)
   end
 
   # GET /animal_weights/new
@@ -29,11 +32,7 @@ class Admin::AnimalWeightsController < Admin::ApplicationController
   def new
     @animal_weight = AnimalWeight.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @animal_weight }
-      format.js
-    end
+    respond_with(@animal_weight)
   end
 
   # GET /animal_weights/1/edit
@@ -44,36 +43,23 @@ class Admin::AnimalWeightsController < Admin::ApplicationController
   # POST /animal_weights
   # POST /animal_weights.xml
   def create
-    @animal_weight = AnimalWeight.new(params[:animal_weight])
-    @animal_weight.organization_id = current_user.organization_id
-    respond_to do |format|
-      if @animal_weight.save
-        format.html { 
-          redirect_to(:back, :notice => 'Animal Weight was successfully created.')
-          }
-        format.xml  { render :xml => @animal_weight, :status => :created, :location => @animal_weight }
-        format.js
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @animal_weight.errors, :status => :unprocessable_entity }
-      end
+    @animal_weight = current_user.organization.animal_weights.new(params[:animal_weight])
+    if @animal_weight.save
+      flash[:notice] = 'Animal Weight was successfully created.'
+    else
+      flash[:error] = 'Animal Weight was not successfully created.'
     end
+    
+    redirect_to :back
   end
 
   # PUT /animal_weights/1
   # PUT /animal_weights/1.xml
   def update
     @animal_weight = AnimalWeight.find(params[:id])
-
-    respond_to do |format|
-      if @animal_weight.update_attributes(params[:animal_weight])
-        format.html { redirect_to(@animal_weight, :notice => 'Animal weight was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @animal_weight.errors, :status => :unprocessable_entity }
-      end
-    end
+    @animal_weight.update_attributes(params[:animal_weight])
+    
+    respond_with(@animal_weight, :location => admin_animal_weight_path(@animal_weight)) 
   end
 
   # DELETE /animal_weights/1
@@ -81,10 +67,8 @@ class Admin::AnimalWeightsController < Admin::ApplicationController
   def destroy
     @animal_weight = AnimalWeight.find(params[:id])
     @animal_weight.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(animal_weights_url) }
-      format.xml  { head :ok }
-    end
+    flash[:notice] = 'Successfully destroyed animal weight.'
+    
+    respond_with(@animal_weight, :location => admin_animal_weights_path)
   end
 end
