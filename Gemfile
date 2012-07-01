@@ -5,40 +5,17 @@ gem 'rails', '3.2.6'
 # Gems used in all environments
 gem 'mysql2'
 gem 'devise' # Devise must be required before RailsAdmin
-#gem 'nokogiri'
-#gem 'mechanize'
 gem 'uuidtools'
 gem 'cancan'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
-# gem 'aws-sdk', '~> 1.3.4'
 gem 'will_paginate'
 gem 'paper_trail'
-# gem 'oauth'
-# gem 'twitter'
-# gem 'rest-client'
-# gem 'json'
-# gem 'libxml-xmlrpc'
-# gem 'bitly'
 gem 'site_meta'
 gem 'meta_search'
-#gem 'airbrake'
-#gem 'spork', '~> 1.0rc'
 gem 'client_side_validations'
 gem 'jqplot-rails', :git => "git://github.com/ninetwentyfour/jqplot-rails.git"
-#gem 'asset_sync'
 gem 'gravatar_image_tag'
 gem 'best_in_place'
-# gem 'juggernaut'
-# gem 'jquery-rails'
-# gem 'less-rails-bootstrap'
-# gem "spreadsheet", "0.6.5.8"
-# gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls-on-models"
-#gem 'sanitize'
-#gem 'redcarpet'
-#gem 'rqrcode-rails3'
-#gem 'octokit'
-#gem 'therubyracer'
-
 
 # Gems used only for assets and not required
 # in production environments by default.
