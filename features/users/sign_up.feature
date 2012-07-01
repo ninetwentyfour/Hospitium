@@ -6,9 +6,9 @@ Feature: Sign up
 	Background:
 		Given I am not logged in
 
-	# Scenario: User signs up with valid data
-	# 	When I sign up with valid user data
-	# 	Then I should see a successful sign up message
+	Scenario: User signs up with valid data
+		When I sign up with valid user data
+		Then I should see a successful sign up message
     
 	Scenario: User signs up with invalid email
 		When I sign up with an invalid email
