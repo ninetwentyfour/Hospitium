@@ -7,7 +7,7 @@
 		<div class="row-fluid">
 			<div class="span12 main-app-row">
 				<div class="span4">
-					<p>Status: <%= @animal.status %></p>
+					<p>Status: <%= @animal.status.status %></p>
 					<p>Species: <%= @animal.species_name %></p>
 					<p>Sex: <%= @animal.sex unless @animal.animal_sex.blank? %></p>
 					<p>Age: <%= calculate_animal_age(@animal.birthday) unless @animal.birthday.blank? %></p>

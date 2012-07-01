@@ -25,11 +25,8 @@ class Admin::AnimalColorsController < Admin::ApplicationController
   # GET /animal_colors/new.xml
   def new
     @animal_color = AnimalColor.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @animal_color }
-    end
+    
+    respond_with(@animal_color)
   end
 
   # GET /animal_colors/1/edit
@@ -53,16 +50,14 @@ class Admin::AnimalColorsController < Admin::ApplicationController
   # PUT /animal_colors/1.xml
   def update
     @animal_color = AnimalColor.find(params[:id])
-
-    respond_to do |format|
-      if @animal_color.update_attributes(params[:animal_color])
-        format.html { redirect_to(@animal_color, :notice => 'Animal color was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @animal_color.errors, :status => :unprocessable_entity }
-      end
+    
+    if @animal_color.update_attributes(params[:animal_color])
+      flash[:notice] = 'Animal color was successfully updated.'
+    else
+      flash[:error] = 'Animal color was not successfully updated.'
     end
+    respond_with(@animal_color, :location => admin_animal_color_path(@animal_color))
+    
   end
 
   # DELETE /animal_colors/1
@@ -70,10 +65,7 @@ class Admin::AnimalColorsController < Admin::ApplicationController
   def destroy
     @animal_color = AnimalColor.find(params[:id])
     @animal_color.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(animal_colors_url) }
-      format.xml  { head :ok }
-    end
+    flash[:notice] = 'Successfully destroyed animal color.'
+    respond_with(@animal_color, :location => admin_animal_colors_path)
   end
 end
