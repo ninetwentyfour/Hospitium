@@ -3,8 +3,8 @@
 		<div class="well">
 			<div class="row-fluid">
 				<div class="span6">
-					<h1><%= best_in_place @animal, :name, :type => :input, :nil => "Click me to add content!" %></h1>
-					<span class="public_animal_check"><%= best_in_place @animal, :public, :type => :select, :collection => [[0, "Not public"], [1, "Public"]] %></span>
+					<h1><%= best_in_place @animal, :name, :type => :input, :nil => "Click me to add content!", :path => admin_animal_path %></h1>
+					<span class="public_animal_check"><%= best_in_place @animal, :public, :type => :select, :collection => [[0, "Not public"], [1, "Public"]], :path => admin_animal_path %></span>
 				</div>
 				<div class="span6 pull-right share-animal-buttons">
 					<%= form_tag("/wordpress_accounts/send_blog_post", :method => "post", :class => "form-inline float-form") do %>
@@ -41,34 +41,34 @@
 				<div class="tab-content">
 					<div class="tab-pane active" id="1">
 						<div class="">
-							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newStatus" >Status</a>:</strong> <%= best_in_place @animal, :status_id, :type => :select, collection: @statuses, :nil => @animal.status %>
+							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newStatus" >Status</a>:</strong> <%= best_in_place @animal, :status_id, :type => :select, collection: @statuses, :nil => @animal.status.status, :path => admin_animal_path %>
 							</p>
-							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class model-class" data-toggle="modal" href="#newSpecies" >Species</a>:</strong> <%= best_in_place @animal, :species_id, :type => :select, collection: @species, :nil => @animal.species_name %></p>
-							<p><strong>Sex:</strong> <%= best_in_place @animal, :animal_sex_id, :type => :select, collection: [["1", "Male"], ["2", "Female"], ["3", "Unknown"]], :nil => @animal.sex unless @animal.animal_sex.blank? %></p>
-							<p><strong>Age:</strong> <%= best_in_place @animal, :birthday, :type => :date, :display_as => :calculate_animal_age, :nil => "Click me to add content!" %></p>
-							<p><strong>Spay/Neuter:</strong> <%= best_in_place @animal, :spay_neuter_id, :type => :select, collection: [["1", "No"], ["2", "Yes"], ["3", "Unknown"]], :nil => @animal.spay unless @animal.spay_neuter.blank? %></p>
-							<p><strong>Biter:</strong> <%= best_in_place @animal, :biter_id, :type => :select, collection: [["1", "No"], ["2", "Yes"], ["3", "Unknown"]], :nil => @animal.biter_value unless @animal.biter.blank? %></p>
-							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newColor" >Color</a>:</strong> <%= best_in_place @animal, :animal_color_id, :type => :select, collection: @colors, :nil => @animal.color %></p>
-							<p><strong>Special Needs:</strong> <%= best_in_place @animal, :special_needs, type: :textarea, :nil => "Click me to add content!" %></p>
+							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class model-class" data-toggle="modal" href="#newSpecies" >Species</a>:</strong> <%= best_in_place @animal, :species_id, :type => :select, collection: @species, :nil => @animal.species_name, :path => admin_animal_path %></p>
+							<p><strong>Sex:</strong> <%= best_in_place @animal, :animal_sex_id, :type => :select, collection: [["1", "Male"], ["2", "Female"], ["3", "Unknown"]], :path => admin_animal_path, :nil => @animal.sex unless @animal.animal_sex.blank? %></p>
+							<p><strong>Age:</strong> <%= best_in_place @animal, :birthday, :type => :date, :display_as => :calculate_animal_age, :nil => "Click me to add content!", :path => admin_animal_path %></p>
+							<p><strong>Spay/Neuter:</strong> <%= best_in_place @animal, :spay_neuter_id, :type => :select, collection: [["1", "No"], ["2", "Yes"], ["3", "Unknown"]], :path => admin_animal_path, :nil => @animal.spay unless @animal.spay_neuter.blank? %></p>
+							<p><strong>Biter:</strong> <%= best_in_place @animal, :biter_id, :type => :select, collection: [["1", "No"], ["2", "Yes"], ["3", "Unknown"]], :path => admin_animal_path, :nil => @animal.biter_value unless @animal.biter.blank? %></p>
+							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newColor" >Color</a>:</strong> <%= best_in_place @animal, :animal_color_id, :type => :select, collection: @colors, :nil => @animal.color, :path => admin_animal_path %></p>
+							<p><strong>Special Needs:</strong> <%= best_in_place @animal, :special_needs, type: :textarea, :nil => "Click me to add content!", :path => admin_animal_path %></p>
 						</div>
 					</div>
 					<div class="tab-pane" id="2">
-						<p><strong>Microchip:</strong> <%= best_in_place @animal, :microchip, :type => :input, :nil => "Click me to add content!" %></p>
+						<p><strong>Microchip:</strong> <%= best_in_place @animal, :microchip, :type => :input, :nil => "Click me to add content!", :path => admin_animal_path %></p>
 						<%unless @animal.shelter.blank?%>
 							<%@sheltername = @animal.shelter_name %>
 						<%else%>
 							<%@sheltername = "Click me to add content!" %>
 						<%end%>
-						<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newShelter" >Shelter</a>:</strong> <%= best_in_place @animal, :shelter_id, :type => :select, collection: @shelters, :nil => @sheltername %></p>
-						<p><strong>Diet:</strong> <%= best_in_place @animal, :diet, :type => :textarea, :nil => "Click me to add content!" %></p>
-						<p><strong>Deceased:</strong> <%= best_in_place @animal, :deceased, :type => :date, :display_as => :formatted_deceased_date, :nil => "Click me to add content!" %></p>
-						<p><strong>Deceased Reason</strong>: <%= best_in_place @animal, :deceased_reason, :type => :textarea, :nil => "Click me to add content!" %></p>
+						<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newShelter" >Shelter</a>:</strong> <%= best_in_place @animal, :shelter_id, :type => :select, collection: @shelters, :nil => @sheltername, :path => admin_animal_path %></p>
+						<p><strong>Diet:</strong> <%= best_in_place @animal, :diet, :type => :textarea, :nil => "Click me to add content!", :path => admin_animal_path %></p>
+						<p><strong>Deceased:</strong> <%= best_in_place @animal, :deceased, :type => :date, :display_as => :formatted_deceased_date, :nil => "Click me to add content!", :path => admin_animal_path %></p>
+						<p><strong>Deceased Reason</strong>: <%= best_in_place @animal, :deceased_reason, :type => :textarea, :nil => "Click me to add content!", :path => admin_animal_path %></p>
 					</div>
 					<div class="tab-pane" id="3">
-						<p><strong>Previous Name:</strong> <%= best_in_place @animal, :previous_name, :type => :input, :nil => "Click me to add content!" %></p>
-						<p><strong>Date of Intake:</strong> <%= best_in_place @animal, :date_of_intake, :type => :date, :display_as => :formatted_intake_date %></p>
-						<p><strong>Date of Well Check:</strong> <%= best_in_place @animal, :date_of_well_check, :nil => "Click me to add content!", :type => :date, :display_as => :formatted_well_date %></p>
-						<p><strong>Adopted Date:</strong> <%= best_in_place @animal, :adopted_date, :nil => "Click me to add content!", :type => :date, :display_as => :formatted_adopted_date %></p>
+						<p><strong>Previous Name:</strong> <%= best_in_place @animal, :previous_name, :type => :input, :nil => "Click me to add content!", :path => admin_animal_path %></p>
+						<p><strong>Date of Intake:</strong> <%= best_in_place @animal, :date_of_intake, :type => :date, :display_as => :formatted_intake_date, :path => admin_animal_path %></p>
+						<p><strong>Date of Well Check:</strong> <%= best_in_place @animal, :date_of_well_check, :nil => "Click me to add content!", :type => :date, :display_as => :formatted_well_date, :path => admin_animal_path %></p>
+						<p><strong>Adopted Date:</strong> <%= best_in_place @animal, :adopted_date, :nil => "Click me to add content!", :type => :date, :display_as => :formatted_adopted_date, :path => admin_animal_path %></p>
 					</div>
 					<div class="tab-pane" id="4">
 						<div class="">

@@ -18,7 +18,7 @@ class Admin::AnimalColorsController < Admin::ApplicationController
     @animal_color = AnimalColor.find(params[:id])
     @animals = Animal.where(:animal_color_id => @animal_color.id)
     
-    respond_with(@animal_color, @animals)
+    respond_with(@animal_color)
   end
 
   # GET /animal_colors/new

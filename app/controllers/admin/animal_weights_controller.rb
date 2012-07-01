@@ -24,7 +24,7 @@ class Admin::AnimalWeightsController < Admin::ApplicationController
     @animal_weight = AnimalWeight.find(params[:id])
     @animals = Animal.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.name.to_s]}
     
-    respond_with(@animal_weight, @animals)
+    respond_with(@animal_weight)
   end
 
   # GET /animal_weights/new

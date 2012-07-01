@@ -24,7 +24,7 @@ class Admin::AdoptionContactsController < Admin::ApplicationController
     @animals = AdoptionContact.find(params[:id]).animals
     @adoptable_animals = Animal.organization(current_user)
     
-    respond_with(@adoption_contact, @animals, @adoptable_animals)
+    respond_with(@adoption_contact)
   end
 
   # GET /adoption_contacts/new
