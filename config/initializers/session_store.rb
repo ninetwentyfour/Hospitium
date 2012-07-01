@@ -14,7 +14,6 @@ if Rails.env == "production"
   AnimalTracker::Application.config.session_store :dalli_store, :namespace => 'sessions', :key => '_foundation_session', :expire_after => 90.minutes
 else
   #AnimalTracker::Application.config.session_store :active_record_store
-  # require 'action_dispatch/middleware/session/dalli_store'
-  # AnimalTracker::Application.config.session_store :dalli_store, :namespace => 'sessions', :key => '_foundation_session', :expire_after => 90.minutes
-  AnimalTracker::Application.config.session_store :cookie_store, :key => '_animal_tracker_session'
+  require 'action_dispatch/middleware/session/dalli_store'
+  AnimalTracker::Application.config.session_store :dalli_store, :namespace => 'sessions', :key => '_foundation_session', :expire_after => 90.minutes
 end

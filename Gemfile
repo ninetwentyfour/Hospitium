@@ -4,6 +4,8 @@ gem 'rails', '3.2.6'
 
 # Gems used in all environments
 gem 'mysql2'
+gem 'dalli'
+gem 'aws-sdk', '~> 1.3.4'
 gem 'devise' # Devise must be required before RailsAdmin
 gem 'uuidtools'
 gem 'cancan'
@@ -12,6 +14,7 @@ gem 'will_paginate'
 gem 'paper_trail'
 gem 'site_meta'
 gem 'meta_search'
+gem 'juggernaut'
 gem 'client_side_validations'
 gem 'jqplot-rails', :git => "git://github.com/ninetwentyfour/jqplot-rails.git"
 gem 'gravatar_image_tag'
@@ -36,7 +39,6 @@ group :production do
 	gem 'airbrake'
 	gem 'home_run', :require=>'date'
 	#gem 'slim_scrooge', :git => "git://github.com/sdsykes/slim_scrooge.git"
-	gem 'dalli'
 	gem 'thin'
 	gem 'pg'
 	gem 'newrelic_rpm'
@@ -47,14 +49,12 @@ end
 group :production, :development do
 	gem 'nokogiri'
 	gem 'mechanize'
-	gem 'aws-sdk', '~> 1.3.4'
 	gem 'oauth'
 	gem 'twitter'
 	gem 'rest-client'
 	gem 'json'
 	gem 'libxml-xmlrpc'
 	gem 'bitly'
-	gem 'juggernaut'
 	gem 'jquery-rails'
 	gem 'less-rails-bootstrap'
 	gem "spreadsheet", "0.6.5.8"
