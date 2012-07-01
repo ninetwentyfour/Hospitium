@@ -3,7 +3,8 @@
 		<div class="well">
 			<div class="row-fluid">
 				<div class="span6">
-					<h1><%= best_in_place @adoption_contact, :first_name, :type => :input, :nil => "Click me to add content!" %> <%= best_in_place @adoption_contact, :last_name, :type => :input, :nil => "" %></h1>
+					<h1><%= best_in_place @adoption_contact, :first_name, :type => :input, :nil => "Click me to add content!", :path => admin_adoption_contact_path %> 
+					<%= best_in_place @adoption_contact, :last_name, :type => :input, :nil => "", :path => admin_adoption_contact_path %></h1>
 				</div>
 			</div>
 		</div>
@@ -16,9 +17,9 @@
 				<div class="tab-content">
 					<div class="tab-pane active" id="1">
 						<div class="">
-							<p><strong>Phone #:</strong> <%= best_in_place @adoption_contact, :phone, :nil => "Click me to add content!", :display_as => :formatted_phone %></p>
-							<p><strong>Email:</strong> <%= best_in_place @adoption_contact, :email, :nil => "Click me to add content!" %></p>
-							<p><strong>Address:</strong> <%= best_in_place @adoption_contact, :address, :nil => "Click me to add content!" %></p>
+							<p><strong>Phone #:</strong> <%= best_in_place @adoption_contact, :phone, :nil => "Click me to add content!", :display_as => :formatted_phone, :path => admin_adoption_contact_path %></p>
+							<p><strong>Email:</strong> <%= best_in_place @adoption_contact, :email, :nil => "Click me to add content!", :path => admin_adoption_contact_path %></p>
+							<p><strong>Address:</strong> <%= best_in_place @adoption_contact, :address, :nil => "Click me to add content!", :path => admin_adoption_contact_path %></p>
 						</div>
 					</div>
 					<div class="tab-pane" id="2">

@@ -6,8 +6,8 @@ class Admin::AnimalColorsController < Admin::ApplicationController
   # GET /animal_colors
   # GET /animal_colors.xml
   def index
-    @search = AnimalColor.search(params[:search])
-    @animal_colors = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC")
+    @search = AnimalColor.organization(current_user).search(params[:search])
+    @animal_colors = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
     
     respond_with(@animal_colors)
   end
@@ -43,6 +43,7 @@ class Admin::AnimalColorsController < Admin::ApplicationController
     else
       flash[:error] = 'Animal Color was not successfully created.'
     end
+    
     respond_with(@animal_color, :location => admin_animal_color_path(@animal_color))
   end
 
@@ -50,14 +51,9 @@ class Admin::AnimalColorsController < Admin::ApplicationController
   # PUT /animal_colors/1.xml
   def update
     @animal_color = AnimalColor.find(params[:id])
+    @animal_color.update_attributes(params[:animal_color])
     
-    if @animal_color.update_attributes(params[:animal_color])
-      flash[:notice] = 'Animal color was successfully updated.'
-    else
-      flash[:error] = 'Animal color was not successfully updated.'
-    end
-    respond_with(@animal_color, :location => admin_animal_color_path(@animal_color))
-    
+    respond_with(@animal_color, :location => admin_animal_color_path(@animal_color))    
   end
 
   # DELETE /animal_colors/1
@@ -66,6 +62,7 @@ class Admin::AnimalColorsController < Admin::ApplicationController
     @animal_color = AnimalColor.find(params[:id])
     @animal_color.destroy
     flash[:notice] = 'Successfully destroyed animal color.'
+    
     respond_with(@animal_color, :location => admin_animal_colors_path)
   end
 end
