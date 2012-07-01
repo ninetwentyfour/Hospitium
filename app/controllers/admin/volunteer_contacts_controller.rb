@@ -1,14 +1,16 @@
 class Admin::VolunteerContactsController < Admin::ApplicationController
   load_and_authorize_resource
+  
+  respond_to :html, :xml, :json, :xls
+  
   # GET /volunteer_contacts
   # GET /volunteer_contacts.xml
   def index
-    @search = VolunteerContact.search(params[:search])
-    @volunteer_contacts = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC")
+    @search = VolunteerContact.organization(current_user).search(params[:search])
+    @volunteer_contacts = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
 
-    respond_to do |format|
+    respond_with(@volunteer_contacts) do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @volunteer_contacts }
       format.xls { send_data VolunteerContact.organization(current_user).to_xls, content_type: 'application/vnd.ms-excel', filename: 'volunteer_contacts.xls' }
     end
   end
@@ -18,10 +20,7 @@ class Admin::VolunteerContactsController < Admin::ApplicationController
   def show
     @volunteer_contact = VolunteerContact.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @volunteer_contact }
-    end
+    respond_with(@volunteer_contact)
   end
 
   # GET /volunteer_contacts/new
@@ -29,10 +28,7 @@ class Admin::VolunteerContactsController < Admin::ApplicationController
   def new
     @volunteer_contact = VolunteerContact.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @volunteer_contact }
-    end
+    respond_with(@volunteer_contact)
   end
 
   # GET /volunteer_contacts/1/edit
@@ -43,33 +39,23 @@ class Admin::VolunteerContactsController < Admin::ApplicationController
   # POST /volunteer_contacts
   # POST /volunteer_contacts.xml
   def create
-    @volunteer_contact = VolunteerContact.new(params[:volunteer_contact])
-    @volunteer_contact.organization_id = current_user.organization_id
-    respond_to do |format|
-      if @volunteer_contact.save
-        format.html { redirect_to(@volunteer_contact, :notice => 'Volunteer contact was successfully created.') }
-        format.xml  { render :xml => @volunteer_contact, :status => :created, :location => @volunteer_contact }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @volunteer_contact.errors, :status => :unprocessable_entity }
-      end
+    @volunteer_contact = current_user.organization.volunteer_contacts.new(params[:volunteer_contact])
+    if @volunteer_contact.save
+      flash[:notice] = 'Volunteer contact was successfully created.'
+    else
+      flash[:error] = 'Volunteer contact was not successfully created.'
     end
+    
+    respond_with(@volunteer_contact, :location => admin_volunteer_contact_path(@volunteer_contact))
   end
 
   # PUT /volunteer_contacts/1
   # PUT /volunteer_contacts/1.xml
   def update
     @volunteer_contact = VolunteerContact.find(params[:id])
-
-    respond_to do |format|
-      if @volunteer_contact.update_attributes(params[:volunteer_contact])
-        format.html { redirect_to(@volunteer_contact, :notice => 'Volunteer contact was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @volunteer_contact.errors, :status => :unprocessable_entity }
-      end
-    end
+    @volunteer_contact.update_attributes(params[:volunteer_contact])
+    
+    respond_with(@volunteer_contact, :location => admin_volunteer_contact_path(@volunteer_contact))
   end
 
   # DELETE /volunteer_contacts/1
@@ -77,10 +63,8 @@ class Admin::VolunteerContactsController < Admin::ApplicationController
   def destroy
     @volunteer_contact = VolunteerContact.find(params[:id])
     @volunteer_contact.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(volunteer_contacts_url) }
-      format.xml  { head :ok }
-    end
+    flash[:notice] = 'Successfully destroyed volunteer contact.'
+    
+    respond_with(@volunteer_contact, :location => admin_volunteer_contacts_path)
   end
 end
