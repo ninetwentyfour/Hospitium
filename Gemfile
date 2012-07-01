@@ -5,8 +5,8 @@ gem 'rails', '3.2.6'
 # Gems used in all environments
 gem 'mysql2'
 gem 'devise' # Devise must be required before RailsAdmin
-gem 'nokogiri'
-gem 'mechanize'
+#gem 'nokogiri'
+#gem 'mechanize'
 gem 'uuidtools'
 gem 'cancan'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
@@ -68,6 +68,8 @@ end
 
 # Gems used for production and development
 group :production, :development do
+	gem 'nokogiri'
+	gem 'mechanize'
 	gem 'aws-sdk', '~> 1.3.4'
 	gem 'oauth'
 	gem 'twitter'
