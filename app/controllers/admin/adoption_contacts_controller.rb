@@ -10,7 +10,10 @@ class Admin::AdoptionContactsController < Admin::ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @adoption_contacts }
-      format.xls { send_data AdoptionContact.find(:all, :conditions => {:organization_id => current_user.organization_id}).to_xls, content_type: 'application/vnd.ms-excel', filename: 'adoption_contacts.xls' }
+      format.xls { send_data AdoptionContact.organization(current_user).to_xls, 
+                             content_type: 'application/vnd.ms-excel', 
+                             filename: 'adoption_contacts.xls' 
+                 }
     end
   end
 
@@ -19,7 +22,7 @@ class Admin::AdoptionContactsController < Admin::ApplicationController
   def show
     @adoption_contact = AdoptionContact.find(params[:id])
     @animals = AdoptionContact.find(params[:id]).animals
-    @adoptable_animals = Animal.find(:all, :conditions => {:organization_id => current_user.organization_id})
+    @adoptable_animals = Animal.organization(current_user)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @adoption_contact }

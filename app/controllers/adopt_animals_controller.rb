@@ -75,7 +75,7 @@ class AdoptAnimalsController < ApplicationController
   # DELETE /biters/1
   # DELETE /biters/1.xml
   def destroy
-    @adopt_animal = AdoptAnimal.find(:first, :conditions => {:animal_id => params[:id], :adoption_contact_id => params[:adopt]})
+    @adopt_animal = AdoptAnimal.where(:animal_id => params[:id], :adoption_contact_id => params[:adopt])
     @adopt_animal.destroy
 
     respond_to do |format|

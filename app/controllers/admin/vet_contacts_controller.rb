@@ -9,7 +9,7 @@ class Admin::VetContactsController < Admin::ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @vet_contacts }
-      format.xls { send_data VetContact.find(:all, :conditions => {:organization_id => current_user.organization_id}).to_xls, content_type: 'application/vnd.ms-excel', filename: 'vet_contacts.xls' }
+      format.xls { send_data VetContact.organization(current_user).to_xls, content_type: 'application/vnd.ms-excel', filename: 'vet_contacts.xls' }
     end
   end
 

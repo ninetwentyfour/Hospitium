@@ -9,7 +9,7 @@ class Admin::RelinquishmentContactsController < Admin::ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @relinquishment_contacts }
-      format.xls { send_data RelinquishmentContact.find(:all, :conditions => {:organization_id => current_user.organization_id}).to_xls, content_type: 'application/vnd.ms-excel', filename: 'relinquishment_contacts.xls' }
+      format.xls { send_data RelinquishmentContact.organization(current_user).to_xls, content_type: 'application/vnd.ms-excel', filename: 'relinquishment_contacts.xls' }
     end
   end
 
@@ -18,7 +18,7 @@ class Admin::RelinquishmentContactsController < Admin::ApplicationController
   def show
     @relinquishment_contact = RelinquishmentContact.find(params[:id])
     @animals = RelinquishmentContact.find(params[:id]).animals
-    @relatable_animals = Animal.find(:all, :conditions => {:organization_id => current_user.organization_id})
+    @relatable_animals = Animal.organization(current_user)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @relinquishment_contact }

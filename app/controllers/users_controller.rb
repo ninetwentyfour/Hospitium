@@ -57,9 +57,9 @@ class UsersController < Devise::SessionsController
     end
   end
   
-  def sign_out
-    super
-  end
+  # def sign_out
+  #   super
+  # end
 
   # PUT /users/1
   # PUT /users/1.xml

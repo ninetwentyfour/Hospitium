@@ -22,7 +22,7 @@ class Admin::OrganizationsController < Admin::ApplicationController
     end
     require_dependency "Animal"
     @animals = Rails.cache.fetch("public_org_animals_#{params[:id]}", :expires_in => 15.minutes) do
-      Animal.find(:all, :conditions => {'public' => 1, :organization_id => @organization.id})
+      Animal.where(:public => 1, :organization_id => @organization.id)
     end
 
     respond_to do |format|

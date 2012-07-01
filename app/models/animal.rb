@@ -1,4 +1,5 @@
 class Animal < ActiveRecord::Base
+  include CommonScopes
   
   has_paper_trail
   

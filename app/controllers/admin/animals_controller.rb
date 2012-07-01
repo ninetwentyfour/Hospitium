@@ -4,13 +4,19 @@ class Admin::AnimalsController < Admin::ApplicationController
   # GET /animals.xml
   def index
     @search = Animal.search(params[:search])
-    @animals = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC", :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter], :select => 'animals.name, animals.microchip, animals.birthday, animals.uuid, animals.id, animals.status_id, animals.animal_color_id, animals.animal_sex_id, animals.spay_neuter_id, animals.updated_at, animals.image, animals.image_file_name, animals.image_updated_at')
+    @animals = @search.paginate(:page => params[:page], 
+                                :per_page => 10, 
+                                :conditions => {:organization_id => current_user.organization_id}, 
+                                :order => "updated_at DESC", 
+                                :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter], 
+                                :select => 'animals.name, animals.microchip, animals.birthday, animals.uuid, animals.id, animals.status_id, animals.animal_color_id, animals.animal_sex_id, animals.spay_neuter_id, animals.updated_at, animals.image, animals.image_file_name, animals.image_updated_at'
+                                )
     
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @animals }
       format.json  { render :json => @animals }
-      format.xls { send_data Animal.find(:all, :conditions => {:organization_id => current_user.organization_id}).to_xls, content_type: 'application/vnd.ms-excel', filename: 'animals.xls' }
+      format.xls { send_data Animal.organization(current_user).to_xls, content_type: 'application/vnd.ms-excel', filename: 'animals.xls' }
     end
   end
 
@@ -18,15 +24,15 @@ class Admin::AnimalsController < Admin::ApplicationController
   # GET /animals/1.xml
   def show
     #require_dependency "Animal"
-    @animal = Animal.find(params[:id], :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :shelter])
-    @statuses = Status.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.status.to_s]}
-    @species = Species.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.name.to_s]}
-    @colors = AnimalColor.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.color.to_s]}
-    @shelters = Shelter.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.name.to_s]}
-    @animal_weights = AnimalWeight.find(:all, :conditions => {:animal_id => @animal.id}, :order => "date_of_weight ASC").map do |record|
+    @animal = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :shelter).find(params[:id])  
+    @statuses = Status.organization(current_user).collect{|x| [x.id.to_s,x.status.to_s]}
+    @species = Species.organization(current_user).collect{|x| [x.id.to_s,x.name.to_s]}
+    @colors = AnimalColor.organization(current_user).collect{|x| [x.id.to_s,x.color.to_s]}
+    @shelters = Shelter.organization(current_user).collect{|x| [x.id.to_s,x.name.to_s]}
+    @animal_weights = AnimalWeight.where(:animal_id => @animal.id).order("date_of_weight ASC").map do |record|
           [ record.date_of_weight.strftime("%m/%d/%Y"), record.weight ]
     end
-    @notes = Note.find(:all, :conditions => {:animal_id => @animal.id}, :include => [:user])
+    @notes = Note.includes(:user).where(:animal_id => @animal.id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -38,12 +44,12 @@ class Admin::AnimalsController < Admin::ApplicationController
   # GET /animals/new.xml
   def new
     @animal = Animal.new
-    @species = Species.find(:all, :conditions => {:organization_id => current_user.organization_id})
+    @species = Species.organization(current_user)
     @sex = AnimalSex.all
     @spay = SpayNeuter.all
-    @color = AnimalColor.find(:all, :conditions => {:organization_id => current_user.organization_id})
+    @color = AnimalColor.organization(current_user)
     @biter = Biter.all
-    @status = Status.find(:all, :conditions => {:organization_id => current_user.organization_id})
+    @status = Status.organization(current_user)
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @animal }
@@ -118,7 +124,7 @@ class Admin::AnimalsController < Admin::ApplicationController
   
   def cage_card
     #require_dependency "Animal"
-    @animal = Animal.find(params[:id], :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :shelter])
+    @animal = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :shelter).find(params[:id])
 
     respond_to do |format|
       format.html {render :action => "cage_card", :layout => "cage_card"}
@@ -128,7 +134,7 @@ class Admin::AnimalsController < Admin::ApplicationController
   
   def qr_code
     #require_dependency "Animal"
-    @animal = Animal.find(params[:id], :include => [:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :shelter])
+    @animal = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :shelter).find(params[:id])
 
     respond_to do |format|
       format.html {render :action => "qr_code", :layout => "qr_code"}

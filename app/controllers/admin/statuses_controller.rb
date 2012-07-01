@@ -15,7 +15,7 @@ class Admin::StatusesController < Admin::ApplicationController
   # GET /statuses/1.xml
   def show
     @status = Status.find(params[:id])
-    @animals = Animal.find(:all, :conditions => {:status_id => @status.id})
+    @animals = Animal.where(:status_id => @status.id)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @status }

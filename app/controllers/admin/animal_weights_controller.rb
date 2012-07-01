@@ -5,11 +5,11 @@ class Admin::AnimalWeightsController < Admin::ApplicationController
   def index
     @search = AnimalWeight.search(params[:search])
     @animal_weights = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC")
-    @animals = Animal.find(:all, :conditions => {:organization_id => current_user.organization_id},:order => 'name')
+    @animals = Animal.organization(current_user).order("name")
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @animal_weights }
-      format.xls { send_data AnimalWeight.find(:all, :conditions => {:organization_id => current_user.organization_id}).to_xls, content_type: 'application/vnd.ms-excel', filename: 'animal_weight.xls' }
+      format.xls { send_data AnimalWeight.organization(current_user).to_xls, content_type: 'application/vnd.ms-excel', filename: 'animal_weight.xls' }
     end
   end
 

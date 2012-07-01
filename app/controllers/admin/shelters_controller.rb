@@ -8,7 +8,7 @@ class Admin::SheltersController < Admin::ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @shelters }
-      format.xls { send_data Shelter.find(:all, :conditions => {:organization_id => current_user.organization_id}).to_xls, content_type: 'application/vnd.ms-excel', filename: 'shelters.xls' }
+      format.xls { send_data Shelter.organization(current_user).to_xls, content_type: 'application/vnd.ms-excel', filename: 'shelters.xls' }
     end
   end
 

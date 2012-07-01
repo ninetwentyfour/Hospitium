@@ -1,4 +1,6 @@
 class AnimalColor < ActiveRecord::Base
+  include CommonScopes
+  
   has_paper_trail
 
   belongs_to :organization

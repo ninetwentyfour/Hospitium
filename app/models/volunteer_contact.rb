@@ -1,4 +1,6 @@
 class VolunteerContact < ActiveRecord::Base
+  include CommonScopes
+  
   has_paper_trail
   belongs_to :organization
   before_create :create_uuid, :modify_phone_number
