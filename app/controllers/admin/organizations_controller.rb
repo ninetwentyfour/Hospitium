@@ -10,5 +10,14 @@ class Admin::OrganizationsController < Admin::ApplicationController
     
     respond_with(@organizations)
   end
+  
+  # PUT /organizations/1
+  # PUT /organizations/1.xml
+  def update
+    @organization = Organization.find(params[:id])
+    @organization.update_attributes(params[:organization])
+    
+    respond_with(@organization, :location => admin_organizations_path)
+  end
 
 end

@@ -4,7 +4,7 @@
 				<div class="well">
 					<div class="row-fluid">
 						<div class="span6">
-							<h1><%= best_in_place organization, :name, :type => :input, :nil => "Click me to add content!" %></h1>
+							<h1><%= best_in_place organization, :name, :type => :input, :nil => "Click me to add content!", :path => admin_organization_path(organization) %></h1>
 						</div>
 					</div>
 				</div>
@@ -16,13 +16,13 @@
 						<div class="tab-content">
 							<div class="tab-pane active" id="1">
 								<div class="">
-									<p><strong>Website:</strong> <%= best_in_place organization, :website, :type => :input, :nil => "Click me to add content!" %></p>
-									<p><strong>Email:</strong> <%= best_in_place organization, :email, :type => :input, :nil => "Click me to add content!" %></p>
-									<p><strong>Phone #:</strong> <%= best_in_place organization, :phone_number, :type => :input, :nil => "Click me to add content!", :display_as => :formatted_phone %></p>
-									<p><strong>Street:</strong> <%= best_in_place organization, :address, :type => :input, :nil => "Click me to add content!" %></p>
-									<p><strong>City:</strong> <%= best_in_place organization, :city, :type => :input, :nil => "Click me to add content!" %></p>
-									<p><strong>State:</strong> <%= best_in_place organization, :state, :type => :input, :nil => "Click me to add content!" %></p>
-									<p><strong>Zip:</strong> <%= best_in_place organization, :zip_code, :type => :input, :nil => "Click me to add content!" %></p>
+									<p><strong>Website:</strong> <%= best_in_place organization, :website, :type => :input, :nil => "Click me to add content!", :path => admin_organization_path(organization) %></p>
+									<p><strong>Email:</strong> <%= best_in_place organization, :email, :type => :input, :nil => "Click me to add content!", :path => admin_organization_path(organization) %></p>
+									<p><strong>Phone #:</strong> <%= best_in_place organization, :phone_number, :type => :input, :nil => "Click me to add content!", :display_as => :formatted_phone, :path => admin_organization_path(organization) %></p>
+									<p><strong>Street:</strong> <%= best_in_place organization, :address, :type => :input, :nil => "Click me to add content!", :path => admin_organization_path(organization) %></p>
+									<p><strong>City:</strong> <%= best_in_place organization, :city, :type => :input, :nil => "Click me to add content!", :path => admin_organization_path(organization) %></p>
+									<p><strong>State:</strong> <%= best_in_place organization, :state, :type => :input, :nil => "Click me to add content!", :path => admin_organization_path(organization) %></p>
+									<p><strong>Zip:</strong> <%= best_in_place organization, :zip_code, :type => :input, :nil => "Click me to add content!", :path => admin_organization_path(organization) %></p>
 								</div>
 							</div>
 						</div>
