@@ -21,6 +21,7 @@ gem 'gravatar_image_tag'
 gem 'best_in_place'
 gem "spreadsheet", "0.6.5.8"
 gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls-on-models"
+gem 'redcarpet'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -62,7 +63,6 @@ group :production, :development do
 	gem 'rqrcode-rails3'
 	gem 'asset_sync'
 	gem 'sanitize'
-	gem 'redcarpet'
 	gem 'octokit'
 	gem 'therubyracer'
 end

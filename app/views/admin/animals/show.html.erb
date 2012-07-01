@@ -81,13 +81,13 @@
 						<ul class="unstyled" id="animal_notes_list">
 							<%unless @animal.notes.blank?%>
 									<%@notes.each do |note| %>
-										<li><%= link_to raw("<i class='icon-remove'></i>"), note_path(note), :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Delete Note"  %><strong><%= note.username %></strong> <%= note.created_at.strftime("%a, %b %e at %l:%M") %> <br /><%= raw note.note %></li>
+										<li><%= link_to raw("<i class='icon-remove'></i>"), admin_note_path(note), :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Delete Note"  %><strong><%= note.username %></strong> <%= note.created_at.strftime("%a, %b %e at %l:%M") %> <br /><%= raw note.note %></li>
 									<%end%>
 							<%end%>
 						</ul>
 						<hr />
 						<h2>Say something!</h2>
-						<%= form_for Note.new, :remote => true, :html => {:id => "new_note_#{current_user.id}"} do |f| %>
+						<%= form_for Note.new, :url => admin_notes_path, :remote => true, :html => {:id => "new_note_#{current_user.id}"} do |f| %>
 							<%= f.text_area :note, :rows => 5, :style => "width:95%;" %>
 							<%= f.hidden_field :animal_id, :value => @animal.id %><br />
 							<%= f.submit "Add Note", :class => "btn btn-primary submit-button" %>
