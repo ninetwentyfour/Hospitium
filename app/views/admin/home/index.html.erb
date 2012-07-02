@@ -42,7 +42,7 @@
 
 
 		<% content_for :javascript_footer do %>
-			<%= render :partial => "animal_graphs_min_js", :locals => { :final_status_hash => @final_status_hash, :final_species_hash => @final_species_hash } %>
+			<%= render "animal_graphs_min_js", :final_status_hash => @final_status_hash, :final_species_hash => @final_species_hash %>
 
 		<% end %>
 	</div>

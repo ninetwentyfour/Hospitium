@@ -47,7 +47,7 @@ class PermissionsController < ApplicationController
         format.html { redirect_to(@permission, :notice => 'Permission was successfully created.') }
         format.xml  { render :xml => @permission, :status => :created, :location => @permission }
       else
-        format.html { render :action => "new" }
+        format.html { render "new" }
         format.xml  { render :xml => @permission.errors, :status => :unprocessable_entity }
       end
     end
@@ -63,7 +63,7 @@ class PermissionsController < ApplicationController
         format.html { redirect_to(@permission, :notice => 'Permission was successfully updated.') }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { render "edit" }
         format.xml  { render :xml => @permission.errors, :status => :unprocessable_entity }
       end
     end

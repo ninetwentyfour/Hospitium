@@ -47,7 +47,7 @@ class SpayNeutersController < ApplicationController
         format.html { redirect_to(@spay_neuter, :notice => 'Spay neuter was successfully created.') }
         format.xml  { render :xml => @spay_neuter, :status => :created, :location => @spay_neuter }
       else
-        format.html { render :action => "new" }
+        format.html { render "new" }
         format.xml  { render :xml => @spay_neuter.errors, :status => :unprocessable_entity }
       end
     end
@@ -63,7 +63,7 @@ class SpayNeutersController < ApplicationController
         format.html { redirect_to(@spay_neuter, :notice => 'Spay neuter was successfully updated.') }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { render "edit" }
         format.xml  { render :xml => @spay_neuter.errors, :status => :unprocessable_entity }
       end
     end

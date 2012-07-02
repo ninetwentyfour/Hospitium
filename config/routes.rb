@@ -91,7 +91,8 @@ AnimalTracker::Application.routes.draw do
   resources :users, :only => [:show, :update]
   
   
-  
+  match "/admin/animals/:id/cage_card" => "admin/animals#cage_card", :as => "animals"
+  match "/admin/animals/:id/qr_code" => "admin/animals#qr_code", :as => "animals"
   # Prefix route urls with "admin"
   namespace :admin do
     resources :animals, :species, :statuses, :animal_colors, :shelters, :animal_weights, :adoption_contacts, :organizations, :relinquishment_contacts, :users,
@@ -99,8 +100,6 @@ AnimalTracker::Application.routes.draw do
       
     match "/" => "home#index", :as => "index"
     match "animals/:id/duplicate" => "animals#duplicate", :via => :get
-    match "animals/:id/cage_card" => "animals#cage_card", :as => "animals"
-    match "animals/:id/qr_code" => "animals#qr_code", :as => "animals"
     match "statuses.:id" => "statuses#destroy", :via => :delete
   end
 end

@@ -18,7 +18,7 @@ class WordpressAccountsController < ApplicationController
       if  @wordpress.update_attributes(params[:wordpress_account])
         format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Wordpress Account Connected!')}
       else
-        format.html { render :action => "new" }
+        format.html { render "new" }
       end
     end
   end

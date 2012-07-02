@@ -47,7 +47,7 @@ class BitersController < ApplicationController
         format.html { redirect_to(@biter, :notice => 'Biter was successfully created.') }
         format.xml  { render :xml => @biter, :status => :created, :location => @biter }
       else
-        format.html { render :action => "new" }
+        format.html { render "new" }
         format.xml  { render :xml => @biter.errors, :status => :unprocessable_entity }
       end
     end
@@ -63,7 +63,7 @@ class BitersController < ApplicationController
         format.html { redirect_to(@biter, :notice => 'Biter was successfully updated.') }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { render "edit" }
         format.xml  { render :xml => @biter.errors, :status => :unprocessable_entity }
       end
     end
