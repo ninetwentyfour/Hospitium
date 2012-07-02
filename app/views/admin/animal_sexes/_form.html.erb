@@ -1,10 +1,10 @@
-<%= form_for(@animal_sex) do |f| %>
-  <% if @animal_sex.errors.any? %>
+<%= form_for(animal_sex) do |f| %>
+  <% if animal_sex.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@animal_sex.errors.count, "error") %> prohibited this animal_sex from being saved:</h2>
+      <h2><%= pluralize(animal_sex.errors.count, "error") %> prohibited this animal_sex from being saved:</h2>
 
       <ul>
-      <% @animal_sex.errors.full_messages.each do |msg| %>
+      <% animal_sex.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>

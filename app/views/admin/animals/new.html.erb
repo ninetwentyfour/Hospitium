@@ -8,7 +8,13 @@
 			</div>
 		</div>
 
-		<%= render 'form' %>
+		<%= render 'form', :animal => @animal,
+											:species => @species,
+											:sex => @sex,
+											:spay => @spay,
+											:color => @color,
+											:biter => @biter,
+											:status => @status	%>
 
 
 	</div>

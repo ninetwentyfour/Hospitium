@@ -1,18 +1,16 @@
 class AdoptAPetAccountsController < ApplicationController
+  
+  respond_to :html, :xml, :json
 
   def create
-    @adopt_a_pet_account = AdoptAPetAccount.new(params[:adopt_a_pet_account])
-    @adopt_a_pet_account.user_id = current_user.id
-    @adopt_a_pet_account.active = true
-    @adopt_a_pet_account.organization_id = current_user.organization.id
-    @adopt_a_pet_account.password = Base64.encode64("#{@adopt_a_pet_account.password}~#{current_user.username}")
-    respond_to do |format|
-      if  @adopt_a_pet_account.save
-        format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Adopt A Pet Account Connected!')}
-      else
-        format.html { render :action => "new" }
-      end
+    @adopt_a_pet_account = AdoptAPetAccount.new_by_user(params[:adopt_a_pet_account], current_user)
+    if @adopt_a_pet_account.save
+      flash[:notice] = 'Adopt A Pet Account Connected!'
+    else
+      flash[:error] = 'Adopt A Pet Account Was Not Connected!'
     end
+    
+    redirect_to "#{root_url}admin/users/#{current_user.id}"
   end
   
   def update

@@ -1,15 +1,15 @@
 AnimalTracker::Application.routes.draw do
 
 
-  resources :notes
+  #resources :notes
 
-  resource :facebook_accounts
+  resource :facebook_accounts, :only => [:new, :destroy]
   match '/callback/facebook/:id' => "facebook_accounts#callback", :as => :facebook_callback
   match "/facebook_accounts/send_wall_post" => "facebook_accounts#send_wall_post", :as => "facebook_accounts"
   match "/facebook_accounts/:id" => "facebook_accounts#destroy", :via => :delete
 
   
-  resource :twitter_accounts
+  resource :twitter_accounts, :only => [:new, :destroy]
   match '/callback/twitter/' => "twitter_accounts#callback", :as => :twitter_callback
   match "/twitter_accounts/send_tweet" => "twitter_accounts#send_tweet", :as => "twitter_accounts"
   match "/twitter_accounts/:id" => "twitter_accounts#destroy", :via => :delete
@@ -98,39 +98,39 @@ AnimalTracker::Application.routes.draw do
   
   resources :biters
   
-  resources :notifications
+  #resources :notifications
 
-  resources :statuses
+  #resources :statuses
 
   resources :spay_neuters
 
   resources :animal_sexes
   
-  resources :animal_colors
+  #resources :animal_colors
 
-  resources :animal_weights
+  #resources :animal_weights
 
-  resources :vet_contacts
+  #resources :vet_contacts
 
-  resources :volunteer_contacts
+  #resources :volunteer_contacts
 
-  resources :adoption_contacts
+  #resources :adoption_contacts
 
-  resources :relinquishment_contacts
+  #resources :relinquishment_contacts
 
-  resources :shelters
+  #resources :shelters
 
-  resources :species
+  #resources :species
 
-  resources :animals
+  resources :animals, :only => [:show, :index]
 
-  resources :organizations
+  resources :organizations, :only => [:show]
   
   resources :permissions
   
   resources :roles
   
-  resources :posts
+  resources :posts, :only => [:show, :index]
   
   resources :adopt_animals
   
@@ -138,7 +138,7 @@ AnimalTracker::Application.routes.draw do
   
   #resources :users
   
-  resource :wordpress_accounts
+  resource :wordpress_accounts, :only => [:create, :update, :destroy]
   match "/wordpress_accounts/send_blog_post" => "wordpress_accounts#send_blog_post", :as => "wordpress_accounts"
   match "/wordpress_accounts/:id" => "wordpress_accounts#update", :via => :put
   match "/wordpress_accounts/:id" => "wordpress_accounts#destroy", :via => :delete
@@ -146,7 +146,7 @@ AnimalTracker::Application.routes.draw do
   resource :petfinder_accounts
   match "/petfinder_accounts/send_animal_post" => "petfinder_accounts#send_animal_post", :as => "petfinder_accounts"
   
-  resource :adopt_a_pet_accounts
+  resource :adopt_a_pet_accounts, :only => [:create, :update, :destroy]
   match "/send-to-adopt-a-pet" => "adopt_a_pet_accounts#send_animal", :as => "adopt_a_pet_accounts"
   match "/adopt_a_pet_accounts/:id" => "adopt_a_pet_accounts#update", :via => :put
   match "/adopt_a_pet_accounts/:id" => "adopt_a_pet_accounts#destroy", :via => :delete
