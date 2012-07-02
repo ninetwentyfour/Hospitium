@@ -1,0 +1,944 @@
+<html>
+  <head>
+    <title>Coverage Report</title>
+    <link href="report.css?0.22346581507092045" media="screen" rel="stylesheet" type="text/css" />
+    <link href="index.css?0.3184314307708169" media="screen" rel="stylesheet" type="text/css" />
+    <script src="jquery.js?0.22591551967024326"></script>
+    <script src="jquery.tablesorter.js?0.9598429425324472"></script>
+    <script>
+      $(function() {
+        
+        function filterByPercent() {
+          var p = $('#filter_by_percent').val();
+          if (p == 0 ) {
+            $('#main tbody tr').show();
+          } else if (p == 10) {
+            $('#main tbody tr.row').show();
+            $('#main tbody tr.10').hide();
+          } else if (p == 100) {
+            $('#main tbody tr.row').hide();
+            $('#main tbody tr.10').show();
+          } else {
+            $('#main tbody tr.row').hide();
+            var x = 0;
+            while (x < p) {
+              $('#main tbody tr.' + x).show();
+              x++;
+            }
+          }
+        }
+        
+        function filterByName(name) {
+          $('#main tbody tr:visible').each(function() {
+            if ($(this).attr('id').indexOf(name) != -1) {
+              $(this).show();
+            } else {
+              $(this).hide();
+            }
+          });
+        }
+        
+        $('#filter_by_percent').change(function(e) {
+          filterByPercent();
+          filterByName($('#filter_by_name').val());
+        });
+      
+        $('#filter_by_name').keyup(function(e) {
+          filterByPercent();
+          filterByName($(this).val());
+        });
+        
+        $("#main").tablesorter(); 
+      });
+    </script>
+  </head>
+  <body>
+    <div id='big_total' class='miss'>44.26%</div>
+    
+    <h1>Coverage Report</h1>
+    
+    <div id='filters'>
+      Filter:
+      <input type='text' id='filter_by_name'>
+      
+      Code Coverage Threshold:
+      <select id='filter_by_percent'>
+        <option value='0'>Show All</option>
+        <option value='1'><= 10% Coverage</option>
+        <option value='2'><= 20% Coverage</option>
+        <option value='3'><= 30% Coverage</option>
+        <option value='4'><= 40% Coverage</option>
+        <option value='5'><= 50% Coverage</option>
+        <option value='6'><= 60% Coverage</option>
+        <option value='7'><= 70% Coverage</option>
+        <option value='8'><= 80% Coverage</option>
+        <option value='9'><= 90% Coverage</option>
+        <option value='10'>< 100% Coverage</option>
+        <option value='100'>= 100% Coverage</option>
+      </select>
+    </div>
+
+    <table cellpadding='0' cellspacing='1'>
+      <tr>
+        <th>Legend</th>
+      </tr>
+      <tr>
+        
+        <td class='hit'>This file was tested 100%!</td>
+      </tr>
+      <tr>
+        <td class='near'>This file was tested >90%!</td>
+      </tr>
+      <tr>
+        <td class='miss'>This file was not tested nearly enough!</td>
+      </tr>
+    </table>
+    
+    <div>&nbsp;</div>
+
+    <table cellpadding="0" cellspacing='1' id='main'>
+      <thead>
+        <tr class='header'>
+          <th>File</th>
+          <th>Lines</th>
+          <th>Lines Of Code</th>
+          <th>Untested Lines of Code</th>
+          <th>Tested %</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        
+          <tr class='row miss 2' id='app/controllers/admin/adoption_contacts_controller.rb'>
+            <td>
+              <a href="app/controllers/admin/adoption_contacts_controller.rb.html">app/controllers/admin/adoption_contacts_controller.rb</a>
+            </td>
+            <td>71</td>
+            <td>34</td>
+            <td>24</td>
+            <td>29.4%</td>
+          </tr>
+        
+          <tr class='row miss 3' id='app/controllers/admin/animal_colors_controller.rb'>
+            <td>
+              <a href="app/controllers/admin/animal_colors_controller.rb.html">app/controllers/admin/animal_colors_controller.rb</a>
+            </td>
+            <td>68</td>
+            <td>31</td>
+            <td>21</td>
+            <td>32.3%</td>
+          </tr>
+        
+          <tr class='row miss 2' id='app/controllers/admin/animal_weights_controller.rb'>
+            <td>
+              <a href="app/controllers/admin/animal_weights_controller.rb.html">app/controllers/admin/animal_weights_controller.rb</a>
+            </td>
+            <td>74</td>
+            <td>34</td>
+            <td>24</td>
+            <td>29.4%</td>
+          </tr>
+        
+          <tr class='row miss 2' id='app/controllers/admin/animals_controller.rb'>
+            <td>
+              <a href="app/controllers/admin/animals_controller.rb.html">app/controllers/admin/animals_controller.rb</a>
+            </td>
+            <td>125</td>
+            <td>62</td>
+            <td>49</td>
+            <td>21.0%</td>
+          </tr>
+        
+          <tr class='row miss 5' id='app/controllers/admin/application_controller.rb'>
+            <td>
+              <a href="app/controllers/admin/application_controller.rb.html">app/controllers/admin/application_controller.rb</a>
+            </td>
+            <td>58</td>
+            <td>25</td>
+            <td>11</td>
+            <td>56.0%</td>
+          </tr>
+        
+          <tr class='row miss 2' id='app/controllers/admin/home_controller.rb'>
+            <td>
+              <a href="app/controllers/admin/home_controller.rb.html">app/controllers/admin/home_controller.rb</a>
+            </td>
+            <td>16</td>
+            <td>8</td>
+            <td>6</td>
+            <td>25.0%</td>
+          </tr>
+        
+          <tr class='row miss 3' id='app/controllers/admin/notes_controller.rb'>
+            <td>
+              <a href="app/controllers/admin/notes_controller.rb.html">app/controllers/admin/notes_controller.rb</a>
+            </td>
+            <td>63</td>
+            <td>28</td>
+            <td>18</td>
+            <td>35.7%</td>
+          </tr>
+        
+          <tr class='row miss 3' id='app/controllers/admin/notifications_controller.rb'>
+            <td>
+              <a href="app/controllers/admin/notifications_controller.rb.html">app/controllers/admin/notifications_controller.rb</a>
+            </td>
+            <td>66</td>
+            <td>29</td>
+            <td>19</td>
+            <td>34.5%</td>
+          </tr>
+        
+          <tr class='row miss 5' id='app/controllers/admin/organizations_controller.rb'>
+            <td>
+              <a href="app/controllers/admin/organizations_controller.rb.html">app/controllers/admin/organizations_controller.rb</a>
+            </td>
+            <td>23</td>
+            <td>10</td>
+            <td>5</td>
+            <td>50.0%</td>
+          </tr>
+        
+          <tr class='row miss 3' id='app/controllers/admin/posts_controller.rb'>
+            <td>
+              <a href="app/controllers/admin/posts_controller.rb.html">app/controllers/admin/posts_controller.rb</a>
+            </td>
+            <td>68</td>
+            <td>31</td>
+            <td>21</td>
+            <td>32.3%</td>
+          </tr>
+        
+          <tr class='row miss 2' id='app/controllers/admin/relinquishment_contacts_controller.rb'>
+            <td>
+              <a href="app/controllers/admin/relinquishment_contacts_controller.rb.html">app/controllers/admin/relinquishment_contacts_controller.rb</a>
+            </td>
+            <td>72</td>
+            <td>34</td>
+            <td>24</td>
+            <td>29.4%</td>
+          </tr>
+        
+          <tr class='row miss 3' id='app/controllers/admin/shelters_controller.rb'>
+            <td>
+              <a href="app/controllers/admin/shelters_controller.rb.html">app/controllers/admin/shelters_controller.rb</a>
+            </td>
+            <td>69</td>
+            <td>32</td>
+            <td>22</td>
+            <td>31.3%</td>
+          </tr>
+        
+          <tr class='row miss 3' id='app/controllers/admin/species_controller.rb'>
+            <td>
+              <a href="app/controllers/admin/species_controller.rb.html">app/controllers/admin/species_controller.rb</a>
+            </td>
+            <td>68</td>
+            <td>31</td>
+            <td>21</td>
+            <td>32.3%</td>
+          </tr>
+        
+          <tr class='row miss 3' id='app/controllers/admin/statuses_controller.rb'>
+            <td>
+              <a href="app/controllers/admin/statuses_controller.rb.html">app/controllers/admin/statuses_controller.rb</a>
+            </td>
+            <td>68</td>
+            <td>31</td>
+            <td>21</td>
+            <td>32.3%</td>
+          </tr>
+        
+          <tr class='row miss 3' id='app/controllers/admin/users_controller.rb'>
+            <td>
+              <a href="app/controllers/admin/users_controller.rb.html">app/controllers/admin/users_controller.rb</a>
+            </td>
+            <td>72</td>
+            <td>31</td>
+            <td>21</td>
+            <td>32.3%</td>
+          </tr>
+        
+          <tr class='row miss 3' id='app/controllers/admin/vet_contacts_controller.rb'>
+            <td>
+              <a href="app/controllers/admin/vet_contacts_controller.rb.html">app/controllers/admin/vet_contacts_controller.rb</a>
+            </td>
+            <td>70</td>
+            <td>32</td>
+            <td>22</td>
+            <td>31.3%</td>
+          </tr>
+        
+          <tr class='row miss 3' id='app/controllers/admin/volunteer_contacts_controller.rb'>
+            <td>
+              <a href="app/controllers/admin/volunteer_contacts_controller.rb.html">app/controllers/admin/volunteer_contacts_controller.rb</a>
+            </td>
+            <td>70</td>
+            <td>32</td>
+            <td>22</td>
+            <td>31.3%</td>
+          </tr>
+        
+          <tr class='row miss 1' id='app/controllers/adopt_a_pet_accounts_controller.rb'>
+            <td>
+              <a href="app/controllers/adopt_a_pet_accounts_controller.rb.html">app/controllers/adopt_a_pet_accounts_controller.rb</a>
+            </td>
+            <td>84</td>
+            <td>46</td>
+            <td>39</td>
+            <td>15.2%</td>
+          </tr>
+        
+          <tr class='row miss 1' id='app/controllers/adopt_animals_controller.rb'>
+            <td>
+              <a href="app/controllers/adopt_animals_controller.rb.html">app/controllers/adopt_animals_controller.rb</a>
+            </td>
+            <td>89</td>
+            <td>42</td>
+            <td>34</td>
+            <td>19.0%</td>
+          </tr>
+        
+          <tr class='row miss 2' id='app/controllers/animal_sexes_controller.rb'>
+            <td>
+              <a href="app/controllers/animal_sexes_controller.rb.html">app/controllers/animal_sexes_controller.rb</a>
+            </td>
+            <td>83</td>
+            <td>40</td>
+            <td>32</td>
+            <td>20.0%</td>
+          </tr>
+        
+          <tr class='row miss 4' id='app/controllers/animals_controller.rb'>
+            <td>
+              <a href="app/controllers/animals_controller.rb.html">app/controllers/animals_controller.rb</a>
+            </td>
+            <td>30</td>
+            <td>12</td>
+            <td>7</td>
+            <td>41.7%</td>
+          </tr>
+        
+          <tr class='row miss 5' id='app/controllers/application_controller.rb'>
+            <td>
+              <a href="app/controllers/application_controller.rb.html">app/controllers/application_controller.rb</a>
+            </td>
+            <td>54</td>
+            <td>26</td>
+            <td>12</td>
+            <td>53.8%</td>
+          </tr>
+        
+          <tr class='row miss 2' id='app/controllers/biters_controller.rb'>
+            <td>
+              <a href="app/controllers/biters_controller.rb.html">app/controllers/biters_controller.rb</a>
+            </td>
+            <td>83</td>
+            <td>40</td>
+            <td>32</td>
+            <td>20.0%</td>
+          </tr>
+        
+          <tr class='row miss 2' id='app/controllers/facebook_accounts_controller.rb'>
+            <td>
+              <a href="app/controllers/facebook_accounts_controller.rb.html">app/controllers/facebook_accounts_controller.rb</a>
+            </td>
+            <td>45</td>
+            <td>25</td>
+            <td>20</td>
+            <td>20.0%</td>
+          </tr>
+        
+          <tr class='row miss 5' id='app/controllers/home_controller.rb'>
+            <td>
+              <a href="app/controllers/home_controller.rb.html">app/controllers/home_controller.rb</a>
+            </td>
+            <td>30</td>
+            <td>14</td>
+            <td>6</td>
+            <td>57.1%</td>
+          </tr>
+        
+          <tr class='row miss 3' id='app/controllers/organizations_controller.rb'>
+            <td>
+              <a href="app/controllers/organizations_controller.rb.html">app/controllers/organizations_controller.rb</a>
+            </td>
+            <td>18</td>
+            <td>9</td>
+            <td>6</td>
+            <td>33.3%</td>
+          </tr>
+        
+          <tr class='row miss 2' id='app/controllers/permissions_controller.rb'>
+            <td>
+              <a href="app/controllers/permissions_controller.rb.html">app/controllers/permissions_controller.rb</a>
+            </td>
+            <td>83</td>
+            <td>40</td>
+            <td>32</td>
+            <td>20.0%</td>
+          </tr>
+        
+          <tr class='row miss 4' id='app/controllers/posts_controller.rb'>
+            <td>
+              <a href="app/controllers/posts_controller.rb.html">app/controllers/posts_controller.rb</a>
+            </td>
+            <td>25</td>
+            <td>12</td>
+            <td>7</td>
+            <td>41.7%</td>
+          </tr>
+        
+          <tr class='row miss 1' id='app/controllers/relinquish_animals_controller.rb'>
+            <td>
+              <a href="app/controllers/relinquish_animals_controller.rb.html">app/controllers/relinquish_animals_controller.rb</a>
+            </td>
+            <td>85</td>
+            <td>41</td>
+            <td>33</td>
+            <td>19.5%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/controllers/reports_controller.rb'>
+            <td>
+              <a href="app/controllers/reports_controller.rb.html">app/controllers/reports_controller.rb</a>
+            </td>
+            <td>5</td>
+            <td>1</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row miss 2' id='app/controllers/spay_neuters_controller.rb'>
+            <td>
+              <a href="app/controllers/spay_neuters_controller.rb.html">app/controllers/spay_neuters_controller.rb</a>
+            </td>
+            <td>83</td>
+            <td>40</td>
+            <td>32</td>
+            <td>20.0%</td>
+          </tr>
+        
+          <tr class='row miss 1' id='app/controllers/twitter_accounts_controller.rb'>
+            <td>
+              <a href="app/controllers/twitter_accounts_controller.rb.html">app/controllers/twitter_accounts_controller.rb</a>
+            </td>
+            <td>48</td>
+            <td>28</td>
+            <td>23</td>
+            <td>17.9%</td>
+          </tr>
+        
+          <tr class='row miss 2' id='app/controllers/versions_controller.rb'>
+            <td>
+              <a href="app/controllers/versions_controller.rb.html">app/controllers/versions_controller.rb</a>
+            </td>
+            <td>15</td>
+            <td>9</td>
+            <td>7</td>
+            <td>22.2%</td>
+          </tr>
+        
+          <tr class='row miss 1' id='app/controllers/wordpress_accounts_controller.rb'>
+            <td>
+              <a href="app/controllers/wordpress_accounts_controller.rb.html">app/controllers/wordpress_accounts_controller.rb</a>
+            </td>
+            <td>57</td>
+            <td>31</td>
+            <td>26</td>
+            <td>16.1%</td>
+          </tr>
+        
+          <tr class='row miss 2' id='app/helpers/application_helper.rb'>
+            <td>
+              <a href="app/helpers/application_helper.rb.html">app/helpers/application_helper.rb</a>
+            </td>
+            <td>33</td>
+            <td>17</td>
+            <td>12</td>
+            <td>29.4%</td>
+          </tr>
+        
+          <tr class='row miss 0' id='app/models/ability.rb'>
+            <td>
+              <a href="app/models/ability.rb.html">app/models/ability.rb</a>
+            </td>
+            <td>167</td>
+            <td>133</td>
+            <td>130</td>
+            <td>2.3%</td>
+          </tr>
+        
+          <tr class='row miss 4' id='app/models/adopt_a_pet_account.rb'>
+            <td>
+              <a href="app/models/adopt_a_pet_account.rb.html">app/models/adopt_a_pet_account.rb</a>
+            </td>
+            <td>17</td>
+            <td>11</td>
+            <td>6</td>
+            <td>45.5%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/adopt_animal.rb'>
+            <td>
+              <a href="app/models/adopt_animal.rb.html">app/models/adopt_animal.rb</a>
+            </td>
+            <td>11</td>
+            <td>6</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row miss 4' id='app/models/adopt_animal_observer.rb'>
+            <td>
+              <a href="app/models/adopt_animal_observer.rb.html">app/models/adopt_animal_observer.rb</a>
+            </td>
+            <td>35</td>
+            <td>14</td>
+            <td>8</td>
+            <td>42.9%</td>
+          </tr>
+        
+          <tr class='row near 9' id='app/models/adoption_contact.rb'>
+            <td>
+              <a href="app/models/adoption_contact.rb.html">app/models/adoption_contact.rb</a>
+            </td>
+            <td>51</td>
+            <td>24</td>
+            <td>1</td>
+            <td>95.8%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/adoption_contact_observer.rb'>
+            <td>
+              <a href="app/models/adoption_contact_observer.rb.html">app/models/adoption_contact_observer.rb</a>
+            </td>
+            <td>19</td>
+            <td>7</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row near 9' id='app/models/animal.rb'>
+            <td>
+              <a href="app/models/animal.rb.html">app/models/animal.rb</a>
+            </td>
+            <td>141</td>
+            <td>74</td>
+            <td>6</td>
+            <td>91.9%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/animal_color.rb'>
+            <td>
+              <a href="app/models/animal_color.rb.html">app/models/animal_color.rb</a>
+            </td>
+            <td>21</td>
+            <td>10</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/animal_color_observer.rb'>
+            <td>
+              <a href="app/models/animal_color_observer.rb.html">app/models/animal_color_observer.rb</a>
+            </td>
+            <td>19</td>
+            <td>7</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/animal_event.rb'>
+            <td>
+              <a href="app/models/animal_event.rb.html">app/models/animal_event.rb</a>
+            </td>
+            <td>5</td>
+            <td>3</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/animal_observer.rb'>
+            <td>
+              <a href="app/models/animal_observer.rb.html">app/models/animal_observer.rb</a>
+            </td>
+            <td>27</td>
+            <td>12</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row miss 8' id='app/models/animal_sex.rb'>
+            <td>
+              <a href="app/models/animal_sex.rb.html">app/models/animal_sex.rb</a>
+            </td>
+            <td>10</td>
+            <td>6</td>
+            <td>1</td>
+            <td>83.3%</td>
+          </tr>
+        
+          <tr class='row miss 8' id='app/models/animal_weight.rb'>
+            <td>
+              <a href="app/models/animal_weight.rb.html">app/models/animal_weight.rb</a>
+            </td>
+            <td>40</td>
+            <td>19</td>
+            <td>2</td>
+            <td>89.5%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/animal_weight_observer.rb'>
+            <td>
+              <a href="app/models/animal_weight_observer.rb.html">app/models/animal_weight_observer.rb</a>
+            </td>
+            <td>25</td>
+            <td>7</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row miss 8' id='app/models/biter.rb'>
+            <td>
+              <a href="app/models/biter.rb.html">app/models/biter.rb</a>
+            </td>
+            <td>10</td>
+            <td>6</td>
+            <td>1</td>
+            <td>83.3%</td>
+          </tr>
+        
+          <tr class='row miss 5' id='app/models/cache/animal_sweeper.rb'>
+            <td>
+              <a href="app/models/cache/animal_sweeper.rb.html">app/models/cache/animal_sweeper.rb</a>
+            </td>
+            <td>28</td>
+            <td>12</td>
+            <td>5</td>
+            <td>58.3%</td>
+          </tr>
+        
+          <tr class='row miss 5' id='app/models/cache/organization_sweeper.rb'>
+            <td>
+              <a href="app/models/cache/organization_sweeper.rb.html">app/models/cache/organization_sweeper.rb</a>
+            </td>
+            <td>28</td>
+            <td>12</td>
+            <td>5</td>
+            <td>58.3%</td>
+          </tr>
+        
+          <tr class='row miss 3' id='app/models/facebook_account.rb'>
+            <td>
+              <a href="app/models/facebook_account.rb.html">app/models/facebook_account.rb</a>
+            </td>
+            <td>68</td>
+            <td>34</td>
+            <td>23</td>
+            <td>32.4%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/note.rb'>
+            <td>
+              <a href="app/models/note.rb.html">app/models/note.rb</a>
+            </td>
+            <td>15</td>
+            <td>8</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/note_observer.rb'>
+            <td>
+              <a href="app/models/note_observer.rb.html">app/models/note_observer.rb</a>
+            </td>
+            <td>20</td>
+            <td>7</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row miss 4' id='app/models/notification.rb'>
+            <td>
+              <a href="app/models/notification.rb.html">app/models/notification.rb</a>
+            </td>
+            <td>21</td>
+            <td>15</td>
+            <td>9</td>
+            <td>40.0%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/organization.rb'>
+            <td>
+              <a href="app/models/organization.rb.html">app/models/organization.rb</a>
+            </td>
+            <td>115</td>
+            <td>92</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/organization_observer.rb'>
+            <td>
+              <a href="app/models/organization_observer.rb.html">app/models/organization_observer.rb</a>
+            </td>
+            <td>25</td>
+            <td>7</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/permission.rb'>
+            <td>
+              <a href="app/models/permission.rb.html">app/models/permission.rb</a>
+            </td>
+            <td>8</td>
+            <td>3</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row miss 7' id='app/models/post.rb'>
+            <td>
+              <a href="app/models/post.rb.html">app/models/post.rb</a>
+            </td>
+            <td>18</td>
+            <td>9</td>
+            <td>2</td>
+            <td>77.8%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/relinquish_animal.rb'>
+            <td>
+              <a href="app/models/relinquish_animal.rb.html">app/models/relinquish_animal.rb</a>
+            </td>
+            <td>11</td>
+            <td>6</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row miss 4' id='app/models/relinquish_animal_observer.rb'>
+            <td>
+              <a href="app/models/relinquish_animal_observer.rb.html">app/models/relinquish_animal_observer.rb</a>
+            </td>
+            <td>35</td>
+            <td>14</td>
+            <td>8</td>
+            <td>42.9%</td>
+          </tr>
+        
+          <tr class='row near 9' id='app/models/relinquishment_contact.rb'>
+            <td>
+              <a href="app/models/relinquishment_contact.rb.html">app/models/relinquishment_contact.rb</a>
+            </td>
+            <td>51</td>
+            <td>24</td>
+            <td>2</td>
+            <td>91.7%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/relinquishment_contact_observer.rb'>
+            <td>
+              <a href="app/models/relinquishment_contact_observer.rb.html">app/models/relinquishment_contact_observer.rb</a>
+            </td>
+            <td>25</td>
+            <td>7</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row miss 1' id='app/models/report.rb'>
+            <td>
+              <a href="app/models/report.rb.html">app/models/report.rb</a>
+            </td>
+            <td>48</td>
+            <td>34</td>
+            <td>30</td>
+            <td>11.8%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/role.rb'>
+            <td>
+              <a href="app/models/role.rb.html">app/models/role.rb</a>
+            </td>
+            <td>13</td>
+            <td>5</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row near 9' id='app/models/shelter.rb'>
+            <td>
+              <a href="app/models/shelter.rb.html">app/models/shelter.rb</a>
+            </td>
+            <td>46</td>
+            <td>21</td>
+            <td>1</td>
+            <td>95.2%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/shelter_observer.rb'>
+            <td>
+              <a href="app/models/shelter_observer.rb.html">app/models/shelter_observer.rb</a>
+            </td>
+            <td>25</td>
+            <td>7</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row miss 8' id='app/models/spay_neuter.rb'>
+            <td>
+              <a href="app/models/spay_neuter.rb.html">app/models/spay_neuter.rb</a>
+            </td>
+            <td>10</td>
+            <td>6</td>
+            <td>1</td>
+            <td>83.3%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/species.rb'>
+            <td>
+              <a href="app/models/species.rb.html">app/models/species.rb</a>
+            </td>
+            <td>18</td>
+            <td>10</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/species_observer.rb'>
+            <td>
+              <a href="app/models/species_observer.rb.html">app/models/species_observer.rb</a>
+            </td>
+            <td>25</td>
+            <td>7</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row miss 8' id='app/models/status.rb'>
+            <td>
+              <a href="app/models/status.rb.html">app/models/status.rb</a>
+            </td>
+            <td>18</td>
+            <td>9</td>
+            <td>1</td>
+            <td>88.9%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/status_observer.rb'>
+            <td>
+              <a href="app/models/status_observer.rb.html">app/models/status_observer.rb</a>
+            </td>
+            <td>25</td>
+            <td>7</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row miss 1' id='app/models/twitter_account.rb'>
+            <td>
+              <a href="app/models/twitter_account.rb.html">app/models/twitter_account.rb</a>
+            </td>
+            <td>114</td>
+            <td>76</td>
+            <td>63</td>
+            <td>17.1%</td>
+          </tr>
+        
+          <tr class='row miss 7' id='app/models/user.rb'>
+            <td>
+              <a href="app/models/user.rb.html">app/models/user.rb</a>
+            </td>
+            <td>109</td>
+            <td>60</td>
+            <td>15</td>
+            <td>75.0%</td>
+          </tr>
+        
+          <tr class='row miss 2' id='app/models/user_observer.rb'>
+            <td>
+              <a href="app/models/user_observer.rb.html">app/models/user_observer.rb</a>
+            </td>
+            <td>94</td>
+            <td>55</td>
+            <td>39</td>
+            <td>29.1%</td>
+          </tr>
+        
+          <tr class='row near 9' id='app/models/vet_contact.rb'>
+            <td>
+              <a href="app/models/vet_contact.rb.html">app/models/vet_contact.rb</a>
+            </td>
+            <td>50</td>
+            <td>22</td>
+            <td>2</td>
+            <td>90.9%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/vet_contact_observer.rb'>
+            <td>
+              <a href="app/models/vet_contact_observer.rb.html">app/models/vet_contact_observer.rb</a>
+            </td>
+            <td>25</td>
+            <td>7</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row near 9' id='app/models/volunteer_contact.rb'>
+            <td>
+              <a href="app/models/volunteer_contact.rb.html">app/models/volunteer_contact.rb</a>
+            </td>
+            <td>59</td>
+            <td>27</td>
+            <td>2</td>
+            <td>92.6%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='app/models/volunteer_contact_observer.rb'>
+            <td>
+              <a href="app/models/volunteer_contact_observer.rb.html">app/models/volunteer_contact_observer.rb</a>
+            </td>
+            <td>25</td>
+            <td>7</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+          <tr class='row miss 2' id='app/models/wordpress_account.rb'>
+            <td>
+              <a href="app/models/wordpress_account.rb.html">app/models/wordpress_account.rb</a>
+            </td>
+            <td>61</td>
+            <td>37</td>
+            <td>29</td>
+            <td>21.6%</td>
+          </tr>
+        
+          <tr class='row hit 10' id='lib/common_scopes/common_scopes.rb'>
+            <td>
+              <a href="lib/common_scopes/common_scopes.rb.html">lib/common_scopes/common_scopes.rb</a>
+            </td>
+            <td>10</td>
+            <td>5</td>
+            <td>0</td>
+            <td>100.0%</td>
+          </tr>
+        
+      </tbody>
+      
+      <tr class='header'>
+        <th>Total</th>
+        <th>3912</th>
+        <th>1979</th>
+        <th>1103</th>
+        <th>44.26%</th>
+      </tr>
+    </table>
+    <p>Generated on: 07-01-2012 19:46</p>
+  </body>
+</html>

@@ -78,4 +78,5 @@ group :test do
 	gem 'database_cleaner'
 	gem 'launchy'
 	gem 'email_spec'
+	gem 'cover_me'
 end

@@ -124,6 +124,11 @@ GEM
     coffee-script-source (1.3.3)
     colored (1.2)
     commonjs (0.2.6)
+    configatron (2.9.1)
+      yamler (>= 0.1.0)
+    cover_me (1.2.0)
+      configatron
+      hashie
     crack (0.3.1)
     cucumber (1.2.1)
       builder (>= 2.1.2)
@@ -420,6 +425,7 @@ GEM
     will_paginate (3.0.3)
     xpath (0.1.4)
       nokogiri (~> 1.3)
+    yamler (0.1.0)
 
 PLATFORMS
   ruby
@@ -436,6 +442,7 @@ DEPENDENCIES
   client_side_validations
   closure-compiler
   coffee-rails
+  cover_me
   cucumber-rails
   dalli
   database_cleaner
