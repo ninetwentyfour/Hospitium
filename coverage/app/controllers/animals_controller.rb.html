@@ -2,8 +2,8 @@
   <head>
     <title>app/controllers/animals_controller.rb</title>
     
-    <link href="../../report.css?0.4734237095030297" media="screen" rel="stylesheet" type="text/css" />
-    <script src='../../jquery.js?0.8863086107813359'></script>
+    <link href="../../report.css?0.9420134332358135" media="screen" rel="stylesheet" type="text/css" />
+    <script src='../../jquery.js?0.5592863256781763'></script>
     <script>
       $(function() {
 
@@ -54,11 +54,14 @@
         <td>
           app/controllers/animals_controller.rb
           
+            <br />
+            <a href='#' id='toggle_test_file'>spec/controllers/animals_controller_spec.rb</a>
+          
         </td>
         <td>30</td>
         <td>12</td>
-        <td>7</td>
-        <td>41.7%</td>
+        <td>0</td>
+        <td>100.0%</td>
       </tr>
     </table>
 
@@ -90,7 +93,7 @@
               <td class='code_line'>
                 <pre>class AnimalsController < ApplicationController</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -98,7 +101,7 @@
               <td class='code_line'>
                 <pre>  caches_action :index, :cache_path => Proc.new { |controller| controller.params },:layout => false, :expires_in => 10.minutes</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -114,7 +117,7 @@
               <td class='code_line'>
                 <pre>  respond_to :html, :xml, :json</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -146,15 +149,15 @@
               <td class='code_line'>
                 <pre>  def index</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>9</td>
               <td class='code_line'>
                 <pre>    canonical_url("/animals")</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>19</td>
             </tr>
           
             <tr class="never" "">
@@ -165,12 +168,12 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>11</td>
               <td class='code_line'>
                 <pre>    @animals = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter).</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>19</td>
             </tr>
           
             <tr class="never" "">
@@ -205,12 +208,12 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>16</td>
               <td class='code_line'>
                 <pre>    respond_with(@animals)</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>19</td>
             </tr>
           
             <tr class="never" "">
@@ -250,31 +253,31 @@
               <td class='code_line'>
                 <pre>  def show</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>22</td>
               <td class='code_line'>
                 <pre>    canonical_url("/animals/#{params[:id]}")</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>19</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>23</td>
               <td class='code_line'>
                 <pre>    @animal = Rails.cache.fetch("public_animal_#{params[:id]}", :expires_in => 15.minutes) do</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>19</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>24</td>
               <td class='code_line'>
                 <pre>      Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter).find_by_uuid(params[:id])</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>19</td>
             </tr>
           
             <tr class="never" "">
@@ -293,12 +296,12 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>27</td>
               <td class='code_line'>
                 <pre>    respond_with(@animal)</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>19</td>
             </tr>
           
             <tr class="never" "">
@@ -328,8 +331,279 @@
         </table>
       </div>
       
+        <div id='test_file' class='side_by_side'>
+          <table id='test'>
+            
+            
+              <tr class="never">
+                <td class='line_number'>1</td>
+                <td class='code_line'>
+                  <pre>require 'spec_helper'</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>2</td>
+                <td class='code_line'>
+                  <pre></pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>3</td>
+                <td class='code_line'>
+                  <pre>#this is the public animals controller</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>4</td>
+                <td class='code_line'>
+                  <pre>describe AnimalsController do</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>5</td>
+                <td class='code_line'>
+                  <pre>  </pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>6</td>
+                <td class='code_line'>
+                  <pre>  describe 'GET "index"' do</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>7</td>
+                <td class='code_line'>
+                  <pre>    it "returns http success" do</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>8</td>
+                <td class='code_line'>
+                  <pre>      get 'index'</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>9</td>
+                <td class='code_line'>
+                  <pre>      response.should be_success</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>10</td>
+                <td class='code_line'>
+                  <pre>    end</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>11</td>
+                <td class='code_line'>
+                  <pre></pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>12</td>
+                <td class='code_line'>
+                  <pre>    it 'returns the proper animal' do</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>13</td>
+                <td class='code_line'>
+                  <pre>      @public_animal = FactoryGirl.create(:animal, :public => 1)</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>14</td>
+                <td class='code_line'>
+                  <pre>      get 'index'</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>15</td>
+                <td class='code_line'>
+                  <pre>      assigns(:animals).should =~ [@public_animal]</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>16</td>
+                <td class='code_line'>
+                  <pre>    end</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>17</td>
+                <td class='code_line'>
+                  <pre></pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>18</td>
+                <td class='code_line'>
+                  <pre>  end</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>19</td>
+                <td class='code_line'>
+                  <pre></pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>20</td>
+                <td class='code_line'>
+                  <pre>  describe 'GET "show"' do</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>21</td>
+                <td class='code_line'>
+                  <pre>    it "returns http success" do</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>22</td>
+                <td class='code_line'>
+                  <pre>      get 'show'</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>23</td>
+                <td class='code_line'>
+                  <pre>      response.should be_success</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>24</td>
+                <td class='code_line'>
+                  <pre>    end</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>25</td>
+                <td class='code_line'>
+                  <pre>    </pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>26</td>
+                <td class='code_line'>
+                  <pre>    it "should find the account by its id" do</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>27</td>
+                <td class='code_line'>
+                  <pre>      @public_animal = FactoryGirl.create(:animal, :public => 1)</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>28</td>
+                <td class='code_line'>
+                  <pre>      get :show, :id => @public_animal.uuid</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>29</td>
+                <td class='code_line'>
+                  <pre>      assigns(:animal).should == @public_animal</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>30</td>
+                <td class='code_line'>
+                  <pre>    end</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>31</td>
+                <td class='code_line'>
+                  <pre></pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>32</td>
+                <td class='code_line'>
+                  <pre>  end</pre>
+                </td>
+              </tr>
+              
+            
+              <tr class="never">
+                <td class='line_number'>33</td>
+                <td class='code_line'>
+                  <pre>end</pre>
+                </td>
+              </tr>
+              
+            
+          </table>
+        </div>
+      
     </div>
     
-    <p>Generated on: 07-01-2012 19:46</p>
+    <p>Generated on: 07-04-2012 13:54</p>
   </body>
 </html>

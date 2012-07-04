@@ -2,8 +2,8 @@
   <head>
     <title>app/models/animal.rb</title>
     
-    <link href="../../report.css?0.3023624106271232" media="screen" rel="stylesheet" type="text/css" />
-    <script src='../../jquery.js?0.02699971963377712'></script>
+    <link href="../../report.css?0.16276249301885326" media="screen" rel="stylesheet" type="text/css" />
+    <script src='../../jquery.js?0.9926146226863327'></script>
     <script>
       $(function() {
 
@@ -60,8 +60,8 @@
         </td>
         <td>141</td>
         <td>74</td>
-        <td>6</td>
-        <td>91.9%</td>
+        <td>5</td>
+        <td>93.2%</td>
       </tr>
     </table>
 
@@ -93,7 +93,7 @@
               <td class='code_line'>
                 <pre>class Animal < ActiveRecord::Base</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -101,7 +101,7 @@
               <td class='code_line'>
                 <pre>  include CommonScopes</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -117,7 +117,7 @@
               <td class='code_line'>
                 <pre>  has_paper_trail</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -133,7 +133,7 @@
               <td class='code_line'>
                 <pre>  has_attached_file :image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY']  || 'thedefaultkey', :secret_access_key => ENV['S3_SECRET']  || 'thedefaultkey'}, :bucket => 'hospitium-static', :styles => { :large => "530x530>", :medium => "260x180#", :thumb => "140x140#" }</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -141,7 +141,7 @@
               <td class='code_line'>
                 <pre>  has_attached_file :second_image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY']  || 'thedefaultkey', :secret_access_key => ENV['S3_SECRET']  || 'thedefaultkey'}, :bucket => 'hospitium-static', :styles => { :large => "530x530", :medium => "260x180#", :thumb => "140x140#" }</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -149,7 +149,7 @@
               <td class='code_line'>
                 <pre>  has_attached_file :third_image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY']  || 'thedefaultkey', :secret_access_key => ENV['S3_SECRET']  || 'thedefaultkey'}, :bucket => 'hospitium-static', :styles => { :large => "530x530>", :medium => "260x180#", :thumb => "140x140#" }</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -157,7 +157,7 @@
               <td class='code_line'>
                 <pre>  has_attached_file :fourth_image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY']  || 'thedefaultkey', :secret_access_key => ENV['S3_SECRET']  || 'thedefaultkey'}, :bucket => 'hospitium-static', :styles => { :large => "530x530", :medium => "260x180#", :thumb => "140x140#" }</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -173,7 +173,7 @@
               <td class='code_line'>
                 <pre>  belongs_to :organization</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -181,7 +181,7 @@
               <td class='code_line'>
                 <pre>  belongs_to :species</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -189,7 +189,7 @@
               <td class='code_line'>
                 <pre>  belongs_to :shelter</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -197,7 +197,7 @@
               <td class='code_line'>
                 <pre>  belongs_to :animal_color</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -205,7 +205,7 @@
               <td class='code_line'>
                 <pre>  belongs_to :animal_sex</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -213,7 +213,7 @@
               <td class='code_line'>
                 <pre>  belongs_to :spay_neuter</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -221,7 +221,7 @@
               <td class='code_line'>
                 <pre>  belongs_to :biter</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -229,7 +229,7 @@
               <td class='code_line'>
                 <pre>  belongs_to :status</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -245,7 +245,7 @@
               <td class='code_line'>
                 <pre>  has_many :animal_weights</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -253,7 +253,7 @@
               <td class='code_line'>
                 <pre>  has_many :notes</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -261,7 +261,7 @@
               <td class='code_line'>
                 <pre>  has_many :adopt_animals</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -269,7 +269,7 @@
               <td class='code_line'>
                 <pre>  has_many :adoption_contacts, :through => :adopt_animals</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -277,7 +277,7 @@
               <td class='code_line'>
                 <pre>  has_many :relinquish_animals</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -285,7 +285,7 @@
               <td class='code_line'>
                 <pre>  has_many :relinquishment_contacts, :through => :relinquish_animals</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -309,7 +309,7 @@
               <td class='code_line'>
                 <pre>  before_create :create_uuid</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -317,7 +317,7 @@
               <td class='code_line'>
                 <pre>  after_update :send_public_tweet</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -333,7 +333,7 @@
               <td class='code_line'>
                 <pre>  validates_presence_of :name, :date_of_intake, :organization, :species, :animal_color, :biter, :spay_neuter, :animal_sex, :status</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -341,7 +341,7 @@
               <td class='code_line'>
                 <pre>  validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -349,7 +349,7 @@
               <td class='code_line'>
                 <pre>  validates_attachment_content_type :second_image, :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -357,7 +357,7 @@
               <td class='code_line'>
                 <pre>  validates_attachment_content_type :third_image, :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -365,7 +365,7 @@
               <td class='code_line'>
                 <pre>  validates_attachment_content_type :fourth_image, :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -381,7 +381,7 @@
               <td class='code_line'>
                 <pre>  attr_accessible :name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased, </pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -413,7 +413,7 @@
               <td class='code_line'>
                 <pre>  delegate :name, :to => :species, :prefix => :species, :allow_nil => true</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -421,7 +421,7 @@
               <td class='code_line'>
                 <pre>  delegate :name, :phone_number, :address, :city, :state, :zip_code, :website, :email, :to => :organization, :prefix => :organization, :allow_nil => true</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -429,7 +429,7 @@
               <td class='code_line'>
                 <pre>  delegate :sex, :to => :animal_sex, :allow_nil => true</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -437,7 +437,7 @@
               <td class='code_line'>
                 <pre>  delegate :spay, :to => :spay_neuter, :allow_nil => true</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -445,7 +445,7 @@
               <td class='code_line'>
                 <pre>  delegate :color, :to => :animal_color, :allow_nil => true</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -453,7 +453,7 @@
               <td class='code_line'>
                 <pre>  delegate :value, :to => :biter, :prefix => :biter, :allow_nil => true</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -469,7 +469,7 @@
               <td class='code_line'>
                 <pre>  delegate :name, :to => :shelter, :prefix => :shelter, :allow_nil => true</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -493,7 +493,7 @@
               <td class='code_line'>
                 <pre>  def to_params</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="miss" data-hits='#{cov}'"">
@@ -533,7 +533,7 @@
               <td class='code_line'>
                 <pre>  def create_uuid()</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -541,7 +541,7 @@
               <td class='code_line'>
                 <pre>    self.uuid = UUIDTools::UUID.random_create.to_s</pre>
               </td>
-              <td class='hit_number'>24</td>
+              <td class='hit_number'>288</td>
             </tr>
           
             <tr class="never" "">
@@ -573,7 +573,7 @@
               <td class='code_line'>
                 <pre>  def send_public_tweet</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -621,7 +621,7 @@
               <td class='code_line'>
                 <pre>  def calculate_animal_age</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -741,7 +741,7 @@
               <td class='code_line'>
                 <pre>  def formatted_deceased_date</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -813,7 +813,7 @@
               <td class='code_line'>
                 <pre>  def formatted_intake_date</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -821,7 +821,7 @@
               <td class='code_line'>
                 <pre>    unless self.date_of_intake.blank?</pre>
               </td>
-              <td class='hit_number'>2</td>
+              <td class='hit_number'>49</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -829,7 +829,7 @@
               <td class='code_line'>
                 <pre>      age = self.date_of_intake.strftime("%a, %b %e %Y")</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>48</td>
             </tr>
           
             <tr class="never" "">
@@ -861,7 +861,7 @@
               <td class='code_line'>
                 <pre>    return age</pre>
               </td>
-              <td class='hit_number'>2</td>
+              <td class='hit_number'>49</td>
             </tr>
           
             <tr class="never" "">
@@ -885,7 +885,7 @@
               <td class='code_line'>
                 <pre>  def formatted_well_date</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -957,7 +957,7 @@
               <td class='code_line'>
                 <pre>  def formatted_adopted_date</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -1037,7 +1037,7 @@
               <td class='code_line'>
                 <pre>  def as_xls(options = {})</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -1184,12 +1184,12 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>138</td>
               <td class='code_line'>
                 <pre>    }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>32</td>
             </tr>
           
             <tr class="never" "">
@@ -2436,6 +2436,6 @@
       
     </div>
     
-    <p>Generated on: 07-01-2012 19:46</p>
+    <p>Generated on: 07-04-2012 13:54</p>
   </body>
 </html>

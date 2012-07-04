@@ -2,8 +2,8 @@
   <head>
     <title>app/models/ability.rb</title>
     
-    <link href="../../report.css?0.1359177093470414" media="screen" rel="stylesheet" type="text/css" />
-    <script src='../../jquery.js?0.4971827831054916'></script>
+    <link href="../../report.css?0.9851545241614014" media="screen" rel="stylesheet" type="text/css" />
+    <script src='../../jquery.js?0.3035825898398511'></script>
     <script>
       $(function() {
 
@@ -57,8 +57,8 @@
         </td>
         <td>167</td>
         <td>133</td>
-        <td>130</td>
-        <td>2.3%</td>
+        <td>47</td>
+        <td>64.7%</td>
       </tr>
     </table>
 
@@ -90,7 +90,7 @@
               <td class='code_line'>
                 <pre>class Ability</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -98,7 +98,7 @@
               <td class='code_line'>
                 <pre>  include CanCan::Ability</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -106,7 +106,7 @@
               <td class='code_line'>
                 <pre>  def initialize(user)</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -117,20 +117,20 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>5</td>
               <td class='code_line'>
                 <pre>    if user</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>6</td>
               <td class='code_line'>
                 <pre>      if user.role? :super_admin</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
             <tr class="miss" data-hits='#{cov}'"">
@@ -141,20 +141,20 @@
               <td class='hit_number'>0</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>8</td>
               <td class='code_line'>
                 <pre>      elsif user.role? :admin</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>9</td>
               <td class='code_line'>
                 <pre>        can :manage, :twitter_account</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
             <tr class="never" "">
@@ -165,52 +165,52 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>11</td>
               <td class='code_line'>
                 <pre>        can :read, AdoptionContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>12</td>
               <td class='code_line'>
                 <pre>        can :create, AdoptionContact</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>13</td>
               <td class='code_line'>
                 <pre>        can :update, AdoptionContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>14</td>
               <td class='code_line'>
                 <pre>        can :destroy, AdoptionContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>15</td>
               <td class='code_line'>
                 <pre>        can :export, AdoptionContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>16</td>
               <td class='code_line'>
                 <pre>        can :bulk_action, AdoptionContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
             <tr class="never" "">
@@ -221,76 +221,76 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>18</td>
               <td class='code_line'>
                 <pre>        can :destroy, Animal, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>19</td>
               <td class='code_line'>
                 <pre>        can :read, Animal, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>20</td>
               <td class='code_line'>
                 <pre>        can :create, Animal</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>21</td>
               <td class='code_line'>
                 <pre>        can :update, Animal, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>22</td>
               <td class='code_line'>
                 <pre>        can :export, Animal, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>23</td>
               <td class='code_line'>
                 <pre>        can :bulk_action, Animal, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>24</td>
               <td class='code_line'>
                 <pre>        can :duplicate, Animal, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>25</td>
               <td class='code_line'>
                 <pre>        can :qr_code, Animal, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>26</td>
               <td class='code_line'>
                 <pre>        can :cage_card, Animal, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
             <tr class="never" "">
@@ -301,52 +301,52 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>28</td>
               <td class='code_line'>
                 <pre>        can :read, AnimalColor, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>29</td>
               <td class='code_line'>
                 <pre>        can :create, AnimalColor</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>30</td>
               <td class='code_line'>
                 <pre>        can :update, AnimalColor, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>31</td>
               <td class='code_line'>
                 <pre>        can :destroy, AnimalColor, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>32</td>
               <td class='code_line'>
                 <pre>        can :export, AnimalColor, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>33</td>
               <td class='code_line'>
                 <pre>        can :bulk_action, AnimalColor, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
             <tr class="never" "">
@@ -357,52 +357,52 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>35</td>
               <td class='code_line'>
                 <pre>        can :read, AnimalWeight, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>36</td>
               <td class='code_line'>
                 <pre>        can :create, AnimalWeight</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>37</td>
               <td class='code_line'>
                 <pre>        can :update, AnimalWeight, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>38</td>
               <td class='code_line'>
                 <pre>        can :destroy, AnimalWeight, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>39</td>
               <td class='code_line'>
                 <pre>        can :export, AnimalWeight, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>40</td>
               <td class='code_line'>
                 <pre>        can :bulk_action, AnimalWeight, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
             <tr class="never" "">
@@ -413,36 +413,36 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>42</td>
               <td class='code_line'>
                 <pre>        can :read, Note, animal: { organization: { id: user.organization_id } }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>43</td>
               <td class='code_line'>
                 <pre>        can :create, Note, animal: { organization: { id: user.organization_id } }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>44</td>
               <td class='code_line'>
                 <pre>        can :update, Note, animal: { organization: { id: user.organization_id } }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>45</td>
               <td class='code_line'>
                 <pre>        can :destroy, Note, animal: { organization: { id: user.organization_id } }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
             <tr class="never" "">
@@ -453,28 +453,28 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>47</td>
               <td class='code_line'>
                 <pre>        can :read, Organization, :id => user.organization_id</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>48</td>
               <td class='code_line'>
                 <pre>        can :update, Organization, :id => user.organization_id</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>49</td>
               <td class='code_line'>
                 <pre>        can :export, Organization, :id => user.organization_id</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
             <tr class="never" "">
@@ -485,52 +485,52 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>51</td>
               <td class='code_line'>
                 <pre>        can :read, RelinquishmentContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>52</td>
               <td class='code_line'>
                 <pre>        can :create, RelinquishmentContact</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>53</td>
               <td class='code_line'>
                 <pre>        can :update, RelinquishmentContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>54</td>
               <td class='code_line'>
                 <pre>        can :destroy, RelinquishmentContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>55</td>
               <td class='code_line'>
                 <pre>        can :export, RelinquishmentContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>56</td>
               <td class='code_line'>
                 <pre>        can :bulk_action, RelinquishmentContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
             <tr class="never" "">
@@ -541,52 +541,52 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>58</td>
               <td class='code_line'>
                 <pre>        can :read, Shelter, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>59</td>
               <td class='code_line'>
                 <pre>        can :create, Shelter</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>60</td>
               <td class='code_line'>
                 <pre>        can :update, Shelter, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>61</td>
               <td class='code_line'>
                 <pre>        can :destroy, Shelter, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>62</td>
               <td class='code_line'>
                 <pre>        can :export, Shelter, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>63</td>
               <td class='code_line'>
                 <pre>        can :bulk_action, Shelter, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
             <tr class="never" "">
@@ -597,52 +597,52 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>65</td>
               <td class='code_line'>
                 <pre>        can :read, Species, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>66</td>
               <td class='code_line'>
                 <pre>        can :create, Species</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>67</td>
               <td class='code_line'>
                 <pre>        can :update, Species, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>68</td>
               <td class='code_line'>
                 <pre>        can :destroy, Species, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>69</td>
               <td class='code_line'>
                 <pre>        can :export, Species, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>70</td>
               <td class='code_line'>
                 <pre>        can :bulk_action, Species, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
             <tr class="never" "">
@@ -653,52 +653,52 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>72</td>
               <td class='code_line'>
                 <pre>        can :read, User, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>73</td>
               <td class='code_line'>
                 <pre>        can :create, User</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>74</td>
               <td class='code_line'>
                 <pre>        can :update, User, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>75</td>
               <td class='code_line'>
                 <pre>        can :export, User, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>76</td>
               <td class='code_line'>
                 <pre>        can :destroy, User, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>77</td>
               <td class='code_line'>
                 <pre>        can :bulk_action, User, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
             <tr class="never" "">
@@ -709,52 +709,52 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>79</td>
               <td class='code_line'>
                 <pre>        can :read, VetContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>80</td>
               <td class='code_line'>
                 <pre>        can :create, VetContact</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>81</td>
               <td class='code_line'>
                 <pre>        can :update, VetContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>82</td>
               <td class='code_line'>
                 <pre>        can :destroy, VetContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>83</td>
               <td class='code_line'>
                 <pre>        can :export, VetContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>84</td>
               <td class='code_line'>
                 <pre>        can :bulk_action, VetContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
             <tr class="never" "">
@@ -765,52 +765,52 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>86</td>
               <td class='code_line'>
                 <pre>        can :read, VolunteerContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>87</td>
               <td class='code_line'>
                 <pre>        can :create, VolunteerContact</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>88</td>
               <td class='code_line'>
                 <pre>        can :update, VolunteerContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>89</td>
               <td class='code_line'>
                 <pre>        can :destroy, VolunteerContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>90</td>
               <td class='code_line'>
                 <pre>        can :export, VolunteerContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>91</td>
               <td class='code_line'>
                 <pre>        can :bulk_action, VolunteerContact, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
             <tr class="never" "">
@@ -821,52 +821,52 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>93</td>
               <td class='code_line'>
                 <pre>        can :read, Status, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>94</td>
               <td class='code_line'>
                 <pre>        can :create, Status</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>95</td>
               <td class='code_line'>
                 <pre>        can :update, Status, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>96</td>
               <td class='code_line'>
                 <pre>        can :destroy, Status, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>97</td>
               <td class='code_line'>
                 <pre>        can :export, Status, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>98</td>
               <td class='code_line'>
                 <pre>        can :bulk_action, Status, organization: { id: user.organization_id }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
             <tr class="never" "">
@@ -877,28 +877,28 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>100</td>
               <td class='code_line'>
                 <pre>        can :read, AnimalSex</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>101</td>
               <td class='code_line'>
                 <pre>        can :read, SpayNeuter</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>102</td>
               <td class='code_line'>
                 <pre>        can :read, Biter</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>330</td>
             </tr>
           
             <tr class="miss" data-hits='#{cov}'"">
@@ -1426,6 +1426,6 @@
       
     </div>
     
-    <p>Generated on: 07-01-2012 19:46</p>
+    <p>Generated on: 07-04-2012 13:54</p>
   </body>
 </html>

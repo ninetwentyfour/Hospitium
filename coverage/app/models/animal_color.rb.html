@@ -2,8 +2,8 @@
   <head>
     <title>app/models/animal_color.rb</title>
     
-    <link href="../../report.css?0.7995278169196542" media="screen" rel="stylesheet" type="text/css" />
-    <script src='../../jquery.js?0.8286902757510463'></script>
+    <link href="../../report.css?0.6483194958090914" media="screen" rel="stylesheet" type="text/css" />
+    <script src='../../jquery.js?0.14718408398052418'></script>
     <script>
       $(function() {
 
@@ -93,7 +93,7 @@
               <td class='code_line'>
                 <pre>class AnimalColor < ActiveRecord::Base</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -101,7 +101,7 @@
               <td class='code_line'>
                 <pre>  include CommonScopes</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -117,7 +117,7 @@
               <td class='code_line'>
                 <pre>  has_paper_trail</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -133,7 +133,7 @@
               <td class='code_line'>
                 <pre>  belongs_to :organization</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -141,7 +141,7 @@
               <td class='code_line'>
                 <pre>  has_many :animals</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -157,7 +157,7 @@
               <td class='code_line'>
                 <pre>  before_create :create_uuid</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -173,7 +173,7 @@
               <td class='code_line'>
                 <pre>  validates_presence_of :color, :organization_id</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -189,7 +189,7 @@
               <td class='code_line'>
                 <pre>  attr_accessible :color</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -213,7 +213,7 @@
               <td class='code_line'>
                 <pre>  def create_uuid()</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -221,7 +221,7 @@
               <td class='code_line'>
                 <pre>    self.uuid = UUIDTools::UUID.random_create.to_s</pre>
               </td>
-              <td class='hit_number'>720</td>
+              <td class='hit_number'>5964</td>
             </tr>
           
             <tr class="never" "">
@@ -668,6 +668,6 @@
       
     </div>
     
-    <p>Generated on: 07-01-2012 19:46</p>
+    <p>Generated on: 07-04-2012 13:54</p>
   </body>
 </html>

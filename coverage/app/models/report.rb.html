@@ -2,8 +2,8 @@
   <head>
     <title>app/models/report.rb</title>
     
-    <link href="../../report.css?0.5020779817771629" media="screen" rel="stylesheet" type="text/css" />
-    <script src='../../jquery.js?0.1784040788845872'></script>
+    <link href="../../report.css?0.41172185398374916" media="screen" rel="stylesheet" type="text/css" />
+    <script src='../../jquery.js?0.42725626936213634'></script>
     <script>
       $(function() {
 
@@ -57,8 +57,8 @@
         </td>
         <td>48</td>
         <td>34</td>
-        <td>30</td>
-        <td>11.8%</td>
+        <td>0</td>
+        <td>100.0%</td>
       </tr>
     </table>
 
@@ -98,7 +98,7 @@
               <td class='code_line'>
                 <pre>class Report < ActiveRecord::Base</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -106,7 +106,7 @@
               <td class='code_line'>
                 <pre>  has_paper_trail # use versioning</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -122,7 +122,7 @@
               <td class='code_line'>
                 <pre>  def self.animals_by_status(org)</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -133,76 +133,76 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>7</td>
               <td class='code_line'>
                 <pre>    @animals_count = Animal.count(:conditions => {:organization_id => org})     </pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>1</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>8</td>
               <td class='code_line'>
                 <pre>    @all_statuses = Status.find(:all, :select => 'statuses.id, statuses.status', :conditions => {:organization_id => org})</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>1</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>9</td>
               <td class='code_line'>
                 <pre>    @final_status_hash = Array.new</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>1</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>10</td>
               <td class='code_line'>
                 <pre>    @final_status_hash_count = Hash.new</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>1</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>11</td>
               <td class='code_line'>
                 <pre>    @all_statuses.each do |status|</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>1</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>12</td>
               <td class='code_line'>
                 <pre>      @count = Animal.count(:conditions => {:organization_id => org, :status_id => status.id})</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>7</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>13</td>
               <td class='code_line'>
                 <pre>      @sub_hash = Hash.new</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>7</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>14</td>
               <td class='code_line'>
                 <pre>      @sub_hash["count"] = @count.to_s</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>7</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>15</td>
               <td class='code_line'>
                 <pre>      @sub_hash["percent"] = (@count.to_f / @animals_count.to_f) * 100</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>7</td>
             </tr>
           
             <tr class="never" "">
@@ -221,20 +221,20 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>18</td>
               <td class='code_line'>
                 <pre>      @final_status_hash_count["#{status.status}"] = @sub_hash</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>7</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>19</td>
               <td class='code_line'>
                 <pre>      @final_status_hash << ["#{status.status}", (@count.to_f / @animals_count.to_f) * 100]</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>7</td>
             </tr>
           
             <tr class="never" "">
@@ -245,36 +245,36 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>21</td>
               <td class='code_line'>
                 <pre>    @super_hash = Hash.new</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>1</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>22</td>
               <td class='code_line'>
                 <pre>    @super_hash["pie"] = @final_status_hash</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>1</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>23</td>
               <td class='code_line'>
                 <pre>    @super_hash['bar'] = @final_status_hash_count</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>1</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>24</td>
               <td class='code_line'>
                 <pre>    return @super_hash</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>1</td>
             </tr>
           
             <tr class="never" "">
@@ -298,7 +298,7 @@
               <td class='code_line'>
                 <pre>  def self.animals_by_species(org)</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -309,76 +309,76 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>29</td>
               <td class='code_line'>
                 <pre>    @animals_count = Animal.count(:conditions => {:organization_id => org})     </pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>1</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>30</td>
               <td class='code_line'>
                 <pre>    @all_species = Species.find(:all, :select => 'species.id, species.name', :conditions => {:organization_id => org})</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>1</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>31</td>
               <td class='code_line'>
                 <pre>    @final_species_hash = Array.new</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>1</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>32</td>
               <td class='code_line'>
                 <pre>    @final_species_hash_count = Hash.new</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>1</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>33</td>
               <td class='code_line'>
                 <pre>    @all_species.each do |species|</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>1</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>34</td>
               <td class='code_line'>
                 <pre>      @count = Animal.count(:conditions => {:organization_id => org, :species_id => species.id})</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>8</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>35</td>
               <td class='code_line'>
                 <pre>      @sub_hash = Hash.new</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>8</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>36</td>
               <td class='code_line'>
                 <pre>      @sub_hash["count"] = @count.to_s</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>8</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>37</td>
               <td class='code_line'>
                 <pre>      @sub_hash["percent"] = (@count.to_f / @animals_count.to_f) * 100</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>8</td>
             </tr>
           
             <tr class="never" "">
@@ -389,20 +389,20 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>39</td>
               <td class='code_line'>
                 <pre>      @final_species_hash_count["#{species.name}"] = @sub_hash</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>8</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>40</td>
               <td class='code_line'>
                 <pre>      @final_species_hash << ["#{species.name}", (@count.to_f / @animals_count.to_f) * 100]</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>8</td>
             </tr>
           
             <tr class="never" "">
@@ -413,36 +413,36 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>42</td>
               <td class='code_line'>
                 <pre>    @super_hash = Hash.new</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>1</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>43</td>
               <td class='code_line'>
                 <pre>    @super_hash["pie"] = @final_species_hash </pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>1</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>44</td>
               <td class='code_line'>
                 <pre>    @super_hash['bar'] = @final_species_hash_count</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>1</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>45</td>
               <td class='code_line'>
                 <pre>    return @super_hash</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>1</td>
             </tr>
           
             <tr class="never" "">
@@ -474,6 +474,6 @@
       
     </div>
     
-    <p>Generated on: 07-01-2012 19:46</p>
+    <p>Generated on: 07-04-2012 13:54</p>
   </body>
 </html>

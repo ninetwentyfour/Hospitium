@@ -2,8 +2,8 @@
   <head>
     <title>app/controllers/admin/adoption_contacts_controller.rb</title>
     
-    <link href="../../../report.css?0.5900725033602703" media="screen" rel="stylesheet" type="text/css" />
-    <script src='../../../jquery.js?0.5090060697362551'></script>
+    <link href="../../../report.css?0.7783068233597257" media="screen" rel="stylesheet" type="text/css" />
+    <script src='../../../jquery.js?0.7757215077318586'></script>
     <script>
       $(function() {
 
@@ -57,8 +57,8 @@
         </td>
         <td>71</td>
         <td>34</td>
-        <td>24</td>
-        <td>29.4%</td>
+        <td>2</td>
+        <td>94.1%</td>
       </tr>
     </table>
 
@@ -90,7 +90,7 @@
               <td class='code_line'>
                 <pre>class Admin::AdoptionContactsController < Admin::ApplicationController</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -98,7 +98,7 @@
               <td class='code_line'>
                 <pre>  load_and_authorize_resource</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -114,7 +114,7 @@
               <td class='code_line'>
                 <pre>  respond_to :html, :xml, :json, :xls</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="never" "">
@@ -146,47 +146,47 @@
               <td class='code_line'>
                 <pre>  def index</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>9</td>
               <td class='code_line'>
                 <pre>    @search = AdoptionContact.organization(current_user).search(params[:search])</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>34</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>10</td>
               <td class='code_line'>
                 <pre>    @adoption_contacts = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>34</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>11</td>
               <td class='code_line'>
                 <pre>    respond_with(@adoption_contacts) do |format|</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>34</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>12</td>
               <td class='code_line'>
                 <pre>      format.html</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>34</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>13</td>
               <td class='code_line'>
                 <pre>      format.xls { send_data AdoptionContact.organization(current_user).to_xls,  content_type: 'application/vnd.ms-excel', filename: 'adoption_contacts.xls' }</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>35</td>
             </tr>
           
             <tr class="never" "">
@@ -234,31 +234,31 @@
               <td class='code_line'>
                 <pre>  def show</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>20</td>
               <td class='code_line'>
                 <pre>    @adoption_contact = AdoptionContact.find(params[:id])</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>29</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>21</td>
               <td class='code_line'>
                 <pre>    @animals = AdoptionContact.find(params[:id]).animals</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>29</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>22</td>
               <td class='code_line'>
                 <pre>    @adoptable_animals = Animal.organization(current_user)</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>29</td>
             </tr>
           
             <tr class="never" "">
@@ -269,12 +269,12 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>24</td>
               <td class='code_line'>
                 <pre>    respond_with(@adoption_contact)</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>29</td>
             </tr>
           
             <tr class="never" "">
@@ -314,15 +314,15 @@
               <td class='code_line'>
                 <pre>  def new</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>30</td>
               <td class='code_line'>
                 <pre>    @adoption_contact = AdoptionContact.new</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>10</td>
             </tr>
           
             <tr class="never" "">
@@ -333,12 +333,12 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>32</td>
               <td class='code_line'>
                 <pre>    respond_with(@adoption_contact)</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>10</td>
             </tr>
           
             <tr class="never" "">
@@ -370,7 +370,7 @@
               <td class='code_line'>
                 <pre>  def edit</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
             <tr class="miss" data-hits='#{cov}'"">
@@ -418,31 +418,31 @@
               <td class='code_line'>
                 <pre>  def create</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>43</td>
               <td class='code_line'>
                 <pre>    @adoption_contact = current_user.organization.adoption_contacts.new(params[:adoption_contact])</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>10</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>44</td>
               <td class='code_line'>
                 <pre>    if @adoption_contact.save</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>10</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>45</td>
               <td class='code_line'>
                 <pre>      flash[:notice] = 'Adoption contact was successfully created.'</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>10</td>
             </tr>
           
             <tr class="never" "">
@@ -477,12 +477,12 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>50</td>
               <td class='code_line'>
                 <pre>    respond_with(@adoption_contact, :location => admin_adoption_contact_path(@adoption_contact))</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>10</td>
             </tr>
           
             <tr class="never" "">
@@ -522,23 +522,23 @@
               <td class='code_line'>
                 <pre>  def update</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>56</td>
               <td class='code_line'>
                 <pre>    @adoption_contact = AdoptionContact.find(params[:id])</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>7</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>57</td>
               <td class='code_line'>
                 <pre>    @adoption_contact.update_attributes(params[:adoption_contact])</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>7</td>
             </tr>
           
             <tr class="never" "">
@@ -549,12 +549,12 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>59</td>
               <td class='code_line'>
                 <pre>    respond_with(@adoption_contact, :location => admin_adoption_contact_path(@adoption_contact)) </pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>7</td>
             </tr>
           
             <tr class="never" "">
@@ -594,31 +594,31 @@
               <td class='code_line'>
                 <pre>  def destroy</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>18</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>65</td>
               <td class='code_line'>
                 <pre>    @adoption_contact = AdoptionContact.find(params[:id])</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>4</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>66</td>
               <td class='code_line'>
                 <pre>    @adoption_contact.destroy</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>4</td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>67</td>
               <td class='code_line'>
                 <pre>    flash[:notice] = 'Successfully destroyed adoption contact.'</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>4</td>
             </tr>
           
             <tr class="never" "">
@@ -629,12 +629,12 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="miss" data-hits='#{cov}'"">
+            <tr class="hit" data-hits='#{cov}'"">
               <td class='line_number'>69</td>
               <td class='code_line'>
                 <pre>    respond_with(@adoption_contact, :location => admin_adoption_contacts_path)</pre>
               </td>
-              <td class='hit_number'>0</td>
+              <td class='hit_number'>4</td>
             </tr>
           
             <tr class="never" "">
@@ -658,6 +658,6 @@
       
     </div>
     
-    <p>Generated on: 07-01-2012 19:46</p>
+    <p>Generated on: 07-04-2012 13:54</p>
   </body>
 </html>

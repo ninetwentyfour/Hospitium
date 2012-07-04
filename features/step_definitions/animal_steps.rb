@@ -66,6 +66,10 @@ And /^I click the add new animal button$/ do
   click_link "Add New Animal"
 end
 
+When /^I click Cage Card$/ do
+  click_link "Cage Card"
+end
+
 And /^I submit the new animal form$/ do
   fill_in "Name", :with => "example animal name"
   fill_in "Date of intake", :with => "2011-10-20 00:50:22"
