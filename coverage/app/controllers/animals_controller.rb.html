@@ -2,8 +2,8 @@
   <head>
     <title>app/controllers/animals_controller.rb</title>
     
-    <link href="../../report.css?0.9420134332358135" media="screen" rel="stylesheet" type="text/css" />
-    <script src='../../jquery.js?0.5592863256781763'></script>
+    <link href="../../report.css?0.9528582335036034" media="screen" rel="stylesheet" type="text/css" />
+    <script src='../../jquery.js?0.4248439832683131'></script>
     <script>
       $(function() {
 
@@ -93,7 +93,7 @@
               <td class='code_line'>
                 <pre>class AnimalsController < ApplicationController</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>1</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -101,7 +101,7 @@
               <td class='code_line'>
                 <pre>  caches_action :index, :cache_path => Proc.new { |controller| controller.params },:layout => false, :expires_in => 10.minutes</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>1</td>
             </tr>
           
             <tr class="never" "">
@@ -117,7 +117,7 @@
               <td class='code_line'>
                 <pre>  respond_to :html, :xml, :json</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>1</td>
             </tr>
           
             <tr class="never" "">
@@ -149,7 +149,7 @@
               <td class='code_line'>
                 <pre>  def index</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>1</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -157,7 +157,7 @@
               <td class='code_line'>
                 <pre>    canonical_url("/animals")</pre>
               </td>
-              <td class='hit_number'>19</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="never" "">
@@ -173,7 +173,7 @@
               <td class='code_line'>
                 <pre>    @animals = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter).</pre>
               </td>
-              <td class='hit_number'>19</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="never" "">
@@ -213,7 +213,7 @@
               <td class='code_line'>
                 <pre>    respond_with(@animals)</pre>
               </td>
-              <td class='hit_number'>19</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="never" "">
@@ -253,7 +253,7 @@
               <td class='code_line'>
                 <pre>  def show</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>1</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -261,7 +261,7 @@
               <td class='code_line'>
                 <pre>    canonical_url("/animals/#{params[:id]}")</pre>
               </td>
-              <td class='hit_number'>19</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -269,7 +269,7 @@
               <td class='code_line'>
                 <pre>    @animal = Rails.cache.fetch("public_animal_#{params[:id]}", :expires_in => 15.minutes) do</pre>
               </td>
-              <td class='hit_number'>19</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -277,7 +277,7 @@
               <td class='code_line'>
                 <pre>      Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter).find_by_uuid(params[:id])</pre>
               </td>
-              <td class='hit_number'>19</td>
+              <td class='hit_number'>1</td>
             </tr>
           
             <tr class="never" "">
@@ -301,7 +301,7 @@
               <td class='code_line'>
                 <pre>    respond_with(@animal)</pre>
               </td>
-              <td class='hit_number'>19</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="never" "">
@@ -604,6 +604,6 @@
       
     </div>
     
-    <p>Generated on: 07-04-2012 13:54</p>
+    <p>Generated on: 07-04-2012 15:08</p>
   </body>
 </html>

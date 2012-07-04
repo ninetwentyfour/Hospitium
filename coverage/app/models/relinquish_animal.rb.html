@@ -2,8 +2,8 @@
   <head>
     <title>app/models/relinquish_animal.rb</title>
     
-    <link href="../../report.css?0.8087719280420161" media="screen" rel="stylesheet" type="text/css" />
-    <script src='../../jquery.js?0.375540428221835'></script>
+    <link href="../../report.css?0.25372304145023084" media="screen" rel="stylesheet" type="text/css" />
+    <script src='../../jquery.js?0.8318996674102849'></script>
     <script>
       $(function() {
 
@@ -98,7 +98,7 @@
               <td class='code_line'>
                 <pre>class RelinquishAnimal < ActiveRecord::Base</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -106,7 +106,7 @@
               <td class='code_line'>
                 <pre>  belongs_to :animal</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -114,7 +114,7 @@
               <td class='code_line'>
                 <pre>  belongs_to :relinquishment_contact</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="never" "">
@@ -130,7 +130,7 @@
               <td class='code_line'>
                 <pre>  attr_accessible :relinquishment_contact_id, :animal_id</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="never" "">
@@ -146,7 +146,7 @@
               <td class='code_line'>
                 <pre>  delegate :name, :to => :animal, :allow_nil => true</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -154,7 +154,7 @@
               <td class='code_line'>
                 <pre>  delegate :first_name, :last_name, :to => :relinquishment_contact, :allow_nil => true</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="never" "">
@@ -178,6 +178,6 @@
       
     </div>
     
-    <p>Generated on: 07-04-2012 13:54</p>
+    <p>Generated on: 07-04-2012 15:08</p>
   </body>
 </html>

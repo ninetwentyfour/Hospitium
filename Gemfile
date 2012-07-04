@@ -35,7 +35,6 @@ end
 # Gems used only for development
 group :development do
 	gem 'metrical'
-	gem 'cover_me'
 end
 
 # Gems used only for production
@@ -79,4 +78,5 @@ group :test do
 	gem 'database_cleaner'
 	gem 'launchy'
 	gem 'email_spec'
+	# gem 'cover_me'
 end

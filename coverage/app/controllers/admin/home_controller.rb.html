@@ -2,8 +2,8 @@
   <head>
     <title>app/controllers/admin/home_controller.rb</title>
     
-    <link href="../../../report.css?0.4655537828557935" media="screen" rel="stylesheet" type="text/css" />
-    <script src='../../../jquery.js?0.8844671703654947'></script>
+    <link href="../../../report.css?0.20659706608601625" media="screen" rel="stylesheet" type="text/css" />
+    <script src='../../../jquery.js?0.29336874739458485'></script>
     <script>
       $(function() {
 
@@ -57,8 +57,8 @@
         </td>
         <td>16</td>
         <td>8</td>
-        <td>0</td>
-        <td>100.0%</td>
+        <td>6</td>
+        <td>25.0%</td>
       </tr>
     </table>
 
@@ -90,7 +90,7 @@
               <td class='code_line'>
                 <pre>class Admin::HomeController < Admin::ApplicationController</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>1</td>
             </tr>
           
             <tr class="never" "">
@@ -106,7 +106,7 @@
               <td class='code_line'>
                 <pre>  def index</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>1</td>
             </tr>
           
             <tr class="never" "">
@@ -117,36 +117,36 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="hit" data-hits='#{cov}'"">
+            <tr class="miss" data-hits='#{cov}'"">
               <td class='line_number'>5</td>
               <td class='code_line'>
                 <pre>    @animals_count = Animal.count(:conditions => {:organization_id => current_user.organization_id}) </pre>
               </td>
-              <td class='hit_number'>206</td>
+              <td class='hit_number'>0</td>
             </tr>
           
-            <tr class="hit" data-hits='#{cov}'"">
+            <tr class="miss" data-hits='#{cov}'"">
               <td class='line_number'>6</td>
               <td class='code_line'>
                 <pre>    @animal_update = Animal.order("updated_at desc").where(:organization_id => current_user.organization_id).first().try(:updated_at)</pre>
               </td>
-              <td class='hit_number'>206</td>
+              <td class='hit_number'>0</td>
             </tr>
           
-            <tr class="hit" data-hits='#{cov}'"">
+            <tr class="miss" data-hits='#{cov}'"">
               <td class='line_number'>7</td>
               <td class='code_line'>
                 <pre>    @final_status_hash = Rails.cache.fetch("animal_status_hash_user_#{current_user.organization_id}_#{@animals_count}_#{@animal_update}") do</pre>
               </td>
-              <td class='hit_number'>206</td>
+              <td class='hit_number'>0</td>
             </tr>
           
-            <tr class="hit" data-hits='#{cov}'"">
+            <tr class="miss" data-hits='#{cov}'"">
               <td class='line_number'>8</td>
               <td class='code_line'>
                 <pre>      Report.animals_by_status(current_user.organization_id)</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>0</td>
             </tr>
           
             <tr class="never" "">
@@ -157,20 +157,20 @@
               <td class='hit_number'></td>
             </tr>
           
-            <tr class="hit" data-hits='#{cov}'"">
+            <tr class="miss" data-hits='#{cov}'"">
               <td class='line_number'>10</td>
               <td class='code_line'>
                 <pre>    @final_species_hash = Rails.cache.fetch("animal_species_hash_user_#{current_user.organization_id}_#{@animals_count}_#{@animal_update}") do</pre>
               </td>
-              <td class='hit_number'>206</td>
+              <td class='hit_number'>0</td>
             </tr>
           
-            <tr class="hit" data-hits='#{cov}'"">
+            <tr class="miss" data-hits='#{cov}'"">
               <td class='line_number'>11</td>
               <td class='code_line'>
                 <pre>      Report.animals_by_species(current_user.organization_id)</pre>
               </td>
-              <td class='hit_number'>1</td>
+              <td class='hit_number'>0</td>
             </tr>
           
             <tr class="never" "">
@@ -218,6 +218,6 @@
       
     </div>
     
-    <p>Generated on: 07-04-2012 13:54</p>
+    <p>Generated on: 07-04-2012 15:08</p>
   </body>
 </html>

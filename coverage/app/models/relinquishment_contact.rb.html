@@ -2,8 +2,8 @@
   <head>
     <title>app/models/relinquishment_contact.rb</title>
     
-    <link href="../../report.css?0.4777666030949457" media="screen" rel="stylesheet" type="text/css" />
-    <script src='../../jquery.js?0.6565002514680373'></script>
+    <link href="../../report.css?0.9923828016844481" media="screen" rel="stylesheet" type="text/css" />
+    <script src='../../jquery.js?0.31435573155720253'></script>
     <script>
       $(function() {
 
@@ -93,7 +93,7 @@
               <td class='code_line'>
                 <pre>class RelinquishmentContact < ActiveRecord::Base</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -101,7 +101,7 @@
               <td class='code_line'>
                 <pre>  include CommonScopes</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="never" "">
@@ -117,7 +117,7 @@
               <td class='code_line'>
                 <pre>  has_paper_trail</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -125,7 +125,7 @@
               <td class='code_line'>
                 <pre>  has_many :relinquish_animals</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -133,7 +133,7 @@
               <td class='code_line'>
                 <pre>  has_many :animals, :through => :relinquish_animals</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -141,7 +141,7 @@
               <td class='code_line'>
                 <pre>  belongs_to :organization</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -149,7 +149,7 @@
               <td class='code_line'>
                 <pre>  before_create :create_uuid, :modify_phone_number</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -157,7 +157,7 @@
               <td class='code_line'>
                 <pre>  before_update :modify_phone_number</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="never" "">
@@ -173,7 +173,7 @@
               <td class='code_line'>
                 <pre>  validates_presence_of :first_name, :last_name, :organization_id</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="never" "">
@@ -189,7 +189,7 @@
               <td class='code_line'>
                 <pre>  attr_accessible :first_name, :last_name, :address, :phone, :email, :reason</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="never" "">
@@ -213,7 +213,7 @@
               <td class='code_line'>
                 <pre>  def create_uuid()</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -245,7 +245,7 @@
               <td class='code_line'>
                 <pre>  def show_name_label_method</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="miss" data-hits='#{cov}'"">
@@ -277,7 +277,7 @@
               <td class='code_line'>
                 <pre>  def modify_phone_number</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -325,7 +325,7 @@
               <td class='code_line'>
                 <pre>  def formatted_phone</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="hit" data-hits='#{cov}'"">
@@ -397,7 +397,7 @@
               <td class='code_line'>
                 <pre>  def as_xls(options = {})</pre>
               </td>
-              <td class='hit_number'>18</td>
+              <td class='hit_number'>2</td>
             </tr>
           
             <tr class="never" "">
@@ -1092,6 +1092,6 @@
       
     </div>
     
-    <p>Generated on: 07-04-2012 13:54</p>
+    <p>Generated on: 07-04-2012 15:08</p>
   </body>
 </html>
