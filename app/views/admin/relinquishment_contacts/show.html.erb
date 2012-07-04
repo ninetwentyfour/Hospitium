@@ -1,14 +1,10 @@
 <div class="row-fluid">
 	<div class="span12 main-app-row">
-		<% if notice.blank? %>
-
-		<% else %>
-			<div class="alert alert-info"><a class="close" data-dismiss="alert" href="#">&times;</a> <%= notice %></div>
-		<% end %>
 		<div class="well">
 			<div class="row-fluid">
 				<div class="span6">
-					<h1><%= best_in_place @relinquishment_contact, :first_name, :type => :input, :nil => "Click me to add content!" %> <%= best_in_place @relinquishment_contact, :last_name, :type => :input, :nil => "" %></h1>
+					<h1><%= best_in_place @relinquishment_contact, :first_name, :type => :input, :nil => "Click me to add content!", :path => admin_relinquishment_contact_path %> 
+					<%= best_in_place @relinquishment_contact, :last_name, :type => :input, :nil => "", :path => admin_relinquishment_contact_path %></h1>
 				</div>
 			</div>
 		</div>
@@ -21,9 +17,9 @@
 				<div class="tab-content">
 					<div class="tab-pane active" id="1">
 						<div class="">
-							<p><strong>Phone #:</strong> <%= best_in_place @relinquishment_contact, :phone, :nil => "Click me to add content!", :display_as => :formatted_phone %></p>
-							<p><strong>Email:</strong> <%= best_in_place @relinquishment_contact, :email, :nil => "Click me to add content!" %></p>
-							<p><strong>Address:</strong> <%= best_in_place @relinquishment_contact, :address, :nil => "Click me to add content!" %></p>
+							<p><strong>Phone #:</strong> <%= best_in_place @relinquishment_contact, :phone, :nil => "Click me to add content!", :display_as => :formatted_phone, :path => admin_relinquishment_contact_path %></p>
+							<p><strong>Email:</strong> <%= best_in_place @relinquishment_contact, :email, :nil => "Click me to add content!", :path => admin_relinquishment_contact_path %></p>
+							<p><strong>Address:</strong> <%= best_in_place @relinquishment_contact, :address, :nil => "Click me to add content!", :path => admin_relinquishment_contact_path %></p>
 						</div>
 					</div>
 					<div class="tab-pane" id="2">
@@ -51,7 +47,7 @@
 	<div class="modal-body">
 		<%= form_for @relinquishment_contact.relinquish_animals.build(:relinquishment_contact_id => @relinquishment_contact.id) do |f| %>
 			<%= f.hidden_field :relinquishment_contact_id %>
-			<%= collection_select(:relinquish_animal, :animal_id, Animal.find(:all, :conditions => {:organization_id => current_user.organization_id}), :id, :name) %>  
+			<%= collection_select(:relinquish_animal, :animal_id, @relatable_animals, :id, :name) %>  
 	</div>
 	<div class="modal-footer">
 		<%= f.submit "Submit", :class => "btn btn-primary" %>

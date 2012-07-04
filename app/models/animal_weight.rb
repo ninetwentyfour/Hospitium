@@ -1,4 +1,6 @@
 class AnimalWeight < ActiveRecord::Base
+  include CommonScopes
+  
   has_paper_trail
   belongs_to :animal
   belongs_to :organization

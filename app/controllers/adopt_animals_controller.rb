@@ -50,7 +50,7 @@ class AdoptAnimalsController < ApplicationController
           }
         format.xml  { render :xml => @adopt_animal, :status => :created, :location => @adopt_animal }
       else
-        format.html { render :action => "new" }
+        format.html { render "new" }
         format.xml  { render :xml => @adopt_animal.errors, :status => :unprocessable_entity }
       end
     end
@@ -66,7 +66,7 @@ class AdoptAnimalsController < ApplicationController
         format.html { redirect_to(@adopt_animal, :notice => 'AdoptAnimal was successfully updated.') }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { render "edit" }
         format.xml  { render :xml => @adopt_animal.errors, :status => :unprocessable_entity }
       end
     end
@@ -75,7 +75,7 @@ class AdoptAnimalsController < ApplicationController
   # DELETE /biters/1
   # DELETE /biters/1.xml
   def destroy
-    @adopt_animal = AdoptAnimal.find(:first, :conditions => {:animal_id => params[:id], :adoption_contact_id => params[:adopt]})
+    @adopt_animal = AdoptAnimal.where(:animal_id => params[:id], :adoption_contact_id => params[:adopt])
     @adopt_animal.destroy
 
     respond_to do |format|

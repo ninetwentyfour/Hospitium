@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include CommonScopes
+  
   has_paper_trail
   has_many :permissions
   has_many :twitter_accounts
@@ -28,6 +30,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username
   validates_presence_of :organization_name
   validates_uniqueness_of :organization_name, :if => :should_validate_organization_name?
+  
   
   # show the user email in the admin UI instead of the user id
   def show_username_label_method

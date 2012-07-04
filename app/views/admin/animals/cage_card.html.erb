@@ -18,19 +18,19 @@
 				<%= @animal.name %>
 			</td>
 			<td>
-				<%= @animal.animal_sex.sex %>
+				<%= @animal.sex %>
 			</td>
 			<td>
-				<%= @animal.species.name %>
+				<%= @animal.species_name %>
 			</td>
 			<td>
-				<%= @animal.spay_neuter.spay %>
+				<%= @animal.spay %>
 			</td>
 			<td>
-				<%= @animal.biter.value %>
+				<%= @animal.biter_value %>
 			</td>
 			<td>
-				<%= @animal.animal_color.color %>
+				<%= @animal.color %>
 			</td>
 			<td>
 				<%= @animal.birthday.strftime("%b %e %Y") unless @animal.birthday.blank? %>
@@ -53,7 +53,7 @@
 		</tr>
 		<tr>
 			<td colspan="8">
-				<%= @animal.organization.name %>
+				<%= @animal.organization_name %>
 			</td>
 		<tr>
 	</tbody>

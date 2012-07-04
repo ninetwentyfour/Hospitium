@@ -15,6 +15,7 @@
 //= require jqplot.pointLabels.min
 //= require bar-chart
 //= require bootstrap
+//= require select2
 //= require_self
 $(function(){
 	if(window.location.pathname === "/"){
@@ -43,3 +44,4 @@ function load_scripts(){
 	$.datepicker.setDefaults({
 	   dateFormat: 'D, dd M yy' });
 }
+    $(document).ready(function() { $("select").select2(); });

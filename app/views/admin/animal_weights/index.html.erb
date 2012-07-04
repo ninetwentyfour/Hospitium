@@ -1,10 +1,5 @@
 <div class="row-fluid">
 	<div class="span12">
-		<% if notice.blank? %>
-
-		<% else %>
-			<div class="alert alert-info"><a class="close" data-dismiss="alert" href="#">&times;</a> <%= notice %></div>
-		<% end %>
 		<div class="well">
 			<div class="row-fluid">
 				<div class="span6">
@@ -66,7 +61,7 @@
 						<div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">
 							<div class="accordion-inner">
 								<%= f.label :animal_id_equals %>
-								<%= f.collection_select :animal_id_equals, Animal.find(:all, :conditions => {:organization_id => current_user.organization_id},:order => 'name'), :id, :name, :include_blank => true %>
+								<%= f.collection_select :animal_id_equals, @animals, :id, :name, :include_blank => true %>
 							</div>
 						</div>
 					</div>

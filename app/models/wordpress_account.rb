@@ -47,6 +47,15 @@ class WordpressAccount < ActiveRecord::Base
     return short_url
   end
   
+  def self.new_by_user(params, current_user)    
+    wordpress_account = self.new(params)
+    wordpress_account.user_id = current_user.id
+    wordpress_account.organization_id = current_user.organization_id
+    wordpress_account.active = true
+    wordpress_account.blog_password = Base64.encode64("#{wordpress_account.blog_password}~#{current_user.username}")
+    wordpress_account
+  end
+  
 
 end
 

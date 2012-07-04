@@ -114,3 +114,9 @@ noscript {
 .blog-post-title{
 	margin-bottom: 10px !important;
 }
+.select2-drop {
+z-index: 1100 !important;
+}
+.select2-container {
+margin-bottom: 10px;
+}

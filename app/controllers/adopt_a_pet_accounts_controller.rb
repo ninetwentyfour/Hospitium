@@ -1,18 +1,16 @@
 class AdoptAPetAccountsController < ApplicationController
+  
+  respond_to :html, :xml, :json
 
   def create
-    @adopt_a_pet_account = AdoptAPetAccount.new(params[:adopt_a_pet_account])
-    @adopt_a_pet_account.user_id = current_user.id
-    @adopt_a_pet_account.active = true
-    @adopt_a_pet_account.organization_id = current_user.organization.id
-    @adopt_a_pet_account.password = Base64.encode64("#{@adopt_a_pet_account.password}~#{current_user.username}")
-    respond_to do |format|
-      if  @adopt_a_pet_account.save
-        format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Adopt A Pet Account Connected!')}
-      else
-        format.html { render :action => "new" }
-      end
+    @adopt_a_pet_account = AdoptAPetAccount.new_by_user(params[:adopt_a_pet_account], current_user)
+    if @adopt_a_pet_account.save
+      flash[:notice] = 'Adopt A Pet Account Connected!'
+    else
+      flash[:error] = 'Adopt A Pet Account Was Not Connected!'
     end
+    
+    redirect_to "#{root_url}admin/users/#{current_user.id}"
   end
   
   def update
@@ -22,7 +20,7 @@ class AdoptAPetAccountsController < ApplicationController
       if  @adopt_a_pet.update_attributes(params[:adopt_a_pet_account])
         format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Adopt A Pet Account updated!')}
       else
-        format.html { render :action => "new" }
+        format.html { render "new" }
       end
     end
   end
@@ -44,24 +42,10 @@ class AdoptAPetAccountsController < ApplicationController
 
         # data rows 
         @animals.each do |animal|
-          csv << [animal.uuid, animal.species.name, animal.species.name, "", animal.name, animal.animal_sex.sex, animal.special_needs, "Available", animal.spay_neuter.spay,  animal.image.url(:large).sub(/https:/, "http:")] 
+          csv << [animal.uuid, animal.species_name, animal.species_name, "", animal.name, animal.sex, animal.special_needs, "Available", animal.spay,  animal.image.url(:large).sub(/https:/, "http:")] 
         end 
       end 
       
-      # csv_string = FasterCSV.generate do |csv|
-      # 
-      #   cols = ["ID", "Type", "Breed", "Breed2", "Name", "Sex", "Description", "Status", "SpayedNeutered", "PhotoURL"] 
-      # 
-      #   csv << cols
-      # 
-      #   @animals.each do |animal|
-      #     csv << [animal.uuid, animal.species.name, animal.species.name, "", animal.name, animal.animal_sex.sex, animal.special_needs, "Available", animal.spay_neuter.spay,  animal.image.url(:medium)] 
-      #   end
-      # 
-      #   filename = "data-#{Time.now.to_date.to_s}.csv"    
-      #   send_data(csv_string, :type => 'text/csv; charset=utf-8; header=present', :filename => filename)  
-      # 
-      # end
       #read the newly created csv
       read_csv = CSV.new("#{Rails.root}/tmp/#{current_user.id}_adopt_a_pet_export_temp.csv")
       send_to_them = ftp_csv(read_csv)

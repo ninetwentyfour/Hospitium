@@ -1,18 +1,14 @@
 class WordpressAccountsController < ApplicationController
 
   def create
-    @wordpress_account = WordpressAccount.new(params[:wordpress_account])
-    @wordpress_account.user_id = current_user.id
-    @wordpress_account.organization_id = current_user.organization_id
-    @wordpress_account.active = true
-    @wordpress_account.blog_password = Base64.encode64("#{@wordpress_account.blog_password}~#{current_user.username}")
-    respond_to do |format|
-      if  @wordpress_account.save
-        format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Wordpress Account Connected!')}
-      else
-        format.html { render :action => "new" }
-      end
+    @wordpress_account = WordpressAccount.new_by_user(params[:wordpress_account], current_user)
+    if @adopt_a_pet_account.save
+      flash[:notice] = 'Wordpress Account Connected!'
+    else
+      flash[:error] = 'Wordpress Account Was Not Connected!'
     end
+    
+    redirect_to "#{root_url}admin/users/#{current_user.id}"
   end
   
   def update
@@ -22,7 +18,7 @@ class WordpressAccountsController < ApplicationController
       if  @wordpress.update_attributes(params[:wordpress_account])
         format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Wordpress Account Connected!')}
       else
-        format.html { render :action => "new" }
+        format.html { render "new" }
       end
     end
   end

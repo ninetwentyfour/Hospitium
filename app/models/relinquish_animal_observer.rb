@@ -15,7 +15,7 @@ class RelinquishAnimalObserver < ActiveRecord::Observer
     @event = AnimalEvent.new
     @event.animal_id = relinquish_animal.animal_id
     @event.update_attributes(:event_type => "Animal Relinquished", 
-      :event_message => "#{relinquish_animal.animal.name} was relinquished by #{relinquish_animal.relinquishment_contact.first_name} #{relinquish_animal.relinquishment_contact.last_name}",
+      :event_message => "#{relinquish_animal.name} was relinquished by #{relinquish_animal.first_name} #{relinquish_animal.last_name}",
       :related_model_name => "relinquishment_contact",
       :related_model_id => relinquish_animal.relinquishment_contact_id
     )
@@ -25,7 +25,7 @@ class RelinquishAnimalObserver < ActiveRecord::Observer
     @event = AnimalEvent.new
     @event.animal_id = relinquish_animal.animal_id
     @event.update_attributes(:event_type => "Animal Returned", 
-      :event_message => "#{relinquish_animal.animal.name} was returned to #{relinquish_animal.relinquishment_contact.first_name} #{relinquish_animal.relinquishment_contact.last_name}",
+      :event_message => "#{relinquish_animal.name} was returned to #{relinquish_animal.first_name} #{relinquish_animal.last_name}",
       :related_model_name => "relinquishment_contact",
       :related_model_id => relinquish_animal.relinquishment_contact_id
     )

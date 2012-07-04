@@ -47,7 +47,7 @@ class AnimalSexesController < ApplicationController
         format.html { redirect_to(@animal_sex, :notice => 'Animal sex was successfully created.') }
         format.xml  { render :xml => @animal_sex, :status => :created, :location => @animal_sex }
       else
-        format.html { render :action => "new" }
+        format.html { render "new" }
         format.xml  { render :xml => @animal_sex.errors, :status => :unprocessable_entity }
       end
     end
@@ -63,7 +63,7 @@ class AnimalSexesController < ApplicationController
         format.html { redirect_to(@animal_sex, :notice => 'Animal sex was successfully updated.') }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { render "edit" }
         format.xml  { render :xml => @animal_sex.errors, :status => :unprocessable_entity }
       end
     end

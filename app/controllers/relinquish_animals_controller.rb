@@ -46,11 +46,10 @@ class RelinquishAnimalsController < ApplicationController
       if @relinquish_animal.save
         format.html { 
           redirect_to(:back, :notice => 'Animal successfully added.')
-          #redirect_to(@species, :notice => 'Species was successfully created.') 
           }
         format.xml  { render :xml => @relinquish_animal, :status => :created, :location => @relinquish_animal }
       else
-        format.html { render :action => "new" }
+        format.html { render "new" }
         format.xml  { render :xml => @relinquish_animal.errors, :status => :unprocessable_entity }
       end
     end
@@ -66,7 +65,7 @@ class RelinquishAnimalsController < ApplicationController
         format.html { redirect_to(@relinquish_animal, :notice => 'RelinquishAnimal was successfully updated.') }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { render "edit" }
         format.xml  { render :xml => @relinquish_animal.errors, :status => :unprocessable_entity }
       end
     end

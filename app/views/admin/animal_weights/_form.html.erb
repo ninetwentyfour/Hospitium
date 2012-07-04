@@ -1,10 +1,10 @@
-<%= form_for(@animal_weight) do |f| %>
-  <% if @animal_weight.errors.any? %>
+<%= form_for(animal_weight) do |f| %>
+  <% if animal_weight.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@animal_weight.errors.count, "error") %> prohibited this animal_weight from being saved:</h2>
+      <h2><%= pluralize(animal_weight.errors.count, "error") %> prohibited this animal_weight from being saved:</h2>
 
       <ul>
-      <% @animal_weight.errors.full_messages.each do |msg| %>
+      <% animal_weight.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>

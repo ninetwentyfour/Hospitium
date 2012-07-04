@@ -1,12 +1,12 @@
 <div class="row-fluid">
 	<div class="span12">
-		<%= form_for @animal_color, :url => admin_animal_colors_path, :validate => true do |f| %>
-		  <% if @animal_color.errors.any? %>
+		<%= form_for animal_color, :url => admin_animal_colors_path, :validate => true do |f| %>
+		  <% if animal_color.errors.any? %>
 		    <div id="error_explanation">
-		      <h2><%= pluralize(@animal_color.errors.count, "error") %> prohibited this animal_color from being saved:</h2>
+		      <h2><%= pluralize(animal_color.errors.count, "error") %> prohibited this animal_color from being saved:</h2>
 
 		      <ul>
-		      <% @animal_color.errors.full_messages.each do |msg| %>
+		      <% animal_color.errors.full_messages.each do |msg| %>
 		        <li><%= msg %></li>
 		      <% end %>
 		      </ul>

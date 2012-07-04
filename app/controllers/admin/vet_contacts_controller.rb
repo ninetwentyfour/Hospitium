@@ -1,15 +1,17 @@
 class Admin::VetContactsController < Admin::ApplicationController
   load_and_authorize_resource
+  
+  respond_to :html, :xml, :json, :xls
+  
   # GET /vet_contacts
   # GET /vet_contacts.xml
   def index
-    @search = VetContact.search(params[:search])
-    @vet_contacts = @search.paginate(:page => params[:page], :per_page => 10, :conditions => {:organization_id => current_user.organization_id}, :order => "updated_at DESC")
+    @search = VetContact.organization(current_user).search(params[:search])
+    @vet_contacts = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
 
-    respond_to do |format|
+    respond_with(@vet_contacts) do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @vet_contacts }
-      format.xls { send_data VetContact.find(:all, :conditions => {:organization_id => current_user.organization_id}).to_xls, content_type: 'application/vnd.ms-excel', filename: 'vet_contacts.xls' }
+      format.xls { send_data VetContact.organization(current_user).to_xls, content_type: 'application/vnd.ms-excel', filename: 'vet_contacts.xls' }
     end
   end
 
@@ -18,10 +20,7 @@ class Admin::VetContactsController < Admin::ApplicationController
   def show
     @vet_contact = VetContact.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @vet_contact }
-    end
+    respond_with(@vet_contact)
   end
 
   # GET /vet_contacts/new
@@ -29,10 +28,7 @@ class Admin::VetContactsController < Admin::ApplicationController
   def new
     @vet_contact = VetContact.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @vet_contact }
-    end
+    respond_with(@vet_contact)
   end
 
   # GET /vet_contacts/1/edit
@@ -43,33 +39,23 @@ class Admin::VetContactsController < Admin::ApplicationController
   # POST /vet_contacts
   # POST /vet_contacts.xml
   def create
-    @vet_contact = VetContact.new(params[:vet_contact])
-    @vet_contact.organization_id = current_user.organization_id
-    respond_to do |format|
-      if @vet_contact.save
-        format.html { redirect_to(@vet_contact, :notice => 'Vet contact was successfully created.') }
-        format.xml  { render :xml => @vet_contact, :status => :created, :location => @vet_contact }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @vet_contact.errors, :status => :unprocessable_entity }
-      end
+    @vet_contact = current_user.organization.vet_contacts.new(params[:vet_contact])
+    if @vet_contact.save
+      flash[:notice] = 'Vet contact was successfully created.'
+    else
+      flash[:error] = 'Vet contact was not successfully created.'
     end
+    
+    respond_with(@vet_contact, :location => admin_vet_contact_path(@vet_contact))
   end
 
   # PUT /vet_contacts/1
   # PUT /vet_contacts/1.xml
   def update
     @vet_contact = VetContact.find(params[:id])
-
-    respond_to do |format|
-      if @vet_contact.update_attributes(params[:vet_contact])
-        format.html { redirect_to(@vet_contact, :notice => 'Vet contact was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @vet_contact.errors, :status => :unprocessable_entity }
-      end
-    end
+    @vet_contact.update_attributes(params[:vet_contact])
+    
+    respond_with(@vet_contact, :location => admin_vet_contact_path(@vet_contact))
   end
 
   # DELETE /vet_contacts/1
@@ -77,10 +63,8 @@ class Admin::VetContactsController < Admin::ApplicationController
   def destroy
     @vet_contact = VetContact.find(params[:id])
     @vet_contact.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(vet_contacts_url) }
-      format.xml  { head :ok }
-    end
+    flash[:notice] = 'Successfully destroyed vet contact.'
+    
+    respond_with(@vet_contact, :location => admin_vet_contacts_path)
   end
 end

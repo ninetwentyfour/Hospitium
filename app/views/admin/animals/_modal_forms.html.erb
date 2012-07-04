@@ -116,7 +116,7 @@
 			<%= f.label :date_of_weight %>
 			<%= f.text_field :date_of_weight %>
 			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
-			<%= f.hidden_field :animal_id, :value => @animal.id %>
+			<%= f.hidden_field :animal_id, :value => animal.id %>
 		<%end%>
 	</div>
 	<div class="modal-footer">

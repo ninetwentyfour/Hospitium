@@ -13,11 +13,6 @@ class Admin::ApplicationController < ActionController::Base
     end
   end
   
-  # redirect to /admin after all logins
-  def after_sign_in_path_for(resource_or_scope)
-    '/admin'
-  end
-  
   #rescue cancan permission errors
   rescue_from CanCan::AccessDenied do |exception|
     exception.default_message = "Default error message"
@@ -44,12 +39,12 @@ class Admin::ApplicationController < ActionController::Base
   end
   
   #read controller and action - used to set current page in nav
-  def controller?(*controller)
-    controller.include?(params[:controller])
-  end
-  def action?(*action)
-    action.include?(params[:action])
-  end
+  # def controller?(*controller)
+  #   controller.include?(params[:controller])
+  # end
+  # def action?(*action)
+  #   action.include?(params[:action])
+  # end
 
   #render the admin layout if not a pjax request
   private

@@ -1,4 +1,4 @@
-if Rails.env == "test"
+if Rails.env == "test" or Rails.env == "development"
 
 else
   AssetSync.configure do |config|

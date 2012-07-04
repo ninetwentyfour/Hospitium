@@ -1,5 +1,7 @@
 include ActionView::Helpers::NumberHelper
 class AdoptionContact < ActiveRecord::Base
+  include CommonScopes
+  
   has_paper_trail
   has_many :adopt_animals
   has_many :animals, :through => :adopt_animals

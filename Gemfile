@@ -2,45 +2,28 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.6'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
+# Gems used in all environments
 gem 'mysql2'
+gem 'dalli'
+gem 'aws-sdk', '~> 1.3.4'
 gem 'devise' # Devise must be required before RailsAdmin
-gem 'nokogiri'
-gem 'mechanize'
 gem 'uuidtools'
 gem 'cancan'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
-gem 'aws-sdk', '~> 1.3.4'
 gem 'will_paginate'
 gem 'paper_trail'
-gem 'oauth'
-gem 'twitter'
-gem 'rest-client'
-gem 'json'
-gem 'libxml-xmlrpc'
-gem 'bitly'
 gem 'site_meta'
 gem 'meta_search'
-gem 'airbrake'
-gem 'spork', '~> 1.0rc'
+gem 'juggernaut'
 gem 'client_side_validations'
 gem 'jqplot-rails', :git => "git://github.com/ninetwentyfour/jqplot-rails.git"
-gem 'asset_sync'
 gem 'gravatar_image_tag'
 gem 'best_in_place'
-gem 'juggernaut'
-gem 'jquery-rails'
-gem 'less-rails-bootstrap'
 gem "spreadsheet", "0.6.5.8"
 gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls-on-models"
-gem 'sanitize'
 gem 'redcarpet'
-gem 'rqrcode-rails3'
-gem 'octokit'
-gem 'therubyracer'
-
+gem 'jquery-rails'
+gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -51,21 +34,42 @@ group :assets do
   gem 'closure-compiler'
 end
 
+# Gems used only for development
 group :development do
 	gem 'metrical'
 end
 
+# Gems used only for production
 group :production do
+	gem 'airbrake'
 	gem 'home_run', :require=>'date'
 	#gem 'slim_scrooge', :git => "git://github.com/sdsykes/slim_scrooge.git"
-	gem 'dalli'
 	gem 'thin'
 	gem 'pg'
 	gem 'newrelic_rpm'
 	gem 'heroku'
 end
 
+# Gems used for production and development
+group :production, :development do
+	gem 'nokogiri'
+	gem 'mechanize'
+	gem 'oauth'
+	gem 'twitter'
+	gem 'rest-client'
+	gem 'json'
+	gem 'libxml-xmlrpc'
+	gem 'bitly'
+	gem 'less-rails-bootstrap'
+	gem 'rqrcode-rails3'
+	gem 'asset_sync'
+	gem 'sanitize'
+	gem 'octokit'
+	gem 'therubyracer'
+end
+
 gem "rspec-rails", :group => [:test, :development]
+# Gems used only for testing
 group :test do
 	gem "factory_girl_rails"
 	gem "capybara"
@@ -75,10 +79,5 @@ group :test do
 	gem 'database_cleaner'
 	gem 'launchy'
 	gem 'email_spec'
+	# gem 'cover_me'
 end
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
