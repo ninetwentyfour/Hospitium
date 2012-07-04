@@ -6,5 +6,5 @@ Feature: Download List Animals
 		Scenario: Viewing animals
 			Given I am logged in
 			When I look at the list of animals
-			And I click Export
+			And I click "Export"
 			Then I should receive a excel file "adoption_contacts.xls"

@@ -6,5 +6,5 @@ Feature: Download List Adoption Contacts
 		Scenario: Viewing adoption contacts
 			Given I am logged in
 			When I look at the list of adoption contacts
-			And I click Export
+			And I click "Export"
 			Then I should receive a excel file "adoption_contacts.xls"

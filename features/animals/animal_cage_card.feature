@@ -7,5 +7,5 @@ Feature: Show Animals
 			Given I am logged in
 			And An animal exists
 			When I view the animal
-			And I click Cage Card
+			And I click "Cage Card"
 			Then I should see the animals name
