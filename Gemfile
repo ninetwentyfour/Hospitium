@@ -23,6 +23,7 @@ gem "spreadsheet", "0.6.5.8"
 gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls-on-models"
 gem 'redcarpet'
 gem 'jquery-rails'
+gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git"
 
 # Gems used only for assets and not required
 # in production environments by default.

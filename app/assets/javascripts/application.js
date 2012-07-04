@@ -17,6 +17,7 @@
 //= require jquery.mailcheck.min
 //= require showdown
 //= require date
+//= require select2
 //= require_self
 
 //prevent ipad webapps opening in safari
@@ -54,3 +55,4 @@ function load_scripts(){
 		changeYear: true
 	});
 }
+$(document).ready(function() { $("select").select2(); });

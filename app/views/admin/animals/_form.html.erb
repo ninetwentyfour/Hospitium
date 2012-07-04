@@ -13,31 +13,44 @@
 		    </div>
 		  <% end %>
 			<div class="span4">
-		    <%= f.label :name %>
-		    <%= f.text_field :name, :class=> "span10" %>
+				<div class="clearfix">
+			    <%= f.label :name %>
+			    <%= f.text_field :name, :class=> "span10" %>
+				</div>
 				
-				
-		    <%= f.label :species %>
-				<%= collection_select(:animal, :species_id, species, :id, :name, {}, {:class=>'span10'}) %>
+				<div class="clearfix"v>	
+			    <%= f.label :species %>
+					<%= collection_select(:animal, :species_id, species, :id, :name, {}, {:class=>'span10'}) %>
+				</div>
 
-		    <%= f.label :animal_sex %>
-				<%= collection_select(:animal, :animal_sex_id, sex, :id, :sex, {}, {:class=>'span10'}) %>
+				<div class="clearfix">
+			    <%= f.label :animal_sex %>
+					<%= collection_select(:animal, :animal_sex_id, sex, :id, :sex, {}, {:class=>'span10'}) %>
+				</div>
 
-		    <%= f.label :spay_neuter %>
-		    <%= collection_select(:animal, :spay_neuter_id, spay, :id, :spay, {}, {:class=>'span10'}) %>
+				<div class="clearfix">
+			    <%= f.label :spay_neuter %>
+			    <%= collection_select(:animal, :spay_neuter_id, spay, :id, :spay, {}, {:class=>'span10'}) %>
+				</div>
 
-		    <%= f.label :color %>
-				<%= collection_select(:animal, :animal_color_id, color, :id, :color, {}, {:class=>'span10'}) %>
+				<div class="clearfix">
+			    <%= f.label :color %>
+					<%= collection_select(:animal, :animal_color_id, color, :id, :color, {}, {:class=>'span10'}) %>
+				</div>
 
-		    <%= f.label :birthday %>
-		    <%= f.text_field :birthday, :class=> "span10" %>
+			    <%= f.label :birthday %>
+			    <%= f.text_field :birthday, :class=> "span10" %>
 
-		    <%= f.label :biter %>
-		    <%= collection_select(:animal, :biter_id, biter, :id, :value, {}, {:class=>'span10'}) %>
+				<div class="clearfix">
+			    <%= f.label :biter %>
+			    <%= collection_select(:animal, :biter_id, biter, :id, :value, {}, {:class=>'span10'}) %>
+				</div>
 			</div>
 			<div class="span4">
-		    <%= f.label :status %>
-		    <%= collection_select(:animal, :status_id, status, :id, :status, {}, {:class=>'span10'}) %>
+				<div class="clearfix">
+					<%= f.label :status %>
+					<%= collection_select(:animal, :status_id, status, :id, :status, {}, {:class=>'span10'}) %>
+				</div>
 
 		    <%= f.label :date_of_intake %>
 		    <%= f.text_field :date_of_intake, :class=> "span10" %>
