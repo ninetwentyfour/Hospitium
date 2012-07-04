@@ -1,4 +1,4 @@
-Feature: Edit Animals
+Feature: Edit Adoption Contacts
   As a user of the website
   I want to edit a adoption contact
   so I can manage it
