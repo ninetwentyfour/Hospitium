@@ -76,6 +76,8 @@ Clone repo
 
 create a database called animal_development, or change db connection in `/config/database.yml`
 
+`rake db:create`
+
 `rake db:migrate`
 
 `rake db:seed`
