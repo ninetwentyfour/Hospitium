@@ -22,15 +22,16 @@ gem 'best_in_place'
 gem "spreadsheet", "0.6.5.8"
 gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls-on-models"
 gem 'redcarpet'
+gem 'jquery-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
-#group :assets do
+group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'closure-compiler'
-#end
+end
 
 # Gems used only for development
 group :development do
@@ -58,7 +59,6 @@ group :production, :development do
 	gem 'json'
 	gem 'libxml-xmlrpc'
 	gem 'bitly'
-	gem 'jquery-rails'
 	gem 'less-rails-bootstrap'
 	gem 'rqrcode-rails3'
 	gem 'asset_sync'
