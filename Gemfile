@@ -25,12 +25,12 @@ gem 'redcarpet'
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
+#group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'closure-compiler'
-end
+#end
 
 # Gems used only for development
 group :development do
