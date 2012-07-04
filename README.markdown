@@ -88,7 +88,7 @@ need to change assets setup
 
 In production change
 
-- `config.action_controller.asset\_host = "http://static-assets%d.hospitium.co"` to `= "your s3 account url here"`
+- `config.action_controller.asset_host = "http://static-assets%d.hospitium.co"` to `= "your s3 account url here"`
 
 `rails s`
 
