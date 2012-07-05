@@ -37,7 +37,7 @@
 						<td><%= adoption_contact.address %></td>
 						<td><%= number_to_phone(adoption_contact.phone) %></td>
 						<td><%= adoption_contact.email %></td>
-						<td>
+						<td class="actions_column">
 							<div class="btn-group">
 								<a class="btn tooltip-class" href="/admin/adoption_contacts/<%= adoption_contact.id %>" rel="tooltip" title="View Contact"><i class="icon-eye-open"></i></a>
 								<% if can? :destroy, adoption_contact %>

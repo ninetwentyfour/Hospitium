@@ -35,7 +35,7 @@
 						<td><%= vet_contact.address %></td>
 						<td><%= number_to_phone(vet_contact.phone) %></td>
 						<td><%= vet_contact.emergency %></td>
-						<td>
+						<td class="actions_column">
 							<div class="btn-group">
 								<a class="btn tooltip-class" href="/admin/vet_contacts/<%= vet_contact.id %>" rel="tooltip" title="View Contact"><i class="icon-eye-open"></i></a>
 								<% if can? :destroy, vet_contact %>

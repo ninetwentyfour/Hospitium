@@ -19,7 +19,7 @@
 				<% @animal_colors.each do |animal_color| %>
 					<tr>
 						<td><a href="/admin/animal_colors/<%= animal_color.id %>"><%= animal_color.color %></a></td>
-						<td>
+						<td class="actions_column">
 							<div class="btn-group">
 								<a class="btn tooltip-class" href="/admin/animal_colors/<%= animal_color.id %>" rel="tooltip" title="View Contact"><i class="icon-eye-open"></i></a>
 								<% if can? :destroy, animal_color %>

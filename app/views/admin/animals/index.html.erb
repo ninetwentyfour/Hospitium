@@ -39,7 +39,7 @@
 						<td><%= calculate_animal_age(animal.birthday) unless animal.birthday.blank? %></td>
 						<td><%= animal.spay unless animal.spay_neuter.blank? %></td>
 						<td><%= animal.color %></td>
-						<td>
+						<td class="actions_column">
 							<div class="btn-group">
 								<a class="btn tooltip-class" href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>" rel="tooltip" title="View Animal"><i class="icon-eye-open"></i></a>
 								<a class="btn tooltip-class duplicate-button" href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>/duplicate" rel="tooltip" title="Duplicate Animal"><i class="icon-plus-sign"></i></a>

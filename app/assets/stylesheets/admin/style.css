@@ -355,3 +355,6 @@ margin-left: 12px;
 margin-right: 12px;
 top: 0px !important;
 }
+.actions_column{
+	min-width:106px;
+}

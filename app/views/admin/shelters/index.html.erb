@@ -35,7 +35,7 @@
 						<td><%= shelter.address %></td>
 						<td><%= number_to_phone(shelter.phone) %></td>
 						<td><%= shelter.email %></td>
-						<td>
+						<td class="actions_column">
 							<div class="btn-group">
 								<a class="btn tooltip-class" href="/admin/shelters/<%= shelter.id %>-<%= shelter.uuid %>" rel="tooltip" title="View Contact"><i class="icon-eye-open"></i></a>
 								<% if can? :destroy, shelter %>
