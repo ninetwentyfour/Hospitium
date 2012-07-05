@@ -16,7 +16,7 @@ class Admin::StatusesController < Admin::ApplicationController
   # GET /statuses/1.xml
   def show
     @status = Status.find(params[:id])
-    @animals = Animal.where(:status_id => @status.id)
+    @animals = Animal.where(:status_id => @status.id).order("name ASC")
     
     respond_with(@status)
   end

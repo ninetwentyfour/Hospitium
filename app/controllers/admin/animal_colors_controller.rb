@@ -16,7 +16,7 @@ class Admin::AnimalColorsController < Admin::ApplicationController
   # GET /animal_colors/1.xml
   def show
     @animal_color = AnimalColor.find(params[:id])
-    @animals = Animal.where(:animal_color_id => @animal_color.id)
+    @animals = Animal.where(:animal_color_id => @animal_color.id).order("name ASC")
     
     respond_with(@animal_color)
   end
