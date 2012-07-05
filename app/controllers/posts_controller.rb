@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  respond_to :html, :xml, :json
+  respond_to :html, :xml, :json, :rss
   
   caches_action :index, :cache_path => Proc.new { |controller| controller.params },:layout => false, :expires_in => 60.minutes
   
@@ -20,6 +20,12 @@ class PostsController < ApplicationController
     end
 
     respond_with(@post)
+  end
+  
+  def feed
+    @posts = Post.all
+
+    respond_with(@posts)
   end
 
 end

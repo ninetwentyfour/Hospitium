@@ -83,6 +83,8 @@ AnimalTracker::Application.routes.draw do
   match "/recent-changes" => "home#changes", :as => "changes"
   match "/ftp-test" => "adopt_a_pets#send_to_site", :as => "send_to_site"
   
+  match "/posts/feed/rss" => "posts#feed", :via => :get
+  
   devise_scope :user do
     match '/users/:id', :to => 'users#update', :via => :put
     match '/users/sign_out' => 'devise/sessions#destroy'
