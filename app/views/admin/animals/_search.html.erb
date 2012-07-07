@@ -1,0 +1,119 @@
+<div class="modal" id="myModal" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" href="#">×</a>
+		<h3>Advanced Search</h3>
+	</div>
+	<div class="modal-body">
+		<%= form_for search, :url => admin_animals_path, :html => { :class => "form-vertical"} do |f| %>
+				<div class="accordion" id="accordion4">
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4" href="#collapseFour">
+								Search IDs
+							</a>
+						</div>
+						<div id="collapseFour" class="accordion-body collapse" style="height: 0px; ">
+							<div class="accordion-inner">
+								<%= f.label :id_equals %>
+								<%= f.text_field :id_equals %>
+								
+								<%= f.label :uuid_contains %>
+								<%= f.text_field :uuid_contains %>
+								<%= f.label :uuid_equals %>
+								<%= f.text_field :uuid_equals %>
+								
+								<%= f.label :microchip_contains %>
+								<%= f.text_field :microchip_contains %>
+								<%= f.label :microchip_equals %>
+								<%= f.text_field :microchip_equals %>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+								Search Names
+							</a>
+						</div>
+						<div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">
+							<div class="accordion-inner">
+								<%= f.label :name_contains %>
+								<%= f.text_field :name_contains %>
+								<%= f.label :name_equals %>
+								<%= f.text_field :name_equals %>
+
+								<%= f.label :previous_name_contains %>
+								<%= f.text_field :previous_name_contains %>
+								<%= f.label :previous_name_equals %>
+								<%= f.text_field :previous_name_equals %>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+								Search Related Objects
+							</a>
+						</div>
+						<div id="collapseTwo" class="accordion-body collapse" style="height: 0px; ">
+							<div class="accordion-inner">
+								<%= f.label :status_id_equals %>
+								<%= f.collection_select :status_id_equals, presenter.status, :id, :status, :include_blank => true %>
+
+								<%= f.label :animal_sex_id_equals %>
+								<%= f.collection_select :animal_sex_id_equals, presenter.sex, :id, :sex, :include_blank => true %>
+
+								<%= f.label :animal_color_id_equals %>
+								<%= f.collection_select :animal_color_id_equals, presenter.color, :id, :color, :include_blank => true %>
+
+								<%= f.label :species_id_equals %>
+								<%= f.collection_select :species_id_equals, presenter.species, :id, :name, :include_blank => true %>
+
+								<%= f.label :spay_neuter_id_equals %>
+								<%= f.collection_select :spay_neuter_id_equals, presenter.spay, :id, :spay, :include_blank => true %>
+
+								<%= f.label :shelter_id_equals %>
+								<%= f.collection_select :shelter_id_equals, presenter.shelter, :id, :name, :include_blank => true %>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+								Search Dates
+							</a>
+						</div>
+						<div id="collapseThree" class="accordion-body collapse" style="height: 0px; ">
+							<div class="accordion-inner">
+													<%= f.label :birthday_gte, "Birthday From" %>
+													<%= f.text_field :birthday_gte, :size => 8 %>
+													<%= f.label :birthday_lte, "To" %>
+													<%= f.text_field :birthday_lte, :size => 8 %>
+											<hr />
+													<%= f.label :deceased_gte, "Deceased From" %>
+													<%= f.text_field :deceased_gte, :size => 8 %>
+													<%= f.label :deceased_lte, "To" %>
+													<%= f.text_field :deceased_lte, :size => 8 %>
+								<hr />
+												<%= f.label :date_of_well_check_gte, "Date of Well Check From" %>
+												<%= f.text_field :date_of_well_check_gte, :size => 8 %>
+												<%= f.label :date_of_well_check_lte, "To" %>
+												<%= f.text_field :date_of_well_check_lte, :size => 8 %>
+											<hr />
+
+												<%= f.label :date_of_intake_gte, "Date of Intake From" %>
+												<%= f.text_field :date_of_intake_gte, :size => 8 %>
+												<%= f.label :date_of_intake_lte, "To" %>
+												<%= f.text_field :date_of_intake_lte, :size => 8 %>
+							</div>
+						</div>
+					</div>
+				</div>
+	  
+	</div>
+	<div class="modal-footer">
+		<%= f.submit "Submit", :class => "btn btn-primary" %>
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+		<% end %>
+</div>

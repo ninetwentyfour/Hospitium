@@ -11,6 +11,7 @@ class Admin::AnimalsController < Admin::ApplicationController
                     organization(current_user).
                     search(params[:search])
     @animals = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
+    @presenter = Admin::Animals::IndexPresenter.new(current_user)
     
     respond_with(@animals) do |format|
       format.html
@@ -24,17 +25,8 @@ class Admin::AnimalsController < Admin::ApplicationController
   # GET /animals/1
   # GET /animals/1.xml
   def show
-    #require_dependency "Animal"
     @animal = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :shelter).find(params[:id])  
-    @statuses = Status.organization(current_user).collect{|x| [x.id.to_s,x.status.to_s]}
-    @species = Species.organization(current_user).collect{|x| [x.id.to_s,x.name.to_s]}
-    @colors = AnimalColor.organization(current_user).collect{|x| [x.id.to_s,x.color.to_s]}
-    @shelters = Shelter.organization(current_user).collect{|x| [x.id.to_s,x.name.to_s]}
-    @animal_weights = AnimalWeight.where(:animal_id => @animal.id).order("date_of_weight ASC").map do |record|
-          [ record.date_of_weight.strftime("%m/%d/%Y"), record.weight ]
-    end
-    @notes = Note.includes(:user).where(:animal_id => @animal.id)
-    
+    @presenter = Admin::Animals::ShowPresenter.new(current_user, @animal)
     respond_with(@animal)
   end
 
@@ -42,12 +34,7 @@ class Admin::AnimalsController < Admin::ApplicationController
   # GET /animals/new.xml
   def new
     @animal = Animal.new
-    @species = Species.organization(current_user)
-    @sex = AnimalSex.all
-    @spay = SpayNeuter.all
-    @color = AnimalColor.organization(current_user)
-    @biter = Biter.all
-    @status = Status.organization(current_user)
+    @presenter = Admin::Animals::NewPresenter.new(current_user)
     
     respond_with(@animal)
   end
