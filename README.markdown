@@ -21,11 +21,9 @@ Overview:
 
 * * *
 
-Hospitium is the brain child of Apple Wood Rescue, a small animal rescue in Denver Colorado. Developed to fit the needs of the rescue, it has since been open sourced for anyone to use.
+[Hospitium](http://hospitium.co/) is the brain child of Apple Wood Rescue, a small animal rescue in Denver Colorado. Developed to fit the needs of the rescue, it has since been open sourced for anyone to use.
 
 This program is completely free. You can modify it all you want and you can share it with anyone.
-
-A free hosted solution is coming soon.
 
 You can support the project by:
 
