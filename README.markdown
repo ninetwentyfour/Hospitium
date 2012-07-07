@@ -82,6 +82,8 @@ create a database called animal_development, or change db connection in `/config
 
 `rake db:seed`
 
+TODO: add sex spay etc to seeds
+
 need to change assets setup
 
 - comment out line 50 `/config/environments/development.rb`
