@@ -29,7 +29,6 @@ class Admin::Animals::IndexPresenter
   
   def shelter
     Shelter.organization(@user)
-  end
-  
+  end  
   
 end
