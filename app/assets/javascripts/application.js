@@ -13,7 +13,7 @@
 //= require jqplot.categoryAxisRenderer.min
 //= require jqplot.pointLabels.min
 //= require bar-chart
-//= require bootstrap
+//= require twitter/bootstrap
 //= require jquery.mailcheck.min
 //= require showdown
 //= require date
