@@ -114,12 +114,7 @@
 
 	<div class="container main-container">
 		<div id="pjax-contain">
-			<%- flash.each do |name, msg| %>
-				<div class="alert alert-<%=name.to_s == 'notice' ? 'success' : name%>">
-					<a class="close" data-dismiss="alert" href="#">&times;</a> 
-					<%= msg %>
-				</div>
-			<% end %>
+			<%= render "layouts/flash", :flash => flash %>
 			<%= yield %>
 		</div>
 		<footer>

@@ -1,0 +1,40 @@
+<!-- ADMIN LAYOUT -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link href='https://fonts.googleapis.com/css?family=Cabin:700|Maven+Pro' rel='stylesheet' type='text/css'>
+	<%= stylesheet_link_tag "application", :media => "all" %>
+	<style>
+		html, p, body{
+			font-family: 'Maven Pro', sans-serif !important;
+		}
+		h1,h2,h3,h4,h5,h6{
+			font-weight:700;
+			font-family: 'Cabin', sans-serif !important;
+		}
+		p{
+			font-size:14px;
+			line-height:1.45em;
+			font-weight:400;
+		}
+		.otherAnimalInfo p{
+			font-size:14px;
+			line-height:1em !important;
+		}
+	</style>
+	<%= yield :head %>
+	<%= csrf_meta_tag %>
+	<%= meta_description("")%>
+	<%= meta_keywords("")%>
+	<%= head_title("Hospitium")%>
+	<!-- Le fav and touch icons -->
+	<%= favicon_link_tag 'apple-touch/favicon.ico', :rel => 'shortcut icon'%>
+	<%= favicon_link_tag 'apple-touch/57.png', :rel => 'apple-touch-icon', :type => 'image/png', :sizes => '57x57' %>
+	<%= favicon_link_tag 'apple-touch/72.png', :rel => 'apple-touch-icon', :type => 'image/png', :sizes => '72x72' %>
+	<%= favicon_link_tag 'apple-touch/114.png', :rel => 'apple-touch-icon', :type => 'image/png', :sizes => '114x114' %>
+</head>

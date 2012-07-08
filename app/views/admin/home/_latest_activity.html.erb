@@ -2,7 +2,7 @@
 	<table class="table table-striped">
 		<% latest_activity.each do |event| %>
 			<% unless event.event_message.blank? %>
-				<tr><td><%= event.event_message %> on <%= event.created_at.strftime("%a, %b %e at %l:%M") %></td></tr>
+				<tr><td><%= event.event_message %> <%= time_ago_in_words(event.created_at) %> ago.</td></tr>
 			<% end %>
 		<% end %>
 	</table>

@@ -7,7 +7,9 @@
 					<span class="public_animal_check"><%= best_in_place @animal, :public, :type => :select, :collection => [[0, "Not public"], [1, "Public"]], :path => admin_animal_path %></span>
 				</div>
 				<div class="span6 pull-right share-animal-buttons">
-					<%= render "share_animal", :animal => @animal %>
+					<% if @animal.public == 1 %>
+						<%= render "share_animal", :animal => @animal %>
+					<% end %>
 				</div>
 			</div>
 		</div>

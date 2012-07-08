@@ -1,0 +1,59 @@
+<div class="span2" style="position:fixed;">
+	<ul class="nav nav-list">
+		<li class="nav-header">
+			Navigation
+		</li>
+		<li class="<%= current_class?('admin/home', controller.action_name) %>">
+			<a href="/admin">Dashboard</a>
+		</li>
+		<li class="<%= current_class?('admin/adoption_contacts', controller.action_name) %>">
+			<a href="/admin/adoption_contacts">Adoption Contacts</a>
+		</li>
+		<li class="<%= current_class?('admin/animals', controller.action_name) %>">
+			<a href="/admin/animals">Animals</a>
+		</li>
+		<li class="<%= current_class?('admin/animal_colors', controller.action_name) %>">
+			<a href="/admin/animal_colors">Animals Colors</a>
+		</li>
+		<li class="<%= current_class?('admin/animal_weights', controller.action_name) %>">
+			<a href="/admin/animal_weights">Animal Weights</a>
+		</li>
+		<li class="<%= current_class?('admin/organizations', controller.action_name) %>">
+			<a href="/admin/organizations">Organizations</a>
+		</li>
+		<li class="<%= current_class?('admin/relinquishment_contacts', controller.action_name) %>">
+			<a href="/admin/relinquishment_contacts">Relinquishment Contacts</a>
+		</li>
+		<li class="<%= current_class?('admin/shelters', controller.action_name) %>">
+			<a href="/admin/shelters">Shelters</a>
+		</li>
+		<li class="<%= current_class?('admin/species', controller.action_name) %>">
+			<a href="/admin/species">Species</a>
+		</li>
+		<li class="<%= current_class?('admin/statuses', controller.action_name) %>">
+			<a href="/admin/statuses">Statuses</a>
+		</li>
+		<li class="<%= current_class?('admin/users', controller.action_name) %>">
+			<a href="/admin/users">Users</a>
+		</li>
+		<li class="<%= current_class?('admin/vet_contacts', controller.action_name) %>">
+			<a href="/admin/vet_contacts">Vet Contacts</a>
+		</li>
+		<li class="<%= current_class?('admin/volunteer_contacts', controller.action_name) %>">
+			<a href="/admin/volunteer_contacts">Volunteer Contacts</a>
+		</li>
+		<%- if current_user.permissions.first.role_id == 1 %>
+			<li class="<%= current_class?('admin/notifications', controller.action_name) %>">
+				<a href="/admin/notifications">Notifications</a>
+			</li>
+			<li class="<%= current_class?('admin/posts', controller.action_name) %>">
+				<a href="/admin/posts">Posts</a>
+			</li>
+		<%end%>
+	</ul>
+	<hr />
+	<div class="alert alert-block notification-sidebar-block">
+		<strong><%= random_notice.status_type + "!" unless random_notice.blank? %></strong>
+		<%= raw(random_notice.message)  unless random_notice.blank? %>
+	</div>
+</div>
