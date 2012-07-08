@@ -25,6 +25,7 @@ gem 'redcarpet'
 gem 'jquery-rails'
 gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git"
 gem 'less-rails-bootstrap'
+gem 'therubyracer'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -65,7 +66,6 @@ group :production, :development do
 	gem 'asset_sync'
 	gem 'sanitize'
 	gem 'octokit'
-	gem 'therubyracer'
 end
 
 gem "rspec-rails", :group => [:test, :development]
