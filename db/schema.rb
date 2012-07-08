@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120708031711) do
+ActiveRecord::Schema.define(:version => 20120708173441) do
 
   create_table "adopt_a_pet_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -153,11 +153,13 @@ ActiveRecord::Schema.define(:version => 20120708031711) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "organization_id"
+    t.string   "record_uuid"
   end
 
   add_index "events", ["animal_id"], :name => "index_animal_events_on_animal_id"
   add_index "events", ["event_type"], :name => "index_animal_events_on_event_type"
   add_index "events", ["organization_id"], :name => "index_animal_events_on_organization_id"
+  add_index "events", ["record_uuid"], :name => "index_events_on_record_uuid"
   add_index "events", ["related_model_id"], :name => "index_animal_events_on_related_model_id"
 
   create_table "facebook_accounts", :force => true do |t|
