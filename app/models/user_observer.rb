@@ -29,7 +29,7 @@ class UserObserver < ActiveRecord::Observer
     if Rails.env == "test"
 
     else
-      rand = [1,2,3,4].shuffle.first
+      rand = [1..6].shuffle.first
       if rand == 1
         @animal = Animal.offset(rand(Animal.count(:conditions => {:public => 1}))).first(:conditions => {:public => 1})
         account = TwitterAccount.find_by_user_id(1)
@@ -79,7 +79,7 @@ class UserObserver < ActiveRecord::Observer
     if Rails.env == "test"
 
     else
-      url = "http://sendgrid.com/api/mail.send.json?api_user=#{ENV['SENDGRID_USERNAME']}&api_key=#{ENV['SENDGRID_PASSWORD']}&to=contact@travisberry.com&subject=Hospitium%20-%20User%20Confirmed&text=#{user.username}%20confirmed%20an%20account.%20#{user.email}%20in%20organization%20#{URI::encode(user.organization_name)}&from=contact@hospitium.co"
+      url = "http://sendgrid.com/api/mail.send.json?api_user=#{ENV['SENDGRID_USERNAME']}&api_key=#{ENV['SENDGRID_PASSWORD']}&to=contact@travisberry.com&subject=Hospitium%20-%20User%20Confirmed&text=#{URI::encode(user.username)}%20confirmed%20an%20account.%20#{URI::encode(user.email)}%20in%20organization%20#{URI::encode(user.organization_name)}&from=contact@hospitium.co"
       resp = Net::HTTP.get_response(URI.parse(url))
       data = resp.body
       result = JSON.parse(data)

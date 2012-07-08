@@ -24,6 +24,7 @@ gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls
 gem 'redcarpet'
 gem 'jquery-rails'
 gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git"
+gem 'less-rails-bootstrap'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -60,7 +61,6 @@ group :production, :development do
 	gem 'json'
 	gem 'libxml-xmlrpc'
 	gem 'bitly'
-	gem 'less-rails-bootstrap'
 	gem 'rqrcode-rails3'
 	gem 'asset_sync'
 	gem 'sanitize'
