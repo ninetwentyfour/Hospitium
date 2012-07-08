@@ -11,6 +11,10 @@ class Admin::HomeController < Admin::ApplicationController
       Report.animals_by_species(current_user.organization_id)
     end
     
+    @latest_activity = Rails.cache.fetch("latest_activity_hash_user_#{current_user.organization_id}_#{@animals_count}_#{@animal_update}") do
+      Event.find(:all, :conditions => {:organization_id => current_user.organization_id}, :limit => 15, :order => "created_at desc")
+    end
+    
   end
   
 end

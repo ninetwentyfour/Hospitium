@@ -44,7 +44,6 @@ class Animal < ActiveRecord::Base
   delegate :spay, :to => :spay_neuter, :allow_nil => true
   delegate :color, :to => :animal_color, :allow_nil => true
   delegate :value, :to => :biter, :prefix => :biter, :allow_nil => true
-  #delegate :status, :to => :status, :allow_nil => true
   delegate :name, :to => :shelter, :prefix => :shelter, :allow_nil => true
   
   #set_primary_key :uuid

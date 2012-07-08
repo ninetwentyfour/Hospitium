@@ -12,7 +12,7 @@ class AdoptAnimalObserver < ActiveRecord::Observer
 
   
   def record_event(adopt_animal)
-    @event = AnimalEvent.new
+    @event = Event.new
     @event.animal_id = adopt_animal.animal_id
     @event.update_attributes(:event_type => "Animal Adopted", 
       :event_message => "#{adopt_animal.name} was adopted to #{adopt_animal.first_name} #{adopt_animal.last_name}",
@@ -22,7 +22,7 @@ class AdoptAnimalObserver < ActiveRecord::Observer
   end
   
   def record_event2(adopt_animal)
-    @event = AnimalEvent.new
+    @event = Event.new
     @event.animal_id = adopt_animal.animal_id
     @event.update_attributes(:event_type => "Animal Returned", 
       :event_message => "#{adopt_animal.name} was returned by #{adopt_animal.first_name} #{adopt_animal.last_name}",

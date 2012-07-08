@@ -18,9 +18,11 @@ class AnimalObserver < ActiveRecord::Observer
   end
   
   def record_event(animal)
-    @event = AnimalEvent.new
+    @event = Event.new
     @event.animal_id = animal.id
-    @event.update_attributes(:event_type => "#{animal.changed.first} updated", :event_message => animal.changes.to_json)
+    @event.update_attributes(:organization_id => animal.organization_id,
+      :event_type => "Animal updated", 
+      :event_message => "#{animal.name} had #{animal.changed.first} changed from #{animal.changes[animal.changed.first][0] unless animal.changes.blank?} to #{animal.changes[animal.changed.first][1] unless animal.changes.blank?}")
   end
   
   

@@ -12,7 +12,7 @@ class RelinquishAnimalObserver < ActiveRecord::Observer
 
   
   def record_event(relinquish_animal)
-    @event = AnimalEvent.new
+    @event = Event.new
     @event.animal_id = relinquish_animal.animal_id
     @event.update_attributes(:event_type => "Animal Relinquished", 
       :event_message => "#{relinquish_animal.name} was relinquished by #{relinquish_animal.first_name} #{relinquish_animal.last_name}",
@@ -22,7 +22,7 @@ class RelinquishAnimalObserver < ActiveRecord::Observer
   end
   
   def record_event2(relinquish_animal)
-    @event = AnimalEvent.new
+    @event = Event.new
     @event.animal_id = relinquish_animal.animal_id
     @event.update_attributes(:event_type => "Animal Returned", 
       :event_message => "#{relinquish_animal.name} was returned to #{relinquish_animal.first_name} #{relinquish_animal.last_name}",
