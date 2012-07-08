@@ -1,7 +1,6 @@
 class RelinquishmentContact < ActiveRecord::Base
   include CommonScopes
   
-  has_paper_trail
   has_many :relinquish_animals
   has_many :animals, :through => :relinquish_animals
   belongs_to :organization

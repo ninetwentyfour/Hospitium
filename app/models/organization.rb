@@ -1,6 +1,6 @@
 include ActionView::Helpers::NumberHelper
 class Organization < ActiveRecord::Base
-    has_paper_trail
+    
     has_many :adoption_contacts
     has_many :animals
     has_many :animal_colors

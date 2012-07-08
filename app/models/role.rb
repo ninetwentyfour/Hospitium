@@ -1,6 +1,6 @@
 # Role model
 class Role < ActiveRecord::Base
-  has_paper_trail # use versioning
+
   has_many :permissions
   has_many :users, :through => :permissions # use join table permissions
   

@@ -1,5 +1,5 @@
 class AnimalSex < ActiveRecord::Base
-  has_paper_trail
+  
   default_scope :order => "created_at ASC"
   has_many :animals
   

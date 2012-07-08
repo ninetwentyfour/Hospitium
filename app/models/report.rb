@@ -1,6 +1,5 @@
 # Report model
 class Report < ActiveRecord::Base
-  has_paper_trail # use versioning
   
   def self.animals_by_status(org)
     #generate the animal status percentages

@@ -11,7 +11,7 @@ gem 'uuidtools'
 gem 'cancan'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'will_paginate'
-gem 'paper_trail'
+#gem 'paper_trail'
 gem 'site_meta'
 gem 'meta_search'
 gem 'juggernaut'

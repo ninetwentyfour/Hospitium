@@ -1,6 +1,5 @@
 class Post < ActiveRecord::Base
   
-  has_paper_trail
   after_create :send_public_tweet
   after_update :send_public_tweet
   

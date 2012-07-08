@@ -1,7 +1,5 @@
 class Status < ActiveRecord::Base
   include CommonScopes
-  
-  has_paper_trail
 
   belongs_to :organization
   has_many :animals
