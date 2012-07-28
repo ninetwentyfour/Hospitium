@@ -58,8 +58,8 @@ AnimalTracker::Application.configure do
     :domain         => ENV['SENDGRID_DOMAIN']
   }
   
-  config.action_controller.asset_host = "http://static-assets%d.hospitium.co"
-  #config.action_controller.asset_host = "https://d1pm9e0xzdmxcb.cloudfront.net"
+  #config.action_controller.asset_host = "http://static-assets%d.hospitium.co"
+  config.action_controller.asset_host = "https://d1pm9e0xzdmxcb.cloudfront.net"
   
   # Compress JavaScripts and CSS
   config.assets.compress = true
