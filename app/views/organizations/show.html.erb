@@ -6,7 +6,7 @@
 		</div>
 		<div class="otherAnimalInfo" style="width:400px;float:left">
 			<h2>Contact Info</h2>
-			<p>Website: <a href="<%= @organization.website %>" rel="nofollow"><%= @organization.website %></a></p>
+			<p>Website: <%= markdown(@organization.website) %></p>
 			<p>Email: <a href="mailto:<%= @organization.email %>"><%= @organization.email %></a></p>
 			<p>Phone Number: <%= number_to_phone(@organization.phone_number, :area_code => true) %></p>
 			<p>Address: <%= @organization.address %></p>
