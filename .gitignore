@@ -4,3 +4,4 @@ log/*.log
 tmp/
 public/assets/
 .env
+ssl/
