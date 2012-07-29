@@ -10,8 +10,8 @@ xml.rss :version => "2.0" do
         xml.title post.title
         xml.description post.content
         xml.pubDate post.created_at.to_s(:rfc822)
-        xml.link "http://hospitium.co/posts/#{post.id}-#{post.title.parameterize}"
-        xml.guid "http://hospitium.co/posts/#{post.id}-#{post.title.parameterize}"
+        xml.link "https://hospitium.co/posts/#{post.id}-#{post.title.parameterize}"
+        xml.guid "https://hospitium.co/posts/#{post.id}-#{post.title.parameterize}"
       end
     end
   end

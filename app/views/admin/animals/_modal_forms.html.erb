@@ -223,7 +223,7 @@
 		<p class="second_image_upload_bar" style="display:none;">Loading...</p>
 		<%= form_for animal, :url => admin_animal_path, :html => { :id => "video_upload_form" }, :validate => true do |f| %>
 			<%= f.label :video_embed %>
-			<%= f.text_area :video_embed, :rows => 5, :placeholder => '<iframe width="560" height="315" src="http://www.youtube.com/embed/example?rel=0" frameborder="0" allowfullscreen></iframe>' %>
+			<%= f.text_area :video_embed, :rows => 5, :placeholder => '<iframe width="560" height="315" src="https://www.youtube.com/embed/example?rel=0" frameborder="0" allowfullscreen></iframe>' %>
 			<p>Paste YouTube embed here. Iframe code only.</p>
 		<%end%>
 	</div>

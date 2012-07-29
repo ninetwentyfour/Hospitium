@@ -68,7 +68,7 @@ class TwitterAccount < ActiveRecord::Base
         config.oauth_token_secret = account.oauth_token_secret
       end
       client = Twitter::Client.new
-      link = TwitterAccount.shorten_link("http://hospitium.co/animals/#{animal.uuid}")
+      link = TwitterAccount.shorten_link("https://hospitium.co/animals/#{animal.uuid}")
       client.update("#{animal.name} is ready for adoption at #{link}")
       return true
     rescue Twitter::Error
@@ -85,7 +85,7 @@ class TwitterAccount < ActiveRecord::Base
       config.oauth_token_secret = account.oauth_token_secret
     end
     client = Twitter::Client.new
-    link = TwitterAccount.shorten_link("http://hospitium.co/posts/#{post.id}-#{post.title.parameterize}")
+    link = TwitterAccount.shorten_link("https://hospitium.co/posts/#{post.id}-#{post.title.parameterize}")
     begin
        client.update("#{post.title.slice(0, 100)} - #{link}")
        return true
