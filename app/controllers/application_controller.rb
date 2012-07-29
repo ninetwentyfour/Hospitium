@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_filter :ensure_domain
+  before_filter :check_domain
   before_filter :get_notice
   protect_from_forgery # Turn on request forgery protection. Bear in mind that only non-GET, HTML/JavaScript requests are checked.
   
@@ -28,12 +28,18 @@ class ApplicationController < ActionController::Base
     def ensure_domain
       if request.env['HTTP_HOST'] != APP_DOMAIN
         # HTTP 301 is a "permanent" redirect
-        redirect_to "http://#{APP_DOMAIN}", :status => 301
+        redirect_to "https://#{APP_DOMAIN}", :status => 301
       end
     end
   else
     def ensure_domain
       #do nothing
+    end
+  end
+  
+  def check_domain
+    if Rails.env.production? and request.host.downcase != 'hospitium.co'
+      redirect_to request.protocol + 'hospitium.co' + request.fullpath, :status => 301
     end
   end
   

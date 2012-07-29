@@ -1,4 +1,6 @@
 AnimalTracker::Application.configure do
+  config.force_ssl = true
+  
   config.cache_store = :dalli_store
   # Settings specified here will take precedence over those in config/application.rb
 
