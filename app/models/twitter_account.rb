@@ -2,7 +2,7 @@ class TwitterAccount < ActiveRecord::Base
   
   CONSUMER_KEY = ENV['TWITTER_CONSUMER_KEY']
   CONSUMER_SECRET = ENV['TWITTER_CONSUMER_SECRET']
-  OPTIONS = {:site => "http://api.twitter.com", :request_endpoint => "http://api.twitter.com"}
+  OPTIONS = {:site => "https://api.twitter.com", :request_endpoint => "https://api.twitter.com"}
   
   belongs_to :user
   belongs_to :organization
@@ -29,7 +29,7 @@ class TwitterAccount < ActiveRecord::Base
                                          get_access_token(:oauth_verifier => oauth_verifier)
       self.oauth_token = access_token.params[:oauth_token]
       self.oauth_token_secret = access_token.params[:oauth_token_secret]
-      self.stream_url = "http://twitter.com/#{access_token.params[:screen_name]}"
+      self.stream_url = "https://twitter.com/#{access_token.params[:screen_name]}"
       self.active = true
     rescue OAuth::Unauthorized
       self.errors.add(:oauth_token, "Invalid OAuth token, unable to connect to twitter")
@@ -104,7 +104,7 @@ class TwitterAccount < ActiveRecord::Base
     short_url = page_url.short_url
     #fall back to tinyurl if bitly fails
     if short_url.blank?
-      short_url = RestClient.get "http://tinyurl.com/api-create.php?url=#{link}"
+      short_url = RestClient.get "https://tinyurl.com/api-create.php?url=#{link}"
     end
     
     return short_url

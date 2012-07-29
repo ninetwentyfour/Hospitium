@@ -58,7 +58,7 @@ class FacebookAccount < ActiveRecord::Base
     short_url = page_url.short_url
     #fall back to tinyurl if bitly fails
     if short_url.blank?
-      short_url = RestClient.get "http://tinyurl.com/api-create.php?url=#{link}"
+      short_url = RestClient.get "https://tinyurl.com/api-create.php?url=#{link}"
     end
     
     return short_url
