@@ -24,7 +24,7 @@ class Admin::ApplicationController < ActionController::Base
   if Rails.env == "production"
     def ensure_domain
       if request.env['HTTP_HOST'] != APP_DOMAIN
-        #redirect_to "https://#{APP_DOMAIN}", :status => 301
+        redirect_to "https://#{APP_DOMAIN}", :status => 301
       end
     end
   else
@@ -35,7 +35,7 @@ class Admin::ApplicationController < ActionController::Base
   
   def check_domain
     if Rails.env.production? and request.host.downcase != 'hospitium.co'
-      #redirect_to request.protocol + 'hospitium.co' + request.fullpath, :status => 301
+      redirect_to request.protocol + 'hospitium.co' + request.fullpath, :status => 301
     end
   end
   
