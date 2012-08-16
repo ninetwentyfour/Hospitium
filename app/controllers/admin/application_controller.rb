@@ -35,7 +35,7 @@ class Admin::ApplicationController < ActionController::Base
   
   def check_domain
     if Rails.env.production? and request.host.downcase != 'hospitium.co'
-      redirect_to request.protocol + 'hospitium.co' + request.fullpath, :status => 301
+      #redirect_to request.protocol + 'hospitium.co' + request.fullpath, :status => 301
     end
   end
   
