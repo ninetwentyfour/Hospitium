@@ -158,7 +158,7 @@
 				</div>
 				<div class='field' id='user_username_field'>
 				  <label for='blog_password'>Blog Password</label>
-				  <input class='string' id='blog_password' name='wordpress_account[blog_password]' size='50' style='width:px' type='password' value="<%= Base64.decode64(@user.wordpress_accounts.first.blog_password).split("~").first %>" />
+				  <input class='string' id='blog_password' name='wordpress_account[blog_password]' size='50' style='width:px' type='password' value="<%= Encryptor.decrypt(:value => Base64.decode64(@user.wordpress_accounts.first.blog_password.encode('ascii-8bit')), :key => ENV['SALTY']) %>" />
 				</div>
 				<br />
 			<%end%>
