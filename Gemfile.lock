@@ -155,6 +155,7 @@ GEM
     email_spec (1.2.1)
       mail (~> 2.2)
       rspec (~> 2.0)
+    encryptor (1.1.3)
     erubis (2.7.0)
     eventmachine (0.12.10)
     excon (0.13.4)
@@ -445,6 +446,7 @@ DEPENDENCIES
   database_cleaner
   devise
   email_spec
+  encryptor
   factory_girl_rails
   gravatar_image_tag
   heroku

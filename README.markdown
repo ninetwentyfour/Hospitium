@@ -63,6 +63,7 @@ Setup env variables. Good how to [here](http://devcenter.heroku.com/articles/con
 - FACEBOOK\_CLIENT\_ID (the facebook client id)
 - FACEBOOK\_CLIENT\_SECRET (the facebook client secret)
 - BITLY\_API (the bitly api key)
+- SALTY (random string for salts)
 
 Clone repo
 

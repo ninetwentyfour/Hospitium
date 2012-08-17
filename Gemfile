@@ -26,6 +26,7 @@ gem 'jquery-rails'
 gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git"
 gem 'less-rails-bootstrap'
 gem 'therubyracer'
+gem 'encryptor'
 
 # Gems used only for assets and not required
 # in production environments by default.
