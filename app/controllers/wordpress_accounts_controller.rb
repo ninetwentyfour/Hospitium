@@ -13,7 +13,7 @@ class WordpressAccountsController < ApplicationController
   
   def update
     @wordpress = WordpressAccount.find(params[:id])
-    params[:wordpress_account]["blog_password"] = Encryptor.encrypt(:value => "#{params[:wordpress_account]["blog_password"]}", :key => ENV['SALTY']).force_encoding('UTF-8')
+    params[:wordpress_account]["blog_password"] = Base64.encode64(Encryptor.encrypt(:value => "#{params[:wordpress_account]["blog_password"]}", :key => ENV['SALTY'])).encode('utf-8')
     respond_to do |format|
       if  @wordpress.update_attributes(params[:wordpress_account])
         format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Wordpress Account Connected!')}
@@ -26,7 +26,8 @@ class WordpressAccountsController < ApplicationController
   
   def send_blog_post
     account = WordpressAccount.find_by_user_id(current_user.id)
-    account.blog_password = Encryptor.decrypt(:value => account.blog_password, :key => ENV['SALTY'])
+    decoded = Base64.decode64(account.blog_password.encode('ascii-8bit'))
+    account.blog_password = Encryptor.decrypt(:value => decoded, :key => ENV['SALTY'])
     if account.blank?
       redirect_to("#{root_url}admin/user/#{current_user.id}", :notice => 'Please Add Wordpress Credentials!')
     else

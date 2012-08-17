@@ -52,7 +52,7 @@ class WordpressAccount < ActiveRecord::Base
     wordpress_account.user_id = current_user.id
     wordpress_account.organization_id = current_user.organization_id
     wordpress_account.active = true
-    wordpress_account.blog_password = Encryptor.encrypt(:value => "#{wordpress_account.blog_password}", :key => ENV['SALTY']).force_encoding('UTF-8')
+    wordpress_account.blog_password = Base64.encode64(Encryptor.encrypt(:value => "#{wordpress_account.blog_password}", :key => ENV['SALTY']).force_encoding('UTF-8')).encode('utf-8')
     wordpress_account
   end
   
