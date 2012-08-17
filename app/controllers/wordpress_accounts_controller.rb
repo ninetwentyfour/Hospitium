@@ -13,7 +13,7 @@ class WordpressAccountsController < ApplicationController
   
   def update
     @wordpress = WordpressAccount.find(params[:id])
-    params[:wordpress_account]["blog_password"] = Encryptor.encrypt(:value => "#{params[:wordpress_account]["blog_password"]}", :key => ENV['SALTY']).toutf8
+    params[:wordpress_account]["blog_password"] = Encryptor.encrypt(:value => "#{params[:wordpress_account]["blog_password"]}", :key => ENV['SALTY']).force_encoding('UTF-8')
     respond_to do |format|
       if  @wordpress.update_attributes(params[:wordpress_account])
         format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Wordpress Account Connected!')}
