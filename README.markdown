@@ -278,6 +278,6 @@ Todo:
 
 - switch notifications and use in all text area fields redcarpet
 
-* * *
-test
+- add note in add wordpress/adopt a pet accounts that they should create accounts for this, with unique usernames and strong passwords, with as little permissions as possible (not admin - just post ability)
 
+* * *
