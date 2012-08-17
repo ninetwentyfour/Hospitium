@@ -2,7 +2,7 @@ class WordpressAccountsController < ApplicationController
 
   def create
     @wordpress_account = WordpressAccount.new_by_user(params[:wordpress_account], current_user)
-    if @adopt_a_pet_account.save
+    if @wordpress_account.save
       flash[:notice] = 'Wordpress Account Connected!'
     else
       flash[:error] = 'Wordpress Account Was Not Connected!'
