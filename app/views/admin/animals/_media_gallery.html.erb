@@ -1,56 +1,60 @@
-<div class="span8 pull-right animal-pics">
+<div class="span6 pull-right animal-pics">
 	<ul class="thumbnails">
-			<li class="pull-right animal_thumb">
-				<a class="new_link image_new_button" data-toggle="modal" href="#image_1" ><i rel="tooltip" title="Click to add new" class="icon-upload tooltip-class"></i></a>
-				<a class="thumbnail" data-toggle="modal" href="#image_display_1" >
-					<% unless animal.image.url(:medium) == "/images/medium/missing.png" %>
-						<img height=180 width=260 src="<%= animal.image.url(:medium) %>" alt="">
-					<% else %>
-						<img height=180 width=260 src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" alt="">
-					<%end%>
-				</a>
-			</li>
-			<li class="pull-right animal_thumb">
-				<a class="new_link image_new_button" data-toggle="modal" href="#image_2" ><i rel="tooltip" title="Click to add new" class="icon-upload tooltip-class"></i></a>
-				<a class="thumbnail" data-toggle="modal" href="#image_display_2" >
-					<% unless animal.second_image.url(:medium) == "/second_images/medium/missing.png" %>
-						<img height=180 width=260 src="<%= animal.second_image.url(:medium) %>" alt="">
-					<% else %>
-						<img height=180 width=260 src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" alt="">
-					<%end%>
-				</a>
-			</li>
-			<li class="pull-right animal_thumb">
-				<a class="new_link image_new_button" data-toggle="modal" href="#image_3" ><i rel="tooltip" title="Click to add new" class="icon-upload tooltip-class"></i></a>
-				<a class="thumbnail" data-toggle="modal" href="#image_display_3" >
-					<% unless animal.third_image.url(:medium) == "/third_images/medium/missing.png" %>
-						<img height=180 width=260 src="<%= animal.third_image.url(:medium) %>" alt="">
-					<% else %>
-						<img height=180 width=260 src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" alt="">
-					<%end%>
-				</a>
-			</li>
-			<li class="pull-right animal_thumb">
-				<a class="new_link image_new_button" data-toggle="modal" href="#image_4" ><i rel="tooltip" title="Click to add new" class="icon-upload tooltip-class"></i></a>
-				<a class="thumbnail" data-toggle="modal" href="#image_display_4" >
-					<% unless animal.fourth_image.url(:medium) == "/fourth_images/medium/missing.png" %>
-						<img height=180 width=260 src="<%= animal.fourth_image.url(:medium) %>" alt="">
-					<% else %>
-						<img height=180 width=260 src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" alt="">
-					<%end%>
-				</a>
-			</li>
-			<li class="span8 pull-right animal_thumb">
-				<% unless animal.video_embed.blank? %>
-					<a class="thumbnail" href="#" >
-						<div class="embed-container">
-							<%= raw Sanitize.clean(animal.video_embed, Sanitize::Config::YOUTUBE) %>
-						</div>
-					</a>
-					<a class="btn" data-toggle="modal" href="#video_upload" ><i class="icon-plus"></i> Add Video</a>
-				<%else%>
-					<a class="btn" data-toggle="modal" href="#video_upload" ><i class="icon-plus"></i> Add Video</a>
+		<li class="span6">
+			<a class="new_link image_new_button" data-toggle="modal" href="#image_1" ><i rel="tooltip" title="Click to add new" class="icon-upload tooltip-class"></i></a>
+			<a class="thumbnail" data-toggle="modal" href="#image_display_1" >
+				<% unless animal.image.url(:medium) == "/images/medium/missing.png" %>
+					<img src="<%= animal.image.url(:medium) %>" alt="" class="responsive-image">
+				<% else %>
+					<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" alt="" class="responsive-image">
 				<%end%>
-			</li>
+			</a>
+		</li>
+		<li class="span6">
+			<a class="new_link image_new_button" data-toggle="modal" href="#image_2" ><i rel="tooltip" title="Click to add new" class="icon-upload tooltip-class"></i></a>
+			<a class="thumbnail" data-toggle="modal" href="#image_display_2" >
+				<% unless animal.second_image.url(:medium) == "/second_images/medium/missing.png" %>
+					<img src="<%= animal.second_image.url(:medium) %>" alt="" class="responsive-image">
+				<% else %>
+					<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" alt="" class="responsive-image">
+				<%end%>
+			</a>
+		</li>
+	</ul>
+	<ul class="thumbnails">
+		<li class="span6">
+			<a class="new_link image_new_button" data-toggle="modal" href="#image_3" ><i rel="tooltip" title="Click to add new" class="icon-upload tooltip-class"></i></a>
+			<a class="thumbnail" data-toggle="modal" href="#image_display_3" >
+				<% unless animal.third_image.url(:medium) == "/third_images/medium/missing.png" %>
+					<img src="<%= animal.third_image.url(:medium) %>" alt="">
+				<% else %>
+					<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" alt="">
+				<%end%>
+			</a>
+		</li>
+		<li class="span6">
+			<a class="new_link image_new_button" data-toggle="modal" href="#image_4" ><i rel="tooltip" title="Click to add new" class="icon-upload tooltip-class"></i></a>
+			<a class="thumbnail" data-toggle="modal" href="#image_display_4" >
+				<% unless animal.fourth_image.url(:medium) == "/fourth_images/medium/missing.png" %>
+					<img src="<%= animal.fourth_image.url(:medium) %>" alt="">
+				<% else %>
+					<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" alt="">
+				<%end%>
+			</a>
+		</li>
+	</ul>
+	<ul class="thumbnails">
+		<li class="span12 pull-right animal_thumb">
+			<% unless animal.video_embed.blank? %>
+				<a class="thumbnail" href="#" >
+					<div class="embed-container">
+						<%= raw Sanitize.clean(animal.video_embed, Sanitize::Config::YOUTUBE) %>
+					</div>
+				</a>
+				<a class="btn" data-toggle="modal" href="#video_upload" ><i class="icon-plus"></i> Add Video</a>
+			<%else%>
+				<a class="btn" data-toggle="modal" href="#video_upload" ><i class="icon-plus"></i> Add Video</a>
+			<%end%>
+		</li>
 	</ul>
 </div>

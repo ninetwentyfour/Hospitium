@@ -11,6 +11,7 @@
   display: none;
   visibility: hidden;
 }
+.responsive-image { max-width:100%; height:auto; }
 @media (max-width: 480px) {
   .nav-collapse {
     -webkit-transform: translate3d(0, 0, 0);
@@ -128,7 +129,12 @@
 		padding-top:20px;
 	}
 	.animal-tabs{
-		width:60% !important;
+		width:100% !important;
+	}
+	.animal-pics{
+		width:100% !important;
+		padding-top:20px;
+		margin-left:0px !important;
 	}
 	.notification-sidebar-block{
 		display:none;
