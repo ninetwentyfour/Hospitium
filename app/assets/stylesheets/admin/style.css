@@ -358,3 +358,10 @@ top: 0px !important;
 .actions_column{
 	min-width:106px;
 }
+.animal-index-action-row a{
+	margin:5px 0px 5px 0px;
+}
+.animal-index-well{
+	padding-top:14px;
+	padding-bottom:14px;
+}
