@@ -29,6 +29,20 @@ describe AnimalsController do
       get :show, :id => @public_animal.uuid
       assigns(:animal).should == @public_animal
     end
+    
+    it "should redirect to not available if animal is not public" do
+      @not_public_animal = FactoryGirl.create(:animal, :public => 0)
+      get :show, :id => @not_public_animal.uuid
+      response.should be_redirect
+      response.should redirect_to('/animals/not_available')
+    end
+    
+    it "should redirect to 404 if animal is not found" do
+      @public_animal = FactoryGirl.create(:animal, :public => 1)
+      get :show, :id => "not_a_animal_id"
+      response.response_code.should == 404
+      #response.should redirect_to('/404')
+    end
 
   end
 end

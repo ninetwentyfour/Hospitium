@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
     exception.default_message = "Default error message"
     redirect_to root_url, :notice => "That URL is prohibited"
   end
+  
+  rescue_from ActiveRecord::RecordNotFound do
+    raise ActionController::RoutingError.new('Not Found')
+  end
 
   APP_DOMAIN = 'hospitium.co'
 
