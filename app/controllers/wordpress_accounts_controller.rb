@@ -13,10 +13,10 @@ class WordpressAccountsController < ApplicationController
   
   def update
     @wordpress = WordpressAccount.find(params[:id])
-    params[:wordpress_account]["blog_password"] = Base64.encode64(Encryptor.encrypt(:value => "#{params[:wordpress_account]["blog_password"]}", :key => ENV['SALTY'])).encode('utf-8')
+    params[:wordpress_account]["blog_password"] = SecPass::encrypt(params[:wordpress_account]["blog_password"])
     respond_to do |format|
       if  @wordpress.update_attributes(params[:wordpress_account])
-        format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Wordpress Account Connected!')}
+        format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Wordpress Account Updated!')}
       else
         format.html { render "new" }
       end
@@ -26,11 +26,10 @@ class WordpressAccountsController < ApplicationController
   
   def send_blog_post
     account = WordpressAccount.find_by_user_id(current_user.id)
-    decoded = Base64.decode64(account.blog_password.encode('ascii-8bit'))
-    account.blog_password = Encryptor.decrypt(:value => decoded, :key => ENV['SALTY'])
     if account.blank?
       redirect_to("#{root_url}admin/user/#{current_user.id}", :notice => 'Please Add Wordpress Credentials!')
     else
+      account.blog_password = SecPass::decrypt(account.blog_password)
       link = WordpressAccount.shorten_link("#{root_url}animals/#{params[:animal_uuid]}")
       message = Hash.new
       message['title'] = "#{params[:animal_name]} is ready for adoption!"

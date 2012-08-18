@@ -15,7 +15,7 @@ class AdoptAPetAccountsController < ApplicationController
   
   def update
     @adopt_a_pet = AdoptAPetAccount.find(params[:id])
-    params[:adopt_a_pet_account]["password"] = Base64.encode64("#{params[:adopt_a_pet_account]["password"]}~#{current_user.username}")
+    params[:adopt_a_pet_account]["password"] = SecPass::encrypt(params[:adopt_a_pet_account]["password"])
     respond_to do |format|
       if  @adopt_a_pet.update_attributes(params[:adopt_a_pet_account])
         format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Adopt A Pet Account updated!')}
@@ -27,47 +27,16 @@ class AdoptAPetAccountsController < ApplicationController
   
   
   def send_animal
-    require 'csv'
-    
     @account = AdoptAPetAccount.find_by_user_id(current_user.id)
-    #@account.password = Base64.decode64(@account.password).split("~").first
     if @account.blank?
       redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Please Add Adopt A Pet Credentials!')
     else
-      #get all animals for an organization
-      @animals = Animal.find(:all, :conditions => {:organization_id => current_user.organization.id, :public => 1}) 
-      csv_string = CSV.open("#{Rails.root}/tmp/#{current_user.id}_adopt_a_pet_export_temp.csv", "w") do |csv| 
-        # header row 
-        csv << ["ID", "Type", "Breed", "Breed2", "Name", "Sex", "Description", "Status", "SpayedNeutered", "PhotoURL"] 
-
-        # data rows 
-        @animals.each do |animal|
-          csv << [animal.uuid, animal.species_name, animal.species_name, "", animal.name, animal.sex, animal.special_needs, "Available", animal.spay,  animal.image.url(:large).sub(/https:/, "http:")] 
-        end 
-      end 
-      
-      #read the newly created csv
-      read_csv = CSV.new("#{Rails.root}/tmp/#{current_user.id}_adopt_a_pet_export_temp.csv")
-      send_to_them = ftp_csv(read_csv)
-      redirect_to("#{root_url}admin/animals", :notice => 'Animals Sent To Adopt A Pet!')
+      if @account.send_csv(current_user)
+        redirect_to("#{root_url}admin/animals", :notice => 'Animals Sent To Adopt A Pet!')
+      else
+        redirect_to("#{root_url}admin/animals", :alert => 'Problem Sending Animals To Adopt A Pet!')
+      end
     end
-  end
-  
-  def ftp_csv(file)
-    @account = AdoptAPetAccount.find_by_user_id(current_user.id)
-    @account.password = Base64.decode64(@account.password).split("~").first
-    logger.debug "The object is #{@account.password}"
-    #ftp it to adopt a pet account
-    require 'net/ftp'
-    ftp = Net::FTP.new('autoupload.adoptapet.com')
-    ftp.passive = true
-    ftp.login(user = "#{@account.user_name}", passwd = "#{@account.password}")
-    ftp.putbinaryfile(file.string(), "pets.csv")
-    ftp.putbinaryfile("#{Rails.root}/public/adopt_a_pet/import.cfg", "import.cfg")
-    ftp.quit()
-    
-    #delete the tmp file
-    File.delete("#{Rails.root}/tmp/#{current_user.id}_adopt_a_pet_export_temp.csv")
   end
   
   def destroy
