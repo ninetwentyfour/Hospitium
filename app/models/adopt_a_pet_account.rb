@@ -17,7 +17,7 @@ class AdoptAPetAccount < ActiveRecord::Base
     require 'csv'
     #get all animals for an organization
     @animals = Animal.find(:all, :conditions => {:organization_id => user.organization_id, :public => 1}) 
-    csv_string = CSV.open("#{Rails.root}/tmp/#{current_user.id}_adopt_a_pet_export_temp.csv", "w") do |csv| 
+    csv_string = CSV.open("#{Rails.root}/tmp/#{user.id}_adopt_a_pet_export_temp.csv", "w") do |csv| 
       # header row 
       csv << [ 
         "ID", 
@@ -51,7 +51,7 @@ class AdoptAPetAccount < ActiveRecord::Base
     end
     
     #read the newly created csv
-    read_csv = CSV.new("#{Rails.root}/tmp/#{current_user.id}_adopt_a_pet_export_temp.csv")
+    read_csv = CSV.new("#{Rails.root}/tmp/#{user.id}_adopt_a_pet_export_temp.csv")
     # ftp it to adopt a pet
     self.ftp_csv(read_csv, user)
   end
@@ -69,7 +69,7 @@ class AdoptAPetAccount < ActiveRecord::Base
     ftp.quit()
     
     #delete the tmp file
-    File.delete("#{Rails.root}/tmp/#{current_user.id}_adopt_a_pet_export_temp.csv")
+    File.delete("#{Rails.root}/tmp/#{user.id}_adopt_a_pet_export_temp.csv")
   end
 
 end
