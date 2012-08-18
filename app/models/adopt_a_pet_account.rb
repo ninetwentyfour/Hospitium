@@ -13,11 +13,11 @@ class AdoptAPetAccount < ActiveRecord::Base
     adopt_a_pet_account
   end
   
-  def send_csv(user)
+  def send_csv(current_user)
     require 'csv'
     #get all animals for an organization
-    @animals = Animal.find(:all, :conditions => {:organization_id => user.organization_id, :public => 1}) 
-    csv_string = CSV.open("#{Rails.root}/tmp/#{user.id}_adopt_a_pet_export_temp.csv", "w") do |csv| 
+    @animals = Animal.find(:all, :conditions => {:organization_id => current_user.organization_id, :public => 1}) 
+    csv_string = CSV.open("#{Rails.root}/tmp/#{current_user.id}_adopt_a_pet_export_temp.csv", "w") do |csv| 
       # header row 
       csv << [ 
         "ID", 
@@ -51,12 +51,12 @@ class AdoptAPetAccount < ActiveRecord::Base
     end
     
     #read the newly created csv
-    read_csv = CSV.new("#{Rails.root}/tmp/#{user.id}_adopt_a_pet_export_temp.csv")
+    read_csv = CSV.new("#{Rails.root}/tmp/#{current_user.id}_adopt_a_pet_export_temp.csv")
     # ftp it to adopt a pet
-    self.ftp_csv(read_csv, user)
+    self.ftp_csv(read_csv, current_user)
   end
   
-  def ftp_csv(file, user)
+  def ftp_csv(file, current_user)
     @account = AdoptAPetAccount.find_by_user_id(user.id)
     @account.password = SecPass::decrypt(@account.password)
     #ftp it to adopt a pet account
@@ -69,7 +69,7 @@ class AdoptAPetAccount < ActiveRecord::Base
     ftp.quit()
     
     #delete the tmp file
-    File.delete("#{Rails.root}/tmp/#{user.id}_adopt_a_pet_export_temp.csv")
+    File.delete("#{Rails.root}/tmp/#{current_user.id}_adopt_a_pet_export_temp.csv")
   end
 
 end

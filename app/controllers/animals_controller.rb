@@ -24,7 +24,19 @@ class AnimalsController < ApplicationController
       Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter).find_by_uuid(params[:id])
     end
     
-    respond_with(@animal)
+    if @animal.public == 1
+      respond_with(@animal)
+    else
+      redirect_to not_available and return
+    end
+  end
+  
+  def not_available
+    @animals = Animal.where('public' => 1).
+                      limit(5).
+                      order("updated_at DESC")
+    
+    respond_with(@animals)
   end
   
 end
