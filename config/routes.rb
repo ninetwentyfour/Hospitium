@@ -2,7 +2,9 @@ AnimalTracker::Application.routes.draw do
 
 
   #resources :notes
-
+  
+  match "/animals/not_available" => "animals#not_available", :via => :get
+  
   resource :facebook_accounts, :only => [:new, :destroy]
   match '/callback/facebook/:id' => "facebook_accounts#callback", :as => :facebook_callback
   match "/facebook_accounts/send_wall_post" => "facebook_accounts#send_wall_post", :as => "facebook_accounts"
@@ -91,7 +93,6 @@ AnimalTracker::Application.routes.draw do
   end
   
   resources :users, :only => [:show, :update]
-  
   
   match "/admin/animals/:id/cage_card" => "admin/animals#cage_card", :as => "animals"
   match "/admin/animals/:id/qr_code" => "admin/animals#qr_code", :as => "animals"

@@ -1,0 +1,23 @@
+	<div class="hero-unit clearfix">
+		<div class="page-header">
+			<h1 style="display:inline;">This animal is not available.</h1>
+		</div>
+		<div class="otherAnimalInfo" style="width:400px;float:left">
+			<p>How about checking out one of these?</p>
+			<ul>
+				<% @animals.each do |animal| %>
+					<li><a href="/animals/<%= animal.uuid %>"><%= animal.name %></a></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+
+<br /><br />
+<p style="font-size:13px;">
+All information listed here is contributed by our members. Hospitium is not responsible for its contents. We assume in good faith that all Organizations are in good legal standing to adopt animals.
+</p>
+<% set_meta_description("Find animals to adopt on Hospitum") %>
+<% set_meta_keywords("adopt,animal,pets") %>
+<% set_head_title("Animal Not Available") %>
+<% content_for :title, "Animal Not Available - Hospitium" %>
+<title><%= yield (:title) %></title>

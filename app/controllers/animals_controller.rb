@@ -27,11 +27,12 @@ class AnimalsController < ApplicationController
     if @animal.public == 1
       respond_with(@animal)
     else
-      redirect_to not_available and return
+      redirect_to "/animals/not_available", :status => 302
     end
   end
   
   def not_available
+    canonical_url("/animals/not_available")
     @animals = Animal.where('public' => 1).
                       limit(5).
                       order("updated_at DESC")
