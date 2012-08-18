@@ -20,7 +20,7 @@ describe AnimalsController do
   describe 'GET "show"' do
     it "returns http success" do
       @public_animal = FactoryGirl.create(:animal, :public => 1)
-      get 'show'
+      get :show, :id => @public_animal.uuid
       response.should be_success
     end
     
