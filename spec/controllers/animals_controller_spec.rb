@@ -19,6 +19,7 @@ describe AnimalsController do
 
   describe 'GET "show"' do
     it "returns http success" do
+      @public_animal = FactoryGirl.create(:animal, :public => 1)
       get 'show'
       response.should be_success
     end
