@@ -6,8 +6,12 @@ module SecPass
     end
     
     def decrypt(pass)
-      decoded = Base64.decode64(pass.encode('ascii-8bit'))
-      Encryptor.decrypt(:value => decoded, :key => ENV['SALTY'])
+      begin
+        decoded = Base64.decode64(pass.encode('ascii-8bit'))
+        Encryptor.decrypt(:value => decoded, :key => ENV['SALTY'])
+      rescue Exception => exception
+        return false
+      end
     end
   end
 end
