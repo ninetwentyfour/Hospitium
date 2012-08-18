@@ -39,9 +39,9 @@ describe AnimalsController do
     
     it "should redirect to 404 if animal is not found" do
       @public_animal = FactoryGirl.create(:animal, :public => 1)
-      get :show, :id => "not_a_animal_id"
-      response.response_code.should == 404
-      #response.should redirect_to('/404')
+      expect {
+        get :show, :id => "not_a_animal_id"
+      }.to raise_error(ActionController::RoutingError)
     end
 
   end

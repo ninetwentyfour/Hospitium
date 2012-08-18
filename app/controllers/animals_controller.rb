@@ -23,11 +23,8 @@ class AnimalsController < ApplicationController
     @animal = Rails.cache.fetch("public_animal_#{params[:id]}", :expires_in => 15.minutes) do
       Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter).find_by_uuid!(params[:id])
     end
-    
-    if @animal.blank?
-      # render '/404.html'
-      # return
-    elsif @animal.public == 1
+
+    if @animal.public == 1
       respond_with(@animal)
     else
       redirect_to "/animals/not_available", :status => 302
