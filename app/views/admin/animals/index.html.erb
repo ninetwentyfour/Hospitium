@@ -15,24 +15,9 @@
 				</div>
 			</div>
 		</div>
-		<table class="table table-striped table-bordered" id="animal_index">
-			<col><col><col><col><col><col><col><col>
-			<thead>
-				<tr>
-					<th><%= sort_link @search, :name %></th>
-					<th><%= sort_link @search, :microchip %></th>
-					<th><%= sort_link @search, :status_status, "Status", {}, :class => "status" %></th>
-					<th><%= sort_link @search, :animal_sex_sex, "Sex", {}, :class => "animal_sex" %></th>
-					<th><%= sort_link @search, :birthday, "Age" %></th>
-					<th><%= sort_link @search, :spay_neuter_spay, "Spay / Neuter", {}, :class => "spay_neuter" %></th>
-					<th><%= sort_link @search, :animal_color_color, "Color", {}, :class => "animal_color" %></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
+		<ul class="thumbnails" id="animal_index">
 				<%= render "animal_row", :animals => @animals %>
-			</tbody>
-		</table>
+		</ul>
 		<%= will_paginate @animals %>
 	</div>
 </div>
@@ -41,4 +26,28 @@
 
 <%= render 'search', :search => @search, :presenter => @presenter %>
 
-
+<% content_for :javascript_footer do %>
+	<script>
+		jQuery(function() {
+		  var scroll_ok;
+		  scroll_ok = true;
+		  setInterval((function() {
+		    return scroll_ok = true;
+		  }), 33);
+		  if ($('.pagination').length) {
+		    $(window).scroll(function() {
+		      var url;
+		      if (scroll_ok === true) {
+		        scroll_ok = false;
+		        url = $('.next_page').children().attr('href');
+		        if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+		          $('.pagination').text("Fetching more animals...");
+		          return $.getScript(url);
+		        }
+		      }
+		    });
+		    return $(window).scroll();
+		  }
+		});
+	</script>
+<%end%>

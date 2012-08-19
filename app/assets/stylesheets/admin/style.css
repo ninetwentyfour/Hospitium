@@ -365,3 +365,20 @@ top: 0px !important;
 	padding-top:14px;
 	padding-bottom:14px;
 }
+#animal_index{
+	margin-right:-30px !important;
+}
+.animal-card{
+	min-height:150px;
+	background-color:#fff;
+	margin-left:0px !important;
+	margin-right:30px;
+	margin-bottom:30px !important;
+	width:280px !important;
+}
+.animal-card-info{
+	padding:10px 0px 10px 0px;
+}
+/*.animal-card:nth-child(4n+4) {
+	margin-right:0px !important;
+}*/

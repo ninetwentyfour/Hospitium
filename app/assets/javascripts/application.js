@@ -18,7 +18,6 @@
 //= require showdown
 //= require date
 //= require select2
-//= require_tree ./admin
 //= require_self
 
 //prevent ipad webapps opening in safari

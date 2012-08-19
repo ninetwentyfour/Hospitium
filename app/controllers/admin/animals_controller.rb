@@ -6,11 +6,11 @@ class Admin::AnimalsController < Admin::ApplicationController
   # GET /animals
   # GET /animals.xml
   def index
-    @search = Animal.select('animals.name, animals.microchip, animals.birthday, animals.uuid, animals.id, animals.status_id, animals.animal_color_id, animals.animal_sex_id, animals.spay_neuter_id, animals.updated_at, animals.image, animals.image_file_name, animals.image_updated_at').
+    @search = Animal.select('animals.name, animals.microchip, animals.birthday, animals.uuid, animals.id, animals.status_id, animals.animal_color_id, animals.animal_sex_id, animals.species_id, animals.spay_neuter_id, animals.updated_at, animals.image, animals.image_file_name, animals.image_updated_at').
                     includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter).
                     organization(current_user).
                     search(params[:search])
-    @animals = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
+    @animals = @search.paginate(:page => params[:page], :per_page => 10).order("name ASC")
     @presenter = Admin::Animals::IndexPresenter.new(current_user)
     
     respond_with(@animals) do |format|
