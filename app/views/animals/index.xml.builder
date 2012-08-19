@@ -5,6 +5,7 @@ xml.animals do
     xml.animal do
       xml.id animal.uuid
       xml.name animal.name
+      xml.location "#{animal.organization_city}, #{animal.organization_state} #{animal.organization_zip_code}"
       xml.status animal.status.status
       xml.species_name animal.species_name
       xml.sex animal.sex

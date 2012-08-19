@@ -5,6 +5,7 @@ pages_count @animals.total_pages
 animals @animals do |animal|
   id animal.uuid
   name animal.name
+  location "#{animal.organization_city}, #{animal.organization_state} #{animal.organization_zip_code}"
   status animal.status.status
   species_name animal.species_name
   sex animal.sex
