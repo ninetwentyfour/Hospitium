@@ -48,9 +48,10 @@
 			<% unless animal.video_embed.blank? %>
 				<a class="thumbnail" href="#" >
 					<div class="embed-container">
-						<%= raw Sanitize.clean(animal.video_embed, Sanitize::Config::YOUTUBE) %>
+						<%= raw Sanitize.clean(animal.video_embed, Sanitize::Config::YOUTUBE).sub(/http:/, 'https:') %>
 					</div>
 				</a>
+				<br />
 				<a class="btn" data-toggle="modal" href="#video_upload" ><i class="icon-plus"></i> Add Video</a>
 			<%else%>
 				<a class="btn" data-toggle="modal" href="#video_upload" ><i class="icon-plus"></i> Add Video</a>
