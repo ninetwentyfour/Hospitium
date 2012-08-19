@@ -1,0 +1,20 @@
+count @animals.count
+page @animals.current_page
+per_page @animals.per_page
+pages_count @animals.total_pages
+animals @animals do |animal|
+  id animal.uuid
+  name animal.name
+  status animal.status.status
+  species_name animal.species_name
+  sex animal.sex
+  age calculate_animal_age(animal.birthday)
+  spay_neuter animal.spay
+  color animal.color
+  special_needs animal.special_needs
+  organization animal.organization_name
+  image_1 animal.image.url(:medium)
+  image_2 animal.second_image.url(:medium)
+  image_3 animal.third_image.url(:medium)
+  image_4 animal.fourth_image.url(:medium)
+end

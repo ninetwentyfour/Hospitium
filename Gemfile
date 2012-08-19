@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.8'
 
 # Gems used in all environments
 gem 'mysql2'
@@ -27,6 +27,7 @@ gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git"
 gem 'less-rails-bootstrap'
 gem 'therubyracer'
 gem 'encryptor'
+gem 'json_builder'
 
 # Gems used only for assets and not required
 # in production environments by default.

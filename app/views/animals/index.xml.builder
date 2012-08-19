@@ -3,6 +3,7 @@ xml.instruct! :xml, :version=>"1.0"
 xml.animals do
   @animals.each do |animal|
     xml.animal do
+      xml.id animal.uuid
       xml.name animal.name
       xml.status animal.status.status
       xml.species_name animal.species_name

@@ -1,5 +1,12 @@
 class AnimalsController < ApplicationController
-  #caches_action :index, :cache_path => Proc.new { |controller| controller.params },:layout => false, :expires_in => 10.minutes
+  caches_action :index, 
+    :cache_path => Proc.new { |controller| controller.params.map{|k,v| "#{k}=#{v}"}.join('&') + request.format},
+    :layout => Proc.new { |c| !request.format.html? },
+    :expires_in => 10.minutes,
+    :if => (Proc.new do
+        request.format.html?  # cache if is a html request
+    end)
+    
   
   respond_to :html, :xml, :json
 
@@ -8,6 +15,13 @@ class AnimalsController < ApplicationController
   def index
     canonical_url("/animals")
     #find animals that are public to show on animals for adoption page
+    # @animals = Rails.cache.fetch("public_animals_#{params[:page]}_#{request.format}", :expires_in => 10.minutes) do
+    #   Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter).
+    #                     where('public' => 1).
+    #                     paginate(:page => params[:page], :per_page => 10).
+    #                     order("updated_at DESC")
+    # end
+    
     @animals = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter).
                       where('public' => 1).
                       paginate(:page => params[:page], :per_page => 10).
