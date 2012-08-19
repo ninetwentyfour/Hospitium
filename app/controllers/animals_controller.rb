@@ -1,5 +1,5 @@
 class AnimalsController < ApplicationController
-  caches_action :index, :cache_path => Proc.new { |controller| controller.params },:layout => false, :expires_in => 10.minutes
+  #caches_action :index, :cache_path => Proc.new { |controller| controller.params },:layout => false, :expires_in => 10.minutes
   
   respond_to :html, :xml, :json
 
