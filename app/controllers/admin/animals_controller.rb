@@ -1,7 +1,7 @@
 class Admin::AnimalsController < Admin::ApplicationController
   load_and_authorize_resource
   
-  respond_to :html, :xml, :json, :xls
+  respond_to :html, :xml, :json, :xls, :js
   
   # GET /animals
   # GET /animals.xml
