@@ -18,6 +18,8 @@
 //= require showdown
 //= require date
 //= require select2
+//= require jquery.infinitescroll.min
+//= require jquery.masonry
 //= require_self
 
 //prevent ipad webapps opening in safari

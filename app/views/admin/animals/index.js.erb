@@ -1,6 +1,1 @@
-$('#animal_index').append('<%= j render("animal_row", :animals => @animals) %>');
-<% if @animals.next_page %>
-  $('.pagination').replaceWith('<%= j will_paginate(@animals) %>');
-<% else %>
-  $('.pagination').remove();
-<% end %>
+<%= render("animal_row", :animals => @animals) %>
