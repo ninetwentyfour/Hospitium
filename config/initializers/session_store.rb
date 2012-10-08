@@ -9,9 +9,10 @@
 # which shouldn't be used to store highly confidential information
 # (create the session table with "rails generate session_migration")
 # AnimalTracker::Application.config.session_store :active_record_store
-if Rails.env == "production"
+if Rails.env == "test"
   require 'action_dispatch/middleware/session/dalli_store'
   AnimalTracker::Application.config.session_store :dalli_store, :namespace => 'sessions', :key => '_foundation_session', :expire_after => 90.minutes
+  # AnimalTracker::Application.config.session_store ActionDispatch::Session::CookieStore
 else
   #AnimalTracker::Application.config.session_store :active_record_store
   require 'action_dispatch/middleware/session/dalli_store'
