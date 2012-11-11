@@ -34,7 +34,7 @@ GIT
       spreadsheet
 
 GEM
-  remote: http://rubygems.org/
+  remote: http://bundler-api.herokuapp.com/
   specs:
     Saikuro (1.1.0)
     actionmailer (3.2.8)
