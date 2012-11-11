@@ -11,7 +11,6 @@ gem 'uuidtools'
 gem 'cancan'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'will_paginate'
-#gem 'paper_trail'
 gem 'site_meta'
 gem 'meta_search'
 gem 'juggernaut'
@@ -28,6 +27,11 @@ gem 'less-rails-bootstrap'
 gem 'therubyracer'
 gem 'encryptor'
 gem 'json_builder'
+
+# heroku gems for pulling/pushing db
+gem 'heroku'
+gem 'sqlite3'
+gem 'taps'
 
 # Gems used only for assets and not required
 # in production environments by default.

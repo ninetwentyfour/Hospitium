@@ -74,11 +74,11 @@ class RelinquishAnimalsController < ApplicationController
   # DELETE /biters/1
   # DELETE /biters/1.xml
   def destroy
-    @relinquish_animal = RelinquishAnimal.find(params[:id])
+    @relinquish_animal = RelinquishAnimal.find_by_animal_id_and_relinquishment_contact_id(params[:id], params[:relinquish])
     @relinquish_animal.destroy
 
     respond_to do |format|
-      format.html { redirect_to(biters_url) }
+      format.html { redirect_to(:back, :notice => 'Animal successfully removed.') }
       format.xml  { head :ok }
     end
   end
