@@ -1,0 +1,18 @@
+<table class="table table-striped table-bordered" id="animal_index">
+	<col><col><col><col><col><col><col><col>
+	<thead>
+		<tr>
+			<th><%= sort_link search, :name, "Name", is_table_view(params) %></th>
+			<th><%= sort_link search, :microchip, "Microchip", is_table_view(params) %></th>
+			<th><%= sort_link search, :status_status, "Status", is_table_view(params), :class => "status" %></th>
+			<th><%= sort_link search, :animal_sex_sex, "Sex", is_table_view(params), :class => "animal_sex" %></th>
+			<th><%= sort_link search, :birthday, "Age", is_table_view(params) %></th>
+			<th><%= sort_link search, :spay_neuter_spay, "Spay / Neuter", is_table_view(params), :class => "spay_neuter" %></th>
+			<th><%= sort_link search, :animal_color_color, "Color", is_table_view(params), :class => "animal_color" %></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render "animal_table_row", :animals => animals %>
+	</tbody>
+</table>

@@ -36,13 +36,13 @@ AnimalTracker::Application.configure do
   config.cache_store = :dalli_store
   
   # Do not compress assets
-  config.assets.compress = true
-  config.assets.js_compressor = :closure
-  config.assets.css_compressor = :yui
-  config.assets.digest = true
+  config.assets.compress = false
+  # config.assets.js_compressor = :closure
+  # config.assets.css_compressor = :yui
+  # config.assets.digest = true
 
   # Expands the lines which load the assets
-  config.assets.debug = false
+  config.assets.debug = true
   
   Paperclip.options[:command_path] = "/usr/local/bin/"
   Paperclip::Attachment.default_options[:command_path] = "/usr/local/bin"

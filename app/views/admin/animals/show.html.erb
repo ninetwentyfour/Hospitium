@@ -25,7 +25,7 @@
 				<div class="tab-content">
 					<div class="tab-pane active" id="1">
 						<div class="">
-							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newStatus" >Status</a>:</strong> <%= best_in_place @animal, :status_id, :type => :select, collection: @presenter.statuses, :nil => @animal.status.status, :path => admin_animal_path %>
+							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newStatus" >Status</a>:</strong> <%= best_in_place @animal, :status_id, :type => :select, collection: @presenter.statuses, :nil => @animal.try(:status).try(:status), :path => admin_animal_path %>
 							</p>
 							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class model-class" data-toggle="modal" href="#newSpecies" >Species</a>:</strong> <%= best_in_place @animal, :species_id, :type => :select, collection: @presenter.species, :nil => @animal.species_name, :path => admin_animal_path %></p>
 							<p><strong>Sex:</strong> <%= best_in_place @animal, :animal_sex_id, :type => :select, collection: [["1", "Male"], ["2", "Female"], ["3", "Unknown"]], :path => admin_animal_path, :nil => @animal.sex unless @animal.animal_sex.blank? %></p>
