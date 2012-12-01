@@ -30,4 +30,13 @@ module ApplicationHelper
       return markdown.render(text).html_safe
     end
     
+    def is_table_view(params)
+      params.merge({:table_view => 'true'}) if params[:table_view]
+    end
+    
+    def table_view_button(params)
+      params.merge(:table_view => "true") unless params[:table_view]
+    end
+    
+    
 end

@@ -10,15 +10,27 @@
 					<a class="btn" href="/admin/animals.xls" id="animal_sync_button"><i class="icon-download"></i> Export</a>
 				</div>
 				<!-- <div class="span1"> &nbsp; </div> -->
-				<div class="span5 pull-right">
-				<a class="btn pull-right" data-toggle="modal" href="#myModal" ><i class="icon-search"></i> Advanced Search</a>
+				<div class="span5">
+					<div class="pull-right animal-index-action-row">
+						<%= link_to raw('<i class="icon-refresh"></i> Swap View'), url_for(table_view_button(params)),  :class => "btn" %>
+						&nbsp;
+						<a class="btn" data-toggle="modal" href="#myModal" ><i class="icon-search"></i> Advanced Search</a>
+					</div>
 				</div>
 			</div>
 		</div>
-		<ul class="thumbnails" id="animal_index">
-				<%= render "animal_row", :animals => @animals %>
-		</ul>
-		<%= will_paginate @animals, :id => "pagination-container" %>
+		<%- if params[:table_view]%>
+			<%= render "animal_table", :animals => @animals, :search => @search %>
+		<% else %>
+			<ul class="thumbnails" id="animal_index">
+					<%= render "animal_row", :animals => @animals %>
+			</ul>
+		<% end %>
+		<%- if params[:table_view]%>
+			<%= will_paginate @animals %>
+		<% else %>
+			<%= will_paginate @animals, :id => "pagination-container" %>
+		<% end %>
 	</div>
 </div>
 

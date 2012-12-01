@@ -11,6 +11,7 @@ class Admin::AnimalsController < Admin::ApplicationController
                     organization(current_user).
                     search(params[:search])
     @animals = @search.paginate(:page => params[:page], :per_page => 7).order("name ASC")
+    
     @presenter = Admin::Animals::IndexPresenter.new(current_user)
     
     respond_with(@animals) do |format|
