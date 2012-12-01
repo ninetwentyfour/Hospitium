@@ -8,7 +8,7 @@
 		<%end%></a>
 		<ul class="animal-card-info">
 			<li><strong>Species:</strong> <%= animal.species_name %></li>
-			<li><strong>Status:</strong> <%= animal.status.status %></li>
+			<li><strong>Status:</strong> <%= animal.try(:status).try(:status) %></li>
 			<li><strong>Sex:</strong> <%= animal.sex unless animal.animal_sex.blank? %></li>
 			<li><strong>Age:</strong> <%= calculate_animal_age(animal.birthday) unless animal.birthday.blank? %></li>
 			<li><strong>Spay/Neuter:</strong> <%= animal.spay unless animal.spay_neuter.blank? %></li>

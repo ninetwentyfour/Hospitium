@@ -1,5 +1,11 @@
 <div class="row-fluid">
 	<div class="span12 main-app-row">
+		<%- unless @shelter.animals.blank? %>
+			<div class="alert alert-danger">
+				<a class="close" data-dismiss="alert" href="#">&times;</a> 
+				This shelter can not be deleted until no animals are associated to it.
+			</div>
+		<%end%>
 			<div class="well">
 				<div class="row-fluid">
 					<div class="span6">
@@ -11,6 +17,7 @@
 				<div class="tabbable span4 ">
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#1" data-toggle="tab">Details</a></li>
+						<li><a href="#2" data-toggle="tab">Animals</a></li>
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane active" id="1">
@@ -23,6 +30,11 @@
 								<p><strong>Street:</strong> <%= best_in_place @shelter, :address, :type => :input, :nil => "Click me to add content!", :path => admin_shelter_path %></p>
 								<p><strong>Notes:</strong> <%= best_in_place @shelter, :notes, :type => :textarea, :nil => "Click me to add content!", :path => admin_shelter_path %></p>
 							</div>
+						</div>
+						<div class="tab-pane" id="2">
+							<% @shelter.animals.each do |animal| %>
+								<p><a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><%= animal.name %></a></p>
+							<%end%>
 						</div>
 					</div>
 				</div>

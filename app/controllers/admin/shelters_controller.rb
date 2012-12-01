@@ -6,7 +6,7 @@ class Admin::SheltersController < Admin::ApplicationController
   # GET /shelters
   # GET /shelters.xml
   def index
-    @search = Shelter.organization(current_user).search(params[:search])
+    @search = Shelter.includes(:animals).organization(current_user).search(params[:search])
     @shelters = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
     respond_with(@shelters) do |format|
       format.html # index.html.erb

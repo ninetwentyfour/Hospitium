@@ -1,5 +1,11 @@
 <div class="row-fluid">
 	<div class="span12 main-app-row">
+		<%- unless @animals.blank? %>
+			<div class="alert alert-danger">
+				<a class="close" data-dismiss="alert" href="#">&times;</a> 
+				This species can not be deleted until no animals are associated to it.
+			</div>
+		<%end%>
 		<div class="well">
 			<div class="row-fluid">
 				<div class="span6">

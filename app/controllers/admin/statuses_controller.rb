@@ -6,7 +6,7 @@ class Admin::StatusesController < Admin::ApplicationController
   # GET /statuses
   # GET /statuses.xml
   def index
-    @search = Status.organization(current_user).search(params[:search])
+    @search = Status.includes(:animals).organization(current_user).search(params[:search])
     @statuses = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
     
     respond_with(@statuses)

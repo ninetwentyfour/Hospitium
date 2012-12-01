@@ -6,7 +6,7 @@ class Admin::AnimalColorsController < Admin::ApplicationController
   # GET /animal_colors
   # GET /animal_colors.xml
   def index
-    @search = AnimalColor.organization(current_user).search(params[:search])
+    @search = AnimalColor.includes(:animals).organization(current_user).search(params[:search])
     @animal_colors = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
     
     respond_with(@animal_colors)
