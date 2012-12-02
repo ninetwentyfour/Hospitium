@@ -21,6 +21,7 @@ class AdoptAnimalObserver < ActiveRecord::Observer
       :record_uuid => adopt_animal.animal.uuid,
       :organization_id => adopt_animal.animal.organization_id
     )
+    RestfulMetrics::Client.add_metric("hospitium.co", "Animal Adopted", 1, adopt_animal.animal.organization_id)
   end
   
   def record_event2(adopt_animal)

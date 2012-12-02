@@ -21,12 +21,13 @@ gem 'best_in_place'
 gem "spreadsheet", "0.6.5.8"
 gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls-on-models"
 gem 'redcarpet'
-gem 'jquery-rails'
+gem 'jquery-rails', '2.0.1'
 gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git"
-gem 'less-rails-bootstrap'
+gem 'less-rails-bootstrap', '2.0.13'
 gem 'therubyracer'
 gem 'encryptor'
 gem 'json_builder'
+gem "restful_metrics"
 
 # heroku gems for pulling/pushing db
 # gem 'heroku'
