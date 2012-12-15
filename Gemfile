@@ -29,6 +29,9 @@ gem 'encryptor'
 gem 'json_builder'
 gem "restful_metrics"
 
+gem "statsd-ruby", :require => "statsd"
+gem 'trashed', :git => 'https://github.com/ninetwentyfour/trashed.git'
+
 # heroku gems for pulling/pushing db
 # gem 'heroku'
 # gem 'sqlite3'

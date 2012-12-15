@@ -33,6 +33,13 @@ GIT
       spreadsheet (> 0)
       spreadsheet
 
+GIT
+  remote: https://github.com/ninetwentyfour/trashed.git
+  revision: e4483255747d733093d10a8ff901eb96b770266d
+  specs:
+    trashed (2.0.4)
+      statsd-ruby
+
 GEM
   remote: http://bundler-api.herokuapp.com/
   specs:
@@ -403,6 +410,7 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    statsd-ruby (1.1.0)
     syntax (1.0.0)
     therubyracer (0.10.2)
       libv8 (~> 3.3.10)
@@ -491,9 +499,11 @@ DEPENDENCIES
   shoulda-matchers
   site_meta
   spreadsheet (= 0.6.5.8)
+  statsd-ruby
   therubyracer
   thin
   to_xls!
+  trashed!
   twitter
   uglifier
   uuidtools

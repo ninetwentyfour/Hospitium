@@ -114,6 +114,7 @@ class Animal < ActiveRecord::Base
   
   #define content for xml downloads
   def as_xls(options = {})
+    $statsd.increment 'animal.xls_download'
     {
         "Id" => id.to_s,
         "Name" => name,
@@ -125,7 +126,7 @@ class Animal < ActiveRecord::Base
         "Biter" => biter["value"],
         "Sex" => animal_sex["sex"],
         "Public" => public,
-        "Status" => status["status"],
+        "Status" => status.try(:[],:status),
         "Special Needs" => special_needs,
         "Diet" => diet,
         "Date of Well Check" => date_of_well_check,
