@@ -232,7 +232,7 @@ GEM
     less-rails (2.2.6)
       actionpack (>= 3.1)
       less (~> 2.2.0)
-    less-rails-bootstrap (2.0.13)
+    less-rails-bootstrap (2.2.0)
       less-rails (~> 2.2.0)
     libv8 (3.3.10.4)
     libwebsocket (0.1.7.1)
@@ -475,7 +475,7 @@ DEPENDENCIES
   json_builder
   juggernaut
   launchy
-  less-rails-bootstrap (= 2.0.13)
+  less-rails-bootstrap (= 2.2.0)
   libxml-xmlrpc
   mechanize
   meta_search

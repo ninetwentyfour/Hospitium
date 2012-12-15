@@ -23,7 +23,7 @@ gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls
 gem 'redcarpet'
 gem 'jquery-rails', '2.0.1'
 gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git"
-gem 'less-rails-bootstrap', '2.0.13'
+gem 'less-rails-bootstrap', '2.2.0'
 gem 'therubyracer'
 gem 'encryptor'
 gem 'json_builder'
