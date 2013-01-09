@@ -1,11 +1,11 @@
 source 'http://bundler-api.herokuapp.com'
 
-gem 'rails', '3.2.10'
+gem 'rails', '3.2.11'
 
 # Gems used in all environments
 gem 'mysql2'
 gem 'dalli'
-gem 'aws-sdk', '~> 1.3.4'
+gem 'aws-sdk'
 gem 'devise' # Devise must be required before RailsAdmin
 gem 'uuidtools'
 gem 'cancan'
@@ -18,12 +18,12 @@ gem 'client_side_validations'
 gem 'jqplot-rails', :git => "git://github.com/ninetwentyfour/jqplot-rails.git"
 gem 'gravatar_image_tag'
 gem 'best_in_place'
-gem "spreadsheet", "0.6.5.8"
+gem "spreadsheet"
 gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls-on-models"
 gem 'redcarpet'
-gem 'jquery-rails', '2.0.1'
+gem 'jquery-rails'
 gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git"
-gem 'less-rails-bootstrap', '2.0.13'
+gem 'less-rails-bootstrap'
 gem 'therubyracer'
 gem 'encryptor'
 gem 'json_builder'
@@ -45,7 +45,7 @@ end
 
 # Gems used only for development
 group :development do
-	gem 'metrical'
+  # gem 'metrical'
 end
 
 # Gems used only for production
