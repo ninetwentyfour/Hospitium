@@ -26,7 +26,10 @@ class Admin::AnimalsController < Admin::ApplicationController
   # GET /animals/1
   # GET /animals/1.xml
   def show
-    @animal = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :shelter).find(params[:id])  
+    @animal = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :shelter).find(params[:id])
+    if @animal.documents.blank?
+      @animal.documents.build
+    end
     @presenter = Admin::Animals::ShowPresenter.new(current_user, @animal)
     respond_with(@animal)
   end

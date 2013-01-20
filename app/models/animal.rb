@@ -21,6 +21,9 @@ class Animal < ActiveRecord::Base
   has_many :adoption_contacts, :through => :adopt_animals
   has_many :relinquish_animals
   has_many :relinquishment_contacts, :through => :relinquish_animals
+  has_many :documents
+  
+  accepts_nested_attributes_for :documents
   
   
   before_create :create_uuid
@@ -34,7 +37,7 @@ class Animal < ActiveRecord::Base
   
   attr_accessible :name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased, 
     :deceased_reason, :adopted_date, :animal_color_id, :image, :second_image, :third_image, :fourth_image, :public, :birthday, :animal_sex_id, :spay_neuter_id,
-    :biter_id, :status_id, :video_embed, :microchip
+    :biter_id, :status_id, :video_embed, :microchip, :documents_attributes
     
   delegate :name, :to => :species, :prefix => :species, :allow_nil => true
   delegate :name, :phone_number, :address, :city, :state, :zip_code, :website, :email, :to => :organization, :prefix => :organization, :allow_nil => true

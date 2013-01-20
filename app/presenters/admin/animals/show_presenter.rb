@@ -30,4 +30,8 @@ class Admin::Animals::ShowPresenter
     Note.includes(:user).where(:animal_id => @animal.id)
   end
   
+  def documents
+    Document.where(:animal_id => @animal.id)
+  end
+  
 end

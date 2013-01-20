@@ -21,6 +21,7 @@
 					<li><a href="#3" data-toggle="tab">History</a></li>
 					<li><a href="#4" data-toggle="tab">Weight</a></li>
 					<li><a href="#5" data-toggle="tab">Notes</a></li>
+					<li><a href="#6" data-toggle="tab">Documents</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="1">
@@ -77,6 +78,15 @@
 							<%= f.submit "Add Note", :class => "btn btn-primary submit-button" %>
 						<% end %>
 					</div>
+					<div class="tab-pane" id="6">
+						<ul class="unstyled" id="animal_notes_list">
+							<%unless @animal.documents.blank?%>
+									<%@presenter.documents.each do |document| %>
+										<li><a href="<%= document.document.url %>"><%= document.document_file_name %></a></li>
+									<%end%>
+							<%end%>
+						</ul>
+					</div>
 				</div>
 				<br />
 				<a class="btn" href="/admin/animals/<%= @animal.id %>-<%= @animal.uuid %>/cage_card"><i class="icon-print"></i> Cage Card</a>
@@ -87,7 +97,7 @@
 		</div>
 	</div>
 </div>
-
+<a class="btn" data-toggle="modal" href="#doc_form" ><i class="icon-plus"></i> Add Doc</a>
 
 
 
