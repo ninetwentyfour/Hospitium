@@ -35,8 +35,15 @@ class Admin::DocumentsController < Admin::ApplicationController
   # POST /documents
   # POST /documents.json
   def create
-    @document = Document.new(params[:document])
-    @document.save
+    #loop on each file from array and create document
+    params[:document][:filearrays].each do |file|
+      @document = Document.new(:document => file, :animal_id => params[:document][:animal_id])
+      if @document.save
+        flash[:notice] = 'Successfully uploaded the document.'
+      else
+        flash[:error] = 'There was a problem uploading the document.'
+      end
+    end
     
     redirect_to :back
   end
@@ -53,7 +60,7 @@ class Admin::DocumentsController < Admin::ApplicationController
   # DELETE /documents/1
   # DELETE /documents/1.json
   def destroy
-    @document = document.find(params[:id])
+    @document = Document.find(params[:id])
     @document.destroy
     flash[:notice] = 'Successfully destroyed document.'
     

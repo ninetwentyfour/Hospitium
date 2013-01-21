@@ -239,12 +239,13 @@
 		<h3>Add New Animal Document</h3>
 	</div>
 	<div class="modal-body">
-		<div class="progress progress-danger progress-striped active first_image_upload_bar" style="display:none;">
+		<div class="progress progress-danger progress-striped active document_upload_bar" style="display:none;">
 			<div class="bar" style="width: 100%;"></div>
 		</div>
-		<p class="first_image_upload_bar" style="display:none;">Loading...</p>
+		<p class="document_upload_bar" style="display:none;">Loading...</p>
 		<%= form_for Document.new, :url => admin_documents_path, :remote => true, :html => {:id => "document_upload", :multipart => true} do |f| %>
-			<%= f.file_field :document, :accept => "image/jpeg,image/jpg,image/png" %>
+			<%= f.file_field :filearrays, :multiple =>:true %>
+			<p>Max filesize of 100mb.</p>
 			<%= f.hidden_field :animal_id, :value => animal.id %><br />
 		<% end %>
 	</div>
