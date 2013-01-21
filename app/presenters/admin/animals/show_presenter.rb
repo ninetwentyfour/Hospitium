@@ -34,4 +34,8 @@ class Admin::Animals::ShowPresenter
     Document.where(:animal_id => @animal.id)
   end
   
+  # def events
+  #   Event.where(:animal_id => @animal.id).order('created_at ASC')
+  # end
+  
 end

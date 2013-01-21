@@ -66,7 +66,7 @@
 						<ul class="unstyled" id="animal_notes_list">
 							<%unless @animal.notes.blank?%>
 									<%@presenter.notes.each do |note| %>
-										<li><%= link_to raw("<i class='icon-remove'></i>"), admin_note_path(note), :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Delete Note"  %><strong><%= note.username %></strong> <%= note.created_at.strftime("%a, %b %e at %l:%M") %> <br /><%= raw note.note %></li>
+										<li><%= link_to raw("<i class='icon-remove'></i>"), admin_note_path(note), :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Delete Note"  %><strong><%= note.username %></strong> <%= note.created_at.strftime("%a, %b %e %Y at %I:%m%p") %> <br /><%= raw note.note %></li>
 									<%end%>
 							<%end%>
 						</ul>
@@ -91,7 +91,7 @@
 											<%@presenter.documents.each do |document| %>
 												<tr>
 													<td><a href="<%= document.document.url %>"><%= document.document_file_name %></a></td>
-													<td><%= document.created_at.strftime("%a, %b %e at %l:%M") %></td>
+													<td><%= document.created_at.strftime("%b %e %Y") %></td>
 													<td>
 														<div class="btn-group pull-right">
 															<a class="btn tooltip-class" href="<%= document.document.url %>" rel="tooltip" title="View Document"><i class="icon-eye-open"></i></a>
