@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
                    :no_send_email, :skip_default_role
   
   before_create :add_to_organization
-  after_create :add_default_role, :send_new_email
+  after_create :add_default_role, :send_new_email, :increment_stats
   
   validates_presence_of :username
   validates_uniqueness_of :username
@@ -96,6 +96,7 @@ class User < ActiveRecord::Base
   
   def send_new_email
     unless Rails.env == "test" or self.no_send_email == true
+      $statsd.increment 'user.created'
       url = "http://sendgrid.com/api/mail.send.json?api_user=#{ENV['SENDGRID_USERNAME']}&api_key=#{ENV['SENDGRID_PASSWORD']}&to=contact@travisberry.com&subject=Hospitium%20-%20New%20User&text=#{URI::encode(self.username)}%20created%20an%20account.%20#{URI::encode(self.email)}%20in%20organization%20#{URI::encode(self.organization.name)}&from=contact@hospitium.co"
       resp = Net::HTTP.get_response(URI.parse(url))
       data = resp.body
@@ -105,4 +106,9 @@ class User < ActiveRecord::Base
       end
     end
   end
+  
+  def increment_stats
+    $statsd.increment 'user.created'
+  end
+  
 end

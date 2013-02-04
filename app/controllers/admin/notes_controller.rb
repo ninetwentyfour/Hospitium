@@ -38,7 +38,7 @@ class Admin::NotesController < Admin::ApplicationController
     @note = current_user.notes.new(params[:note])
     @note.note = view_context.markdown(@note.note).gsub("\n","").gsub("\r","")
     @note.save
-    
+    $statsd.increment 'animal.note.created'
     respond_with(@note)
   end
 

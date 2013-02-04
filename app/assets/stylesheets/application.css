@@ -6,4 +6,5 @@
 *= require testless
 *= require_tree ./admin
 *= require jqplot.1.0.0b2_r792
+*= require bootstrap-modal
 */

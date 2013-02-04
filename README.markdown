@@ -178,4 +178,8 @@ Todo:
 
 - add note in add wordpress/adopt a pet accounts that they should create accounts for this, with unique usernames and strong passwords, with as little permissions as possible (not admin - just post ability)
 
+- Add better back button support for animal cards view. (return to the spot in the infinite scroll)
+
+- Add checks for public animals list that organization has added enough info to be contacted. Don't list if not.
+
 * * *
