@@ -21,6 +21,7 @@
 					<li><a href="#3" data-toggle="tab">History</a></li>
 					<li><a href="#4" data-toggle="tab">Weight</a></li>
 					<li><a href="#5" data-toggle="tab">Notes</a></li>
+					<li><a href="#6" data-toggle="tab">Documents</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="1">
@@ -65,7 +66,7 @@
 						<ul class="unstyled" id="animal_notes_list">
 							<%unless @animal.notes.blank?%>
 									<%@presenter.notes.each do |note| %>
-										<li><%= link_to raw("<i class='icon-remove'></i>"), admin_note_path(note), :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Delete Note"  %><strong><%= note.username %></strong> <%= note.created_at.strftime("%a, %b %e at %l:%M") %> <br /><%= raw note.note %></li>
+										<li><%= link_to raw("<i class='icon-remove'></i>"), admin_note_path(note), :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Delete Note"  %><strong><%= note.username %></strong> <%= note.created_at.strftime("%a, %b %e %Y at %I:%m%p") %> <br /><%= raw note.note %></li>
 									<%end%>
 							<%end%>
 						</ul>
@@ -77,6 +78,36 @@
 							<%= f.submit "Add Note", :class => "btn btn-primary submit-button" %>
 						<% end %>
 					</div>
+					<div class="tab-pane" id="6">
+						<div id="animal_docs_list">
+							<table class="table table-striped tablesorter">
+								<thead>
+									<th>Filename</th>
+									<th>Created</th>
+									<th>Manage</th>
+								</thead>
+								<tbody>
+									<%unless @animal.documents.blank?%>
+											<%@presenter.documents.each do |document| %>
+												<tr>
+													<td><a href="<%= document.document.url %>"><%= document.document_file_name %></a></td>
+													<td><%= document.created_at.strftime("%b %e %Y") %></td>
+													<td>
+														<div class="btn-group pull-right">
+															<a class="btn tooltip-class" href="<%= document.document.url %>" rel="tooltip" title="View Document"><i class="icon-eye-open"></i></a>
+															<%= link_to raw("<i class='icon-remove'></i>"), admin_document_path(document),
+																            :data => {:confirm => 'Are you sure you want to delete?'}, :method => :delete, :class => "btn tooltip-class", :rel => "tooltip", :title => "Delete Document" %>
+														</div>
+													</td>
+												</tr>
+											<%end%>
+									<%end%>
+								</tbody>
+							</table>
+						</div>
+						<hr />
+						<a class="btn" data-toggle="modal" href="#doc_form" ><i class="icon-plus"></i> Add Doc</a>
+					</div>
 				</div>
 				<br />
 				<a class="btn" href="/admin/animals/<%= @animal.id %>-<%= @animal.uuid %>/cage_card"><i class="icon-print"></i> Cage Card</a>
@@ -87,7 +118,6 @@
 		</div>
 	</div>
 </div>
-
 
 
 

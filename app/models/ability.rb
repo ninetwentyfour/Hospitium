@@ -43,6 +43,11 @@ class Ability
         can :create, Note, animal: { organization: { id: user.organization_id } }
         can :update, Note, animal: { organization: { id: user.organization_id } }
         can :destroy, Note, animal: { organization: { id: user.organization_id } }
+        
+        can :read, Document, animal: { organization: { id: user.organization_id } }
+        can :create, Document, animal: { organization: { id: user.organization_id } }
+        can :update, Document, animal: { organization: { id: user.organization_id } }
+        can :destroy, Document, animal: { organization: { id: user.organization_id } }
 
         can :read, Organization, :id => user.organization_id
         can :update, Organization, :id => user.organization_id
@@ -127,6 +132,11 @@ class Ability
         can :create, Note, animal: { organization: { id: user.organization_id } }
         can :update, Note, animal: { organization: { id: user.organization_id } }
         can :destroy, Note, animal: { organization: { id: user.organization_id } }
+        
+        can :read, Document, animal: { organization: { id: user.organization_id } }
+        can :create, Document, animal: { organization: { id: user.organization_id } }
+        can :update, Document, animal: { organization: { id: user.organization_id } }
+        can :destroy, Document, animal: { organization: { id: user.organization_id } }
 
         can :read, Organization, :id => user.organization_id
 
