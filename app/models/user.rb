@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
                    :no_send_email, :skip_default_role
   
   before_create :add_to_organization
-  after_create :add_default_role, :send_new_email
+  after_create :add_default_role, :send_new_email, :increment_stats
   
   validates_presence_of :username
   validates_uniqueness_of :username
@@ -106,4 +106,9 @@ class User < ActiveRecord::Base
       end
     end
   end
+  
+  def increment_stats
+    $statsd.increment 'user.created'
+  end
+  
 end

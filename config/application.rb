@@ -63,7 +63,7 @@ module AnimalTracker
     #config.middleware.use "PDFKit::Middleware", :print_media_type => true
     
     # setup statsd - this is hackey
-    $statsd = Statsd.new '127.0.0.1', 8125
+    $statsd = Statsd.new ENV['STATSD'], 8125
     # Set the namespace to admin
     $statsd.namespace = "hospitium"
     config.trashed[:statsd] = $statsd

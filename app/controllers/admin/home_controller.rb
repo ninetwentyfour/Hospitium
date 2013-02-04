@@ -15,6 +15,9 @@ class Admin::HomeController < Admin::ApplicationController
       Event.find(:all, :conditions => {:organization_id => current_user.organization_id}, :limit => 15, :order => "created_at desc")
     end
     
+    # collect some stats for my dashbaord
+    $statsd.gauge 'number_users', User.count
+    $statsd.gauge 'number_animals', Animal.count
   end
   
 end
