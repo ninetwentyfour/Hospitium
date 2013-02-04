@@ -33,13 +33,6 @@ GIT
       spreadsheet (> 0)
       spreadsheet
 
-GIT
-  remote: https://github.com/ninetwentyfour/trashed.git
-  revision: e4483255747d733093d10a8ff901eb96b770266d
-  specs:
-    trashed (2.0.4)
-      statsd-ruby
-
 GEM
   remote: http://bundler-api.herokuapp.com/
   specs:
@@ -443,7 +436,6 @@ DEPENDENCIES
   therubyracer
   thin
   to_xls!
-  trashed!
   twitter
   uglifier
   uuidtools
