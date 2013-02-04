@@ -21,6 +21,8 @@
 //= require select2
 //= require jquery.infinitescroll.min
 //= require jquery.masonry
+//= require bootstrap-modal
+//= require bootstrap-modalmanager
 //= require_self
 
 
@@ -44,10 +46,10 @@ function load_scripts(){
 	$('.dropdown-toggle').dropdown();
 	$('.tooltip-class').tooltip();
 	$('.popover-class').popover();
-	$('.model-class').modal({
-		show: false,
-		backdrop: false
-	});
+	// $('.model-class').modal({
+	// 	show: false,
+	// 	backdrop: false
+	// });
 	$(".best_in_place").best_in_place();
 	$.datepicker.setDefaults({
 		dateFormat: 'D, dd M yy',

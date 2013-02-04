@@ -30,7 +30,7 @@ AnimalTracker::Application.configure do
     :authentication => :plain,
     :user_name      => ENV['SENDGRID_USERNAME'],
     :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => ENV['SENDGRID_DOMAIN']
+    :domain         => 'hospitium.co'
   }
   #config.action_controller.asset_host = "https://d4uktpxr9m70.cloudfront.net"
   config.cache_store = :dalli_store

@@ -53,6 +53,7 @@ class Admin::AnimalsController < Admin::ApplicationController
   def create
     @animal = current_user.organization.animals.new(params[:animal])
     if @animal.save
+      $statsd.increment 'animal.created'
       flash[:notice] = 'Animal was successfully created.'
     else
       flash[:error] = 'Animal was not successfully created.'
@@ -64,7 +65,7 @@ class Admin::AnimalsController < Admin::ApplicationController
   def update
     @animal = Animal.find(params[:id])
     @animal.update_attributes(params[:animal])
-
+    $statsd.increment 'animal.updated'
     respond_with(@animal, :location => admin_animal_path(@animal)) 
   end
 
@@ -73,6 +74,7 @@ class Admin::AnimalsController < Admin::ApplicationController
   def destroy
     @animal = Animal.find(params[:id])
     @animal.destroy
+    $statsd.increment 'animal.deleted'
     flash[:notice] = 'Successfully destroyed animal.'
     
     respond_with(@animal, :location => admin_animals_path)
@@ -81,6 +83,7 @@ class Admin::AnimalsController < Admin::ApplicationController
   def duplicate
     new_record = Animal.find(params[:id]).dup
     if new_record.save
+      $statsd.increment 'animal.duplicated'
       flash[:notice] = 'Successfully duplicated.'
     else
       flash[:error] = 'There was a problem duplicating.'

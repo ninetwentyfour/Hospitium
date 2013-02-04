@@ -41,6 +41,7 @@ class Admin::UsersController < Admin::ApplicationController
   def create
     @user = current_user.organization.users.new(params[:user])
     if @user.save
+      $statsd.increment 'user.created'
       flash[:notice] = 'User was successfully created.'
     else
       flash[:error] = 'User was not successfully created.'
@@ -54,7 +55,7 @@ class Admin::UsersController < Admin::ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update_attributes(params[:user])
-    
+    $statsd.increment 'user.updated'
     respond_with(@user, :location => admin_user_path(@user))
   end
 

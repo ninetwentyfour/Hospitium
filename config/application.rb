@@ -2,6 +2,7 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 require 'sprockets/railtie'
+require 'trashed/railtie'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -60,5 +61,11 @@ module AnimalTracker
     config.active_record.whitelist_attributes = true
     
     #config.middleware.use "PDFKit::Middleware", :print_media_type => true
+    
+    # setup statsd - this is hackey
+    $statsd = Statsd.new ENV['STATSD'], 8125
+    # Set the namespace to admin
+    $statsd.namespace = "hospitium"
+    config.trashed[:statsd] = $statsd
   end
 end
