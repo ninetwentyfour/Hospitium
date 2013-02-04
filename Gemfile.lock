@@ -213,6 +213,7 @@ GEM
       less (~> 2.2.0)
     less-rails-bootstrap (2.2.0)
       less-rails (~> 2.2.0)
+    libv8 (3.11.8.13)
     libwebsocket (0.1.7.1)
       addressable
       websocket
@@ -299,6 +300,7 @@ GEM
       json (~> 1.4)
     redcarpet (2.2.2)
     redis (3.0.2)
+    ref (1.0.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     restful_metrics (1.1.4)
@@ -350,7 +352,9 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     statsd-ruby (1.1.0)
-    therubyracer (0.10.2)
+    therubyracer (0.11.3)
+      libv8 (~> 3.11.8.12)
+      ref
     thin (1.5.0)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
