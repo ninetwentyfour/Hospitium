@@ -18,6 +18,7 @@ class Admin::HomeController < Admin::ApplicationController
     # collect some stats for my dashbaord
     $statsd.gauge 'number_users', User.count
     $statsd.gauge 'number_animals', Animal.count
+    $statsd.gauge 'number_organizations', Organization.count
   end
   
 end
