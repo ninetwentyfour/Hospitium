@@ -18,7 +18,7 @@ class AnimalsController < ApplicationController
     @animals = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter).
                       where('public' => 1).
                       paginate(:page => params[:page], :per_page => 10).
-                      order("updated_at DESC")
+                      order("updated_at DESC").shuffle!
 
     respond_with(@animals)
   end
@@ -32,6 +32,7 @@ class AnimalsController < ApplicationController
     end
 
     if @animal.public == 1
+      impressionist(@animal)
       respond_with(@animal)
     else
       redirect_to "/animals/not_available", :status => 302

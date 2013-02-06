@@ -47,6 +47,8 @@ class Animal < ActiveRecord::Base
   delegate :value, :to => :biter, :prefix => :biter, :allow_nil => true
   delegate :name, :to => :shelter, :prefix => :shelter, :allow_nil => true
   
+  is_impressionable :counter_cache => true
+  
   #set_primary_key :uuid
   def to_params
     "#{id}-#{uuid}"
@@ -60,7 +62,7 @@ class Animal < ActiveRecord::Base
   #anytime a public animal is updated, send a tweet with its link from @hospitium_app
   def send_public_tweet
     if self.public == 1
-      TwitterAccount.send_public_update_tweet(self)
+      # TwitterAccount.send_public_update_tweet(self)
     end
   end
   

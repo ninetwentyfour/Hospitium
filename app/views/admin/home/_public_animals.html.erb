@@ -1,0 +1,20 @@
+<div class="dashboard-table">
+	<% unless public_animals.blank? %>
+		<table class="table table-striped">
+			<thead>
+				<th>Animal</th>
+				<th>View Count</th>
+			</thead>
+			<tbody>
+				<% public_animals.each do |animal| %>
+					<tr>
+						<td><a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><%= animal.name %></a></td>
+						<td><%= animal.impressions_count %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% else %>
+		<p>No public animals.</p>
+	<% end %>
+</div>

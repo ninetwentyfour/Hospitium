@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130120193544) do
+ActiveRecord::Schema.define(:version => 20130206014847) do
 
   create_table "adopt_a_pet_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20130120193544) do
     t.datetime "fourth_image_updated_at"
     t.text     "video_embed"
     t.string   "microchip"
+    t.integer  "impressions_count",         :default => 0
   end
 
   add_index "animals", ["animal_color_id"], :name => "index_animals_on_animal_color_id"
@@ -190,6 +191,30 @@ ActiveRecord::Schema.define(:version => 20130120193544) do
 
   add_index "facebook_accounts", ["organization_id"], :name => "index_facebook_accounts_on_organization_id"
   add_index "facebook_accounts", ["user_id"], :name => "index_facebook_accounts_on_user_id"
+
+  create_table "impressions", :force => true do |t|
+    t.string   "impressionable_type"
+    t.integer  "impressionable_id"
+    t.integer  "user_id"
+    t.string   "controller_name"
+    t.string   "action_name"
+    t.string   "view_name"
+    t.string   "request_hash"
+    t.string   "ip_address"
+    t.string   "session_hash"
+    t.text     "message"
+    t.text     "referrer"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "impressions", ["controller_name", "action_name", "ip_address"], :name => "controlleraction_ip_index"
+  add_index "impressions", ["controller_name", "action_name", "request_hash"], :name => "controlleraction_request_index"
+  add_index "impressions", ["controller_name", "action_name", "session_hash"], :name => "controlleraction_session_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "ip_address"], :name => "poly_ip_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash"], :name => "poly_request_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], :name => "poly_session_index"
+  add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
 
   create_table "notes", :force => true do |t|
     t.integer  "animal_id"

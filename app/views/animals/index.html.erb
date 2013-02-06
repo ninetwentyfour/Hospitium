@@ -5,7 +5,7 @@
 </div>
 
 	<ul class="unstyled">
-		<% @animals.each do |animal| %>
+		<% @animals.shuffle.each do |animal| %>
 			<li class="singleAnimalAdoption clearfix">
 				<ul class="thumbnails span3">
 					<li class="pull-left animal_thumb">
@@ -23,7 +23,7 @@
 					<div class="otherAnimalInfo">
 						<p>Status: <%= animal.status.status %></p>
 						<p>Location: <%= animal.organization_city %>, <%= animal.organization_state %> <%= animal.organization_zip_code %></p>
-						<p>Organization: <a class='js-pjax' href="/organizations/<%= animal.organization.uuid %>"><%= animal.organization_name %></a></p>
+						<p>Organization: <a href="/organizations/<%= animal.organization.uuid %>"><%= animal.organization_name %></a></p>
 						<p>Sex: <%= animal.sex unless animal.animal_sex.blank? %></p>
 						<p>Age: <%= calculate_animal_age(animal.birthday) unless animal.birthday.blank? %></p>
 						<p>Spay/Neuter: <%= animal.spay unless animal.spay_neuter.blank? %></p>

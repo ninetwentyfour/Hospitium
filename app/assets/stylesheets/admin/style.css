@@ -426,3 +426,7 @@ top: 0px !important;
      -moz-border-radius: 10px;
           border-radius: 10px;
 }
+.dashboard-table{
+	max-height:400px;
+	overflow:auto;
+}

@@ -1,11 +1,18 @@
-<% unless latest_activity.blank? %>
-	<table class="table table-striped">
-		<% latest_activity.each do |event| %>
-			<% unless event.event_message.blank? %>
-				<tr><td><%= event.event_message %> <%= time_ago_in_words(event.created_at) %> ago.</td></tr>
-			<% end %>
-		<% end %>
-	</table>
-<% else %>
-	<p>No new activity.</p>
-<% end %>
+<div class="dashboard-table">
+	<% unless latest_activity.blank? %>
+		<table class="table table-striped dashboard-table">
+			<thead>
+				<th>Event</th>
+			</thead>
+			<tbody>
+				<% latest_activity.each do |event| %>
+					<% unless event.event_message.blank? %>
+						<tr><td><%= event.event_message %> <%= time_ago_in_words(event.created_at) %> ago.</td></tr>
+					<% end %>
+				<% end %>
+			</tbody>
+		</table>
+	<% else %>
+		<p>No new activity.</p>
+	<% end %>
+</div>
