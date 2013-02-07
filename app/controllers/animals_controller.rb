@@ -19,7 +19,8 @@ class AnimalsController < ApplicationController
                       where('public' => 1).
                       paginate(:page => params[:page], :per_page => 10).
                       order("updated_at DESC").shuffle!
-
+    
+    @animals.select! {|animal| animal.organization.has_info? }
     respond_with(@animals)
   end
 

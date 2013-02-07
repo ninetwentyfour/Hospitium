@@ -95,6 +95,28 @@ describe Organization do
       organization.id.should_not == 100000
     end
   end
+  
+  describe 'has_info?' do    
+    it 'should return true for orgs with an email' do
+      @org = FactoryGirl.create(:organization, :email => "test@example.com")
+      @org.has_info?.should == true
+    end
+    
+    it 'should return true for orgs with an phone' do
+      @org = FactoryGirl.create(:organization, :phone_number => "5555555555")
+      @org.has_info?.should == true
+    end
+    
+    it 'should return true for orgs with an website' do
+      @org = FactoryGirl.create(:organization, :website => "example.com")
+      @org.has_info?.should == true
+    end
+    
+    it 'should return false for orgs with no info' do
+      @org = FactoryGirl.create(:organization)
+      @org.has_info?.should == false
+    end
+  end
 
   
 end

@@ -112,4 +112,10 @@ class Organization < ActiveRecord::Base
       return phone
     end
     
+    def has_info?
+      return false if self.phone_number.blank? and self.email.blank? and self.website.blank?
+      true
+    end
+    
+    
 end
