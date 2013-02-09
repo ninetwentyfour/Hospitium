@@ -84,7 +84,6 @@ gem "rspec-rails", :group => [:test, :development]
 group :test do
 	gem "factory_girl_rails"
 	gem "capybara", '~> 1.1.0'
-	# gem 'capybara-webkit', '~> 0.12.1'
 	gem 'shoulda-matchers'
 	gem 'cucumber-rails', require: false
 	gem 'database_cleaner'
