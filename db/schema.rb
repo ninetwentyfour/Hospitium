@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130206014847) do
+ActiveRecord::Schema.define(:version => 20130207025948) do
 
   create_table "adopt_a_pet_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -155,6 +155,8 @@ ActiveRecord::Schema.define(:version => 20130206014847) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
+    t.integer  "documentable_id"
+    t.string   "documentable_type"
   end
 
   add_index "documents", ["animal_id"], :name => "index_documents_on_animal_id"

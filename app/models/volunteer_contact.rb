@@ -2,6 +2,8 @@ class VolunteerContact < ActiveRecord::Base
   include CommonScopes
   
   belongs_to :organization
+  has_many :documents, :as => :documentable
+  
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
   

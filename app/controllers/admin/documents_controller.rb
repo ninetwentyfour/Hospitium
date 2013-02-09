@@ -37,7 +37,7 @@ class Admin::DocumentsController < Admin::ApplicationController
   def create
     #loop on each file from array and create document
     params[:document][:filearrays].each do |file|
-      @document = Document.new(:document => file, :animal_id => params[:document][:animal_id])
+      @document = Document.new(:document => file, :documentable_id => params[:document][:documentable_id])
       if @document.save
         flash[:notice] = 'Successfully uploaded the document.'
       else

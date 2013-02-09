@@ -21,7 +21,7 @@ class Animal < ActiveRecord::Base
   has_many :adoption_contacts, :through => :adopt_animals
   has_many :relinquish_animals
   has_many :relinquishment_contacts, :through => :relinquish_animals
-  has_many :documents
+  has_many :documents, :as => :documentable
   
   accepts_nested_attributes_for :documents
   

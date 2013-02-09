@@ -1,7 +1,8 @@
 class Document < ActiveRecord::Base
   before_create :create_uuid
   
-  belongs_to :animal
+  #belongs_to :animal
+  belongs_to :documentable, :polymorphic => true
   
   has_attached_file :document, 
                     :storage => :s3, 
