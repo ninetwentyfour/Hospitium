@@ -5,6 +5,7 @@ Feature: Add Animal Color
 		@javascript
 		Scenario: Add animal color
 			Given I am logged in
+			And I wait for 5 seconds
 			When I look at the list of animal colors
 			And I click the add new animal color button
 			And I submit the new animal color form
