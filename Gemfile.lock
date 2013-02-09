@@ -88,17 +88,14 @@ GEM
       mocha (= 0.10.5)
     builder (3.0.4)
     cancan (1.6.8)
-    capybara (2.0.2)
+    capybara (1.1.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
-      xpath (~> 1.0.0)
-    capybara-webkit (0.14.0)
-      capybara (~> 2.0, >= 2.0.2)
-      json
-    childprocess (0.3.6)
+      xpath (~> 0.1.4)
+    childprocess (0.3.7)
       ffi (~> 1.0, >= 1.0.6)
     client_side_validations (3.2.1)
     closure-compiler (1.1.8)
@@ -151,7 +148,9 @@ GEM
       multipart-post (~> 1.1)
     faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
-    ffi (1.2.0)
+    faye-websocket (0.4.6)
+      eventmachine (>= 0.12.0)
+    ffi (1.3.1)
     fog (1.8.0)
       builder
       excon (~> 0.14)
@@ -180,6 +179,7 @@ GEM
       excon (~> 0.16.10)
     hike (1.2.1)
     home_run (1.0.7)
+    http_parser.rb (0.5.3)
     httparty (0.9.0)
       multi_json (~> 1.0)
       multi_xml
@@ -211,9 +211,6 @@ GEM
     less-rails-bootstrap (2.2.0)
       less-rails (~> 2.2.0)
     libv8 (3.11.8.13)
-    libwebsocket (0.1.7.1)
-      addressable
-      websocket
     libxml-ruby (2.4.0)
     libxml-xmlrpc (0.1.5)
       libxml-ruby (> 0.0.0)
@@ -235,7 +232,7 @@ GEM
       activesupport (~> 3.1)
       polyamorous (~> 0.5.0)
     metaclass (0.0.1)
-    mime-types (1.19)
+    mime-types (1.21)
     mocha (0.10.5)
       metaclass (~> 0.0.1)
     multi_json (1.5.0)
@@ -267,10 +264,16 @@ GEM
       netrc (~> 0.7.7)
     orm_adapter (0.4.0)
     pg (0.14.1)
+    poltergeist (1.0.2)
+      capybara (~> 1.1)
+      childprocess (~> 0.3)
+      faye-websocket (~> 0.4, >= 0.4.4)
+      http_parser.rb (~> 0.5.3)
+      multi_json (~> 1.0)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
-    rack (1.4.4)
+    rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
     rack-ssl (1.3.2)
@@ -330,11 +333,11 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.27.2)
+    selenium-webdriver (2.29.0)
       childprocess (>= 0.2.5)
-      libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
+      websocket (~> 1.0.4)
     shoulda-matchers (1.4.2)
       activesupport (>= 3.0.0)
       bourne (~> 1.1.2)
@@ -376,9 +379,9 @@ GEM
     warden (1.2.1)
       rack (>= 1.0)
     webrobots (0.0.13)
-    websocket (1.0.6)
+    websocket (1.0.7)
     will_paginate (3.0.3)
-    xpath (1.0.0)
+    xpath (0.1.4)
       nokogiri (~> 1.3)
     yajl-ruby (1.1.0)
 
@@ -392,8 +395,7 @@ DEPENDENCIES
   best_in_place
   bitly
   cancan
-  capybara
-  capybara-webkit
+  capybara (~> 1.1.0)
   client_side_validations
   closure-compiler
   coffee-rails
@@ -425,6 +427,7 @@ DEPENDENCIES
   octokit
   paperclip!
   pg
+  poltergeist
   rails (= 3.2.11)
   redcarpet
   rest-client

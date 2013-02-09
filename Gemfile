@@ -83,12 +83,13 @@ gem "rspec-rails", :group => [:test, :development]
 # Gems used only for testing
 group :test do
 	gem "factory_girl_rails"
-	gem "capybara"
-	gem 'capybara-webkit'
+	gem "capybara", '~> 1.1.0'
+	# gem 'capybara-webkit', '~> 0.12.1'
 	gem 'shoulda-matchers'
 	gem 'cucumber-rails', require: false
 	gem 'database_cleaner'
 	gem 'launchy'
 	gem 'email_spec'
 	# gem 'cover_me'
+	gem 'poltergeist'
 end

@@ -5,6 +5,7 @@ Feature: Add Adoption Contact
 		@javascript
 		Scenario: Add adoption contact
 			Given I am logged in
+			And I wait for 5 seconds
 			When I look at the list of adoption contacts
 			And I click the add new adoption contact button
 			And I submit the new adoption contact form

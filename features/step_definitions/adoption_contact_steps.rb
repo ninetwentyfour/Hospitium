@@ -43,7 +43,7 @@ end
 
 Then /^I edit the adoption contact first name$/ do
   fill_in "first_name", :with => "newname"
-  find('.nav-tabs', :text => 'Overview').click
+  # find(:xpath, "//input[@name='first_name']").set("newname")
 end
 
 Then /^the adoption contact first name should change$/ do
@@ -59,4 +59,8 @@ end
 
 Then /^I should not see the adoption contacts name$/ do
   page.should_not have_content @adoption_contact[:first_name]
+end
+
+Given /^I wait for (\d+) seconds?$/ do |n|
+  sleep(n.to_i)
 end
