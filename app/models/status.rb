@@ -13,4 +13,9 @@ class Status < ActiveRecord::Base
   def show_status_label_method
     "#{self.status}"
   end
+  
+  def report_display_name
+    "#{self.status}"
+  end
+  
 end

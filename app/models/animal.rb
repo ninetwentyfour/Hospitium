@@ -1,10 +1,10 @@
 class Animal < ActiveRecord::Base
   include CommonScopes
   
-  has_attached_file :image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY']  || 'thedefaultkey', :secret_access_key => ENV['S3_SECRET']  || 'thedefaultkey'}, :bucket => 'hospitium-static', :styles => { :large => "530x530#", :medium => "260x180#", :thumb => "140x140#" }
-  has_attached_file :second_image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY']  || 'thedefaultkey', :secret_access_key => ENV['S3_SECRET']  || 'thedefaultkey'}, :bucket => 'hospitium-static', :styles => { :large => "530x530#", :medium => "260x180#", :thumb => "140x140#" }
-  has_attached_file :third_image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY']  || 'thedefaultkey', :secret_access_key => ENV['S3_SECRET']  || 'thedefaultkey'}, :bucket => 'hospitium-static', :styles => { :large => "530x530#", :medium => "260x180#", :thumb => "140x140#" }
-  has_attached_file :fourth_image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY']  || 'thedefaultkey', :secret_access_key => ENV['S3_SECRET']  || 'thedefaultkey'}, :bucket => 'hospitium-static', :styles => { :large => "530x530#", :medium => "260x180#", :thumb => "140x140#" }
+  has_attached_file :image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, :bucket => 'hospitium-static', :styles => { :large => "530x530#", :medium => "260x180#", :thumb => "140x140#" }
+  has_attached_file :second_image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, :bucket => 'hospitium-static', :styles => { :large => "530x530#", :medium => "260x180#", :thumb => "140x140#" }
+  has_attached_file :third_image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, :bucket => 'hospitium-static', :styles => { :large => "530x530#", :medium => "260x180#", :thumb => "140x140#" }
+  has_attached_file :fourth_image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, :bucket => 'hospitium-static', :styles => { :large => "530x530#", :medium => "260x180#", :thumb => "140x140#" }
   
   belongs_to :organization
   belongs_to :species
@@ -27,7 +27,6 @@ class Animal < ActiveRecord::Base
   
   
   before_create :create_uuid
-  after_update :send_public_tweet
   
   validates_presence_of :name, :date_of_intake, :organization, :species, :animal_color, :biter, :spay_neuter, :animal_sex, :status
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']
@@ -59,13 +58,6 @@ class Animal < ActiveRecord::Base
     self.uuid = UUIDTools::UUID.random_create.to_s
   end
   
-  #anytime a public animal is updated, send a tweet with its link from @hospitium_app
-  def send_public_tweet
-    if self.public == 1
-      # TwitterAccount.send_public_update_tweet(self)
-    end
-  end
-  
   def calculate_animal_age
     unless self.birthday.blank?
       age = (Time.now.year - self.birthday.year).to_s + " years"
@@ -82,40 +74,30 @@ class Animal < ActiveRecord::Base
   end
   
   def formatted_deceased_date
-    unless self.deceased.blank?
-      age = self.deceased.strftime("%a, %b %e %Y")
-    else
-      age = ""
-    end
-    return age
+    self.formatted_date("deceased")
   end
   
   def formatted_intake_date
-    unless self.date_of_intake.blank?
-      age = self.date_of_intake.strftime("%a, %b %e %Y")
-    else
-      age = ""
-    end
-    return age
+    self.formatted_date("date_of_intake")
   end
   
   def formatted_well_date
-    unless self.date_of_well_check.blank?
-      age = self.date_of_well_check.strftime("%a, %b %e %Y")
-    else
-      age = ""
-    end
-    return age
+    self.formatted_date("date_of_well_check")
   end
   
   def formatted_adopted_date
-    unless self.adopted_date.blank?
-      age = self.adopted_date.strftime("%a, %b %e %Y")
+    self.formatted_date("adopted_date")
+  end
+  
+  def formatted_date(type)
+    unless self.send(type).blank?
+      age = self.send(type).strftime("%a, %b %e %Y")
     else
       age = ""
     end
-    return age
+    age
   end
+  
   
   #define content for xml downloads
   def as_xls(options = {})

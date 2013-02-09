@@ -30,7 +30,7 @@ class WordpressAccountsController < ApplicationController
       redirect_to("#{root_url}admin/user/#{current_user.id}", :notice => 'Please Add Wordpress Credentials!')
     else
       account.blog_password = SecPass::decrypt(account.blog_password)
-      link = WordpressAccount.shorten_link("#{root_url}animals/#{params[:animal_uuid]}")
+      link = ShortLink.shorten_link("#{root_url}animals/#{params[:animal_uuid]}")
       message = Hash.new
       message['title'] = "#{params[:animal_name]} is ready for adoption!"
       

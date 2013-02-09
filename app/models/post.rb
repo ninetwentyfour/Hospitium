@@ -11,7 +11,9 @@ class Post < ActiveRecord::Base
   end
   
   def send_public_tweet
-    TwitterAccount.send_post_tweet(self)
+    link = ShortLink.shorten_link("https://hospitium.co/posts/#{self.id}-#{self.title.parameterize}")
+    message = "#{self.title.slice(0, 100)} - #{link}"
+    TwitterAccount.twitter_post(message, 1)
   end
   
 end

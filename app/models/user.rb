@@ -37,32 +37,20 @@ class User < ActiveRecord::Base
   end
   
   def role?(role)
-    #Rails.cache.fetch("role_for_user_#{self.id}_#{self.updated_at}") do
-      #self.roles.find_by_name(role.to_s.camelize)
-      return !!self.roles.find_by_name(role.to_s.camelize)
-      #return !!self.roles.find(:first, :select => 'roles.name, roles.id')
-      #Permission.find(:all, :joins => {:roles => :users}, :conditions => ["user.id = ?", self.id])
-      #self.roles.joins(:roles).where('roles.id', "%#{var}%")
-    #end
+    return !!self.roles.find_by_name(role.to_s.camelize)
   end
   
   def add_default_role
     unless self.skip_default_role == true
+      @user = self.id
+      @permission = Permission.new
+      @permission.user_id = @user
       if self.owner == 1
-        @user = self.id
-        @permission = Permission.new
-        #@permission.update_attributes(:user_id => @user, :role_id => 2)
-        @permission.user_id = @user
         @permission.role_id = 2
-        @permission.save!
       else
-        @user = self.id
-        @permission = Permission.new
-        #@permission.update_attributes(:user_id => @user, :role_id => 3)
-        @permission.user_id = @user
         @permission.role_id = 3
-        @permission.save!
       end
+      @permission.save!
     end
   end
   
@@ -70,11 +58,8 @@ class User < ActiveRecord::Base
     if self.organization_id.nil?
       @organization = Organization.new
       @organization.name = self.organization_name
-      #@organization.update_attributes(:name => "#{self.organization_name}") 
       @organization.save!
       self.organization_id = @organization.id
-    else
-      #do nothing
     end
   end
   
@@ -95,14 +80,16 @@ class User < ActiveRecord::Base
   end
   
   def send_new_email
-    unless Rails.env == "test" or self.no_send_email == true
+    unless Rails.env.test? or self.no_send_email == true
       $statsd.increment 'user.created'
-      url = "http://sendgrid.com/api/mail.send.json?api_user=#{ENV['SENDGRID_USERNAME']}&api_key=#{ENV['SENDGRID_PASSWORD']}&to=contact@travisberry.com&subject=Hospitium%20-%20New%20User&text=#{URI::encode(self.username)}%20created%20an%20account.%20#{URI::encode(self.email)}%20in%20organization%20#{URI::encode(self.organization.name)}&from=contact@hospitium.co"
-      resp = Net::HTTP.get_response(URI.parse(url))
-      data = resp.body
-      result = JSON.parse(data)
-      if result.has_key? 'Error'
-         raise "web service error"
+      Thread.new do
+        url = "http://sendgrid.com/api/mail.send.json?api_user=#{ENV['SENDGRID_USERNAME']}&api_key=#{ENV['SENDGRID_PASSWORD']}&to=contact@travisberry.com&subject=Hospitium%20-%20New%20User&text=#{URI::encode(self.username)}%20created%20an%20account.%20#{URI::encode(self.email)}%20in%20organization%20#{URI::encode(self.organization.name)}&from=contact@hospitium.co"
+        resp = Net::HTTP.get_response(URI.parse(url))
+        data = resp.body
+        result = JSON.parse(data)
+        if result.has_key? 'Error'
+           raise "web service error"
+        end
       end
     end
   end
