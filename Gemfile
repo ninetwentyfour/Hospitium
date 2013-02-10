@@ -27,7 +27,6 @@ gem 'less-rails-bootstrap', '2.2.0'
 gem 'therubyracer'
 gem 'encryptor'
 gem 'json_builder'
-gem "restful_metrics"
 
 gem "statsd-ruby", :require => "statsd"
 # gem 'trashed', :git => 'https://github.com/ninetwentyfour/trashed.git'
