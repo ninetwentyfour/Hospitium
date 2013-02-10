@@ -9,7 +9,7 @@
 				<div id="chart1" style="height: 300px; width: 500px; float:left; " class="jqplot-target"></div>
 				<div class="barchart">
 					<ul class="timelineAnimal">
-						<% @final_status_hash['bar'].each do |key, value| %>
+						<% @presenter.final_status_hash['bar'].each do |key, value| %>
 							<li class="barAnimal"><a href="#">
 								<span class="labelAnimal"><%= key + " count: " + value["count"]%></span>
 								<span class="countAnimal tooltip-class" data-animate-length="<%= number_to_percentage(value["percent"], :precision => 0)%>" style="height: 2%;opacity:0;" title="<%= value["count"] %>"><%= value["count"] %></span>
@@ -27,7 +27,7 @@
 				<div id="chart2" style="height: 300px; width: 500px; float:left; " class="jqplot-target"></div>
 				<div class="barchart">
 					<ul class="timelineAnimal">
-						<% @final_species_hash['bar'].each do |key, value| %>
+						<% @presenter.final_species_hash['bar'].each do |key, value| %>
 							<li class="barAnimal"><a href="#">
 								<span class="labelAnimal"><%= key + " count: " + value["count"]%></span>
 								<span class="countAnimal tooltip-class" data-animate-length="<%= number_to_percentage(value["percent"], :precision => 0)%>" style="height: 2%;opacity:0;" title="<%= value["count"] %>"><%= value["count"] %></span>
@@ -42,18 +42,17 @@
 		<div class="row-fluid">
 			<div class="span6">
 				<h2>Recent Activity</h2>
-				<%= render "latest_activity", :latest_activity => @latest_activity %>
+				<%= render "latest_activity", :latest_activity => @presenter.latest_activity %>
 			</div>
 			<div class="span6">
 				<h2>Public Animals</h2>
-				<%= render "public_animals", :public_animals => @public_animals %>
+				<%= render "public_animals", :public_animals => @presenter.public_animals %>
 			</div>
 		</div>
 
 
 		<% content_for :javascript_footer do %>
-			<%= render "animal_graphs_min_js", :final_status_hash => @final_status_hash, :final_species_hash => @final_species_hash %>
-
+			<%= render "animal_graphs_min_js", :final_status_hash => @presenter.final_status_hash, :final_species_hash => @presenter.final_species_hash %>
 		<% end %>
 	</div>
 </div>

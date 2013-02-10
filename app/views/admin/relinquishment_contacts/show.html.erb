@@ -20,6 +20,7 @@
 							<p><strong>Phone #:</strong> <%= best_in_place @relinquishment_contact, :phone, :nil => "Click me to add content!", :display_as => :formatted_phone, :path => admin_relinquishment_contact_path %></p>
 							<p><strong>Email:</strong> <%= best_in_place @relinquishment_contact, :email, :nil => "Click me to add content!", :path => admin_relinquishment_contact_path %></p>
 							<p><strong>Address:</strong> <%= best_in_place @relinquishment_contact, :address, :nil => "Click me to add content!", :path => admin_relinquishment_contact_path %></p>
+							<p><strong>Reason:</strong> <%= best_in_place @relinquishment_contact, :reason, type: :textarea, :nil => "Click me to add content!", :path => admin_relinquishment_contact_path %></p>
 						</div>
 					</div>
 					<div class="tab-pane" id="2">
