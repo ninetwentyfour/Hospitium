@@ -22,6 +22,7 @@ class Event < ActiveRecord::Base
       :related_model_id => event_hash.try(:[], :related_id),
       :related_model_name => event_hash.try(:[], :related_name)
       )
+    @event
   end
   
 end
