@@ -31,6 +31,7 @@ gem 'json_builder'
 gem "statsd-ruby", :require => "statsd"
 # gem 'trashed', :git => 'https://github.com/ninetwentyfour/trashed.git'
 gem 'impressionist'
+gem 'unicorn'
 
 # heroku gems for pulling/pushing db
 # gem 'heroku'
@@ -56,7 +57,7 @@ group :production do
 	gem 'airbrake'
 	gem 'home_run', :require=>'date'
 	#gem 'slim_scrooge', :git => "git://github.com/sdsykes/slim_scrooge.git"
-	gem 'thin'
+  # gem 'thin'
 	gem 'pg'
 	gem 'newrelic_rpm'
 	gem 'heroku'
