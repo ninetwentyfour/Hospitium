@@ -131,4 +131,8 @@ class Ability
     can :manage, :all
   end
   
+  def superadmin
+    can :manage, :all
+  end
+  
 end
