@@ -12,6 +12,7 @@
 			<div class="tabbable span4 ">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#1" data-toggle="tab">Overview</a></li>
+					<li><a href="#2" data-toggle="tab">Documents</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="1">
@@ -20,6 +21,34 @@
 							<p><strong>Email:</strong> <%= best_in_place @volunteer_contact, :email, :nil => "Click me to add content!", :path => admin_volunteer_contact_path %></p>
 							<p><strong>Address:</strong> <%= best_in_place @volunteer_contact, :address, :nil => "Click me to add content!", :path => admin_volunteer_contact_path %></p>
 							<p><strong>Application Date:</strong> <%= best_in_place @volunteer_contact, :application_date, :type => :date, :display_as => :formatted_application_date, :nil => "Click me to add content!", :path => admin_volunteer_contact_path %></p>
+						</div>
+					</div>
+					<div class="tab-pane" id="2">
+						<div id="animal_docs_list">
+							<table class="table table-striped tablesorter">
+								<thead>
+									<th>Filename</th>
+									<th>Created</th>
+									<th>Manage</th>
+								</thead>
+								<tbody>
+									<%unless @volunteer_contact.documents.blank?%>
+											<% @volunteer_contact.documents.each do |document| %>
+												<tr>
+													<td><a href="<%= document.document.url %>"><%= document.document_file_name %></a></td>
+													<td><%= document.created_at.strftime("%b %e %Y") %></td>
+													<td>
+														<div class="btn-group pull-right">
+															<a class="btn tooltip-class" href="<%= document.document.url %>" rel="tooltip" title="View Document"><i class="icon-eye-open"></i></a>
+															<%= link_to raw("<i class='icon-remove'></i>"), admin_document_path(document),
+																            :data => {:confirm => 'Are you sure you want to delete?'}, :method => :delete, :class => "btn tooltip-class", :rel => "tooltip", :title => "Delete Document" %>
+														</div>
+													</td>
+												</tr>
+											<%end%>
+									<%end%>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
@@ -32,7 +61,6 @@
 	</div>
 </div>
 <a class="btn" data-toggle="modal" href="#doc_form" ><i class="icon-plus"></i> Add Doc</a>
-
 
 <div class="modal hide fade" id="doc_form">
 	<div class="modal-header">
@@ -47,9 +75,8 @@
 		<%= form_for Document.new, :url => admin_documents_path, :remote => true, :html => {:id => "document_upload", :multipart => true} do |f| %>
 			<%= f.file_field :filearrays, :multiple =>:true %>
 			<p>Max filesize of 100mb.</p>
-			<%= f.hidden_field :documentable_id, :value => @volunteer_contact.id %>
-			<%= f.hidden_field :documentable_type, :value => "volunteer_contact" %><br />
-			<%= f.submit %>
+			<%= f.hidden_field :documentable_id, :value => @volunteer_contact.id %><br />
+			<%= f.hidden_field :documentable_type, :value => 'VolunteerContact' %><br />
 		<% end %>
 	</div>
 	<div class="modal-footer">
@@ -58,11 +85,23 @@
 	</div>
 </div>
 
-
-
 <% content_for :javascript_footer do %>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 	<script type="text/javascript">
+		//handle modal form submit buttons.
+		$('.submit-button').click(function() {
+			"use strict";
+			var form_id = $(this).attr("data-form-id");
+			$("#"+form_id).submit();
+			if ($(".field_with_errors")[0]){
+				// Do something here if class exists
+			}else{
+				$("#"+form_id).fadeOut("slow", function() {
+					$("."+form_id+"_bar").fadeIn("slow");
+				});
+			}
+		});
+	
 		$(document).ready(function(){
 			geocoder = new google.maps.Geocoder();
 			geocoder.geocode( { 'address': '<%= @volunteer_contact.address %>'}, function(results, status) {

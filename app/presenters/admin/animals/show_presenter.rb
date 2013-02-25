@@ -31,7 +31,7 @@ class Admin::Animals::ShowPresenter
   end
   
   def documents
-    Document.where(:animal_id => @animal.id)
+    Document.where(:documentable_id => @animal.id, :documentable_type => "Animal")
   end
   
   # def events

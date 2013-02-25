@@ -246,7 +246,8 @@
 		<%= form_for Document.new, :url => admin_documents_path, :remote => true, :html => {:id => "document_upload", :multipart => true} do |f| %>
 			<%= f.file_field :filearrays, :multiple =>:true %>
 			<p>Max filesize of 100mb.</p>
-			<%= f.hidden_field :animal_id, :value => animal.id %><br />
+			<%= f.hidden_field :documentable_id, :value => animal.id %><br />
+			<%= f.hidden_field :documentable_type, :value => 'Animal' %><br />
 		<% end %>
 	</div>
 	<div class="modal-footer">

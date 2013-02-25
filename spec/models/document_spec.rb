@@ -10,7 +10,7 @@ describe Document do
   end
   
   describe "relations" do
-    it{should belong_to(:animal)}
+    it{should belong_to(:documentable)}
   end
   
   describe "#create_uuid" do

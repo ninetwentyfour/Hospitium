@@ -87,7 +87,7 @@
 									<th>Manage</th>
 								</thead>
 								<tbody>
-									<%unless @animal.documents.blank?%>
+									<%unless @presenter.documents.blank?%>
 											<%@presenter.documents.each do |document| %>
 												<tr>
 													<td><a href="<%= document.document.url %>"><%= document.document_file_name %></a></td>

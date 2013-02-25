@@ -35,10 +35,10 @@ class Ability
     can :update, Note, animal: { organization: { id: @user.organization_id } }
     can :destroy, Note, animal: { organization: { id: @user.organization_id } }
     
-    can :read, Document, animal: { organization: { id: @user.organization_id } }
-    can :create, Document, animal: { organization: { id: @user.organization_id } }
-    can :update, Document, animal: { organization: { id: @user.organization_id } }
-    can :destroy, Document, animal: { organization: { id: @user.organization_id } }
+    can :read, Document, documentable: { organization: { id: @user.organization_id } }
+    can :create, Document, documentable: { organization: { id: @user.organization_id } }
+    can :update, Document, documentable: { organization: { id: @user.organization_id } }
+    can :destroy, Document, documentable: { organization: { id: @user.organization_id } }
 
     can :read, Organization, :id => @user.organization_id
 

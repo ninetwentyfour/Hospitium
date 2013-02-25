@@ -1,7 +1,6 @@
 class Document < ActiveRecord::Base
   before_create :create_uuid
   
-  #belongs_to :animal
   belongs_to :documentable, :polymorphic => true
   
   has_attached_file :document, 
@@ -13,7 +12,7 @@ class Document < ActiveRecord::Base
                     :url => "/system/:attachment/:hash.:extension",
                     :hash_secret => ENV['SALTY']
   
-  attr_accessible :document, :animal_id
+  attr_accessible :document, :animal_id, :documentable_type, :documentable_id
   
   # validates_presence_of :document_file_name, :document_content_type
   validates_attachment_presence :document                  

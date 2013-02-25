@@ -21,6 +21,7 @@ describe Animal do
     it{should have_many(:adopt_animals)}
     it{should have_many(:relinquish_animals)}
     it{should have_many(:notes)}
+    it{should have_many(:documents)}
   end
 
   describe "validations" do

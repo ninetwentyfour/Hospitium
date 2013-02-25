@@ -135,7 +135,6 @@ FactoryGirl.define do
     document_file_name "test.jpeg"
     document_content_type "image/jpeg"
     document_file_size 45
-    association :animal
   end
   
   factory :event do
