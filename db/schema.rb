@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130207025948) do
+ActiveRecord::Schema.define(:version => 20130225013112) do
 
   create_table "adopt_a_pet_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -157,10 +157,13 @@ ActiveRecord::Schema.define(:version => 20130207025948) do
     t.datetime "document_updated_at"
     t.integer  "documentable_id"
     t.string   "documentable_type"
+    t.integer  "volunteer_contact_id"
   end
 
   add_index "documents", ["animal_id"], :name => "index_documents_on_animal_id"
+  add_index "documents", ["documentable_id", "documentable_type"], :name => "index_documents_on_documentable_id_and_documentable_type"
   add_index "documents", ["uuid"], :name => "index_documents_on_uuid"
+  add_index "documents", ["volunteer_contact_id"], :name => "index_documents_on_volunteer_contact_id"
 
   create_table "events", :force => true do |t|
     t.integer  "animal_id"
