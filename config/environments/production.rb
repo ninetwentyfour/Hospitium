@@ -73,4 +73,8 @@ AnimalTracker::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
+  
+  # handle logging with unicorn and heroku
+  config.logger = Logger.new(STDOUT)
+  config.logger.level = Logger.const_get(ENV['LOG_LEVEL'] ? ENV['LOG_LEVEL'].upcase : 'INFO')
 end

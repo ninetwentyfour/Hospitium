@@ -17,8 +17,8 @@ And /^I click the add new animal color button$/ do
 end
 
 And /^I submit the new animal color form$/ do
-  fill_in "Color", :with => "Neon Pink"
-  click_button "Add Animal Color"
+  fill_in "animal_color_color", :with => "Neon Pink"
+  find_button("Add Animal Color").trigger('click')
 end
 
 Then /^I should see animal color was created$/ do

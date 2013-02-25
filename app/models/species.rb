@@ -13,4 +13,7 @@ class Species < ActiveRecord::Base
     self.uuid = UUIDTools::UUID.random_create.to_s
   end
   
+  def report_display_name
+    "#{self.name}"
+  end
 end

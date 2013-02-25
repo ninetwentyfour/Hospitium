@@ -6,6 +6,7 @@ Feature: Sign out
 	@javascript
 	Scenario: User signs out
 		Given I am logged in
+		And I wait for 5 seconds
 		When I sign out
 		Then I should see a signed out message
 		When I return to the site

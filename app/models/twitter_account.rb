@@ -40,75 +40,30 @@ class TwitterAccount < ActiveRecord::Base
   
   #send normla user animal tweet
   def self.twitter_post(message, user)
-    begin
-      account = TwitterAccount.find_by_user_id(user)
-      Twitter.configure do |config|
-        config.consumer_key = TwitterAccount::CONSUMER_KEY
-        config.consumer_secret = TwitterAccount::CONSUMER_SECRET
-        config.oauth_token = account.oauth_token
-        config.oauth_token_secret = account.oauth_token_secret
+    Thread.new do
+      begin
+        account = TwitterAccount.find_by_user_id(user)
+        TwitterAccount.config_twitter(account)
+        client = Twitter::Client.new
+        #begin
+        client.update("#{message}")
+        return true
+      rescue Twitter::Error
+        return true #don't care if tweet doesn't send - just don't throw app error
       end
-      client = Twitter::Client.new
-      #begin
-      client.update("#{message}")
-      return true
-    rescue Twitter::Error
-      return true #don't care if tweet doesn't send - just don't throw app error
     end
+    return true
   end
   
-  #anytime a public animal is updated, send a tweet with its link from @hospitium_app
-  def self.send_public_update_tweet(animal)
-    begin
-      account = TwitterAccount.find_by_user_id(1)
-      Twitter.configure do |config|
-        config.consumer_key = TwitterAccount::CONSUMER_KEY
-        config.consumer_secret = TwitterAccount::CONSUMER_SECRET
-        config.oauth_token = account.oauth_token
-        config.oauth_token_secret = account.oauth_token_secret
-      end
-      client = Twitter::Client.new
-      link = TwitterAccount.shorten_link("https://hospitium.co/animals/#{animal.uuid}")
-      client.update("#{animal.name} is ready for adoption at #{link}")
-      return true
-    rescue Twitter::Error
-      return true #don't care if tweet doesn't send - just don't throw app error
-    end
-  end
-  
-  def self.send_post_tweet(post)
-    account = TwitterAccount.find_by_user_id(1)
+  def self.config_twitter(account)
     Twitter.configure do |config|
       config.consumer_key = TwitterAccount::CONSUMER_KEY
       config.consumer_secret = TwitterAccount::CONSUMER_SECRET
       config.oauth_token = account.oauth_token
       config.oauth_token_secret = account.oauth_token_secret
     end
-    client = Twitter::Client.new
-    link = TwitterAccount.shorten_link("https://hospitium.co/posts/#{post.id}-#{post.title.parameterize}")
-    begin
-       client.update("#{post.title.slice(0, 100)} - #{link}")
-       return true
-     rescue Twitter::Error
-       return true
-     rescue Exception
-       return true
-     end
   end
   
-  #create a bitly link
-  def self.shorten_link(link)
-    #change user and api key to one for biemedia
-    bitly = Bitly.new('hospitium',ENV['BITLY_API'])
-    page_url = bitly.shorten(link)
-    short_url = page_url.short_url
-    #fall back to tinyurl if bitly fails
-    if short_url.blank?
-      short_url = RestClient.get "https://tinyurl.com/api-create.php?url=#{link}"
-    end
-    
-    return short_url
-  end
   
 end
 

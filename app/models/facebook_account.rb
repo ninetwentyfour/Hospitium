@@ -3,9 +3,6 @@ class FacebookAccount < ActiveRecord::Base
   belongs_to :organization
   
   attr_accessible :user_id
-  
-  
-  # Stubbed out! Does no (good) error checking!
 
   # Get these from facebook!
   FACEBOOK_CLIENT_ID = ENV['FACEBOOK_CLIENT_ID']
@@ -48,20 +45,6 @@ class FacebookAccount < ActiveRecord::Base
   # show the user email in the admin UI instead of the user id
   def show_facebookurl_label_method
     "#{self.stream_url}"
-  end
-  
-  #create a bitly link
-  def self.shorten_link(link)
-    #change user and api key to one for biemedia
-    bitly = Bitly.new('hospitium',ENV['BITLY_API'])
-    page_url = bitly.shorten(link)
-    short_url = page_url.short_url
-    #fall back to tinyurl if bitly fails
-    if short_url.blank?
-      short_url = RestClient.get "https://tinyurl.com/api-create.php?url=#{link}"
-    end
-    
-    return short_url
   end
 
 end

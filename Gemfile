@@ -1,6 +1,6 @@
 source 'http://bundler-api.herokuapp.com'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
 
 # Gems used in all environments
 gem 'mysql2'
@@ -27,11 +27,11 @@ gem 'less-rails-bootstrap', '2.2.0'
 gem 'therubyracer'
 gem 'encryptor'
 gem 'json_builder'
-gem "restful_metrics"
 
 gem "statsd-ruby", :require => "statsd"
 # gem 'trashed', :git => 'https://github.com/ninetwentyfour/trashed.git'
 gem 'impressionist'
+gem 'unicorn'
 
 # heroku gems for pulling/pushing db
 # gem 'heroku'
@@ -57,7 +57,7 @@ group :production do
 	gem 'airbrake'
 	gem 'home_run', :require=>'date'
 	#gem 'slim_scrooge', :git => "git://github.com/sdsykes/slim_scrooge.git"
-	gem 'thin'
+  # gem 'thin'
 	gem 'pg'
 	gem 'newrelic_rpm'
 	gem 'heroku'
@@ -83,12 +83,12 @@ gem "rspec-rails", :group => [:test, :development]
 # Gems used only for testing
 group :test do
 	gem "factory_girl_rails"
-	gem "capybara"
-	gem 'capybara-webkit'
+	gem "capybara", '~> 1.1.0'
 	gem 'shoulda-matchers'
 	gem 'cucumber-rails', require: false
 	gem 'database_cleaner'
 	gem 'launchy'
 	gem 'email_spec'
 	# gem 'cover_me'
+	gem 'poltergeist'
 end

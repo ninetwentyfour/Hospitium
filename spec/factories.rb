@@ -137,6 +137,12 @@ FactoryGirl.define do
     document_file_size 45
     association :animal
   end
+  
+  factory :event do
+    event_type "test"
+    event_message "test message"
+    association :animal
+  end
 
 
 

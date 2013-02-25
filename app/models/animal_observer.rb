@@ -23,24 +23,24 @@ class AnimalObserver < ActiveRecord::Observer
   
   def record_event(animal)
     unless animal.changed.first == "impressions_count"
-      @event = Event.new
-      @event.animal_id = animal.id
-      @event.update_attributes(:organization_id => animal.organization_id,
-        :event_type => "Animal updated", 
-        :event_message => "#{animal.name} had #{animal.changed.first} changed from #{animal.changes[animal.changed.first][0] unless animal.changes.blank?} to #{animal.changes[animal.changed.first][1] unless animal.changes.blank?}",
-        :record_uuid => animal.uuid
-        )
+      event_hash = { :type => "Animal updated", 
+                     :message => "#{animal.name} had #{animal.changed.first} changed from #{animal.changes[animal.changed.first][0] unless animal.changes.blank?} to #{animal.changes[animal.changed.first][1] unless animal.changes.blank?}", 
+                     :organization => animal.organization_id, 
+                     :uuid => animal.uuid, 
+                     :animal => animal.id 
+                   }
+      Event.record_event(event_hash)
     end
   end
   
   def record_create_event(animal)
-    @event = Event.new
-    @event.animal_id = animal.id
-    @event.update_attributes(:organization_id => animal.organization_id,
-      :event_type => "Animal created", 
-      :event_message => "#{animal.name} was created.",
-      :record_uuid => animal.uuid
-      )
+    event_hash = { :type => "Animal created", 
+                   :message => "#{animal.name} was created.", 
+                   :organization => animal.organization_id, 
+                   :uuid => animal.uuid, 
+                   :animal => animal.id 
+                 }
+    Event.record_event(event_hash)
   end
   
   
