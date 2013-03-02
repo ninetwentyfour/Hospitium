@@ -46,4 +46,11 @@ function load_scripts(){
 		changeMonth: true,
 		changeYear: true
 	});
+	$('table.tablesorter').dataTable( {
+		"sDom": "<''<'span4'l><'pull-right'f>r>t<''<'span3'i><'span6'p>>",
+		"sPaginationType": "bootstrap",
+		"oLanguage": {
+			"sLengthMenu": "_MENU_ records per page"
+		}
+	} );
 }

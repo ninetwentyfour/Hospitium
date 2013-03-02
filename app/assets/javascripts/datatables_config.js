@@ -143,15 +143,3 @@ if ( $.fn.DataTable.TableTools ) {
 		}
 	} );
 }
-
-
-/* Table initialisation */
-$(document).ready(function() {
-	$('table.tablesorter').dataTable( {
-		"sDom": "<''<'span4'l><'pull-right'f>r>t<''<'span3'i><'span6'p>>",
-		"sPaginationType": "bootstrap",
-		"oLanguage": {
-			"sLengthMenu": "_MENU_ records per page"
-		}
-	} );
-} );
