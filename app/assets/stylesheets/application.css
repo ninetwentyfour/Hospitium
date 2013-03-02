@@ -2,8 +2,9 @@
 *= require_self
 *= require scaffold
 *= require style
+*= require datatables
 *= require select2
-*= require testless
+*= require custom_bootstrap
 *= require_tree ./admin
 *= require jqplot.1.0.0b2_r792
 *= require bootstrap-modal

@@ -35,45 +35,6 @@ All information listed here is contributed by our members. Hospitium is not resp
 <% content_for :javascript_footer do %>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			geocoder = new google.maps.Geocoder();
-			geocoder.geocode( { 'address': '<%= @organization.address %> <%= @organization.city %> <%= @organization.state %> <%= @organization.zip_code %>'}, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
-					var latlng = new google.maps.LatLng(results[0].geometry.location);
-					var myOptions = {
-						zoom: 12,
-						center: latlng,
-						mapTypeId: google.maps.MapTypeId.ROADMAP
-					}
-					map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-					map.setCenter(results[0].geometry.location);
-
-					var contentString = '<div id="content">'+
-						'<div id="siteNotice">'+
-						'</div>'+
-						'<h3 id="firstHeading" class="firstHeading"><%= @organization.name %></h3>'+
-						'<div id="bodyContent">'+
-						'<p><%= @organization.address %><br /><%= @organization.city %> <%= @organization.state %> <%= @organization.zip_code %></p>'+
-						'</div>'+
-					'</div>';
-
-					var infowindow = new google.maps.InfoWindow({
-						content: contentString
-					});
-
-					var marker = new google.maps.Marker({
-						map: map, 
-						position: results[0].geometry.location,
-						title: '<%= @organization.name %>'
-					});
-
-					google.maps.event.addListener(marker, 'click', function() {
-						infowindow.open(map,marker);
-					});
-				} else {
-					//alert("Geocode was not successful for the following reason: " + status);
-				}
-			});
-		});
+		google_map('<%= @organization.address %> <%= @organization.city %> <%= @organization.state %> <%= @organization.zip_code %>', '<%= @organization.name %>');
 	</script>
 <% end %>

@@ -12,48 +12,45 @@
 	<%= stylesheet_link_tag "application" %>
 	<link href='https://fonts.googleapis.com/css?family=Cabin:700|Maven+Pro' rel='stylesheet' type='text/css'>
 	<style>
-	html, p, body{
-		font-family: 'Maven Pro', sans-serif !important;
-	}
-	h1,h2,h3,h4,h5,h6{
-		font-weight:700;
-		font-family: 'Cabin', sans-serif !important;
-	}
-	p{
-		font-size:14px;
-		line-height:1.45em;
-		font-weight:400;
-	}
-	.otherAnimalInfo p{
-		font-size:14px;
-		line-height:1em !important;
-	}
-	@media print {
-	  body {
-	    background-color: #FFF !important;
-	  }
-
-	  #container {
-	    width: auto !important;
-	    margin: 0 !important;
-	    padding: 0 !important;
-	    border: none !important;
-	  }
-
-	  #line_items {
-	    page-break-before: always !important;
-	  }
-
-	  #navbar {
-	    display: none !important;
-	  }
-	  .btn, nav, .alert {
-	    display: none !important;
-	  }
-	  input,textarea {
-	    display: none !important;
-	  }
-	}
+		html, p, body{
+			font-family: 'Maven Pro', sans-serif !important;
+		}
+		h1,h2,h3,h4,h5,h6{
+			font-weight:700;
+			font-family: 'Cabin', sans-serif !important;
+		}
+		p{
+			font-size:14px;
+			line-height:1.45em;
+			font-weight:400;
+		}
+		.otherAnimalInfo p{
+			font-size:14px;
+			line-height:1em !important;
+		}
+		@media print {
+			body {
+				background-color: #FFF !important;
+			}
+			#container {
+				width: auto !important;
+				margin: 0 !important;
+				padding: 0 !important;
+				border: none !important;
+			}
+			#line_items {
+				page-break-before: always !important;
+			}
+			#navbar {
+				display: none !important;
+			}
+			.btn, nav, .alert {
+				display: none !important;
+			}
+			input,textarea {
+				display: none !important;
+			}
+		}
 	</style>
 	<%= yield :head %>
 	<%= csrf_meta_tag %>
@@ -66,6 +63,7 @@
 	<%= favicon_link_tag 'apple-touch/72.png', :rel => 'apple-touch-icon', :type => 'image/png', :sizes => '72x72' %>
 	<%= favicon_link_tag 'apple-touch/114.png', :rel => 'apple-touch-icon', :type => 'image/png', :sizes => '114x114' %>
 	<script>
+		// Handle links in html5 app ipad
 		(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(chref=d.href).replace(e.href,"").indexOf("#")&&(!/^[a-z\+\.\-]+:/i.test(chref)||chref.indexOf(e.protocol+"//"+e.host)===0)&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone");
 	</script>
 </head>

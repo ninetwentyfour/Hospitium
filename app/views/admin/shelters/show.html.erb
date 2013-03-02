@@ -46,113 +46,11 @@
 </div>
 	
 <% content_for :javascript_footer do %>
-	<script type="text/javascript">
-		//setup juggernaut to handle real time updating page changes
-		//this one handles changes made with best in place
-		var jug = new Juggernaut({
-			secure: true,
-			host: 'juggernaut-hospitium2.herokuapp.com',
-			port: 443,
-			transports: ['xhr-polling','jsonp-polling']
-		});
-
-		jug.subscribe("/observer/shelter/<%= @shelter.id %>", function(data){
-			var updated_text = "There was an update, but a problem displaying. Please refresh."
-			jQuery.each(data.record, function(i, val) {
-				if (i != "updated_at"){
-					updated_text = val[1];
-					if ($("#best_in_place_shelter_<%= @shelter.id %>_"+i).attr("data-collection") !== undefined) {
-						var brand = $('#best_in_place_shelter_<%= @shelter.id %>_'+i).attr("data-collection");
-						var test = $.parseJSON(brand);
-						$.each(test, function(index, value) {
-							if(value[0] == val[1]){
-								updated_text = value[1];
-							}
-						});
-					}	 else if(i == "address") {
-						    // refresh map if address updated
-									geocoder = new google.maps.Geocoder();
-									geocoder.geocode( { 'address': val[1]}, function(results, status) {
-										if (status == google.maps.GeocoderStatus.OK) {
-											var latlng = new google.maps.LatLng(results[0].geometry.location);
-											var myOptions = {
-												zoom: 12,
-												center: latlng,
-												mapTypeId: google.maps.MapTypeId.ROADMAP
-											}
-											map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-											map.setCenter(results[0].geometry.location);
-
-
-											// var infowindow = new google.maps.InfoWindow({
-											// 	content: ""
-											// });
-
-											var marker = new google.maps.Marker({
-												map: map, 
-												position: results[0].geometry.location,
-												title: 'test'
-											});
-
-											// google.maps.event.addListener(marker, 'click', function() {
-											// 	infowindow.open(map,marker);
-											// });
-										} else {
-											//alert("Geocode was not successful for the following reason: " + status);
-										}
-									});
-						}else{
-
-						}
-					$('#best_in_place_shelter_<%= @shelter.id %>_'+i).css("background-color","#c7f464");
-					$('#best_in_place_shelter_<%= @shelter.id %>_'+i).html(updated_text);
-					$('#best_in_place_shelter_<%= @shelter.id %>_'+i).delay(1500).animate({backgroundColor: "#f5f5f5"}, 1000 );
-				}
-			});
-		});
-	</script>
-	
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			geocoder = new google.maps.Geocoder();
-			geocoder.geocode( { 'address': '<%= @shelter.address %>'}, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
-					var latlng = new google.maps.LatLng(results[0].geometry.location);
-					var myOptions = {
-						zoom: 12,
-						center: latlng,
-						mapTypeId: google.maps.MapTypeId.ROADMAP
-					}
-					map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-					map.setCenter(results[0].geometry.location);
-
-					var contentString = '<div id="content">'+
-						'<div id="siteNotice">'+
-						'</div>'+
-						'<h3 id="firstHeading" class="firstHeading"><%= @shelter.name %></h3>'+
-						'<div id="bodyContent">'+
-						'<p><%= @shelter.address %></p>'+
-						'</div>'+
-					'</div>';
-
-					var infowindow = new google.maps.InfoWindow({
-						content: contentString
-					});
-
-					var marker = new google.maps.Marker({
-						map: map, 
-						position: results[0].geometry.location,
-						title: '<%= @shelter.name %>'
-					});
-
-					google.maps.event.addListener(marker, 'click', function() {
-						infowindow.open(map,marker);
-					});
-				} else {
-					//alert("Geocode was not successful for the following reason: " + status);
-				}
-			});
-		});
+		// Trigger google maps
+		google_map('<%= @shelter.address %>', '<%= @shelter.name %>');
+		// Trigger juggernaut
+		juggernaut_listen('<%= @shelter.id %>', 'shelter');
 	</script>
 <%end%>
