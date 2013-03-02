@@ -1,4 +1,5 @@
-# model = adoption_contact
+# e.g. model = 'adoption_contact'
+# url will default to model name if not passed int
 juggernaut_listen = (id, model, url = model) ->
   #setup juggernaut to handle real time updating page changes
   #this one handles changes made with best in place
@@ -39,7 +40,7 @@ juggernaut_listen = (id, model, url = model) ->
               marker = new google.maps.Marker(
                 map: map
                 position: results[0].geometry.location
-                title: "test"
+                title: val[1]
               )
 
         $("#best_in_place_#{model}_#{id}_" + i).css("background-color", "#c7f464").html(updated_text).delay(1500).animate

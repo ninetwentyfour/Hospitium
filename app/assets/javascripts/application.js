@@ -1,7 +1,5 @@
 //= require jquery-ui-1.8.18.custom.min
 //= require jquery_ujs
-//= require jquery.pjax
-//= require jquery.purr
 //= require best_in_place
 //= require rails.validations
 //= require jquery.jqplot.min
@@ -12,7 +10,6 @@
 //= require jqplot.barRenderer.min
 //= require jqplot.categoryAxisRenderer.min
 //= require jqplot.pointLabels.min
-//= require bar-chart
 //= require twitter/bootstrap
 //= require jquery.mailcheck.min
 //= require jquery.datatables.min

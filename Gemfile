@@ -24,7 +24,6 @@ gem 'redcarpet'
 gem 'jquery-rails', '2.0.1'
 gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git"
 gem 'less-rails-bootstrap', '2.2.0'
-gem 'execjs'
 gem 'therubyracer'
 gem 'encryptor'
 gem 'json_builder'
@@ -38,7 +37,7 @@ gem 'unicorn'
 # gem 'heroku'
 # gem 'sqlite3'
 # gem 'taps'
-gem 'coffee-rails'
+# gem 'coffee-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -46,7 +45,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'closure-compiler'
-  gem 'eco'
+  # gem 'eco'
 end
 
 # Gems used only for development

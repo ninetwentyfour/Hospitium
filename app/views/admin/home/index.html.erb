@@ -52,6 +52,10 @@
 
 
 		<% content_for :javascript_footer do %>
+			<script type="text/javascript">
+				// Trigger bar-charts
+				bar_chart();
+			</script>
 			<%= render "animal_graphs_min_js", :final_status_hash => @presenter.final_status_hash, :final_species_hash => @presenter.final_species_hash %>
 		<% end %>
 	</div>
