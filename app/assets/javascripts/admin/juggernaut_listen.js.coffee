@@ -20,30 +20,11 @@ juggernaut_listen = (id, model, url = model) ->
           test = $.parseJSON(brand)
           $.each test, (index, value) ->
             updated_text = value[1]  if value[0] is val[1]
-
         else if i is "address"
-        
           # refresh map if address updated
-          geocoder = new google.maps.Geocoder()
-          geocoder.geocode
-            address: val[1]
-          , (results, status) ->
-            if status is google.maps.GeocoderStatus.OK
-              latlng = new google.maps.LatLng(results[0].geometry.location)
-              myOptions =
-                zoom: 12
-                center: latlng
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-
-              map = new google.maps.Map(document.getElementById("map_canvas"), myOptions)
-              map.setCenter results[0].geometry.location
-              marker = new google.maps.Marker(
-                map: map
-                position: results[0].geometry.location
-                title: val[1]
-              )
+          google_map(val[1], val[1])
 
         $("#best_in_place_#{model}_#{id}_" + i).css("background-color", "#c7f464").html(updated_text).delay(1500).animate
           backgroundColor: "#f5f5f5"
         , 1000
-window.juggernaut_listen = juggernaut_listen 
+window.juggernaut_listen = juggernaut_listen
