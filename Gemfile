@@ -29,7 +29,6 @@ gem 'encryptor'
 gem 'json_builder'
 
 gem "statsd-ruby", :require => "statsd"
-# gem 'trashed', :git => 'https://github.com/ninetwentyfour/trashed.git'
 gem 'impressionist'
 gem 'unicorn'
 
@@ -37,7 +36,7 @@ gem 'unicorn'
 # gem 'heroku'
 # gem 'sqlite3'
 # gem 'taps'
-# gem 'coffee-rails'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -45,7 +44,6 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'closure-compiler'
-  # gem 'eco'
 end
 
 # Gems used only for development
@@ -57,8 +55,6 @@ end
 group :production do
 	gem 'airbrake'
 	gem 'home_run', :require=>'date'
-	#gem 'slim_scrooge', :git => "git://github.com/sdsykes/slim_scrooge.git"
-  # gem 'thin'
 	gem 'pg'
 	gem 'newrelic_rpm'
 	gem 'heroku'
@@ -90,6 +86,5 @@ group :test do
 	gem 'database_cleaner'
 	gem 'launchy'
 	gem 'email_spec'
-	# gem 'cover_me'
 	gem 'poltergeist'
 end

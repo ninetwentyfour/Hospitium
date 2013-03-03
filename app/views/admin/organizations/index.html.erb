@@ -38,7 +38,7 @@
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 		<script type="text/javascript">
 			// Trigger google maps
-			google_map('<%= organization.address unless organization.address.blank? %> <%= organization.city unless organization.city.blank? %> <%= organization.state unless organization.state.blank? %> <%= organization.zip_code unless organization.zip_code.blank? %>', '<%= organization.name %>');
+			google_map('<%= organization.full_address %>', '<%= organization.name %>');
 			// Trigger juggernaut
 			juggernaut_listen('<%= organization.id  %>', 'organization');
 		</script>

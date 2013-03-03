@@ -117,5 +117,10 @@ class Organization < ActiveRecord::Base
       true
     end
     
+    def full_address
+      "#{address} #{city} #{state} #{zip_code}"
+    end
+    
+    
     
 end

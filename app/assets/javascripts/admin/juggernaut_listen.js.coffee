@@ -12,19 +12,17 @@ juggernaut_listen = (id, model, url = model) ->
   jug.subscribe "/observer/#{url}/#{id}", (data) ->
     "use strict"
     updated_text = "There was an update, but a problem displaying. Please refresh."
-    jQuery.each data.record, (i, val) ->
-      if i isnt "updated_at"
+    jQuery.each data.record, (key, val) ->
+      if key isnt "updated_at"
         updated_text = val[1]
-        if $("#best_in_place_#{model}_#{id}_" + i).attr("data-collection") isnt `undefined`
-          brand = $("#best_in_place_#{model}_#{id}_" + i).attr("data-collection")
-          test = $.parseJSON(brand)
-          $.each test, (index, value) ->
-            updated_text = value[1]  if value[0] is val[1]
-        else if i is "address"
+        if $("#best_in_place_#{model}_#{id}_#{key}").attr("data-collection") isnt `undefined`
+          collection = $("#best_in_place_#{model}_#{id}_#{key}").attr("data-collection")
+          collection = $.parseJSON(collection)
+          $.each collection, (index, value) ->
+            updated_text = value[1]  if value[0].toString() is val[1].toString()
+        else if key is "address"
           # refresh map if address updated
           google_map(val[1], val[1])
 
-        $("#best_in_place_#{model}_#{id}_" + i).css("background-color", "#c7f464").html(updated_text).delay(1500).animate
-          backgroundColor: "#f5f5f5"
-        , 1000
+        $("#best_in_place_#{model}_#{id}_#{key}").css("background-color", "#c7f464").html(updated_text).delay(1500).animate({backgroundColor: "#f5f5f5"}, 1000)
 window.juggernaut_listen = juggernaut_listen

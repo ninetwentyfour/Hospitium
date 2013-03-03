@@ -20,7 +20,7 @@ animal_show = ->
           brand = $("#best_in_place_animal_" + animal_id + "_" + i).attr("data-collection")
           test = $.parseJSON(brand)
           $.each test, (index, value) ->
-            updated_text = value[1]  if value[0] is val[1]
+            updated_text = value[1]  if value[0].toString() is val[1].toString()
 
         else if Date.parse(updated_text)
           d = new Date(updated_text)
