@@ -43,6 +43,7 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
+  gem 'yui-compressor'
   gem 'closure-compiler'
 end
 
@@ -76,7 +77,10 @@ group :production, :development do
 	gem 'octokit'
 end
 
-gem "rspec-rails", :group => [:test, :development]
+group :test, :development do
+  gem "rspec-rails"
+  gem "rspec"
+end
 # Gems used only for testing
 group :test do
 	gem "factory_girl_rails"
