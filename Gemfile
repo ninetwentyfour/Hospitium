@@ -1,6 +1,6 @@
 source 'http://bundler-api.herokuapp.com'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.13'
 
 # Gems used in all environments
 gem 'mysql2'
