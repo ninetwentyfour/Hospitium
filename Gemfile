@@ -32,6 +32,8 @@ gem "statsd-ruby", :require => "statsd"
 gem 'impressionist'
 gem 'unicorn'
 
+gem 'coveralls', require: false
+
 # heroku gems for pulling/pushing db
 # gem 'heroku'
 # gem 'sqlite3'
