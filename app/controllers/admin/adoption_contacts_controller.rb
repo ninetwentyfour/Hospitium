@@ -46,7 +46,7 @@ class Admin::AdoptionContactsController < Admin::ApplicationController
     else
       flash[:error] = 'Adoption contact was not successfully created.'
     end
-    
+
     respond_with(@adoption_contact, :location => admin_adoption_contact_path(@adoption_contact))
   end
 

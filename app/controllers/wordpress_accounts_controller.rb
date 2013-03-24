@@ -13,7 +13,9 @@ class WordpressAccountsController < ApplicationController
   
   def update
     @wordpress = WordpressAccount.find(params[:id])
-    params[:wordpress_account]["blog_password"] = SecPass::encrypt(params[:wordpress_account]["blog_password"])
+    if params[:wordpress_account]["blog_password"]
+      params[:wordpress_account]["blog_password"] = SecPass::encrypt(params[:wordpress_account]["blog_password"])
+    end
     respond_to do |format|
       if  @wordpress.update_attributes(params[:wordpress_account])
         format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Wordpress Account Updated!')}

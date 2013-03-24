@@ -28,6 +28,14 @@ describe AnimalWeight do
       animal_weight.uuid.should_not be_nil
     end
   end
+
+  describe "#show_weight_label_method" do
+    let(:animal_weight) { FactoryGirl.create(:animal_weight) }
+    
+    it "should return the weight as a string" do
+      animal_weight.show_weight_label_method.should == "#{animal_weight.weight}"
+    end
+  end
   
   describe "#formatted_weight_date" do
     let(:animal_weight) { FactoryGirl.create(:animal_weight, @attr.merge(:date_of_weight => "2001-10-20 00:50:22")) }

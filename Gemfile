@@ -32,8 +32,6 @@ gem "statsd-ruby", :require => "statsd"
 gem 'impressionist'
 gem 'unicorn'
 
-gem 'coveralls', require: false
-
 # heroku gems for pulling/pushing db
 # gem 'heroku'
 # gem 'sqlite3'
@@ -88,9 +86,14 @@ group :test do
 	gem "factory_girl_rails"
 	gem "capybara", '~> 1.1.0'
 	gem 'shoulda-matchers'
-	gem 'cucumber-rails', require: false
+	gem 'cucumber-rails', :require => false
 	gem 'database_cleaner'
 	gem 'launchy'
 	gem 'email_spec'
 	gem 'poltergeist'
+	gem 'mocha', "~> 0.13.2", :require => false
+	gem 'fakeweb'
+	gem 'vcr'
+	gem 'simplecov', :require => false
+	gem 'coveralls', :require => false
 end

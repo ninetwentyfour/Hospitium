@@ -19,6 +19,15 @@ module ControllerMacros
   def login_user
     @request.env["devise.mapping"] = Devise.mappings[:user]
     @user = FactoryGirl.create(:user)
+    @user.roles << FactoryGirl.create(:role)
+    @user.confirm!
+    sign_in @user
+  end
+
+  def login_admin
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    @user = FactoryGirl.create(:user)
+    @user.roles << FactoryGirl.create(:role, :name => "SuperAdmin")
     @user.confirm!
     sign_in @user
   end
