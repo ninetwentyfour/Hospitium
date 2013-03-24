@@ -1,4 +1,5 @@
 source 'http://bundler-api.herokuapp.com'
+ruby "1.9.3"
 
 gem 'rails', '3.2.13'
 
@@ -45,11 +46,6 @@ group :assets do
   gem 'uglifier'
   gem 'yui-compressor'
   gem 'closure-compiler'
-end
-
-# Gems used only for development
-group :development do
-  # gem 'metrical'
 end
 
 # Gems used only for production
