@@ -28,5 +28,44 @@ class Admin::Home::IndexPresenter
       Animal.where(:organization_id => @user.organization_id, :public => 1).sort! { |a,b| b.impressions_count <=> a.impressions_count }
     end
   end
-  
+
+  def total_animals
+    @animals_count
+  end
+
+  def total_species
+    Species.count(:conditions => {:organization_id => @user.organization_id}) 
+  end
+
+  def total_contacts
+    vet_contacts = VetContact.count(:conditions => {:organization_id => @user.organization_id}) 
+    volunteer_contacts = VolunteerContact.count(:conditions => {:organization_id => @user.organization_id}) 
+    adoption_contacts = AdoptionContact.count(:conditions => {:organization_id => @user.organization_id}) 
+    relinquishment_contacts = RelinquishmentContact.count(:conditions => {:organization_id => @user.organization_id})
+
+    vet_contacts + volunteer_contacts + adoption_contacts + relinquishment_contacts
+  end
+
+  def total_events
+    Event.count(:conditions => {:organization_id => @user.organization_id}) 
+  end
+
+  def animals_by_sex
+    @final_status_array = []
+    sex = {}
+    sex[:male] = Animal.count(:conditions => {:organization_id => @user.organization_id, :animal_sex_id => 1})
+    sex[:female] = Animal.count(:conditions => {:organization_id => @user.organization_id, :animal_sex_id => 2})
+    sex[:unknown] = Animal.count(:conditions => {:organization_id => @user.organization_id, :animal_sex_id => 3})
+
+    color = Paleta::Color.new(:hex, "d63a4c")
+    palette = Paleta::Palette.generate(:type => :analogous, :from => :color, :color => color, :size => 3)
+    cnt = 0
+    sex.each do |key, value|
+      percent = ((value.to_f / @animals_count.to_f) * 100)
+      @final_status_array << {:value => value, :color => "##{palette[cnt].hex}", :label => "#{key.capitalize}", :percent => percent}
+      cnt += 1
+    end
+
+    @final_status_array
+  end
 end

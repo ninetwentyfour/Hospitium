@@ -33,6 +33,9 @@ gem "statsd-ruby", :require => "statsd"
 gem 'impressionist'
 gem 'unicorn'
 
+# generate color schemes
+gem 'paleta'
+
 # heroku gems for pulling/pushing db
 # gem 'heroku'
 # gem 'sqlite3'

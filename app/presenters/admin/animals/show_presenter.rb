@@ -21,9 +21,14 @@ class Admin::Animals::ShowPresenter
   end
   
   def animal_weights
-    AnimalWeight.where(:animal_id => @animal.id).order("date_of_weight ASC").map do |record|
-      [ record.date_of_weight.strftime("%m/%d/%Y"), record.weight ]
-    end
+    thing = {}
+    # AnimalWeight.where(:animal_id => @animal.id).order("date_of_weight ASC").map do |record|
+    #   [ record.date_of_weight.strftime("%m/%d/%Y"), record.weight ]
+    # end
+    @weights = AnimalWeight.where(:animal_id => @animal.id).order("date_of_weight ASC")
+    thing[:values] = @weights.map {|record| record.weight }
+    thing[:times] = @weights.map {|record| record.date_of_weight.strftime("%m/%d/%Y") }
+    thing
   end
   
   def notes

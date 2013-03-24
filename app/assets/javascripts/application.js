@@ -23,6 +23,7 @@
 //= require datatables_config
 //= require google_maps
 //= require_tree ./admin
+//= require Chart
 //= require_self
 
 

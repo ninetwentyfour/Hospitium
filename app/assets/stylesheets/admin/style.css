@@ -281,15 +281,11 @@ table#history td.start {
 	font-size:10px;
 }
 
-.chartKey-bar {
-	float:left;
-	margin-left:50px;
-}
-
 .chartKey-bar li {
 	margin:10px;
 	list-style:none !important;
 	line-height:10px;
+	float:left;
 }
 
 .pie-key {
@@ -300,7 +296,7 @@ table#history td.start {
 
 .circle {
 	float:left;
-	margin-right:10px;
+	margin-right:3px;
 	border-radius:10px;
 }
 

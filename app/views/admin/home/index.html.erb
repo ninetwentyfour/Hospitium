@@ -1,44 +1,108 @@
 <div class="row-fluid">
 	<div class="span12">
-		<div class="well">
-			<h1>Dashboard</h1>
-		</div>
 		<div class="row-fluid">
-			<div class="span12">
+			<div class="span3">
+				<div class="well">
+					<p>Total number of animals</p>
+					<h1><%= @presenter.total_animals %></h1>
+				</div>
+			</div>
+			<div class="span3">
+				<div class="well">
+					<p>Total number of species</p>
+					<h1><%= @presenter.total_species %></h1>
+				</div>
+			</div>
+			<div class="span3">
+				<div class="well">
+					<p>Total number of contacts</p>
+					<h1><%= @presenter.total_contacts %></h1>
+				</div>
+			</div>
+			<div class="span3">
+				<div class="well">
+					<p>Total number of events</p>
+					<h1><%= @presenter.total_events %></h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span12">
+		<div class="row-fluid">
+			<div class="span6">
 				<h2>Animal Statuses</h2>
-				<div id="chart1" style="height: 300px; width: 500px; float:left; " class="jqplot-target"></div>
-				<div class="barchart">
-					<ul class="timelineAnimal">
-						<% @presenter.final_status_hash['bar'].each do |key, value| %>
-							<li class="barAnimal"><a href="#">
-								<span class="labelAnimal"><%= key + " count: " + value["count"]%></span>
-								<span class="countAnimal tooltip-class" data-animate-length="<%= number_to_percentage(value["percent"], :precision => 0)%>" style="height: 2%;opacity:0;" title="<%= value["count"] %>"><%= value["count"] %></span>
-							</a></li>
-						<%end%>
-					</ul>
-					<ul class="chartKey-bar"></ul>
-				</div>
+				<canvas id="statusDoughnutCanvas" height="250" width="250"></canvas>
+				<canvas id="statusPolarCanvas" height="250" width="250"></canvas>
+				<ul class="chartKey-bar">
+					<% @status_chart.each do |item| %>
+						<li>
+							<div class="circle" style="width:10px;height:10px;background-color:<%= item[:color] %>;"></div>
+							<%= item[:label] %>
+							<%= number_to_percentage(item[:percent], :precision => 0) %>
+						</li>
+					<% end %>
+				</ul>
 			</div>
-		</div>
-
-		<div class="row-fluid">
-			<div class="span12">
+			<div class="span6">
 				<h2>Animal Species</h2>
-				<div id="chart2" style="height: 300px; width: 500px; float:left; " class="jqplot-target"></div>
-				<div class="barchart">
-					<ul class="timelineAnimal">
-						<% @presenter.final_species_hash['bar'].each do |key, value| %>
-							<li class="barAnimal"><a href="#">
-								<span class="labelAnimal"><%= key + " count: " + value["count"]%></span>
-								<span class="countAnimal tooltip-class" data-animate-length="<%= number_to_percentage(value["percent"], :precision => 0)%>" style="height: 2%;opacity:0;" title="<%= value["count"] %>"><%= value["count"] %></span>
-							</a></li>
-						<%end%>
-					</ul>
-					<ul class="chartKey-bar"></ul>
-				</div>
+				<canvas id="speciesDoughnutCanvas" height="250" width="250"></canvas>
+				<canvas id="speciesPolarCanvas" height="250" width="250"></canvas>
+				<ul class="chartKey-bar">
+					<% @species_chart.each do |item| %>
+						<li>
+							<div class="circle" style="width:10px;height:10px;background-color:<%= item[:color] %>;"></div>
+							<%= item[:label] %>
+							<%= number_to_percentage(item[:percent], :precision => 0) %>
+						</li>
+					<% end %>
+				</ul>
 			</div>
 		</div>
-		
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span12">
+		<div class="row-fluid">
+			<div class="span6">
+				<h2>Animal Colors</h2>
+				<canvas id="colorDoughnutCanvas" height="250" width="250"></canvas>
+				<canvas id="colorPolarCanvas" height="250" width="250"></canvas>
+				<ul class="chartKey-bar">
+					<% @colors_chart.each do |item| %>
+						<li>
+							<div class="circle" style="width:10px;height:10px;background-color:<%= item[:color] %>;"></div>
+							<%= item[:label] %>
+							<%= number_to_percentage(item[:percent], :precision => 0) %>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+			<div class="span6">
+				<h2>Animal Sexes</h2>
+				<canvas id="sexDoughnutCanvas" height="250" width="250"></canvas>
+				<canvas id="sexPolarCanvas" height="250" width="250"></canvas>
+				<ul class="chartKey-bar">
+					<% @presenter.animals_by_sex.each do |item| %>
+						<li>
+							<div class="circle" style="width:10px;height:10px;background-color:<%= item[:color] %>;"></div>
+							<%= item[:label] %>
+							<%= number_to_percentage(item[:percent], :precision => 0) %>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span12">	
+		<hr />
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span12">	
 		<div class="row-fluid">
 			<div class="span6">
 				<h2>Recent Activity</h2>
@@ -49,14 +113,37 @@
 				<%= render "public_animals", :public_animals => @presenter.public_animals %>
 			</div>
 		</div>
-
-
-		<% content_for :javascript_footer do %>
-			<script type="text/javascript">
-				// Trigger bar-charts
-				bar_chart();
-			</script>
-			<%= render "animal_graphs_min_js", :final_status_hash => @presenter.final_status_hash, :final_species_hash => @presenter.final_species_hash %>
-		<% end %>
 	</div>
 </div>
+
+<% content_for :javascript_footer do %>
+	<script type="text/javascript">
+		// status chart data
+		var statusData = <%= raw @status_chart.to_json %>;
+		// status dougnut chart
+		var statusDoughnutChart = new Chart(document.getElementById("statusDoughnutCanvas").getContext("2d")).Doughnut(statusData);
+		// status polar chart
+		var statusPolarChart = new Chart(document.getElementById("statusPolarCanvas").getContext("2d")).PolarArea(statusData);
+
+		// species chart data
+		var speciesData = <%= raw @species_chart.to_json %>;
+		// species dougnut chart
+		var speciesDoughnutChart = new Chart(document.getElementById("speciesDoughnutCanvas").getContext("2d")).Doughnut(speciesData);
+		// species polar chart
+		var speciesPolarChart = new Chart(document.getElementById("speciesPolarCanvas").getContext("2d")).PolarArea(speciesData);
+
+		// colros chart data
+		var colorsData = <%= raw @colors_chart.to_json %>;
+		// color dougnut chart
+		var colorsDoughnutChart = new Chart(document.getElementById("colorDoughnutCanvas").getContext("2d")).Doughnut(colorsData);
+		// color polar chart
+		var colorsPolarChart = new Chart(document.getElementById("colorPolarCanvas").getContext("2d")).PolarArea(colorsData);
+
+		// sexes chart data
+		var sexData = <%= raw @presenter.animals_by_sex.to_json %>;
+		// sex dougnut chart
+		var sexDoughnutChart = new Chart(document.getElementById("sexDoughnutCanvas").getContext("2d")).Doughnut(sexData);
+		// sex polar chart
+		var sexPolarChart = new Chart(document.getElementById("sexPolarCanvas").getContext("2d")).PolarArea(sexData);
+	</script>
+<% end %>

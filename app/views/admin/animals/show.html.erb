@@ -125,7 +125,8 @@
 	
 <%= render "modal_images", :animal => @animal %>
 
-<div id="animal_weights_holder" data-animal_weights='<%= raw(@presenter.animal_weights.to_json) %>'></div>
+<div id="animal_weights_holder" data-animal_weights='<%= raw(@presenter.animal_weights[:values].to_json) %>'></div>
+<div id="animal_weights_holder" data-animal_weights_times='<%= raw(@presenter.animal_weights[:times].to_json) %>'></div>
 <div id="animal_holder" data-animal_id='<%= raw @animal.id %>' data-animal_uuid='<%= raw @animal.uuid %>'></div>
 
 
