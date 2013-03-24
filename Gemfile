@@ -80,13 +80,13 @@ end
 # Gems used only for testing
 group :test do
 	gem "factory_girl_rails"
-	gem "capybara", '~> 1.1.0'
+	gem "capybara"
 	gem 'shoulda-matchers'
 	gem 'cucumber-rails', :require => false
 	gem 'database_cleaner'
 	gem 'launchy'
 	gem 'email_spec'
-	gem 'poltergeist'
+	gem 'poltergeist', "~> 1.1.0"
 	gem 'mocha', "~> 0.13.2", :require => false
 	gem 'fakeweb'
 	gem 'vcr'
