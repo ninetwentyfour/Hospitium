@@ -5,12 +5,12 @@ describe Report do
     @user = FactoryGirl.create(:user)
   end
 
-  describe "#animals_by" do
+  describe "#new_chart" do
     
-  	it 'should return a hash' do
-      report = Report.animals_by(@user.organization_id, "status")
+  	it 'should return a array' do
+      report = Report.new_chart(@user.organization_id, "status")
 
-      report.should be_kind_of(Hash)
+      report.should be_kind_of(Array)
   	end
   end
 
