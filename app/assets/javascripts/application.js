@@ -2,14 +2,6 @@
 //= require jquery_ujs
 //= require best_in_place
 //= require rails.validations
-//= require jquery.jqplot.min
-//= require jqplot.highlighter.min
-//= require jqplot.cursor.min
-//= require jqplot.dateAxisRenderer.min
-//= require jqplot.pieRenderer
-//= require jqplot.barRenderer.min
-//= require jqplot.categoryAxisRenderer.min
-//= require jqplot.pointLabels.min
 //= require twitter/bootstrap
 //= require jquery.mailcheck.min
 //= require jquery.datatables.min
@@ -22,8 +14,10 @@
 //= require bootstrap-modalmanager
 //= require datatables_config
 //= require google_maps
-//= require_tree ./admin
 //= require Chart
+//= require jquery.sparklines
+//= require escape_string
+//= require_tree ./admin
 //= require_self
 
 

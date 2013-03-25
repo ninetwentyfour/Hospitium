@@ -26,7 +26,7 @@ animal_show = ->
           d = new Date(updated_text)
           d.setDate d.getDate() + 1
           updated_text = dateFormat(d, "ddd, mmm d yyyy")
-        $("#best_in_place_animal_" + animal_id + "_" + i).css("background-color", "#c7f464").html(updated_text).delay(1500).animate
+        $("#best_in_place_animal_" + animal_id + "_" + i).css("background-color", "#c7f464").html(escapeHtml(updated_text)).delay(1500).animate
           backgroundColor: "#f5f5f5"
         , 1000
 
@@ -36,7 +36,7 @@ animal_show = ->
     bg_color = ""
     updated_text = "There was an update, but a problem displaying. Please refresh."
     jQuery.each data.record, (i, val) ->
-      $("#animal_notes_list").append "<li id=\"note_" + val.id + "\"><strong>" + data.user + "</strong> " + data.created_at + " <br />" + val.note + "</li>"
+      $("#animal_notes_list").append "<li id=\"note_" + val.id + "\"><strong>" + data.user + "</strong> " + data.created_at + " <br />" + escapeHtml(val.note) + "</li>"
       $("#animal_notes_list").scrollTop $("#animal_notes_list")[0].scrollHeight
       
       # /* Highlight the new comment */
@@ -55,36 +55,20 @@ animal_show = ->
   $("#animal_weight_date_of_weight").datepicker()
   $.datepicker.setDefaults dateFormat: "D, dd M yy"
 
-
   $("a[data-toggle=\"tab\"]").on "shown", (e) ->
-    "use strict"
-    unless $("canvas").length # implies *not* zero
-      #do nothing
-      line1 = $("#animal_weights_holder").data("animal_weights")
-      plot1 = $.jqplot("chart1", [line1],
-        title: "Animal Weight"
-        grid:
-          background: "#FCF8E3"
-          gridLineColor: "#FBEED5" # *Color of the grid lines.
-          borderColor: "#DDD" # CSS color spec for border around grid.
-          shadow: false
+    $("#canvasWeight").remove()
+    $("#weight_graph_holder").append "<canvas id=\"canvasWeight\" height=\"300\" width=\"250\"></canvas>"
+    $("#canvasWeight").attr "width", $(".tab-content").width()
+    lineChartData =
+      labels: $("#animal_weights_holder").data("animal_weights_times")
+      datasets: [
+        fillColor: "rgba(126,207,213,0.5)"
+        strokeColor: "rgba(126,207,213,1)"
+        pointColor: "rgba(126,207,213,1)"
+        pointStrokeColor: "#fff"
+        data: $("#animal_weights_holder").data("animal_weights")
+      ]
 
-        seriesDefaults:
-          color: "#49AFCD" # CSS color spec to use for the line.  Determined automatically.
+    myLine = new Chart(document.getElementById("canvasWeight").getContext("2d")).Line(lineChartData)
 
-        axes:
-          xaxis:
-            renderer: $.jqplot.DateAxisRenderer
-            tickOptions:
-              formatString: "%b&nbsp;%#d"
-
-          yaxis: {}
-
-        highlighter:
-          show: true
-          sizeAdjust: 7.5
-
-        cursor:
-          show: false
-      )
 window.animal_show = animal_show

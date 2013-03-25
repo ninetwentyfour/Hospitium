@@ -1,4 +1,6 @@
 google_map = (address, title) ->
+  address = escapeHtml(address)
+  title = escapeHtml(title)
   geocoder = new google.maps.Geocoder()
   geocoder.geocode
     address: address

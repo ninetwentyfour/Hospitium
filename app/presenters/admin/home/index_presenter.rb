@@ -5,15 +5,21 @@ class Admin::Home::IndexPresenter
     @animal_update = Animal.order("updated_at desc").where(:organization_id => @user.organization_id).first().try(:updated_at)
   end
   
-  def final_status_hash
+  def status_chart
     Rails.cache.fetch("animal_status_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update}") do
-      Report.animals_by(@user.organization_id, "status")
+      Report.new_chart(@user.organization_id, "status")
     end
   end
   
-  def final_species_hash
+  def species_chart
     Rails.cache.fetch("animal_species_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update}") do
-      Report.animals_by(@user.organization_id, "species")
+      Report.new_chart(@user.organization_id, "species")
+    end
+  end
+
+  def colors_chart
+    Rails.cache.fetch("animal_colors_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update}") do
+      Report.new_chart(@user.organization_id, "animal_color")
     end
   end
   
@@ -50,22 +56,48 @@ class Admin::Home::IndexPresenter
     Event.count(:conditions => {:organization_id => @user.organization_id}) 
   end
 
-  def animals_by_sex
-    @final_status_array = []
-    sex = {}
-    sex[:male] = Animal.count(:conditions => {:organization_id => @user.organization_id, :animal_sex_id => 1})
-    sex[:female] = Animal.count(:conditions => {:organization_id => @user.organization_id, :animal_sex_id => 2})
-    sex[:unknown] = Animal.count(:conditions => {:organization_id => @user.organization_id, :animal_sex_id => 3})
+  def sex_chart
+    Rails.cache.fetch("animal_sex_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update}") do
+      @final_status_array = []
+      sex = {}
+      sex[:male] = Animal.count(:conditions => {:organization_id => @user.organization_id, :animal_sex_id => 1})
+      sex[:female] = Animal.count(:conditions => {:organization_id => @user.organization_id, :animal_sex_id => 2})
+      sex[:unknown] = Animal.count(:conditions => {:organization_id => @user.organization_id, :animal_sex_id => 3})
 
-    color = Paleta::Color.new(:hex, "d63a4c")
-    palette = Paleta::Palette.generate(:type => :analogous, :from => :color, :color => color, :size => 3)
-    cnt = 0
-    sex.each do |key, value|
-      percent = ((value.to_f / @animals_count.to_f) * 100)
-      @final_status_array << {:value => value, :color => "##{palette[cnt].hex}", :label => "#{key.capitalize}", :percent => percent}
-      cnt += 1
+      color = Paleta::Color.new(:hex, "d63a4c")
+      palette = Paleta::Palette.generate(:type => :analogous, :from => :color, :color => color, :size => 3)
+      cnt = 0
+      sex.each do |key, value|
+        percent = ((value.to_f / @animals_count.to_f) * 100)
+        @final_status_array << {:value => value, :color => "##{palette[cnt].hex}", :label => "#{key.capitalize}", :percent => percent}
+        cnt += 1
+      end
+
+      @final_status_array
     end
+  end
 
-    @final_status_array
+  def animals_sparkline
+    Rails.cache.fetch("animal_sparkline_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update}") do
+      Report.item_per_day(@user.organization_id, "animal", 30)
+    end
+  end
+
+  def species_sparkline
+    Rails.cache.fetch("species_sparkline_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update}") do
+      Report.item_per_day(@user.organization_id, "species", 30)
+    end
+  end
+
+  def contacts_sparkline
+    Rails.cache.fetch("contact_sparkline_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update}") do
+      Report.contacts_per_day(@user.organization_id, 30)
+    end
+  end
+
+  def events_sparkline
+    Rails.cache.fetch("event_sparkline_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update}") do
+      Report.item_per_day(@user.organization_id, "event", 30)
+    end
   end
 end

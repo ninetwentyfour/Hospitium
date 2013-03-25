@@ -16,7 +16,7 @@ gem 'site_meta'
 gem 'meta_search'
 gem 'juggernaut'
 gem 'client_side_validations'
-gem 'jqplot-rails', :git => "git://github.com/ninetwentyfour/jqplot-rails.git"
+# gem 'jqplot-rails', :git => "git://github.com/ninetwentyfour/jqplot-rails.git"
 gem 'gravatar_image_tag'
 gem 'best_in_place'
 gem "spreadsheet"

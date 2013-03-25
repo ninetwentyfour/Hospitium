@@ -4,25 +4,25 @@
 			<div class="span3">
 				<div class="well">
 					<p>Total number of animals</p>
-					<h1><%= @presenter.total_animals %></h1>
+					<h1><%= @presenter.total_animals %> <span id="animals_sparkline"></span></h1>
 				</div>
 			</div>
 			<div class="span3">
 				<div class="well">
 					<p>Total number of species</p>
-					<h1><%= @presenter.total_species %></h1>
+					<h1><%= @presenter.total_species %> <span id="species_sparkline"></span></h1>
 				</div>
 			</div>
 			<div class="span3">
 				<div class="well">
 					<p>Total number of contacts</p>
-					<h1><%= @presenter.total_contacts %></h1>
+					<h1><%= @presenter.total_contacts %> <span id="contact_sparkline"></span></h1>
 				</div>
 			</div>
 			<div class="span3">
 				<div class="well">
 					<p>Total number of events</p>
-					<h1><%= @presenter.total_events %></h1>
+					<h1><%= @presenter.total_events %> <span id="event_sparkline"></span></h1>
 				</div>
 			</div>
 		</div>
@@ -36,7 +36,7 @@
 				<canvas id="statusDoughnutCanvas" height="250" width="250"></canvas>
 				<canvas id="statusPolarCanvas" height="250" width="250"></canvas>
 				<ul class="chartKey-bar">
-					<% @status_chart.each do |item| %>
+					<% @presenter.status_chart.each do |item| %>
 						<li>
 							<div class="circle" style="width:10px;height:10px;background-color:<%= item[:color] %>;"></div>
 							<%= item[:label] %>
@@ -50,7 +50,7 @@
 				<canvas id="speciesDoughnutCanvas" height="250" width="250"></canvas>
 				<canvas id="speciesPolarCanvas" height="250" width="250"></canvas>
 				<ul class="chartKey-bar">
-					<% @species_chart.each do |item| %>
+					<% @presenter.species_chart.each do |item| %>
 						<li>
 							<div class="circle" style="width:10px;height:10px;background-color:<%= item[:color] %>;"></div>
 							<%= item[:label] %>
@@ -70,7 +70,7 @@
 				<canvas id="colorDoughnutCanvas" height="250" width="250"></canvas>
 				<canvas id="colorPolarCanvas" height="250" width="250"></canvas>
 				<ul class="chartKey-bar">
-					<% @colors_chart.each do |item| %>
+					<% @presenter.colors_chart.each do |item| %>
 						<li>
 							<div class="circle" style="width:10px;height:10px;background-color:<%= item[:color] %>;"></div>
 							<%= item[:label] %>
@@ -84,7 +84,7 @@
 				<canvas id="sexDoughnutCanvas" height="250" width="250"></canvas>
 				<canvas id="sexPolarCanvas" height="250" width="250"></canvas>
 				<ul class="chartKey-bar">
-					<% @presenter.animals_by_sex.each do |item| %>
+					<% @presenter.sex_chart.each do |item| %>
 						<li>
 							<div class="circle" style="width:10px;height:10px;background-color:<%= item[:color] %>;"></div>
 							<%= item[:label] %>
@@ -118,32 +118,17 @@
 
 <% content_for :javascript_footer do %>
 	<script type="text/javascript">
-		// status chart data
-		var statusData = <%= raw @status_chart.to_json %>;
-		// status dougnut chart
-		var statusDoughnutChart = new Chart(document.getElementById("statusDoughnutCanvas").getContext("2d")).Doughnut(statusData);
-		// status polar chart
-		var statusPolarChart = new Chart(document.getElementById("statusPolarCanvas").getContext("2d")).PolarArea(statusData);
-
-		// species chart data
-		var speciesData = <%= raw @species_chart.to_json %>;
-		// species dougnut chart
-		var speciesDoughnutChart = new Chart(document.getElementById("speciesDoughnutCanvas").getContext("2d")).Doughnut(speciesData);
-		// species polar chart
-		var speciesPolarChart = new Chart(document.getElementById("speciesPolarCanvas").getContext("2d")).PolarArea(speciesData);
-
-		// colros chart data
-		var colorsData = <%= raw @colors_chart.to_json %>;
-		// color dougnut chart
-		var colorsDoughnutChart = new Chart(document.getElementById("colorDoughnutCanvas").getContext("2d")).Doughnut(colorsData);
-		// color polar chart
-		var colorsPolarChart = new Chart(document.getElementById("colorPolarCanvas").getContext("2d")).PolarArea(colorsData);
-
-		// sexes chart data
-		var sexData = <%= raw @presenter.animals_by_sex.to_json %>;
-		// sex dougnut chart
-		var sexDoughnutChart = new Chart(document.getElementById("sexDoughnutCanvas").getContext("2d")).Doughnut(sexData);
-		// sex polar chart
-		var sexPolarChart = new Chart(document.getElementById("sexPolarCanvas").getContext("2d")).PolarArea(sexData);
+		// Trigger page js
+		var data_for_charts = {
+								"status_data":        <%= raw(sanitize(@presenter.status_chart.to_json)) %>, 
+								"species_data":       <%= raw(sanitize(@presenter.species_chart.to_json)) %>,
+								"colors_data":        <%= raw(sanitize(@presenter.colors_chart.to_json)) %>,
+								"sex_data":           <%= raw(sanitize(@presenter.sex_chart.to_json)) %>,
+								"event_spark_data":   <%= raw(sanitize(@presenter.events_sparkline.to_json)) %>,
+								"contact_spark_data": <%= raw(sanitize(@presenter.contacts_sparkline.to_json)) %>,
+								"species_spark_data": <%= raw(sanitize(@presenter.species_sparkline.to_json)) %>,
+								"animals_spark_data": <%= raw(sanitize(@presenter.animals_sparkline.to_json)) %>,
+							}
+		home_dashboard(data_for_charts);
 	</script>
 <% end %>

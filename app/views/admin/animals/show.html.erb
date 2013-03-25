@@ -57,7 +57,7 @@
 					</div>
 					<div class="tab-pane" id="4">
 						<div class="">
-							<div id="chart1" style="height: 300px; width: 100%; position: relative; " class="jqplot-target"></div>
+							<div id="weight_graph_holder"><canvas id="canvasWeight" height="300" width="250"></canvas></div>
 							<hr />
 							<a class="btn" data-toggle="modal" href="#newWeight" ><i class="icon-plus"></i> Add New Weight</a>
 						</div>
@@ -66,7 +66,7 @@
 						<ul class="unstyled" id="animal_notes_list">
 							<%unless @animal.notes.blank?%>
 									<%@presenter.notes.each do |note| %>
-										<li><%= link_to raw("<i class='icon-remove'></i>"), admin_note_path(note), :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Delete Note"  %><strong><%= note.username %></strong> <%= note.created_at.strftime("%a, %b %e %Y at %I:%m%p") %> <br /><%= raw note.note %></li>
+										<li><%= link_to raw("<i class='icon-remove'></i>"), admin_note_path(note), :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Delete Note"  %><strong><%= note.username %></strong> <%= note.created_at.strftime("%a, %b %e %Y at %I:%m%p") %> <br /><%= raw(sanitize(note.note)) %></li>
 									<%end%>
 							<%end%>
 						</ul>
@@ -125,9 +125,8 @@
 	
 <%= render "modal_images", :animal => @animal %>
 
-<div id="animal_weights_holder" data-animal_weights='<%= raw(@presenter.animal_weights[:values].to_json) %>'></div>
-<div id="animal_weights_holder" data-animal_weights_times='<%= raw(@presenter.animal_weights[:times].to_json) %>'></div>
-<div id="animal_holder" data-animal_id='<%= raw @animal.id %>' data-animal_uuid='<%= raw @animal.uuid %>'></div>
+<div id="animal_weights_holder" data-animal_weights='<%= raw(sanitize(@presenter.animal_weights[:values].to_json)) %>' data-animal_weights_times='<%= raw(sanitize(@presenter.animal_weights[:times].to_json)) %>'></div>
+<div id="animal_holder" data-animal_id='<%= @animal.id %>' data-animal_uuid='<%= @animal.uuid %>'></div>
 
 
 
