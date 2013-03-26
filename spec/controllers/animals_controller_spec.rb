@@ -45,4 +45,11 @@ describe AnimalsController do
     end
 
   end
+
+  describe 'GET "not_available"' do
+    it "returns http success" do
+      get 'not_available'
+      response.should be_success
+    end
+  end
 end

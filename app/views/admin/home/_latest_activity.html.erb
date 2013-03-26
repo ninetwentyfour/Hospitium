@@ -7,7 +7,7 @@
 			<tbody>
 				<% latest_activity.each do |event| %>
 					<% unless event.event_message.blank? %>
-						<tr><td><%= event.event_message %> <%= time_ago_in_words(event.created_at) %> ago.</td></tr>
+						<tr><td><%= event.event_message %> <span class="event_time"><%= time_ago_in_words(event.created_at) %> ago.</span></td></tr>
 					<% end %>
 				<% end %>
 			</tbody>

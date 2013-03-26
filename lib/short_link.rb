@@ -1,3 +1,5 @@
+require 'bitly'
+
 class ShortLink
   
   def self.shorten_link(link)

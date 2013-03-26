@@ -116,7 +116,7 @@ body {
 }
 
 #chartKey2 li {
-	margin:10px;
+	margin:5px;
 	list-style:none !important;
 }
 
@@ -282,7 +282,7 @@ table#history td.start {
 }
 
 .chartKey-bar li {
-	margin:10px;
+	margin:5px;
 	list-style:none !important;
 	line-height:10px;
 	float:left;
