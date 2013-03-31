@@ -27,11 +27,6 @@ class Admin::NotesController < Admin::ApplicationController
     respond_with(@note)
   end
 
-  # GET /notes/1/edit
-  def edit
-    @note = Note.find(params[:id])
-  end
-
   # POST /notes
   # POST /notes.json
   def create
@@ -39,15 +34,6 @@ class Admin::NotesController < Admin::ApplicationController
     @note.note = view_context.markdown(@note.note).gsub("\n","").gsub("\r","")
     @note.save
     $statsd.increment 'animal.note.created'
-    respond_with(@note)
-  end
-
-  # PUT /notes/1
-  # PUT /notes/1.json
-  def update
-    @note = Note.find(params[:id])
-    @note.update_attributes(params[:note])
-    
     respond_with(@note)
   end
 

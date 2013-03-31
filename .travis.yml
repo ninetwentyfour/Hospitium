@@ -11,4 +11,4 @@ before_script:
   - "export SALTY=this_is_test_salt"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
-script: bundle exec rake db:drop db:create db:migrate test_with_coveralls
+script: bundle exec rake db:drop db:create db:migrate travis

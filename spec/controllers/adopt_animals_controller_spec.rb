@@ -24,7 +24,7 @@ describe AdoptAnimalsController do
 
       it "assigns a newly created adopt_animal as @adopt_animal" do
         AdoptAnimal.observers.disable :all do
-          post :create, {:post =>  FactoryGirl.attributes_for(:adopt_animal)}
+          post :create, {:adopt_animal =>  FactoryGirl.attributes_for(:adopt_animal)}
           assigns(:adopt_animal).should be_a(AdoptAnimal)
           assigns(:adopt_animal).should be_persisted
         end
@@ -32,7 +32,7 @@ describe AdoptAnimalsController do
 
       it "redirects to the created back" do
         AdoptAnimal.observers.disable :all do
-          post :create, {:post =>  FactoryGirl.attributes_for(:post)}
+          post :create, {:adopt_animal =>  FactoryGirl.attributes_for(:adopt_animal)}
           response.should redirect_to "http://test.host"
         end
       end

@@ -37,13 +37,6 @@ describe Admin::NotesController do
     end
   end
 
-  describe "GET edit" do
-    it "assigns the requested note as @note" do
-      get :edit, {:id => @note.to_param}
-      assigns(:note).should eq(@note)
-    end
-  end
-
   describe "POST create" do
     describe "with valid params" do
       # it "creates a new note" do
@@ -63,26 +56,6 @@ describe Admin::NotesController do
       end
     end
   end
-
-  # describe "PUT update" do
-  #   describe "with valid params" do
-  #     it "assigns the requested note as @note" do
-  #       put :update, id: @note, note: FactoryGirl.attributes_for(:note)
-  #       assigns(:note).should eq(@note) 
-  #     end
-      
-  #     it "changes @note attributes" do
-  #       put :update, {:id => @note.to_param, :note => { "note" => "Edit" }}
-  #       @note.reload
-  #       @note.note.should eq("Edit")
-  #     end
-
-  #     it "redirects to the note" do
-  #       put :update, id: @note, note: FactoryGirl.attributes_for(:note)
-  #       response.should redirect_to "http://test.host/"
-  #     end
-  #   end
-  # end
 
   describe "DELETE destroy" do
     it "destroys the requested note" do

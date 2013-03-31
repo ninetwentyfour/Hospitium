@@ -12,7 +12,7 @@ module ApplicationHelper
     end
     
     def canonical_link_tag
-      tag(:link, :rel => :canonical, :href => "https://hospitium.co"+@canonical_url) if @canonical_url
+      tag(:link, :rel => :canonical, :href => "https://hospitium.co#{@canonical_url}") if @canonical_url
     end
     
     def current_class?(con, act)
@@ -27,7 +27,7 @@ module ApplicationHelper
       markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(
           :hard_wrap => true, :filter_html => true),
           :no_intraemphasis => true, :autolink => true)
-      return markdown.render(text).html_safe
+      return markdown.render(sanitize(text)).html_safe
     end
     
     def is_table_view(params)
