@@ -41,6 +41,9 @@ gem 'paleta'
 # gem 'sqlite3'
 # gem 'taps'
 
+gem 'bitly'
+gem 'octokit'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -69,11 +72,11 @@ group :production, :development do
 	gem 'rest-client'
 	gem 'json'
 	gem 'libxml-xmlrpc'
-	gem 'bitly'
+	# gem 'bitly'
 	gem 'rqrcode-rails3'
 	gem 'asset_sync'
 	gem 'sanitize'
-	gem 'octokit'
+	# gem 'octokit'
 end
 
 group :test, :development do
