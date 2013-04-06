@@ -87,25 +87,25 @@ class Admin::Home::IndexPresenter
 
   def animals_sparkline
     Rails.cache.fetch("animal_sparkline_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}") do
-      Report.item_per_day(@user.organization_id, "animal", 30)
+      Report.item_per_day(@user.organization_id, "animal", 14)
     end
   end
 
   def species_sparkline
     Rails.cache.fetch("species_sparkline_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}_#{@species_count}") do
-      Report.item_per_day(@user.organization_id, "species", 30)
+      Report.item_per_day(@user.organization_id, "species", 14)
     end
   end
 
   def contacts_sparkline
     Rails.cache.fetch("contact_sparkline_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}") do
-      Report.contacts_per_day(@user.organization_id, 30)
+      Report.contacts_per_day(@user.organization_id, 14)
     end
   end
 
   def events_sparkline
     Rails.cache.fetch("event_sparkline_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}_#{@events_count}") do
-      Report.item_per_day(@user.organization_id, "event", 30)
+      Report.item_per_day(@user.organization_id, "event", 14)
     end
   end
 end

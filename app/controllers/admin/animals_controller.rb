@@ -10,7 +10,7 @@ class Admin::AnimalsController < Admin::ApplicationController
                     includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter).
                     organization(current_user).
                     search(params[:search])
-    @animals = @search.paginate(:page => params[:page], :per_page => 7).order("name ASC")
+    @animals = @search.paginate(:page => params[:page], :per_page => 10).order("name ASC")
     
     @presenter = Admin::Animals::IndexPresenter.new(current_user)
     

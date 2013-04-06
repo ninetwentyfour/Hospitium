@@ -118,6 +118,20 @@
 
 <% content_for :javascript_footer do %>
 	<script type="text/javascript">
+		// set chart sizes based on loaded screen size
+		var chart_sizes = Math.round(($(".span6").width()/2.5));
+		$("#statusDoughnutCanvas").attr({width: chart_sizes, height: chart_sizes});
+		$("#statusPolarCanvas").attr({width: chart_sizes, height: chart_sizes});
+
+		$("#speciesDoughnutCanvas").attr({width: chart_sizes, height: chart_sizes});
+		$("#speciesPolarCanvas").attr({width: chart_sizes, height: chart_sizes});
+
+		$("#colorDoughnutCanvas").attr({width: chart_sizes, height: chart_sizes});
+		$("#colorPolarCanvas").attr({width: chart_sizes, height: chart_sizes});
+
+		$("#sexDoughnutCanvas").attr({width: chart_sizes, height: chart_sizes});
+		$("#sexPolarCanvas").attr({width: chart_sizes, height: chart_sizes});
+
 		// Trigger page js
 		var data_for_charts = {
 								"status_data":        <%= raw(sanitize(@presenter.status_chart.to_json)) %>, 
