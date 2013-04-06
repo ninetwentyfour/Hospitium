@@ -14,6 +14,8 @@
                      'localhost:3000', 
                      'd1pm9e0xzdmxcb.cloudfront.net', 
                      'd4uktpxr9m70.cloudfront.net',
+                     'd1ros97qkrwjf5.cloudfront.net',
+                     '*.newrelic.com',
                      '*.disqus.com', 
                      'inline'],
     :style_src   => ['*.googleapis.com', 
