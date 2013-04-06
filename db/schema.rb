@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225013112) do
+ActiveRecord::Schema.define(:version => 20130406212452) do
 
   create_table "adopt_a_pet_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -435,12 +435,16 @@ ActiveRecord::Schema.define(:version => 20130225013112) do
     t.integer  "organization_id"
     t.string   "organization_name"
     t.integer  "owner",                                 :default => 0
+    t.integer  "failed_attempts",                       :default => 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["organization_id"], :name => "index_users_on_organization_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
 
   create_table "vet_contacts", :force => true do |t|
     t.string   "clinic_name"

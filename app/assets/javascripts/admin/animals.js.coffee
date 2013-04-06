@@ -33,10 +33,12 @@ animal_show = ->
 
   jug.subscribe "/observer/note/" + animal_id, (data) ->
     "use strict"
+    converter = new Showdown.converter()
+
     bg_color = ""
     updated_text = "There was an update, but a problem displaying. Please refresh."
     jQuery.each data.record, (i, val) ->
-      $("#animal_notes_list").append "<li id=\"note_" + val.id + "\"><strong>" + data.user + "</strong> " + data.created_at + " <br />" + escapeHtml(val.note) + "</li>"
+      $("#animal_notes_list").append "<li id=\"note_" + val.id + "\"><strong>" + data.user + "</strong> " + data.created_at + " <br />" + converter.makeHtml(val.note) + "</li>"
       $("#animal_notes_list").scrollTop $("#animal_notes_list")[0].scrollHeight
       
       # /* Highlight the new comment */
