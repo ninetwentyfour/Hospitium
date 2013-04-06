@@ -27,7 +27,7 @@ class Report < ActiveRecord::Base
       items[x] ||= 0
     end
 
-    sorted = items.sort_by { |date, value| date }
+    sorted = items.sort_by { |date, value| date.to_s }
     sorted.map! {|array| array[1] }
     sorted
   end
