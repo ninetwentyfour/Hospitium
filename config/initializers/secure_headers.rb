@@ -13,7 +13,8 @@
                      '*.gstatic.com', 
                      'localhost:3000', 
                      'd1pm9e0xzdmxcb.cloudfront.net', 
-                     'd4uktpxr9m70.cloudfront.net', 
+                     'd4uktpxr9m70.cloudfront.net',
+                     '*.disqus.com', 
                      'inline'],
     :style_src   => ['*.googleapis.com', 
                      '*.olark.com', 
@@ -27,7 +28,8 @@
                      'localhost:3000',
                      'hospitium.co'],
     :frame_src   => ['*.olark.com', 
-                     '*.youtube.com'],
+                     '*.youtube.com',
+                     '*.disqus.com'],
     :media_src   => ['*.olark.com']
   }
 end

@@ -44,6 +44,7 @@ gem 'paleta'
 gem 'bitly'
 gem 'octokit'
 
+# security
 gem 'secure_headers'
 
 # Gems used only for assets and not required

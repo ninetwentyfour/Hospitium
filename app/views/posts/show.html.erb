@@ -6,20 +6,6 @@
 	</div>
 	<div>
 		<p><%= markdown(@post.content) %></p>
-		<p><!-- AddToAny BEGIN -->
-		<div class="a2a_kit a2a_default_style">
-		<a class="a2a_dd" href="http://www.addtoany.com/share_save">Share</a>
-		<span class="a2a_divider"></span>
-		<a class="a2a_button_twitter"></a>
-		<a class="a2a_button_facebook"></a>
-		<a class="a2a_button_email"></a>
-		</div>
-		<script type="text/javascript">
-		var a2a_config = a2a_config || {};
-		a2a_config.linkname = "<%= @post.title %> | Hospitium";
-		</script>
-		<script type="text/javascript" src="https://static.addtoany.com/menu/page.js"></script>
-		<!-- AddToAny END --></p>
 	</div>
 	<p style="text-align:right;"><a class="btn btn-success btn-large js-pjax" href="/users/sign_up">Try It Now &raquo;</a></p>
 </div>
