@@ -7,8 +7,8 @@ describe ApplicationHelper do
   
   describe '#calculate_animal_age' do
     it 'should return an age string' do
-      @birthday = 10.days.ago
-      helper.calculate_animal_age(@birthday).should == "10 days"
+      @birthday = 1.days.ago
+      helper.calculate_animal_age(@birthday).should == "1 days"
     end
   end
 

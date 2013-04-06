@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_filter :check_domain
   before_filter :get_notice
   protect_from_forgery # Turn on request forgery protection. Bear in mind that only non-GET, HTML/JavaScript requests are checked.
+  ensure_security_headers
   
   
   #display notice on every admin page

@@ -1,20 +1,20 @@
 # Report model
 class Report < ActiveRecord::Base
   def self.new_chart(org, type)
-    @animals_count = Animal.count(:conditions => {:organization_id => org})     
-    @all_types = type.camelize.constantize.all(:conditions => {:organization_id => org})
-    @final_status_array = Array.new
+    animals_count = Animal.count(:conditions => {:organization_id => org})     
+    all_types = type.camelize.constantize.all(:conditions => {:organization_id => org})
+    final_status_array = Array.new
 
     color = Paleta::Color.new(:hex, "d63a4c")
-    palette = Paleta::Palette.generate(:type => :analogous, :from => :color, :color => color, :size => @all_types.count)
+    palette = Paleta::Palette.generate(:type => :analogous, :from => :color, :color => color, :size => all_types.count)
     colors = palette.to_array(color_model = :hex)
     colors.shuffle!
-    @all_types.each_with_index do |object, index|
-      @count = Animal.count(:conditions => {:organization_id => org, "#{type}_id".to_sym => object.id})
-      percent = ((@count.to_f / @animals_count.to_f) * 100)
-      @final_status_array << {:value => @count, :color => "##{colors[index]}", :label => "#{object.report_display_name}", :percent => percent}
+    all_types.each_with_index do |object, index|
+      count = Animal.count(:conditions => {:organization_id => org, "#{type}_id".to_sym => object.id})
+      percent = ((count.to_f / animals_count.to_f) * 100)
+      final_status_array << {:value => count, :color => "##{colors[index]}", :label => "#{object.report_display_name}", :percent => percent}
     end
-    @final_status_array
+    final_status_array
   end
 
   def self.item_per_day(org, item, days_past)

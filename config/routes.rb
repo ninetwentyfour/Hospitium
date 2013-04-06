@@ -105,4 +105,6 @@ AnimalTracker::Application.routes.draw do
     match "animals/:id/duplicate" => "animals#duplicate", :via => :get
     match "statuses.:id" => "statuses#destroy", :via => :delete
   end
+
+  post SecureHeaders::ContentSecurityPolicy::FF_CSP_ENDPOINT => "content_security_policy#scribe"
 end
