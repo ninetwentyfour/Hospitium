@@ -6,8 +6,8 @@ class Admin::AnimalWeightsController < Admin::ApplicationController
   # GET /animal_weights
   # GET /animal_weights.xml
   def index
-    @search = AnimalWeight.includes(:animal).organization(current_user).search(params[:search])
-    @animal_weights = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
+    @search = AnimalWeight.includes(:animal).organization(current_user).search(params[:q])
+    @animal_weights = @search.result.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
     @animals = Animal.organization(current_user).order("name")
     respond_with(@animal_weights) do |format|
       format.html

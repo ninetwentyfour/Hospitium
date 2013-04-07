@@ -51,9 +51,9 @@
 		<h3>Advanced Search</h3>
 	</div>
 	<div class="modal-body">
-		<%= form_for @search, :url => admin_users_path, :html => { :class => "form-vertical"} do |f| %>
-		<%= f.label :username_contains %>
-		<%= f.text_field :username_contains %>
+		<%= search_form_for @search, :url => admin_users_path, :html => { :class => "form-vertical"} do |f| %>
+		<%= f.label :username_cont %>
+		<%= f.text_field :username_cont %>
 
 
 	</div>

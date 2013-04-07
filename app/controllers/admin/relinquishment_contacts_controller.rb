@@ -6,8 +6,8 @@ class Admin::RelinquishmentContactsController < Admin::ApplicationController
   # GET /relinquishment_contacts
   # GET /relinquishment_contacts.xml
   def index
-    @search = RelinquishmentContact.organization(current_user).search(params[:search])
-    @relinquishment_contacts = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
+    @search = RelinquishmentContact.organization(current_user).search(params[:q])
+    @relinquishment_contacts = @search.result.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
     @presenter = Admin::RelinquishmentContacts::IndexPresenter.new(current_user)
     respond_with(@relinquishment_contacts) do |format|
       format.html # index.html.erb

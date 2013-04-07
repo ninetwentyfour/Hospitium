@@ -50,7 +50,7 @@
 		<h3>Advanced Search</h3>
 	</div>
 	<div class="modal-body">
-		<%= form_for @search, :url => admin_animal_weights_path, :html => { :class => "form-vertical"} do |f| %>
+		<%= search_form_for @search, :url => admin_animal_weights_path, :html => { :class => "form-vertical"} do |f| %>
 				<div class="accordion" id="accordion2">
 					<div class="accordion-group">
 						<div class="accordion-heading">
@@ -60,8 +60,8 @@
 						</div>
 						<div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">
 							<div class="accordion-inner">
-								<%= f.label :animal_id_equals %>
-								<%= f.collection_select :animal_id_equals, @animals, :id, :name, :include_blank => true %>
+								<%= f.label :animal_id_eq %>
+								<%= f.collection_select :animal_id_eq, @animals, :id, :name, :include_blank => true %>
 							</div>
 						</div>
 					</div>

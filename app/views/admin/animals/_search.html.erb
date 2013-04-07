@@ -4,7 +4,7 @@
 		<h3>Advanced Search</h3>
 	</div>
 	<div class="modal-body">
-		<%= form_for search, :url => admin_animals_path, :html => { :class => "form-vertical"} do |f| %>
+		<%= search_form_for search, :url => admin_animals_path, :html => { :class => "form-vertical"} do |f| %>
 				<div class="accordion" id="accordion4">
 					<div class="accordion-group">
 						<div class="accordion-heading">
@@ -14,18 +14,18 @@
 						</div>
 						<div id="collapseFour" class="accordion-body collapse" style="height: 0px; ">
 							<div class="accordion-inner">
-								<%= f.label :id_equals %>
-								<%= f.text_field :id_equals %>
+								<%= f.label :id_eq %>
+								<%= f.text_field :id_eq %>
 								
-								<%= f.label :uuid_contains %>
-								<%= f.text_field :uuid_contains %>
-								<%= f.label :uuid_equals %>
-								<%= f.text_field :uuid_equals %>
+								<%= f.label :uuid_cont %>
+								<%= f.text_field :uuid_cont %>
+								<%= f.label :uuid_eq %>
+								<%= f.text_field :uuid_eq %>
 								
-								<%= f.label :microchip_contains %>
-								<%= f.text_field :microchip_contains %>
-								<%= f.label :microchip_equals %>
-								<%= f.text_field :microchip_equals %>
+								<%= f.label :microchip_cont %>
+								<%= f.text_field :microchip_cont %>
+								<%= f.label :microchip_eq %>
+								<%= f.text_field :microchip_eq %>
 							</div>
 						</div>
 					</div>
@@ -37,15 +37,15 @@
 						</div>
 						<div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">
 							<div class="accordion-inner">
-								<%= f.label :name_contains %>
-								<%= f.text_field :name_contains %>
-								<%= f.label :name_equals %>
-								<%= f.text_field :name_equals %>
+								<%= f.label :name_cont %>
+								<%= f.text_field :name_cont %>
+								<%= f.label :name_eq %>
+								<%= f.text_field :name_eq %>
 
-								<%= f.label :previous_name_contains %>
-								<%= f.text_field :previous_name_contains %>
-								<%= f.label :previous_name_equals %>
-								<%= f.text_field :previous_name_equals %>
+								<%= f.label :previous_name_cont %>
+								<%= f.text_field :previous_name_cont %>
+								<%= f.label :previous_name_eq %>
+								<%= f.text_field :previous_name_eq %>
 							</div>
 						</div>
 					</div>
@@ -57,23 +57,23 @@
 						</div>
 						<div id="collapseTwo" class="accordion-body collapse" style="height: 0px; ">
 							<div class="accordion-inner">
-								<%= f.label :status_id_equals %>
-								<%= f.collection_select :status_id_equals, presenter.status, :id, :status, :include_blank => true %>
+								<%= f.label :status_id_eq %>
+								<%= f.collection_select :status_id_eq, presenter.status, :id, :status, :include_blank => true %>
 
-								<%= f.label :animal_sex_id_equals %>
-								<%= f.collection_select :animal_sex_id_equals, presenter.sex, :id, :sex, :include_blank => true %>
+								<%= f.label :animal_sex_id_eq %>
+								<%= f.collection_select :animal_sex_id_eq, presenter.sex, :id, :sex, :include_blank => true %>
 
-								<%= f.label :animal_color_id_equals %>
-								<%= f.collection_select :animal_color_id_equals, presenter.color, :id, :color, :include_blank => true %>
+								<%= f.label :animal_color_id_eq %>
+								<%= f.collection_select :animal_color_id_eq, presenter.color, :id, :color, :include_blank => true %>
 
-								<%= f.label :species_id_equals %>
-								<%= f.collection_select :species_id_equals, presenter.species, :id, :name, :include_blank => true %>
+								<%= f.label :species_id_eq %>
+								<%= f.collection_select :species_id_eq, presenter.species, :id, :name, :include_blank => true %>
 
-								<%= f.label :spay_neuter_id_equals %>
-								<%= f.collection_select :spay_neuter_id_equals, presenter.spay, :id, :spay, :include_blank => true %>
+								<%= f.label :spay_neuter_id_eq %>
+								<%= f.collection_select :spay_neuter_id_eq, presenter.spay, :id, :spay, :include_blank => true %>
 
-								<%= f.label :shelter_id_equals %>
-								<%= f.collection_select :shelter_id_equals, presenter.shelter, :id, :name, :include_blank => true %>
+								<%= f.label :shelter_id_eq %>
+								<%= f.collection_select :shelter_id_eq, presenter.shelter, :id, :name, :include_blank => true %>
 							</div>
 						</div>
 					</div>
@@ -85,25 +85,25 @@
 						</div>
 						<div id="collapseThree" class="accordion-body collapse" style="height: 0px; ">
 							<div class="accordion-inner">
-								<%= f.label :birthday_gte, "Birthday From" %>
-								<%= f.text_field :birthday_gte, :size => 8 %>
-								<%= f.label :birthday_lte, "To" %>
-								<%= f.text_field :birthday_lte, :size => 8 %>
+								<%= f.label :birthday_gteq, "Birthday From" %>
+								<%= f.text_field :birthday_gteq, :size => 8 %>
+								<%= f.label :birthday_lteq, "To" %>
+								<%= f.text_field :birthday_lteq, :size => 8 %>
 								<hr />
-								<%= f.label :deceased_gte, "Deceased From" %>
-								<%= f.text_field :deceased_gte, :size => 8 %>
-								<%= f.label :deceased_lte, "To" %>
-								<%= f.text_field :deceased_lte, :size => 8 %>
+								<%= f.label :deceased_gteq, "Deceased From" %>
+								<%= f.text_field :deceased_gteq, :size => 8 %>
+								<%= f.label :deceased_lteq, "To" %>
+								<%= f.text_field :deceased_lteq, :size => 8 %>
 								<hr />
-								<%= f.label :date_of_well_check_gte, "Date of Well Check From" %>
-								<%= f.text_field :date_of_well_check_gte, :size => 8 %>
-								<%= f.label :date_of_well_check_lte, "To" %>
-								<%= f.text_field :date_of_well_check_lte, :size => 8 %>
+								<%= f.label :date_of_well_check_gteq, "Date of Well Check From" %>
+								<%= f.text_field :date_of_well_check_gteq, :size => 8 %>
+								<%= f.label :date_of_well_check_lteq, "To" %>
+								<%= f.text_field :date_of_well_check_lteq, :size => 8 %>
 								<hr />
-								<%= f.label :date_of_intake_gte, "Date of Intake From" %>
-								<%= f.text_field :date_of_intake_gte, :size => 8 %>
-								<%= f.label :date_of_intake_lte, "To" %>
-								<%= f.text_field :date_of_intake_lte, :size => 8 %>
+								<%= f.label :date_of_intake_gteq, "Date of Intake From" %>
+								<%= f.text_field :date_of_intake_gteq, :size => 8 %>
+								<%= f.label :date_of_intake_lteq, "To" %>
+								<%= f.text_field :date_of_intake_lteq, :size => 8 %>
 							</div>
 						</div>
 					</div>

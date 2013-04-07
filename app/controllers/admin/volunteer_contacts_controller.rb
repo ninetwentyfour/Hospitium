@@ -6,8 +6,8 @@ class Admin::VolunteerContactsController < Admin::ApplicationController
   # GET /volunteer_contacts
   # GET /volunteer_contacts.xml
   def index
-    @search = VolunteerContact.organization(current_user).search(params[:search])
-    @volunteer_contacts = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
+    @search = VolunteerContact.organization(current_user).search(params[:q])
+    @volunteer_contacts = @search.result.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
 
     respond_with(@volunteer_contacts) do |format|
       format.html # index.html.erb

@@ -59,16 +59,16 @@
 		<h3>Advanced Search</h3>
 	</div>
 	<div class="modal-body">
-		<%= form_for @search, :url => admin_vet_contacts_path, :html => { :class => "form-vertical"} do |f| %>
-			<%= f.label :clinic_name_contains %>
-			<%= f.text_field :clinic_name_contains %>
+		<%= search_form_for @search, :url => admin_vet_contacts_path, :html => { :class => "form-vertical"} do |f| %>
+			<%= f.label :clinic_name_cont %>
+			<%= f.text_field :clinic_name_cont %>
 
-			<%= f.label :address_contains %>
-			<%= f.text_field :address_contains %>
-			<%= f.label :phone_contains %>
-			<%= f.text_field :phone_contains %>
-			<%= f.label :emergency_contains %>
-			<%= f.text_field :emergency_contains %>
+			<%= f.label :address_cont %>
+			<%= f.text_field :address_cont %>
+			<%= f.label :phone_cont %>
+			<%= f.text_field :phone_cont %>
+			<%= f.label :emergency_cont %>
+			<%= f.text_field :emergency_cont %>
 
 	</div>
 	<div class="modal-footer">

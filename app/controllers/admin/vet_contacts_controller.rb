@@ -6,8 +6,8 @@ class Admin::VetContactsController < Admin::ApplicationController
   # GET /vet_contacts
   # GET /vet_contacts.xml
   def index
-    @search = VetContact.organization(current_user).search(params[:search])
-    @vet_contacts = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
+    @search = VetContact.organization(current_user).search(params[:q])
+    @vet_contacts = @search.result.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
 
     respond_with(@vet_contacts) do |format|
       format.html # index.html.erb

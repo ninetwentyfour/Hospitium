@@ -6,8 +6,8 @@ class Admin::UsersController < Admin::ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    @search = User.organization(current_user).search(params[:search])
-    @users = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
+    @search = User.organization(current_user).search(params[:q])
+    @users = @search.result.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
     
     respond_with(@users)
   end

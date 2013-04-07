@@ -13,7 +13,7 @@ gem 'cancan'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'will_paginate'
 gem 'site_meta'
-gem 'meta_search'
+gem 'ransack'
 gem 'juggernaut'
 gem 'client_side_validations'
 # gem 'jqplot-rails', :git => "git://github.com/ninetwentyfour/jqplot-rails.git"

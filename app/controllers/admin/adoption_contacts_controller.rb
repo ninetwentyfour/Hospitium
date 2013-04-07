@@ -6,8 +6,8 @@ class Admin::AdoptionContactsController < Admin::ApplicationController
   # GET /adoption_contacts
   # GET /adoption_contacts.xml
   def index
-    @search = AdoptionContact.organization(current_user).search(params[:search])
-    @adoption_contacts = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
+    @search = AdoptionContact.organization(current_user).search(params[:q])
+    @adoption_contacts = @search.result.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
     @presenter = Admin::AdoptionContacts::IndexPresenter.new(current_user)
     respond_with(@adoption_contacts) do |format|
       format.html

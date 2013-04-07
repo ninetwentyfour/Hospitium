@@ -62,18 +62,18 @@
 		<h3>Advanced Search</h3>
 	</div>
 	<div class="modal-body">
-		<%= form_for @search, :url => admin_volunteer_contacts_path, :html => { :class => "form-vertical"} do |f| %>
-			<%= f.label :first_name_contains %>
-			<%= f.text_field :first_name_contains %>
-			<%= f.label :last_name_contains %>
-			<%= f.text_field :last_name_contains %>
+		<%= search_form_for @search, :url => admin_volunteer_contacts_path, :html => { :class => "form-vertical"} do |f| %>
+			<%= f.label :first_name_cont %>
+			<%= f.text_field :first_name_cont %>
+			<%= f.label :last_name_cont %>
+			<%= f.text_field :last_name_cont %>
 
-			<%= f.label :address_contains %>
-			<%= f.text_field :address_contains %>
-			<%= f.label :phone_contains %>
-			<%= f.text_field :phone_contains %>
-			<%= f.label :email_contains %>
-			<%= f.text_field :email_contains %>
+			<%= f.label :address_cont %>
+			<%= f.text_field :address_cont %>
+			<%= f.label :phone_cont %>
+			<%= f.text_field :phone_cont %>
+			<%= f.label :email_cont %>
+			<%= f.text_field :email_cont %>
 
 	</div>
 	<div class="modal-footer">

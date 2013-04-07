@@ -61,21 +61,21 @@
 		<h3>Advanced Search</h3>
 	</div>
 	<div class="modal-body">
-		<%= form_for @search, :url => admin_relinquishment_contacts_path, :html => { :class => "form-vertical"} do |f| %>
-			<%= f.label :first_name_contains %>
-			<%= f.text_field :first_name_contains %>
-			<%= f.label :last_name_contains %>
-			<%= f.text_field :last_name_contains %>
+		<%= search_form_for @search, :url => admin_relinquishment_contacts_path, :html => { :class => "form-vertical"} do |f| %>
+			<%= f.label :first_name_cont %>
+			<%= f.text_field :first_name_cont %>
+			<%= f.label :last_name_cont %>
+			<%= f.text_field :last_name_cont %>
 
-			<%= f.label :address_contains %>
-			<%= f.text_field :address_contains %>
-			<%= f.label :phone_contains %>
-			<%= f.text_field :phone_contains %>
-			<%= f.label :email_contains %>
-			<%= f.text_field :email_contains %>
+			<%= f.label :address_cont %>
+			<%= f.text_field :address_cont %>
+			<%= f.label :phone_cont %>
+			<%= f.text_field :phone_cont %>
+			<%= f.label :email_cont %>
+			<%= f.text_field :email_cont %>
 
-			<%= f.label :animals_id_equals, "Animal" %>
-			<%= f.collection_select :animals_id_equals, @presenter.animal, :id, :name, :include_blank => true %>
+			<%= f.label :animals_id_eq, "Animal" %>
+			<%= f.collection_select :animals_id_eq, @presenter.animal, :id, :name, :include_blank => true %>
 	</div>
 	<div class="modal-footer">
 		<%= f.submit "Submit", :class => "btn btn-primary" %>

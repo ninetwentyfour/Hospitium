@@ -6,8 +6,8 @@ class Admin::SpeciesController < Admin::ApplicationController
   # GET /species
   # GET /species.xml
   def index
-    @search = Species.includes(:animals).organization(current_user).search(params[:search])
-    @species = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
+    @search = Species.includes(:animals).organization(current_user).search(params[:q])
+    @species = @search.result.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
     
     respond_with(@species)
   end
