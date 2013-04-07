@@ -85,7 +85,7 @@ end
 group :test, :development do
   gem "rspec-rails"
   gem "rspec"
-  gem "brakeman"
+  # gem "brakeman"
 end
 # Gems used only for testing
 group :test do
