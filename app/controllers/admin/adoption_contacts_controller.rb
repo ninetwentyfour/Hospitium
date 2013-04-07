@@ -8,6 +8,7 @@ class Admin::AdoptionContactsController < Admin::ApplicationController
   def index
     @search = AdoptionContact.organization(current_user).search(params[:search])
     @adoption_contacts = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
+    @presenter = Admin::AdoptionContacts::IndexPresenter.new(current_user)
     respond_with(@adoption_contacts) do |format|
       format.html
       format.xls { send_data AdoptionContact.organization(current_user).to_xls,  content_type: 'application/vnd.ms-excel', filename: 'adoption_contacts.xls' }

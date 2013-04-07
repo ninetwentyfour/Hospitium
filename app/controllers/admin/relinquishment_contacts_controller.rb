@@ -8,7 +8,7 @@ class Admin::RelinquishmentContactsController < Admin::ApplicationController
   def index
     @search = RelinquishmentContact.organization(current_user).search(params[:search])
     @relinquishment_contacts = @search.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
-
+    @presenter = Admin::RelinquishmentContacts::IndexPresenter.new(current_user)
     respond_with(@relinquishment_contacts) do |format|
       format.html # index.html.erb
       format.xls { send_data RelinquishmentContact.organization(current_user).to_xls, content_type: 'application/vnd.ms-excel', filename: 'relinquishment_contacts.xls' }

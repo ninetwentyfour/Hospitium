@@ -75,6 +75,8 @@
 			<%= f.label :email_contains %>
 			<%= f.text_field :email_contains %>
 
+			<%= f.label :animals_id_equals, "Animal" %>
+			<%= f.collection_select :animals_id_equals, @presenter.animal, :id, :name, :include_blank => true %>
 	</div>
 	<div class="modal-footer">
 		<%= f.submit "Submit", :class => "btn btn-primary" %>
