@@ -5,7 +5,7 @@
   config.x_xss_protection = {:value => 1, :mode => false}
   config.csp = {
     :default_src => "self",
-    :report_uri  => '//localhost:3000/content_security_policy/forward_report',
+    :report_uri  => '//hospitium.co/content_security_policy/forward_report',
     :img_src     => "*",
     :script_src  => ['*.googleapis.com', 
                      '*.olark.com', 
