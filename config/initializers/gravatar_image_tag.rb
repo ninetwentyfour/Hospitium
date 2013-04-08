@@ -1,4 +1,4 @@
-if Rails.env == "test"
+if Rails.env.test?
 
 else
   # config/initializers/gravatar_image_tag.rb

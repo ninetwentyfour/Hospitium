@@ -7,31 +7,23 @@ gem 'rails', '3.2.13'
 gem 'mysql2'
 gem 'dalli'
 gem 'aws-sdk'
-gem 'devise' # Devise must be required before RailsAdmin
+gem 'devise'
 gem 'uuidtools'
 gem 'cancan'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'will_paginate'
-gem 'site_meta'
+# gem 'site_meta'
 gem 'ransack'
 gem 'juggernaut'
-gem 'client_side_validations'
-# gem 'jqplot-rails', :git => "git://github.com/ninetwentyfour/jqplot-rails.git"
 gem 'gravatar_image_tag'
-gem 'best_in_place'
 gem "spreadsheet"
 gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls-on-models"
 gem 'redcarpet'
-gem 'jquery-rails', '2.0.1'
-gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git"
-gem 'less-rails-bootstrap', '2.2.0'
-gem 'therubyracer'
 gem 'encryptor'
 gem 'json_builder'
 
 gem "statsd-ruby", :require => "statsd"
 gem 'impressionist'
-gem 'unicorn'
 
 # generate color schemes
 gem 'paleta'
@@ -42,20 +34,19 @@ gem 'paleta'
 # gem 'taps'
 
 gem 'bitly'
-gem 'octokit'
 
 # security
 gem 'secure_headers'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-  gem 'yui-compressor'
-  gem 'closure-compiler'
-end
+# # Gems used only for assets and not required
+# # in production environments by default.
+# group :assets do
+#   gem 'sass-rails'
+#   gem 'coffee-rails'
+#   gem 'uglifier'
+#   gem 'yui-compressor'
+#   gem 'closure-compiler'
+# end
 
 # Gems used only for production
 group :production do
@@ -75,11 +66,27 @@ group :production, :development do
 	gem 'rest-client'
 	gem 'json'
 	gem 'libxml-xmlrpc'
-	# gem 'bitly'
 	gem 'rqrcode-rails3'
 	gem 'asset_sync'
 	gem 'sanitize'
-	# gem 'octokit'
+	gem 'octokit'
+
+	gem 'unicorn'
+	gem 'client_side_validations'
+	gem 'best_in_place'
+	gem 'therubyracer'
+	gem 'jquery-rails', '2.0.1'
+	gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git"
+	gem 'less-rails-bootstrap', '2.2.0'
+	gem 'site_meta'
+
+	# Gems used only for assets and not required
+	# in production environments by default.
+	gem 'sass-rails'
+	gem 'coffee-rails'
+	gem 'uglifier'
+	gem 'yui-compressor'
+	gem 'closure-compiler'
 end
 
 group :test, :development do
@@ -87,6 +94,7 @@ group :test, :development do
   gem "rspec"
   # gem "brakeman"
 end
+
 # Gems used only for testing
 group :test do
 	gem "factory_girl_rails"
