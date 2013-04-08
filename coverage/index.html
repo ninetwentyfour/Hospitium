@@ -14,18 +14,18 @@
       <img src="./assets/0.7.1/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2013-04-07T18:43:58-06:00">2013-04-07T18:43:58-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2013-04-07T19:26:35-06:00">2013-04-07T19:26:35-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="yellow">83.05%</span></span>
+    (<span class="covered_percent"><span class="yellow">82.99%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         17.04
+         17.03
        </span>
     </span> hits/line)
   </h2>
@@ -33,8 +33,8 @@
   <div>
     <b>86</b> files in total.
     <b>1799</b> relevant lines. 
-    <span class="green"><b>1494</b> lines covered</span> and
-    <span class="red"><b>305</b> lines missed </span>
+    <span class="green"><b>1493</b> lines covered</span> and
+    <span class="red"><b>306</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -302,11 +302,11 @@
       
       <tr>
         <td class="strong"><a href="#2f08e63f8773cace9e2279643b79e186037c03e6" class="src_link" title="app/controllers/posts_controller.rb">app/controllers/posts_controller.rb</a></td>
-        <td class="yellow strong">88.89 %</td>
+        <td class="yellow strong">83.33 %</td>
         <td>37</td>
         <td>18</td>
-        <td>16</td>
-        <td>2</td>
+        <td>15</td>
+        <td>3</td>
         <td>1.3</td>
       </tr>
       
@@ -567,7 +567,7 @@
         <td>7</td>
         <td>7</td>
         <td>0</td>
-        <td>1.3</td>
+        <td>1.0</td>
       </tr>
       
       <tr>
@@ -919,7 +919,7 @@
           <div class="file_list_container" id="Controllers">
   <h2>
     <span class="group_name">Controllers</span>
-    (<span class="covered_percent"><span class="yellow">81.6%</span></span>
+    (<span class="covered_percent"><span class="yellow">81.47%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
@@ -931,8 +931,8 @@
   <div>
     <b>30</b> files in total.
     <b>750</b> relevant lines. 
-    <span class="green"><b>612</b> lines covered</span> and
-    <span class="red"><b>138</b> lines missed </span>
+    <span class="green"><b>611</b> lines covered</span> and
+    <span class="red"><b>139</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -1200,11 +1200,11 @@
       
       <tr>
         <td class="strong"><a href="#2f08e63f8773cace9e2279643b79e186037c03e6" class="src_link" title="app/controllers/posts_controller.rb">app/controllers/posts_controller.rb</a></td>
-        <td class="yellow strong">88.89 %</td>
+        <td class="yellow strong">83.33 %</td>
         <td>37</td>
         <td>18</td>
-        <td>16</td>
-        <td>2</td>
+        <td>15</td>
+        <td>3</td>
         <td>1.3</td>
       </tr>
       
@@ -1492,7 +1492,7 @@
         <td>7</td>
         <td>7</td>
         <td>0</td>
-        <td>1.3</td>
+        <td>1.0</td>
       </tr>
       
       <tr>
@@ -10796,11 +10796,11 @@
         <div class="source_table" id="2f08e63f8773cace9e2279643b79e186037c03e6">
   <div class="header">
     <h3>app/controllers/posts_controller.rb</h3>
-    <h4><span class="yellow">88.89 %</span> covered</h4>
+    <h4><span class="yellow">83.33 %</span> covered</h4>
     <div>
       <b>18</b> relevant lines. 
-      <span class="green"><b>16</b> lines covered</span> and
-      <span class="red"><b>2</b> lines missed.</span>
+      <span class="green"><b>15</b> lines covered</span> and
+      <span class="red"><b>3</b> lines missed.</span>
     </div>
   </div>
   
@@ -10951,8 +10951,8 @@
           <code class="ruby">    @post = Rails.cache.fetch(&quot;public_post_#{params[:id]}&quot;, :expires_in =&gt; 60.minutes) do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="25">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="25">
+          
           
           <code class="ruby">      Post.find(params[:id])</code>
         </li>
@@ -17437,14 +17437,14 @@
           <code class="ruby">  def send_public_tweet</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="9">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
           
           <code class="ruby">    message = &quot;#{self.status_type}! #{self.message.slice(0, 100)}&quot;</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="10">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="10">
+          <span class="hits">1</span>
           
           <code class="ruby">    TwitterAccount.twitter_post(message, 1)</code>
         </li>

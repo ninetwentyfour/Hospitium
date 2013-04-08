@@ -12,7 +12,6 @@ gem 'uuidtools'
 gem 'cancan'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'will_paginate'
-# gem 'site_meta'
 gem 'ransack'
 gem 'juggernaut'
 gem 'gravatar_image_tag'
@@ -21,32 +20,18 @@ gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls
 gem 'redcarpet'
 gem 'encryptor'
 gem 'json_builder'
-
 gem "statsd-ruby", :require => "statsd"
 gem 'impressionist'
-
+gem 'bitly'
 # generate color schemes
 gem 'paleta'
+# security
+gem 'secure_headers'
 
 # heroku gems for pulling/pushing db
 # gem 'heroku'
 # gem 'sqlite3'
 # gem 'taps'
-
-gem 'bitly'
-
-# security
-gem 'secure_headers'
-
-# # Gems used only for assets and not required
-# # in production environments by default.
-# group :assets do
-#   gem 'sass-rails'
-#   gem 'coffee-rails'
-#   gem 'uglifier'
-#   gem 'yui-compressor'
-#   gem 'closure-compiler'
-# end
 
 # Gems used only for production
 group :production do
@@ -70,7 +55,6 @@ group :production, :development do
 	gem 'asset_sync'
 	gem 'sanitize'
 	gem 'octokit'
-
 	gem 'unicorn'
 	gem 'client_side_validations'
 	gem 'best_in_place'
