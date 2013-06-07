@@ -70,10 +70,10 @@ class Ability
     can :update, Status, organization: { id: @user.organization_id }
     can :export, Status, organization: { id: @user.organization_id }
 
-    can :read, Shot, animal: { organization: { id: @user.organization_id } }
-    can :create, Shot, animal: { organization: { id: @user.organization_id } }
-    can :update, Shot, animal: { organization: { id: @user.organization_id } }
-    can :destroy, Shot, animal: { organization: { id: @user.organization_id } }
+    can :read, Shot, organization: { id: @user.organization_id }
+    can :create, Shot
+    can :update, Shot, organization: { id: @user.organization_id }
+    can :destroy, Shot, organization: { id: @user.organization_id }
     
     can :read, AnimalSex
     can :read, SpayNeuter

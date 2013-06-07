@@ -1,0 +1,39 @@
+<div class="row-fluid">
+  <div class="span12 main-app-row">
+    <div class="well">
+      <div class="row-fluid">
+        <div class="span6">
+          <h1><%= best_in_place @shot, :name, :type => :input, :nil => "Click me to add content!", :path => admin_shot_path %></h1>
+        </div>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="tabbable span4 ">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#1" data-toggle="tab">Details</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="1">
+            <div class="">
+              <%unless @shot.animal.blank?%>
+                <%@animal_name = @shot.animal.name %>
+              <%else%>
+                <%@animal_name = "Click me to add content!" %>
+              <%end%>
+              <p><strong>Last Administered:</strong> <%= best_in_place @shot, :last_administered, :type => :date, :display_as => :formatted_last_administered_date, :path => admin_shot_path %></p>
+              <p><strong>Expires:</strong> <%= best_in_place @shot, :expires, :type => :date, :display_as => :formatted_expires_date, :path => admin_shot_path %></p>
+              <p><strong>Animal:</strong> <%= best_in_place @shot, :animal_id, :type => :select, collection: @animals, :nil => @animal_name, :path => admin_shot_path %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :javascript_footer do %>
+  <script type="text/javascript">
+    // Trigger juggernaut
+    juggernaut_listen('<%= @shot.id %>', 'shot');
+  </script>
+<%end%>

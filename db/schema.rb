@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130603223540) do
+ActiveRecord::Schema.define(:version => 20130606225706) do
 
   create_table "adopt_a_pet_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -382,10 +382,12 @@ ActiveRecord::Schema.define(:version => 20130603223540) do
     t.datetime "expires"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.integer  "organization_id"
   end
 
   add_index "shots", ["animal_id"], :name => "index_shots_on_animal_id"
   add_index "shots", ["expires"], :name => "index_shots_on_expires"
+  add_index "shots", ["organization_id"], :name => "index_shots_on_organization_id"
   add_index "shots", ["uuid"], :name => "index_shots_on_uuid"
 
   create_table "spay_neuters", :force => true do |t|

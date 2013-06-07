@@ -8,10 +8,11 @@ class Admin::ShotsController < Admin::ApplicationController
   def index
     @search = Shot.organization(current_user).search(params[:q])
     @shots = @search.result.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
+    @animals = Animal.organization(current_user).order("name")
     # @presenter = Admin::Shots::IndexPresenter.new(current_user)
     respond_with(@shots) do |format|
       format.html
-      # format.xls { send_data Shot.organization(current_user).to_xls,  content_type: 'application/vnd.ms-excel', filename: 'shots.xls' }
+      format.xls { send_data Shot.organization(current_user).to_xls,  content_type: 'application/vnd.ms-excel', filename: 'shots.xls' }
     end
   end
 
@@ -19,7 +20,8 @@ class Admin::ShotsController < Admin::ApplicationController
   # GET /shots/1.xml
   def show
     @shot = Shot.find(params[:id])
-    
+    @animals = Animal.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.name.to_s]}
+
     respond_with(@shot)
   end
 
@@ -29,11 +31,6 @@ class Admin::ShotsController < Admin::ApplicationController
     @shot = Shot.new
     
     respond_with(@shot)
-  end
-
-  # GET /shots/1/edit
-  def edit
-    @shot = Shot.find(params[:id])
   end
 
   # POST /shots

@@ -1,0 +1,43 @@
+<div class="row-fluid">
+  <div class="span12">
+    <%= form_for shot, :url => admin_shots_path, :validate => true do |f| %>
+      <% if shot.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(shot.errors.count, "error") %> prohibited this shot from being saved:</h2>
+
+          <ul>
+          <% shot.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+
+        <%= f.label :animal %>
+        <%= collection_select(:shot, :animal_id, current_user.organization.animals, :id, :name) %>
+
+        <%= f.label :last_administered %>
+        <%= f.text_field :last_administered %>
+
+        <%= f.label :expires %>
+        <%= f.text_field :expires %>
+
+<hr />
+        <%= f.submit "Add Shot", :class => "btn btn-primary submit-button" %>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :javascript_footer do %>
+  <script>
+    $( "#shot_last_administered" ).datepicker();
+    $( "#shot_expires" ).datepicker();
+    $.datepicker.setDefaults({
+      dateFormat: 'D, dd M yy' 
+    });
+  </script>
+<%end%>
