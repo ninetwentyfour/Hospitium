@@ -18,7 +18,7 @@ class Admin::AnimalsController < Admin::ApplicationController
       format.html
       format.xls { send_data Animal.organization(current_user).to_xls, 
                              content_type: 'application/vnd.ms-excel', 
-                             filename: 'adoption_contacts.xls' 
+                             filename: 'animals.xls' 
                  }
     end
   end
