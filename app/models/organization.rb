@@ -8,6 +8,7 @@ class Organization < ActiveRecord::Base
     has_many :facebook_accounts
     has_many :relinquishment_contacts
     has_many :shelters
+    has_many :shots
     has_many :species
     has_many :statuses
     has_many :twitter_accounts
@@ -121,6 +122,9 @@ class Organization < ActiveRecord::Base
       "#{address} #{city} #{state} #{zip_code}"
     end
     
+    def owner
+      User.where(:organization_id => self.id, :owner => 1).first
+    end
     
     
 end

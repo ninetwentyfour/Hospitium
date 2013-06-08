@@ -18,8 +18,8 @@
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#1" data-toggle="tab">Overview</a></li>
 					<li><a href="#2" data-toggle="tab">Details</a></li>
-					<li><a href="#3" data-toggle="tab">History</a></li>
 					<li><a href="#4" data-toggle="tab">Weight</a></li>
+					<li><a href="#7" data-toggle="tab">Shots</a></li>
 					<li><a href="#5" data-toggle="tab">Notes</a></li>
 					<li><a href="#6" data-toggle="tab">Documents</a></li>
 				</ul>
@@ -46,14 +46,12 @@
 						<%end%>
 						<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newShelter" >Shelter</a>:</strong> <%= best_in_place @animal, :shelter_id, :type => :select, collection: @presenter.shelters, :nil => @sheltername, :path => admin_animal_path %></p>
 						<p><strong>Diet:</strong> <%= best_in_place @animal, :diet, :type => :textarea, :nil => "Click me to add content!", :path => admin_animal_path %></p>
-						<p><strong>Deceased:</strong> <%= best_in_place @animal, :deceased, :type => :date, :display_as => :formatted_deceased_date, :nil => "Click me to add content!", :path => admin_animal_path %></p>
-						<p><strong>Deceased Reason</strong>: <%= best_in_place @animal, :deceased_reason, :type => :textarea, :nil => "Click me to add content!", :path => admin_animal_path %></p>
-					</div>
-					<div class="tab-pane" id="3">
 						<p><strong>Previous Name:</strong> <%= best_in_place @animal, :previous_name, :type => :input, :nil => "Click me to add content!", :path => admin_animal_path %></p>
 						<p><strong>Date of Intake:</strong> <%= best_in_place @animal, :date_of_intake, :type => :date, :display_as => :formatted_intake_date, :path => admin_animal_path %></p>
 						<p><strong>Date of Well Check:</strong> <%= best_in_place @animal, :date_of_well_check, :nil => "Click me to add content!", :type => :date, :display_as => :formatted_well_date, :path => admin_animal_path %></p>
 						<p><strong>Adopted Date:</strong> <%= best_in_place @animal, :adopted_date, :nil => "Click me to add content!", :type => :date, :display_as => :formatted_adopted_date, :path => admin_animal_path %></p>
+						<p><strong>Deceased:</strong> <%= best_in_place @animal, :deceased, :type => :date, :display_as => :formatted_deceased_date, :nil => "Click me to add content!", :path => admin_animal_path %></p>
+						<p><strong>Deceased Reason</strong>: <%= best_in_place @animal, :deceased_reason, :type => :textarea, :nil => "Click me to add content!", :path => admin_animal_path %></p>
 					</div>
 					<div class="tab-pane" id="4">
 						<div class="">
@@ -107,6 +105,37 @@
 						</div>
 						<hr />
 						<a class="btn" data-toggle="modal" href="#doc_form" ><i class="icon-plus"></i> Add Doc</a>
+					</div>
+					<div class="tab-pane" id="7">
+						<div id="animal_docs_list">
+							<table class="table table-striped tablesorter">
+								<thead>
+									<th>Name</th>
+									<th>Last Administered</th>
+									<th>Expires</th>
+									<th>Manage</th>
+								</thead>
+								<tbody>
+									<%unless @presenter.shots.blank?%>
+											<%@presenter.shots.each do |shot| %>
+												<tr>
+													<td><%= link_to shot.name, admin_shot_path(shot) %></td>
+													<td><%= shot.last_administered.strftime("%b %e %Y") unless shot.last_administered.blank? %></td>
+													<td><%= shot.expires.strftime("%b %e %Y") unless shot.expires.blank? %></td>
+													<td>
+														<div class="btn-group pull-right">
+															<%= link_to raw("<i class='icon-remove'></i>"), admin_shot_path(shot),
+																            :data => {:confirm => 'Are you sure you want to delete?'}, :method => :delete, :class => "btn tooltip-class", :rel => "tooltip", :title => "Delete Shot" %>
+														</div>
+													</td>
+												</tr>
+											<%end%>
+									<%end%>
+								</tbody>
+							</table>
+						</div>
+						<hr />
+						<a class="btn" data-toggle="modal" href="#shot_form" ><i class="icon-plus"></i> Add Shot</a>
 					</div>
 				</div>
 				<br />

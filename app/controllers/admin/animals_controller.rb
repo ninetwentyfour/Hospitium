@@ -18,7 +18,7 @@ class Admin::AnimalsController < Admin::ApplicationController
       format.html
       format.xls { send_data Animal.organization(current_user).to_xls, 
                              content_type: 'application/vnd.ms-excel', 
-                             filename: 'adoption_contacts.xls' 
+                             filename: 'animals.xls' 
                  }
     end
   end
@@ -26,7 +26,7 @@ class Admin::AnimalsController < Admin::ApplicationController
   # GET /animals/1
   # GET /animals/1.xml
   def show
-    @animal = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :shelter).find(params[:id])
+    @animal = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :shelter, :shots).find(params[:id])
     if @animal.documents.blank?
       @animal.documents.build
     end

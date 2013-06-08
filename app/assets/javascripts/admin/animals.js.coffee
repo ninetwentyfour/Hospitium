@@ -55,6 +55,8 @@ animal_show = ->
   
   #create the date picker for adding an animal weight
   $("#animal_weight_date_of_weight").datepicker()
+  $("#shot_last_administered").datepicker()
+  $("#shot_expires").datepicker()
   $.datepicker.setDefaults dateFormat: "D, dd M yy"
 
   $("a[data-toggle=\"tab\"]").on "shown", (e) ->

@@ -22,6 +22,7 @@ class Animal < ActiveRecord::Base
   has_many :relinquish_animals
   has_many :relinquishment_contacts, :through => :relinquish_animals
   has_many :documents, :as => :documentable
+  has_many :shots
   
   
   before_create :create_uuid

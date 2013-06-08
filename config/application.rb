@@ -56,7 +56,7 @@ module AnimalTracker
     
     config.active_record.observers = :animal_observer, :adoption_contact_observer, :animal_color_observer, :animal_weight_observer, :organization_observer, 
       :relinquishment_contact_observer, :shelter_observer, :species_observer, :status_observer, :user_observer, :vet_contact_observer, :volunteer_contact_observer,
-      :note_observer, :adopt_animal_observer, :relinquish_animal_observer, :document_observer
+      :note_observer, :adopt_animal_observer, :relinquish_animal_observer, :document_observer, :shot_observer
       
     config.active_record.whitelist_attributes = true
     
