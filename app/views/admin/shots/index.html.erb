@@ -33,8 +33,8 @@
           <tr>
             <td><%= link_to shot.name, admin_shot_path(shot) %></td>
             <td><%= link_to shot.animal.name, admin_animal_path(shot.animal) %></td>
-            <td><%= shot.last_administered %></td>
-            <td><%= shot.expires %></td>
+            <td><%= shot.last_administered.strftime("%b %d %Y") unless shot.last_administered.blank? %></td>
+            <td><%= shot.expires.strftime("%b %d %Y") unless shot.expires.blank? %></td>
             <td class="actions_column">
               <div class="btn-group">
                 <a class="btn tooltip-class" href="/admin/shots/<%= shot.id %>" rel="tooltip" title="View Shot"><i class="icon-eye-open"></i></a>

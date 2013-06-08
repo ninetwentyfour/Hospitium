@@ -120,8 +120,8 @@
 											<%@presenter.shots.each do |shot| %>
 												<tr>
 													<td><%= link_to shot.name, admin_shot_path(shot) %></td>
-													<td><%= shot.last_administered.strftime("%b %e %Y") %></td>
-													<td><%= shot.expires.strftime("%b %e %Y") %></td>
+													<td><%= shot.last_administered.strftime("%b %e %Y") unless shot.last_administered.blank? %></td>
+													<td><%= shot.expires.strftime("%b %e %Y") unless shot.expires.blank? %></td>
 													<td>
 														<div class="btn-group pull-right">
 															<%= link_to raw("<i class='icon-remove'></i>"), admin_shot_path(shot),
