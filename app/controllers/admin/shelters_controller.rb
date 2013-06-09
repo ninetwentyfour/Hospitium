@@ -1,4 +1,4 @@
-class Admin::SheltersController < Admin::ApplicationController
+class Admin::SheltersController < Admin::CrudController
   load_and_authorize_resource
   
   respond_to :html, :xml, :json, :csv
@@ -15,27 +15,6 @@ class Admin::SheltersController < Admin::ApplicationController
     end
   end
 
-  # GET /shelters/1
-  # GET /shelters/1.xml
-  def show
-    @shelter = Shelter.find(params[:id])
-
-    respond_with(@shelter)
-  end
-
-  # GET /shelters/new
-  # GET /shelters/new.xml
-  def new
-    @shelter = Shelter.new
-
-    @shelter
-  end
-
-  # GET /shelters/1/edit
-  def edit
-    @shelter = Shelter.find(params[:id])
-  end
-
   # POST /shelters
   # POST /shelters.xml
   def create
@@ -47,24 +26,5 @@ class Admin::SheltersController < Admin::ApplicationController
     end
     
     redirect_to :back
-  end
-
-  # PUT /shelters/1
-  # PUT /shelters/1.xml
-  def update
-    @shelter = Shelter.find(params[:id])
-    @shelter.update_attributes(params[:shelter])
-    
-    respond_with(@shelter, :location => admin_shelter_path(@shelter))
-  end
-
-  # DELETE /shelters/1
-  # DELETE /shelters/1.xml
-  def destroy
-    @shelter = Shelter.find(params[:id])
-    @shelter.destroy
-    flash[:notice] = 'Successfully destroyed shelter.'
-    
-    respond_with(@shelter, :location => admin_shelters_path)
   end
 end

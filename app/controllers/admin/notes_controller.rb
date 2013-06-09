@@ -1,31 +1,7 @@
-class Admin::NotesController < Admin::ApplicationController
+class Admin::NotesController < Admin::CrudController
   load_and_authorize_resource
   
   respond_to :html, :xml, :json, :js
-  
-  # GET /notes
-  # GET /notes.json
-  def index
-    @notes = Note.all
-    
-    respond_with(@notes)
-  end
-
-  # GET /notes/1
-  # GET /notes/1.json
-  def show
-    @note = Note.find(params[:id])
-
-    respond_with(@note)
-  end
-
-  # GET /notes/new
-  # GET /notes/new.json
-  def new
-    @note = Note.new
-
-    respond_with(@note)
-  end
 
   # POST /notes
   # POST /notes.json

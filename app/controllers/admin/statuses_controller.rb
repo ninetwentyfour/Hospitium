@@ -1,4 +1,4 @@
-class Admin::StatusesController < Admin::ApplicationController
+class Admin::StatusesController < Admin::CrudController
   load_and_authorize_resource
   
   respond_to :html, :xml, :json
@@ -21,19 +21,6 @@ class Admin::StatusesController < Admin::ApplicationController
     respond_with(@status)
   end
 
-  # GET /statuses/new
-  # GET /statuses/new.xml
-  def new
-    @status = Status.new
-
-    respond_with(@status)
-  end
-
-  # GET /statuses/1/edit
-  def edit
-    @status = Status.find(params[:id])
-  end
-
   # POST /statuses
   # POST /statuses.xml
   def create
@@ -45,24 +32,5 @@ class Admin::StatusesController < Admin::ApplicationController
     end
     
     redirect_to :back
-  end
-
-  # PUT /statuses/1
-  # PUT /statuses/1.xml
-  def update
-    @status = Status.find(params[:id])
-    @status.update_attributes(params[:status])
-    
-    respond_with(@status, :location => admin_status_path(@status))
-  end
-
-  # DELETE /statuses/1
-  # DELETE /statuses/1.xml
-  def destroy
-    @status = Status.find(params[:id])
-    @status.destroy
-    flash[:notice] = 'Successfully destroyed status.'
-    
-    respond_with(@status, :location => admin_statuses_path)
   end
 end

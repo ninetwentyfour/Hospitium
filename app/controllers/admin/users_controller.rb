@@ -1,4 +1,4 @@
-class Admin::UsersController < Admin::ApplicationController
+class Admin::UsersController < Admin::CrudController
   load_and_authorize_resource
   
   respond_to :html, :xml, :json
@@ -23,19 +23,6 @@ class Admin::UsersController < Admin::ApplicationController
     respond_with(@user)
   end
 
-  # GET /users/new
-  # GET /users/new.xml
-  def new
-    @user = User.new
-
-    respond_with(@user)
-  end
-
-  # GET /users/1/edit
-  def edit
-    @user = User.find(params[:id])
-  end
-
   # POST /users
   # POST /users.xml
   def create
@@ -48,15 +35,6 @@ class Admin::UsersController < Admin::ApplicationController
     end
     
     redirect_to :back
-  end
-
-  # PUT /users/1
-  # PUT /users/1.xml
-  def update
-    @user = User.find(params[:id])
-    @user.update_attributes(params[:user])
-    $statsd.increment 'user.updated'
-    respond_with(@user, :location => admin_user_path(@user))
   end
 
   # DELETE /users/1

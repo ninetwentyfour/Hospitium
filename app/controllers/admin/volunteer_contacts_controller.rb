@@ -1,4 +1,4 @@
-class Admin::VolunteerContactsController < Admin::ApplicationController
+class Admin::VolunteerContactsController < Admin::CrudController
   load_and_authorize_resource
   
   respond_to :html, :xml, :json, :csv
@@ -16,27 +16,6 @@ class Admin::VolunteerContactsController < Admin::ApplicationController
     end
   end
 
-  # GET /volunteer_contacts/1
-  # GET /volunteer_contacts/1.xml
-  def show
-    @volunteer_contact = VolunteerContact.find(params[:id])
-
-    respond_with(@volunteer_contact)
-  end
-
-  # GET /volunteer_contacts/new
-  # GET /volunteer_contacts/new.xml
-  def new
-    @volunteer_contact = VolunteerContact.new
-
-    respond_with(@volunteer_contact)
-  end
-
-  # GET /volunteer_contacts/1/edit
-  def edit
-    @volunteer_contact = VolunteerContact.find(params[:id])
-  end
-
   # POST /volunteer_contacts
   # POST /volunteer_contacts.xml
   def create
@@ -48,24 +27,5 @@ class Admin::VolunteerContactsController < Admin::ApplicationController
     end
     
     respond_with(@volunteer_contact, :location => admin_volunteer_contact_path(@volunteer_contact))
-  end
-
-  # PUT /volunteer_contacts/1
-  # PUT /volunteer_contacts/1.xml
-  def update
-    @volunteer_contact = VolunteerContact.find(params[:id])
-    @volunteer_contact.update_attributes(params[:volunteer_contact])
-    
-    respond_with(@volunteer_contact, :location => admin_volunteer_contact_path(@volunteer_contact))
-  end
-
-  # DELETE /volunteer_contacts/1
-  # DELETE /volunteer_contacts/1.xml
-  def destroy
-    @volunteer_contact = VolunteerContact.find(params[:id])
-    @volunteer_contact.destroy
-    flash[:notice] = 'Successfully destroyed volunteer contact.'
-    
-    respond_with(@volunteer_contact, :location => admin_volunteer_contacts_path)
   end
 end

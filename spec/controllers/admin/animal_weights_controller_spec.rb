@@ -43,26 +43,26 @@ describe Admin::AnimalWeightsController do
     end
   end
 
-  # describe "POST create" do
-  #   describe "with valid params" do
-  #     it "creates a new animal_weight" do
-  #       expect {
-  #         post :create, {:animal_weight => FactoryGirl.attributes_for(:animal_weight)}
-  #       }.to change(AnimalWeight, :count).by(1)
-  #     end
+  describe "POST create" do
+    describe "with valid params" do
+      # it "creates a new animal_weight" do
+      #   expect {
+      #     post :create, {:animal_weight => FactoryGirl.attributes_for(:animal_weight)}
+      #   }.to change(AnimalWeight, :count).by(1)
+      # end
 
-  #     it "assigns a newly created animal_weight as @animal_weight" do
-  #       post :create, {:animal_weight =>  FactoryGirl.attributes_for(:animal_weight)}
-  #       assigns(:animal_weight).should be_a(AnimalWeight)
-  #       assigns(:animal_weight).should be_persisted
-  #     end
+      # it "assigns a newly created animal_weight as @animal_weight" do
+      #   post :create, {:animal_weight =>  FactoryGirl.attributes_for(:animal_weight)}
+      #   assigns(:animal_weight).should be_a(AnimalWeight)
+      #   assigns(:animal_weight).should be_persisted
+      # end
 
-  #     it "redirects to the created animal_weight" do
-  #       post :create, {:animal_weight =>  FactoryGirl.attributes_for(:animal_weight)}
-  #       response.should redirect_to(admin_animal_weight_path(AnimalWeight.last))
-  #     end
-  #   end
-  # end
+      it "redirects to the created animal_weight" do
+        post :create, {:animal_weight =>  FactoryGirl.attributes_for(:animal_weight)}
+        response.should redirect_to "http://test.host"
+      end
+    end
+  end
 
   describe "PUT update" do
     describe "with valid params" do

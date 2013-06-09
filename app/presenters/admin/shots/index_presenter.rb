@@ -1,20 +1,20 @@
-class Admin::AdoptionContacts::IndexPresenter
+class Admin::Shots::IndexPresenter
   def initialize(user, page, query)
     @user = user
     @query = query
     @page = page
   end
   
-  def adoption_contacts
+  def shots
     search.result.paginate(:page => @page, :per_page => 10).order("updated_at DESC")
   end
 
   def search
-    AdoptionContact.organization(@user).search(@query)
+    Shot.organization(@user).search(@query)
   end
 
-  def animal
-    Animal.organization(@user).order("name ASC")
-  end  
+  def animals
+    Animal.organization(@user).order("name")
+  end
   
 end

@@ -21,15 +21,15 @@
       <col><col><col><col><col><col><col><col>
       <thead>
         <tr>
-          <th><%= sort_link @search, :name %></th>
-          <th><%= sort_link @search, :animal %></th>
-          <th><%= sort_link @search, :last_administered %></th>
-          <th><%= sort_link @search, :expires %></th>
+          <th><%= sort_link @presenter.search, :name %></th>
+          <th><%= sort_link @presenter.search, :animal %></th>
+          <th><%= sort_link @presenter.search, :last_administered %></th>
+          <th><%= sort_link @presenter.search, :expires %></th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        <% @shots.each do |shot| %>
+        <% @presenter.shots.each do |shot| %>
           <tr>
             <td><%= link_to shot.name, admin_shot_path(shot) %></td>
             <td><%= link_to shot.animal.name, admin_animal_path(shot.animal) %></td>
@@ -48,7 +48,7 @@
         <% end %>
       </tbody>
     </table>
-    <%= will_paginate @shots %>
+    <%= will_paginate @presenter.shots %>
   </div>
 </div>
 
@@ -59,12 +59,12 @@
     <h3>Advanced Search</h3>
   </div>
   <div class="modal-body">
-    <%= search_form_for @search, :url => admin_shots_path, :html => { :class => "form-vertical"} do |f| %>
+    <%= search_form_for @presenter.search, :url => admin_shots_path, :html => { :class => "form-vertical"} do |f| %>
       <%= f.label :name %>
       <%= f.text_field :name_cont %>
 
       <%= f.label :animal_id_eq %>
-      <%= f.collection_select :animal_id_eq, @animals, :id, :name, :include_blank => true %>
+      <%= f.collection_select :animal_id_eq, @presenter.animals, :id, :name, :include_blank => true %>
   </div>
   <div class="modal-footer">
     <%= f.submit "Submit", :class => "btn btn-primary" %>

@@ -1,4 +1,4 @@
-class Admin::SpeciesController < Admin::ApplicationController
+class Admin::SpeciesController < Admin::CrudController
   load_and_authorize_resource
   
   respond_to :html, :xml, :json
@@ -21,19 +21,6 @@ class Admin::SpeciesController < Admin::ApplicationController
     respond_with(@species)
   end
 
-  # GET /species/new
-  # GET /species/new.xml
-  def new
-    @species = Species.new
-
-    respond_with(@species)
-  end
-
-  # GET /species/1/edit
-  def edit
-    @species = Species.find(params[:id])
-  end
-
   # POST /species
   # POST /species.xml
   def create
@@ -45,15 +32,6 @@ class Admin::SpeciesController < Admin::ApplicationController
     end
     
     redirect_to :back
-  end
-
-  # PUT /species/1
-  # PUT /species/1.xml
-  def update
-    @species = Species.find(params[:id])
-    @species.update_attributes(params[:species])
-    
-    respond_with(@species, :location => admin_species_path(@species))
   end
 
   # DELETE /species/1

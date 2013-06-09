@@ -1,4 +1,4 @@
-class Admin::AnimalWeightsController < Admin::ApplicationController
+class Admin::AnimalWeightsController < Admin::CrudController
   load_and_authorize_resource
   
   respond_to :html, :xml, :json, :csv
@@ -25,19 +25,6 @@ class Admin::AnimalWeightsController < Admin::ApplicationController
     respond_with(@animal_weight)
   end
 
-  # GET /animal_weights/new
-  # GET /animal_weights/new.xml
-  def new
-    @animal_weight = AnimalWeight.new
-
-    respond_with(@animal_weight)
-  end
-
-  # GET /animal_weights/1/edit
-  def edit
-    @animal_weight = AnimalWeight.find(params[:id])
-  end
-
   # POST /animal_weights
   # POST /animal_weights.xml
   def create
@@ -49,24 +36,5 @@ class Admin::AnimalWeightsController < Admin::ApplicationController
     end
     
     redirect_to :back
-  end
-
-  # PUT /animal_weights/1
-  # PUT /animal_weights/1.xml
-  def update
-    @animal_weight = AnimalWeight.find(params[:id])
-    @animal_weight.update_attributes(params[:animal_weight])
-    
-    respond_with(@animal_weight, :location => admin_animal_weight_path(@animal_weight)) 
-  end
-
-  # DELETE /animal_weights/1
-  # DELETE /animal_weights/1.xml
-  def destroy
-    @animal_weight = AnimalWeight.find(params[:id])
-    @animal_weight.destroy
-    flash[:notice] = 'Successfully destroyed animal weight.'
-    
-    respond_with(@animal_weight, :location => admin_animal_weights_path)
   end
 end

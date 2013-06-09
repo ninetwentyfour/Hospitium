@@ -50,15 +50,4 @@ class ApplicationController < ActionController::Base
   def canonical_url(canonical_url)
     @canonical_url = canonical_url
   end
-  
-  layout :set_layout
-
-  private
-    def set_layout
-      if request.headers['X-PJAX']
-        false
-      else
-        "application"
-      end
-    end
 end

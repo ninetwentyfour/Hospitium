@@ -13,7 +13,7 @@
 
 
     <%= f.label :animal %>
-    <%= collection_select(:shot, :animal_id, current_user.organization.animals, :id, :name) %>
+    <%= collection_select(:animal_weight, :animal_id, current_user.organization.animals, :id, :name) %>
 
     <%= f.label :weight %>
     <%= f.text_field :weight %>

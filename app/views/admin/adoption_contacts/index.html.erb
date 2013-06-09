@@ -21,16 +21,16 @@
 			<col><col><col><col><col><col><col><col>
 			<thead>
 				<tr>
-					<th><%= sort_link @search, :first_name %></th>
-					<th><%= sort_link @search, :last_name %></th>
-					<th><%= sort_link @search, :address %></th>
-					<th><%= sort_link @search, :phone %></th>
-					<th><%= sort_link @search, :email %></th>
+					<th><%= sort_link @presenter.search, :first_name %></th>
+					<th><%= sort_link @presenter.search, :last_name %></th>
+					<th><%= sort_link @presenter.search, :address %></th>
+					<th><%= sort_link @presenter.search, :phone %></th>
+					<th><%= sort_link @presenter.search, :email %></th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-				<% @adoption_contacts.each do |adoption_contact| %>
+				<% @presenter.adoption_contacts.each do |adoption_contact| %>
 					<tr>
 						<td><a href="/admin/adoption_contacts/<%= adoption_contact.id %>"><%= adoption_contact.first_name %></a></td>
 						<td><%= adoption_contact.last_name %></td>
@@ -51,7 +51,7 @@
 			</tbody>
 		</table>
 		<a class="btn" href="https://d4uktpxr9m70.cloudfront.net/pdfs/Adoption-Form.pdf"><i class="icon-file"></i> Download Adoption Form</a>
-		<%= will_paginate @adoption_contacts %>
+		<%= will_paginate @presenter.adoption_contacts %>
 	</div>
 </div>
 
@@ -62,7 +62,7 @@
 		<h3>Advanced Search</h3>
 	</div>
 	<div class="modal-body">
-		<%= search_form_for @search, :url => admin_adoption_contacts_path, :html => { :class => "form-vertical"} do |f| %>
+		<%= search_form_for @presenter.search, :url => admin_adoption_contacts_path, :html => { :class => "form-vertical"} do |f| %>
 			<%= f.label :first_name_cont %>
 			<%= f.text_field :first_name_cont %>
 			<%= f.label :last_name_cont %>
