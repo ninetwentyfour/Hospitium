@@ -24,14 +24,14 @@ class Admin::ShotsController < Admin::CrudController
 
   # POST /shots
   # POST /shots.xml
-  # def create
-  #   @shot = current_user.organization.shots.new(params[:shot])
-  #   if @shot.save
-  #     flash[:notice] = 'Shot was successfully created.'
-  #   else
-  #     flash[:error] = 'Shot was not successfully created.'
-  #   end
+  def create
+    @shot = current_user.organization.shots.new(params[:shot])
+    if @shot.save
+      flash[:notice] = 'Shot was successfully created.'
+    else
+      flash[:error] = 'Shot was not successfully created.'
+    end
 
-  #   respond_with(:admin, @shot)
-  # end
+    respond_with(@shot, :location => admin_shot_path(@shot))
+  end
 end

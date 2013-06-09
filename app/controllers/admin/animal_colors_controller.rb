@@ -1,4 +1,4 @@
-class Admin::AnimalColorsController < Admin::ApplicationController
+class Admin::AnimalColorsController < Admin::CrudController
   load_and_authorize_resource
   
   respond_to :html, :xml, :json
@@ -21,19 +21,6 @@ class Admin::AnimalColorsController < Admin::ApplicationController
     respond_with(@animal_color)
   end
 
-  # GET /animal_colors/new
-  # GET /animal_colors/new.xml
-  def new
-    @animal_color = AnimalColor.new
-    
-    respond_with(@animal_color)
-  end
-
-  # GET /animal_colors/1/edit
-  def edit
-    @animal_color = AnimalColor.find(params[:id])
-  end
-
   # POST /animal_colors
   # POST /animal_colors.xml
   def create
@@ -45,24 +32,5 @@ class Admin::AnimalColorsController < Admin::ApplicationController
     end
     
     respond_with(@animal_color, :location => admin_animal_color_path(@animal_color))
-  end
-
-  # PUT /animal_colors/1
-  # PUT /animal_colors/1.xml
-  def update
-    @animal_color = AnimalColor.find(params[:id])
-    @animal_color.update_attributes(params[:animal_color])
-    
-    respond_with(@animal_color, :location => admin_animal_color_path(@animal_color))    
-  end
-
-  # DELETE /animal_colors/1
-  # DELETE /animal_colors/1.xml
-  def destroy
-    @animal_color = AnimalColor.find(params[:id])
-    @animal_color.destroy
-    flash[:notice] = 'Successfully destroyed animal color.'
-    
-    respond_with(@animal_color, :location => admin_animal_colors_path)
   end
 end
