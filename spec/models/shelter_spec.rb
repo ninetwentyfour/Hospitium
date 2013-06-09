@@ -68,5 +68,10 @@ describe Shelter do
     end
   end
 
-  
+  describe "comma" do
+    it "should return a csv for the object" do
+      @shelter = FactoryGirl.build(:shelter)
+      @shelter.to_comma.should_not be_blank
+    end
+  end  
 end

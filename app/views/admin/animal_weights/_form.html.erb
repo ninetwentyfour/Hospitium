@@ -1,4 +1,4 @@
-<%= form_for(animal_weight) do |f| %>
+<%= form_for animal_weight, :url => admin_animal_weights_path, :validate => true do |f| %>
   <% if animal_weight.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(animal_weight.errors.count, "error") %> prohibited this animal_weight from being saved:</h2>
@@ -12,12 +12,24 @@
   <% end %>
 
 
-    <%= f.label :animal %><br />
-    <%= f.text_field :animal %>
+    <%= f.label :animal %>
+    <%= collection_select(:shot, :animal_id, current_user.organization.animals, :id, :name) %>
 
-    <%= f.label :weight %><br />
+    <%= f.label :weight %>
     <%= f.text_field :weight %>
 
-    <%= f.submit %>
+    <%= f.label :date_of_weight %>
+    <%= f.text_field :date_of_weight %>
+
+<hr />
+     <%= f.submit "Add Status", :class => "btn btn-primary submit-button" %>
 
 <% end %>
+<% content_for :javascript_footer do %>
+  <script>
+    $( "#animal_weight_date_of_weight" ).datepicker();
+    $.datepicker.setDefaults({
+      dateFormat: 'D, dd M yy' 
+    });
+  </script>
+<%end%>

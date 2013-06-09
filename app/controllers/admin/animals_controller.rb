@@ -1,7 +1,7 @@
 class Admin::AnimalsController < Admin::ApplicationController
   load_and_authorize_resource
   
-  respond_to :html, :xml, :json, :xls, :js
+  respond_to :html, :xml, :json, :csv, :js
   
   # GET /animals
   # GET /animals.xml
@@ -16,10 +16,8 @@ class Admin::AnimalsController < Admin::ApplicationController
     
     respond_with(@animals) do |format|
       format.html
-      format.xls { send_data Animal.organization(current_user).to_xls, 
-                             content_type: 'application/vnd.ms-excel', 
-                             filename: 'animals.xls' 
-                 }
+      format.csv { render :csv => Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :biter).organization(current_user).all,
+                          :filename => 'animals' }
     end
   end
 

@@ -70,5 +70,11 @@ describe AdoptionContact do
     end
   end
 
+  describe "comma" do
+    it "should return a csv for the object" do
+      @adoption_contact = FactoryGirl.build(:adoption_contact)
+      @adoption_contact.to_comma.should_not be_blank
+    end
+  end
   
 end

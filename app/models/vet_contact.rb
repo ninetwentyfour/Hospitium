@@ -33,17 +33,17 @@ class VetContact < ActiveRecord::Base
     return phone
   end
   
-  def as_xls(options = {})
-    {
-        "Id" => id.to_s,
-        "Clinic Name" => clinic_name,
-        "Address" => address,
-        "Phone" => phone,
-        "Email" => email,
-        "Website" => website,
-        "Hours" => hours,
-        "Emergency" => emergency
-    }
+  # ===============
+  # = CSV support =
+  # ===============
+  comma do
+    id "ID"
+    clinic_name "Clinic Name"
+    address "Address"
+    phone "Phone" do |p| number_to_phone(p) end
+    email "Email"
+    website "Website"
+    hours "Hours"
+    emergency "Emergency"
   end
-  
 end

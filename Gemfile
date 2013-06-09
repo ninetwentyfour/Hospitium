@@ -16,7 +16,8 @@ gem 'ransack'
 gem 'juggernaut'
 gem 'gravatar_image_tag'
 gem "spreadsheet"
-gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls-on-models"
+# gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls-on-models"
+gem "comma"
 gem 'redcarpet'
 gem 'encryptor'
 gem 'json_builder'

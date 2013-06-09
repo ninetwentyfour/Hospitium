@@ -36,4 +36,13 @@ class AnimalWeight < ActiveRecord::Base
     }
   end
   
+  # ===============
+  # = CSV support =
+  # ===============
+  comma do
+    id "ID"
+    weight "Weight"
+    animal "Animal" do |a| a.name end
+    date_of_weight "Date of Weight"
+  end
 end

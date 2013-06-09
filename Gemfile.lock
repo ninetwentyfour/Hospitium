@@ -16,15 +16,6 @@ GIT
       cocaine (~> 0.5.0)
       mime-types
 
-GIT
-  remote: https://github.com/dblock/to_xls.git
-  revision: c7ef31174947b7b1459b0bb7bda3dd43f83aaa64
-  branch: to-xls-on-models
-  specs:
-    to_xls (1.0.0)
-      spreadsheet (> 0)
-      spreadsheet
-
 GEM
   remote: http://bundler-api.herokuapp.com/
   specs:
@@ -106,6 +97,7 @@ GEM
       execjs
     coffee-script-source (1.6.2)
     colorize (0.5.8)
+    comma (3.0.4)
     commonjs (0.2.6)
     coveralls (0.6.7)
       colorize
@@ -408,6 +400,7 @@ DEPENDENCIES
   client_side_validations
   closure-compiler
   coffee-rails
+  comma
   coveralls
   cucumber-rails
   dalli
@@ -456,7 +449,6 @@ DEPENDENCIES
   spreadsheet
   statsd-ruby
   therubyracer
-  to_xls!
   twitter
   uglifier
   unicorn

@@ -45,16 +45,16 @@ class VolunteerContact < ActiveRecord::Base
     return age
   end
   
-  def as_xls(options = {})
-    {
-        "Id" => id.to_s,
-        "First Name" => first_name,
-        "Last Name" => last_name,
-        "Address" => address,
-        "Phone" => phone,
-        "Email" => email,
-        "Application Date" => application_date
-    }
+  # ===============
+  # = CSV support =
+  # ===============
+  comma do
+    id "ID"
+    first_name "First Name"
+    last_name "Last Name"
+    address "Address"
+    phone "Phone" do |p| number_to_phone(p) end
+    email "Email"
+    application_date "Application Date"
   end
-  
 end

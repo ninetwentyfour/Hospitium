@@ -70,5 +70,10 @@ describe AnimalWeight do
     end
   end
 
-  
+  describe "comma" do
+    it "should return a csv for the object" do
+      @animal_weight = FactoryGirl.build(:animal_weight)
+      @animal_weight.to_comma.should_not be_blank
+    end
+  end 
 end

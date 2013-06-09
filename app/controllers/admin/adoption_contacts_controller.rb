@@ -1,7 +1,7 @@
 class Admin::AdoptionContactsController < Admin::ApplicationController
   load_and_authorize_resource
   
-  respond_to :html, :xml, :json, :xls
+  respond_to :html, :xml, :json, :csv
   
   # GET /adoption_contacts
   # GET /adoption_contacts.xml
@@ -11,7 +11,8 @@ class Admin::AdoptionContactsController < Admin::ApplicationController
     @presenter = Admin::AdoptionContacts::IndexPresenter.new(current_user)
     respond_with(@adoption_contacts) do |format|
       format.html
-      format.xls { send_data AdoptionContact.organization(current_user).to_xls,  content_type: 'application/vnd.ms-excel', filename: 'adoption_contacts.xls' }
+      format.csv { render :csv => AdoptionContact.organization(current_user),
+                          :filename => 'adoption_contacts' }
     end
   end
 

@@ -34,17 +34,18 @@ class AdoptionContact < ActiveRecord::Base
     end
     return phone
   end
-  
-  #define content for xml downloads
-  def as_xls(options = {})
-    {
-        "Id" => id.to_s,
-        "First Name" => first_name,
-        "Last Name" => last_name,
-        "Address" => address,
-        "Phone" => phone,
-        "Email" => email
-    }
+
+  # ===============
+  # = CSV support =
+  # ===============
+  comma do
+    id "ID"
+    first_name "First Name"
+    last_name "Last Name"
+    address "Address"
+    phone "Phone" do |p| number_to_phone(p) end
+    email "Email"
+    animals "Adopted Animal IDs" do |a| a.map{|a| a.id}.join(",") end
   end
   
 end

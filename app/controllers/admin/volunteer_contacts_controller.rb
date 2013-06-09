@@ -1,7 +1,7 @@
 class Admin::VolunteerContactsController < Admin::ApplicationController
   load_and_authorize_resource
   
-  respond_to :html, :xml, :json, :xls
+  respond_to :html, :xml, :json, :csv
   
   # GET /volunteer_contacts
   # GET /volunteer_contacts.xml
@@ -11,7 +11,8 @@ class Admin::VolunteerContactsController < Admin::ApplicationController
 
     respond_with(@volunteer_contacts) do |format|
       format.html # index.html.erb
-      format.xls { send_data VolunteerContact.organization(current_user).to_xls, content_type: 'application/vnd.ms-excel', filename: 'volunteer_contacts.xls' }
+      format.csv { render :csv => VolunteerContact.organization(current_user),
+                          :filename => 'volunteer_contacts' }
     end
   end
 

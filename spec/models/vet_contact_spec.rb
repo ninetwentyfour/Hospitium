@@ -65,5 +65,11 @@ describe VetContact do
     end
   end
 
-  
+
+  describe "comma" do
+    it "should return a csv for the object" do
+      @vet_contact = FactoryGirl.build(:vet_contact)
+      @vet_contact.to_comma.should_not be_blank
+    end
+  end 
 end

@@ -33,14 +33,15 @@ class Shot < ActiveRecord::Base
     self.uuid = UUIDTools::UUID.random_create.to_s
   end
 
-  def as_xls(options = {})
-    {
-        "Id" => id.to_s,
-        "Name" => name,
-        "Animal" => animal["name"],
-        "Last Administered" => last_administered,
-        "Expires" => expires
-    }
+  # ===============
+  # = CSV support =
+  # ===============
+  comma do
+    id "ID"
+    name "Name"
+    animal "Animal" do |a| a.name end
+    last_administered "Last Administered"
+    expires "Expires"
   end
 
   # send email reminder for shots about to expire

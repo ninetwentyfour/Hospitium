@@ -1,7 +1,7 @@
 class Admin::SheltersController < Admin::ApplicationController
   load_and_authorize_resource
   
-  respond_to :html, :xml, :json, :xls
+  respond_to :html, :xml, :json, :csv
   
   # GET /shelters
   # GET /shelters.xml
@@ -10,7 +10,8 @@ class Admin::SheltersController < Admin::ApplicationController
     @shelters = @search.result.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
     respond_with(@shelters) do |format|
       format.html # index.html.erb
-      format.xls { send_data Shelter.organization(current_user).to_xls, content_type: 'application/vnd.ms-excel', filename: 'shelters.xls' }
+      format.csv { render :csv => Shelter.organization(current_user),
+                          :filename => 'shelters' }
     end
   end
 

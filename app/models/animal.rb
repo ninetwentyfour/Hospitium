@@ -96,30 +96,28 @@ class Animal < ActiveRecord::Base
     end
     age
   end
-  
-  
-  #define content for xml downloads
-  def as_xls(options = {})
-    $statsd.increment 'animal.xls_download'
-    {
-        "Id" => id.to_s,
-        "Name" => name,
-        "Previous Name" => previous_name,
-        "Birthday" => birthday,
-        "Species" => species["name"],
-        "Animal Color" => animal_color["color"],
-        "Spay / Neuter" => spay_neuter["spay"],
-        "Biter" => biter["value"],
-        "Sex" => animal_sex["sex"],
-        "Public" => public,
-        "Status" => status.try(:[], "status"),
-        "Special Needs" => special_needs,
-        "Diet" => diet,
-        "Date of Well Check" => date_of_well_check,
-        "Deceased Date" => deceased,
-        "Deceased Reason" => deceased_reason,
-        "Adopted Date" => adopted_date
-    }
+
+  # ===============
+  # = CSV support =
+  # ===============
+  comma do
+    id "ID"
+    name "Name"
+    previous_name "Previous Name"
+    birthday "Birthday"
+    species "Species" do |species| species.name end
+    animal_color "Animal Color" do |ac| ac.color end
+    spay_neuter "Spay / Neuter" do |sn| sn.spay end
+    biter "Biter" do |b| b.value end
+    animal_sex "Sex" do |s| s.sex end
+    public "Public" do |p| p == 1 ? "yes" : "no" end
+    status "Status" do |s| s.try(:status) end
+    special_needs "Special Needs"
+    diet "Diet"
+    date_of_well_check "Date of Well Check"
+    deceased "Deceased Date"
+    deceased_reason "Deceased Reason"
+    adopted_date "Adopted Date"
   end
   
 end

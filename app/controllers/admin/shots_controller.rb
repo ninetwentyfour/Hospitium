@@ -1,7 +1,7 @@
 class Admin::ShotsController < Admin::ApplicationController
   load_and_authorize_resource
   
-  respond_to :html, :xml, :json, :xls
+  respond_to :html, :xml, :json, :csv
   
   # GET /shots
   # GET /shots.xml
@@ -12,7 +12,8 @@ class Admin::ShotsController < Admin::ApplicationController
     # @presenter = Admin::Shots::IndexPresenter.new(current_user)
     respond_with(@shots) do |format|
       format.html
-      format.xls { send_data Shot.organization(current_user).to_xls,  content_type: 'application/vnd.ms-excel', filename: 'shots.xls' }
+      format.csv { render :csv => Shot.includes(:animal).organization(current_user),
+                          :filename => 'shots' }
     end
   end
 

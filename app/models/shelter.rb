@@ -28,18 +28,19 @@ class Shelter < ActiveRecord::Base
     end
     return phone
   end
-  
-  def as_xls(options = {})
-    {
-        "Id" => id.to_s,
-        "Name" => name,
-        "Contact First Name" => contact_first,
-        "Contact Last Name" => contact_last,
-        "Address" => address,
-        "Phone" => phone,
-        "Email" => email,
-        "Website" => website,
-        "Notes" => notes
-    }
+
+  # ===============
+  # = CSV support =
+  # ===============
+  comma do
+    id "ID"
+    name "Name"
+    contact_first "Contact First Name"
+    contact_last "Contact Last Name"
+    address "Address"
+    phone "Phone" do |p| number_to_phone(p) end
+    email "Email"
+    website "Website"
+    notes "Notes"
   end
 end

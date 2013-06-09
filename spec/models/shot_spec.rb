@@ -55,4 +55,10 @@ describe Shot do
     end
   end  
 
+  describe "comma" do
+    it "should return a csv for the object" do
+      @shot = FactoryGirl.build(:shot)
+      @shot.to_comma.should_not be_blank
+    end
+  end 
 end

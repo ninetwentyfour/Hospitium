@@ -69,5 +69,10 @@ describe RelinquishmentContact do
     end
   end
 
-  
+  describe "comma" do
+    it "should return a csv for the object" do
+      @relinquishment_contact = FactoryGirl.build(:relinquishment_contact)
+      @relinquishment_contact.to_comma.should_not be_blank
+    end
+  end   
 end
