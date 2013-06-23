@@ -49,8 +49,10 @@ class Sanitize
       # Don't continue unless the node is an iframe.
       return unless node_name == 'iframe'
 
-      # Verify that the video URL is actually a valid YouTube video URL.
-      return unless node['src'] =~ /\Ahttp?:\/\/(?:www\.)?youtube(?:-nocookie)?\.com\// or node['src'] =~ /\Ahttps?:\/\/(?:www\.)?youtube(?:-nocookie)?\.com\//
+      # Verify that the video URL is actually a valid YouTube or Facebook video URL.
+      return unless node['src'] =~ /\Ahttp?:\/\/(?:www\.)?youtube(?:-nocookie)?\.com\// or 
+                    node['src'] =~ /\Ahttps?:\/\/(?:www\.)?youtube(?:-nocookie)?\.com\// or 
+                    node['src'] =~ /\Ahttps?:\/\/(?:www\.)?facebook?\.com\//
 
       # We're now certain that this is a YouTube embed, but we still need to run
       # it through a special Sanitize step to ensure that no unwanted elements or
