@@ -21,6 +21,7 @@ class Ability
     can :duplicate, Animal, organization: { id: @user.organization_id }
     can :qr_code, Animal, organization: { id: @user.organization_id }
     can :cage_card, Animal, organization: { id: @user.organization_id }
+    can :add_image, Animal, organization: { id: @user.organization_id }
 
     can :read, AnimalColor, organization: { id: @user.organization_id }
     can :create, AnimalColor

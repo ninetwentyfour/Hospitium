@@ -114,4 +114,14 @@ class Admin::AnimalsController < Admin::ApplicationController
         #{@animal.organization_city unless @animal.organization_city.blank?} #{@animal.organization_state unless @animal.organization_state.blank?} #{@animal.organization_zip_code unless @animal.organization_zip_code.blank?}", :level => :h, :unit => 6 }
     end
   end
+
+  def add_image
+    @animal = Animal.find(params[:id])
+    if @animal.update_attributes(params[:animal])
+      flash[:notice] = 'Successfully added image.'
+    else
+      flash[:error] = @animal.errors.messages.first
+    end
+    redirect_to admin_animal_path(@animal)
+  end
 end
