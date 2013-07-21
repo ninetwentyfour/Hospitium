@@ -1,7 +1,14 @@
 class Admin::SheltersController < Admin::CrudController
   load_and_authorize_resource
   
-  respond_to :html, :xml, :json, :csv
+  respond_to :html, :json, :csv
+
+  # Allowed params for create and update
+  self.permitted_attrs = [:name, :contact_first, :contact_last, :address, :phone, :email, :website, :notes]
+  # scope create to current_user.organization
+  self.save_as_organization = true
+  # redirect somewhere other than the object on create
+  self.redirect_on_create = :back
   
   # GET /shelters
   # GET /shelters.xml
@@ -13,18 +20,5 @@ class Admin::SheltersController < Admin::CrudController
       format.csv { render :csv => Shelter.organization(current_user),
                           :filename => 'shelters' }
     end
-  end
-
-  # POST /shelters
-  # POST /shelters.xml
-  def create
-    @shelter = current_user.organization.shelters.new(params[:shelter])
-    if @shelter.save
-      flash[:notice] = 'Shelter was successfully created.'
-    else
-      flash[:error] = 'Shelter was not successfully created.'
-    end
-    
-    redirect_to :back
   end
 end

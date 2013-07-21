@@ -82,20 +82,6 @@ describe Organization do
     end
   end
   
-  describe 'protected attributes' do
-    let(:organization) { FactoryGirl.create(:organization) }
-    
-    it 'should deny mass-assignment to the uuid' do
-      organization.update_attributes(:uuid =>  "test_uuid")
-      organization.uuid.should_not == "test_uuid"
-    end
-    
-    it 'should deny mass-assignment to the id' do
-      organization.update_attributes(:id =>  100000)
-      organization.id.should_not == 100000
-    end
-  end
-  
   describe 'has_info?' do    
     it 'should return true for orgs with an email' do
       @org = FactoryGirl.create(:organization, :email => "test@example.com")

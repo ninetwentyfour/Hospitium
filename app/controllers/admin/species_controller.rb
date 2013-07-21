@@ -1,7 +1,13 @@
 class Admin::SpeciesController < Admin::CrudController
   load_and_authorize_resource
   
-  respond_to :html, :xml, :json
+  # Allowed params for create and update
+  self.permitted_attrs = [:name]
+  # scope create to current_user.organization
+  self.save_as_organization = true
+  # redirect somewhere other than the object on create/delete
+  self.redirect_on_create = :back
+  self.redirect_on_delete = :back
   
   # GET /species
   # GET /species.xml
@@ -19,28 +25,5 @@ class Admin::SpeciesController < Admin::CrudController
     @animals = Animal.where(:species_id => @species.id).order("name ASC")
     
     respond_with(@species)
-  end
-
-  # POST /species
-  # POST /species.xml
-  def create
-    @species = current_user.organization.species.new(params[:species])
-    if @species.save
-      flash[:notice] = 'Species was successfully created.'
-    else
-      flash[:error] = 'Species was not successfully created.'
-    end
-    
-    redirect_to :back
-  end
-
-  # DELETE /species/1
-  # DELETE /species/1.xml
-  def destroy
-    @species = Species.find(params[:id])
-    @species.destroy
-    flash[:notice] = 'Successfully destroyed species.'
-    
-    redirect_to :back
   end
 end

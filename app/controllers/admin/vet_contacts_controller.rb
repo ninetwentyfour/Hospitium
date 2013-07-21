@@ -1,7 +1,12 @@
 class Admin::VetContactsController < Admin::CrudController
   load_and_authorize_resource
   
-  respond_to :html, :xml, :json, :csv
+  respond_to :html, :json, :csv
+
+  # Allowed params for create and update
+  self.permitted_attrs = [:clinic_name, :address, :phone, :email, :website, :hours, :emergency]
+  # scope create to current_user.organization
+  self.save_as_organization = true
   
   # GET /vet_contacts
   # GET /vet_contacts.xml
@@ -14,18 +19,5 @@ class Admin::VetContactsController < Admin::CrudController
       format.csv { render :csv => VetContact.organization(current_user),
                           :filename => 'vet_contacts' }
     end
-  end
-
-  # POST /vet_contacts
-  # POST /vet_contacts.xml
-  def create
-    @vet_contact = current_user.organization.vet_contacts.new(params[:vet_contact])
-    if @vet_contact.save
-      flash[:notice] = 'Vet contact was successfully created.'
-    else
-      flash[:error] = 'Vet contact was not successfully created.'
-    end
-    
-    respond_with(@vet_contact, :location => admin_vet_contact_path(@vet_contact))
   end
 end

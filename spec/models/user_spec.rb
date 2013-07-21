@@ -69,35 +69,6 @@ describe User do
       user.organization_id.should_not be_nil
     end
   end
-  
-  describe 'protected attributes' do
-    let(:user) { FactoryGirl.create(:user) }
-    
-    it 'should deny mass-assignment to the organization_id' do
-      user.update_attributes(:organization_id =>  10000)
-      user.organization_id.should_not == 10000
-    end
-    
-    it 'should deny mass-assignment to the id' do
-      user.update_attributes(:id =>  100000)
-      user.id.should_not == 100000
-    end
-    
-    it 'should deny mass-assignment to the encrypted password' do
-      user.update_attributes(:encrypted_password =>  "test")
-      user.encrypted_password.should_not == "test"
-    end
-    
-    it 'should deny mass-assignment to the reset_password_token' do
-      user.update_attributes(:reset_password_token =>  "test")
-      user.reset_password_token.should_not == "test"
-    end
-    
-    it 'should deny mass-assignment to the confirmation_token' do
-      user.update_attributes(:confirmation_token =>  "test")
-      user.confirmation_token.should_not == "test"
-    end
-  end
 
   describe 'permissions and roles' do
     it "should have 2 hives" do

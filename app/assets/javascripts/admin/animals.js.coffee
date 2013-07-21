@@ -37,19 +37,19 @@ animal_show = ->
 
     bg_color = ""
     updated_text = "There was an update, but a problem displaying. Please refresh."
-    jQuery.each data.record, (i, val) ->
-      $("#animal_notes_list").append "<li id=\"note_" + val.id + "\"><strong>" + data.user + "</strong> " + data.created_at + " <br />" + converter.makeHtml(val.note) + "</li>"
-      $("#animal_notes_list").scrollTop $("#animal_notes_list")[0].scrollHeight
-      
-      # /* Highlight the new comment */
-      $("#note_" + val.id).css "background-color", "#c7f464"
-      if $("#note_" + val.id).prev("li").css("background-color") is "rgb(255, 255, 255)"
-        bg_color = "#f5f5f5"
-      else
-        bg_color = "#ffffff"
-      $("#note_" + val.id).delay(1500).animate
-        backgroundColor: bg_color
-      , 1000
+
+    $("#animal_notes_list").append "<li id=\"note_" + data.record.id + "\"><strong>" + data.user + "</strong> " + data.created_at + " <br />" + converter.makeHtml(data.record.note) + "</li>"
+    $("#animal_notes_list").scrollTop $("#animal_notes_list")[0].scrollHeight
+    
+    # /* Highlight the new comment */
+    $("#note_" + data.record.id).css "background-color", "#c7f464"
+    if $("#note_" + data.record.id).prev("li").css("background-color") is "rgb(255, 255, 255)"
+      bg_color = "#f5f5f5"
+    else
+      bg_color = "#ffffff"
+    $("#note_" + data.record.id).delay(1500).animate
+      backgroundColor: bg_color
+    , 1000
 
 
   

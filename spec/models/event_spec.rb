@@ -13,14 +13,6 @@ describe Event do
     it{should belong_to(:animal)}
   end
   
-  describe 'protected attributes' do
-    
-    it 'should deny mass-assignment to the id' do
-      @event.update_attributes(:id =>  100000)
-      @event.id.should_not == 100000
-    end
-  end
-  
   describe "record_event" do
     it "should create a new general note" do
       event_hash = { :type => "Test Event", 

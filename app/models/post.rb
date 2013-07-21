@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   
   after_create :send_public_tweet
   after_update :send_public_tweet
-  
+
   attr_accessible :author, :title, :content
   
   #used to create url for posts

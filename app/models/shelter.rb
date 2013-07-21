@@ -1,13 +1,15 @@
 class Shelter < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
   include CommonScopes
   
   belongs_to :organization
   has_many :animals
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
-  validates_presence_of :name, :organization_id
-  
+
   attr_accessible :name, :contact_first, :contact_last, :address, :phone, :email, :website, :notes
+
+  validates_presence_of :name, :organization_id
   
   #create uuid
   def create_uuid()
@@ -38,7 +40,7 @@ class Shelter < ActiveRecord::Base
     contact_first "Contact First Name"
     contact_last "Contact Last Name"
     address "Address"
-    phone "Phone" do |p| number_to_phone(p) end
+    phone "Phone" do |p| formatted_phone end
     email "Email"
     website "Website"
     notes "Notes"

@@ -1,4 +1,5 @@
 class RelinquishmentContact < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
   include CommonScopes
   
   has_many :relinquish_animals
@@ -6,10 +7,10 @@ class RelinquishmentContact < ActiveRecord::Base
   belongs_to :organization
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
+
+  attr_accessible :first_name, :last_name, :address, :phone, :email, :reason
   
   validates_presence_of :first_name, :last_name, :organization_id
-  
-  attr_accessible :first_name, :last_name, :address, :phone, :email, :reason
   
   #create uuid
   def create_uuid()
@@ -43,7 +44,7 @@ class RelinquishmentContact < ActiveRecord::Base
     first_name "First Name"
     last_name "Last Name"
     address "Address"
-    phone "Phone" do |p| number_to_phone(p) end
+    phone "Phone" do |p| formatted_phone end
     email "Email"
     reason "Reason"
     animals "Relinquished Animal IDs" do |a| a.map{|a| a.id}.join(",") end

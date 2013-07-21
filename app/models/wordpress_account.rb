@@ -1,9 +1,8 @@
 class WordpressAccount < ActiveRecord::Base
   belongs_to :user
   belongs_to :organization
-  
+
   attr_accessible :site_url, :blog_user, :blog_password
-  
   
   def self.post(message, account)
     begin

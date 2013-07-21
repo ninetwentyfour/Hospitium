@@ -48,25 +48,6 @@ describe Shelter do
       shelter.formatted_phone.should eql("")
     end
   end
-  
-  describe 'protected attributes' do
-    let(:shelter) { FactoryGirl.create(:shelter) }
-    
-    it 'should deny mass-assignment to the organization_id' do
-      shelter.update_attributes(:organization_id =>  10000)
-      shelter.organization_id.should_not == 10000
-    end
-    
-    it 'should deny mass-assignment to the uuid' do
-      shelter.update_attributes(:uuid =>  "test_uuid")
-      shelter.uuid.should_not == "test_uuid"
-    end
-    
-    it 'should deny mass-assignment to the id' do
-      shelter.update_attributes(:id =>  100000)
-      shelter.id.should_not == 100000
-    end
-  end
 
   describe "comma" do
     it "should return a csv for the object" do

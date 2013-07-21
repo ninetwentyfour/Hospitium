@@ -1,7 +1,7 @@
 class AdoptAPetAccount < ActiveRecord::Base
   belongs_to :user
   belongs_to :organization
-  
+
   attr_accessible :user_name, :password
   
   def self.new_by_user(params, current_user)    

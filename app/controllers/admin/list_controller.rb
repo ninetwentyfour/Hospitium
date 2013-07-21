@@ -1,14 +1,17 @@
-# Abstract controller providing a basic list action.
-# This action lists all entries of a certain model and provides functionality to
+# encoding: UTF-8
+
+# Abstract controller providing a basic list action (#index).
+# The action lists all entries of a certain model and provides functionality to
 # search and sort this list.
-# Furthermore, it remembers the last search and sort parameters. When the action
-# is called with a param returning=true, these parameters are reused to present
-# the user the same list as he left it.
+# Furthermore, it remembers the last search and sort parameters after the
+# user returns from a displayed or edited entry.
+# The loaded model entries are available in the view as an instance variable
+# named after the +model_class+ or by the helper method +entries+.
 class Admin::ListController < Admin::ApplicationController
 
   helper_method :model_class, :models_label, :entries, :path_args
 
-  delegate :model_class, :models_label, :to => 'self.class'
+  delegate :model_class, :models_label, to: 'self.class'
 
   hide_action :model_class, :models_label, :inheritable_root_controller
 
@@ -20,18 +23,20 @@ class Admin::ListController < Admin::ApplicationController
   #   GET /entries
   #   GET /entries.json
   def index(&block)
-    respond_with(entries, &block)
+    respond_with(:admin, entries, &block)
   end
 
   private
 
-  # Helper method to access the entries to be displayed in the current index page in an uniform way.
+  # Helper method to access the entries to be displayed in the current index
+  # page in an uniform way.
   def entries
     get_model_ivar(true) || set_model_ivar(list_entries)
   end
 
   # The base relation used to filter the entries.
-  # This method may be adapted as long it returns an ActiveRecord::Relation.
+  # This method may be adapted as long it returns an
+  # <tt>ActiveRecord::Relation</tt>.
   def list_entries
     model_scope
   end
@@ -40,7 +45,7 @@ class Admin::ListController < Admin::ApplicationController
   # This is mainly used for nested models to provide the
   # required context.
   def model_scope
-    model_class.scoped
+    model_class.all
   end
 
   # The path arguments to link to the given entry.
@@ -49,7 +54,7 @@ class Admin::ListController < Admin::ApplicationController
     [:admin, last]
   end
 
-  # Get the instance variable named after the model_class.
+  # Get the instance variable named after the +model_class+.
   # If the collection variable is required, pass true as the second argument.
   def get_model_ivar(plural = false)
     name = ivar_name(model_class)
@@ -57,16 +62,16 @@ class Admin::ListController < Admin::ApplicationController
     instance_variable_get(:"@#{name}")
   end
 
-  # Sets an instance variable with the underscored class name if the given value.
-  # If the value is a collection, sets the plural name.
+  # Sets an instance variable with the underscored class name if the given
+  # value. If the value is a collection, sets the plural name.
   def set_model_ivar(value)
     name = if value.respond_to?(:klass) # ActiveRecord::Relation
-      ivar_name(value.klass).pluralize
-    elsif value.respond_to?(:each) # Array
-      ivar_name(value.first.klass).pluralize
-    else
-      ivar_name(value.class)
-    end
+             ivar_name(value.klass).pluralize
+           elsif value.respond_to?(:each) # Array
+             ivar_name(value.first.class).pluralize
+           else
+             ivar_name(value.class)
+           end
     instance_variable_set(:"@#{name}", value)
   end
 
@@ -82,7 +87,7 @@ class Admin::ListController < Admin::ApplicationController
 
     # A human readable plural name of the model.
     def models_label(plural = true)
-      opts = {:count => (plural ? 3 : 1)}
+      opts = { count: (plural ? 3 : 1) }
       opts[:default] = model_class.model_name.human.titleize
       opts[:default] = opts[:default].pluralize if plural
 
@@ -91,23 +96,25 @@ class Admin::ListController < Admin::ApplicationController
 
   end
 
-  # Provide before_render callbacks.
+  # Provide +before_render+ callbacks.
   module Callbacks
+    extend ActiveSupport::Concern
 
-    def self.included(controller)
-      controller.extend ActiveModel::Callbacks
-      controller.extend ClassMethods
-      controller.alias_method_chain :render, :callbacks
+    included do
+      extend ActiveModel::Callbacks
 
-      controller.define_render_callbacks :index
+      alias_method_chain :render, :callbacks
+
+      define_render_callbacks :index
     end
 
-    # Helper method to run before_render callbacks and render the action.
+    # Helper method to run +before_render+ callbacks and render the action.
     # If a callback renders or redirects, the action is not rendered.
     def render_with_callbacks(*args, &block)
       options = _normalize_render(*args, &block)
       callback = "render_#{options[:template]}"
-      run_callbacks(callback) if respond_to?(:"_run_#{callback}_callbacks", true)
+
+      run_callbacks(callback) if respond_to?(:"_#{callback}_callbacks", true)
 
       render_without_callbacks(*args, &block) unless performed?
     end
@@ -117,18 +124,19 @@ class Admin::ListController < Admin::ApplicationController
     # Helper method the run the given block in between the before and after
     # callbacks of the given kinds.
     def with_callbacks(*kinds, &block)
-      kinds.reverse.inject(block) do |b, kind|
-        lambda { run_callbacks(kind, &b) }
+      kinds.reverse.reduce(block) do |a, e|
+        -> { run_callbacks(e, &a) }
       end.call
     end
 
+    # Class methods for callbacks.
     module ClassMethods
       # Defines before callbacks for the render actions.
       def define_render_callbacks(*actions)
-        args = actions.collect {|a| :"render_#{a}" }
-        args << {:only => :before,
-                 :terminator => "result == false || performed?"}
-        define_model_callbacks *args
+        args = actions.map { |a| :"render_#{a}" }
+        args << { only: :before,
+                  terminator: 'result == false || performed?' }
+        define_model_callbacks(*args)
       end
     end
   end
@@ -136,16 +144,18 @@ class Admin::ListController < Admin::ApplicationController
   include Callbacks
 
   # # The search functionality for the index table.
-  # # Extracted into an own module for convenience.
+  # # Define an array of searchable columns in your subclassing controllers
+  # # using the class attribute +search_columns+.
   # module Search
-  #   def self.included(controller)
-  #     # Define an array of searchable columns in your subclassing controllers.
-  #     controller.class_attribute :search_columns
-  #     controller.search_columns = []
+  #   extend ActiveSupport::Concern
 
-  #     controller.helper_method :search_support?
+  #   included do
+  #     class_attribute :search_columns
+  #     self.search_columns = []
 
-  #     controller.alias_method_chain :list_entries, :search
+  #     helper_method :search_support?
+
+  #     alias_method_chain :list_entries, :search
   #   end
 
   #   private
@@ -158,15 +168,24 @@ class Admin::ListController < Admin::ApplicationController
   #   # Compose the search condition with a basic SQL OR query.
   #   def search_condition
   #     if search_support? && params[:q].present?
-  #       terms = params[:q].split(/\s+/).collect { |t| "%#{t}%" }
-  #       clause = search_columns.collect do |f|
-  #         col = f.to_s.include?('.') ? f : "#{model_class.table_name}.#{f}"
-  #         "#{col} LIKE ?"
-  #       end.join(" OR ")
-  #       clause = terms.collect {|t| "(#{clause})" }.join(" AND ")
+  #       col_clause = search_column_clause
+  #       terms = params[:q].split(/\s+/).map { |t| "%#{t}%" }
+  #       term_clause = terms.map { |t| "(#{col_clause})" }.join(' AND ')
 
-  #        ["(#{clause})"] + terms.collect {|t| [t] * search_columns.size }.flatten
+  #       term_params = terms.map { |t| [t] * search_columns.size }.flatten
+  #       ["(#{term_clause})", *term_params]
   #     end
+  #   end
+
+  #   # SQL where clause with all search colums or'ed.
+  #   def search_column_clause
+  #     search_columns.map do |f|
+  #       if f.to_s.include?('.')
+  #         "#{f} LIKE ?"
+  #       else
+  #         "#{model_class.table_name}.#{f} LIKE ?"
+  #       end
+  #     end.join(' OR ')
   #   end
 
   #   # Returns true if this controller has searchable columns.
@@ -179,7 +198,8 @@ class Admin::ListController < Admin::ApplicationController
   # include Search
 
   # # Sort functionality for the index table.
-  # # Extracted into an own module for convenience.
+  # # Define a default sort expression that is always appended to the
+  # # current sort params with the class attribute +default_sort+.
   # module Sort
   #   extend ActiveSupport::Concern
 
@@ -187,8 +207,6 @@ class Admin::ListController < Admin::ApplicationController
   #     class_attribute :sort_mappings_with_indifferent_access
   #     self.sort_mappings = {}
 
-  #     # Define a default sort expression that is always appended to the
-  #     # current sort params
   #     class_attribute :default_sort
 
   #     helper_method :sortable?
@@ -196,13 +214,15 @@ class Admin::ListController < Admin::ApplicationController
   #     alias_method_chain :list_entries, :sort
   #   end
 
+  #   # Class methods for sorting.
   #   module ClassMethods
   #     # Define a map of (virtual) attributes to SQL order expressions.
   #     # May be used for sorting table columns that do not appear directly
-  #     # in the database table. E.g., map :city_id => 'cities.name' to
+  #     # in the database table. E.g., map city_id: 'cities.name' to
   #     # sort the displayed city names.
   #     def sort_mappings=(hash)
-  #       self.sort_mappings_with_indifferent_access = hash.with_indifferent_access
+  #       self.sort_mappings_with_indifferent_access =
+  #         hash.with_indifferent_access
   #     end
   #   end
 
@@ -210,11 +230,11 @@ class Admin::ListController < Admin::ApplicationController
 
   #   # Enhance the list entries with an optional sort order.
   #   def list_entries_with_sort
-  #     if params[:sort].present? && sortable?(params[:sort])
-  #       list_entries_without_sort.reorder(sort_expression)
-  #     else
-  #       list_entries_without_sort
-  #     end
+  #     clause = []
+  #     clause << sort_expression if sortable?(params[:sort])
+  #     clause << default_sort
+
+  #     list_entries_without_sort.order(clause.compact.join(', '))
   #   end
 
   #   # Return the sort expression to be used in the list query.
@@ -226,13 +246,14 @@ class Admin::ListController < Admin::ApplicationController
 
   #   # The sort direction, either 'asc' or 'desc'.
   #   def sort_dir
-  #     params[:sort_dir] == 'desc' ? 'desc' : 'asc'
+  #     params[:sort_dir] == 'desc' ? 'DESC' : 'ASC'
   #   end
 
   #   # Returns true if the passed attribute is sortable.
   #   def sortable?(attr)
+  #     attr.present? && (
   #     model_class.column_names.include?(attr.to_s) ||
-  #     sort_mappings_with_indifferent_access.include?(attr)
+  #     sort_mappings_with_indifferent_access.include?(attr))
   #   end
   # end
 
@@ -241,17 +262,17 @@ class Admin::ListController < Admin::ApplicationController
   # # Remembers certain params of the index action in order to return
   # # to the same list after an entry was viewed or edited.
   # # If the index is called with a param :returning, the remembered params
-  # # will be re-used.
-  # # Extracted into an own module for convenience.
+  # # will be re-used to present the user the same list as she left it.
+  # # Define a list of param keys that should be remembered for the list action
+  # # with the class attribute +remember_params+.
   # module Memory
+  #   extend ActiveSupport::Concern
 
-  #   # Adds the :remember_params class attribute and a before filter to the index action.
-  #   def self.included(controller)
-  #     # Define a list of param keys that should be remembered for the list action.
-  #     controller.class_attribute :remember_params
-  #     controller.remember_params = [:q, :sort, :sort_dir, :page]
+  #   included do
+  #     class_attribute :remember_params
+  #     self.remember_params = [:q, :sort, :sort_dir, :page]
 
-  #     controller.before_filter :handle_remember_params, :only => [:index]
+  #     before_filter :handle_remember_params, only: [:index]
   #   end
 
   #   private
@@ -267,7 +288,7 @@ class Admin::ListController < Admin::ApplicationController
 
   #   def restore_params_on_return(remembered)
   #     if params[:returning]
-  #       remember_params.each {|p| params[p] ||= remembered[p] }
+  #       remember_params.each { |p| params[p] ||= remembered[p] }
   #     end
   #   end
 
@@ -299,35 +320,36 @@ class Admin::ListController < Admin::ApplicationController
 
   # # Provides functionality to nest controllers/resources.
   # # If a controller is nested, the parent classes and namespaces
-  # # may be defined as an array in the :nesting class attribute.
+  # # may be defined as an array in the +nesting+ class attribute.
   # # For example, a cities controller, nested in country and a admin
   # # namespace, may define this attribute as follows:
   # #   self.nesting = :admin, Country
   # module Nesting
+  #   extend ActiveSupport::Concern
 
   #   # Adds the :nesting class attribute and parent helper methods
   #   # to the including controller.
-  #   def self.included(controller)
-  #     controller.class_attribute :nesting
+  #   included do
+  #     class_attribute :nesting
 
-  #     controller.helper_method :parent, :parents
+  #     helper_method :parent, :parents
 
-  #     controller.alias_method_chain :model_scope, :nesting
-  #     controller.alias_method_chain :path_args, :nesting
+  #     alias_method_chain :model_scope, :nesting
+  #     alias_method_chain :path_args, :nesting
   #   end
 
   #   private
 
   #   # Returns the direct parent ActiveRecord of the current request, if any.
   #   def parent
-  #     parents.select {|p| p.is_a?(ActiveRecord::Base) }.last
+  #     parents.select { |p| p.is_a?(ActiveRecord::Base) }.last
   #   end
 
   #   # Returns the parent entries of the current request, if any.
   #   # These are ActiveRecords or namespace symbols, corresponding
   #   # to the defined nesting attribute.
   #   def parents
-  #     @parents ||= Array(nesting).collect do |p|
+  #     @parents ||= Array(nesting).map do |p|
   #       if p.is_a?(Class) && p < ActiveRecord::Base
   #         parent_entry(p)
   #       else
@@ -365,3 +387,373 @@ class Admin::ListController < Admin::ApplicationController
   # include Nesting
 
 end
+
+
+
+# # Abstract controller providing a basic list action.
+# # This action lists all entries of a certain model and provides functionality to
+# # search and sort this list.
+# # Furthermore, it remembers the last search and sort parameters. When the action
+# # is called with a param returning=true, these parameters are reused to present
+# # the user the same list as he left it.
+# class Admin::ListController < Admin::ApplicationController
+
+#   helper_method :model_class, :models_label, :entries, :path_args
+
+#   delegate :model_class, :models_label, :to => 'self.class'
+
+#   hide_action :model_class, :models_label, :inheritable_root_controller
+
+#   respond_to :html, :json
+
+#   ##############  ACTIONS  ############################################
+
+#   # List all entries of this model.
+#   #   GET /entries
+#   #   GET /entries.json
+#   def index(&block)
+#     respond_with(entries, &block)
+#   end
+
+#   private
+
+#   # Helper method to access the entries to be displayed in the current index page in an uniform way.
+#   def entries
+#     get_model_ivar(true) || set_model_ivar(list_entries)
+#   end
+
+#   # The base relation used to filter the entries.
+#   # This method may be adapted as long it returns an ActiveRecord::Relation.
+#   def list_entries
+#     model_scope
+#   end
+
+#   # The scope where model entries will be listed and created.
+#   # This is mainly used for nested models to provide the
+#   # required context.
+#   def model_scope
+#     model_class.scoped
+#   end
+
+#   # The path arguments to link to the given entry.
+#   # If the controller is nested, this provides the required context.
+#   def path_args(last)
+#     [:admin, last]
+#   end
+
+#   # Get the instance variable named after the model_class.
+#   # If the collection variable is required, pass true as the second argument.
+#   def get_model_ivar(plural = false)
+#     name = ivar_name(model_class)
+#     name = name.pluralize if plural
+#     instance_variable_get(:"@#{name}")
+#   end
+
+#   # Sets an instance variable with the underscored class name if the given value.
+#   # If the value is a collection, sets the plural name.
+#   def set_model_ivar(value)
+#     name = if value.respond_to?(:klass) # ActiveRecord::Relation
+#       ivar_name(value.klass).pluralize
+#     elsif value.respond_to?(:each) # Array
+#       ivar_name(value.first.klass).pluralize
+#     else
+#       ivar_name(value.class)
+#     end
+#     instance_variable_set(:"@#{name}", value)
+#   end
+
+#   def ivar_name(klass)
+#     klass.model_name.param_key
+#   end
+
+#   class << self
+#     # The ActiveRecord class of the model.
+#     def model_class
+#       @model_class ||= controller_name.classify.constantize
+#     end
+
+#     # A human readable plural name of the model.
+#     def models_label(plural = true)
+#       opts = {:count => (plural ? 3 : 1)}
+#       opts[:default] = model_class.model_name.human.titleize
+#       opts[:default] = opts[:default].pluralize if plural
+
+#       model_class.model_name.human(opts)
+#     end
+
+#   end
+
+#   # Provide before_render callbacks.
+#   module Callbacks
+
+#     def self.included(controller)
+#       controller.extend ActiveModel::Callbacks
+#       controller.extend ClassMethods
+#       controller.alias_method_chain :render, :callbacks
+
+#       controller.define_render_callbacks :index
+#     end
+
+#     # Helper method to run before_render callbacks and render the action.
+#     # If a callback renders or redirects, the action is not rendered.
+#     def render_with_callbacks(*args, &block)
+#       options = _normalize_render(*args, &block)
+#       callback = "render_#{options[:template]}"
+#       run_callbacks(callback) if respond_to?(:"_run_#{callback}_callbacks", true)
+
+#       render_without_callbacks(*args, &block) unless performed?
+#     end
+
+#     private
+
+#     # Helper method the run the given block in between the before and after
+#     # callbacks of the given kinds.
+#     def with_callbacks(*kinds, &block)
+#       kinds.reverse.inject(block) do |b, kind|
+#         lambda { run_callbacks(kind, &b) }
+#       end.call
+#     end
+
+#     module ClassMethods
+#       # Defines before callbacks for the render actions.
+#       def define_render_callbacks(*actions)
+#         args = actions.collect {|a| :"render_#{a}" }
+#         args << {:only => :before,
+#                  :terminator => "result == false || performed?"}
+#         define_model_callbacks *args
+#       end
+#     end
+#   end
+
+#   include Callbacks
+
+#   # # The search functionality for the index table.
+#   # # Extracted into an own module for convenience.
+#   # module Search
+#   #   def self.included(controller)
+#   #     # Define an array of searchable columns in your subclassing controllers.
+#   #     controller.class_attribute :search_columns
+#   #     controller.search_columns = []
+
+#   #     controller.helper_method :search_support?
+
+#   #     controller.alias_method_chain :list_entries, :search
+#   #   end
+
+#   #   private
+
+#   #   # Enhance the list entries with an optional search criteria
+#   #   def list_entries_with_search
+#   #     list_entries_without_search.where(search_condition)
+#   #   end
+
+#   #   # Compose the search condition with a basic SQL OR query.
+#   #   def search_condition
+#   #     if search_support? && params[:q].present?
+#   #       terms = params[:q].split(/\s+/).collect { |t| "%#{t}%" }
+#   #       clause = search_columns.collect do |f|
+#   #         col = f.to_s.include?('.') ? f : "#{model_class.table_name}.#{f}"
+#   #         "#{col} LIKE ?"
+#   #       end.join(" OR ")
+#   #       clause = terms.collect {|t| "(#{clause})" }.join(" AND ")
+
+#   #        ["(#{clause})"] + terms.collect {|t| [t] * search_columns.size }.flatten
+#   #     end
+#   #   end
+
+#   #   # Returns true if this controller has searchable columns.
+#   #   def search_support?
+#   #     search_columns.present?
+#   #   end
+
+#   # end
+
+#   # include Search
+
+#   # # Sort functionality for the index table.
+#   # # Extracted into an own module for convenience.
+#   # module Sort
+#   #   extend ActiveSupport::Concern
+
+#   #   included do
+#   #     class_attribute :sort_mappings_with_indifferent_access
+#   #     self.sort_mappings = {}
+
+#   #     # Define a default sort expression that is always appended to the
+#   #     # current sort params
+#   #     class_attribute :default_sort
+
+#   #     helper_method :sortable?
+
+#   #     alias_method_chain :list_entries, :sort
+#   #   end
+
+#   #   module ClassMethods
+#   #     # Define a map of (virtual) attributes to SQL order expressions.
+#   #     # May be used for sorting table columns that do not appear directly
+#   #     # in the database table. E.g., map :city_id => 'cities.name' to
+#   #     # sort the displayed city names.
+#   #     def sort_mappings=(hash)
+#   #       self.sort_mappings_with_indifferent_access = hash.with_indifferent_access
+#   #     end
+#   #   end
+
+#   #   private
+
+#   #   # Enhance the list entries with an optional sort order.
+#   #   def list_entries_with_sort
+#   #     if params[:sort].present? && sortable?(params[:sort])
+#   #       list_entries_without_sort.reorder(sort_expression)
+#   #     else
+#   #       list_entries_without_sort
+#   #     end
+#   #   end
+
+#   #   # Return the sort expression to be used in the list query.
+#   #   def sort_expression
+#   #     col = sort_mappings_with_indifferent_access[params[:sort]] ||
+#   #           "#{model_class.table_name}.#{params[:sort]}"
+#   #     "#{col} #{sort_dir}"
+#   #   end
+
+#   #   # The sort direction, either 'asc' or 'desc'.
+#   #   def sort_dir
+#   #     params[:sort_dir] == 'desc' ? 'desc' : 'asc'
+#   #   end
+
+#   #   # Returns true if the passed attribute is sortable.
+#   #   def sortable?(attr)
+#   #     model_class.column_names.include?(attr.to_s) ||
+#   #     sort_mappings_with_indifferent_access.include?(attr)
+#   #   end
+#   # end
+
+#   # include Sort
+
+#   # # Remembers certain params of the index action in order to return
+#   # # to the same list after an entry was viewed or edited.
+#   # # If the index is called with a param :returning, the remembered params
+#   # # will be re-used.
+#   # # Extracted into an own module for convenience.
+#   # module Memory
+
+#   #   # Adds the :remember_params class attribute and a before filter to the index action.
+#   #   def self.included(controller)
+#   #     # Define a list of param keys that should be remembered for the list action.
+#   #     controller.class_attribute :remember_params
+#   #     controller.remember_params = [:q, :sort, :sort_dir, :page]
+
+#   #     controller.before_filter :handle_remember_params, :only => [:index]
+#   #   end
+
+#   #   private
+
+#   #   # Store and restore the corresponding params.
+#   #   def handle_remember_params
+#   #     remembered = remembered_params
+
+#   #     restore_params_on_return(remembered)
+#   #     store_current_params(remembered)
+#   #     clear_void_params(remembered)
+#   #   end
+
+#   #   def restore_params_on_return(remembered)
+#   #     if params[:returning]
+#   #       remember_params.each {|p| params[p] ||= remembered[p] }
+#   #     end
+#   #   end
+
+#   #   def store_current_params(remembered)
+#   #     remember_params.each do |p|
+#   #       remembered[p] = params[p].presence
+#   #       remembered.delete(p) if remembered[p].nil?
+#   #     end
+#   #   end
+
+#   #   def clear_void_params(remembered)
+#   #     session[:list_params].delete(remember_key) if remembered.blank?
+#   #   end
+
+#   #   # Get the params stored in the session.
+#   #   def remembered_params
+#   #     session[:list_params] ||= {}
+#   #     session[:list_params][remember_key] ||= {}
+#   #   end
+
+#   #   # Params are stored by request path to play nice when a controller
+#   #   # is used in different routes.
+#   #   def remember_key
+#   #      request.path
+#   #   end
+#   # end
+
+#   # include Memory
+
+#   # # Provides functionality to nest controllers/resources.
+#   # # If a controller is nested, the parent classes and namespaces
+#   # # may be defined as an array in the :nesting class attribute.
+#   # # For example, a cities controller, nested in country and a admin
+#   # # namespace, may define this attribute as follows:
+#   # #   self.nesting = :admin, Country
+#   # module Nesting
+
+#   #   # Adds the :nesting class attribute and parent helper methods
+#   #   # to the including controller.
+#   #   def self.included(controller)
+#   #     controller.class_attribute :nesting
+
+#   #     controller.helper_method :parent, :parents
+
+#   #     controller.alias_method_chain :model_scope, :nesting
+#   #     controller.alias_method_chain :path_args, :nesting
+#   #   end
+
+#   #   private
+
+#   #   # Returns the direct parent ActiveRecord of the current request, if any.
+#   #   def parent
+#   #     parents.select {|p| p.is_a?(ActiveRecord::Base) }.last
+#   #   end
+
+#   #   # Returns the parent entries of the current request, if any.
+#   #   # These are ActiveRecords or namespace symbols, corresponding
+#   #   # to the defined nesting attribute.
+#   #   def parents
+#   #     @parents ||= Array(nesting).collect do |p|
+#   #       if p.is_a?(Class) && p < ActiveRecord::Base
+#   #         parent_entry(p)
+#   #       else
+#   #         p
+#   #       end
+#   #     end
+#   #   end
+
+#   #   # Loads the parent entry for the given ActiveRecord class.
+#   #   # By default, performs a find with the class_name_id param.
+#   #   def parent_entry(clazz)
+#   #     set_model_ivar(clazz.find(params["#{clazz.name.underscore}_id"]))
+#   #   end
+
+#   #   # An array of objects used in url_for and related functions.
+#   #   def path_args_with_nesting(last)
+#   #     parents + [last]
+#   #   end
+
+#   #   # Uses the parent entry (if any) to constrain the model scope.
+#   #   def model_scope_with_nesting
+#   #     if parent.present?
+#   #       parent_scope
+#   #     else
+#   #       model_scope_without_nesting
+#   #     end
+#   #   end
+
+#   #   # The model scope for the current parent resource.
+#   #   def parent_scope
+#   #     parent.send(model_class.name.underscore.pluralize)
+#   #   end
+#   # end
+
+#   # include Nesting
+
+# end

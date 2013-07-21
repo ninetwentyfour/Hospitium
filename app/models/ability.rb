@@ -11,6 +11,10 @@ class Ability
     
     can :manage, :twitter_account
 
+    can :read, AdoptAnimal, animal: { organization: { id: @user.organization_id } }
+    can :create, AdoptAnimal, animal: { organization: { id: @user.organization_id } }
+    can :destroy, AdoptAnimal, animal: { organization: { id: @user.organization_id } }
+
     can :read, AdoptionContact, organization: { id: @user.organization_id }
     can :create, AdoptionContact
     can :update, AdoptionContact, organization: { id: @user.organization_id }
@@ -42,6 +46,10 @@ class Ability
     can :destroy, Document, documentable: { organization: { id: @user.organization_id } }
 
     can :read, Organization, :id => @user.organization_id
+
+    can :read, RelinquishAnimal, animal: { organization: { id: @user.organization_id } }
+    can :create, RelinquishAnimal, animal: { organization: { id: @user.organization_id } }
+    can :destroy, RelinquishAnimal, animal: { organization: { id: @user.organization_id } }
 
     can :read, RelinquishmentContact, organization: { id: @user.organization_id }
     can :create, RelinquishmentContact

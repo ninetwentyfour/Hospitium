@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 #this is the public animals controller
-describe RelinquishAnimalsController do
+describe Admin::RelinquishAnimalsController do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    login_user
+    @user = subject.current_user
 
     @animal = FactoryGirl.create(:animal, :organization_id => @user.organization_id)
     @relinquishment_contact = FactoryGirl.create(:relinquishment_contact, :organization_id => @user.organization_id)
@@ -17,14 +18,14 @@ describe RelinquishAnimalsController do
       it "creates a new relinquish_animal" do
         RelinquishAnimal.observers.disable :all do
           expect {
-            post :create, {:relinquish_animal => FactoryGirl.attributes_for(:relinquish_animal)}
+            post :create, {:relinquish_animal =>  {:animal_id => @animal.id, :relinquishment_contact_id => @relinquishment_contact.id}}
           }.to change(RelinquishAnimal, :count).by(1)
         end
       end
 
       it "assigns a newly created relinquish_animal as @relinquish_animal" do
         RelinquishAnimal.observers.disable :all do
-          post :create, {:relinquish_animal =>  FactoryGirl.attributes_for(:relinquish_animal)}
+          post :create, {:relinquish_animal =>  {:animal_id => @animal.id, :relinquishment_contact_id => @relinquishment_contact.id}}
           assigns(:relinquish_animal).should be_a(RelinquishAnimal)
           assigns(:relinquish_animal).should be_persisted
         end
@@ -32,7 +33,7 @@ describe RelinquishAnimalsController do
 
       it "redirects to the created back" do
         RelinquishAnimal.observers.disable :all do
-          post :create, {:relinquish_animal =>  FactoryGirl.attributes_for(:relinquish_animal)}
+          post :create, {:relinquish_animal =>  {:animal_id => @animal.id, :relinquishment_contact_id => @relinquishment_contact.id}}
           response.should redirect_to "http://test.host"
         end
       end

@@ -1,11 +1,11 @@
 class AnimalsController < ApplicationController
-  caches_action :index, 
-    :cache_path => Proc.new { |controller| controller.params.map{|k,v| "#{k}=#{v}"}.join('&') + request.format},
-    :layout => false, #when rails 4.0 is out - this can use a proc so we can cache xml and json too
-    :expires_in => 10.minutes,
-    :if => (Proc.new do
-        request.format.html?  # cache if is a html request
-    end)
+  # caches_action :index, 
+  #   :cache_path => Proc.new { |controller| controller.params.map{|k,v| "#{k}=#{v}"}.join('&') + request.format},
+  #   :layout => false, #when rails 4.0 is out - this can use a proc so we can cache xml and json too
+  #   :expires_in => 10.minutes,
+  #   :if => (Proc.new do
+  #       request.format.html?  # cache if is a html request
+  #   end)
     
   
   respond_to :html, :xml, :json

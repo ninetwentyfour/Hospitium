@@ -1,8 +1,8 @@
 # Report model
 class Report < ActiveRecord::Base
   def self.new_chart(org, type)
-    animals_count = Animal.count(:conditions => {:organization_id => org})     
-    all_types = type.camelize.constantize.all(:conditions => {:organization_id => org})
+    animals_count = Animal.where(:organization_id => org).count()     
+    all_types = type.camelize.constantize.where(:organization_id => org)
     final_status_array = Array.new
 
     color = Paleta::Color.new(:hex, "d63a4c")
@@ -10,7 +10,7 @@ class Report < ActiveRecord::Base
     colors = palette.to_array(color_model = :hex)
     colors.shuffle!
     all_types.each_with_index do |object, index|
-      count = Animal.count(:conditions => {:organization_id => org, "#{type}_id".to_sym => object.id})
+      count = Animal.where(:organization_id => org, "#{type}_id".to_sym => object.id).count()
       percent = ((count.to_f / animals_count.to_f) * 100)
       final_status_array << {:value => count, :color => "##{colors[index]}", :label => "#{object.report_display_name}", :percent => percent}
     end

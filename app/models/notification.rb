@@ -2,7 +2,7 @@ class Notification < ActiveRecord::Base
   
   after_create :send_public_tweet
   after_update :send_public_tweet
-  
+
   attr_accessible :message, :status_type
   
   def send_public_tweet

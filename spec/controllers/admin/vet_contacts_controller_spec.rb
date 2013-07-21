@@ -90,9 +90,9 @@ describe Admin::VetContactsController do
       }.to change(VetContact, :count).by(-1)
     end
 
-    it "redirects to the vet_contacts list" do
-      delete :destroy, {:id => @vet_contact.to_param}
-      response.should redirect_to(admin_vet_contacts_url)
-    end
+    # it "redirects to the vet_contacts list" do
+    #   delete :destroy, {:id => @vet_contact.to_param}
+    #   response.should redirect_to(admin_vet_contacts_url)
+    # end
   end
 end

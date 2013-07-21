@@ -1,7 +1,12 @@
 class Admin::VolunteerContactsController < Admin::CrudController
   load_and_authorize_resource
   
-  respond_to :html, :xml, :json, :csv
+  respond_to :html, :json, :csv
+
+  # Allowed params for create and update
+  self.permitted_attrs = [:first_name, :last_name, :address, :phone, :email, :application_date]
+  # scope create to current_user.organization
+  self.save_as_organization = true
   
   # GET /volunteer_contacts
   # GET /volunteer_contacts.xml
@@ -14,18 +19,5 @@ class Admin::VolunteerContactsController < Admin::CrudController
       format.csv { render :csv => VolunteerContact.organization(current_user),
                           :filename => 'volunteer_contacts' }
     end
-  end
-
-  # POST /volunteer_contacts
-  # POST /volunteer_contacts.xml
-  def create
-    @volunteer_contact = current_user.organization.volunteer_contacts.new(params[:volunteer_contact])
-    if @volunteer_contact.save
-      flash[:notice] = 'Volunteer contact was successfully created.'
-    else
-      flash[:error] = 'Volunteer contact was not successfully created.'
-    end
-    
-    respond_with(@volunteer_contact, :location => admin_volunteer_contact_path(@volunteer_contact))
   end
 end
