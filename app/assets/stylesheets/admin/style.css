@@ -87,7 +87,6 @@ body {
 	overflow: hidden; 
 	list-style:none !important;
 	z-index:1;
-	border-radius: 3px 3px 0px 0px !important;
 }
 
 .timelineAnimal2 li:hover { 
@@ -141,7 +140,7 @@ body {
 
 .best_in_place:hover, .do_hover {
 	padding-right: 1.5em;
-	background: url(/assets/pencil-best-in-place.png) no-repeat right;
+	background: url(https://d1pm9e0xzdmxcb.cloudfront.net/assets/pencil-best-in-place.png) no-repeat right;
 }
 
 .info_edit {
@@ -248,7 +247,6 @@ table#history td.start {
 	overflow: hidden; 
 	list-style:none !important;
 	z-index:1;
-	border-radius: 3px 3px 0px 0px !important;
 }
 
 .timelineAnimal li:hover { 
@@ -277,7 +275,6 @@ table#history td.start {
 	background-color: rgba(0,0,0,0.8);
 	color:#eee;
 	border:1px solid #000;
-	border-radius: 3px 3px 3px 3px !important;
 	font-size:10px;
 }
 
@@ -396,9 +393,6 @@ table.jqplot-table-legend {
 	background: #000; 
 	opacity: 0.9;
 	color: #FFF;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
 }
 
 .dashboard-table {

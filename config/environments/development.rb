@@ -59,6 +59,6 @@ AnimalTracker::Application.configure do
 
   # # Generate digests for assets URLs
   config.assets.digest = true
-  # config.action_controller.asset_host = "https://d1pm9e0xzdmxcb.cloudfront.net"
+  config.action_controller.asset_host = "https://d1pm9e0xzdmxcb.cloudfront.net"
 end
 

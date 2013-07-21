@@ -37,8 +37,6 @@ gem 'secure_headers'
 # add these gems to help with the transition to rails4:
 gem 'protected_attributes'
 gem 'rails-observers'
-# gem 'actionpack-page_caching'
-# gem 'actionpack-action_caching'
 
 # Gems used only for production
 group :production do
@@ -67,7 +65,8 @@ group :production, :development do
 	gem 'best_in_place', github: "ninetwentyfour/best_in_place"
 	gem 'therubyracer'
 	gem 'jquery-rails', '2.0.1'
-	gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git"
+	gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git", :branch => "flat"
+	gem 'flatstrap-rails'
 	gem 'less-rails-bootstrap'
 	gem 'site_meta'
 
