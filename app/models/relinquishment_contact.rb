@@ -44,7 +44,7 @@ class RelinquishmentContact < ActiveRecord::Base
     first_name "First Name"
     last_name "Last Name"
     address "Address"
-    phone "Phone" do |p| formatted_phone end
+    phone "Phone"
     email "Email"
     reason "Reason"
     animals "Relinquished Animal IDs" do |a| a.map{|a| a.id}.join(",") end

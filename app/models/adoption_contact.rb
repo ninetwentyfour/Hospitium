@@ -43,7 +43,7 @@ class AdoptionContact < ActiveRecord::Base
     first_name "First Name"
     last_name "Last Name"
     address "Address"
-    phone "Phone" do |p| formatted_phone end
+    phone "Phone"
     email "Email"
     animals "Adopted Animal IDs" do |a| a.map{|a| a.id}.join(",") end
   end

@@ -41,7 +41,7 @@ class VetContact < ActiveRecord::Base
     id "ID"
     clinic_name "Clinic Name"
     address "Address"
-    phone "Phone" do |p| formatted_phone end
+    phone "Phone"
     email "Email"
     website "Website"
     hours "Hours"

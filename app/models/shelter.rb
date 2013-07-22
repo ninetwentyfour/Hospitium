@@ -40,7 +40,7 @@ class Shelter < ActiveRecord::Base
     contact_first "Contact First Name"
     contact_last "Contact Last Name"
     address "Address"
-    phone "Phone" do |p| formatted_phone end
+    phone "Phone"
     email "Email"
     website "Website"
     notes "Notes"

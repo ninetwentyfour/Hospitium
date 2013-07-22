@@ -109,7 +109,7 @@ class Admin::AnimalsController < Admin::ApplicationController
         #{@animal.species_name}
         ----
         #{@animal.organization_name} 
-        #{number_to_phone(@animal.organization_phone_number) unless @animal.organization_phone_number.blank?}
+        #{view_context.number_to_phone(@animal.organization_phone_number, :area_code => true) unless @animal.organization_phone_number.blank?}
         #{@animal.organization_address unless @animal.organization_address.blank?}
         #{@animal.organization_city unless @animal.organization_city.blank?} #{@animal.organization_state unless @animal.organization_state.blank?} #{@animal.organization_zip_code unless @animal.organization_zip_code.blank?}", :level => :h, :unit => 6 }
     end

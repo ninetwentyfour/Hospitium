@@ -54,7 +54,7 @@ class VolunteerContact < ActiveRecord::Base
     first_name "First Name"
     last_name "Last Name"
     address "Address"
-    phone "Phone" do |p| formatted_phone end
+    phone "Phone"
     email "Email"
     application_date "Application Date"
   end

@@ -1,5 +1,5 @@
 class Admin::RelinquishAnimalsController < Admin::CrudController
-  load_and_authorize_resource
+  load_and_authorize_resource :relinquish_animal, :find_by => :animal_id
 
   # Allowed params for create and update
   self.permitted_attrs = [:relinquishment_contact_id, :animal_id]
@@ -33,10 +33,7 @@ class Admin::RelinquishAnimalsController < Admin::CrudController
     @relinquish_animal = RelinquishAnimal.find_by_animal_id_and_relinquishment_contact_id(params[:id], params[:relinquish])
     @relinquish_animal.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(:back, :notice => 'Animal successfully removed.') }
-      format.xml  { head :ok }
-    end
+    redirect_to(:back, :notice => 'Animal successfully removed.')
   end
 
   private

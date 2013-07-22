@@ -16,13 +16,12 @@ gem 'ransack', github: "ernie/ransack", branch: "rails-4"
 gem 'juggernaut'
 gem 'gravatar_image_tag'
 gem "spreadsheet"
-# gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls-on-models"
 gem "comma"
 gem 'redcarpet'
 gem 'encryptor'
 gem 'json_builder'
 gem "statsd-ruby", :require => "statsd"
-gem 'impressionist'
+gem 'impressionist' # record views of public animals
 gem 'bitly'
 # generate color schemes
 gem 'paleta'
@@ -66,7 +65,6 @@ group :production, :development do
 	gem 'therubyracer'
 	gem 'jquery-rails', '2.0.1'
 	gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git", :branch => "flat"
-	gem 'flatstrap-rails'
 	gem 'less-rails-bootstrap'
 	gem 'site_meta'
 

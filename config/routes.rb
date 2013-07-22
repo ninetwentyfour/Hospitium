@@ -83,7 +83,7 @@ AnimalTracker::Application.routes.draw do
   
   match "/admin/animals/:id/cage_card" => "admin/animals#cage_card", :as => "animals_cage_card", :via => :get
   match "/admin/animals/:id/qr_code" => "admin/animals#qr_code", :as => "animals_qr_code", :via => :get
-  match "/admin/animals/:id/add_image" => "admin/animals#add_image", :as => "admin_animal_add_image", :via => :put
+  match "/admin/animals/:id/add_image" => "admin/animals#add_image", :as => "admin_animal_add_image", :via => :patch
   # Prefix route urls with "admin"
   namespace :admin do
     resources :animals, :species, :statuses, :animal_colors, :shelters, :animal_weights, :adoption_contacts, :organizations, :relinquishment_contacts, :users,
