@@ -1,7 +1,14 @@
 class Admin::UsersController < Admin::CrudController
   load_and_authorize_resource
   
-  respond_to :html, :xml, :json
+  # Allowed params for create and update
+  self.permitted_attrs = [:email, :password, :password_confirmation, :remember_me, :username, :login, :organization_name, :owner,
+                          :no_send_email, :skip_default_role]
+  # scope create to current_user.organization
+  self.save_as_organization = true
+  # redirect somewhere other than the object on create/delete
+  self.redirect_on_create = :back
+  self.redirect_on_delete = :back
   
   # GET /users
   # GET /users.xml
@@ -16,36 +23,11 @@ class Admin::UsersController < Admin::CrudController
   # GET /users/1.xml
   def show
     @user = User.select("users.adopt_a_pets.name, users.username").
+                  references(:adopt_a_pets).
                   includes(:wordpress_accounts, :facebook_accounts, :twitter_accounts, :roles, :adopt_a_pet_accounts).
                   where(:id => params[:id]).
                   first()
     
     respond_with(@user)
-  end
-
-  # POST /users
-  # POST /users.xml
-  def create
-    @user = current_user.organization.users.new(params[:user])
-    if @user.save
-      $statsd.increment 'user.created'
-      flash[:notice] = 'User was successfully created.'
-    else
-      flash[:error] = 'User was not successfully created.'
-    end
-    
-    redirect_to :back
-  end
-
-  # DELETE /users/1
-  # DELETE /users/1.xml
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(:back, :notice => 'User was successfully deleted.') }
-      format.xml  { head :ok }
-    end
   end
 end

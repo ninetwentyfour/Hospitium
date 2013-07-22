@@ -2,6 +2,11 @@ class Admin::AdoptionContactsController < Admin::CrudController
   load_and_authorize_resource
   
   respond_to :html, :xml, :json, :csv
+
+  # Allowed params for create and update
+  self.permitted_attrs = [:first_name, :last_name, :phone, :email, :adopted_date, :address]
+  # scope create to current_user.organization
+  self.save_as_organization = true
   
   # GET /adoption_contacts
   # GET /adoption_contacts.xml
@@ -22,18 +27,5 @@ class Admin::AdoptionContactsController < Admin::CrudController
     @adoptable_animals = Animal.organization(current_user)
     
     respond_with(@adoption_contact)
-  end
-
-  # POST /adoption_contacts
-  # POST /adoption_contacts.xml
-  def create
-    @adoption_contact = current_user.organization.adoption_contacts.new(params[:adoption_contact])
-    if @adoption_contact.save
-      flash[:notice] = 'Adoption contact was successfully created.'
-    else
-      flash[:error] = 'Adoption contact was not successfully created.'
-    end
-
-    respond_with(@adoption_contact, :location => admin_adoption_contact_path(@adoption_contact))
   end
 end

@@ -1,12 +1,12 @@
 class Admin::AnimalsController < Admin::ApplicationController
   load_and_authorize_resource
   
-  respond_to :html, :xml, :json, :csv, :js
+  respond_to :html, :json, :csv, :js
   
   # GET /animals
   # GET /animals.xml
   def index
-    @search = Animal.select('animals.name, animals.microchip, animals.birthday, animals.uuid, animals.id, animals.status_id, animals.animal_color_id, animals.animal_sex_id, animals.species_id, animals.spay_neuter_id, animals.updated_at, animals.image, animals.image_file_name, animals.image_updated_at').
+    @search = Animal.select('animals.name, animals.microchip, animals.birthday, animals.uuid, animals.id, animals.status_id, animals.animal_color_id, animals.animal_sex_id, animals.species_id, animals.spay_neuter_id, animals.updated_at, animals.image, animals.image_file_name, animals.image_updated_at, animals.organization_id').
                     includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter).
                     organization(current_user).
                     search(params[:q])
@@ -49,7 +49,7 @@ class Admin::AnimalsController < Admin::ApplicationController
   # POST /animals
   # POST /animals.xml
   def create
-    @animal = current_user.organization.animals.new(params[:animal])
+    @animal = current_user.organization.animals.new(animal_params)
     if @animal.save
       $statsd.increment 'animal.created'
       flash[:notice] = 'Animal was successfully created.'
@@ -62,7 +62,7 @@ class Admin::AnimalsController < Admin::ApplicationController
   
   def update
     @animal = Animal.find(params[:id])
-    @animal.update_attributes(params[:animal])
+    @animal.update_attributes(animal_params)
     $statsd.increment 'animal.updated'
     respond_with(@animal, :location => admin_animal_path(@animal)) 
   end
@@ -109,7 +109,7 @@ class Admin::AnimalsController < Admin::ApplicationController
         #{@animal.species_name}
         ----
         #{@animal.organization_name} 
-        #{number_to_phone(@animal.organization_phone_number) unless @animal.organization_phone_number.blank?}
+        #{view_context.number_to_phone(@animal.organization_phone_number, :area_code => true) unless @animal.organization_phone_number.blank?}
         #{@animal.organization_address unless @animal.organization_address.blank?}
         #{@animal.organization_city unless @animal.organization_city.blank?} #{@animal.organization_state unless @animal.organization_state.blank?} #{@animal.organization_zip_code unless @animal.organization_zip_code.blank?}", :level => :h, :unit => 6 }
     end
@@ -124,4 +124,11 @@ class Admin::AnimalsController < Admin::ApplicationController
     end
     redirect_to admin_animal_path(@animal)
   end
+
+  private
+    def animal_params
+      params.require(:animal).permit(:name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased, 
+        :deceased_reason, :adopted_date, :animal_color_id, :image, :second_image, :third_image, :fourth_image, :public, :birthday, :animal_sex_id, :spay_neuter_id,
+        :biter_id, :status_id, :video_embed, :microchip)
+    end
 end

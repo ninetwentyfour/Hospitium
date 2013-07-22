@@ -3,7 +3,7 @@ class Note < ActiveRecord::Base
   belongs_to :animal
   
   before_create :create_uuid
-  
+
   attr_accessible :note, :animal_id
   
   delegate :username, :to => :user, :allow_nil => true

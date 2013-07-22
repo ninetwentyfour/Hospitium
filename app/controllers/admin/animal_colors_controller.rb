@@ -1,7 +1,12 @@
 class Admin::AnimalColorsController < Admin::CrudController
   load_and_authorize_resource
   
-  respond_to :html, :xml, :json
+  respond_to :html, :json
+
+  # Allowed params for create and update
+  self.permitted_attrs = [:color]
+  # scope create to current_user.organization
+  self.save_as_organization = true
   
   # GET /animal_colors
   # GET /animal_colors.xml
@@ -19,18 +24,5 @@ class Admin::AnimalColorsController < Admin::CrudController
     @animals = Animal.where(:animal_color_id => @animal_color.id).order("name ASC")
     
     respond_with(@animal_color)
-  end
-
-  # POST /animal_colors
-  # POST /animal_colors.xml
-  def create
-    @animal_color = current_user.organization.animal_colors.new(params[:animal_color])
-    if @animal_color.save
-      flash[:notice] = 'Animal Color was successfully created.'
-    else
-      flash[:error] = 'Animal Color was not successfully created.'
-    end
-    
-    respond_with(@animal_color, :location => admin_animal_color_path(@animal_color))
   end
 end

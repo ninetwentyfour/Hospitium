@@ -26,6 +26,10 @@ class Animal < ActiveRecord::Base
   
   
   before_create :create_uuid
+
+  attr_accessible :name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased, 
+    :deceased_reason, :adopted_date, :animal_color_id, :image, :second_image, :third_image, :fourth_image, :public, :birthday, :animal_sex_id, :spay_neuter_id,
+    :biter_id, :status_id, :video_embed, :microchip
   
   validates_presence_of :name, :date_of_intake, :organization, :species, :animal_color, :biter, :spay_neuter, :animal_sex, :status
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']
@@ -34,10 +38,6 @@ class Animal < ActiveRecord::Base
   validates_attachment_content_type :fourth_image, :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']
   validates_attachment_size :image, :less_than => 4.megabytes
   validates_attachment_size :second_image, :less_than => 4.megabytes
-  
-  attr_accessible :name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased, 
-    :deceased_reason, :adopted_date, :animal_color_id, :image, :second_image, :third_image, :fourth_image, :public, :birthday, :animal_sex_id, :spay_neuter_id,
-    :biter_id, :status_id, :video_embed, :microchip
     
   delegate :name, :to => :species, :prefix => :species, :allow_nil => true
   delegate :name, :phone_number, :address, :city, :state, :zip_code, :website, :email, :to => :organization, :prefix => :organization, :allow_nil => true

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   #display notice on every admin page
   def get_notice
     @random_notice = Rails.cache.fetch('random_notifications', :expires_in => 1.minutes) do
-      Notification.offset(rand(Notification.count)).first(:select => 'notifications.message, notifications.status_type') unless Notification.count == 0
+      Notification.offset(rand(Notification.count)).select('notifications.message, notifications.status_type').first() unless Notification.count == 0
     end
   end
   

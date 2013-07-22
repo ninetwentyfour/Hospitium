@@ -1,6 +1,6 @@
 class SpayNeuter < ActiveRecord::Base
   
-  default_scope :order => "created_at ASC"
+  default_scope lambda {order("created_at ASC")}
   has_many :animals
   
   attr_accessible :spay

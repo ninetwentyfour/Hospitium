@@ -1,12 +1,12 @@
 class Admin::Home::IndexPresenter
   def initialize(user)
     @user = user
-    @animals_count = Animal.count(:conditions => {:organization_id => @user.organization_id}) 
+    @animals_count = Animal.where(:organization_id => @user.organization_id).count() 
     @animal_update = Animal.order("updated_at desc").where(:organization_id => @user.organization_id).first().try(:updated_at)
 
-    @species_count = Species.count(:conditions => {:organization_id => @user.organization_id})
+    @species_count = Species.where(:organization_id => @user.organization_id).count()
 
-    @events_count = Event.count(:conditions => {:organization_id => @user.organization_id}) 
+    @events_count = Event.where(:organization_id => @user.organization_id).count() 
   end
   
   def status_chart
@@ -66,9 +66,9 @@ class Admin::Home::IndexPresenter
     Rails.cache.fetch("animal_sex_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}") do
       @final_status_array = []
       sex = {}
-      sex[:male] = Animal.count(:conditions => {:organization_id => @user.organization_id, :animal_sex_id => 1})
-      sex[:female] = Animal.count(:conditions => {:organization_id => @user.organization_id, :animal_sex_id => 2})
-      sex[:unknown] = Animal.count(:conditions => {:organization_id => @user.organization_id, :animal_sex_id => 3})
+      sex[:male] = Animal.where(:organization_id => @user.organization_id, :animal_sex_id => 1).count()
+      sex[:female] = Animal.where(:organization_id => @user.organization_id, :animal_sex_id => 2).count()
+      sex[:unknown] = Animal.where(:organization_id => @user.organization_id, :animal_sex_id => 3).count()
 
       color = Paleta::Color.new(:hex, "d63a4c")
       palette = Paleta::Palette.generate(:type => :analogous, :from => :color, :color => color, :size => 3)

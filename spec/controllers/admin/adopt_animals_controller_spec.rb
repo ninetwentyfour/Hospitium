@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 #this is the public animals controller
-describe AdoptAnimalsController do
+describe Admin::AdoptAnimalsController do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    login_user
+    @user = subject.current_user
 
     @animal = FactoryGirl.create(:animal, :organization_id => @user.organization_id)
     @adoption_contact = FactoryGirl.create(:adoption_contact, :organization_id => @user.organization_id)
@@ -17,14 +18,14 @@ describe AdoptAnimalsController do
       it "creates a new adopt_animal" do
         AdoptAnimal.observers.disable :all do
           expect {
-            post :create, {:adopt_animal => FactoryGirl.attributes_for(:adopt_animal)}
+            post :create, {:adopt_animal => {:animal_id => @animal.id, :adoption_contact_id => @adoption_contact.id}}
           }.to change(AdoptAnimal, :count).by(1)
         end
       end
 
       it "assigns a newly created adopt_animal as @adopt_animal" do
         AdoptAnimal.observers.disable :all do
-          post :create, {:adopt_animal =>  FactoryGirl.attributes_for(:adopt_animal)}
+          post :create, {:adopt_animal => {:animal_id => @animal.id, :adoption_contact_id => @adoption_contact.id}}
           assigns(:adopt_animal).should be_a(AdoptAnimal)
           assigns(:adopt_animal).should be_persisted
         end
@@ -32,7 +33,7 @@ describe AdoptAnimalsController do
 
       it "redirects to the created back" do
         AdoptAnimal.observers.disable :all do
-          post :create, {:adopt_animal =>  FactoryGirl.attributes_for(:adopt_animal)}
+          post :create, {:adopt_animal => {:animal_id => @animal.id, :adoption_contact_id => @adoption_contact.id}}
           response.should redirect_to "http://test.host"
         end
       end

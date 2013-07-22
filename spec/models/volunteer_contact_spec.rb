@@ -61,25 +61,6 @@ describe VolunteerContact do
       volunteer_contact.application_date = nil
       volunteer_contact.formatted_application_date.should eql("")
     end
-  end  
-  
-  describe 'protected attributes' do
-    let(:volunteer_contact) { FactoryGirl.create(:volunteer_contact) }
-    
-    it 'should deny mass-assignment to the organization_id' do
-      volunteer_contact.update_attributes(:organization_id =>  10000)
-      volunteer_contact.organization_id.should_not == 10000
-    end
-    
-    it 'should deny mass-assignment to the uuid' do
-      volunteer_contact.update_attributes(:uuid =>  "test_uuid")
-      volunteer_contact.uuid.should_not == "test_uuid"
-    end
-    
-    it 'should deny mass-assignment to the id' do
-      volunteer_contact.update_attributes(:id =>  100000)
-      volunteer_contact.id.should_not == 100000
-    end
   end
 
   describe "comma" do

@@ -1,7 +1,7 @@
 source 'http://bundler-api.herokuapp.com'
 ruby "2.0.0"
 
-gem 'rails', '3.2.13'
+gem 'rails', '4.0.0'
 
 # Gems used in all environments
 gem 'mysql2'
@@ -12,17 +12,16 @@ gem 'uuidtools'
 gem 'cancan'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'will_paginate'
-gem 'ransack'
+gem 'ransack', github: "ernie/ransack", branch: "rails-4"
 gem 'juggernaut'
 gem 'gravatar_image_tag'
 gem "spreadsheet"
-# gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls-on-models"
 gem "comma"
 gem 'redcarpet'
 gem 'encryptor'
 gem 'json_builder'
 gem "statsd-ruby", :require => "statsd"
-gem 'impressionist'
+gem 'impressionist' # record views of public animals
 gem 'bitly'
 # generate color schemes
 gem 'paleta'
@@ -33,6 +32,10 @@ gem 'secure_headers'
 # gem 'heroku'
 # gem 'sqlite3'
 # gem 'taps'
+
+# add these gems to help with the transition to rails4:
+gem 'protected_attributes'
+gem 'rails-observers'
 
 # Gems used only for production
 group :production do
@@ -57,12 +60,12 @@ group :production, :development do
 	gem 'sanitize'
 	gem 'octokit'
 	gem 'unicorn'
-	gem 'client_side_validations'
-	gem 'best_in_place'
+	gem 'client_side_validations', :git => "git://github.com/bcardarella/client_side_validations.git", :branch => "4-0-beta"
+	gem 'best_in_place', github: "ninetwentyfour/best_in_place"
 	gem 'therubyracer'
 	gem 'jquery-rails', '2.0.1'
-	gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git"
-	gem 'less-rails-bootstrap', '2.2.0'
+	gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git", :branch => "flat"
+	gem 'less-rails-bootstrap'
 	gem 'site_meta'
 
 	# Gems used only for assets and not required

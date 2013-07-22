@@ -1,13 +1,14 @@
 class VetContact < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
   include CommonScopes
   
   belongs_to :organization
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
+
+  attr_accessible :clinic_name, :address, :phone, :email, :website, :hours, :emergency
   
   validates_presence_of :clinic_name
-  
-  attr_accessible :clinic_name, :address, :phone, :email, :website, :hours, :emergency
   
   #create uuid
   def create_uuid()
@@ -40,7 +41,7 @@ class VetContact < ActiveRecord::Base
     id "ID"
     clinic_name "Clinic Name"
     address "Address"
-    phone "Phone" do |p| number_to_phone(p) end
+    phone "Phone"
     email "Email"
     website "Website"
     hours "Hours"

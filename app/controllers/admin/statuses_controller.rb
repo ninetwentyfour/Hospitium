@@ -1,7 +1,12 @@
 class Admin::StatusesController < Admin::CrudController
   load_and_authorize_resource
-  
-  respond_to :html, :xml, :json
+
+  # Allowed params for create and update
+  self.permitted_attrs = [:status]
+  # scope create to current_user.organization
+  self.save_as_organization = true
+  # redirect somewhere other than the object on create
+  self.redirect_on_create = :back
   
   # GET /statuses
   # GET /statuses.xml
@@ -19,18 +24,5 @@ class Admin::StatusesController < Admin::CrudController
     @animals = Animal.where(:status_id => @status.id).order("name ASC")
     
     respond_with(@status)
-  end
-
-  # POST /statuses
-  # POST /statuses.xml
-  def create
-    @status = current_user.organization.statuses.new(params[:status])
-    if @status.save
-      flash[:notice] = 'Status was successfully created.'
-    else
-      flash[:error] = 'Status was not successfully created.'
-    end
-    
-    redirect_to :back
   end
 end

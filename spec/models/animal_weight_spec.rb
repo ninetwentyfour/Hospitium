@@ -51,25 +51,6 @@ describe AnimalWeight do
     end
   end
 
-  describe 'protected attributes' do
-    let(:animal_weight) { FactoryGirl.create(:animal_weight) }
-    
-    it 'should deny mass-assignment to the organization_id' do
-      animal_weight.update_attributes(:organization_id =>  10000)
-      animal_weight.organization_id.should_not == 10000
-    end
-    
-    it 'should deny mass-assignment to the uuid' do
-      animal_weight.update_attributes(:uuid =>  "test_uuid")
-      animal_weight.uuid.should_not == "test_uuid"
-    end
-    
-    it 'should deny mass-assignment to the id' do
-      animal_weight.update_attributes(:id =>  100000)
-      animal_weight.id.should_not == 100000
-    end
-  end
-
   describe "comma" do
     it "should return a csv for the object" do
       @animal_weight = FactoryGirl.build(:animal_weight)

@@ -1,4 +1,5 @@
 class VolunteerContact < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
   include CommonScopes
   
   belongs_to :organization
@@ -6,11 +7,11 @@ class VolunteerContact < ActiveRecord::Base
   
   before_create :create_uuid, :modify_phone_number
   before_update :modify_phone_number
-  
-  validates_presence_of :first_name, :last_name, :address, :organization_id
-  
+
   attr_accessible :first_name, :last_name, :address, :phone, :email, :application_date
   
+  validates_presence_of :first_name, :last_name, :address, :organization_id
+    
   
   #create uuid
   def create_uuid()
@@ -53,7 +54,7 @@ class VolunteerContact < ActiveRecord::Base
     first_name "First Name"
     last_name "Last Name"
     address "Address"
-    phone "Phone" do |p| number_to_phone(p) end
+    phone "Phone"
     email "Email"
     application_date "Application Date"
   end
