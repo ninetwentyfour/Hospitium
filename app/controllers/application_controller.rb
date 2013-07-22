@@ -1,9 +1,4 @@
 class ApplicationController < ActionController::Base
-  # before_filter do
-  #   resource = controller_path.singularize.gsub('/', '_').to_sym
-  #   method = "#{resource}_params"
-  #   params[resource] &&= send(method) if respond_to?(method, true)
-  # end
   before_filter :check_domain
   before_filter :get_notice
   protect_from_forgery # Turn on request forgery protection. Bear in mind that only non-GET, HTML/JavaScript requests are checked.
@@ -55,10 +50,4 @@ class ApplicationController < ActionController::Base
   def canonical_url(canonical_url)
     @canonical_url = canonical_url
   end
-
-  # before_filter do
-  #   resource = controller_name.singularize.to_sym
-  #   method = "#{resource}_params"
-  #   params[resource] &&= send(method) if respond_to?(method, true)
-  # end
 end
