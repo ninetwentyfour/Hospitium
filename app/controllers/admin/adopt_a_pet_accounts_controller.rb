@@ -1,9 +1,9 @@
-class AdoptAPetAccountsController < ApplicationController
+class Admin::AdoptAPetAccountsController < Admin::ApplicationController
   
-  respond_to :html, :xml, :json
+  respond_to :html, :json
 
   def create
-    @adopt_a_pet_account = AdoptAPetAccount.new_by_user(params[:adopt_a_pet_account], current_user)
+    @adopt_a_pet_account = AdoptAPetAccount.new_by_user(adopt_a_pet_account_params, current_user)
     if @adopt_a_pet_account.save
       flash[:notice] = 'Adopt A Pet Account Connected!'
     else
@@ -17,7 +17,7 @@ class AdoptAPetAccountsController < ApplicationController
     @adopt_a_pet = AdoptAPetAccount.find(params[:id])
     params[:adopt_a_pet_account]["password"] = SecPass::encrypt(params[:adopt_a_pet_account]["password"])
     respond_to do |format|
-      if  @adopt_a_pet.update_attributes(params[:adopt_a_pet_account])
+      if  @adopt_a_pet.update_attributes(adopt_a_pet_account_params)
         format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Adopt A Pet Account updated!')}
       else
         format.html { render "new" }
@@ -49,5 +49,9 @@ class AdoptAPetAccountsController < ApplicationController
     end
   end
 
+  private
+    def adopt_a_pet_account_params
+      params.require(:adopt_a_pet_account).permit(:user_name, :password)
+    end
 end
 

@@ -5,10 +5,10 @@ class AnimalColor < ActiveRecord::Base
   has_many :animals
   
   before_create :create_uuid
+
+  attr_accessible :color
   
   validates_presence_of :color, :organization_id
-  
-  attr_accessible :color
   
   #create uuid
   def create_uuid()

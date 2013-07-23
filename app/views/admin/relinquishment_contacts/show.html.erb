@@ -25,7 +25,7 @@
 					</div>
 					<div class="tab-pane" id="2">
 						<% @animals.each do |animal| %>
-							<p><%= link_to raw("<i class='icon-remove'></i>"), "/relinquish_animals/#{animal.id}?relinquish=#{@relinquishment_contact.id}", :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Remove Animal"  %> <a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><%= animal.name %></a></p>
+							<p><%= link_to raw("<i class='icon-remove'></i>"), "/admin/relinquish_animals/#{animal.id}?relinquish=#{@relinquishment_contact.id}", :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Remove Animal"  %> <a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><%= animal.name %></a></p>
 						<%end%>
 						<hr />
 						<a class="btn" data-toggle="modal" href="#newAnimal" ><i class="icon-plus"></i> Add Animal</a>
@@ -46,7 +46,7 @@
 		<h3>Add Animal</h3>
 	</div>
 	<div class="modal-body">
-		<%= form_for @relinquishment_contact.relinquish_animals.build(:relinquishment_contact_id => @relinquishment_contact.id) do |f| %>
+		<%= form_for @relinquishment_contact.relinquish_animals.build(:relinquishment_contact_id => @relinquishment_contact.id), :url => admin_relinquish_animals_path do |f| %>
 			<%= f.hidden_field :relinquishment_contact_id %>
 			<%= collection_select(:relinquish_animal, :animal_id, @relatable_animals, :id, :name) %>  
 	</div>

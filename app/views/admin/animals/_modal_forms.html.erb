@@ -243,7 +243,9 @@
 			<div class="bar" style="width: 100%;"></div>
 		</div>
 		<p class="document_upload_bar" style="display:none;">Loading...</p>
-		<%= form_for Document.new, :url => admin_documents_path, :remote => true, :html => {:id => "document_upload", :multipart => true} do |f| %>
+		<%= form_for Document.new, :url => admin_documents_path, :remote => true, :html => {:id => "document_upload", :multipart => true}, :validate => true do |f| %>
+			<%#= f.hidden_field "authentication_token", :value => form_authenticity_token.to_s %>
+			<%= token_tag nil %>
 			<%= f.file_field :filearrays, :multiple =>:true %>
 			<p>Max filesize of 100mb.</p>
 			<%= f.hidden_field :documentable_id, :value => animal.id %><br />

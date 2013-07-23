@@ -14,16 +14,17 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable, :confirmable, :lockable
- # Virtual attribute for authenticating by either username or email
- # This is in addition to a real persisted field like 'username'
- attr_accessor :login, :no_send_email, :skip_default_role
-         
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :login, :organization_name, :owner,
-                   :no_send_email, :skip_default_role
+  # Virtual attribute for authenticating by either username or email
+  # This is in addition to a real persisted field like 'username'
+  attr_accessor :login, :no_send_email, :skip_default_role
   
   before_create :add_to_organization
   after_create :add_default_role, :send_new_email, :increment_stats
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :login, :organization_name, :owner,
+                   :no_send_email, :skip_default_role
+
   
   validates_presence_of :username
   validates_uniqueness_of :username

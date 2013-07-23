@@ -20,19 +20,6 @@ describe Document do
     end
   end
   
-  describe 'protected attributes' do
-    
-    it 'should deny mass-assignment to the uuid' do
-      @document.update_attributes(:uuid =>  "test_uuid")
-      @document.uuid.should_not == "test_uuid"
-    end
-    
-    it 'should deny mass-assignment to the id' do
-      @document.update_attributes(:id =>  100000)
-      @document.id.should_not == 100000
-    end
-  end
-  
   describe "upload image" do
     it {should have_attached_file(:document)}
   end

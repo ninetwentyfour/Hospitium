@@ -1,7 +1,7 @@
 class Admin::DocumentsController < Admin::ApplicationController
   load_and_authorize_resource
   
-  respond_to :html, :xml, :json, :js
+  respond_to :html, :json, :js
 
   # POST /documents
   # POST /documents.json
@@ -28,4 +28,9 @@ class Admin::DocumentsController < Admin::ApplicationController
     
     redirect_to :back
   end
+
+  private
+    def document_params
+      params.require(:document).permit(:document, :animal_id, :documentable_type, :documentable_id, :filearrays)
+    end
 end

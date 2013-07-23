@@ -114,20 +114,13 @@
 			<div class="bar" style="width: 100%;"></div>
 		</div>
 		<p class="new_animal_weight_bar" style="display:none;">Loading...</p>
-		<%= form_tag("/wordpress_accounts", :method => "post", :class => "form", :id => "new_wordpress_form") do %>
-			<div class='field' id='user_username_field'>
-			  <label for='site_url'>Site URL</label>
-			  <input class='string' id='site_url' name='wordpress_account[site_url]' size='50' style='width:px' type='text' />
-			</div>
-			<div class='field' id='user_username_field'>
-			  <label for='blog_user'>Blog User</label>
-			  <input class='string' id='blog_user' name='wordpress_account[blog_user]' size='50' style='width:px' type='text' />
-			</div>
-			<div class='field' id='user_username_field'>
-			  <label for='blog_password'>Blog Password</label>
-			  <input class='string' id='blog_password' name='wordpress_account[blog_password]' size='50' style='width:px' type='password' />
-			</div>
-			<br />
+			<%= form_for WordpressAccount.new, :url => admin_wordpress_accounts_path, :html => {:id => "new_wordpress_form"} do |f| %>
+				<%= f.label :site_url %>
+				<%= f.text_field :site_url %>
+				<%= f.label :blog_user %>
+				<%= f.text_field :blog_user %>
+				<%= f.label :blog_password %>
+				<%= f.password_field :blog_password %>
 		<%end%>
 	</div>
 	<div class="modal-footer">
@@ -147,20 +140,13 @@
 				<div class="bar" style="width: 100%;"></div>
 			</div>
 			<p class="new_animal_weight_bar" style="display:none;">Loading...</p>
-			<%= form_tag("/wordpress_accounts/#{@user.wordpress_accounts.first.id}", :method => "put", :class => "form", :id => "edit_wordpress_form") do %>
-				<div class='field' id='user_username_field'>
-				  <label for='site_url'>Site URL</label>
-				  <input class='string' id='site_url' name='wordpress_account[site_url]' size='50' style='width:px' type='text' value="<%= @user.wordpress_accounts.first.site_url %>" />
-				</div>
-				<div class='field' id='user_username_field'>
-				  <label for='blog_user'>Blog User</label>
-				  <input class='string' id='blog_user' name='wordpress_account[blog_user]' size='50' style='width:px' type='text' value="<%= @user.wordpress_accounts.first.blog_user %>" />
-				</div>
-				<div class='field' id='user_username_field'>
-				  <label for='blog_password'>Blog Password</label>
-				  <input class='string' id='blog_password' name='wordpress_account[blog_password]' size='50' style='width:px' type='password' value="<%= SecPass::decrypt(@user.wordpress_accounts.first.blog_password) %>" />
-				</div>
-				<br />
+			<%= form_for @user.wordpress_accounts.first, :url => admin_wordpress_account_path(@user.wordpress_accounts.first), :html => {:id => "edit_wordpress_form"} do |f| %>
+				<%= f.label :site_url %>
+				<%= f.text_field :site_url %>
+				<%= f.label :blog_user %>
+				<%= f.text_field :blog_user %>
+				<%= f.label :blog_password %>
+				<%= f.password_field :blog_password %>
 			<%end%>
 		</div>
 		<div class="modal-footer">
@@ -181,18 +167,14 @@
 			<div class="bar" style="width: 100%;"></div>
 		</div>
 		<p class="new_animal_weight_bar" style="display:none;">Loading...</p>
-		<%= form_tag("/adopt_a_pet_accounts", :method => "post", :class => "form", :id => "adopt_a_pet_form") do %>
+		<%= form_for AdoptAPetAccount.new, :url => admin_adopt_a_pet_accounts_path, :validate => true, :html => {:id => "adopt_a_pet_form"} do |f| %>
 			Please enter your Adopt A Pet
 			<a href='http://www.adoptapet.com/shelter/pointers/about_autouploading.html' target='blank'>Auto Upload</a>
 			Username, and Password.
-			<div class='field' id='user_username_field'>
-			  <label for='blog_user'>Username</label>
-			  <input class='string' id='blog_user' name='adopt_a_pet_account[user_name]' size='50' style='width:px' type='text' />
-			</div>
-			<div class='field' id='user_username_field'>
-			  <label for='blog_password'>Password</label>
-			  <input class='string' id='blog_password' name='adopt_a_pet_account[password]' size='50' style='width:px' type='password' />
-			</div>
+			<%= f.label :user_name %>
+			<%= f.text_field :user_name %>
+			<%= f.label :password %>
+			<%= f.password_field :password %>
 		<%end%>
 	</div>
 	<div class="modal-footer">
@@ -212,18 +194,14 @@
 				<div class="bar" style="width: 100%;"></div>
 			</div>
 			<p class="new_animal_weight_bar" style="display:none;">Loading...</p>
-			<%= form_tag("/adopt_a_pet_accounts/#{@user.adopt_a_pet_accounts.first.id}", :method => "put", :class => "form", :id => "edit_adopt_a_pet_accounts_form") do %>
+			<%= form_for @user.adopt_a_pet_accounts.first, :url => admin_adopt_a_pet_account_path(@user.adopt_a_pet_accounts.first), :html => {:id => "edit_adopt_a_pet_accounts_form"} do |f| %>
 				Please enter your Adopt A Pet
 				<a href='http://www.adoptapet.com/shelter/pointers/about_autouploading.html' target='blank'>Auto Upload</a>
 				Username, and Password.
-				<div class='field' id='user_username_field'>
-				  <label for='blog_user'>Username</label>
-				  <input class='string' id='blog_user' name='adopt_a_pet_account[user_name]' size='50' style='width:px' type='text' value="<%= @user.adopt_a_pet_accounts.first.user_name %>" />
-				</div>
-				<div class='field' id='user_username_field'>
-				  <label for='blog_password'>Password</label>
-				  <input class='string' id='blog_password' name='adopt_a_pet_account[password]' size='50' style='width:px' type='password' value="<%= SecPass::decrypt(@user.adopt_a_pet_accounts.first.password) %>" />
-				</div>
+				<%= f.label :user_name %>
+				<%= f.text_field :user_name %>
+				<%= f.label :password %>
+				<%= f.password_field :password %>
 			<%end%>
 		</div>
 		<div class="modal-footer">

@@ -4,9 +4,10 @@ class Species < ActiveRecord::Base
   belongs_to :organization
   has_many :animals
   before_create :create_uuid
-  validates_presence_of :name, :organization_id
-  
+
   attr_accessible :name
+  
+  validates_presence_of :name, :organization_id
   
   #create uuid
   def create_uuid()

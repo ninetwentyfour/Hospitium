@@ -1,5 +1,5 @@
-include ActionView::Helpers::NumberHelper
 class Organization < ActiveRecord::Base
+    include ActionView::Helpers::NumberHelper
     
     has_many :adoption_contacts
     has_many :animals
@@ -16,13 +16,14 @@ class Organization < ActiveRecord::Base
     has_many :volunteer_contacts
     has_many :wordpress_accounts
     has_many :users
+    
     before_create :create_uuid
     before_update :modify_phone_number
     after_create :add_default_status, :add_default_animal_colors, :add_default_species
-    validates_uniqueness_of :name
-    
+
     attr_accessible :name, :phone_number, :address, :city, :state, :zip_code, :email, :website
-    
+
+    validates_uniqueness_of :name
     
     #create uuid
     def create_uuid()

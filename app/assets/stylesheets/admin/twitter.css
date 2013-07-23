@@ -372,9 +372,6 @@
   .navbar .nav > li > a, .navbar .dropdown-menu:not([data-no-collapse="true"]) a {
     padding: 6px 15px;
     color: #fff;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
   }
   .navbar .dropdown-menu:not([data-no-collapse="true"]) li + li a {
     margin-bottom: 2px;

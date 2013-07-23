@@ -1,7 +1,12 @@
 class Admin::RelinquishmentContactsController < Admin::CrudController
   load_and_authorize_resource
   
-  respond_to :html, :xml, :json, :csv
+  respond_to :html, :json, :csv
+
+  # Allowed params for create and update
+  self.permitted_attrs = [:first_name, :last_name, :address, :phone, :email, :reason]
+  # scope create to current_user.organization
+  self.save_as_organization = true
   
   # GET /relinquishment_contacts
   # GET /relinquishment_contacts.xml
@@ -24,18 +29,5 @@ class Admin::RelinquishmentContactsController < Admin::CrudController
     @relatable_animals = Animal.organization(current_user)
     
     respond_with(@relinquishment_contact)
-  end
-
-  # POST /relinquishment_contacts
-  # POST /relinquishment_contacts.xml
-  def create
-    @relinquishment_contact = current_user.organization.relinquishment_contacts.new(params[:relinquishment_contact])
-    if @relinquishment_contact.save
-      flash[:notice] = 'Relinquishment contact was successfully created.'
-    else
-      flash[:error] = 'Relinquishment contact was not successfully created.'
-    end
-    
-    respond_with(@relinquishment_contact, :location => admin_relinquishment_contact_path(@relinquishment_contact))
   end
 end

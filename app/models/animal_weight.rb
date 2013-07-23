@@ -4,9 +4,10 @@ class AnimalWeight < ActiveRecord::Base
   belongs_to :animal
   belongs_to :organization
   before_create :create_uuid
-  validates_presence_of :weight, :date_of_weight, :animal_id, :organization_id
-  
+
   attr_accessible :animal_id, :weight, :date_of_weight
+
+  validates_presence_of :weight, :date_of_weight, :animal_id, :organization_id
   
   # show the link in the admin UI instead of the link id
   def show_weight_label_method

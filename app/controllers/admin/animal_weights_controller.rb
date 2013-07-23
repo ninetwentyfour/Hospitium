@@ -1,7 +1,14 @@
 class Admin::AnimalWeightsController < Admin::CrudController
   load_and_authorize_resource
   
-  respond_to :html, :xml, :json, :csv
+  respond_to :html, :json, :csv
+
+  # Allowed params for create and update
+  self.permitted_attrs = [:animal_id, :weight, :date_of_weight]
+  # scope create to current_user.organization
+  self.save_as_organization = true
+  # redirect somewhere other than the object on create
+  self.redirect_on_create = :back
   
   # GET /animal_weights
   # GET /animal_weights.xml
@@ -23,18 +30,5 @@ class Admin::AnimalWeightsController < Admin::CrudController
     @animals = Animal.where(:organization_id => current_user.organization_id).collect{|x| [x.id.to_s,x.name.to_s]}
     
     respond_with(@animal_weight)
-  end
-
-  # POST /animal_weights
-  # POST /animal_weights.xml
-  def create
-    @animal_weight = current_user.organization.animal_weights.new(params[:animal_weight])
-    if @animal_weight.save
-      flash[:notice] = 'Animal Weight was successfully created.'
-    else
-      flash[:error] = 'Animal Weight was not successfully created.'
-    end
-    
-    redirect_to :back
   end
 end

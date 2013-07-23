@@ -1,7 +1,7 @@
-class WordpressAccountsController < ApplicationController
+class Admin::WordpressAccountsController < Admin::ApplicationController
 
   def create
-    @wordpress_account = WordpressAccount.new_by_user(params[:wordpress_account], current_user)
+    @wordpress_account = WordpressAccount.new_by_user(wordpress_account_params, current_user)
     if @wordpress_account.save
       flash[:notice] = 'Wordpress Account Connected!'
     else
@@ -17,7 +17,7 @@ class WordpressAccountsController < ApplicationController
       params[:wordpress_account]["blog_password"] = SecPass::encrypt(params[:wordpress_account]["blog_password"])
     end
     respond_to do |format|
-      if  @wordpress.update_attributes(params[:wordpress_account])
+      if  @wordpress.update_attributes(wordpress_account_params)
         format.html {redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Wordpress Account Updated!')}
       else
         format.html { render "new" }
@@ -55,5 +55,9 @@ class WordpressAccountsController < ApplicationController
     end
   end
 
+  private
+    def wordpress_account_params
+      params.require(:wordpress_account).permit(:site_url, :blog_user, :blog_password)
+    end
 end
 

@@ -50,25 +50,6 @@ describe AdoptionContact do
       adoption_contact.formatted_phone.should eql("")
     end
   end
-  
-  describe 'protected attributes' do
-    let(:adoption_contact) { FactoryGirl.create(:adoption_contact) }
-    
-    it 'should deny mass-assignment to the organization_id' do
-      adoption_contact.update_attributes(:organization_id =>  10000)
-      adoption_contact.organization_id.should_not == 10000
-    end
-    
-    it 'should deny mass-assignment to the uuid' do
-      adoption_contact.update_attributes(:uuid =>  "test_uuid")
-      adoption_contact.uuid.should_not == "test_uuid"
-    end
-    
-    it 'should deny mass-assignment to the id' do
-      adoption_contact.update_attributes(:id =>  100000)
-      adoption_contact.id.should_not == 100000
-    end
-  end
 
   describe "comma" do
     it "should return a csv for the object" do

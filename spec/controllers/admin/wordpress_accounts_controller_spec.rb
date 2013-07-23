@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 #this is the public posts controller
-describe WordpressAccountsController do
+describe Admin::WordpressAccountsController do
   before :each do
     login_user
 

@@ -1,4 +1,4 @@
-if Rails.env == "test" or Rails.env == "development"
+if Rails.env.test?
 
 else
   AssetSync.configure do |config|
@@ -6,6 +6,7 @@ else
     config.aws_access_key_id = ENV['S3_KEY']
     config.aws_secret_access_key = ENV['S3_SECRET']
     config.fog_directory = ENV['FOG_DIRECTORY']
+
     # config.aws_access_key_id = "AKIAJCZTCSIU55PGYHSA"
     # config.aws_secret_access_key = "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"
     # config.fog_directory = "hospitium-app-test"

@@ -1,7 +1,14 @@
 class Admin::ShotsController < Admin::CrudController
   load_and_authorize_resource
   
-  respond_to :html, :xml, :json, :csv
+  respond_to :html, :json, :csv
+
+  # Allowed params for create and update
+  self.permitted_attrs = [:name, :animal_id, :expires, :last_administered]
+  # scope create to current_user.organization
+  self.save_as_organization = true
+  # redirect somewhere other than the object on create
+  self.redirect_on_create = :back
   
   # GET /shots
   # GET /shots.csv
@@ -20,18 +27,5 @@ class Admin::ShotsController < Admin::CrudController
     @presenter = Admin::Shots::ShowPresenter.new(params[:id], current_user)
 
     respond_with(@shot)
-  end
-
-  # POST /shots
-  # POST /shots.xml
-  def create
-    @shot = current_user.organization.shots.new(params[:shot])
-    if @shot.save
-      flash[:notice] = 'Shot was successfully created.'
-    else
-      flash[:error] = 'Shot was not successfully created.'
-    end
-
-    respond_with(@shot, :location => admin_shot_path(@shot))
   end
 end

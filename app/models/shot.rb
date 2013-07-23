@@ -5,7 +5,7 @@ class Shot < ActiveRecord::Base
   
   belongs_to :animal
   belongs_to :organization
-  
+
   attr_accessible :name, :animal_id, :expires, :last_administered
 
   validates_presence_of :name, :animal_id

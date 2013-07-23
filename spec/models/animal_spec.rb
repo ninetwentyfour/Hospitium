@@ -128,25 +128,6 @@ describe Animal do
     it {should have_attached_file(:fourth_image)}
     it {should validate_attachment_content_type(:fourth_image).allowing('image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png').rejecting('text/plain', 'text/xml')}
   end
-  
-  describe 'protected attributes' do
-    let(:animal) { FactoryGirl.create(:animal) }
-    
-    it 'should deny mass-assignment to the organization_id' do
-      animal.update_attributes(:organization_id =>  10)
-      animal.organization_id.should_not == 10
-    end
-    
-    it 'should deny mass-assignment to the uuid' do
-      animal.update_attributes(:uuid =>  "test_uuid")
-      animal.uuid.should_not == "test_uuid"
-    end
-    
-    it 'should deny mass-assignment to the id' do
-      animal.update_attributes(:id =>  100000)
-      animal.id.should_not == 100000
-    end
-  end
 
   describe "comma" do
     it "should return a csv for the object" do
