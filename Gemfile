@@ -32,6 +32,7 @@ gem 'secure_headers'
 # gem 'heroku'
 # gem 'sqlite3'
 # gem 'taps'
+gem 'rails_12factor'
 
 # add these gems to help with the transition to rails4:
 gem 'protected_attributes'
