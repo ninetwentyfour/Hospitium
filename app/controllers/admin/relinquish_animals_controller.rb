@@ -15,7 +15,6 @@ class Admin::RelinquishAnimalsController < Admin::CrudController
 
     respond_to do |format|
       if @relinquish_animal.save!
-        Rails.logger.info "WTF SAVED WORKED"
         format.html { 
           redirect_to(:back, :notice => 'Animal successfully added.')
           }

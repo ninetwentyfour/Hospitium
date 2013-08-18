@@ -27,11 +27,11 @@ class Admin::Home::IndexPresenter
     end
   end
   
-  # def latest_activity
-  #   Rails.cache.fetch("latest_activity_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}") do
-  #     Event.find(:all, :conditions => {:organization_id => @user.organization_id}, :limit => 15, :order => "created_at desc")
-  #   end
-  # end
+  def latest_activity
+    Rails.cache.fetch("latest_activity_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}") do
+      Event.where(:organization_id => @user.organization_id).order("created_at desc").limit(15)
+    end
+  end
   
   def public_animals
     Rails.cache.fetch("public_animals_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}") do
@@ -49,10 +49,10 @@ class Admin::Home::IndexPresenter
 
   def total_contacts
     Rails.cache.fetch("total_contacts_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}") do
-      vet_contacts = VetContact.count(:conditions => {:organization_id => @user.organization_id}) 
-      volunteer_contacts = VolunteerContact.count(:conditions => {:organization_id => @user.organization_id}) 
-      adoption_contacts = AdoptionContact.count(:conditions => {:organization_id => @user.organization_id}) 
-      relinquishment_contacts = RelinquishmentContact.count(:conditions => {:organization_id => @user.organization_id})
+      vet_contacts = VetContact.where(:organization_id => @user.organization_id).count() 
+      volunteer_contacts = VolunteerContact.where(:organization_id => @user.organization_id).count() 
+      adoption_contacts = AdoptionContact.where(:organization_id => @user.organization_id).count() 
+      relinquishment_contacts = RelinquishmentContact.where(:organization_id => @user.organization_id).count() 
 
       vet_contacts + volunteer_contacts + adoption_contacts + relinquishment_contacts
     end
