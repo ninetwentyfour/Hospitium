@@ -33,7 +33,7 @@ class AnimalsController < ApplicationController
     end
 
     if @animal.public == 1
-      impressionist(@animal)
+      # impressionist(@animal)
       respond_with(@animal)
     else
       redirect_to "/animals/not_available", :status => 302
