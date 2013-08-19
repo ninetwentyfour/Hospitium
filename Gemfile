@@ -57,7 +57,7 @@ group :production do
 end
 
 # Gems used for production and development
-group :production, :development do
+# group :production, :development do
 	gem 'nokogiri'
 	gem 'mechanize'
 	gem 'oauth'
@@ -85,7 +85,7 @@ group :production, :development do
 	gem 'uglifier'
 	gem 'yui-compressor'
 	gem 'closure-compiler'
-end
+# end
 
 group :test, :development do
   gem "rspec-rails"
