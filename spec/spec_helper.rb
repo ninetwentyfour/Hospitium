@@ -16,6 +16,12 @@ require 'capybara/rspec'
 require "paperclip/matchers"
 require "cancan/matchers"
 require 'database_cleaner'
+# require 'watir-webdriver-rails'
+
+WatirWebdriverRails.host = "localhost"
+WatirWebdriverRails.port = 57124
+WatirWebdriverRails.close_browser_after_finish = true
+WatirWebdriverRails.use_browser = :phantomjs
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -55,6 +61,8 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  # config.before(:each) { @browser = browser }
+  # config.after(:suite) { browser.close unless browser.nil? }
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.

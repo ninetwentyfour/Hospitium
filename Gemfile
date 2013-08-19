@@ -38,6 +38,15 @@ gem 'rails_12factor'
 gem 'protected_attributes'
 gem 'rails-observers'
 
+
+gem 'octokit'
+gem 'client_side_validations', :git => "git://github.com/bcardarella/client_side_validations.git", :branch => "4-0-beta"
+gem 'best_in_place', github: "ninetwentyfour/best_in_place"
+gem 'jquery-rails', '2.0.1'
+gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git", :branch => "flat"
+gem 'less-rails-bootstrap'
+gem 'site_meta'
+
 # Gems used only for production
 group :production do
 	gem 'airbrake'
@@ -59,15 +68,15 @@ group :production, :development do
 	gem 'rqrcode-rails3'
 	gem 'asset_sync'
 	gem 'sanitize'
-	gem 'octokit'
+	# gem 'octokit'
 	gem 'unicorn'
-	gem 'client_side_validations', :git => "git://github.com/bcardarella/client_side_validations.git", :branch => "4-0-beta"
-	gem 'best_in_place', github: "ninetwentyfour/best_in_place"
+	# gem 'client_side_validations', :git => "git://github.com/bcardarella/client_side_validations.git", :branch => "4-0-beta"
+	# gem 'best_in_place', github: "ninetwentyfour/best_in_place"
 	gem 'therubyracer'
-	gem 'jquery-rails', '2.0.1'
-	gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git", :branch => "flat"
-	gem 'less-rails-bootstrap'
-	gem 'site_meta'
+	# gem 'jquery-rails', '2.0.1'
+	# gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git", :branch => "flat"
+	# gem 'less-rails-bootstrap'
+	# gem 'site_meta'
 
 	# Gems used only for assets and not required
 	# in production environments by default.
@@ -99,4 +108,7 @@ group :test do
 	gem 'vcr'
 	gem 'simplecov', :require => false
 	gem 'coveralls', :require => false
+	# gem "watir-webdriver"
+	# gem 'watir-rails'
+	gem 'watir-webdriver-rails', :path => "/Users/travis/Desktop/sites/watir-webdriver-rails"
 end

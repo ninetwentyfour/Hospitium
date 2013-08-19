@@ -41,6 +41,13 @@ GIT
       cocaine (~> 0.5.0)
       mime-types
 
+PATH
+  remote: /Users/travis/Desktop/sites/watir-webdriver-rails
+  specs:
+    watir-webdriver-rails (0.0.8)
+      headless
+      watir-webdriver
+
 GEM
   remote: http://bundler-api.herokuapp.com/
   specs:
@@ -177,6 +184,7 @@ GEM
       multi_json (~> 1.3)
     gravatar_image_tag (1.1.3)
     hashie (2.0.5)
+    headless (1.0.1)
     heroku (2.39.4)
       heroku-api (~> 0.3.7)
       launchy (>= 0.3.2)
@@ -242,7 +250,7 @@ GEM
     minitest (4.7.5)
     mocha (0.13.3)
       metaclass (~> 0.0.1)
-    multi_json (1.7.7)
+    multi_json (1.7.9)
     multi_test (0.0.2)
     multi_xml (0.5.4)
     multipart-post (1.2.0)
@@ -343,7 +351,7 @@ GEM
       sprockets-rails (~> 2.0.0)
     secure_headers (1.0.0)
       brwsr (>= 1.1.1)
-    selenium-webdriver (2.33.0)
+    selenium-webdriver (2.35.0)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
       rubyzip
@@ -398,6 +406,8 @@ GEM
     vcr (2.5.0)
     warden (1.2.3)
       rack (>= 1.0)
+    watir-webdriver (0.6.4)
+      selenium-webdriver (>= 2.18.0)
     webrobots (0.1.1)
     websocket (1.0.7)
     will_paginate (3.0.4)
@@ -476,5 +486,6 @@ DEPENDENCIES
   unicorn
   uuidtools
   vcr
+  watir-webdriver-rails!
   will_paginate
   yui-compressor

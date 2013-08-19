@@ -4,4 +4,5 @@ VCR.configure do |c|
   # your HTTP request service. You can also use fakeweb, webmock, and more
   c.hook_into :fakeweb
   c.allow_http_connections_when_no_cassette = false
+  c.ignore_localhost = true
 end

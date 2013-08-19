@@ -39,4 +39,8 @@ AnimalTracker::Application.configure do
   
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=3600"
+  # config.serve_static_assets = false
+  # config.action_controller.asset_host = "https://d1pm9e0xzdmxcb.cloudfront.net"
+  # config.assets.digest = true
+  # config.assets.debug = false
 end
