@@ -32,6 +32,14 @@ GIT
       thor (~> 0.14)
 
 GIT
+  remote: git://github.com/ninetwentyfour/watir-webdriver-rails.git
+  revision: 49c2d9fda0974c477d9e25387455da92d9131367
+  specs:
+    watir-webdriver-rails (0.0.8)
+      headless
+      watir-webdriver
+
+GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: edfdc037c2efecfd1ed5faf04717181227d31418
   specs:
@@ -40,13 +48,6 @@ GIT
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.0)
       mime-types
-
-PATH
-  remote: /Users/travis/Desktop/sites/watir-webdriver-rails
-  specs:
-    watir-webdriver-rails (0.0.8)
-      headless
-      watir-webdriver
 
 GEM
   remote: http://bundler-api.herokuapp.com/

@@ -110,5 +110,5 @@ group :test do
 	gem 'coveralls', :require => false
 	# gem "watir-webdriver"
 	# gem 'watir-rails'
-	gem 'watir-webdriver-rails', :path => "/Users/travis/Desktop/sites/watir-webdriver-rails"
+	gem 'watir-webdriver-rails', :github => "ninetwentyfour/watir-webdriver-rails"
 end
