@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username
   validates_presence_of :organization_name
   validates_uniqueness_of :organization_name, :if => :should_validate_organization_name?
+  validate :email_is_not_blacklisted
   
   
   # show the user email in the admin UI instead of the user id
@@ -97,6 +98,14 @@ class User < ActiveRecord::Base
   
   def increment_stats
     $statsd.increment 'user.created'
+  end
+
+  def email_is_not_blacklisted
+    domain = "@#{self.email.split('@').last}"
+    blacklist = File.readlines("#{Rails.root}/config/email_blacklist.txt").each {|l| l.chomp!}
+    if blacklist.include?(domain)
+      errors.add(:email, 'is blacklsited')
+    end
   end
   
 end
