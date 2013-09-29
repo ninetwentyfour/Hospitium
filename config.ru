@@ -2,7 +2,7 @@
 
 # unicorn gc stuff
 GC_FREQUENCY = 5
-require_dependency 'unicorn/oob_gc'
+require 'unicorn/oob_gc'
 GC.disable # Don't run GC during requests
 use Unicorn::OobGC, GC_FREQUENCY # Only GC once every GC_FREQUENCY requests
 
