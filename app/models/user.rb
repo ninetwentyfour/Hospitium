@@ -101,8 +101,10 @@ class User < ActiveRecord::Base
   end
 
   def email_is_not_blacklisted
-    domain = "@#{self.email.split('@').last}"
-    blacklist = File.readlines("#{Rails.root}/config/email_blacklist.txt").each {|l| l.chomp!}
+    domain = "#{self.email.split('@').last}"
+    blacklist = Rails.cache.fetch("email_blacklist", :expires_in => 1.day) do
+      File.readlines("#{Rails.root}/config/email_blacklist.txt").each {|l| l.chomp!}
+    end
     if blacklist.include?(domain)
       errors.add(:email, 'is blacklsited')
     end
