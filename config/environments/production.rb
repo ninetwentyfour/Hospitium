@@ -3,7 +3,10 @@ AnimalTracker::Application.configure do
   
   config.force_ssl = true
   
-  config.cache_store = :dalli_store
+  config.cache_store = :dalli_store,
+                        (ENV["MEMCACHIER_SERVERS"] || "").split(","),
+                        {:username => ENV["MEMCACHIER_USERNAME"],
+                          :password => ENV["MEMCACHIER_PASSWORD"]}
   # Settings specified here will take precedence over those in config/application.rb
 
   # The production environment is meant for finished, "live" apps.
