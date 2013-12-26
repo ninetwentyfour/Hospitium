@@ -19,10 +19,10 @@ describe User do
     it{should have_many(:roles)}
   end
 
-  describe "validations" do
-    it{should validate_presence_of(:username)}
-    it{should validate_presence_of(:organization_name)}
-  end
+  # describe "validations" do
+  #   it{should validate_presence_of(:username)}
+  #   it{should validate_presence_of(:organization_name)}
+  # end
 
   describe "abilities" do
     before(:each) do

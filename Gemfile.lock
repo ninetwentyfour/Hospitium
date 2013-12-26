@@ -42,7 +42,7 @@ GIT
       mime-types
 
 GEM
-  remote: http://bundler-api.herokuapp.com/
+  remote: http://rubygems.org/
   specs:
     actionmailer (4.0.0)
       actionpack (= 4.0.0)

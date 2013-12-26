@@ -1,5 +1,5 @@
-source 'http://bundler-api.herokuapp.com'
-ruby "2.0.0"
+source 'http://rubygems.org'
+ruby "2.1.0"
 
 gem 'rails', '4.0.0'
 
