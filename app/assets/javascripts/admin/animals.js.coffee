@@ -59,7 +59,7 @@ animal_show = ->
   $("#shot_expires").datepicker()
   $.datepicker.setDefaults dateFormat: "D, dd M yy"
 
-  $("a[data-toggle=\"tab\"]").on "shown", (e) ->
+  $("a[data-toggle=\"tab\"]").on "show.bs.tab", (e) ->
     $("#canvasWeight").remove()
     $("#weight_graph_holder").append "<canvas id=\"canvasWeight\" height=\"300\" width=\"250\"></canvas>"
     $("#canvasWeight").attr "width", $(".tab-content").width()
