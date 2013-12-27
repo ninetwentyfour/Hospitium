@@ -1,7 +1,7 @@
 language: ruby
 bundler_args: --without development production
 rvm:
-  - 2.0.0
+  - 2.1.0
 env:
   global:
     - secure: "bkydnmBQRrAPqAUvtjW4vdj9NteFo9FAYiRlEMJGnqG8dZ6SlseQihDKeBUr\n1aSpX5XP7h8AoxCJolw/K2J4tTYjNAh+cYKP2kJQG/SkIZXKfFJbNzl7zULt\nWareyiHeocI11MU2zaaJpZjwSLiw3G/E9oIy2D3X921SvY7h1L0="
