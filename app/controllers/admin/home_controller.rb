@@ -8,6 +8,7 @@ class Admin::HomeController < Admin::ApplicationController
     $statsd.gauge 'number_animals', Animal.count
     $statsd.gauge 'number_organizations', Organization.count
     $statsd.gauge 'number_events', Event.count
+
+    @active_nav = true
   end
-  
 end

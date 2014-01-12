@@ -3,7 +3,7 @@
 		<li class="nav-header">
 			Navigation
 		</li>
-		<li class="<%= current_class?('admin/home', controller.action_name) %>">
+		<li class="<%= 'active' unless @active_nav.blank? %>">
 			<a href="/admin">Dashboard</a>
 		</li>
 		<li class="<%= current_class?('admin/adoption_contacts', controller.action_name) %>">

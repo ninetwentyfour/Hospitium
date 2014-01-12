@@ -22,10 +22,7 @@ class Admin::UsersController < Admin::CrudController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.select("users.adopt_a_pets.name, users.username").
-                  references(:adopt_a_pets).
-                  includes(:wordpress_accounts, :facebook_accounts, :twitter_accounts, :roles, :adopt_a_pet_accounts).
-                  where(:id => params[:id]).
+    @user = User.where(:id => params[:id]).
                   first()
     
     respond_with(@user)

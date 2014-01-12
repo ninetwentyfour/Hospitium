@@ -8,6 +8,7 @@ env:
 # uncomment this line if your project needs to run something other than `rake`:
 services:
   - memcache # will start memcached
+  - redis
 before_script:
   - "mysql -e 'create database animal_test;'"
   - "export DISPLAY=:99.0"
