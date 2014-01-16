@@ -61,7 +61,7 @@ group :production, :development do
 	gem 'asset_sync'
 	gem 'sanitize'
 	gem 'octokit'
-	gem 'unicorn'
+	gem 'puma'
 	gem 'client_side_validations', :git => "git://github.com/bcardarella/client_side_validations.git", :branch => "4-0-beta"
 	gem 'best_in_place', github: "ninetwentyfour/best_in_place"
 	gem 'therubyracer'
