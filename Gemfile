@@ -28,6 +28,8 @@ gem 'paleta'
 # security
 gem 'secure_headers'
 
+gem 'chronic'
+
 # heroku gems for pulling/pushing db
 # gem 'heroku'
 # gem 'sqlite3'

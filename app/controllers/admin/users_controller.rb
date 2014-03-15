@@ -27,4 +27,8 @@ class Admin::UsersController < Admin::CrudController
     
     respond_with(@user)
   end
+
+  def edit
+    redirect_to admin_users_path
+  end
 end

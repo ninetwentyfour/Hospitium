@@ -127,6 +127,13 @@ class Admin::AnimalsController < Admin::ApplicationController
 
   private
     def animal_params
+      # this is terrible
+      params[:animal][:birthday] = Chronic.parse(params[:animal][:birthday]) if params[:animal][:birthday]
+      params[:animal][:date_of_intake] = Chronic.parse(params[:animal][:date_of_intake]) if params[:animal][:date_of_intake]
+      params[:animal][:date_of_well_check] = Chronic.parse(params[:animal][:date_of_well_check]) if params[:animal][:date_of_well_check]
+      params[:animal][:adopted_date] = Chronic.parse(params[:animal][:adopted_date]) if params[:animal][:adopted_date]
+      params[:animal][:deceased] = Chronic.parse(params[:animal][:deceased]) if params[:animal][:deceased]
+
       params.require(:animal).permit(:name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased, 
         :deceased_reason, :adopted_date, :animal_color_id, :image, :second_image, :third_image, :fourth_image, :public, :birthday, :animal_sex_id, :spay_neuter_id,
         :biter_id, :status_id, :video_embed, :microchip)
