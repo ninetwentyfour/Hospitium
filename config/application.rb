@@ -63,5 +63,8 @@ module AnimalTracker
     # Set the namespace to admin
     $statsd.namespace = "hospitium"
     # config.trashed[:statsd] = $statsd
+
+    # use rack-attack
+    config.middleware.use Rack::Attack
   end
 end

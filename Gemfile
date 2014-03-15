@@ -27,6 +27,7 @@ gem 'bitly'
 gem 'paleta'
 # security
 gem 'secure_headers'
+gem 'rack-attack'
 
 gem 'chronic'
 
