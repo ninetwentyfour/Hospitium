@@ -71,7 +71,8 @@ class Admin::CrudController < Admin::ListController
   # Display a form to edit an exisiting entry of this model.
   #   GET /entries/1/edit
   def edit(&block)
-    respond_with(:admin, entry, &block)
+    # respond_with(:admin, entry, &block)
+    redirect_to index_url
   end
 
   # Update an existing entry of this model from the passed params.

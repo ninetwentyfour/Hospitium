@@ -25,6 +25,9 @@ class HomeController < ApplicationController
   
   def changes
     canonical_url("/recent-changes")
+    @recent_changes = Rails.cache.fetch("recent_changes_from_github", :expires_in => 1.hour) do
+      JSON.parse(Octokit.commits("ninetwentyfour/Hospitium", branch = "master", options = {}).to_json)
+    end
   end
 
 end

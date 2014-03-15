@@ -43,7 +43,7 @@ class Admin::AnimalsController < Admin::ApplicationController
 
   # GET /animals/1/edit
   def edit
-    @animal = Animal.find(params[:id])
+    redirect_to admin_animal_path(params[:id])
   end
 
   # POST /animals
