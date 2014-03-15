@@ -17,8 +17,8 @@
 					<hr />
 					<p>Adoption Contact</p>
 					<p>Organization: <a href="/organizations/<%= @animal.organization.uuid %>"><%= @animal.organization_name %></a></p>
-					<p>Website: <a href="<%= @animal.organization_website %>"><%= @animal.organization_website %></a></p>
-					<p>Email: <a href="mailto:<%= @animal.organization_email %>"><%= @animal.organization_email %></a></p>
+					<%= markdown("Website: #{@animal.organization_website}") %>
+					<%= markdown("Email: #{@animal.organization_email}") %>
 					<p>Phone Number: <%= number_to_phone(@animal.organization_phone_number, :area_code => true) %></p>
 					<p>Address: <%= @animal.organization_address %></p>
 					<p><%= @animal.organization_city %>, <%= @animal.organization_state %> <%= @animal.organization_zip_code %></p>
