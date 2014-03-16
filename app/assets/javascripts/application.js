@@ -34,7 +34,7 @@ function load_scripts(){
 	$(".best_in_place").best_in_place();
 	$("select").select2();
 	$.datepicker.setDefaults({
-		dateFormat: 'D, dd M yy',
+		dateFormat: 'dd M yy',
 		changeMonth: true,
 		changeYear: true
 	});

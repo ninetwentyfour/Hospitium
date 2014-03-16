@@ -57,7 +57,7 @@ animal_show = ->
   $("#animal_weight_date_of_weight").datepicker()
   $("#shot_last_administered").datepicker()
   $("#shot_expires").datepicker()
-  $.datepicker.setDefaults dateFormat: "D, dd M yy"
+  $.datepicker.setDefaults dateFormat: "dd M yy"
 
   $("a[data-toggle=\"tab\"]").on "show.bs.tab", (e) ->
     $("#canvasWeight").remove()
