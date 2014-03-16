@@ -30,8 +30,10 @@ describe HomeController do
     end
 
     it "changes returns http success" do
-      get 'changes'
-      response.should be_success
+      VCR.use_cassette('controllers/home_changes') do
+        get 'changes'
+        response.should be_success
+      end
     end
   end
 end
