@@ -23,13 +23,13 @@ gem 'json_builder'
 gem "statsd-ruby", :require => "statsd"
 gem 'impressionist' # record views of public animals
 gem 'bitly'
+gem 'octokit'
+gem 'chronic'
 # generate color schemes
 gem 'paleta'
 # security
 gem 'secure_headers'
 gem 'rack-attack'
-
-gem 'chronic'
 
 # heroku gems for pulling/pushing db
 # gem 'heroku'
@@ -63,7 +63,6 @@ group :production, :development do
 	gem 'rqrcode-rails3'
 	gem 'asset_sync'
 	gem 'sanitize'
-	gem 'octokit'
 	gem 'puma'
 	gem 'client_side_validations', :git => "git://github.com/bcardarella/client_side_validations.git", :branch => "4-0-beta"
 	gem 'best_in_place', github: "ninetwentyfour/best_in_place"
