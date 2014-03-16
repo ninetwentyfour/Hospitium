@@ -1,5 +1,9 @@
 <script src="https://d4uktpxr9m70.cloudfront.net/juggernaut.min3.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>
+  window.hospitiumENV = {};
+  hospitiumENV.juggernautURL = '<%= ENV['HOSPITIUM_JUGG_JS_URL'] %>';
+</script>
 <%= javascript_include_tag "application" %>
 <%= yield :javascript_footer %>
 <script type='text/javascript'>/*{literal}<![CDATA[*/

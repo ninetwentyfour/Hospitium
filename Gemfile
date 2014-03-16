@@ -1,6 +1,9 @@
 source 'http://rubygems.org'
 ruby "2.1.1"
 
+# load ENV vars for testing and dev
+gem 'dotenv-rails', :groups => [:development, :test]
+
 gem 'rails', '4.0.4'
 
 # Gems used in all environments

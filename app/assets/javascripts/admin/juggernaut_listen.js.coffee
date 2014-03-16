@@ -5,7 +5,7 @@ juggernaut_listen = (id, model, url = model) ->
   #this one handles changes made with best in place
   jug = new Juggernaut(
     secure: true
-    host: "juggernaut-hospitium2.herokuapp.com"
+    host: hospitiumENV.juggernautURL
     port: 443
     transports: ["xhr-polling", "jsonp-polling"]
   )

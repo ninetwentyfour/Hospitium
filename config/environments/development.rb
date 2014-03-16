@@ -33,7 +33,7 @@ AnimalTracker::Application.configure do
     :password       => ENV['SENDGRID_PASSWORD'],
     :domain         => 'hospitium.co'
   }
-  #config.action_controller.asset_host = "https://d4uktpxr9m70.cloudfront.net"
+
   config.cache_store = :dalli_store
   
   # Do not compress assets
@@ -48,7 +48,7 @@ AnimalTracker::Application.configure do
   Paperclip.options[:command_path] = "/usr/local/bin/"
   Paperclip::Attachment.default_options[:command_path] = "/usr/local/bin"
   
-  #config.action_controller.asset_host = "http://static-assets%d.hospitium.co"
+  #config.action_controller.asset_host = ENV['HOSPITIUM_ASSET_URL']
     # Compress JavaScripts and CSS
   # config.assets.compress = true
   # config.assets.js_compressor = :closure
@@ -59,6 +59,5 @@ AnimalTracker::Application.configure do
 
   # # Generate digests for assets URLs
   # config.assets.digest = true
-  # config.action_controller.asset_host = "https://d1pm9e0xzdmxcb.cloudfront.net"
 end
 

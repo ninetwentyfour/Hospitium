@@ -1,8 +1,5 @@
-* * *
 Hospitium
 ========
-
-* * *
 
 [![Build Status](https://secure.travis-ci.org/ninetwentyfour/Hospitium.png)](http://travis-ci.org/ninetwentyfour/Hospitium) [![Code Climate](https://codeclimate.com/github/ninetwentyfour/Hospitium.png)](https://codeclimate.com/github/ninetwentyfour/Hospitium) [![Dependency Status](https://gemnasium.com/ninetwentyfour/Hospitium.png)](https://gemnasium.com/ninetwentyfour/Hospitium) [![Coverage Status](https://coveralls.io/repos/ninetwentyfour/Hospitium/badge.png?branch=master)](https://coveralls.io/r/ninetwentyfour/Hospitium)
 
@@ -15,12 +12,8 @@ Hospitium is Licensed under the MIT license: [http://www.opensource.org/licenses
 
 RoR, Twitter Bootstrap, and others licensed under their respective licenses. 
 
-* * *
-
 Overview:
 ========================
-
-* * *
 
 [Hospitium](http://hospitium.co/) is the brain child of Apple Wood Rescue, a small animal rescue in Denver Colorado. Developed to fit the needs of the rescue, it has since been open sourced for anyone to use.
 
@@ -32,18 +25,14 @@ You can support the project by:
 
 - Contributing to the development of Hospitium on [github](https://github.com/ninetwentyfour/Hospitium).
 
-
-* * *
-
 Install:
 ========================
-
-* * *
 
 There are several dependencies on other apps/services. 
 
 - Ruby 2.1.1 and up.
 - Memcache: [Simple local install](https://devcenter.heroku.com/articles/memcache#local_memcache_setup).
+- Redis: [Getting Started](http://redis.io/topics/quickstart)
 - [Juggernaut](https://github.com/maccman/juggernaut): I recommend hosting on heroku following these [instructions](https://gist.github.com/1003748). used for real time edits
 - [SendGrid](http://sendgrid.com/): A sendgrid account is required to send emails. [http://sendgrid.com/](http://sendgrid.com/)
 - [Bitly](https://bitly.com/): A bitly account is needed for link shortening. [http://bitly.com/a/your\_api\_key](http://bitly.com/a/your\_api\_key)
@@ -52,20 +41,7 @@ There are several dependencies on other apps/services.
 - [S3](http://aws.amazon.com/s3/): A s3 account is used for asset hosting. [http://aws.amazon.com/s3/](http://aws.amazon.com/s3/)
 
 Setup env variables. Good how to [here](http://devcenter.heroku.com/articles/config-vars#local_setup).
-
-- S3\_KEY (your s3 Key)
-- S3\_SECRET (your s3 secret)
-- FOG\_DIRECTORY (the bucket to store your assets on s3)
-- SENDGRID\_PASSWORD (the password of you sendgrid account)
-- SENDGRID\_USERNAME (the username of you sendgrid account)
-- JUGG_URL (the redis url from the heroku redis account)
-- TWITTER\_CONSUMER_KEY (the consumer key for twitter)
-- TWITTER\_CONSUMER_SECRET (the consumer secret for twitter)
-- FACEBOOK\_CLIENT\_ID (the facebook client id)
-- FACEBOOK\_CLIENT\_SECRET (the facebook client secret)
-- BITLY\_API (the bitly api key)
-- SALTY (random string for salts)
-- SECRET_TOKEN (This is optional but a good idea to add a long random string)
+To use [dotenv](https://github.com/bkeepers/dotenv) copy `.env.example` to `.env` and update any configs
 
 Clone repo
 
@@ -83,14 +59,6 @@ create a database called animal_development, or change db connection in `/config
 
 `rake db:seed`
 
-need to change assets setup
-
-- comment out line 50 `/config/environments/development.rb`
-
-In production change
-
-- `config.action_controller.asset_host = "http://static-assets%d.hospitium.co"` to `= "your s3 account url here"`
-
 `rails s`
 
 Visit [http://localhost:3000](http://localhost:3000)
@@ -104,14 +72,8 @@ Dashboard can be found at [http://localhost:3000/admin](http://localhost:3000/ad
 
 Please change your admin password and the organization name if you so choose.
 
-
-* * *
-
 Todo:
 ======================== 
-
-* * *
-
 
 - post to pet finder and other animal sites (adopt-a-pet)
 
@@ -181,7 +143,11 @@ Todo:
 
 - Add better back button support for animal cards view. (return to the spot in the infinite scroll)
 
-- Add checks for public animals list that organization has added enough info to be contacted. Don't list if not.
+Contributing:
+========================
 
-* * *
-
+1. Fork it
+1. Create your feature branch (`git checkout -b my-new-feature`)
+1. Commit your changes (`git commit -am 'Add some feature'`)
+1. Push to the branch (`git push origin my-new-feature`)
+1. Create new Pull Request
