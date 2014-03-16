@@ -7,7 +7,7 @@ Hospitium
 [![Build Status](https://secure.travis-ci.org/ninetwentyfour/Hospitium.png)](http://travis-ci.org/ninetwentyfour/Hospitium) [![Code Climate](https://codeclimate.com/github/ninetwentyfour/Hospitium.png)](https://codeclimate.com/github/ninetwentyfour/Hospitium) [![Dependency Status](https://gemnasium.com/ninetwentyfour/Hospitium.png)](https://gemnasium.com/ninetwentyfour/Hospitium) [![Coverage Status](https://coveralls.io/repos/ninetwentyfour/Hospitium/badge.png?branch=master)](https://coveralls.io/r/ninetwentyfour/Hospitium)
 
 
-[http://hospitium.co/](http://hospitium.co/)
+[https://hospitium.co/](https://hospitium.co/)
 
 Created By: [Travis Berry](http://www.travisberry.com), [Apple Wood Rescue](http://www.applewoodrescue.org)
 
@@ -42,7 +42,7 @@ Install:
 
 There are several dependencies on other apps/services. 
 
-- Ruby 1.9.2 and up.
+- Ruby 2.1.1 and up.
 - Memcache: [Simple local install](https://devcenter.heroku.com/articles/memcache#local_memcache_setup).
 - [Juggernaut](https://github.com/maccman/juggernaut): I recommend hosting on heroku following these [instructions](https://gist.github.com/1003748). used for real time edits
 - [SendGrid](http://sendgrid.com/): A sendgrid account is required to send emails. [http://sendgrid.com/](http://sendgrid.com/)
