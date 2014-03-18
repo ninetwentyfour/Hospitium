@@ -29,7 +29,7 @@ class Admin::Animals::ShowPresenter
   end
   
   def notes
-    Note.includes(:user).where(:animal_id => @animal.id)
+    Note.includes(:user).where(:animal_id => @animal.id).order(:created_at => :asc)
   end
   
   def documents
