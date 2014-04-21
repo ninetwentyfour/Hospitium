@@ -14,26 +14,26 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2014-03-16T12:12:33-06:00">2014-03-16T12:12:33-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2014-04-21T17:16:28-06:00">2014-04-21T17:16:28-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="yellow">87.36%</span></span>
+    (<span class="covered_percent"><span class="yellow">87.37%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         42.86
+         42.93
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>88</b> files in total.
-    <b>1772</b> relevant lines. 
-    <span class="green"><b>1548</b> lines covered</span> and
+    <b>1773</b> relevant lines. 
+    <span class="green"><b>1549</b> lines covered</span> and
     <span class="red"><b>224</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -342,12 +342,12 @@
       
       <tr>
         <td class="strong"><a href="#89a712dada6b1d062f99e3ea0311a350e0ab6b6a" class="src_link" title="app/models/ability.rb">app/models/ability.rb</a></td>
-        <td class="green strong">99.08 %</td>
-        <td>152</td>
+        <td class="green strong">99.09 %</td>
+        <td>154</td>
+        <td>110</td>
         <td>109</td>
-        <td>108</td>
         <td>1</td>
-        <td>158.8</td>
+        <td>158.9</td>
       </tr>
       
       <tr>
@@ -587,7 +587,7 @@
         <td>10</td>
         <td>9</td>
         <td>1</td>
-        <td>1.2</td>
+        <td>0.9</td>
       </tr>
       
       <tr>
@@ -1256,19 +1256,19 @@
           <div class="file_list_container" id="Models">
   <h2>
     <span class="group_name">Models</span>
-    (<span class="covered_percent"><span class="yellow">86.83%</span></span>
+    (<span class="covered_percent"><span class="yellow">86.85%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         69.24
+         69.34
        </span>
     </span> hits/line)
   </h2>
   <a name="Models"></a>
   <div>
     <b>48</b> files in total.
-    <b>995</b> relevant lines. 
-    <span class="green"><b>864</b> lines covered</span> and
+    <b>996</b> relevant lines. 
+    <span class="green"><b>865</b> lines covered</span> and
     <span class="red"><b>131</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -1287,12 +1287,12 @@
       
       <tr>
         <td class="strong"><a href="#89a712dada6b1d062f99e3ea0311a350e0ab6b6a" class="src_link" title="app/models/ability.rb">app/models/ability.rb</a></td>
-        <td class="green strong">99.08 %</td>
-        <td>152</td>
+        <td class="green strong">99.09 %</td>
+        <td>154</td>
+        <td>110</td>
         <td>109</td>
-        <td>108</td>
         <td>1</td>
-        <td>158.8</td>
+        <td>158.9</td>
       </tr>
       
       <tr>
@@ -1532,7 +1532,7 @@
         <td>10</td>
         <td>9</td>
         <td>1</td>
-        <td>1.2</td>
+        <td>0.9</td>
       </tr>
       
       <tr>
@@ -11927,10 +11927,10 @@
         <div class="source_table" id="89a712dada6b1d062f99e3ea0311a350e0ab6b6a">
   <div class="header">
     <h3>app/models/ability.rb</h3>
-    <h4><span class="green">99.08 %</span> covered</h4>
+    <h4><span class="green">99.09 %</span> covered</h4>
     <div>
-      <b>109</b> relevant lines. 
-      <span class="green"><b>108</b> lines covered</span> and
+      <b>110</b> relevant lines. 
+      <span class="green"><b>109</b> lines covered</span> and
       <span class="red"><b>1</b> lines missed.</span>
     </div>
   </div>
@@ -12328,523 +12328,535 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="170" data-linenumber="66">
-          <span class="hits">170</span>
+        <li class="never" data-hits="" data-linenumber="66">
           
-          <code class="ruby">    can :read, User, organization: { id: @user.organization_id }</code>
+          
+          <code class="ruby">    # hack for one user who locked themselves out</code>
         </li>
       
         <li class="covered" data-hits="170" data-linenumber="67">
           <span class="hits">170</span>
           
-          <code class="ruby">    can :update, User, :id =&gt; @user.id</code>
+          <code class="ruby">    can :create, User</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="68">
+        <li class="covered" data-hits="170" data-linenumber="68">
+          <span class="hits">170</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">    can :read, User, organization: { id: @user.organization_id }</code>
         </li>
       
         <li class="covered" data-hits="170" data-linenumber="69">
           <span class="hits">170</span>
           
-          <code class="ruby">    can :read, VetContact, organization: { id: @user.organization_id }</code>
+          <code class="ruby">    can :update, User, :id =&gt; @user.id</code>
         </li>
       
-        <li class="covered" data-hits="170" data-linenumber="70">
-          <span class="hits">170</span>
+        <li class="never" data-hits="" data-linenumber="70">
           
-          <code class="ruby">    can :create, VetContact</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="170" data-linenumber="71">
           <span class="hits">170</span>
           
-          <code class="ruby">    can :update, VetContact, organization: { id: @user.organization_id }</code>
+          <code class="ruby">    can :read, VetContact, organization: { id: @user.organization_id }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="72">
+        <li class="covered" data-hits="170" data-linenumber="72">
+          <span class="hits">170</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">    can :create, VetContact</code>
         </li>
       
         <li class="covered" data-hits="170" data-linenumber="73">
           <span class="hits">170</span>
           
-          <code class="ruby">    can :read, VolunteerContact, organization: { id: @user.organization_id }</code>
+          <code class="ruby">    can :update, VetContact, organization: { id: @user.organization_id }</code>
         </li>
       
-        <li class="covered" data-hits="170" data-linenumber="74">
-          <span class="hits">170</span>
+        <li class="never" data-hits="" data-linenumber="74">
           
-          <code class="ruby">    can :create, VolunteerContact</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="170" data-linenumber="75">
           <span class="hits">170</span>
           
-          <code class="ruby">    can :update, VolunteerContact, organization: { id: @user.organization_id }</code>
+          <code class="ruby">    can :read, VolunteerContact, organization: { id: @user.organization_id }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="76">
+        <li class="covered" data-hits="170" data-linenumber="76">
+          <span class="hits">170</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">    can :create, VolunteerContact</code>
         </li>
       
         <li class="covered" data-hits="170" data-linenumber="77">
           <span class="hits">170</span>
           
-          <code class="ruby">    can :read, Status, organization: { id: @user.organization_id }</code>
+          <code class="ruby">    can :update, VolunteerContact, organization: { id: @user.organization_id }</code>
         </li>
       
-        <li class="covered" data-hits="170" data-linenumber="78">
-          <span class="hits">170</span>
+        <li class="never" data-hits="" data-linenumber="78">
           
-          <code class="ruby">    can :create, Status</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="170" data-linenumber="79">
           <span class="hits">170</span>
           
-          <code class="ruby">    can :update, Status, organization: { id: @user.organization_id }</code>
+          <code class="ruby">    can :read, Status, organization: { id: @user.organization_id }</code>
         </li>
       
         <li class="covered" data-hits="170" data-linenumber="80">
           <span class="hits">170</span>
           
-          <code class="ruby">    can :export, Status, organization: { id: @user.organization_id }</code>
+          <code class="ruby">    can :create, Status</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="81">
+        <li class="covered" data-hits="170" data-linenumber="81">
+          <span class="hits">170</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">    can :update, Status, organization: { id: @user.organization_id }</code>
         </li>
       
         <li class="covered" data-hits="170" data-linenumber="82">
           <span class="hits">170</span>
           
-          <code class="ruby">    can :read, Shot, organization: { id: @user.organization_id }</code>
+          <code class="ruby">    can :export, Status, organization: { id: @user.organization_id }</code>
         </li>
       
-        <li class="covered" data-hits="170" data-linenumber="83">
-          <span class="hits">170</span>
+        <li class="never" data-hits="" data-linenumber="83">
           
-          <code class="ruby">    can :create, Shot</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="170" data-linenumber="84">
           <span class="hits">170</span>
           
-          <code class="ruby">    can :update, Shot, organization: { id: @user.organization_id }</code>
+          <code class="ruby">    can :read, Shot, organization: { id: @user.organization_id }</code>
         </li>
       
         <li class="covered" data-hits="170" data-linenumber="85">
           <span class="hits">170</span>
           
-          <code class="ruby">    can :destroy, Shot, organization: { id: @user.organization_id }</code>
+          <code class="ruby">    can :create, Shot</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="86">
+        <li class="covered" data-hits="170" data-linenumber="86">
+          <span class="hits">170</span>
           
-          
-          <code class="ruby">    </code>
+          <code class="ruby">    can :update, Shot, organization: { id: @user.organization_id }</code>
         </li>
       
         <li class="covered" data-hits="170" data-linenumber="87">
           <span class="hits">170</span>
           
-          <code class="ruby">    can :read, AnimalSex</code>
+          <code class="ruby">    can :destroy, Shot, organization: { id: @user.organization_id }</code>
         </li>
       
-        <li class="covered" data-hits="170" data-linenumber="88">
-          <span class="hits">170</span>
+        <li class="never" data-hits="" data-linenumber="88">
           
-          <code class="ruby">    can :read, SpayNeuter</code>
+          
+          <code class="ruby">    </code>
         </li>
       
         <li class="covered" data-hits="170" data-linenumber="89">
           <span class="hits">170</span>
           
+          <code class="ruby">    can :read, AnimalSex</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="90">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :read, SpayNeuter</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="91">
+          <span class="hits">170</span>
+          
           <code class="ruby">    can :read, Biter</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="90">
+        <li class="never" data-hits="" data-linenumber="92">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="91">
+        <li class="never" data-hits="" data-linenumber="93">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="92">
+        <li class="covered" data-hits="1" data-linenumber="94">
           <span class="hits">1</span>
           
           <code class="ruby">  def admin</code>
         </li>
       
-        <li class="covered" data-hits="170" data-linenumber="93">
+        <li class="covered" data-hits="170" data-linenumber="95">
           <span class="hits">170</span>
           
           <code class="ruby">    standard</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="94">
+        <li class="never" data-hits="" data-linenumber="96">
           
           
           <code class="ruby">    </code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="95">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :destroy, AdoptionContact, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="96">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :export, AdoptionContact, organization: { id: @user.organization_id }</code>
         </li>
       
         <li class="covered" data-hits="170" data-linenumber="97">
           <span class="hits">170</span>
           
-          <code class="ruby">    can :bulk_action, AdoptionContact, organization: { id: @user.organization_id }</code>
+          <code class="ruby">    can :destroy, AdoptionContact, organization: { id: @user.organization_id }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="98">
+        <li class="covered" data-hits="170" data-linenumber="98">
+          <span class="hits">170</span>
           
-          
-          <code class="ruby">    </code>
+          <code class="ruby">    can :export, AdoptionContact, organization: { id: @user.organization_id }</code>
         </li>
       
         <li class="covered" data-hits="170" data-linenumber="99">
           <span class="hits">170</span>
           
-          <code class="ruby">    can :destroy, Animal, organization: { id: @user.organization_id }</code>
+          <code class="ruby">    can :bulk_action, AdoptionContact, organization: { id: @user.organization_id }</code>
         </li>
       
-        <li class="covered" data-hits="170" data-linenumber="100">
-          <span class="hits">170</span>
+        <li class="never" data-hits="" data-linenumber="100">
           
-          <code class="ruby">    can :export, Animal, organization: { id: @user.organization_id }</code>
+          
+          <code class="ruby">    </code>
         </li>
       
         <li class="covered" data-hits="170" data-linenumber="101">
           <span class="hits">170</span>
           
-          <code class="ruby">    can :bulk_action, Animal, organization: { id: @user.organization_id }</code>
+          <code class="ruby">    can :destroy, Animal, organization: { id: @user.organization_id }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="102">
+        <li class="covered" data-hits="170" data-linenumber="102">
+          <span class="hits">170</span>
           
-          
-          <code class="ruby">    </code>
+          <code class="ruby">    can :export, Animal, organization: { id: @user.organization_id }</code>
         </li>
       
         <li class="covered" data-hits="170" data-linenumber="103">
           <span class="hits">170</span>
           
-          <code class="ruby">    can :destroy, AnimalColor, organization: { id: @user.organization_id }</code>
+          <code class="ruby">    can :bulk_action, Animal, organization: { id: @user.organization_id }</code>
         </li>
       
-        <li class="covered" data-hits="170" data-linenumber="104">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :export, AnimalColor, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="105">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :bulk_action, AnimalColor, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="106">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="107">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :destroy, AnimalWeight, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="108">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :export, AnimalWeight, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="109">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :bulk_action, AnimalWeight, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="110">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="111">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :update, Organization, :id =&gt; @user.organization_id</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="112">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :export, Organization, :id =&gt; @user.organization_id</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="113">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="114">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :destroy, RelinquishmentContact, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="115">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :export, RelinquishmentContact, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="116">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :bulk_action, RelinquishmentContact, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="117">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="118">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :destroy, Shelter, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="119">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :export, Shelter, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="120">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :bulk_action, Shelter, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="121">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="122">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :destroy, Species, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="123">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :export, Species, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="124">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :bulk_action, Species, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="125">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="126">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :create, User</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="127">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :update, User, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="128">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :export, User, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="129">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :destroy, User, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="130">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :bulk_action, User, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="131">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="132">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :destroy, VetContact, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="133">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :export, VetContact, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="134">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :bulk_action, VetContact, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="135">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="136">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :destroy, VolunteerContact, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="137">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :export, VolunteerContact, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="covered" data-hits="170" data-linenumber="138">
-          <span class="hits">170</span>
-          
-          <code class="ruby">    can :bulk_action, VolunteerContact, organization: { id: @user.organization_id }</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="139">
+        <li class="never" data-hits="" data-linenumber="104">
           
           
           <code class="ruby">    </code>
         </li>
       
+        <li class="covered" data-hits="170" data-linenumber="105">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :destroy, AnimalColor, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="106">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :export, AnimalColor, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="107">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :bulk_action, AnimalColor, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="108">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="109">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :destroy, AnimalWeight, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="110">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :export, AnimalWeight, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="111">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :bulk_action, AnimalWeight, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="112">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="113">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :update, Organization, :id =&gt; @user.organization_id</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="114">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :export, Organization, :id =&gt; @user.organization_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="115">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="116">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :destroy, RelinquishmentContact, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="117">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :export, RelinquishmentContact, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="118">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :bulk_action, RelinquishmentContact, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="119">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="120">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :destroy, Shelter, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="121">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :export, Shelter, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="122">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :bulk_action, Shelter, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="123">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="124">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :destroy, Species, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="125">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :export, Species, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="126">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :bulk_action, Species, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="127">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="128">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :create, User</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="129">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :update, User, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="130">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :export, User, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="131">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :destroy, User, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="132">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :bulk_action, User, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="133">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="134">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :destroy, VetContact, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="135">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :export, VetContact, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="136">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :bulk_action, VetContact, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="137">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="138">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :destroy, VolunteerContact, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="139">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :export, VolunteerContact, organization: { id: @user.organization_id }</code>
+        </li>
+      
         <li class="covered" data-hits="170" data-linenumber="140">
+          <span class="hits">170</span>
+          
+          <code class="ruby">    can :bulk_action, VolunteerContact, organization: { id: @user.organization_id }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="141">
+          
+          
+          <code class="ruby">    </code>
+        </li>
+      
+        <li class="covered" data-hits="170" data-linenumber="142">
           <span class="hits">170</span>
           
           <code class="ruby">    can :destroy, Status, organization: { id: @user.organization_id }</code>
         </li>
       
-        <li class="covered" data-hits="170" data-linenumber="141">
+        <li class="covered" data-hits="170" data-linenumber="143">
           <span class="hits">170</span>
           
           <code class="ruby">    can :bulk_action, Status, organization: { id: @user.organization_id }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="142">
+        <li class="never" data-hits="" data-linenumber="144">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="143">
+        <li class="never" data-hits="" data-linenumber="145">
           
           
           <code class="ruby">  </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="144">
+        <li class="covered" data-hits="1" data-linenumber="146">
           <span class="hits">1</span>
           
           <code class="ruby">  def super_admin</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="145">
+        <li class="missed" data-hits="0" data-linenumber="147">
           
           
           <code class="ruby">    can :manage, :all</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="146">
+        <li class="never" data-hits="" data-linenumber="148">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="147">
+        <li class="never" data-hits="" data-linenumber="149">
           
           
           <code class="ruby">  </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="148">
+        <li class="covered" data-hits="1" data-linenumber="150">
           <span class="hits">1</span>
           
           <code class="ruby">  def superadmin</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="149">
+        <li class="covered" data-hits="26" data-linenumber="151">
           <span class="hits">26</span>
           
           <code class="ruby">    can :manage, :all</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="150">
+        <li class="never" data-hits="" data-linenumber="152">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="151">
+        <li class="never" data-hits="" data-linenumber="153">
           
           
           <code class="ruby">  </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="152">
+        <li class="never" data-hits="" data-linenumber="154">
           
           
           <code class="ruby">end</code>
@@ -18466,20 +18478,20 @@
           <code class="ruby">  def send_public_tweet</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="14">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="14">
+          <span class="hits">1</span>
           
           <code class="ruby">    link = ShortLink.shorten_link(&quot;https://hospitium.co/posts/#{self.id}-#{self.title.parameterize}&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="15">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="15">
+          <span class="hits">1</span>
           
           <code class="ruby">    message = &quot;#{self.title.slice(0, 100)} - #{link}&quot;</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="16">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="16">
+          <span class="hits">1</span>
           
           <code class="ruby">    TwitterAccount.twitter_post(message, 1)</code>
         </li>
@@ -24871,7 +24883,7 @@
         <li class="covered" data-hits="1" data-linenumber="32">
           <span class="hits">1</span>
           
-          <code class="ruby">    Note.includes(:user).where(:animal_id =&gt; @animal.id)</code>
+          <code class="ruby">    Note.includes(:user).where(:animal_id =&gt; @animal.id).order(:created_at =&gt; :asc)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="33">

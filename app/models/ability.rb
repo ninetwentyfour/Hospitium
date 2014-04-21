@@ -63,6 +63,8 @@ class Ability
     can :create, Species
     can :update, Species, organization: { id: @user.organization_id }
 
+    # hack for one user who locked themselves out
+    can :create, User
     can :read, User, organization: { id: @user.organization_id }
     can :update, User, :id => @user.id
 
