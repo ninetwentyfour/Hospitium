@@ -36,7 +36,8 @@ function load_scripts(){
 	$.datepicker.setDefaults({
 		dateFormat: 'dd M yy',
 		changeMonth: true,
-		changeYear: true
+		changeYear: true,
+		yearRange: "-50:+0"
 	});
 	$('table.tablesorter').dataTable( {
 		"sDom": "<''<'span4'l><'pull-right'f>r>t<''<'span3'i><'span6'p>>",
