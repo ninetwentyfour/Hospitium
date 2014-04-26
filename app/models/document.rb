@@ -19,6 +19,7 @@ class Document < ActiveRecord::Base
   # validates_presence_of :document_file_name, :document_content_type
   validates_attachment_presence :document                  
   validates_attachment_size :document, :less_than => 100.megabytes
+  do_not_validate_attachment_file_type :document
   validate :not_blacklisted_file
   
   def not_blacklisted_file
