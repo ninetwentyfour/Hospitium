@@ -1,21 +1,21 @@
 class Organization < ActiveRecord::Base
     include ActionView::Helpers::NumberHelper
     
-    has_many :adoption_contacts
-    has_many :animals
-    has_many :animal_colors
-    has_many :animal_weights
-    has_many :facebook_accounts
-    has_many :relinquishment_contacts
-    has_many :shelters
-    has_many :shots
-    has_many :species
-    has_many :statuses
-    has_many :twitter_accounts
-    has_many :vet_contacts
-    has_many :volunteer_contacts
-    has_many :wordpress_accounts
-    has_many :users
+    has_many :adoption_contacts, :dependent => :destroy
+    has_many :animals, :dependent => :destroy
+    has_many :animal_colors, :dependent => :destroy
+    has_many :animal_weights, :dependent => :destroy
+    has_many :facebook_accounts, :dependent => :destroy
+    has_many :relinquishment_contacts, :dependent => :destroy
+    has_many :shelters, :dependent => :destroy
+    has_many :shots, :dependent => :destroy
+    has_many :species, :dependent => :destroy
+    has_many :statuses, :dependent => :destroy
+    has_many :twitter_accounts, :dependent => :destroy
+    has_many :vet_contacts, :dependent => :destroy
+    has_many :volunteer_contacts, :dependent => :destroy
+    has_many :wordpress_accounts, :dependent => :destroy
+    has_many :users, :dependent => :destroy
     
     before_create :create_uuid
     before_update :modify_phone_number

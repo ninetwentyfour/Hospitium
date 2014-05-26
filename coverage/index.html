@@ -14,7 +14,7 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2014-05-06T17:50:55-06:00">2014-05-06T17:50:55-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2014-05-26T13:34:06-06:00">2014-05-26T13:34:06-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -547,7 +547,7 @@
         <td>7</td>
         <td>7</td>
         <td>0</td>
-        <td>1.3</td>
+        <td>1.0</td>
       </tr>
       
       <tr>
@@ -587,7 +587,7 @@
         <td>10</td>
         <td>9</td>
         <td>1</td>
-        <td>0.9</td>
+        <td>1.2</td>
       </tr>
       
       <tr>
@@ -1492,7 +1492,7 @@
         <td>7</td>
         <td>7</td>
         <td>0</td>
-        <td>1.3</td>
+        <td>1.0</td>
       </tr>
       
       <tr>
@@ -1532,7 +1532,7 @@
         <td>10</td>
         <td>9</td>
         <td>1</td>
-        <td>0.9</td>
+        <td>1.2</td>
       </tr>
       
       <tr>
@@ -17326,14 +17326,14 @@
           <code class="ruby">  def send_public_tweet</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="9">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
           
           <code class="ruby">    message = &quot;#{self.status_type}! #{self.message.slice(0, 100)}&quot;</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="10">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="10">
+          <span class="hits">1</span>
           
           <code class="ruby">    TwitterAccount.twitter_post(message, 1)</code>
         </li>
@@ -17389,91 +17389,91 @@
         <li class="covered" data-hits="1" data-linenumber="4">
           <span class="hits">1</span>
           
-          <code class="ruby">    has_many :adoption_contacts</code>
+          <code class="ruby">    has_many :adoption_contacts, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="5">
           <span class="hits">1</span>
           
-          <code class="ruby">    has_many :animals</code>
+          <code class="ruby">    has_many :animals, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="6">
           <span class="hits">1</span>
           
-          <code class="ruby">    has_many :animal_colors</code>
+          <code class="ruby">    has_many :animal_colors, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="7">
           <span class="hits">1</span>
           
-          <code class="ruby">    has_many :animal_weights</code>
+          <code class="ruby">    has_many :animal_weights, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="8">
           <span class="hits">1</span>
           
-          <code class="ruby">    has_many :facebook_accounts</code>
+          <code class="ruby">    has_many :facebook_accounts, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="9">
           <span class="hits">1</span>
           
-          <code class="ruby">    has_many :relinquishment_contacts</code>
+          <code class="ruby">    has_many :relinquishment_contacts, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="10">
           <span class="hits">1</span>
           
-          <code class="ruby">    has_many :shelters</code>
+          <code class="ruby">    has_many :shelters, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="11">
           <span class="hits">1</span>
           
-          <code class="ruby">    has_many :shots</code>
+          <code class="ruby">    has_many :shots, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="12">
           <span class="hits">1</span>
           
-          <code class="ruby">    has_many :species</code>
+          <code class="ruby">    has_many :species, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="13">
           <span class="hits">1</span>
           
-          <code class="ruby">    has_many :statuses</code>
+          <code class="ruby">    has_many :statuses, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="14">
           <span class="hits">1</span>
           
-          <code class="ruby">    has_many :twitter_accounts</code>
+          <code class="ruby">    has_many :twitter_accounts, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="15">
           <span class="hits">1</span>
           
-          <code class="ruby">    has_many :vet_contacts</code>
+          <code class="ruby">    has_many :vet_contacts, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="16">
           <span class="hits">1</span>
           
-          <code class="ruby">    has_many :volunteer_contacts</code>
+          <code class="ruby">    has_many :volunteer_contacts, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="17">
           <span class="hits">1</span>
           
-          <code class="ruby">    has_many :wordpress_accounts</code>
+          <code class="ruby">    has_many :wordpress_accounts, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="18">
           <span class="hits">1</span>
           
-          <code class="ruby">    has_many :users</code>
+          <code class="ruby">    has_many :users, :dependent =&gt; :destroy</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="19">
@@ -18484,20 +18484,20 @@
           <code class="ruby">  def send_public_tweet</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="14">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="14">
+          <span class="hits">2</span>
           
           <code class="ruby">    link = ShortLink.shorten_link(&quot;https://hospitium.co/posts/#{self.id}-#{self.title.parameterize}&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="15">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="15">
+          <span class="hits">2</span>
           
           <code class="ruby">    message = &quot;#{self.title.slice(0, 100)} - #{link}&quot;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="16">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="16">
+          <span class="hits">2</span>
           
           <code class="ruby">    TwitterAccount.twitter_post(message, 1)</code>
         </li>
