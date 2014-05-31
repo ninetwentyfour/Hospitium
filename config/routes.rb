@@ -93,6 +93,7 @@ AnimalTracker::Application.routes.draw do
     match "animals/:id/duplicate" => "animals#duplicate", :via => :get
     match "statuses.:id" => "statuses#destroy", :via => :delete
     match "users/:id/cancel" => "users#cancel", :as => "cancel_user", :via => :delete
+    match "users/:id/set_role" => "users#set_role", :as => "user_role", :via => :put
   end
 
   post SecureHeaders::ContentSecurityPolicy::FF_CSP_ENDPOINT => "content_security_policy#scribe"

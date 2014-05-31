@@ -45,4 +45,16 @@ class Admin::UsersController < Admin::CrudController
     flash[:notice] = 'Account successfully cancelled.'
     redirect_to root_path
   end
+
+  def set_role
+    @user = User.find(params[:id])
+
+    role = params[:user][:permissions].to_i == 1 ? 2 : 3
+
+    permission = Permission.find(@user.permissions.first.id)
+    permission.role_id = role
+    permission.save
+
+    respond_with(@user, :location => admin_user_path(@user))
+  end
 end

@@ -131,6 +131,7 @@ class Ability
     can :export, User, organization: { id: @user.organization_id }
     can :destroy, User, organization: { id: @user.organization_id }
     can :cancel, User, organization: { id: @user.organization_id }
+    can :set_role, User, organization: { id: @user.organization_id }
     can :bulk_action, User, organization: { id: @user.organization_id }
 
     can :destroy, VetContact, organization: { id: @user.organization_id }
