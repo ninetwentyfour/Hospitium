@@ -112,6 +112,7 @@ class Ability
 
     can :update, Organization, :id => @user.organization_id
     can :export, Organization, :id => @user.organization_id
+    can :destroy, Organization, id: @user.organization_id
 
     can :destroy, RelinquishmentContact, organization: { id: @user.organization_id }
     can :export, RelinquishmentContact, organization: { id: @user.organization_id }
@@ -129,6 +130,7 @@ class Ability
     can :update, User, organization: { id: @user.organization_id }
     can :export, User, organization: { id: @user.organization_id }
     can :destroy, User, organization: { id: @user.organization_id }
+    can :cancel, User, organization: { id: @user.organization_id }
     can :bulk_action, User, organization: { id: @user.organization_id }
 
     can :destroy, VetContact, organization: { id: @user.organization_id }

@@ -31,4 +31,18 @@ class Admin::UsersController < Admin::CrudController
   def edit
     redirect_to admin_users_path
   end
+
+  def cancel
+    user = User.where(id: params[:id]).first
+
+    Thread.new do
+      org = Organization.where(id: user.organization_id).first
+      org.destroy
+    end
+
+    sign_out user
+
+    flash[:notice] = 'Account successfully cancelled.'
+    redirect_to root_path
+  end
 end
