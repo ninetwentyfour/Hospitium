@@ -52,7 +52,7 @@ class Admin::UsersController < Admin::CrudController
     role = params[:user][:permissions].to_i == 1 ? 2 : 3
 
     permission = Permission.find(@user.permissions.first.id)
-    permission.role_id = role
+    permission.role_id = @user.owner == 1 ? 2 : role
     permission.save
 
     respond_with(@user, :location => admin_user_path(@user))

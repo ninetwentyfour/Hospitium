@@ -10,7 +10,7 @@
 						<% end %>
 
 						<% if can? :set_role, @user %>
-							<span class="admin_user_check"><%= best_in_place @user, :permissions, :type => :select, :collection => [[0, "Standard"], [1, "Admin"]], :path => admin_user_role_path, :nil => "Admin" %></span>
+							<span class="admin_user_check"><%= best_in_place @user, :permissions, :type => :select, :collection => [[0, "Standard"], [1, "Admin"]], :path => admin_user_role_path, :nil => @user.roles.first.name %></span>
 						<% else %>
 							<%= @user.roles.first.name %>
 						<% end %>
