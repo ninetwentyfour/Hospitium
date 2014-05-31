@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.bit.ly/v3/shorten?longUrl=https%3A%2F%2Fhospitium.co&login=hospitium&apiKey=R_93a2ce1be0ecee1cc264afb2bac4381c
+    uri: http://api.bitly.com/v3/shorten?longUrl=https%3A%2F%2Fhospitium.co&login=hospitium&apiKey=R_93a2ce1be0ecee1cc264afb2bac4381c
     body:
       encoding: US-ASCII
       string: ''
@@ -15,7 +15,7 @@ http_interactions:
       server:
       - nginx
       date:
-      - Tue, 26 Mar 2013 01:21:26 GMT
+      - Sat, 31 May 2014 22:08:14 GMT
       content-type:
       - application/json; charset=utf-8
       connection:
@@ -25,12 +25,9 @@ http_interactions:
       content-length:
       - '187'
     body:
-      encoding: US-ASCII
-      string: ! '{ "status_code": 200, "status_txt": "OK", "data": { "long_url": "https:\/\/hospitium.co\/",
-        "url": "http:\/\/bit.ly\/X8L44h", "hash": "X8L44h", "global_hash": "X8L44i",
-        "new_hash": 1 } }
-
-'
+      encoding: UTF-8
+      string: |
+        { "status_code": 200, "status_txt": "OK", "data": { "long_url": "https:\/\/hospitium.co\/", "url": "http:\/\/bit.ly\/X8L44h", "hash": "X8L44h", "global_hash": "X8L44i", "new_hash": 0 } }
     http_version: '1.1'
-  recorded_at: Tue, 26 Mar 2013 01:21:26 GMT
-recorded_with: VCR 2.4.0
+  recorded_at: Sat, 31 May 2014 22:08:14 GMT
+recorded_with: VCR 2.9.2
