@@ -47,7 +47,6 @@ gem 'rails-observers'
 # Gems used only for production
 group :production do
 	gem 'airbrake'
-	gem 'home_run', :require=>'date'
 	gem 'pg'
 	gem 'newrelic_rpm'
 	gem 'heroku'
@@ -93,13 +92,13 @@ end
 # Gems used only for testing
 group :test do
 	gem "factory_girl_rails"
-	gem "capybara"
+	gem "capybara", ">= 2.2.0"
 	gem 'shoulda-matchers'
 	gem 'cucumber-rails', :require => false
 	gem 'database_cleaner'
 	gem 'launchy'
 	gem 'email_spec'
-	gem 'poltergeist', "~> 1.1.0"
+	gem 'poltergeist'
 	gem 'mocha', "~> 0.13.2", :require => false
 	gem 'fakeweb'
 	gem 'vcr'

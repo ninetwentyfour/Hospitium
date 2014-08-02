@@ -29,6 +29,7 @@ end
 load_factories
 
 RSpec.configure do |config|
+  config.infer_spec_type_from_file_location!
   config.order = "random"
 
   config.include Paperclip::Shoulda::Matchers
