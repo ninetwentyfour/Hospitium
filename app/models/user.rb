@@ -101,23 +101,28 @@ class User < ActiveRecord::Base
   end
 
   def email_is_not_blacklisted
-    begin
-      domain = self.email.split('@').last
-      blacklist = Rails.cache.fetch("email_blacklist", :expires_in => 1.day) do
-        File.readlines("#{Rails.root}/config/email_blacklist.txt").each {|l| l.chomp!}
-      end
-      if blacklist.include?(domain)
-        errors.add(:email, 'is blacklsited')
-      else
-        url = "http://check.block-disposable-email.com/api/json/#{ENV['HOSPITIUM_DEA_API']}/#{domain}"
-        resp = Net::HTTP.get_response(URI.parse(url))
-        result = JSON.parse(resp.body)
-        if result['domain_status'] == 'block'
-          File.open("#{Rails.root}/config/email_blacklist.txt", 'a') { |f| f.write("\n#{domain}") }
-          errors.add(:email, 'is blacklsited')
+    unless Rails.env.test?
+      begin
+        domain = self.email.split('@').last
+        blacklist = Rails.cache.fetch("email_blacklist", :expires_in => 1.day) do
+          EmailBlacklist.all.map(&:domain)
         end
+        if blacklist.include?(domain)
+          errors.add(:email, 'is blacklsited')
+        else
+          url = "http://check.block-disposable-email.com/api/json/#{ENV['HOSPITIUM_DEA_API']}/#{domain}"
+          resp = Net::HTTP.get_response(URI.parse(url))
+          result = JSON.parse(resp.body)
+          if result['domain_status'] == 'block'
+            new_block = EmailBlacklist.new
+            new_block.domain = domain
+            new_block.save!
+            Rails.cache.delete('email_blacklist')
+            errors.add(:email, 'is blacklsited')
+          end
+        end
+      rescue
       end
-    rescue
     end
   end
   
