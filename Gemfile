@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby "2.1.1"
+ruby "2.1.2"
 
 # load ENV vars for testing and dev
 gem 'dotenv-rails', :groups => [:development, :test]
