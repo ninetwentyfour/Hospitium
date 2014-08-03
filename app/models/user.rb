@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
           EmailBlacklist.all.map(&:domain)
         end
         if blacklist.include?(domain)
-          errors.add(:email, 'is blacklsited')
+          errors.add(:email, 'is blacklisted')
         else
           url = "http://check.block-disposable-email.com/api/json/#{ENV['HOSPITIUM_DEA_API']}/#{domain}"
           resp = Net::HTTP.get_response(URI.parse(url))
@@ -118,7 +118,7 @@ class User < ActiveRecord::Base
             new_block.domain = domain
             new_block.save!
             Rails.cache.delete('email_blacklist')
-            errors.add(:email, 'is blacklsited')
+            errors.add(:email, 'is blacklisted')
           end
         end
       rescue
