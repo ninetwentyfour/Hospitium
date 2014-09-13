@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140802225307) do
+ActiveRecord::Schema.define(version: 20140913171707) do
 
   create_table "adopt_a_pet_accounts", force: true do |t|
     t.integer  "user_id"
@@ -200,6 +200,25 @@ ActiveRecord::Schema.define(version: 20140802225307) do
 
   add_index "facebook_accounts", ["organization_id"], name: "index_facebook_accounts_on_organization_id", using: :btree
   add_index "facebook_accounts", ["user_id"], name: "index_facebook_accounts_on_user_id", using: :btree
+
+  create_table "foster_animals", force: true do |t|
+    t.integer  "animal_id"
+    t.integer  "foster_contact_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "foster_contacts", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "uuid"
+    t.string   "address"
+    t.string   "phone"
+    t.string   "email"
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "impressions", force: true do |t|
     t.string   "impressionable_type"

@@ -1,0 +1,72 @@
+<div class="row-fluid">
+  <div class="span12 main-app-row">
+    <div class="well">
+      <div class="row-fluid">
+        <div class="span6">
+          <h1><%= best_in_place @foster_contact, :first_name, :type => :input, :nil => "Click me to add content!", :path => admin_foster_contact_path %> 
+          <%= best_in_place @foster_contact, :last_name, :type => :input, :nil => "", :path => admin_foster_contact_path %></h1>
+        </div>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="tabbable span4 ">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#1" data-toggle="tab">Overview</a></li>
+          <li><a href="#2" data-toggle="tab">Animals</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="1">
+            <div class="">
+              <p><strong>Phone #:</strong> <%= best_in_place @foster_contact, :phone, :nil => "Click me to add content!", :display_as => :formatted_phone, :path => admin_foster_contact_path %></p>
+              <p><strong>Email:</strong> <%= best_in_place @foster_contact, :email, :nil => "Click me to add content!", :path => admin_foster_contact_path %></p>
+              <p><strong>Address:</strong> <%= best_in_place @foster_contact, :address, :nil => "Click me to add content!", :path => admin_foster_contact_path %></p>
+            </div>
+          </div>
+          <div class="tab-pane" id="2">
+            <% @animals.each do |animal| %>
+              <p><%= link_to raw("<i class='icon-remove'></i>"), "/admin/foster_animals/#{animal.id}?foster=#{@foster_contact.id}", :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Remove Animal"  %> <a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><%= animal.name %></a></p>
+            <%end%>
+            <hr />
+            <a class="btn" data-toggle="modal" href="#newAnimal" ><i class="icon-plus"></i> Add Animal</a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="span8 map-block">
+        <div id="map_canvas" style="height:409px;width:400px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal hide fade" id="newAnimal">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal" href="#">×</a>
+    <h3>Add Animal</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_for @foster_contact.foster_animals.build(:foster_contact_id => @foster_contact.id), :url => admin_foster_animals_path do |f| %>
+      <%= f.hidden_field :foster_contact_id %>
+      <%= collection_select(:foster_animal, :animal_id, @adoptable_animals, :id, :name) %>  
+  </div>
+  <div class="modal-footer">
+    <%= f.submit "Submit", :class => "btn btn-primary" %>
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+    <% end %>
+</div>
+
+
+
+
+
+
+<% content_for :javascript_footer do %>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+  <script type="text/javascript">
+    // Trigger the google map
+    google_map('<%= @foster_contact.address %>', '<%= @foster_contact.first_name %>');
+    // Trigger juggernaut
+    juggernaut_listen('<%= @foster_contact.id %>', 'foster_contact', 'foster_contact');
+  </script>
+<% end %>

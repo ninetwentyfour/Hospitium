@@ -19,6 +19,14 @@ class Ability
     can :create, AdoptionContact
     can :update, AdoptionContact, organization: { id: @user.organization_id }
 
+    can :read, FosterAnimal, animal: { organization: { id: @user.organization_id } }
+    can :create, FosterAnimal, animal: { organization: { id: @user.organization_id } }
+    can :destroy, FosterAnimal, animal: { organization: { id: @user.organization_id } }
+
+    can :read, FosterContact, organization: { id: @user.organization_id }
+    can :create, FosterContact
+    can :update, FosterContact, organization: { id: @user.organization_id }
+
     can :read, Animal, organization: { id: @user.organization_id }
     can :create, Animal
     can :update, Animal, organization: { id: @user.organization_id }
@@ -97,6 +105,10 @@ class Ability
     can :destroy, AdoptionContact, organization: { id: @user.organization_id }
     can :export, AdoptionContact, organization: { id: @user.organization_id }
     can :bulk_action, AdoptionContact, organization: { id: @user.organization_id }
+
+    can :destroy, FosterContact, organization: { id: @user.organization_id }
+    can :export, FosterContact, organization: { id: @user.organization_id }
+    can :bulk_action, FosterContact, organization: { id: @user.organization_id }
     
     can :destroy, Animal, organization: { id: @user.organization_id }
     can :export, Animal, organization: { id: @user.organization_id }

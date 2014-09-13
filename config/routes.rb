@@ -87,7 +87,8 @@ AnimalTracker::Application.routes.draw do
   # Prefix route urls with "admin"
   namespace :admin do
     resources :animals, :species, :statuses, :animal_colors, :shelters, :animal_weights, :adoption_contacts, :organizations, :relinquishment_contacts, :users,
-      :vet_contacts, :volunteer_contacts, :notifications, :posts, :notes, :documents, :shots, :adopt_a_pet_accounts, :wordpress_accounts, :adopt_animals, :relinquish_animals
+      :vet_contacts, :volunteer_contacts, :notifications, :posts, :notes, :documents, :shots, :adopt_a_pet_accounts, :wordpress_accounts, :adopt_animals, :relinquish_animals,
+      :foster_contacts, :foster_animals
       
     match "/" => "home#index", :as => "index", :via => :get
     match "animals/:id/duplicate" => "animals#duplicate", :via => :get
