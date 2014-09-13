@@ -126,6 +126,20 @@ class Organization < ActiveRecord::Base
     def owner
       User.where(:organization_id => self.id, :owner => 1).first
     end
+
+    def pretty_website
+      if self.website && !url_protocol_present?
+        "http://#{self.website}"
+      else
+        self.website
+      end
+    end
+
+    private
+
+    def url_protocol_present?
+      self.website[/\Ahttp:\/\//] || self.website[/\Ahttps:\/\//]
+    end
     
     
 end

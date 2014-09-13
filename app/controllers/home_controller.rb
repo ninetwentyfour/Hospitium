@@ -1,7 +1,6 @@
 require 'octokit'
 
 class HomeController < ApplicationController
-  #caches_action :index, :expires_in => 1.hour
   def index
     canonical_url("/")
   end
@@ -28,7 +27,7 @@ class HomeController < ApplicationController
   def changes
     canonical_url("/recent-changes")
     @recent_changes = Rails.cache.fetch("recent_changes_from_github", :expires_in => 1.hour) do
-      JSON.parse(Octokit.commits("ninetwentyfour/Hospitium", branch = "master", options = {}).to_json)
+      Octokit.list_commits("ninetwentyfour/Hospitium", branch = "master", options = {}).map { |commit| {message: commit.commit.message, date: commit.commit.author.date }}
     end
   end
 

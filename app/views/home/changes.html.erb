@@ -9,7 +9,7 @@
 		<p>
 			<ul>
 				<% @recent_changes.each do |commit| %>
-					<li><strong><%= Date.parse(commit["commit"]["author"]["date"]).strftime("%m/%d/%Y") %>:</strong> <%= commit["commit"]["message"] %></li>
+					<li><strong><%= commit[:date].strftime("%m/%d/%Y") %>:</strong> <%= commit[:message] %></li>
 				<%end%>
 			</ul>
 		</p>
