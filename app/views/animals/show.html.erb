@@ -1,12 +1,12 @@
 
-<div class="hero-unit clearfix">
+<div class="block-flat clearfix">
 	<div class="page-header">
 		<h1><%= @animal.name %></h1>
 	</div>
 	<div class="otherAnimalInfo">
 		<div class="row-fluid">
-			<div class="span12 main-app-row">
-				<div class="span4">
+			<div class="col-sm-12 col-md-12 col-lg-12 main-app-row">
+				<div class="col-sm-4 col-md-4 col-lg-4">
 					<p>Status: <%= @animal.status.status %></p>
 					<p>Species: <%= @animal.species_name %></p>
 					<p>Sex: <%= @animal.sex unless @animal.animal_sex.blank? %></p>
@@ -23,7 +23,7 @@
 					<p>Address: <%= @animal.organization_address %></p>
 					<p><%= @animal.organization_city %>, <%= @animal.organization_state %> <%= @animal.organization_zip_code %></p>
 				</div>
-				<div class="span7 pull-right animal-pics">
+				<div class="col-sm-7 col-md-7 col-lg-7 pull-right animal-pics">
 					<ul class="thumbnails">
 							<li class="pull-right animal_thumb">
 								<a class="thumbnail" data-toggle="modal" href="#image_display_1" >
@@ -56,7 +56,7 @@
 								</li>
 							<%end%>
 							<% unless @animal.video_embed.blank? %>
-								<li class="span8 pull-right animal_thumb">
+								<li class="col-sm-8 col-md-8 col-lg-8 pull-right animal_thumb">
 									<a class="thumbnail" href="#" >
 										<div class="embed-container">
 											<%= raw Sanitize.clean(@animal.video_embed, Sanitize::Config::YOUTUBE) %>
@@ -72,74 +72,88 @@
 </div>
 
 
-
-
-<div class="modal hide fade" id="image_display_1">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3><%= @animal.name %></h3>
-	</div>
-	<div class="modal-body">
-		<% unless @animal.image.url(:large) == "/images/large/missing.png" %>
-			<img src="<%= @animal.image.url(:large) %>" alt="">
-		<% else %>
-			<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-large-logo2.png" alt="">
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="image_display_1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3><%= @animal.name %></h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<% unless @animal.image.url(:large) == "/images/large/missing.png" %>
+					<img src="<%= @animal.image.url(:large) %>" alt="">
+				<% else %>
+					<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-large-logo2.png" alt="">
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="modal hide fade" id="image_display_2">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3><%= @animal.name %></h3>
-	</div>
-	<div class="modal-body">
-		<% unless @animal.second_image.url(:large) == "/second_images/large/missing.png" %>
-			<img src="<%= @animal.second_image.url(:large) %>" alt="">
-		<% else %>
-			<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-large-logo2.png" alt="">
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="image_display_2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3><%= @animal.name %></h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<% unless @animal.second_image.url(:large) == "/second_images/large/missing.png" %>
+					<img src="<%= @animal.second_image.url(:large) %>" alt="">
+				<% else %>
+					<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-large-logo2.png" alt="">
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="modal hide fade" id="image_display_3">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3><%= @animal.name %></h3>
-	</div>
-	<div class="modal-body">
-		<% unless @animal.third_image.url(:large) == "/third_images/large/missing.png" %>
-			<img src="<%= @animal.third_image.url(:large) %>" alt="">
-		<% else %>
-			<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-large-logo2.png" alt="">
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="image_display_3" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3><%= @animal.name %></h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<% unless @animal.third_image.url(:large) == "/third_images/large/missing.png" %>
+					<img src="<%= @animal.third_image.url(:large) %>" alt="">
+				<% else %>
+					<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-large-logo2.png" alt="">
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="modal hide fade" id="image_display_4">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3><%= @animal.name %></h3>
-	</div>
-	<div class="modal-body">
-		<% unless @animal.fourth_image.url(:large) == "/fourth_images/large/missing.png" %>
-			<img src="<%= @animal.fourth_image.url(:large) %>" alt="">
-		<% else %>
-			<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-large-logo2.png" alt="">
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="image_display_4" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3><%= @animal.name %></h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<% unless @animal.fourth_image.url(:large) == "/fourth_images/large/missing.png" %>
+					<img src="<%= @animal.fourth_image.url(:large) %>" alt="">
+				<% else %>
+					<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-large-logo2.png" alt="">
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 

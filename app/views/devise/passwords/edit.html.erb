@@ -1,17 +1,33 @@
 <div class="hero-unit">
 	<h2>Change your password</h2>
 
-	<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, :class => "form-stacked" }) do |f| %>
-	  <%= devise_error_messages! %>
-	  <%= f.hidden_field :reset_password_token %>
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, :class => "form-stacked" }) do |f| %>
+  <%= devise_error_messages! %>
+  <%= f.hidden_field :reset_password_token %>
+  <div class="content">
+    <h4 class="title">Password Reset</h4>
+    <div class="form-group">
+      <div class="col-sm-6 col-xs-6">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+					  <%= f.password_field :password, :class => "form-control", :placeholder => "Password" %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-6 col-xs-6">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+					  <%= f.password_field :password_confirmation, :class => "form-control", :placeholder => "Password" %>
+        </div>
+      </div>
+    </div>
+  </div>	
+  <div class="foot">
+  	<%= f.submit "Change my password", :class => "btn btn-block btn-success btn-rad btn-lg" %>
+  </div>
+<% end %>
 
-	  <div><%= f.label :password, "New password" %>
-	  <%= f.password_field :password %></div>
-
-	  <div><%= f.label :password_confirmation, "Confirm new password" %>
-	  <%= f.password_field :password_confirmation %></div>
-<br />
-	  <div><%= f.submit "Change my password", :class => "btn primary" %></div>
-	<% end %>
+<div class="col-sm-12" style="margin-top:40px">
+	<%= render :partial => "devise/shared/links" %>
 </div>
-<%= render :partial => "devise/shared/links" %>

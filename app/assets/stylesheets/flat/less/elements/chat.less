@@ -1,0 +1,315 @@
+
+/* General styles for all menus */
+.cbp-spmenu {
+	background: #272930;
+	position: fixed;
+}
+
+.cbp-spmenu>.header{
+	padding: 20px;
+  min-height: 64px;
+	background: @primary-color + 10%;
+  position: relative;
+}
+.cbp-spmenu>.header h3{
+	color: #fff;
+	font-weight: 300;
+	font-size: 1.9em;
+	margin: 0;
+}
+
+.cbp-spmenu .sub-header{
+  background: @primary-color;
+  color: #FFFFFF;
+  padding: 8px 20px;
+}
+.cbp-spmenu .sub-header .icon{
+  display: inline-block;
+  margin-right: 5px;
+}
+.cbp-spmenu .sub-header p{
+  display: inline-block;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+}
+.cbp-spmenu a {
+	display: block;
+	color: #fff;
+	font-size: 1.1em;
+	font-weight: 300;
+}
+
+.cbp-spmenu a:hover {
+	background: #22242B;
+}
+
+.cbp-spmenu a:active {
+  background: #2A2C34;
+  border-right: 2px solid #7761A7;}
+
+/* Orientation-dependent styles for the content of the menu */
+
+.cbp-spmenu-vertical {
+	width: 240px;
+	height: 100%;
+	top: 0;
+	z-index: 1000;
+}
+
+.cbp-spmenu-vertical a {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+	padding: 1em;
+}
+
+.cbp-spmenu-horizontal {
+	width: 100%;
+	height: 150px;
+	left: 0;
+	z-index: 1000;
+	overflow: hidden;
+}
+
+.cbp-spmenu-horizontal h3 {
+	height: 100%;
+	width: 20%;
+	float: left;
+}
+
+.cbp-spmenu-horizontal a {
+	float: left;
+	width: 20%;
+	padding: 0.8em;
+	border-left: 1px solid #258ecd;
+}
+
+/* Vertical menu that slides from the left or right */
+
+.cbp-spmenu-left {
+	left: -240px;
+}
+
+.cbp-spmenu-right {
+	right: -240px;
+}
+
+.cbp-spmenu-left.cbp-spmenu-open {
+	left: 0px;
+}
+
+.cbp-spmenu-right.cbp-spmenu-open {
+	right: 0px;
+}
+
+/* Horizontal menu that slides from the top or bottom */
+
+.cbp-spmenu-top {
+	top: -150px;
+}
+
+.cbp-spmenu-bottom {
+	bottom: -150px;
+}
+
+.cbp-spmenu-top.cbp-spmenu-open {
+	top: 0px;
+}
+
+.cbp-spmenu-bottom.cbp-spmenu-open {
+	bottom: 0px;
+}
+
+/* Push classes applied to the body */
+
+.cbp-spmenu-push {
+	overflow-x: hidden;
+	position: relative;
+	left: 0;
+}
+
+.cbp-spmenu-push-toright {
+	left: 240px;
+}
+
+.cbp-spmenu-push-toleft {
+	left: -240px;
+}
+
+/*Chat box*/
+
+#chat-box{
+  display:none;
+  position: absolute;
+  padding-top: 64px;
+  height: 100%;
+  background: transparent;
+  bottom: 0;
+  left: 0;
+  width:100%;
+}
+#chat-box>.header{
+  background: @primary-color;
+  border-bottom: 4px solid @primary-color - 10%;
+  padding: 15px;
+}
+#chat-box>.header > span{
+  color: #fff;
+  font-size: 14px;
+}
+#chat-box>.header > .close{
+  margin: 0;
+  padding: 2px 3px 0 0;
+}
+#chat-box>.header > .close:hover, .chat-box>.header > .close:active{background:none; border: none;}
+#chat-box .messages{
+  background: #21232A;
+  height:80%;
+}
+#chat-box .messages  .conversation{
+  list-style: none;
+  padding: 5px 0 0;
+}
+#chat-box .messages  .conversation li p{
+  background: @primary-color;
+  color: #fff;
+  padding: 5px 10px;
+  margin-bottom: 15px;
+  display:inline-block;
+  position:relative;
+}
+#chat-box .messages  .conversation .odd p{
+  background: #fff;
+  color: #666;
+  padding: 5px 10px;
+  display:inline-block;
+}
+
+#chat-box .messages  .conversation li p:after{
+  border-color: rgba(0, 0, 0, 0) #fff;
+  border-style: solid;
+  border-width: 9px 10px 9px 0;
+  content: "";
+  display: block;
+  left: -7px;
+  position: absolute;
+  top: 7px;
+  width: 0;
+  z-index: 1;
+}
+#chat-box .messages  .conversation li.text-right p:after{
+  border-color: rgba(0, 0, 0, 0) @primary-color;
+  border-width: 9px 0 9px 10px;
+  left: auto;
+  right: -7px !important;
+}
+  #chat-box > .chat-input{
+  position:absolute;
+  bottom: 0;
+  z-index:3;
+  background: #272930;
+  padding: 13px 18px;
+}
+#chat-box>.chat-input > .input-group{margin-bottom:0;}
+#chat-box>.chat-input > .input-group> input{
+  overflow: hidden; 
+  word-wrap: break-word; 
+  resize: horizontal; 
+  background: #2F3138;
+  border: none;
+  color:#999;
+}
+
+/* Transitions */
+
+.cbp-spmenu,
+.cbp-spmenu-push {
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+/*Side Chat*/
+.side-chat .content{
+  padding: 0 20px;
+}
+
+.side-chat .header h3{
+  font-size:22px;
+}
+
+.side-chat .content .title{
+  color:#74767D;
+ margin:15px 0 8px 0;
+ border-bottom: 1px solid #44464D;
+}
+
+.side-chat .contacts li{
+  display:block;
+}
+
+.side-chat .contacts li a{
+  border-radius:3px;
+  color:#909299;
+  font-size:13px;
+  padding: 4px 5px;
+  border:0;
+}
+
+.side-chat .contacts li a:focus{
+  background:transparent;
+}
+
+.side-chat .contacts li a:hover {
+  background: @sidebar-color + 10%;
+}
+
+
+
+.side-chat .contacts li a .fa{
+  font-size: 11px;
+  margin-right:3px;
+}
+
+.side-chat .contacts li.online a .fa{color:@dark-green;}
+.side-chat .contacts li.busy a .fa{color:@red;}
+.side-chat .contacts li.outside a .fa{color:@orange;}
+
+/* Example media queries */
+
+@media screen and (max-width: 55.1875em){
+
+	.cbp-spmenu-horizontal {
+		font-size: 75%;
+		height: 110px;
+	}
+
+	.cbp-spmenu-top {
+		top: -110px;
+	}
+
+	.cbp-spmenu-bottom {
+		bottom: -110px;
+	}
+
+}
+
+@media screen and (max-height: 26.375em){
+
+	.cbp-spmenu-vertical {
+		font-size: 90%;
+		width: 240px;
+	}
+
+	.cbp-spmenu-left,
+	.cbp-spmenu-push-toleft {
+		left: -240px;
+	}
+
+	.cbp-spmenu-right {
+		right: -240px;
+	}
+
+	.cbp-spmenu-push-toright {
+		left: 240px;
+	}
+}

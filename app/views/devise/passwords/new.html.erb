@@ -1,22 +1,32 @@
-<div class="hero-unit">
-	<div class="page-header">
-		<h1>Password Reset!</h1>
-	</div>
-<!-- <h1>Password Reset!</h1> -->
-
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => "form-stacked" }) do |f| %>
   <%= devise_error_messages! %>
-
-  <div><%= f.label :email %>
-  <%= f.email_field :email %></div>
-<br />
-  <div><%= f.submit "Send me reset password instructions", :class => "btn btn-primary btn-large" %></div>
+  <div class="content">
+    <h4 class="title">Password Reset</h4>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+            <%= f.email_field :email, :class => "form-control", :placeholder => "Email" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <%= f.submit "Send me reset password instructions", :class => "btn btn-block btn-success btn-rad btn-lg" %>
+  </div>
 <% end %>
-<!-- <hr /> -->
-<br /><br />
-<p>Already have an account? <a class="js-pjax" href="/users/sign_in">Sign In Here</a>.</p>
-<p>If you don't have an account <a class="js-pjax" href="/users/sign_up">Sign Up Here</a>.</p>
+
+
+
+
+<div class="col-sm-12" style="margin-top:40px">
+  <p>Already have an account? <a class="js-pjax" href="/users/sign_in">Sign In Here</a>.</p>
+  <p>If you don't have an account <a class="js-pjax" href="/users/sign_up">Sign Up Here</a>.</p>
 </div>
+
+
+
+
 <% set_head_title("Password Reset") %>
 <% content_for :title, "Password Reset - Hospitium" %>
 <title><%= yield (:title) %></title>

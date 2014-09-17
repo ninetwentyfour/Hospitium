@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <%= canonical_link_tag %>
+  <meta name="author" content="Travis Berry">
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <%= stylesheet_link_tag "application" %>
+  <link href='https://fonts.googleapis.com/css?family=Cabin:700|Maven+Pro' rel='stylesheet' type='text/css'>
+  <style>
+    html, p, body{
+      font-family: 'Maven Pro', sans-serif !important;
+    }
+    h1,h2,h3,h4,h5,h6{
+      font-weight:700;
+      font-family: 'Cabin', sans-serif !important;
+    }
+    p{
+      font-size:14px;
+      line-height:1.45em;
+      font-weight:400;
+    }
+    .otherAnimalInfo p{
+      font-size:14px;
+      line-height:1em !important;
+    }
+    @media print {
+      body {
+        background-color: #FFF !important;
+      }
+      #container {
+        width: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+      }
+      #line_items {
+        page-break-before: always !important;
+      }
+      #navbar {
+        display: none !important;
+      }
+      .btn, nav, .alert {
+        display: none !important;
+      }
+      input,textarea {
+        display: none !important;
+      }
+    }
+  </style>
+  <%= yield :head %>
+  <%= csrf_meta_tag %>
+  <%= meta_description("")%>
+  <%= meta_keywords("")%>
+  <%= head_title("Hospitium")%>
+  <!-- Le fav and touch icons -->
+  <%= favicon_link_tag 'apple-touch/favicon.ico', :rel => 'shortcut icon'%>
+  <%= favicon_link_tag 'apple-touch/57.png', :rel => 'apple-touch-icon', :type => 'image/png', :sizes => '57x57' %>
+  <%= favicon_link_tag 'apple-touch/72.png', :rel => 'apple-touch-icon', :type => 'image/png', :sizes => '72x72' %>
+  <%= favicon_link_tag 'apple-touch/114.png', :rel => 'apple-touch-icon', :type => 'image/png', :sizes => '114x114' %>
+  <script>
+    // Handle links in html5 app ipad
+    (function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(chref=d.href).replace(e.href,"").indexOf("#")&&(!/^[a-z\+\.\-]+:/i.test(chref)||chref.indexOf(e.protocol+"//"+e.host)===0)&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone");
+  </script>
+</head>
+
+<body class="texture">
+
+<div id="cl-wrapper" class="login-container">
+
+  <div class="middle-login">
+    <div class="block-flat">
+      <div class="header">              
+        <h3 class="text-center"><a class="brand" href="/" style="padding:2px 20px 0px 0px;"><%= image_tag("hos-logo6.png", :size => "175x35")%></a></h3>
+      </div>
+      <div>
+        <%= render "layouts/flash", :flash => flash %>
+        <%= yield %>
+      </div>
+    </div>
+    <!-- <div class="text-center out-links"><a href="#">&copy; 2014 Your Company</a></div> -->
+  </div> 
+  
+</div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <%= javascript_include_tag "application" %>
+  <%= yield :javascript_footer %>
+  <script type='text/javascript'>/*{literal}<![CDATA[*/
+    window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){f[z]=function(){(a.s=a.s||[]).push(arguments)};var a=f[z]._={},q=c.methods.length;while(q--){(function(n){f[z][n]=function(){f[z]("call",n,arguments)}})(c.methods[q])}a.l=c.loader;a.i=nt;a.p={0:+new Date};a.P=function(u){a.p[u]=new Date-a.p[0]};function s(){a.P(r);f[z](r)}f.addEventListener?f.addEventListener(r,s,false):f.attachEvent("on"+r,s);var ld=function(){function p(hd){hd="head";return["<",hd,"></",hd,"><",i,' onl' + 'oad="var d=',g,";d.getElementsByTagName('head')[0].",j,"(d.",h,"('script')).",k,"='",l,"//",a.l,"'",'"',"></",i,">"].join("")}var i="body",m=d[i];if(!m){return setTimeout(ld,100)}a.P(1);var j="appendChild",h="createElement",k="src",n=d[h]("div"),v=n[j](d[h](z)),b=d[h]("iframe"),g="document",e="domain",o;n.style.display="none";m.insertBefore(n,m.firstChild).id=z;b.frameBorder="0";b.id=z+"-loader";if(/MSIE[ ]+6/.test(navigator.userAgent)){b.src="javascript:false"}b.allowTransparency="true";v[j](b);try{b.contentWindow[g].open()}catch(w){c[e]=d[e];o="javascript:var d="+g+".open();d.domain='"+d.domain+"';";b[k]=o+"void(0);"}try{var t=b.contentWindow[g];t.write(p());t.close()}catch(x){b[k]=o+'d.write("'+p().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}a.P(2)};ld()};nt()})({loader: "static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure","extend","declare","identify"]});
+    /* custom configuration goes here (www.olark.com/documentation) */
+    olark.identify('3061-752-10-5663');/*]]>{/literal}*/
+  </script>
+  <script type="text/javascript">
+    var _gaq=[['_setAccount','UA-25908952-1'],['_trackPageview'],['_trackPageLoadTime']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+  </script>
+</body>
+</html>

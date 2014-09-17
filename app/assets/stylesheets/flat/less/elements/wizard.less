@@ -1,0 +1,146 @@
+/*Wizard*/
+.wizard-row{
+  position:relative;
+  width: 100%;
+  margin: 0;
+}
+.wizard-row .fuelux{
+  position:absolute;
+  width: 100%;
+  padding: 0;
+}
+
+.block-wizard{
+	padding:0;
+}
+
+.block-wizard .step-content{
+	padding:20px 20px;
+}
+
+.fuelux .wizard {
+	box-shadow:none;
+	border-radius:0;
+	-webkit-border-radius:0;
+	border:0;
+	border-bottom:1px solid #E2E2E2;
+	background:#FFF;
+}
+
+.fuelux .wizard ul li.active {
+	background:#FFF;
+	color: @link-color;
+}
+
+.fuelux .wizard ul li.complete {
+	color:#fff;
+	background: @primary-color;
+}
+
+.fuelux .wizard ul li.complete:hover {
+	background: @primary-color - 20%;
+}
+
+.fuelux .wizard ul li.complete:hover .chevron:before{
+    border-left-color: @primary-color - 20%;
+}
+
+.fuelux .wizard ul li.complete .chevron{
+	border-left-color: @primary-color - 25%;
+}
+
+.fuelux .wizard ul li.complete .chevron:before {
+    border-left: 14px solid @primary-color;
+}
+
+.fuelux .wizard ul li.active .chevron:before {
+    border-left: 14px solid #FFF;
+}
+
+.fuelux .wizard ul li:first-child {border-radius:0;-webkit-border-radius:0;}
+.fuelux .wizard ul li {font-size:15px;}
+.fuelux [class^="icon-"], .fuelux [class*=" icon-"]{
+  background-image: url("../js/fuelux/img/glyphicons-halflings-white.png");
+}
+.fuelux .icon-arrow-left{background-position: -240px -95px;}
+.fuelux .icon-arrow-right {background-position: -264px -95px;}
+@media (max-width: 767px) {
+  .wizard-row .fuelux{position:static;}
+  .fuelux .wizard ul li{
+    padding-left: 40px;
+    float: none;
+  }
+    .fuelux .wizard ul li:first-child{
+    padding-left: 40px;
+  }
+  .fuelux .wizard ul li:before{
+    content:"";
+    font-family:FontAwesome;
+    font-size: 12px;
+    color: #f0f0f0;
+    line-height: 10px;
+    height: 20px;
+    width: 20px;
+    border: #fefefe;
+    background: #DDD;
+    margin-right: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    padding: 4px 5px;
+    left: 10px;
+    top: 14px;
+  }
+  .fuelux .wizard ul li.active:before{
+    content:"";
+    font-family:FontAwesome;
+    font-size: 12px;
+    color: #fff;
+    line-height: 10px;
+    height: 20px;
+    width: 20px;
+    border: @primary-color - 10%;
+    background: @primary-color;
+    margin-right: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    padding: 4px 5px;
+    left: 10px;
+    top: 14px;
+  }
+  .fuelux .wizard ul li.complete:before{
+    content:"";
+    font-family:FontAwesome;
+    font-size: 12px;
+    color: #fff;
+    line-height: 10px;
+    height: 20px;
+    width: 20px;
+    border: @dark-green - 10%;
+    background: @dark-green;
+    margin-right: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    padding: 4px;
+    left: 10px;
+    top: 14px;
+  }
+
+  .fuelux .wizard .actions{
+    background: transparent;
+    padding: 0;
+    line-height: 0;
+    position: relative;
+    float: none;
+  }
+  .fuelux .wizard button{
+    width: 49%;
+    margin: 0 !important;
+    padding: 10px 6px;
+  }
+  .fuelux .wizard button i{
+    font-size: 14px !important;
+  }
+}

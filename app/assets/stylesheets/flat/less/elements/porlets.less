@@ -1,0 +1,170 @@
+.cl-mcont .block{
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.04);	
+  border:0;
+	margin-bottom:30px;
+	background:#FFF;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+}
+
+.block-flat, .block-wizard{
+	margin-bottom:40px;
+	padding:20px 20px;
+	background:#FFF;
+	border-radius:3px;
+  position: relative;
+	-webkit-border-radius:3px;
+	border-left:1px solid #efefef;
+	border-right:1px solid #efefef;
+	border-bottom:1px solid #e2e2e2;
+	box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.04);
+  transition: padding 500ms;
+  -moz-transition: padding 500ms;
+  -webkit-transition: padding 500ms;
+}
+.block-flat.closed{
+  padding-bottom:9px;
+}
+.block .header, .widget-block .header, .block-flat .header{
+	padding:10px;
+	background-color:#FEFEFE;
+	border-bottom:1px solid #dadada;
+  transition: border 500ms;
+  -moz-transitiontransition: border 500ms;
+  -webkit-transition: border 500ms;
+}
+.block-flat.dark-box .header, .block-flat.primary-box .header, .block-flat.success-box .header, .block-flat.info-box .header, .block-flat.danger-box .header, .block-flat.warning-box .header{border-bottom:1px solid rgba(255,255,255,0.2);}
+.block-flat.closed .header{
+  border-bottom: 1px solid transparent;
+}
+.block .header{border-radius:3px 3px 0 0;-webkit-border-radius:3px 3px 0 0;padding:10px;}
+.block-flat .header{background:transparent;padding:3px 0;}
+.block-flat .header.no-border{border:0;}
+.block-flat .content{padding:15px 3px 0 3px;}
+.block-flat .content.full-width{padding:0; margin-left:-20px;margin-right:-20px;margin-bottom:-20px;}
+.block-flat .content h4{margin-top:20px;  font-size: 16px;}
+.block-flat.no-padding .content{
+	padding: 0 !important;
+}
+
+.block .header h2, .widget-block .header h2, .block-flat .header h2{
+	margin:0;
+	font-family: "Raleway",Helvetica,sans-serif;
+  font-weight: 100;
+	font-size:29px;
+	line-height: 38px;
+}
+.block .header h3{
+	margin: 3px 0;
+	font-family: "Raleway",Helvetica,sans-serif;
+  font-weight: 200;
+}
+.widget-block .header h3,.block-flat .header h3{
+	margin-top: 3px;
+	font-family: "Raleway",Helvetica,sans-serif;
+  font-weight: 200;
+}
+.block-flat .actions, .block .actions{
+  float: right;
+}
+.block-flat .actions .refresh i, .block .actions .refresh i{font-size: 12px;}
+.block .actions{padding-top: 5px;}
+.block-flat .actions a{
+  margin-left: 6px;
+  color: rgba(0,0,0,0.3);
+}
+.block-flat .actions a:hover{color:rgba(0,0,0,0.5);}
+.block.block-color .actions a{
+  margin-left: 6px;
+  font-size: 14px;
+  color: #fff;
+}
+.block.block-color .actions a:hover i{color:rgba(255,255,255,0.8);}
+.block-flat.dark-box .actions a{color: #fff;}
+.block-flat.dark-box .actions a:hover{color: rgba(255,255,255,0.5);}
+ .dark-box{
+ background-color: #383A41;
+ color: #fff;
+ } 
+ .primary-box{
+ background-color: @primary-color;
+ color: #fff;
+ }
+ .success-box{
+ background-color: @dark-green;
+ color: #fff;
+ }
+ .info-box{
+ background-color: @blue;
+ color: #fff;
+ }
+ .warning-box{
+ background-color: @orange;
+ color: #fff;
+ }
+ .danger-box{
+ background-color: @red;
+ color: #fff;
+ }
+ 
+ .block .header.dark{
+  background-color: #383A41;
+  color: #fff;
+  border-bottom: 0;
+ }
+ .block .header h4{
+  font-weight: 400;
+  font-size: 15px;
+  margin: 6px 0;
+ }
+
+.block.block-color{
+  position:relative;
+  border-radius: 0;
+}
+.block.block-color .header{
+  border-radius: 0;
+  border: 0;
+  background: @dark;
+  color: #fff;
+}
+.block.block-color.primary .header{
+  background: @primary-color;
+  color: #fff;
+}
+
+.block.block-color.success .header{
+  background: @dark-green;
+  color: #fff;
+}
+.block.block-color.info .header{
+  background: @blue;
+  color: #fff;
+}
+.block.block-color.warning .header{
+  background: @orange;
+  color: #fff;
+}
+.block.block-color.danger .header{
+  background: @red;
+  color: #fff;
+}
+
+.block .loading, .block-flat .loading{
+  display: none;
+  cursor: wait;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(255,255,255,0.5);
+  top:0;
+  left: 0;
+}
+.block .loading i, .block-flat .loading i{
+  position: relative;
+  top:50%;
+  margin-top:-13px;
+  left: 50%;
+  margin-left: -13px;
+  font-size: 26px;
+}

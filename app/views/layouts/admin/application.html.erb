@@ -6,17 +6,15 @@
 			Here are the <a href="http://www.enable-javascript.com/" target="_blank">
 			instructions how to enable JavaScript in your web browser</a>.
 	</noscript>
-	<div class="page-container">
-		<%= render "layouts/admin/top_nav" %>
+	<div id="cl-wrapper">
+		<%= render "layouts/admin/side_nav", :random_notice => @random_notice %>
 
-		<div class="container-fluid main-container">
-			<div class="row-fluid">
-				<%= render "layouts/admin/side_nav", :random_notice => @random_notice %>
-				<div class="span11" style="padding-left:14.364640883%;">
-					<div id="pjax-contain">
-						<%= render "layouts/flash", :flash => flash %>
-						<%= yield %>
-					</div>
+		<div class="container-fluid" id="pcont">
+			<%= render "layouts/admin/top_nav" %>
+			<div class="cl-mcont">
+				<div id="pjax-contain">
+					<%= render "layouts/flash", :flash => flash %>
+					<%= yield %>
 				</div>
 			</div>
 			<footer class="subnav">

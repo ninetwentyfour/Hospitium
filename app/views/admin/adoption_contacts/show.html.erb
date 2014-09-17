@@ -1,15 +1,11 @@
-<div class="row-fluid">
-	<div class="span12 main-app-row">
-		<div class="well">
-			<div class="row-fluid">
-				<div class="span6">
+<div class="row">
+	<div class="col-sm-12 col-md-12 col-lg-12 main-app-row">
+		<div class="block-flat">
 					<h1><%= best_in_place @adoption_contact, :first_name, :type => :input, :nil => "Click me to add content!", :path => admin_adoption_contact_path %> 
 					<%= best_in_place @adoption_contact, :last_name, :type => :input, :nil => "", :path => admin_adoption_contact_path %></h1>
-				</div>
-			</div>
 		</div>
-		<div class="row-fluid">
-			<div class="tabbable span4 ">
+		<div class="row">
+			<div class="tabbable col-sm-6 col-md-6 col-lg-6 ">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#1" data-toggle="tab">Overview</a></li>
 					<li><a href="#2" data-toggle="tab">Animals</a></li>
@@ -24,38 +20,44 @@
 					</div>
 					<div class="tab-pane" id="2">
 						<% @animals.each do |animal| %>
-							<p><%= link_to raw("<i class='icon-remove'></i>"), "/admin/adopt_animals/#{animal.id}?adopt=#{@adoption_contact.id}", :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Remove Animal"  %> <a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><%= animal.name %></a></p>
+							<p><%= link_to raw("<i class='fa fa-remove'></i>"), "/admin/adopt_animals/#{animal.id}?adopt=#{@adoption_contact.id}", :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Remove Animal"  %> <a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><%= animal.name %></a></p>
 						<%end%>
 						<hr />
-						<a class="btn" data-toggle="modal" href="#newAnimal" ><i class="icon-plus"></i> Add Animal</a>
+						<a class="btn btn-primary btn-rad btn-trans" data-toggle="modal" href="#newAnimal" ><i class="fa fa-plus"></i> Add Animal</a>
 					</div>
 				</div>
 			</div>
 		
-			<div class="span8 map-block">
+			<div class="col-sm-6 col-md-6 col-lg-6 map-block">
 				<div id="map_canvas" style="height:409px;width:400px;"></div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="modal hide fade" id="newAnimal">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3>Add Animal</h3>
-	</div>
-	<div class="modal-body">
-		<%= form_for @adoption_contact.adopt_animals.build(:adoption_contact_id => @adoption_contact.id), :url => admin_adopt_animals_path do |f| %>
-			<%= f.hidden_field :adoption_contact_id %>
-			<%= collection_select(:adopt_animal, :animal_id, @adoptable_animals, :id, :name) %>  
-	</div>
-	<div class="modal-footer">
-		<%= f.submit "Submit", :class => "btn btn-primary" %>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
-		<% end %>
-</div>
+<div class="modal colored-header" id="newAnimal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add Animal</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<%= form_for @adoption_contact.adopt_animals.build(:adoption_contact_id => @adoption_contact.id), :url => admin_adopt_animals_path do |f| %>
 
+					<div class="form-group">
+						<%= f.hidden_field :adoption_contact_id %>
+						<%= collection_select(:adopt_animal, :animal_id, @adoptable_animals, :id, :name) %>  
+					</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= f.submit "Submit", :class => "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

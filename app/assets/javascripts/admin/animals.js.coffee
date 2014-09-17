@@ -27,7 +27,7 @@ animal_show = ->
           d.setDate d.getDate() + 1
           updated_text = dateFormat(d, "ddd, mmm d yyyy")
         $("#best_in_place_animal_" + animal_id + "_" + i).css("background-color", "#c7f464").html(escapeHtml(updated_text)).delay(1500).animate
-          backgroundColor: "#f5f5f5"
+          backgroundColor: "#fff"
         , 1000
 
 

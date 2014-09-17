@@ -1,46 +1,48 @@
-<div class="row-fluid">
-	<div class="span12">
-		<%= form_for @shelter, :url => admin_shelters_path, :validate => true do |f| %>
-		  <% if @shelter.errors.any? %>
-		    <div id="error_explanation">
-		      <h2><%= pluralize(@shelter.errors.count, "error") %> prohibited this shelter from being saved:</h2>
+<div class="row">
+	<div class="col-sm-12 col-md-12 col-lg-12">
+		<div class="block-flat">
+			<%= form_for @shelter, :url => admin_shelters_path, :validate => true do |f| %>
+			  <% if @shelter.errors.any? %>
+			    <div id="error_explanation">
+			      <h2><%= pluralize(@shelter.errors.count, "error") %> prohibited this shelter from being saved:</h2>
 
-		      <ul>
-		      <% @shelter.errors.full_messages.each do |msg| %>
-		        <li><%= msg %></li>
-		      <% end %>
-		      </ul>
-		    </div>
-		  <% end %>
-
-
-		    <%= f.label :name %>
-		    <%= f.text_field :name %>
+			      <ul>
+			      <% @shelter.errors.full_messages.each do |msg| %>
+			        <li><%= msg %></li>
+			      <% end %>
+			      </ul>
+			    </div>
+			  <% end %>
 
 
-		    <%= f.label :contact_first %>
-		    <%= f.text_field :contact_first %>
+			    <%= f.label :name %>
+			    <%= f.text_field :name, :class => "form-control" %>
 
-		    <%= f.label :contact_last %>
-		    <%= f.text_field :contact_last %>
 
-		    <%= f.label :address %>
-		    <%= f.text_field :address %>
+			    <%= f.label :contact_first %>
+			    <%= f.text_field :contact_first, :class => "form-control" %>
 
-		    <%= f.label :phone %>
-		    <%= f.text_field :phone %>
+			    <%= f.label :contact_last %>
+			    <%= f.text_field :contact_last, :class => "form-control" %>
 
-		    <%= f.label :email %>
-		    <%= f.text_field :email %>
+			    <%= f.label :address %>
+			    <%= f.text_field :address, :class => "form-control" %>
 
-		    <%= f.label :website %>
-		    <%= f.text_field :website %>
+			    <%= f.label :phone %>
+			    <%= f.text_field :phone, :class => "form-control" %>
 
-		    <%= f.label :notes %>
-		    <%= f.text_area :notes, :rows => 5 %>
-<hr />
-		    <%= f.submit "Add Shelter", :class => "btn btn-primary submit-button" %>
+			    <%= f.label :email %>
+			    <%= f.text_field :email, :class => "form-control" %>
 
-		<% end %>
+			    <%= f.label :website %>
+			    <%= f.text_field :website, :class => "form-control" %>
+
+			    <%= f.label :notes %>
+			    <%= f.text_area :notes, :class => "form-control" %>
+					<hr />
+			    <%= f.submit "Add Shelter", :class => "btn btn-primary submit-button" %>
+
+			<% end %>
+		</div>
 	</div>
 </div>

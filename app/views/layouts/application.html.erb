@@ -51,6 +51,20 @@
 				display: none !important;
 			}
 		}
+		#head-nav.navbar {
+			/*border-bottom: 0px;*/
+		}
+		.sidebar-logo{
+			/*border-bottom: 1px solid #E0E4E8;*/
+			height: 65px;
+		}
+		.cl-sidebar{
+			background: none;
+		}
+		#pjax-contain {
+			margin-left: -199px;
+			margin-top: 60px;
+		}
 	</style>
 	<%= yield :head %>
 	<%= csrf_meta_tag %>
@@ -73,56 +87,21 @@
 			Here are the <a href="http://www.enable-javascript.com/" target="_blank">
 			instructions how to enable JavaScript in your web browser</a>.
 	</noscript>
-	<div class="page-container">
-		<div class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse" href="#">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</a>
-					<a class="brand" href="/" style="padding:2px 20px 0px 0px;"><%= image_tag("hos-logo6.png", :size => "175x35")%></a>
-					<div class="nav-collapse">
-						<ul class="nav">
-							<li><a class='js-pjax' href="/why-hospitium">Why Hospitium</a></li>
-							<li><a class='js-pjax' href="/features">Features</a></li>
-							<li><a class='js-pjax' href="https://hospitium.tenderapp.com/kb">Docs</a></li>
-							<li><a href="/animals">Adopt an Animal</a></li>
-							<li><a href="/posts">Blog</a></li>
-						</ul>
-					</div>
-					<ul class="nav pull-right">
-						<% if user_signed_in? %>
-							<li class="divider-vertical"></li>
-							<li class="dropdown no-collapse">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= gravatar_image_tag("#{current_user.email}", :alt => "#{current_user.email}", :gravatar => { :size => 25 }, :style => "position:absolute;top:7px") %> <span style="margin-left:30px"><%= current_user.username %></span> <b class="caret"></b></a>
-								<ul class="dropdown-menu" data-no-collapse="true">
-									<li><a href="/admin">Dashboard</a></li>
-									<li><a href="/admin/users/<%= current_user.id %>">User Settings</a></li>
-									<li class="divider"></li>
-									<li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
-								</ul>
-							</li>
-						<% else %>
-							<li class="divider-vertical"></li>
-							<li><a href="/users/sign_in" class="no-collapse">Sign In</a></li>
-						<% end %>
-					</ul>
-				</div>
-			</div>
-		</div>
+	<div id="cl-wrapper">
+		<%= render "layouts/side_nav", :random_notice => @random_notice %>
+		<div class="container-fluid" id="pcont">
+			<%= render "layouts/top_nav" %>
 
-		<div class="container main-container">
-			<div id="pjax-contain">
-				<%= render "layouts/flash", :flash => flash %>
-				<%= yield %>
-			</div>
-			<footer>
-				<p><a class='js-pjax' href="/about">About</a> | <a class='js-pjax' href="/privacy-and-terms-of-service">Privacy & Terms</a> | <a href="http://status.hospitium.co">Status</a> | <a href="mailto:contact@hospitium.co">contact@hospitium.co</a> | <a href="http://twitter.com/#!/hospitium_app">@hospitium_app</a></p>
-			</footer>
-		</div> <!-- /container -->
+			<div class="container main-container">
+				<div id="pjax-contain">
+					<%= render "layouts/flash", :flash => flash %>
+					<%= yield %>
+				</div>
+				<footer>
+					<p><a class='js-pjax' href="/about">About</a> | <a class='js-pjax' href="/privacy-and-terms-of-service">Privacy & Terms</a> | <a href="http://status.hospitium.co">Status</a> | <a href="mailto:contact@hospitium.co">contact@hospitium.co</a> | <a href="http://twitter.com/#!/hospitium_app">@hospitium_app</a></p>
+				</footer>
+			</div> <!-- /container -->
+		</div>
 	</div><!-- /page-container -->
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>

@@ -1,23 +1,23 @@
-//= require jquery-ui-1.8.18.custom.min
+//= require jquery-ui.min
 //= require jquery_ujs
 //= require best_in_place
 //= require rails.validations
-//= require twitter/bootstrap
 //= require jquery.mailcheck.min
-//= require jquery.datatables.min
 //= require showdown
 //= require date
 //= require select2
 //= require jquery.infinitescroll.min
 //= require jquery.masonry
-//= require bootstrap-modal
-//= require bootstrap-modalmanager
-//= require datatables_config
 //= require google_maps
 //= require Chart
 //= require jquery.sparklines
 //= require escape_string
 //= require_tree ./admin
+//= require flat/js/behaviour/core
+//= require flat/js/bootstrap/dist/js/bootstrap
+//= require flat/js/jquery.datatables/jquery.datatables.min
+//= require flat/js/jquery.datatables/bootstrap-adapter/js/datatables
+//= require jquery.tooltipster
 //= require_self
 
 
@@ -29,8 +29,9 @@ $(function(){
 function load_scripts(){
 	"use strict";
 	$('.dropdown-toggle').dropdown();
-	$('.tooltip-class').tooltip();
-	$('.popover-class').popover();
+	// $('.tooltip-class').tooltip({container: 'body'});
+	$('.tipster').tooltipster();
+	// $('.popover-class').popover();
 	$(".best_in_place").best_in_place();
 	$("select").select2();
 	$.datepicker.setDefaults({
@@ -39,11 +40,8 @@ function load_scripts(){
 		changeYear: true,
 		yearRange: "-50:+0"
 	});
-	$('table.tablesorter').dataTable( {
-		"sDom": "<''<'span4'l><'pull-right'f>r>t<''<'span3'i><'span6'p>>",
-		"sPaginationType": "bootstrap",
-		"oLanguage": {
-			"sLengthMenu": "_MENU_ records per page"
-		}
-	} );
+	$('table.tablesorter').dataTable();
+
+	// allows select2 to be used in bootstrap modals
+	$.fn.modal.Constructor.prototype.enforceFocus = function() {};
 }

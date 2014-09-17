@@ -1,5 +1,5 @@
 <!-- Main hero unit for a primary marketing message or call to action -->
-<div class="hero-unit clearfix">
+<div class="hero-unit clearfix" style="margin-left:-140px;padding-left:10px;">
 	<div class="page-header">
   	<%= image_tag("home-hos-logo2.png")%><h1 style="display:inline">Hello, Hospitium!</h1>
 	</div>
@@ -39,44 +39,58 @@
   </ul>
 </div>
 
-<div class="modal hide fade" id="image_1">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3>Manage Animals</h3>
-	</div>
-	<div class="modal-body">
-			<img src="https://d4uktpxr9m70.cloudfront.net/images/test-home-pic-large.jpg" alt="Manage Animals" style="max-width: 100%;">
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="image_1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Manage Animals</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<img src="https://d4uktpxr9m70.cloudfront.net/images/test-home-pic-large.jpg" alt="Manage Animals" style="max-width: 100%;">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="modal hide fade" id="image_2">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3>Manage People</h3>
-	</div>
-	<div class="modal-body">
-			<img src="https://d4uktpxr9m70.cloudfront.net/images/home-large-2.jpg" alt="Manage People" style="max-width: 100%;">
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="image_2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Manage People</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<img src="https://d4uktpxr9m70.cloudfront.net/images/home-large-2.jpg" alt="Manage People" style="max-width: 100%;">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="modal hide fade" id="image_3">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3>Report Everything</h3>
-	</div>
-	<div class="modal-body">
-			<img src="https://d4uktpxr9m70.cloudfront.net/images/home-large-3.jpg" alt="Report Everything" style="max-width: 100%;">
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="image_3" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Report Everything</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<img src="https://d4uktpxr9m70.cloudfront.net/images/home-large-3.jpg" alt="Report Everything" style="max-width: 100%;">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
+
+
 <% set_meta_description("Hospitium was built to make managing animal shelters and rescues simple and pain free. Our software is easy to use and is flexible enough for shelters of all types.") %>
 <% set_meta_keywords("animal,management,software,online,hosted,shelter,rescue") %>
 <% set_head_title("Animal Shelter Management Software") %>

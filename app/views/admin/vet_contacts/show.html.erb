@@ -1,14 +1,10 @@
-<div class="row-fluid">
-	<div class="span12 main-app-row">
-		<div class="well">
-			<div class="row-fluid">
-				<div class="span6">
+<div class="row">
+	<div class="col-sm-12 col-md-12 col-lg-12 main-app-row">
+		<div class="block-flat">
 					<h1><%= best_in_place @vet_contact, :clinic_name, :type => :input, :nil => "Click me to add content!", :path => admin_vet_contact_path %></h1>
-				</div>
-			</div>
 		</div>
-		<div class="row-fluid">
-			<div class="tabbable span4 ">
+		<div class="row">
+			<div class="tabbable col-sm-6 col-md-6 col-lg-6 ">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#1" data-toggle="tab">Overview</a></li>
 				</ul>
@@ -26,7 +22,7 @@
 				</div>
 			</div>
 		
-			<div class="span8 map-block">
+			<div class="col-sm-6 col-md-6 col-lg-6 map-block">
 				<div id="map_canvas" style="height:409px;width:400px;"></div>
 			</div>
 		</div>

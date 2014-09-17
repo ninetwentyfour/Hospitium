@@ -1,0 +1,31 @@
+#head-nav.topbar{
+  background-color: @primary-color;
+  color: #fff;
+  padding-left: 0;
+}
+#head-nav.topbar .sidebar-logo{
+  display: inline-block;
+  width: 220px;
+  float: left;
+}
+#head-nav.topbar .navbar-toggle{
+  box-shadow: none;
+  background-color: @primary-color - 15%;
+  border: none;
+  margin-right: 15px;
+}
+#head-nav.topbar .navbar-nav > li > a{ color: #fff;}
+#head-nav.topbar .navbar-nav > .active > a, #head-nav.topbar .navbar-nav > .active > a:hover, #head-nav.topbar .navbar-nav > .active > a:focus{
+background-color: @primary-color + 10%;}
+#head-nav.topbar .navbar-nav > .open > a, #head-nav.topbar .navbar-nav > .open > a:hover, #head-nav.topbar .navbar-nav > .open > a:focus{
+background-color: @primary-color + 10%;}
+
+#head-nav.topbar .navbar-nav > .dropdown > a .caret{
+    border-bottom-color: #fff;
+    border-top-color: #fff;
+}
+#head-nav.topbar .navbar-nav .dropdown .dropdown-menu{margin-top: 1px;}
+#head-nav.topbar .not-nav{float: right;}
+#head-nav.topbar .navbar-nav > li.button > a{ box-shadow: none;}
+#head-nav.topbar .not-nav > .open > a, #head-nav.topbar .not-nav > .open > a:hover, #head-nav.topbar .not-nav > .open > a:focus{ 
+color:#fff !important;}

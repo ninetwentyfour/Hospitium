@@ -15,6 +15,7 @@ gem 'uuidtools'
 gem 'cancan'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 gem 'ransack', github: "ernie/ransack", branch: "rails-4"
 gem 'juggernaut'
 gem 'gravatar_image_tag'
@@ -70,13 +71,12 @@ group :production, :development do
 	gem 'best_in_place', github: "ninetwentyfour/best_in_place"
 	gem 'therubyracer'
 	gem 'jquery-rails', '2.0.1'
-	gem 'select2-rails', :git => "git://github.com/ninetwentyfour/select2-rails.git", :branch => "flat"
-	gem 'less-rails-bootstrap'
+	gem 'select2-rails'
 	gem 'site_meta'
 
 	# Gems used only for assets and not required
 	# in production environments by default.
-	gem 'sass-rails'
+	gem 'less-rails'
 	gem 'coffee-rails'
 	gem 'uglifier'
 	gem 'yui-compressor'

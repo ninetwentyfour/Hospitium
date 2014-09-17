@@ -1,13 +1,13 @@
-<div class="hero-unit clearfix">
+<div class="block-flat clearfix">
 	<div class="page-header">
   	<h1>Adopt an Animal!</h1>
 	</div>
 </div>
 
-	<ul class="unstyled">
+	<ul class="unstyled col-sm-12 col-md-12 col-lg-12">
 		<% @animals.each do |animal| %>
-			<li class="singleAnimalAdoption clearfix">
-				<ul class="thumbnails span3">
+			<li class="block-flat singleAnimalAdoption clearfix" style="list-style: none;">
+				<ul class="thumbnails col-sm-3 col-md-3 col-lg-3">
 					<li class="pull-left animal_thumb">
 						<a class="thumbnail" data-toggle="modal" href="#image_display_<%= animal.uuid %>" >
 							<% unless animal.image.url(:medium) == "/images/medium/missing.png" %>
@@ -18,7 +18,7 @@
 						</a>
 					</li>
 				</ul>
-				<div class="span7 pull-right animal-pics">
+				<div class="col-sm-7 col-md-7 col-lg-7 pull-right animal-pics">
 					<h1><a href="animals/<%= animal.uuid %>"><%= animal.name %></a></h1><h4><%= animal.species_name %></h4>
 					<div class="otherAnimalInfo">
 						<p>Status: <%= animal.status.status %></p>
@@ -32,24 +32,28 @@
 					</div>
 				</div>
 			</li>
-			<div class="modal hide fade" id="image_display_<%= animal.uuid %>">
-				<div class="modal-header">
-					<a class="close" data-dismiss="modal" href="#">×</a>
-					<h3><%= animal.name %></h3>
-				</div>
-				<div class="modal-body">
-					<% unless animal.image.url(:large) == "/images/large/missing.png" %>
-						<img src="<%= animal.image.url(:large) %>" alt="">
-					<% else %>
-						<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-large-logo2.png" alt="">
-					<%end%>
-				</div>
-				<div class="modal-footer">
-					<a href="#" class="btn" data-dismiss="modal">Close</a>
-				</div>
+			<div class="modal colored-header" id="image_display_<%= animal.uuid %>" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+							<a class="close" data-dismiss="modal" href="#">×</a>
+							<h3><%= animal.name %></h3>
+			      </div>
+			      <div class="modal-body" style="overflow:hidden;">
+							<% unless animal.image.url(:large) == "/images/large/missing.png" %>
+								<img src="<%= animal.image.url(:large) %>" alt="">
+							<% else %>
+								<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-large-logo2.png" alt="">
+							<%end%>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			  </div>
 			</div>
 		<% end %>
-		<%= will_paginate @animals %>
+		<%= will_paginate @animals, renderer: BootstrapPagination::Rails %>
 	</ul>
 
 <p>

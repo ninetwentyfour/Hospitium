@@ -1,20 +1,20 @@
-<div class="row-fluid">
-	<div class="span12 main-app-row">
-		<div class="well">
-			<div class="row-fluid">
-				<div class="span6">
+<div class="row">
+	<div class="col-sm-12 col-md-12 col-lg-12 main-app-row">
+		<div class="block-flat">
+			<div class="row">
+				<div class="col-sm-6 col-md-6 col-lg-6">
 					<h1><%= best_in_place @animal, :name, :type => :input, :nil => "Click me to add content!", :path => admin_animal_path %></h1>
 					<span class="public_animal_check"><%= best_in_place @animal, :public, :type => :select, :collection => [[0, "Not public"], [1, "Public"]], :path => admin_animal_path %></span>
 				</div>
-				<div class="span6 pull-right share-animal-buttons">
+				<div class="col-sm-6 col-md-6 col-lg-6 pull-right share-animal-buttons">
 					<% if @animal.public == 1 %>
 						<%= render "share_animal", :animal => @animal %>
 					<% end %>
 				</div>
 			</div>
 		</div>
-		<div class="row-fluid">
-			<div class="tabbable span6 animal-tabs">
+		<div class="row">
+			<div class="tabbable col-sm-6 col-md-6 col-lg-6 animal-tabs">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#1" data-toggle="tab">Overview</a></li>
 					<li><a href="#2" data-toggle="tab">Details</a></li>
@@ -26,14 +26,14 @@
 				<div class="tab-content">
 					<div class="tab-pane active" id="1">
 						<div class="">
-							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newStatus" >Status</a>:</strong> <%= best_in_place @animal, :status_id, :type => :select, collection: @presenter.statuses, :nil => @animal.try(:status).try(:status), :path => admin_animal_path %>
+							<p><strong><a  title="Click to add new" class="new_link tipster" data-toggle="modal" href="#newStatus" >Status</a>:</strong> <%= best_in_place @animal, :status_id, :type => :select, collection: @presenter.statuses, :nil => @animal.try(:status).try(:status), :path => admin_animal_path %>
 							</p>
-							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class model-class" data-toggle="modal" href="#newSpecies" >Species</a>:</strong> <%= best_in_place @animal, :species_id, :type => :select, collection: @presenter.species, :nil => @animal.species_name, :path => admin_animal_path %></p>
+							<p><strong><a  title="Click to add new" class="new_link tipster model-class" data-toggle="modal" href="#newSpecies" >Species</a>:</strong> <%= best_in_place @animal, :species_id, :type => :select, collection: @presenter.species, :nil => @animal.species_name, :path => admin_animal_path %></p>
 							<p><strong>Sex:</strong> <%= best_in_place @animal, :animal_sex_id, :type => :select, collection: [["1", "Male"], ["2", "Female"], ["3", "Unknown"]], :path => admin_animal_path, :nil => @animal.sex unless @animal.animal_sex.blank? %></p>
 							<p><strong>Age:</strong> <%= best_in_place @animal, :birthday, :type => :date, :display_as => :calculate_animal_age, :nil => "Click me to add content!", :path => admin_animal_path %></p>
 							<p><strong>Spay/Neuter:</strong> <%= best_in_place @animal, :spay_neuter_id, :type => :select, collection: [["1", "No"], ["2", "Yes"], ["3", "Unknown"]], :path => admin_animal_path, :nil => @animal.spay unless @animal.spay_neuter.blank? %></p>
 							<p><strong>Biter:</strong> <%= best_in_place @animal, :biter_id, :type => :select, collection: [["1", "No"], ["2", "Yes"], ["3", "Unknown"]], :path => admin_animal_path, :nil => @animal.biter_value unless @animal.biter.blank? %></p>
-							<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newColor" >Color</a>:</strong> <%= best_in_place @animal, :animal_color_id, :type => :select, collection: @presenter.colors, :nil => @animal.color, :path => admin_animal_path %></p>
+							<p><strong><a  title="Click to add new" class="new_link tipster" data-toggle="modal" href="#newColor" >Color</a>:</strong> <%= best_in_place @animal, :animal_color_id, :type => :select, collection: @presenter.colors, :nil => @animal.color, :path => admin_animal_path %></p>
 							<p><strong>Special Needs:</strong> <%= best_in_place @animal, :special_needs, type: :textarea, :nil => "Click me to add content!", :path => admin_animal_path %></p>
 						</div>
 					</div>
@@ -44,7 +44,7 @@
 						<%else%>
 							<%@sheltername = "Click me to add content!" %>
 						<%end%>
-						<p><strong><a  rel="tooltip" title="Click to add new" class="new_link tooltip-class" data-toggle="modal" href="#newShelter" >Shelter</a>:</strong> <%= best_in_place @animal, :shelter_id, :type => :select, collection: @presenter.shelters, :nil => @sheltername, :path => admin_animal_path %></p>
+						<p><strong><a  title="Click to add new" class="new_link tipster" data-toggle="modal" href="#newShelter" >Shelter</a>:</strong> <%= best_in_place @animal, :shelter_id, :type => :select, collection: @presenter.shelters, :nil => @sheltername, :path => admin_animal_path %></p>
 						<p><strong>Diet:</strong> <%= best_in_place @animal, :diet, :type => :textarea, :nil => "Click me to add content!", :path => admin_animal_path %></p>
 						<p><strong>Previous Name:</strong> <%= best_in_place @animal, :previous_name, :type => :input, :nil => "Click me to add content!", :path => admin_animal_path %></p>
 						<p><strong>Date of Intake:</strong> <%= best_in_place @animal, :date_of_intake, :type => :date, :display_as => :formatted_intake_date, :path => admin_animal_path %></p>
@@ -57,14 +57,14 @@
 						<div class="">
 							<div id="weight_graph_holder"><canvas id="canvasWeight" height="300" width="250"></canvas></div>
 							<hr />
-							<a class="btn" data-toggle="modal" href="#newWeight" ><i class="icon-plus"></i> Add New Weight</a>
+							<a class="btn" data-toggle="modal" href="#newWeight" ><i class="fa fa-plus"></i> Add New Weight</a>
 						</div>
 					</div>
 					<div class="tab-pane" id="5">
 						<ul class="unstyled" id="animal_notes_list">
 							<%unless @animal.notes.blank?%>
 									<%@presenter.notes.each do |note| %>
-										<li><%= link_to raw("<i class='icon-remove'></i>"), admin_note_path(note), :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Delete Note"  %><strong><%= note.username %></strong> <%= note.created_at.strftime("%a, %b %e %Y at %I:%m%p") %> <br /><%= raw(sanitize(note.note)) %></li>
+										<li><%= link_to raw("<i class='fa fa-remove'></i>"), admin_note_path(note), :method => :delete, :class => "pull-right tipster", :rel => "tooltip", :title => "Delete Note"  %><strong><%= note.username %></strong> <%= note.created_at.strftime("%a, %b %e %Y at %I:%m%p") %> <br /><%= raw(sanitize(note.note)) %></li>
 									<%end%>
 							<%end%>
 						</ul>
@@ -78,13 +78,13 @@
 					</div>
 					<div class="tab-pane" id="6">
 						<div id="animal_docs_list">
-							<table class="table table-striped tablesorter">
-								<thead>
+							<table class="no-border tablesorter">
+								<thead class="no-border">
 									<th>Filename</th>
 									<th>Created</th>
 									<th>Manage</th>
 								</thead>
-								<tbody>
+								<tbody class="no-border-x no-border-y">
 									<%unless @presenter.documents.blank?%>
 											<%@presenter.documents.each do |document| %>
 												<tr>
@@ -92,9 +92,9 @@
 													<td><%= document.created_at.strftime("%b %e %Y") %></td>
 													<td>
 														<div class="btn-group pull-right">
-															<a class="btn tooltip-class" href="<%= document.document.url %>" rel="tooltip" title="View Document"><i class="icon-eye-open"></i></a>
-															<%= link_to raw("<i class='icon-remove'></i>"), admin_document_path(document),
-																            :data => {:confirm => 'Are you sure you want to delete?'}, :method => :delete, :class => "btn tooltip-class", :rel => "tooltip", :title => "Delete Document" %>
+															<a class="btn tipster" href="<%= document.document.url %>" title="View Document"><i class="fa fa-eye"></i></a>
+															<%= link_to raw("<i class='fa fa-remove'></i>"), admin_document_path(document),
+																            :data => {:confirm => 'Are you sure you want to delete?'}, :method => :delete, :class => "btn tipster", :rel => "tooltip", :title => "Delete Document" %>
 														</div>
 													</td>
 												</tr>
@@ -104,18 +104,18 @@
 							</table>
 						</div>
 						<hr />
-						<a class="btn" data-toggle="modal" href="#doc_form" ><i class="icon-plus"></i> Add Doc</a>
+						<a class="btn" data-toggle="modal" href="#doc_form" ><i class="fa fa-plus"></i> Add Doc</a>
 					</div>
 					<div class="tab-pane" id="7">
 						<div id="animal_docs_list">
-							<table class="table table-striped tablesorter">
-								<thead>
+							<table class="no-border tablesorter">
+								<thead class="no-border">
 									<th>Name</th>
 									<th>Last Administered</th>
 									<th>Expires</th>
 									<th>Manage</th>
 								</thead>
-								<tbody>
+								<tbody class="no-border-x no-border-y">
 									<%unless @presenter.shots.blank?%>
 											<%@presenter.shots.each do |shot| %>
 												<tr>
@@ -124,8 +124,8 @@
 													<td><%= shot.expires.strftime("%b %e %Y") unless shot.expires.blank? %></td>
 													<td>
 														<div class="btn-group pull-right">
-															<%= link_to raw("<i class='icon-remove'></i>"), admin_shot_path(shot),
-																            :data => {:confirm => 'Are you sure you want to delete?'}, :method => :delete, :class => "btn tooltip-class", :rel => "tooltip", :title => "Delete Shot" %>
+															<%= link_to raw("<i class='fa fa-remove'></i>"), admin_shot_path(shot),
+																            :data => {:confirm => 'Are you sure you want to delete?'}, :method => :delete, :class => "btn tipster", :rel => "tooltip", :title => "Delete Shot" %>
 														</div>
 													</td>
 												</tr>
@@ -135,12 +135,12 @@
 							</table>
 						</div>
 						<hr />
-						<a class="btn" data-toggle="modal" href="#shot_form" ><i class="icon-plus"></i> Add Shot</a>
+						<a class="btn" data-toggle="modal" href="#shot_form" ><i class="fa fa-plus"></i> Add Shot</a>
 					</div>
 				</div>
 				<br />
-				<a class="btn" href="/admin/animals/<%= @animal.id %>-<%= @animal.uuid %>/cage_card"><i class="icon-print"></i> Cage Card</a>
-				<a class="btn" href="/admin/animals/<%= @animal.id %>-<%= @animal.uuid %>/qr_code"><i class="icon-print"></i> QR Code</a>
+				<a class="btn btn-primary btn-rad btn-trans" href="/admin/animals/<%= @animal.id %>-<%= @animal.uuid %>/cage_card"><i class="fa fa-print"></i> Cage Card</a>
+				<a class="btn btn-primary btn-rad btn-trans" href="/admin/animals/<%= @animal.id %>-<%= @animal.uuid %>/qr_code"><i class="fa fa-print"></i> QR Code</a>
 			</div>
 			
 			<%= render "media_gallery", :animal => @animal %>

@@ -1,20 +1,18 @@
-<div class="row-fluid">
-	<div class="span12 main-app-row">
+<div class="row">
+	<div class="col-sm-12 col-md-12 col-lg-12 main-app-row">
 		<%- unless @animals.blank? %>
 			<div class="alert alert-danger">
 				<a class="close" data-dismiss="alert" href="#">&times;</a> 
 				This status can not be deleted until no animals are associated to it.
 			</div>
 		<%end%>
-		<div class="well">
-			<div class="row-fluid">
-				<div class="span6">
-					<h1><%= best_in_place @status, :status, :type => :input, :nil => "Click me to add content!", :path => admin_status_path %></h1>
-				</div>
-			</div>
+	</div>
+	<div class="col-sm-12 col-md-12 col-lg-12 main-app-row">
+		<div class="block-flat">
+			<h1><%= best_in_place @status, :status, :type => :input, :nil => "Click me to add content!", :path => admin_status_path %></h1>
 		</div>
-		<div class="row-fluid">
-			<div class="tabbable span4 ">
+		<div class="row">
+			<div class="tabbable col-sm-6 col-md-6 col-lg-6 ">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#1" data-toggle="tab">Animals</a></li>
 				</ul>

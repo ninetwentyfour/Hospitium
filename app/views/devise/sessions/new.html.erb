@@ -1,41 +1,45 @@
-<div class="hero-unit clearfix">
-	<div class="page-header">
-		<h1>Sign In!</h1>
-	</div>
-<!-- <h2>Sign in</h2> -->
-<!-- <div class="alert-message block-message error">
-        <p><strong>Warning!</strong> This is still super beta software.</p>
-</div> -->
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-stacked span4"}) do |f| %>
 
-	<div class="clearfix"><%= f.label :login %>
-		<%= f.text_field :login %></div>
-  <div class="clearfix"><%= f.label :password %>
-  <%= f.password_field :password %></div>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-horizontal"}) do |f| %>
+  <div class="content">
+    <h4 class="title">Login Access</h4>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <div class="input-group">
+        	<span class="input-group-addon"><i class="fa fa-user"></i></span>
+        	<%= f.text_field :login, :class => "form-control", :placeholder => "Username", :autofocus => true %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+          <%= f.password_field :password, :class => "form-control", :placeholder => "Password" %>
+        </div>
+      </div>
+    </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
-	<br />
-  <div><%= f.submit "Sign in", :class => "btn btn-primary btn-large" %></div>
+      <% if devise_mapping.rememberable? -%>
+        <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+      <% end -%>
+  </div>
+  <div class="foot">
+      <a class="btn btn-default" href="/users/sign_up">Register</a>
+      <%= f.submit "Log me in", :class => "btn btn-primary" %>
+  </div>
 <% end %>
-<!-- <hr /> -->
 
-<div id="recent-changes" class="span3">
-	<div class="alert alert-block notification-sidebar-block">
-		<strong><%= @random_notice.status_type + "!" unless @random_notice.blank? %></strong>
-		<%= raw(@random_notice.message)  unless @random_notice.blank? %>
-	</div>
-	<a href="/recent-changes" style="float:right;font-size:10px">Recent Changes</a>
-</div>
 
-<br /><br />
-<div class="span12" style="margin-top:40px">
-<p>If you don't have an account <a class="js-pjax" href="/users/sign_up">Sign Up Here</a>.</p>
-<p><a class="js-pjax" href="/users/password/new">Forgot your password?</a></p>
-<p> Need help <a href="https://hospitium.tenderapp.com/kb/general-use/getting-started" target="blank">getting started</a>?</p>
-</div>
-</div>
+
+
+      <br /><br />
+      <div class="col-sm-12" style="margin-top:40px">
+      <!-- <p>If you don't have an account <a class="js-pjax" href="/users/sign_up">Sign Up Here</a>.</p> -->
+      <p><a class="js-pjax" href="/users/password/new">Forgot your password?</a></p>
+      <p> Need help <a href="https://hospitium.tenderapp.com/kb/general-use/getting-started" target="blank">getting started</a>?</p>
+      </div>
+
+
 <% set_head_title("Sign In") %>
 <% content_for :title, "Sign In - Hospitium" %>
 <title><%= yield (:title) %></title>

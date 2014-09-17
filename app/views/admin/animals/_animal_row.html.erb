@@ -1,26 +1,30 @@
 <% animals.each do |animal| %>
-	<li class="span3 animal-card thumbnail">
-		<h2><a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><%= animal.name %></a></h2>
-		<a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><% unless animal.image.url(:medium) == "/images/medium/missing.png" %>
-			<img height=180 width=260 src="<%= animal.image.url(:medium) %>" alt="">
-		<% else %>
-			<img height=180 width=260 src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" alt="">
-		<%end%></a>
-		<ul class="animal-card-info">
-			<li><strong>Species:</strong> <%= animal.species_name %></li>
-			<li><strong>Status:</strong> <%= animal.try(:status).try(:status) %></li>
-			<li><strong>Sex:</strong> <%= animal.sex unless animal.animal_sex.blank? %></li>
-			<li><strong>Age:</strong> <%= calculate_animal_age(animal.birthday) unless animal.birthday.blank? %></li>
-			<li><strong>Spay/Neuter:</strong> <%= animal.spay unless animal.spay_neuter.blank? %></li>
-			<li><strong>Color:</strong> <%= animal.color %></li>
-		</ul>
-		<div class="btn-group pull-right">
-			<a class="btn tooltip-class" href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>" rel="tooltip" title="View Animal"><i class="icon-eye-open"></i></a>
-			<a class="btn tooltip-class duplicate-button" href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>/duplicate" rel="tooltip" title="Duplicate Animal"><i class="icon-plus-sign"></i></a>
-			<% unless current_user.permissions.first.role_id == 3 %>
-				<%= link_to raw("<i class='icon-remove'></i>"), admin_animal_path(animal),
-				            :data => {:confirm => 'Are you sure you want to delete?'}, :method => :delete, :class => "btn tooltip-class", :rel => "tooltip", :title => "Delete Animal" %>
-			<% end %>
+	<li class="col-sm-2 col-md-2 col-lg-2 animal-card block-flat">
+		<div class="header">
+			<h2><a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><%= animal.name %></a></h2>
+		</div>
+		<div class="content">
+			<a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><% unless animal.image.url(:medium) == "/images/medium/missing.png" %>
+				<img height=155 width=235 src="<%= animal.image.url(:medium) %>" alt="">
+			<% else %>
+				<img height=155 width=235 src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" alt="">
+			<%end%></a>
+			<ul class="animal-card-info">
+				<li><strong>Species:</strong> <%= animal.species_name %></li>
+				<li><strong>Status:</strong> <%= animal.try(:status).try(:status) %></li>
+				<li><strong>Sex:</strong> <%= animal.sex unless animal.animal_sex.blank? %></li>
+				<li><strong>Age:</strong> <%= calculate_animal_age(animal.birthday) unless animal.birthday.blank? %></li>
+				<li><strong>Spay/Neuter:</strong> <%= animal.spay unless animal.spay_neuter.blank? %></li>
+				<li><strong>Color:</strong> <%= animal.color %></li>
+			</ul>
+			<div class="btn-group pull-right">
+				<a class="btn tipster" href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>" title="View Animal"><i class="fa fa-eye"></i></a>
+				<a class="btn tipster duplicate-button" href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>/duplicate" title="Duplicate Animal"><i class="fa fa-plus"></i></a>
+				<% unless current_user.permissions.first.role_id == 3 %>
+					<%= link_to raw("<i class='fa fa-remove'></i>"), admin_animal_path(animal),
+					            :data => {:confirm => 'Are you sure you want to delete?'}, :method => :delete, :class => "btn tipster", :title => "Delete Animal" %>
+				<% end %>
+			</div>
 		</div>
 	</li>
 <% end %>

@@ -5,7 +5,7 @@ class Report < ActiveRecord::Base
     all_types = type.camelize.constantize.where(:organization_id => org)
     final_status_array = Array.new
 
-    color = Paleta::Color.new(:hex, "d63a4c")
+    color = Paleta::Color.new(:hex, "7761a7")
     palette = Paleta::Palette.generate(:type => :analogous, :from => :color, :color => color, :size => all_types.count)
     colors = palette.to_array(color_model = :hex)
     colors.shuffle!
@@ -35,7 +35,7 @@ class Report < ActiveRecord::Base
   def self.contacts_per_day(org, days_past)
     set = [0]
     set = set.cycle.take days_past.to_i+1
-    %w(vet_contact volunteer_contact adoption_contact relinquishment_contact).each do |item|
+    %w(vet_contact volunteer_contact adoption_contact relinquishment_contact foster_contact).each do |item|
       results = item_per_day(org, item, days_past)
       set = set.map.with_index{ |m,i| m + results[i].to_i }
     end

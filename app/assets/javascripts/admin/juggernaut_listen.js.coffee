@@ -24,5 +24,5 @@ juggernaut_listen = (id, model, url = model) ->
           # refresh map if address updated
           google_map(val[1], val[1])
 
-        $("#best_in_place_#{model}_#{id}_#{key}").css("background-color", "#c7f464").html(escapeHtml(updated_text)).delay(1500).animate({backgroundColor: "#f5f5f5"}, 1000)
+        $("#best_in_place_#{model}_#{id}_#{key}").css("background-color", "#c7f464").html(escapeHtml(updated_text)).delay(1500).animate({backgroundColor: "#fff"}, 1000)
 window.juggernaut_listen = juggernaut_listen

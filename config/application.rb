@@ -66,5 +66,13 @@ module AnimalTracker
 
     # use rack-attack
     config.middleware.use Rack::Attack
+
+    config.to_prepare do
+        Devise::SessionsController.layout "login"
+        Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application" : "login" }
+        Devise::ConfirmationsController.layout "login"
+        Devise::UnlocksController.layout "login"            
+        Devise::PasswordsController.layout "login"     
+    end
   end
 end

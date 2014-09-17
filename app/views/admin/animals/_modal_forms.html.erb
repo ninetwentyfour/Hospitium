@@ -1,285 +1,333 @@
-<div class="modal hide fade" id="newStatus">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3>Add New Status</h3>
-	</div>
-	<div class="modal-body">
-		<div class="progress progress-danger progress-striped active new_status_bar" style="display:none;">
-			<div class="bar" style="width: 100%;"></div>
-		</div>
-		<p class="new_status_bar" style="display:none;">Loading...</p>
-		<%= form_for Status.new, :url => admin_statuses_path, :validate => true do |f| %>
-			<%= f.label :status %>
-			<%= f.text_field :status %>
-			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary submit-button" data-form-id="new_status">Save changes</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="newStatus" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add New Status</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<div class="progress progress-striped active new_status_bar" style="display:none;">
+					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+				</div>
+				<p class="new_status_bar" style="display:none;">Loading...</p>
+				<%= form_for Status.new, :url => admin_statuses_path, :validate => true do |f| %>
+					<div class="form-group">
+						<%= f.label :status %>
+						<%= f.text_field :status, :class => "form-control" %>
+					</div>
+					<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="#" class="btn btn-primary submit-button" data-form-id="new_status">Save changes</a>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="modal hide fade" id="newSpecies">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3>Add New Species</h3>
-	</div>
-	<div class="modal-body">
-		<div class="progress progress-danger progress-striped active new_species_bar" style="display:none;">
-			<div class="bar" style="width: 100%;"></div>
-		</div>
-		<p class="new_species_bar" style="display:none;">Loading...</p>
-		<%= form_for Species.new, :url => "/admin/species", :validate => true do |f| %>
-			<%= f.label :name %>
-			<%= f.text_field :name %>
-			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary submit-button" data-form-id="new_species">Save changes</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="newSpecies" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add New Species</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<div class="progress progress-striped active new_species_bar" style="display:none;">
+					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+				</div>
+				<p class="new_species_bar" style="display:none;">Loading...</p>
+				<%= form_for Species.new, :url => "/admin/species", :validate => true do |f| %>
+					<%= f.label :name %>
+					<%= f.text_field :name, :class => "form-control" %>
+					<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="#" class="btn btn-primary submit-button" data-form-id="new_species">Save changes</a>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="modal hide fade" id="newColor">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3>Add New Color</h3>
-	</div>
-	<div class="modal-body">
-		<div class="progress progress-danger progress-striped active new_animal_color_bar" style="display:none;">
-			<div class="bar" style="width: 100%;"></div>
-		</div>
-		<p class="new_animal_color_bar" style="display:none;">Loading...</p>
-		<%= form_for AnimalColor.new, :url => admin_animal_colors_path, :validate => true do |f| %>
-			<%= f.label :color %>
-			<%= f.text_field :color %>
-			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary submit-button" data-form-id="new_animal_color">Save changes</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="newColor" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add New Color</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<div class="progress progress-striped active new_animal_color_bar" style="display:none;">
+					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+				</div>
+				<p class="new_animal_color_bar" style="display:none;">Loading...</p>
+				<%= form_for AnimalColor.new, :url => admin_animal_colors_path, :validate => true do |f| %>
+					<%= f.label :color %>
+					<%= f.text_field :color, :class => "form-control" %>
+					<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="#" class="btn btn-primary submit-button" data-form-id="new_animal_color">Save changes</a>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="modal hide fade" id="newShelter">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3>Add New Shelter</h3>
-	</div>
-	<div class="modal-body">
-		<div class="progress progress-danger progress-striped active new_shelter_bar" style="display:none;">
-			<div class="bar" style="width: 100%;"></div>
-		</div>
-		<p class="new_shelter_bar" style="display:none;">Loading...</p>
-		<%= form_for Shelter.new, :url => admin_shelters_path, :validate => true do |f| %>
-			<%= f.label :name %>
-			<%= f.text_field :name %>
-			<%= f.label :contact_first %>
-			<%= f.text_field :contact_first %>
-			<%= f.label :contact_last %>
-			<%= f.text_field :contact_last %>
-			<%= f.label :address %>
-			<%= f.text_field :address %>
-			<%= f.label :phone %>
-			<%= f.text_field :phone %>
-			<%= f.label :email %>
-			<%= f.text_field :email %>
-			<%= f.label :website %>
-			<%= f.text_field :website %>
-			<%= f.label :notes %>
-			<%= f.text_area :notes %>
-			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary submit-button" data-form-id="new_shelter">Save changes</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="newShelter" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add New Shelter</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<div class="progress progress-striped active new_shelter_bar" style="display:none;">
+					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+				</div>
+				<p class="new_shelter_bar" style="display:none;">Loading...</p>
+				<%= form_for Shelter.new, :url => admin_shelters_path, :validate => true do |f| %>
+					<%= f.label :name %>
+					<%= f.text_field :name, :class => "form-control" %>
+					<%= f.label :contact_first %>
+					<%= f.text_field :contact_first, :class => "form-control" %>
+					<%= f.label :contact_last %>
+					<%= f.text_field :contact_last, :class => "form-control" %>
+					<%= f.label :address %>
+					<%= f.text_field :address, :class => "form-control" %>
+					<%= f.label :phone %>
+					<%= f.text_field :phone, :class => "form-control" %>
+					<%= f.label :email %>
+					<%= f.text_field :email, :class => "form-control" %>
+					<%= f.label :website %>
+					<%= f.text_field :website, :class => "form-control" %>
+					<%= f.label :notes %>
+					<%= f.text_area :notes, :class => "form-control" %>
+					<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="#" class="btn btn-primary submit-button" data-form-id="new_shelter">Save changes</a>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="modal hide fade" id="newWeight">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3>Add New Animal Weight</h3>
-	</div>
-	<div class="modal-body">
-		<div class="progress progress-danger progress-striped active new_animal_weight_bar" style="display:none;">
-			<div class="bar" style="width: 100%;"></div>
-		</div>
-		<p class="new_animal_weight_bar" style="display:none;">Loading...</p>
-		<%= form_for AnimalWeight.new, :url => admin_animal_weights_path, :validate => true do |f| %>
-			<%= f.label :weight %>
-			<%= f.text_field :weight %>
-			<%= f.label :date_of_weight %>
-			<%= f.text_field :date_of_weight %>
-			<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
-			<%= f.hidden_field :animal_id, :value => animal.id %>
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary submit-button" data-form-id="new_animal_weight">Save changes</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="newWeight" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add New Animal Weight</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<div class="progress progress-striped active new_animal_weight_bar" style="display:none;">
+					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+				</div>
+				<p class="new_animal_weight_bar" style="display:none;">Loading...</p>
+				<%= form_for AnimalWeight.new, :url => admin_animal_weights_path, :validate => true do |f| %>
+					<%= f.label :weight %>
+					<%= f.text_field :weight, :class => "form-control" %>
+					<%= f.label :date_of_weight %>
+					<%= f.text_field :date_of_weight, :class => "form-control" %>
+					<%= f.hidden_field :organization_id, :value => current_user.organization_id %>
+					<%= f.hidden_field :animal_id, :value => animal.id %>
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="#" class="btn btn-primary submit-button" data-form-id="new_animal_weight">Save changes</a>
+      </div>
+    </div>
+  </div>
 </div>
 
-
-<div class="modal hide fade" id="image_1">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3>Add New Animal Image</h3>
-	</div>
-	<div class="modal-body">
-		<div class="progress progress-danger progress-striped active first_image_upload_bar" style="display:none;">
-			<div class="bar" style="width: 100%;"></div>
-		</div>
-		<p class="first_image_upload_bar" style="display:none;">Loading...</p>
-		<%= form_for animal, :url => admin_animal_add_image_path, :html => { :id => "first_image_upload" } do |f| %>
-			<%= f.file_field :image, :accept => "image/jpeg,image/jpg,image/png" %>
-			<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary submit-button" data-form-id="first_image_upload">Save changes</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="image_1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add New Animal Image</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<div class="progress progress-striped active first_image_upload_bar" style="display:none;">
+					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+				</div>
+				<p class="first_image_upload_bar" style="display:none;">Loading...</p>
+				<%= form_for animal, :url => admin_animal_add_image_path, :html => { :id => "first_image_upload" } do |f| %>
+					<%= f.file_field :image, :accept => "image/jpeg,image/jpg,image/png" %>
+					<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="#" class="btn btn-primary submit-button" data-form-id="first_image_upload">Save changes</a>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="modal hide fade" id="image_2">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3>Add New Animal Image</h3>
-	</div>
-	<div class="modal-body">
-		<div class="progress progress-danger progress-striped active second_image_upload_bar" style="display:none;">
-			<div class="bar" style="width: 100%;"></div>
-		</div>
-		<p class="second_image_upload_bar" style="display:none;">Loading...</p>
-		<%= form_for animal, :url => admin_animal_add_image_path, :html => { :id => "second_image_upload" }, :validate => true do |f| %>
-			<%= f.file_field :second_image, :accept => "image/jpeg,image/jpg,image/png" %>
-			<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary submit-button" data-form-id="second_image_upload">Save changes</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="image_2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add New Animal Image</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<div class="progress progress-striped active second_image_upload_bar" style="display:none;">
+					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+				</div>
+				<p class="second_image_upload_bar" style="display:none;">Loading...</p>
+				<%= form_for animal, :url => admin_animal_add_image_path, :html => { :id => "second_image_upload" }, :validate => true do |f| %>
+					<%= f.file_field :second_image, :accept => "image/jpeg,image/jpg,image/png" %>
+					<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="#" class="btn btn-primary submit-button" data-form-id="second_image_upload">Save changes</a>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="modal hide fade" id="image_3">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3>Add New Animal Image</h3>
-	</div>
-	<div class="modal-body">
-		<div class="progress progress-danger progress-striped active third_image_upload_bar" style="display:none;">
-			<div class="bar" style="width: 100%;"></div>
-		</div>
-		<p class="third_image_upload_bar" style="display:none;">Loading...</p>
-		<%= form_for animal, :url => admin_animal_add_image_path, :html => { :id => "third_image_upload" } do |f| %>
-			<%= f.file_field :third_image, :accept => "image/jpeg,image/jpg,image/png" %>
-			<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary submit-button" data-form-id="third_image_upload">Save changes</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="image_3" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add New Animal Image</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<div class="progress progress-striped active third_image_upload_bar" style="display:none;">
+					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+				</div>
+				<p class="third_image_upload_bar" style="display:none;">Loading...</p>
+				<%= form_for animal, :url => admin_animal_add_image_path, :html => { :id => "third_image_upload" } do |f| %>
+					<%= f.file_field :third_image, :accept => "image/jpeg,image/jpg,image/png" %>
+					<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="#" class="btn btn-primary submit-button" data-form-id="third_image_upload">Save changes</a>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="modal hide fade" id="image_4">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3>Add New Animal Image</h3>
-	</div>
-	<div class="modal-body">
-		<div class="progress progress-danger progress-striped active fourth_image_upload_bar" style="display:none;">
-			<div class="bar" style="width: 100%;"></div>
-		</div>
-		<p class="fourth_image_upload_bar" style="display:none;">Loading...</p>
-		<%= form_for animal, :url => admin_animal_add_image_path, :html => { :id => "fourth_image_upload" } do |f| %>
-			<%= f.file_field :fourth_image, :accept => "image/jpeg,image/jpg,image/png" %>
-			<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary submit-button" data-form-id="fourth_image_upload">Save changes</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="image_4" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add New Animal Image</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<div class="progress progress-striped active fourth_image_upload_bar" style="display:none;">
+					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+				</div>
+				<p class="fourth_image_upload_bar" style="display:none;">Loading...</p>
+				<%= form_for animal, :url => admin_animal_add_image_path, :html => { :id => "fourth_image_upload" } do |f| %>
+					<%= f.file_field :fourth_image, :accept => "image/jpeg,image/jpg,image/png" %>
+					<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="#" class="btn btn-primary submit-button" data-form-id="fourth_image_upload">Save changes</a>
+      </div>
+    </div>
+  </div>
 </div>
 
-
-<div class="modal hide fade" id="video_upload">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3>Add New Animal Video</h3>
-	</div>
-	<div class="modal-body">
-		<div class="progress progress-danger progress-striped active second_image_upload_bar" style="display:none;">
-			<div class="bar" style="width: 100%;"></div>
-		</div>
-		<p class="second_image_upload_bar" style="display:none;">Loading...</p>
-		<%= form_for animal, :url => admin_animal_path, :html => { :id => "video_upload_form" }, :validate => true do |f| %>
-			<%= f.label :video_embed %>
-			<%= f.text_area :video_embed, :rows => 5, :placeholder => '<iframe width="560" height="315" src="https://www.youtube.com/embed/example?rel=0" frameborder="0" allowfullscreen></iframe>' %>
-			<p>Paste YouTube embed here. Iframe code only.</p>
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary submit-button" data-form-id="video_upload_form">Save changes</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="video_upload" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add New Animal Video</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<div class="progress progress-striped active second_image_upload_bar" style="display:none;">
+					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+				</div>
+				<p class="second_image_upload_bar" style="display:none;">Loading...</p>
+				<%= form_for animal, :url => admin_animal_path, :html => { :id => "video_upload_form" }, :validate => true do |f| %>
+					<%= f.label :video_embed %>
+					<%= f.text_area :video_embed, :placeholder => '<iframe width="560" height="315" src="https://www.youtube.com/embed/example?rel=0" frameborder="0" allowfullscreen></iframe>', :class => "form-control" %>
+					<p>Paste YouTube embed here. Iframe code only.</p>
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="#" class="btn btn-primary submit-button" data-form-id="video_upload_form">Save changes</a>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="modal hide fade" id="doc_form">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3>Add New Animal Document</h3>
-	</div>
-	<div class="modal-body">
-		<div class="progress progress-danger progress-striped active document_upload_bar" style="display:none;">
-			<div class="bar" style="width: 100%;"></div>
-		</div>
-		<p class="document_upload_bar" style="display:none;">Loading...</p>
-		<%= form_for Document.new, :url => admin_documents_path, :remote => true, :html => {:id => "document_upload", :multipart => true}, :validate => true do |f| %>
-			<%#= f.hidden_field "authentication_token", :value => form_authenticity_token.to_s %>
-			<%= token_tag nil %>
-			<%= f.file_field :filearrays, :multiple =>:true %>
-			<p>Max filesize of 100mb.</p>
-			<%= f.hidden_field :documentable_id, :value => animal.id %><br />
-			<%= f.hidden_field :documentable_type, :value => 'Animal' %><br />
-		<% end %>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary submit-button" data-form-id="document_upload">Save changes</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="doc_form" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add New Animal Document</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<div class="progress progress-striped active document_upload_bar" style="display:none;">
+					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+				</div>
+				<p class="document_upload_bar" style="display:none;">Loading...</p>
+				<%= form_for Document.new, :url => admin_documents_path, :remote => true, :html => {:id => "document_upload", :multipart => true}, :validate => true do |f| %>
+					<%#= f.hidden_field "authentication_token", :value => form_authenticity_token.to_s %>
+					<%= token_tag nil %>
+					<%= f.file_field :filearrays, :multiple =>:true %>
+					<p>Max filesize of 100mb.</p>
+					<%= f.hidden_field :documentable_id, :value => animal.id %><br />
+					<%= f.hidden_field :documentable_type, :value => 'Animal' %><br />
+				<% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="#" class="btn btn-primary submit-button" data-form-id="document_upload">Save changes</a>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="modal hide fade" id="shot_form">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3>Add New Shot</h3>
-	</div>
-	<div class="modal-body">
-		<div class="progress progress-danger progress-striped active new_shot_bar" style="display:none;">
-			<div class="bar" style="width: 100%;"></div>
-		</div>
-		<p class="new_shot_bar" style="display:none;">Loading...</p>
-		<%= form_for Shot.new, :url => admin_shots_path, :validate => true do |f| %>
-			<%= f.label :name %>
-			<%= f.text_field :name %>
-			<%= f.label :last_administered %>
-			<%= f.text_field :last_administered %>
-			<%= f.label :expires %>
-			<%= f.text_field :expires %>
-			<%= f.hidden_field :animal_id, :value => animal.id %>
-		<%end%>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary submit-button" data-form-id="new_shot">Save changes</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="shot_form" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add New Shot</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<div class="progress progress-striped active new_shot_bar" style="display:none;">
+					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+				</div>
+				<p class="new_shot_bar" style="display:none;">Loading...</p>
+				<%= form_for Shot.new, :url => admin_shots_path, :validate => true do |f| %>
+					<%= f.label :name %>
+					<%= f.text_field :name, :class => "form-control" %>
+					<%= f.label :last_administered %>
+					<%= f.text_field :last_administered, :class => "form-control" %>
+					<%= f.label :expires %>
+					<%= f.text_field :expires, :class => "form-control" %>
+					<%= f.hidden_field :animal_id, :value => animal.id %>
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="#" class="btn btn-primary submit-button" data-form-id="new_shot">Save changes</a>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,169 @@
+table.dashed tr:nth-child(2n){
+  background: #fff;
+}
+table.dashed td:last-child{border-right: 0;}
+table.dashed td{
+  padding: 20px;
+  border-left: 0;
+  border-bottom: 1px dashed #ddd;
+}
+
+table thead th{
+	padding:5px;
+	font-size:13px;
+	font-weight: 200;
+}
+
+table tbody td{
+	padding:7px 8px;
+	font-size:12px;
+}
+
+table .primary-emphasis, table .primary-emphasis-dark{
+	background: @primary-color;
+	color: #FFF;
+	border-color: @primary-color;
+	text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+table .primary-emphasis-dark{background-color: @primary-color - 20%;}
+
+table .success-emphasis, table .success-emphasis-dark{
+	background: @primary-color - 20%;
+	color: #FFF;
+	border-color: @primary-color - 20%;
+	text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+table .success-emphasis-dark{background-color:@primary-color - 20%;border-color:@primary-color - 20%;}
+
+table .warning-emphasis, table .warning-emphasis-dark{
+	background: #FC9700;
+	color: #FFF;
+	border-color: #FC9700;
+	text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+table .warning-emphasis-dark{background-color:#fc8800;border-color:#fc8800;}
+
+table .danger-emphasis, table .danger-emphasis-dark{
+	background: #DA4932;
+	color: #FFF;
+	border-color: #DA4932;
+	text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+table .danger-emphasis-dark{background-color:#c8432e;border-color:#c8432e;}
+
+
+table{
+	border-collapse:collapse;
+	width:100%;
+}
+
+table .right{text-align:right;}
+table .left{text-align:left;}
+.red thead th{color: @red;}
+.blue thead th{color: @blue;}
+.violet thead th{color: @dark-purple;}
+.green thead th{color: @dark-green;}
+table thead th span{color:#333;}
+
+table thead th{
+	vertical-align:bottom;
+	border-bottom:1px solid #DADADA;
+	border-left:1px solid #DADADA;
+	border-top:1px solid #DADADA;
+	padding: 10px 8px 5px 8px;
+}
+
+table thead th:last-child{border-right:1px solid #DADADA;}
+
+
+table thead span{
+	font-size:16px;
+	display:block;
+}
+
+table td{
+	border-left:1px solid #DADADA;
+	border-bottom: 1px solid #dadada;
+	padding: 7px 8px;
+}
+
+table td .progress{margin:0;}
+
+table.hover tbody tr:hover{
+	background: #f3f3f3;
+}
+
+table td i{
+	font-size:15px;
+	display: inline-block;
+	text-align: center;
+	width: 23px;
+}
+
+ table td:last-child{border-right:1px solid #dadada;}
+ table tr:nth-child(2n){
+	background: #f8f8f8;
+}
+table.no-strip tr:nth-child(2n){background:transparent;}
+
+/*No-Internal borders in thead*/
+table .no-border th{border-left:0;}
+table .no-border tr th:first-child{border-left:1px solid #dadada;}
+
+
+/*No-Internal borders in tbody x and y*/
+ table .no-border-x td{border-bottom:0;}
+ table .no-border-x tr:last-child td{border-bottom:1px solid #dadada;}
+
+ table .no-border-y td{border-left:0;}
+ table .no-border-y tr td:first-child{border-left:1px solid #dadada;}
+
+
+/*No-External borders general table*/
+ table.no-border tr th{border-top:0;}
+ table.no-border tr th:first-child{border-left:0;}
+ table.no-border tr th:last-child{border-right:0;}
+
+ table.no-border tr td:first-child{border-left:0;}
+ table.no-border tr td:last-child{border-right:0;}
+ table.no-border tr:last-child td{border-bottom:0;}
+
+/*No-External borders when .no-padding in block*/
+ .no-padding table th:first-child{border-left:0;}
+ .no-padding table th:last-child{border-right:0;}
+ .no-padding table tr td:first-child{border-left:0;}
+ .no-padding table tr td:last-child{border-right:0;}
+ .no-padding table tr:last-child td{border-bottom:0;}
+
+table tbody .toggle-details{cursor:pointer;} 
+table tbody .details{
+  background:#FFF;
+}
+
+table tbody td .btn{margin-bottom:0 !important;}
+/*list style table*/
+table.list.no-border{
+  border-top: 0;
+}
+table.list .items td{
+  vertical-align: middle;
+  padding: 5px;
+}
+table.list .items td .progress{
+  height: 13px;
+}
+table.list .items td .progress .progress-bar{
+  font-size: 10px;
+  line-height: 12px;
+}
+table.list .items td > span{
+  vertical-align: top;
+}
+table.list .items td p span{
+  display: block;
+  font-size: 12px;
+  line-height: 10px;
+  color: #9e9e9e;
+}
+table tbody td .btn-group .dropdown-menu {margin-top:-1px;min-width:130px;}
+table tbody td .btn-group .dropdown-menu li > a {padding:5px 12px;text-align:left;}

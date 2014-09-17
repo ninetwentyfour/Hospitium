@@ -1,0 +1,246 @@
+/*Alerts*/
+.alert {border-radius:0;-webkit-border-radius:0;box-shadow: 0;}					
+.alert .sign{color: rgba(0,0,0,0.2);font-size:20px;vertical-align: middle;margin-right:5px;text-align:center;width:25px; display: inline-block;}					
+.alert .close{text-shadow: none;}					
+.alert-primary {
+    background-color: @primary-color;
+    border-color: @primary-color - 10%;
+    color: #fff;
+}
+.alert-success {
+    background-color: @dark-green;
+    border-color: @dark-green - 10%;
+    color: #fff;
+}
+.alert-info {
+    background-color: @blue;
+    border-color: @blue - 10%;
+    color: #fff;
+}
+.alert-warning {
+    background-color: @orange;
+    border-color: @orange - 10%;
+    color: #fff;
+}
+.alert-danger {
+    background-color: @red;
+    border-color: @red - 10%;
+    color: #fff;
+}
+
+/*Alert White*/
+.alert-white{
+  background: #fff;
+	border-color: #d5d5d5;
+	color:#404040;
+	padding-left: 61px;
+	position:relative;
+}
+.alert-white .icon{
+	text-align:center;
+	width:45px;
+	height: 103%;
+	position:absolute;
+	top:-1px;
+	left:-1px;
+	border:1px solid #BDBDBD;
+	padding-top:15px;
+}
+.alert-white .icon:after{
+  -webkit-transform:  rotate(45deg);  
+     -moz-transform:  rotate(45deg); 
+      -ms-transform:  rotate(45deg); 
+       -o-transform:  rotate(45deg);  
+		  transform:  rotate(45deg);
+		  
+	display:block;
+	content: '';
+	width:10px;
+	height:10px;
+	border:1px solid #BDBDBD;
+	position:absolute;
+	border-left:0;
+	border-bottom:0;
+	top:50%;
+	right:-6px;
+	margin-top:-3px;
+	background:#fff;
+}
+
+.alert-white.rounded{border-radius:3px;-webkit-border-radius:3px;}
+.alert-white.rounded .icon{border-radius:3px 0 0 3px;-webkit-border-radius:3px 0 0 3px;}
+
+.alert-white .icon i{
+	font-size: 20px;
+	color:#FFF;
+	left: 12px;
+    margin-top: -10px;
+    position: absolute;
+    top: 50%;
+}
+
+.alert-white.alert-danger .icon, .alert-white.alert-danger .icon:after{
+	border-color: @red - 10%;
+	background: @red;
+}
+
+.alert-white.alert-info .icon, .alert-white.alert-info .icon:after{
+	border-color:@blue - 10%;
+	background: @blue;
+}
+
+.alert-white.alert-warning .icon, .alert-white.alert-warning .icon:after{
+	border-color: @orange - 10%;
+	background: @orange;
+}
+
+.alert-white.alert-success .icon, .alert-white.alert-success .icon:after{
+	border-color: @dark-green - 10%;
+	background: @dark-green;
+}
+.alert-white.alert-primary .icon, .alert-white.alert-primary .icon:after{
+	border-color: @primary-color - 10%;
+	background: @primary-color;
+}
+
+/*Alert White alt 1*/
+.alert-white-alt{
+  border-width: 2px;
+  background: #fff;
+	color:#404040;
+	padding-left: 61px;
+	position:relative;
+}
+.alert-white-alt .icon{
+	text-align:center;
+	width:45px;
+	height: 103%;
+	position:absolute;
+	top:-1px;
+	left:-1px;
+	border:1px solid #BDBDBD;
+	padding-top:15px;
+}
+.alert-white-alt .icon:after{
+  -webkit-transform:  rotate(45deg);  
+     -moz-transform:  rotate(45deg); 
+      -ms-transform:  rotate(45deg); 
+       -o-transform:  rotate(45deg);  
+		  transform:  rotate(45deg);
+		  
+	display:block;
+	content: '';
+	width:10px;
+	height:10px;
+	border:1px solid #BDBDBD;
+	position:absolute;
+	border-left:0;
+	border-bottom:0;
+	top:50%;
+	right:-6px;
+	margin-top:-3px;
+	background:#fff;
+}
+
+.alert-white-alt.rounded{border-radius:3px;-webkit-border-radius:3px;}
+.alert-white-alt.rounded .icon{border-radius:3px 0 0 3px;-webkit-border-radius:3px 0 0 3px;}
+
+.alert-white-alt .icon i{
+	font-size: 20px;
+	color:#FFF;
+	left: 12px;
+    margin-top: -10px;
+    position: absolute;
+    top: 50%;
+}
+
+.alert-white-alt.alert-danger .icon, .alert-white-alt.alert-danger .icon:after{
+	border-color: @red - 10%;
+	background: @red;
+}
+
+.alert-white-alt.alert-info .icon, .alert-white-alt.alert-info .icon:after{
+	border-color:@blue - 10%;
+	background: @blue;
+}
+
+.alert-white-alt.alert-warning .icon, .alert-white-alt.alert-warning .icon:after{
+	border-color: @orange - 10%;
+	background: @orange;
+}
+.alert-white-alt.alert-success .icon, .alert-white-alt.alert-success .icon:after{
+	border-color: @dark-green - 10%;
+	background: @dark-green;
+}
+.alert-white-alt.alert-primary .icon, .alert-white-alt.alert-primary .icon:after{
+	border-color: @primary-color - 10%;
+	background: @primary-color;
+}
+
+/*Alert White Alt 2*/
+.alert-white-alt2{
+  background: #fff;
+	border-color: #d5d5d5;
+	color:#404040;
+	padding-left: 61px;
+	position:relative;
+}
+.alert-white-alt2 .icon{
+	text-align:center;
+	width:45px;
+	height: 103%;
+	position:absolute;
+	top:-1px;
+	left:-1px;
+	border:1px solid #d5d5d5;
+	padding-top:15px;
+}
+.alert-white-alt2 .icon:after{
+  -webkit-transform:  rotate(45deg);  
+     -moz-transform:  rotate(45deg); 
+      -ms-transform:  rotate(45deg); 
+       -o-transform:  rotate(45deg);  
+		  transform:  rotate(45deg);
+		  
+	display:block;
+	content: '';
+	width:10px;
+	height:10px;
+	border:1px solid #d5d5d5;
+	position:absolute;
+	border-left:0;
+	border-bottom:0;
+	top:50%;
+	right:-6px;
+	margin-top:-3px;
+	background:#fff;
+}
+
+
+.alert-white-alt2 .icon i{
+	font-size: 20px;
+	color:#FFF;
+	left: 12px;
+    margin-top: -10px;
+    position: absolute;
+    top: 50%;
+}
+
+.alert-white-alt2.alert-danger .icon i{
+  color: @red;
+}
+
+.alert-white-alt2.alert-info .icon i{
+  color: @blue;
+}
+
+.alert-white-alt2.alert-warning .icon i{
+  color: @orange;
+}
+
+.alert-white-alt2.alert-success .icon i{
+  color: @dark-green;
+}
+.alert-white-alt2.alert-primary .icon i{
+  color: @primary-color;
+}

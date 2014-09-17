@@ -1,15 +1,11 @@
-<div class="row-fluid">
-	<div class="span12 main-app-row">
-		<div class="well">
-			<div class="row-fluid">
-				<div class="span6">
+<div class="row">
+	<div class="col-sm-12 col-md-12 col-lg-12 main-app-row">
+		<div class="block-flat">
 					<h1><%= best_in_place @volunteer_contact, :first_name, :type => :input, :nil => "Click me to add content!", :path => admin_volunteer_contact_path %> 
 					<%= best_in_place @volunteer_contact, :last_name, :type => :input, :nil => "Click me to add content!", :path => admin_volunteer_contact_path %></h1>
-				</div>
-			</div>
 		</div>
-		<div class="row-fluid">
-			<div class="tabbable span4 ">
+		<div class="row">
+			<div class="tabbable col-sm-6 col-md-6 col-lg-6 ">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#1" data-toggle="tab">Overview</a></li>
 					<li><a href="#2" data-toggle="tab">Documents</a></li>
@@ -25,13 +21,13 @@
 					</div>
 					<div class="tab-pane" id="2">
 						<div id="animal_docs_list">
-							<table class="table table-striped tablesorter">
-								<thead>
+							<table class="no-border">
+								<thead class="no-border">
 									<th>Filename</th>
 									<th>Created</th>
 									<th>Manage</th>
 								</thead>
-								<tbody>
+								<tbody class="no-border-x no-border-y">
 									<%unless @volunteer_contact.documents.blank?%>
 											<% @volunteer_contact.documents.each do |document| %>
 												<tr>
@@ -39,9 +35,9 @@
 													<td><%= document.created_at.strftime("%b %e %Y") %></td>
 													<td>
 														<div class="btn-group pull-right">
-															<a class="btn tooltip-class" href="<%= document.document.url %>" rel="tooltip" title="View Document"><i class="icon-eye-open"></i></a>
-															<%= link_to raw("<i class='icon-remove'></i>"), admin_document_path(document),
-																            :data => {:confirm => 'Are you sure you want to delete?'}, :method => :delete, :class => "btn tooltip-class", :rel => "tooltip", :title => "Delete Document" %>
+															<a class="btn tipster" href="<%= document.document.url %>" title="View Document"><i class="fa fa-eye"></i></a>
+															<%= link_to raw("<i class='fa fa-remove'></i>"), admin_document_path(document),
+																            :data => {:confirm => 'Are you sure you want to delete?'}, :method => :delete, :class => "btn tipster", :title => "Delete Document" %>
 														</div>
 													</td>
 												</tr>
@@ -51,39 +47,44 @@
 							</table>
 						</div>
 						<hr />
-						<a class="btn" data-toggle="modal" href="#doc_form" ><i class="icon-plus"></i> Add Doc</a>
+						<a class="btn" data-toggle="modal" href="#doc_form" ><i class="fa fa-plus"></i> Add Doc</a>
 					</div>
 				</div>
 			</div>
 		
-			<div class="span8 map-block">
+			<div class="col-sm-6 col-md-6 col-lg-6 map-block">
 				<div id="map_canvas" style="height:409px;width:400px;"></div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="modal hide fade" id="doc_form">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3>Add New Volunteer Contact Document</h3>
-	</div>
-	<div class="modal-body">
-		<div class="progress progress-danger progress-striped active document_upload_bar" style="display:none;">
-			<div class="bar" style="width: 100%;"></div>
-		</div>
-		<p class="document_upload_bar" style="display:none;">Loading...</p>
-		<%= form_for Document.new, :url => admin_documents_path, :remote => true, :html => {:id => "document_upload", :multipart => true} do |f| %>
-			<%= f.file_field :filearrays, :multiple =>:true %>
-			<p>Max filesize of 100mb.</p>
-			<%= f.hidden_field :documentable_id, :value => @volunteer_contact.id %><br />
-			<%= f.hidden_field :documentable_type, :value => 'VolunteerContact' %><br />
-		<% end %>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary submit-button" data-form-id="document_upload">Save changes</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal colored-header" id="doc_form" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add New Volunteer Contact Document</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<div class="progress progress-striped active document_upload_bar" style="display:none;">
+					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+				</div>
+				<p class="document_upload_bar" style="display:none;">Loading...</p>
+				<%= form_for Document.new, :url => admin_documents_path, :remote => true, :html => {:id => "document_upload", :multipart => true} do |f| %>
+					<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+					<%= f.file_field :filearrays, :multiple =>:true %>
+					<p>Max filesize of 100mb.</p>
+					<%= f.hidden_field :documentable_id, :value => @volunteer_contact.id %><br />
+					<%= f.hidden_field :documentable_type, :value => 'VolunteerContact' %><br />
+				<% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="#" class="btn btn-primary submit-button" data-form-id="document_upload">Save changes</a>
+      </div>
+    </div>
+  </div>
 </div>
 
 <% content_for :javascript_footer do %>

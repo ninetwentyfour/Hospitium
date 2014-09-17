@@ -1,118 +1,145 @@
-<div class="modal hide fade" id="myModal">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal" href="#">×</a>
-		<h3>Advanced Search</h3>
-	</div>
-	<div class="modal-body">
-		<%= search_form_for search, :url => admin_animals_path, :html => { :class => "form-vertical"} do |f| %>
-				<div class="accordion" id="accordion4">
-					<div class="accordion-group">
-						<div class="accordion-heading">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4" href="#collapseFour">
-								Search IDs
-							</a>
+<div class="modal colored-header" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Advanced Search</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<%= search_form_for search, :url => admin_animals_path, :html => { :class => "form-vertical"} do |f| %>
+					<div class="accordion" id="accordion4">
+						<div class="accordion-group">
+							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4" href="#collapseFour">
+									Search IDs
+								</a>
+							</div>
+							<div id="collapseFour" class="accordion-body collapse" style="height: 0px; ">
+								<div class="accordion-inner">
+									<div class="form-group">
+										<%= f.label :id_eq %>
+										<%= f.text_field :id_eq, :class => "form-control" %>
+									</div>
+									<div class="form-group">
+										<%= f.label :uuid_cont %>
+										<%= f.text_field :uuid_cont, :class => "form-control" %>
+									</div>
+									<div class="form-group">
+										<%= f.label :uuid_eq %>
+										<%= f.text_field :uuid_eq, :class => "form-control" %>
+									</div>
+									<div class="form-group">
+										<%= f.label :microchip_cont %>
+										<%= f.text_field :microchip_cont, :class => "form-control" %>
+									</div>
+									<div class="form-group">
+										<%= f.label :microchip_eq %>
+										<%= f.text_field :microchip_eq, :class => "form-control" %>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div id="collapseFour" class="accordion-body collapse" style="height: 0px; ">
-							<div class="accordion-inner">
-								<%= f.label :id_eq %>
-								<%= f.text_field :id_eq %>
-								
-								<%= f.label :uuid_cont %>
-								<%= f.text_field :uuid_cont %>
-								<%= f.label :uuid_eq %>
-								<%= f.text_field :uuid_eq %>
-								
-								<%= f.label :microchip_cont %>
-								<%= f.text_field :microchip_cont %>
-								<%= f.label :microchip_eq %>
-								<%= f.text_field :microchip_eq %>
+						<div class="accordion-group">
+							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+									Search Names
+								</a>
+							</div>
+							<div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">
+								<div class="accordion-inner">
+									<div class="form-group">
+										<%= f.label :name_cont %>
+										<%= f.text_field :name_cont, :class => "form-control" %>
+									</div>
+									<div class="form-group">
+										<%= f.label :name_eq %>
+										<%= f.text_field :name_eq, :class => "form-control" %>
+									</div>
+									<div class="form-group">
+										<%= f.label :previous_name_cont %>
+										<%= f.text_field :previous_name_cont, :class => "form-control" %>
+									</div>
+									<div class="form-group">
+										<%= f.label :previous_name_eq %>
+										<%= f.text_field :previous_name_eq, :class => "form-control" %>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-group">
+							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+									Search Related Objects
+								</a>
+							</div>
+							<div id="collapseTwo" class="accordion-body collapse" style="height: 0px; ">
+								<div class="accordion-inner">
+									<div class="form-group">
+										<%= f.label :status_id_eq %>
+										<%= f.collection_select :status_id_eq, presenter.status, :id, :status, :include_blank => true %>
+									</div>
+									<div class="form-group">
+										<%= f.label :animal_sex_id_eq %>
+										<%= f.collection_select :animal_sex_id_eq, presenter.sex, :id, :sex, :include_blank => true %>
+									</div>
+									<div class="form-group">
+										<%= f.label :animal_color_id_eq %>
+										<%= f.collection_select :animal_color_id_eq, presenter.color, :id, :color, :include_blank => true %>
+									</div>
+									<div class="form-group">
+										<%= f.label :species_id_eq %>
+										<%= f.collection_select :species_id_eq, presenter.species, :id, :name, :include_blank => true %>
+									</div>
+									<div class="form-group">
+										<%= f.label :spay_neuter_id_eq %>
+										<%= f.collection_select :spay_neuter_id_eq, presenter.spay, :id, :spay, :include_blank => true %>
+									</div>
+									<div class="form-group">
+										<%= f.label :shelter_id_eq %>
+										<%= f.collection_select :shelter_id_eq, presenter.shelter, :id, :name, :include_blank => true %>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-group">
+							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+									Search Dates
+								</a>
+							</div>
+							<div id="collapseThree" class="accordion-body collapse" style="height: 0px; ">
+								<div class="accordion-inner">
+									<div class="form-group">
+										<%= f.label :birthday_gteq, "Birthday From" %>
+										<%= f.text_field :birthday_gteq, :size => 8 %>
+										<%= f.label :birthday_lteq, "To" %>
+										<%= f.text_field :birthday_lteq, :size => 8 %>
+									</div>
+									<hr />
+									<%= f.label :deceased_gteq, "Deceased From" %>
+									<%= f.text_field :deceased_gteq, :size => 8 %>
+									<%= f.label :deceased_lteq, "To" %>
+									<%= f.text_field :deceased_lteq, :size => 8 %>
+									<hr />
+									<%= f.label :date_of_well_check_gteq, "Date of Well Check From" %>
+									<%= f.text_field :date_of_well_check_gteq, :size => 8 %>
+									<%= f.label :date_of_well_check_lteq, "To" %>
+									<%= f.text_field :date_of_well_check_lteq, :size => 8 %>
+									<hr />
+									<%= f.label :date_of_intake_gteq, "Date of Intake From" %>
+									<%= f.text_field :date_of_intake_gteq, :size => 8 %>
+									<%= f.label :date_of_intake_lteq, "To" %>
+									<%= f.text_field :date_of_intake_lteq, :size => 8 %>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="accordion-group">
-						<div class="accordion-heading">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-								Search Names
-							</a>
-						</div>
-						<div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">
-							<div class="accordion-inner">
-								<%= f.label :name_cont %>
-								<%= f.text_field :name_cont %>
-								<%= f.label :name_eq %>
-								<%= f.text_field :name_eq %>
-
-								<%= f.label :previous_name_cont %>
-								<%= f.text_field :previous_name_cont %>
-								<%= f.label :previous_name_eq %>
-								<%= f.text_field :previous_name_eq %>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-group">
-						<div class="accordion-heading">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-								Search Related Objects
-							</a>
-						</div>
-						<div id="collapseTwo" class="accordion-body collapse" style="height: 0px; ">
-							<div class="accordion-inner">
-								<%= f.label :status_id_eq %>
-								<%= f.collection_select :status_id_eq, presenter.status, :id, :status, :include_blank => true %>
-
-								<%= f.label :animal_sex_id_eq %>
-								<%= f.collection_select :animal_sex_id_eq, presenter.sex, :id, :sex, :include_blank => true %>
-
-								<%= f.label :animal_color_id_eq %>
-								<%= f.collection_select :animal_color_id_eq, presenter.color, :id, :color, :include_blank => true %>
-
-								<%= f.label :species_id_eq %>
-								<%= f.collection_select :species_id_eq, presenter.species, :id, :name, :include_blank => true %>
-
-								<%= f.label :spay_neuter_id_eq %>
-								<%= f.collection_select :spay_neuter_id_eq, presenter.spay, :id, :spay, :include_blank => true %>
-
-								<%= f.label :shelter_id_eq %>
-								<%= f.collection_select :shelter_id_eq, presenter.shelter, :id, :name, :include_blank => true %>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-group">
-						<div class="accordion-heading">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-								Search Dates
-							</a>
-						</div>
-						<div id="collapseThree" class="accordion-body collapse" style="height: 0px; ">
-							<div class="accordion-inner">
-								<%= f.label :birthday_gteq, "Birthday From" %>
-								<%= f.text_field :birthday_gteq, :size => 8 %>
-								<%= f.label :birthday_lteq, "To" %>
-								<%= f.text_field :birthday_lteq, :size => 8 %>
-								<hr />
-								<%= f.label :deceased_gteq, "Deceased From" %>
-								<%= f.text_field :deceased_gteq, :size => 8 %>
-								<%= f.label :deceased_lteq, "To" %>
-								<%= f.text_field :deceased_lteq, :size => 8 %>
-								<hr />
-								<%= f.label :date_of_well_check_gteq, "Date of Well Check From" %>
-								<%= f.text_field :date_of_well_check_gteq, :size => 8 %>
-								<%= f.label :date_of_well_check_lteq, "To" %>
-								<%= f.text_field :date_of_well_check_lteq, :size => 8 %>
-								<hr />
-								<%= f.label :date_of_intake_gteq, "Date of Intake From" %>
-								<%= f.text_field :date_of_intake_gteq, :size => 8 %>
-								<%= f.label :date_of_intake_lteq, "To" %>
-								<%= f.text_field :date_of_intake_lteq, :size => 8 %>
-							</div>
-						</div>
-					</div>
-				</div>
-	  
-	</div>
-	<div class="modal-footer">
-		<%= f.submit "Submit", :class => "btn btn-primary" %>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
-		<% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= f.submit "Submit", :class => "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

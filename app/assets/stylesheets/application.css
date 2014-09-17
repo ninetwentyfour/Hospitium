@@ -1,10 +1,131 @@
 /*
 *= require_self
-*= require scaffold
-*= require style
-*= require datatables
 *= require select2
-*= require custom_bootstrap
-*= require_tree ./admin
-*= require bootstrap-modal
+*= require flat/bootstrap/less/bootstrap
+*= require flat/style
+*= require tooltipster
+*= require admin/jquery-ui-1.8.16.custom
+*= require flat/datatables.css
 */
+
+/*.select2-drop {
+z-index: 1100 !important;
+}
+.select2-container {
+margin-bottom: 10px;
+}*/
+
+.form-group .select2-container {
+  width : 100% !important;
+  height: 34px !important;
+}
+.form-group .select2-choice{
+  height: 34px !important;
+}
+
+.chartKey-bar li {
+  margin:5px;
+  list-style:none !important;
+  line-height:10px;
+  float:left;
+}
+
+.pie-key {
+  position:relative;
+  left: 44%;
+  top:0px !important;
+}
+
+.circle {
+  float:left;
+  margin-right:3px;
+  border-radius:10px;
+}
+
+.animal-card {
+  min-height:150px;
+  margin-left:0px !important;
+  margin-right:25px;
+  margin-bottom:30px !important;
+  width:280px !important;
+  list-style: none;
+}
+
+.animal-card-info{
+  padding:10px 0px 10px 0px;
+}
+
+#pagination-container {
+  display:none;
+}
+
+#infscr-loading { 
+  text-align: center;
+  z-index: 100;
+  position: fixed;
+  left: 45%;
+  bottom: 40px;
+  width: 200px;
+  background: #000; 
+  opacity: 0.9;
+  color: #FFF;
+}
+
+.tab-content {
+  min-height:350px;
+}
+
+#animal_notes_list{
+  max-height:250px;
+  overflow:auto;
+  border:1px solid #eee;
+}
+#animal_notes_list li{
+  padding:10px;
+}
+#animal_notes_list li:nth-child(odd) { background-color: #fff; }
+#animal_docs_list{
+  max-height:250px;
+  overflow:auto;
+}
+
+.thumbnails li{
+  list-style: none;
+}
+
+.float-form {
+  float:right;
+  padding-left:10px;
+  padding-top:7px;
+}
+.dataTables_wrapper {
+  width:98%;
+}
+.image_new_button {
+position: absolute;
+padding: 3px;
+}
+
+.profile_menu .dropdown-toggle {
+padding: 19px 10px !important;
+}
+
+.best_in_place {
+  padding: .1m;
+  cursor: hand;
+  cursor: pointer;
+  -moz-transition: background 0.5s linear;
+  -o-transition: background 0.5s linear;
+  -webkit-transition: background 0.5s linear;
+}
+
+.best_in_place:hover, .do_hover {
+  padding-right: 1.5em;
+  background: url(https://d1pm9e0xzdmxcb.cloudfront.net/assets/pencil-best-in-place.png) no-repeat right;
+}
+
+.info_edit {
+  float: right;
+  cursor: hand;
+  cursor: pointer;
+}

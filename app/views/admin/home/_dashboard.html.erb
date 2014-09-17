@@ -1,37 +1,53 @@
-<div class="row-fluid">
-	<div class="span12">
-		<div class="row-fluid">
-			<div class="span3">
-				<div class="well">
-					<p>Total number of animals</p>
-					<h1><%= @presenter.total_animals %> <span id="animals_sparkline"></span></h1>
+<div class="row">
+	<div class="col-sm-12 col-md-12 col-lg-12">
+		<div class="row">
+			<div class="col-md-3 col-sm-6">
+				<div class="fd-tile detail clean tile-purple">
+					<div class="content">
+						<p>Total number of animals</p>
+						<h1 class="text-left"><%= @presenter.total_animals %></h1>
+					</div>
+					<div class="icon"><span id="animals_sparkline"></span></div>
+					<a class="details" href="#"></a>
 				</div>
 			</div>
-			<div class="span3">
-				<div class="well">
-					<p>Total number of species</p>
-					<h1><%= @presenter.total_species %> <span id="species_sparkline"></span></h1>
+			<div class="col-md-3 col-sm-6">
+				<div class="fd-tile detail clean tile-purple">
+					<div class="content">
+						<p>Total number of species</p>
+						<h1><%= @presenter.total_species %></h1>
+					</div>
+					<div class="icon"><span id="species_sparkline"></span></div>
+					<a class="details" href="#"></a>
 				</div>
 			</div>
-			<div class="span3">
-				<div class="well">
-					<p>Total number of contacts</p>
-					<h1><%= @presenter.total_contacts %> <span id="contact_sparkline"></span></h1>
+			<div class="col-md-3 col-sm-6">
+				<div class="fd-tile detail clean tile-purple">
+					<div class="content">
+						<p>Total number of contacts</p>
+						<h1><%= @presenter.total_contacts %></h1>
+					</div>
+					<div class="icon"><span id="contact_sparkline"></span></div>
+					<a class="details" href="#"></a>
 				</div>
 			</div>
-			<div class="span3">
-				<div class="well">
-					<p>Total number of events</p>
-					<h1><%= @presenter.total_events %> <span id="event_sparkline"></span></h1>
+			<div class="col-md-3 col-sm-6">
+				<div class="fd-tile detail clean tile-purple">
+					<div class="content">
+						<p>Total number of events</p>
+						<h1><%= @presenter.total_events %></h1>
+					</div>
+					<div class="icon"><span id="event_sparkline"></span></div>
+					<a class="details" href="#"></a>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="row-fluid">
-	<div class="span12">
-		<div class="row-fluid">
-			<div class="span6">
+<div class="row">
+	<div class="col-sm-12 col-md-12 col-lg-12">
+		<div class="row">
+			<div class="col-sm-6 col-md-6 col-lg-6">
 				<h2>Animal Statuses</h2>
 				<canvas id="statusDoughnutCanvas" height="250" width="250"></canvas>
 				<canvas id="statusPolarCanvas" height="250" width="250"></canvas>
@@ -45,7 +61,7 @@
 					<% end %>
 				</ul>
 			</div>
-			<div class="span6">
+			<div class="col-sm-6 col-md-6 col-lg-6">
 				<h2>Animal Species</h2>
 				<canvas id="speciesDoughnutCanvas" height="250" width="250"></canvas>
 				<canvas id="speciesPolarCanvas" height="250" width="250"></canvas>
@@ -62,10 +78,10 @@
 		</div>
 	</div>
 </div>
-<div class="row-fluid">
-	<div class="span12">
-		<div class="row-fluid">
-			<div class="span6">
+<div class="row">
+	<div class="col-sm-12 col-md-12 col-lg-12">
+		<div class="row">
+			<div class="col-sm-6 col-md-6 col-lg-6">
 				<h2>Animal Colors</h2>
 				<canvas id="colorDoughnutCanvas" height="250" width="250"></canvas>
 				<canvas id="colorPolarCanvas" height="250" width="250"></canvas>
@@ -96,30 +112,35 @@
 		</div>
 	</div>
 </div>
-<div class="row-fluid">
-	<div class="span12">	
+<div class="row">
+	<div class="col-sm-12 col-md-12 col-lg-12">	
 		<hr />
 	</div>
 </div>
-<div class="row-fluid">
-	<div class="span12">	
-		<div class="row-fluid">
-<!-- 			<div class="span6">
+
+<!-- <div class="row">
+	<div class="col-sm-12 col-md-12 col-lg-12">	
+		<div class="row">
+<div class="col-sm-6 col-md-6 col-lg-6">
+	<div class="block-flat">
 				<h2>Recent Activity</h2>
 				<%#= render "latest_activity", :latest_activity => @presenter.latest_activity %>
-			</div> -->
-<!-- 			<div class="span6">
+			</div>
+			</div>
+<div class="col-sm-6 col-md-6 col-lg-6 ">
+	<div class="block-flat">
 				<h2>Public Animals</h2>
 				<%#= render "public_animals", :public_animals => @presenter.public_animals %>
-			</div> -->
+			</div> 
+		</div>
 		</div>
 	</div>
-</div>
+</div> -->
 
 <% content_for :javascript_footer do %>
 	<script type="text/javascript">
 		// set chart sizes based on loaded screen size
-		var chart_sizes = Math.round(($(".span6").width()/2.5));
+		var chart_sizes = Math.round(($(".col-lg-6").width()/2.5));
 		$("#statusDoughnutCanvas").attr({width: chart_sizes, height: chart_sizes});
 		$("#statusPolarCanvas").attr({width: chart_sizes, height: chart_sizes});
 

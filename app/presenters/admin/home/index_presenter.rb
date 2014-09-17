@@ -52,9 +52,10 @@ class Admin::Home::IndexPresenter
       vet_contacts = VetContact.where(:organization_id => @user.organization_id).count() 
       volunteer_contacts = VolunteerContact.where(:organization_id => @user.organization_id).count() 
       adoption_contacts = AdoptionContact.where(:organization_id => @user.organization_id).count() 
-      relinquishment_contacts = RelinquishmentContact.where(:organization_id => @user.organization_id).count() 
+      relinquishment_contacts = RelinquishmentContact.where(:organization_id => @user.organization_id).count()
+      foster_contacts = FosterContact.where(:organization_id => @user.organization_id).count() 
 
-      vet_contacts + volunteer_contacts + adoption_contacts + relinquishment_contacts
+      vet_contacts + volunteer_contacts + adoption_contacts + relinquishment_contacts + foster_contacts
     end
   end
 
@@ -70,7 +71,7 @@ class Admin::Home::IndexPresenter
       sex[:female] = Animal.where(:organization_id => @user.organization_id, :animal_sex_id => 2).count()
       sex[:unknown] = Animal.where(:organization_id => @user.organization_id, :animal_sex_id => 3).count()
 
-      color = Paleta::Color.new(:hex, "d63a4c")
+      color = Paleta::Color.new(:hex, "7761a7")
       palette = Paleta::Palette.generate(:type => :analogous, :from => :color, :color => color, :size => 3)
       colors = palette.to_array(color_model = :hex)
       colors.shuffle!
