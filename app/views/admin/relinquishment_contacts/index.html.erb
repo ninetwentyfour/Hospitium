@@ -3,6 +3,10 @@
 		<a class="btn btn-primary btn-rad btn-trans" href="/admin/relinquishment_contacts/new"><i class="fa fa-plus"></i>Add New Relinquishment Contact</a>
 		&nbsp;
 		<a class="btn btn-primary btn-rad btn-trans" href="/admin/relinquishment_contacts.csv" id="animal_sync_button"><i class="fa fa-download"></i> Export</a>
+		&nbsp;
+		<% unless current_user.organization.relinquishment_form.url == "/relinquishment_forms/original/missing.png" %>
+			<%= link_to raw('<i class="fa fa-file"></i> Download Relinquishment Form'), current_user.organization.relinquishment_form.url, :class => "btn btn-primary btn-rad btn-trans" %>
+		<% end %>
 
 		<a class="btn btn-primary btn-rad btn-trans pull-right" data-toggle="modal" href="#myModal" ><i class="fa fa-search"></i> Advanced Search</a>
 	</div>

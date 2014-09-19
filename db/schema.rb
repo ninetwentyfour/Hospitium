@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140913171707) do
+ActiveRecord::Schema.define(version: 20140919224010) do
 
   create_table "adopt_a_pet_accounts", force: true do |t|
     t.integer  "user_id"
@@ -276,6 +276,22 @@ ActiveRecord::Schema.define(version: 20140913171707) do
     t.string   "zip_code"
     t.string   "email"
     t.string   "website"
+    t.string   "adoption_form_file_name"
+    t.string   "adoption_form_content_type"
+    t.integer  "adoption_form_file_size"
+    t.datetime "adoption_form_updated_at"
+    t.string   "volunteer_form_file_name"
+    t.string   "volunteer_form_content_type"
+    t.integer  "volunteer_form_file_size"
+    t.datetime "volunteer_form_updated_at"
+    t.string   "relinquishment_form_file_name"
+    t.string   "relinquishment_form_content_type"
+    t.integer  "relinquishment_form_file_size"
+    t.datetime "relinquishment_form_updated_at"
+    t.string   "foster_form_file_name"
+    t.string   "foster_form_content_type"
+    t.integer  "foster_form_file_size"
+    t.datetime "foster_form_updated_at"
   end
 
   add_index "organizations", ["uuid"], name: "index_organizations_on_uuid", using: :btree

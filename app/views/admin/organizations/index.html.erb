@@ -36,6 +36,107 @@
 				</div>
 		</div>
 	</div>
+
+<a class="btn" data-toggle="modal" href="#adoption_form" ><i class="fa fa-plus"></i> Add Adoption Form</a>
+<a class="btn" data-toggle="modal" href="#volunteer_form" ><i class="fa fa-plus"></i> Add Volunteer Form</a>
+<a class="btn" data-toggle="modal" href="#relinquishment_form" ><i class="fa fa-plus"></i> Add Relinquishment Form</a>
+<a class="btn" data-toggle="modal" href="#foster_form" ><i class="fa fa-plus"></i> Add Foster Form</a>
+
+<div class="modal colored-header" id="adoption_form" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add New Adoption Form</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<div class="progress progress-striped active adoption_form_upload_bar" style="display:none;">
+					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+				</div>
+				<p class="adoption_form_upload_bar" style="display:none;">Loading...</p>
+				<%= form_for organization, :url => admin_organization_path(organization.id), :html => { :id => "adoption_form_upload" }, :validate => true do |f| %>
+					<%= f.file_field :adoption_form, :accept => "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.wordprocessingml.template" %>
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="#" class="btn btn-primary submit-button" data-form-id="adoption_form_upload">Save changes</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal colored-header" id="volunteer_form" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add New Volunteer Form</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<div class="progress progress-striped active volunteer_form_upload_bar" style="display:none;">
+					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+				</div>
+				<p class="volunteer_form_upload_bar" style="display:none;">Loading...</p>
+				<%= form_for organization, :url => admin_organization_path(organization.id), :html => { :id => "volunteer_form_upload" }, :validate => true do |f| %>
+					<%= f.file_field :volunteer_form, :accept => "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.wordprocessingml.template" %>
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="#" class="btn btn-primary submit-button" data-form-id="volunteer_form_upload">Save changes</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal colored-header" id="relinquishment_form" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add New Relinquishment Form</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<div class="progress progress-striped active relinquishment_form_upload_bar" style="display:none;">
+					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+				</div>
+				<p class="relinquishment_form_upload_bar" style="display:none;">Loading...</p>
+				<%= form_for organization, :url => admin_organization_path(organization.id), :html => { :id => "relinquishment_form_upload" }, :validate => true do |f| %>
+					<%= f.file_field :relinquishment_form, :accept => "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.wordprocessingml.template" %>
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="#" class="btn btn-primary submit-button" data-form-id="relinquishment_form_upload">Save changes</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal colored-header" id="foster_form" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+				<a class="close" data-dismiss="modal" href="#">×</a>
+				<h3>Add New Foster Form</h3>
+      </div>
+      <div class="modal-body" style="overflow:hidden;">
+				<div class="progress progress-striped active foster_form_upload_bar" style="display:none;">
+					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
+				</div>
+				<p class="foster_form_upload_bar" style="display:none;">Loading...</p>
+				<%= form_for organization, :url => admin_organization_path(organization.id), :html => { :id => "foster_form_upload" }, :validate => true do |f| %>
+					<%= f.file_field :foster_form, :accept => "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.wordprocessingml.template" %>
+				<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="#" class="btn btn-primary submit-button" data-form-id="foster_form_upload">Save changes</a>
+      </div>
+    </div>
+  </div>
+</div>
 	
 	<% content_for :javascript_footer do %>		
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>

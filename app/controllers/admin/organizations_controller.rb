@@ -17,11 +17,12 @@ class Admin::OrganizationsController < Admin::ApplicationController
     @organization = Organization.find(params[:id])
     @organization.update_attributes(organization_params)
     
-    respond_with(@organization, :location => admin_organizations_path)
+    flash[:success] = "Update successful"
+    redirect_to :back
   end
 
   private
     def organization_params
-      params.require(:organization).permit(:name, :phone_number, :address, :city, :state, :zip_code, :email, :website)
+      params.require(:organization).permit(:name, :phone_number, :address, :city, :state, :zip_code, :email, :website, :adoption_form, :volunteer_form, :relinquishment_form, :foster_form)
     end
 end

@@ -25,19 +25,16 @@ describe Admin::OrganizationsController do
   describe "PUT update" do
     describe "with valid params" do
       it "assigns the requested organization as @organization" do
+        request.env["HTTP_REFERER"] = "localhost"
         put :update, id: @organization, organization: FactoryGirl.attributes_for(:organization)
         assigns(:organization).should eq(@organization) 
       end
       
       it "changes @organization attributes" do
+        request.env["HTTP_REFERER"] = "localhost"
         put :update, {:id => @organization.to_param, :organization => { "name" => "Edit" }}
         @organization.reload
         @organization.name.should eq("Edit")
-      end
-
-      it "redirects to the organization" do
-        put :update, id: @organization, organization: FactoryGirl.attributes_for(:organization)
-        response.should redirect_to(admin_organizations_path)
       end
     end
   end

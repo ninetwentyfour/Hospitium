@@ -1,5 +1,40 @@
 class Organization < ActiveRecord::Base
     include ActionView::Helpers::NumberHelper
+
+    has_attached_file :adoption_form, 
+                      :default_url => "https://d4uktpxr9m70.cloudfront.net/pdfs/Adoption-Form.pdf", 
+                      :storage => :s3, 
+                      :s3_protocol => "https", 
+                      :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, 
+                      :bucket => 'hospitium-static', 
+                      :url => "/system/:hash/:filename", 
+                      :hash_secret => ENV['SALTY']
+    has_attached_file :volunteer_form, 
+                      :default_url => "https://d4uktpxr9m70.cloudfront.net/pdfs/Volunteer-Application.pdf", 
+                      :storage => :s3, 
+                      :s3_protocol => "https", 
+                      :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, 
+                      :bucket => 'hospitium-static', 
+                      :url => "/system/:hash/:filename", 
+                      :hash_secret => ENV['SALTY']
+    has_attached_file :relinquishment_form, 
+                      :storage => :s3, 
+                      :s3_protocol => "https", 
+                      :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, 
+                      :bucket => 'hospitium-static', 
+                      :url => "/system/:hash/:filename", 
+                      :hash_secret => ENV['SALTY']
+    has_attached_file :foster_form, 
+                      :storage => :s3, 
+                      :s3_protocol => "https", 
+                      :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, 
+                      :bucket => 'hospitium-static', 
+                      :url => "/system/:hash/:filename", 
+                      :hash_secret => ENV['SALTY']
+    validates_attachment_content_type :adoption_form, :content_type => ['application/pdf', 
+                                                                        'application/msword', 
+                                                                        'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
+                                                                        'application/vnd.openxmlformats-officedocument.wordprocessingml.template']
     
     has_many :adoption_contacts, :dependent => :destroy
     has_many :animals, :dependent => :destroy
@@ -15,13 +50,14 @@ class Organization < ActiveRecord::Base
     has_many :vet_contacts, :dependent => :destroy
     has_many :volunteer_contacts, :dependent => :destroy
     has_many :wordpress_accounts, :dependent => :destroy
+    has_many :foster_contacts, :dependent => :destroy
     has_many :users, :dependent => :destroy
     
     before_create :create_uuid
     before_update :modify_phone_number
     after_create :add_default_status, :add_default_animal_colors, :add_default_species
 
-    attr_accessible :name, :phone_number, :address, :city, :state, :zip_code, :email, :website
+    attr_accessible :name, :phone_number, :address, :city, :state, :zip_code, :email, :website, :adoption_form, :volunteer_form, :relinquishment_form, :foster_form
 
     validates_uniqueness_of :name
     

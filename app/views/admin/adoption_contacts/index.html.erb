@@ -5,7 +5,7 @@
 			&nbsp;
 			<a class="btn btn-primary btn-rad btn-trans" href="/admin/adoption_contacts.csv" id="animal_sync_button"><i class="fa fa-download"></i> Export</a>
 			&nbsp;
-			<a class="btn btn-primary btn-rad btn-trans" href="https://d4uktpxr9m70.cloudfront.net/pdfs/Adoption-Form.pdf"><i class="fa fa-file"></i> Download Adoption Form</a>
+			<%= link_to raw('<i class="fa fa-file"></i> Download Adoption Form'), current_user.organization.adoption_form.url, :class => "btn btn-primary btn-rad btn-trans" %>
 			<a class="btn btn-primary btn-rad btn-trans pull-right" data-toggle="modal" href="#myModal" ><i class="fa fa-search"></i> Advanced Search</a>
 		<!-- </div> -->
 	</div>

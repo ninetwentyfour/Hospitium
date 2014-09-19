@@ -4,7 +4,7 @@
 		&nbsp;
 		<a class="btn btn-primary btn-rad btn-trans" href="/admin/volunteer_contacts.csv" id="animal_sync_button"><i class="fa fa-download"></i> Export</a>
 		&nbsp;
-		<a class="btn btn-primary btn-rad btn-trans" href="https://d4uktpxr9m70.cloudfront.net/pdfs/Volunteer-Application.pdf"><i class="fa fa-file"></i> Download Volunteer Application</a>
+		<%= link_to raw('<i class="fa fa-file"></i> Download Volunteer Form'), current_user.organization.volunteer_form.url, :class => "btn btn-primary btn-rad btn-trans" %>
 
 		<a class="btn btn-primary btn-rad btn-trans pull-right" data-toggle="modal" href="#myModal" ><i class="fa fa-search"></i> Advanced Search</a>
 	</div>
