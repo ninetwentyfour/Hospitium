@@ -1,7 +1,7 @@
 # SQLite version 3.x
 #   gem install sqlite3
 development:
-  adapter: postgresql
+  adapter: mysql2
   host: 127.0.0.1
   encoding: utf8
   database: animal_development
@@ -14,7 +14,7 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test: &test
-    adapter: postgresql
+    adapter: mysql2
     host: 0.0.0.0
     encoding: utf8
     database: animal_test
