@@ -4,7 +4,7 @@ ruby "2.1.3"
 # load ENV vars for testing and dev
 gem 'dotenv-rails', :groups => [:development, :test]
 
-gem 'rails', '4.0.9'
+gem 'rails', '4.1.6'
 
 # Gems used in all environments
 gem 'mysql2'
@@ -16,7 +16,7 @@ gem 'cancan'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
-gem 'ransack', github: "ernie/ransack", branch: "rails-4"
+gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
 gem 'juggernaut'
 gem 'gravatar_image_tag'
 gem "spreadsheet"
@@ -25,7 +25,7 @@ gem 'redcarpet'
 gem 'encryptor'
 gem 'json_builder'
 gem "statsd-ruby", :require => "statsd"
-gem 'impressionist' # record views of public animals
+gem 'impressionist',:github => "Loremaster/impressionist" # record views of public animals
 gem 'bitly'
 gem 'octokit'
 gem 'chronic'
@@ -34,6 +34,9 @@ gem 'paleta'
 # security
 gem 'secure_headers'
 gem 'rack-attack'
+
+# hack for rails 4.1
+gem "polyamorous", :github => "activerecord-hackery/polyamorous"
 
 # heroku gems for pulling/pushing db
 # gem 'heroku'
@@ -67,7 +70,7 @@ group :production, :development do
 	gem 'asset_sync'
 	gem 'sanitize'
 	gem 'puma'
-	gem 'client_side_validations', :git => "git://github.com/bcardarella/client_side_validations.git", :branch => "4-0-beta"
+	gem 'client_side_validations', :git => "git://github.com/substantial/client_side_validations.git", :branch => "support-rails-4.1"
 	gem 'best_in_place', github: "ninetwentyfour/best_in_place"
 	gem 'therubyracer'
 	gem 'jquery-rails', '2.0.1'

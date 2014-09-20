@@ -29,7 +29,7 @@ class Animal < ActiveRecord::Base
 
   attr_accessible :name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased, 
     :deceased_reason, :adopted_date, :animal_color_id, :image, :second_image, :third_image, :fourth_image, :public, :birthday, :animal_sex_id, :spay_neuter_id,
-    :biter_id, :status_id, :video_embed, :microchip,:impressions_count
+    :biter_id, :status_id, :video_embed, :microchip, :impressions_count
   
   validates_presence_of :name, :date_of_intake, :organization, :species, :animal_color, :biter, :spay_neuter, :animal_sex, :status
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']

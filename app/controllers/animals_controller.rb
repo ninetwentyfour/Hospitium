@@ -18,7 +18,7 @@ class AnimalsController < ApplicationController
     @animals = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter).
                       where('public' => 1).
                       paginate(:page => params[:page], :per_page => 10).
-                      order("updated_at DESC").shuffle!
+                      order("updated_at DESC").to_a.shuffle!
     
     @animals.select! {|animal| animal.organization.has_info? }
     respond_with(@animals)

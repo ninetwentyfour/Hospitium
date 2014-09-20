@@ -35,7 +35,7 @@ class Admin::Home::IndexPresenter
   
   def public_animals
     Rails.cache.fetch("public_animals_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}") do
-      Animal.where(:organization_id => @user.organization_id, :public => 1).sort! { |a,b| b.impressions_count <=> a.impressions_count }
+      Animal.where(:organization_id => @user.organization_id, :public => 1).to_a.sort! { |a,b| b.impressions_count <=> a.impressions_count }
     end
   end
 
