@@ -85,7 +85,7 @@ group :production, :development do
 	gem 'coffee-rails'
 	gem 'uglifier'
 	gem 'yui-compressor'
-	gem 'closure-compiler'
+	gem 'closure-compiler', '1.1.10'
 end
 
 group :test, :development do

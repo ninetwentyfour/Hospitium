@@ -111,7 +111,7 @@ GEM
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cliver (0.3.2)
-    closure-compiler (1.1.11)
+    closure-compiler (1.1.10)
     cocaine (0.5.4)
       climate_control (>= 0.0.3, < 1.0)
     coffee-rails (4.0.1)
@@ -454,7 +454,7 @@ DEPENDENCIES
   capybara (>= 2.2.0)
   chronic
   client_side_validations!
-  closure-compiler
+  closure-compiler (= 1.1.10)
   coffee-rails
   comma
   coveralls
