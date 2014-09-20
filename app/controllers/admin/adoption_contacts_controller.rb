@@ -1,5 +1,6 @@
 class Admin::AdoptionContactsController < Admin::CrudController
   load_and_authorize_resource
+  include PublicActivity::StoreController
   
   respond_to :html, :xml, :json, :csv
 

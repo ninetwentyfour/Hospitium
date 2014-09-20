@@ -14,6 +14,4 @@ class AnimalColorObserver < ActiveRecord::Observer
       :record => animal_color.changes
     })
   end
-  
-  
 end

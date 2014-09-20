@@ -38,5 +38,4 @@ class UserObserver < ActiveRecord::Observer
       end
     end
   end
-  
 end

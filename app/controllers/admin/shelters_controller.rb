@@ -1,5 +1,6 @@
 class Admin::SheltersController < Admin::CrudController
   load_and_authorize_resource
+  include PublicActivity::StoreController
   
   respond_to :html, :json, :csv
 

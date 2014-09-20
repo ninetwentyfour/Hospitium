@@ -1,6 +1,15 @@
 class VetContact < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   include CommonScopes
+  include PublicActivity::Model
+  tracked owner: -> controller, model { controller.current_user }, 
+          recipient: -> controller, model { controller.current_user.organization }, 
+          params: {
+            author_name: -> controller, model { controller.current_user.username },
+            author_email: -> controller, model { controller.current_user.email },
+            object_name: -> controller, model { model.clinic_name },
+            summary: -> controller, model { model.changes }
+          }
   
   belongs_to :organization
   before_create :create_uuid, :modify_phone_number

@@ -6,7 +6,7 @@ class Admin::Home::IndexPresenter
 
     @species_count = Species.where(:organization_id => @user.organization_id).count()
 
-    @events_count = Event.where(:organization_id => @user.organization_id).count() 
+    @events_count = PublicActivity::Activity.where(:recipient_id => @user.organization_id).count() 
   end
   
   def status_chart
@@ -28,8 +28,8 @@ class Admin::Home::IndexPresenter
   end
   
   def latest_activity
-    Rails.cache.fetch("latest_activity_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}") do
-      Event.where(:organization_id => @user.organization_id).order("created_at desc").limit(15)
+    Rails.cache.fetch("latest_activity_hash_user_#{@user.organization_id}_#{@events_count}") do
+      PublicActivity::Activity.where(:recipient_id => @user.organization_id).order("created_at desc").limit(5).to_a
     end
   end
   
@@ -106,7 +106,7 @@ class Admin::Home::IndexPresenter
 
   def events_sparkline
     Rails.cache.fetch("event_sparkline_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}_#{@events_count}", :expires_in => 1.hour) do
-      Report.item_per_day(@user.organization_id, "event", 14)
+      Report.item_per_day(@user.organization_id, "activity", 14, "`recipient_id`")
     end
   end
 end

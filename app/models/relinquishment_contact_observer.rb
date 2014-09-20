@@ -13,13 +13,5 @@ class RelinquishmentContactObserver < ActiveRecord::Observer
       :klass  => relinquishment_contact.class.name,
       :record => relinquishment_contact.changes
     })
-    # Juggernaut.publish("/observer/animal/index", {
-    #   :id     => animal.uuid, 
-    #   :type   => type, 
-    #   :klass  => animal.class.name,
-    #   :record => animal.changes
-    # })
   end
-  
-  
 end

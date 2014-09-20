@@ -29,6 +29,7 @@ gem 'impressionist',:github => "Loremaster/impressionist" # record views of publ
 gem 'bitly'
 gem 'octokit'
 gem 'chronic'
+gem 'public_activity'
 # generate color schemes
 gem 'paleta'
 # security

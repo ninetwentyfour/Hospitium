@@ -14,5 +14,4 @@ class FosterContactObserver < ActiveRecord::Observer
       :record => foster_contact.changes
     })
   end
-  
 end

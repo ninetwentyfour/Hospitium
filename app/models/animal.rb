@@ -1,5 +1,14 @@
 class Animal < ActiveRecord::Base
   include CommonScopes
+  include PublicActivity::Model
+  tracked owner: -> controller, model { controller.current_user }, 
+          recipient: -> controller, model { controller.current_user.organization }, 
+          params: {
+            author_name: -> controller, model { controller.current_user.username },
+            author_email: -> controller, model { controller.current_user.email },
+            object_name: -> controller, model { model.name },
+            summary: -> controller, model { model.changes }
+          }
   
   has_attached_file :image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, :bucket => 'hospitium-static', :styles => { :large => "530x530#", :medium => "260x180#", :thumb => "140x140#" }
   has_attached_file :second_image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, :bucket => 'hospitium-static', :styles => { :large => "530x530#", :medium => "260x180#", :thumb => "140x140#" }

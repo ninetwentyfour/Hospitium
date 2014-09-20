@@ -129,3 +129,12 @@ padding: 19px 10px !important;
   cursor: hand;
   cursor: pointer;
 }
+
+ul.timeline li > .date {
+  width:48px !important;
+}
+
+#public_animals_list {
+  max-height: 600px;
+  overflow: auto;
+}

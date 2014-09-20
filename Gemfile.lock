@@ -297,6 +297,11 @@ GEM
       websocket-driver (>= 0.2.0)
     protected_attributes (1.0.8)
       activemodel (>= 4.0.1, < 5.0)
+    public_activity (1.4.2)
+      actionpack (>= 3.0.0)
+      activerecord (>= 3.0)
+      i18n (>= 0.5.0)
+      railties (>= 3.0.0)
     puma (2.9.1)
       rack (>= 1.1, < 2.0)
     rack (1.5.2)
@@ -485,6 +490,7 @@ DEPENDENCIES
   poltergeist
   polyamorous!
   protected_attributes
+  public_activity
   puma
   rack-attack
   rails (= 4.1.6)

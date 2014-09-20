@@ -122,13 +122,10 @@
 	<div class="col-sm-12 col-md-12 col-lg-12">	
 		<div class="row">
 <div class="col-sm-6 col-md-6 col-lg-6">
-	<div class="block-flat">
-				<h2>Recent Activity</h2>
-				<%= render "latest_activity", :latest_activity => @presenter.latest_activity %>
-			</div>
-			</div>
+	<%= render "public_activity", :activities => @presenter.latest_activity %>
+</div>
 <div class="col-sm-6 col-md-6 col-lg-6 ">
-	<div class="block-flat">
+	<div class="block-transparent">
 				<h2>Public Animals</h2>
 				<%= render "public_animals", :public_animals => @presenter.public_animals %>
 			</div> 

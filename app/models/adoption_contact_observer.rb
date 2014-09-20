@@ -14,6 +14,4 @@ class AdoptionContactObserver < ActiveRecord::Observer
       :record => adoption_contact.changes
     })
   end
-  
-  
 end

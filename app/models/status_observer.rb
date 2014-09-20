@@ -13,13 +13,5 @@ class StatusObserver < ActiveRecord::Observer
       :klass  => status.class.name,
       :record => status.changes
     })
-    # Juggernaut.publish("/observer/animal/index", {
-    #   :id     => animal.uuid, 
-    #   :type   => type, 
-    #   :klass  => animal.class.name,
-    #   :record => animal.changes
-    # })
   end
-  
-  
 end

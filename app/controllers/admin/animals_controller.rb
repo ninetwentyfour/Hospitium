@@ -1,5 +1,6 @@
 class Admin::AnimalsController < Admin::ApplicationController
   load_and_authorize_resource
+  include PublicActivity::StoreController
   
   respond_to :html, :json, :csv, :js
   

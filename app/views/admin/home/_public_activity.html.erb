@@ -1,0 +1,29 @@
+<div class="block-transparent">
+  <div class="header">
+    <h2>Recent Activity</h2>
+  </div>
+  <ul class="timeline">
+    <% activities.each do |activity| %>
+      <li>
+        <i class="<%= public_activity_icon(activity.key.split(".").last) %>"></i>
+        <span class="date"><%= activity.created_at.strftime("%d %b") %></span>
+        <div class="content">
+          <p><strong><%= gravatar_image_tag("#{activity.parameters[:author_email]}", :alt => "#{activity.parameters[:author_email]}", :gravatar => { :size => 25 }) %> <%= activity.parameters[:author_name] %></strong> has <%= past_tense_actions(activity.key.split(".").last) %> <%= indefinite_articlerize(activity.trackable_type.underscore.humanize(capitalize: false) ) %>:</p>
+          <blockquote>
+            <% if activity.key.split(".").last == 'update' %>
+              <% activity.parameters[:summary].each do |update_key, update_value| %>
+                <% unless update_key == 'updated_at' %>
+                  <p><%= activity.parameters[:object_name] %> had <%= update_key %> changed from <em><%= update_value.first %></em> to <em><%= update_value.last %></em></p>
+                <% end %>
+              <% end %>
+            <% elsif activity.key.split(".").last == 'create' %>
+              <p><%= activity.parameters[:object_name] %> was created.</p>
+            <% elsif activity.key.split(".").last == 'destroy' %>
+              <p><%= activity.parameters[:object_name] %> was deleted.</p>
+            <% end %>
+          </blockquote>
+        </div>
+      </li>              
+    <% end %>
+  </ul>
+</div>

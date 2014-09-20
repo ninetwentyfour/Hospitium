@@ -4,10 +4,12 @@ class Admin::HomeController < Admin::ApplicationController
     @presenter = Admin::Home::IndexPresenter.new(current_user)
 
     # collect some stats for my dashbaord
-    $statsd.gauge 'number_users', User.count
-    $statsd.gauge 'number_animals', Animal.count
-    $statsd.gauge 'number_organizations', Organization.count
-    $statsd.gauge 'number_events', Event.count
+    Thread.new do
+      $statsd.gauge 'number_users', User.count
+      $statsd.gauge 'number_animals', Animal.count
+      $statsd.gauge 'number_organizations', Organization.count
+      $statsd.gauge 'number_events', PublicActivity::Activity.count
+    end
 
     @active_nav = true
   end
