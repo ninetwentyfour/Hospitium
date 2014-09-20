@@ -22,13 +22,6 @@ test: &test
     password: 
  
 production:
-    adapter: postgresql
-    host: 127.0.0.1
-    encoding: utf8
-    database: animal_prod
-    pool: 5
-    username: root
-    password: 
-    socket: /tmp/mysql.sock
+  url: <%= ENV['DATABASE_URL'] %>
 cucumber:
   <<: *test
