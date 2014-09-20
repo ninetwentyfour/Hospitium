@@ -1,14 +1,24 @@
 <% @organizations.each do |organization| %>
 	<div class="row">
 		<div class="col-sm-12 col-md-12 col-lg-12 main-app-row">
-				<div class="block-flat">
+				<div class="block-flat profile-info">
 					<div class="row">
-						<h1 class="col-sm-6 col-md-6 col-lg-6"><%= best_in_place organization, :name, :type => :input, :nil => "Click me to add content!", :path => admin_organization_path(organization) %></h1>
-
-						<% if can? :cancel, current_user %>
-							<%= link_to raw("<i class='fa fa-remove'></i> Cancel Account"), admin_cancel_user_path(current_user),
-		                            :data => {:confirm => 'Are you sure you want to delete? This will remove all animals, users, and other data associated with your Organization. This action can not be undone.'}, :method => :delete, :class => "btn btn-primary btn-rad btn-trans pull-right tipster", :title => "Delete" %>
-						<% end %>
+            <div class="col-sm-1">
+              <div class="avatar">
+                <%= gravatar_image_tag("#{organization.email}", :alt => "#{organization.email}", :gravatar => { :size => 130 }, :class => "profile-avatar") %>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="personal">
+						    <h1><%= best_in_place organization, :name, :type => :input, :nil => "Click me to add content!", :path => admin_organization_path(organization) %></h1>
+              </div>
+            </div>
+            <div class="col-sm-3">
+  						<% if can? :cancel, current_user %>
+  							<%= link_to raw("<i class='fa fa-remove'></i> Cancel Account"), admin_cancel_user_path(current_user),
+  		                            :data => {:confirm => 'Are you sure you want to delete? This will remove all animals, users, and other data associated with your Organization. This action can not be undone.'}, :method => :delete, :class => "btn btn-primary btn-rad btn-trans pull-right tipster", :title => "Delete" %>
+  						<% end %>
+            </div>
 					</div>
 				</div>
 				<div class="row">

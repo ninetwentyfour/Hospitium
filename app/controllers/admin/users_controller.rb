@@ -22,8 +22,8 @@ class Admin::UsersController < Admin::CrudController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.where(:id => params[:id]).
-                  first()
+    @user = User.where(:id => params[:id]).first()
+    @activities = PublicActivity::Activity.where(:owner_id => @user.id).order("created_at desc").limit(5)
     
     respond_with(@user)
   end

@@ -1,8 +1,19 @@
 <div class="row">
 	<div class="col-sm-12 col-md-12 col-lg-12 main-app-row">
-		<div class="block-flat">
-			<h1><%= best_in_place @relinquishment_contact, :first_name, :type => :input, :nil => "Click me to add content!", :path => admin_relinquishment_contact_path %> 
-			<%= best_in_place @relinquishment_contact, :last_name, :type => :input, :nil => "", :path => admin_relinquishment_contact_path %></h1>
+		<div class="block-flat profile-info">
+      <div class="row">
+        <div class="col-sm-1">
+          <div class="avatar">
+            <%= gravatar_image_tag("#{@relinquishment_contact.email}", :alt => "#{@relinquishment_contact.email}", :gravatar => { :size => 130 }, :class => "profile-avatar") %>
+          </div>
+        </div>
+        <div class="col-sm-11">
+          <div class="personal">
+            <h1><%= best_in_place @relinquishment_contact, :first_name, :type => :input, :nil => "Click me to add content!", :path => admin_relinquishment_contact_path %> 
+            <%= best_in_place @relinquishment_contact, :last_name, :type => :input, :nil => "", :path => admin_relinquishment_contact_path %></h1>
+          </div>
+        </div>
+      </div>
 		</div>
 		<div class="row">
 			<div class="tabbable col-sm-6 col-md-6 col-lg-6 ">

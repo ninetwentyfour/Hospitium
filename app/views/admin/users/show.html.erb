@@ -1,17 +1,28 @@
 <div class="row">
 	<div class="col-sm-12 col-md-12 col-lg-12 main-app-row">
-		<div class="block-flat">
-			<% if can? :update, @user %>
-				<h1><%= best_in_place @user, :username, :type => :input, :nil => "Click me to add content!", :path => admin_user_path %></h1>
-			<% else %>
-				<h1><%= @user.username %></h1>
-			<% end %>
+		<div class="block-flat profile-info">
+			<div class="row">
+				<div class="col-sm-1">
+					<div class="avatar">
+						<%= gravatar_image_tag("#{@user.email}", :alt => "#{@user.email}", :gravatar => { :size => 130 }, :class => "profile-avatar") %>
+					</div>
+				</div>
+				<div class="col-sm-11">
+					<div class="personal">
+						<% if can? :update, @user %>
+							<h1><%= best_in_place @user, :username, :type => :input, :nil => "Click me to add content!", :path => admin_user_path %></h1>
+						<% else %>
+							<h1><%= @user.username %></h1>
+						<% end %>
 
-			<% if can? :set_role, @user %>
-				<span class="admin_user_check"><%= best_in_place @user, :permissions, :type => :select, :collection => [[0, "Standard"], [1, "Admin"]], :path => admin_user_role_path, :nil => @user.roles.first.name %></span>
-			<% else %>
-				<%= @user.roles.first.name %>
-			<% end %>
+						<% if can? :set_role, @user %>
+							<span class="admin_user_check"><%= best_in_place @user, :permissions, :type => :select, :collection => [[0, "Standard"], [1, "Admin"]], :path => admin_user_role_path, :nil => @user.roles.first.name %></span>
+						<% else %>
+							<%= @user.roles.first.name %>
+						<% end %>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="row">
 			<div class="tabbable col-sm-6 col-md-6 col-lg-6 ">
@@ -72,11 +83,35 @@
 				</div>
 			</div>
 			<div class="col-sm-6 col-md-6 col-lg-6 map-block">
-				<ul class="thumbnails">
-					<li>
-						<a class="thumbnail" href="#"><%= gravatar_image_tag("#{@user.email}", :alt => "#{@user.email}", :gravatar => { :size => 400 }, :style => "") %></a>
-					</li>
-				</ul>
+						<div class="block-transparent">
+						  <div class="header">
+						    <h2>Recent Activity</h2>
+						  </div>
+						  <ul class="timeline">
+						    <% @activities.each do |activity| %>
+						      <li>
+						        <i class="<%= public_activity_icon(activity.key.split(".").last) %>"></i>
+						        <span class="date"><%= activity.created_at.strftime("%d %b") %></span>
+						        <div class="content">
+						          <p><strong><%= gravatar_image_tag("#{activity.parameters[:author_email]}", :alt => "#{activity.parameters[:author_email]}", :gravatar => { :size => 25 }) %> <%= activity.parameters[:author_name] %></strong> has <%= past_tense_actions(activity.key.split(".").last) %> <%= indefinite_articlerize(activity.trackable_type.underscore.humanize(capitalize: false) ) %>:</p>
+						          <blockquote>
+						            <% if activity.key.split(".").last == 'update' %>
+						              <% activity.parameters[:summary].each do |update_key, update_value| %>
+						                <% unless update_key == 'updated_at' %>
+						                  <p><%= activity.parameters[:object_name] %> had <%= update_key %> changed from <em><%= update_value.first %></em> to <em><%= update_value.last %></em></p>
+						                <% end %>
+						              <% end %>
+						            <% elsif activity.key.split(".").last == 'create' %>
+						              <p><%= activity.parameters[:object_name] %> was created.</p>
+						            <% elsif activity.key.split(".").last == 'destroy' %>
+						              <p><%= activity.parameters[:object_name] %> was deleted.</p>
+						            <% end %>
+						          </blockquote>
+						        </div>
+						      </li>              
+						    <% end %>
+						  </ul>
+						</div>
 			</div>
 		</div>
 	</div>
