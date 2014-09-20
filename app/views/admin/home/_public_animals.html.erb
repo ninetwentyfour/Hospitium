@@ -1,11 +1,11 @@
 <div class="dashboard-table">
 	<% unless public_animals.blank? %>
-		<table class="table table-striped">
-			<thead>
+		<table class="no-border">
+			<thead class="no-border">
 				<th>Animal</th>
 				<th>View Count</th>
 			</thead>
-			<tbody>
+			<tbody class="no-border-x no-border-y">
 				<% public_animals.each do |animal| %>
 					<tr>
 						<td><a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><%= animal.name %></a></td>

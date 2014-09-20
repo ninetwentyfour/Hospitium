@@ -1,10 +1,10 @@
 <div class="dashboard-table">
 	<% unless latest_activity.blank? %>
-		<table class="table table-striped dashboard-table">
+		<table class="no-border">
 			<thead>
 				<th>Event</th>
-			</thead>
-			<tbody>
+			</thead class="no-border">
+			<tbody class="no-border-x no-border-y">
 				<% latest_activity.each do |event| %>
 					<% unless event.event_message.blank? %>
 						<tr><td><%= event.event_message %> <span class="event_time"><%= time_ago_in_words(event.created_at) %> ago.</span></td></tr>

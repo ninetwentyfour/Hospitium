@@ -47,7 +47,7 @@ class Animal < ActiveRecord::Base
   delegate :value, :to => :biter, :prefix => :biter, :allow_nil => true
   delegate :name, :to => :shelter, :prefix => :shelter, :allow_nil => true
   
-  is_impressionable :counter_cache => true
+  is_impressionable :counter_cache => true, :unique => :session_hash
   
   #set_primary_key :uuid
   def to_params
