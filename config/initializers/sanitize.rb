@@ -51,7 +51,9 @@ class Sanitize
 
       # Verify that the video URL is actually a valid YouTube or Facebook video URL.
       return unless node['src'] =~ /\Ahttp?:\/\/(?:www\.)?youtube(?:-nocookie)?\.com\// or 
-                    node['src'] =~ /\Ahttps?:\/\/(?:www\.)?youtube(?:-nocookie)?\.com\// or 
+                    node['src'] =~ /\Ahttps?:\/\/(?:www\.)?youtube(?:-nocookie)?\.com\// or
+                    node['src'] =~ %r|\A(?:https?:)?//(?:www\.)?youtube(?:-nocookie)?\.com/| or
+                    node['src'] =~ %r|\A(?:https?:)?//(?:www\.)?facebook?\.com/| or
                     node['src'] =~ /\Ahttps?:\/\/(?:www\.)?facebook?\.com\//
 
       # We're now certain that this is a YouTube embed, but we still need to run
@@ -61,7 +63,7 @@ class Sanitize
         :elements => %w[iframe],
 
         :attributes => {
-          'iframe'  => %w[allowfullscreen frameborder src]
+          'iframe'  => %w[allowfullscreen frameborder src width height]
         }
       })
 

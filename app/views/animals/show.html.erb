@@ -1,70 +1,104 @@
-
-<div class="block-flat clearfix">
-	<div class="page-header">
+<% animal = @animal %>
+<div class="block-transparent clearfix">
+	<div class="block-flat col-sm-12 col-md-12 col-lg-12">
 		<h1><%= @animal.name %></h1>
 	</div>
 	<div class="otherAnimalInfo">
-		<div class="row-fluid">
-			<div class="col-sm-12 col-md-12 col-lg-12 main-app-row">
-				<div class="col-sm-4 col-md-4 col-lg-4">
-					<p>Status: <%= @animal.status.status %></p>
-					<p>Species: <%= @animal.species_name %></p>
-					<p>Sex: <%= @animal.sex unless @animal.animal_sex.blank? %></p>
-					<p>Age: <%= calculate_animal_age(@animal.birthday) unless @animal.birthday.blank? %></p>
-					<p>Spay/Neuter: <%= @animal.spay unless @animal.spay_neuter.blank? %></p>
-					<p>Color: <%= @animal.color %></p>
-					<p>Special Needs: <%= @animal.special_needs %></p>
-					<hr />
-					<p>Adoption Contact</p>
-					<p>Organization: <a href="/organizations/<%= @animal.organization.uuid %>"><%= @animal.organization_name %></a></p>
-					<%= markdown("Website: #{@animal.organization.pretty_website}") %>
-					<%= markdown("Email: #{@animal.organization_email}") %>
-					<p>Phone Number: <%= number_to_phone(@animal.organization_phone_number, :area_code => true) %></p>
-					<p>Address: <%= @animal.organization_address %></p>
-					<p><%= @animal.organization_city %>, <%= @animal.organization_state %> <%= @animal.organization_zip_code %></p>
+		<div class="row">
+			<div class="">
+				<div class="col-sm-5 col-md-5 col-lg-5">
+          <div class="block-flat">
+  					<p>Status: <%= @animal.status.status %></p>
+  					<p>Species: <%= @animal.species_name %></p>
+  					<p>Sex: <%= @animal.sex unless @animal.animal_sex.blank? %></p>
+  					<p>Age: <%= calculate_animal_age(@animal.birthday) unless @animal.birthday.blank? %></p>
+  					<p>Spay/Neuter: <%= @animal.spay unless @animal.spay_neuter.blank? %></p>
+  					<p>Color: <%= @animal.color %></p>
+  					<p>Special Needs: <%= @animal.special_needs %></p>
+<!--           </div>
+					<div class="block-flat"> -->
+            <hr />
+  					<p>Adoption Contact</p>
+  					<p>Organization: <a href="/organizations/<%= @animal.organization.uuid %>"><%= @animal.organization_name %></a></p>
+  					<%= markdown("Website: #{@animal.organization.pretty_website}") %>
+  					<%= markdown("Email: #{@animal.organization_email}") %>
+  					<p>Phone Number: <%= number_to_phone(@animal.organization_phone_number, :area_code => true) %></p>
+  					<p>Address: <%= @animal.organization_address %></p>
+  					<p><%= @animal.organization_city %>, <%= @animal.organization_state %> <%= @animal.organization_zip_code %></p>
+          </div>
 				</div>
 				<div class="col-sm-7 col-md-7 col-lg-7 pull-right animal-pics">
-					<ul class="thumbnails">
-							<li class="pull-right animal_thumb">
-								<a class="thumbnail" data-toggle="modal" href="#image_display_1" >
-									<% unless @animal.image.url(:medium) == "/images/medium/missing.png" %>
-										<img height=180 width=260 src="<%= @animal.image.url(:medium) %>" alt="">
-									<% else %>
-										<img height=180 width=260 src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" alt="">
-									<%end%>
-								</a>
-							</li>
-							<% unless @animal.second_image.url(:medium) == "/second_images/medium/missing.png" %>
-								<li class="pull-right animal_thumb">
-									<a class="thumbnail" data-toggle="modal" href="#image_display_2" >
-										<img height=180 width=260 src="<%= @animal.second_image.url(:medium) %>" alt="">
-									</a>
-								</li>
-							<%end%>
-							<% unless @animal.third_image.url(:medium) == "/third_images/medium/missing.png" %>
-								<li class="pull-right animal_thumb">
-									<a class="thumbnail" data-toggle="modal" href="#image_display_3" >
-										<img height=180 width=260 src="<%= @animal.third_image.url(:medium) %>" alt="">
-									</a>
-								</li>
-							<%end%>
-							<% unless @animal.fourth_image.url(:medium) == "/fourth_images/medium/missing.png" %>
-								<li class="pull-right animal_thumb">
-									<a class="thumbnail" data-toggle="modal" href="#image_display_4" >
-										<img height=180 width=260 src="<%= @animal.fourth_image.url(:medium) %>" alt="">
-									</a>
-								</li>
-							<%end%>
-							<% unless @animal.video_embed.blank? %>
-								<li class="col-sm-8 col-md-8 col-lg-8 pull-right animal_thumb">
-									<a class="thumbnail" href="#" >
-										<div class="embed-container">
-											<%= raw Sanitize.clean(@animal.video_embed, Sanitize::Config::YOUTUBE) %>
-										</div>
-									</a>
-								</li>
-							<%end%>
-					</ul>
+          <div class="gallery-cont">
+            <% unless animal.image.url(:medium) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" %>
+              <div class="item col-sm-6 col-md-6 col-lg-6">
+                <div class="photo">
+                  <div class="head">
+                  </div>
+                  <div class="img">
+                    <img src="<%= animal.image.url(:medium) %>" alt="" class="responsive-image">
+                    <div class="over">
+                      <div class="func"><a href="<%= animal.image.url %>"><i class="fa fa-link"></i></a><a class="image-zoom" data-toggle="modal" href="#image_display_1" ><i class="fa fa-search"></i></a></div>
+                    </div>            
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <% unless animal.second_image.url(:medium) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" %>
+              <div class="item col-sm-6 col-md-6 col-lg-6">
+                <div class="photo">
+                  <div class="head">
+                  </div>
+                  <div class="img">
+                    <img src="<%= animal.second_image.url(:medium) %>" alt="" class="responsive-image">
+                    <div class="over">
+                      <div class="func"><a href="<%= animal.second_image.url %>"><i class="fa fa-link"></i></a><a class="image-zoom" data-toggle="modal" href="#image_display_2" ><i class="fa fa-search"></i></a></div>
+                    </div>            
+                  </div>          
+                </div>
+              </div>
+            <% end %>
+            <% unless animal.third_image.url(:medium) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" %>
+              <div class="item col-sm-6 col-md-6 col-lg-6">
+                <div class="photo">
+                  <div class="head">
+                  </div>
+                  <div class="img">
+                    <img src="<%= animal.third_image.url(:medium) %>" alt="" >
+                    <div class="over">
+                      <div class="func"><a href="<%= animal.third_image.url %>"><i class="fa fa-link"></i></a><a class="image-zoom" data-toggle="modal" href="#image_display_3" ><i class="fa fa-search"></i></a></div>
+                    </div>            
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <% unless animal.fourth_image.url(:medium) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" %>
+              <div class="item col-sm-6 col-md-6 col-lg-6">
+                <div class="photo">
+                  <div class="head">
+                  </div>
+                  <div class="img">
+                    <img src="<%= animal.fourth_image.url(:medium) %>" alt="">
+                    <div class="over">
+                      <div class="func"><a href="<%= animal.fourth_image.url %>"><i class="fa fa-link"></i></a><a class="image-zoom" data-toggle="modal" href="#image_display_4" ><i class="fa fa-search"></i></a></div>
+                    </div>            
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <div class="item col-sm-12 col-md-12 col-lg-12 video-item">
+              <% unless animal.video_embed.blank? %>
+                <div class="photo">
+                  <div class="head">
+                  </div>
+                  <div class="img">
+                    <div class="videoWrapper">
+                      <%= raw Sanitize.clean(animal.video_embed, Sanitize::Config::YOUTUBE).sub(/http:/, 'https:') %>
+                    </div>
+                  </div>
+                </div>
+              <%end%>
+            </div>
+          </div>
 				</div>
 			</div>
 		</div>

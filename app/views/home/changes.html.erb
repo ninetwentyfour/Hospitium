@@ -1,21 +1,28 @@
-	<!-- Main hero unit for a primary marketing message or call to action -->
-	<div class="block-flat clearfix">
-		<div class="page-header">
-			<h1>Recent Changes!</h1>
-		</div>
-		<p style="text-align:right;"><a class="btn btn-success btn-large js-pjax" href="/users/sign_up">Try It Now &raquo;</a></p>
-
-		
-		<p>
-			<ul>
+<div class="block-transparent">
+  <div class="block-flat">
+  	<div class="row">
+  		<div class="col-sm-6 col-md-6 col-lg-6">
+    		<h1>Recent Changes!</h1>
+    	</div>
+    	<div class="col-sm-6 col-md-6 col-lg-6">
+    		<a class="btn btn-success btn-large js-pjax pull-right" href="/users/sign_up">Try It Now &raquo;</a>
+    	</div>
+    </div>
+  </div>
+	<div class="row">
+		<div class="col-sm-7 col-md-7 col-lg-7">
+		  <ul class="list-group todo list-widget">
 				<% @recent_changes.each do |commit| %>
-					<li><strong><%= commit[:date].strftime("%m/%d/%Y") %>:</strong> <%= commit[:message] %></li>
+					<li class="list-group-item"><span class="date"><i class="fa fa-clock-o"></i><%= commit[:date].strftime("%d %b %Y") %></span> <%= commit[:message] %></li>
 				<%end%>
-			</ul>
-		</p>
-
-
+		    <li class="list-group-item"><span class="date"><i class="fa fa-clock-o"></i> 20 Dec</span> Dinner with my family</li>
+		    <li class="list-group-item"><span class="date"><i class="fa fa-clock-o"></i> 13 Jan</span> Meeting with our partners</li>
+		    <li class="list-group-item"><span class="date"><i class="fa fa-clock-o"></i> 18 Feb</span> Work in new project</li>
+		    <li class="list-group-item"><span class="date"><i class="fa fa-clock-o"></i> 21 Feb</span> Go to the doctor</li>
+		  </ul>
+		</div>
 	</div>
+</div>
 
 <% set_meta_description("Ugly list of recent Hospitium changes.") %>
 <% set_meta_keywords("animal,management,software,online,hosted,hospitium") %>

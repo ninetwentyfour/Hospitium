@@ -1,61 +1,72 @@
 <div class="col-sm-6 col-md-6 col-lg-6 pull-right animal-pics">
-	<ul class="thumbnails">
-		<li class="col-sm-6 col-md-6 col-lg-6">
-			<a class="new_link image_new_button" data-toggle="modal" href="#image_1" ><i title="Click to add new" class="fa fa-upload tipster"></i></a>
-			<a class="thumbnail" data-toggle="modal" href="#image_display_1" >
-				<% unless animal.image.url(:medium) == "/images/medium/missing.png" %>
-					<img src="<%= animal.image.url(:medium) %>" alt="" class="responsive-image">
-				<% else %>
-					<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" alt="" class="responsive-image">
-				<%end%>
-			</a>
-		</li>
-		<li class="col-sm-6 col-md-6 col-lg-6">
-			<a class="new_link image_new_button" data-toggle="modal" href="#image_2" ><i title="Click to add new" class="fa fa-upload tipster"></i></a>
-			<a class="thumbnail" data-toggle="modal" href="#image_display_2" >
-				<% unless animal.second_image.url(:medium) == "/second_images/medium/missing.png" %>
-					<img src="<%= animal.second_image.url(:medium) %>" alt="" class="responsive-image">
-				<% else %>
-					<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" alt="" class="responsive-image">
-				<%end%>
-			</a>
-		</li>
-	</ul>
-	<ul class="thumbnails">
-		<li class="col-sm-6 col-md-6 col-lg-6">
-			<a class="new_link image_new_button" data-toggle="modal" href="#image_3" ><i title="Click to add new" class="fa fa-upload tipster"></i></a>
-			<a class="thumbnail" data-toggle="modal" href="#image_display_3" >
-				<% unless animal.third_image.url(:medium) == "/third_images/medium/missing.png" %>
-					<img src="<%= animal.third_image.url(:medium) %>" alt="">
-				<% else %>
-					<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" alt="">
-				<%end%>
-			</a>
-		</li>
-		<li class="col-sm-6 col-md-6 col-lg-6">
-			<a class="new_link image_new_button" data-toggle="modal" href="#image_4" ><i title="Click to add new" class="fa fa-upload tipster"></i></a>
-			<a class="thumbnail" data-toggle="modal" href="#image_display_4" >
-				<% unless animal.fourth_image.url(:medium) == "/fourth_images/medium/missing.png" %>
-					<img src="<%= animal.fourth_image.url(:medium) %>" alt="">
-				<% else %>
-					<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" alt="">
-				<%end%>
-			</a>
-		</li>
-	</ul>
-	<ul class="thumbnails">
-		<li class="col-sm-12 col-md-12 col-lg-12 pull-right animal_thumb">
-			<% unless animal.video_embed.blank? %>
-				<a class="thumbnail" href="#" >
-					<div class="embed-container">
-						<%= raw Sanitize.clean(animal.video_embed, Sanitize::Config::YOUTUBE).sub(/http:/, 'https:') %>
-					</div>
-				</a>
-				<br />
-				<a class="btn btn-primary btn-rad btn-trans" data-toggle="modal" href="#video_upload" ><i class="fa fa-plus"></i> Add Video</a>
+  <div class="gallery-cont">
+    <div class="item col-sm-6 col-md-6 col-lg-6">
+      <div class="photo">
+        <div class="head">
+          <span class="pull-right"><a class="" data-toggle="modal" href="#image_1" ><i title="Click to add new" class="fa fa-upload tipster"></i></a></span>
+        </div>
+        <div class="img">
+          <img src="<%= animal.image.url(:medium) %>" alt="" class="responsive-image">
+          <div class="over">
+            <div class="func"><a href="<%= animal.image.url %>"><i class="fa fa-link"></i></a><a class="image-zoom" data-toggle="modal" href="#image_display_1" ><i class="fa fa-search"></i></a></div>
+          </div>            
+        </div>
+      </div>
+    </div>
+    <div class="item col-sm-6 col-md-6 col-lg-6">
+      <div class="photo">
+        <div class="head">
+          <span class="pull-right"><a class="" data-toggle="modal" href="#image_2" ><i title="Click to add new" class="fa fa-upload tipster"></i></a></span>
+        </div>
+        <div class="img">
+          <img src="<%= animal.second_image.url(:medium) %>" alt="" class="responsive-image">
+          <div class="over">
+            <div class="func"><a href="<%= animal.second_image.url %>"><i class="fa fa-link"></i></a><a class="image-zoom" data-toggle="modal" href="#image_display_2" ><i class="fa fa-search"></i></a></div>
+          </div>            
+        </div>          
+      </div>
+    </div>
+    <div class="item col-sm-6 col-md-6 col-lg-6">
+      <div class="photo">
+        <div class="head">
+          <span class="pull-right"><a class="" data-toggle="modal" href="#image_3" ><i title="Click to add new" class="fa fa-upload tipster"></i></a></span>
+        </div>
+        <div class="img">
+          <img src="<%= animal.third_image.url(:medium) %>" alt="" >
+          <div class="over">
+            <div class="func"><a href="<%= animal.third_image.url %>"><i class="fa fa-link"></i></a><a class="image-zoom" data-toggle="modal" href="#image_display_3" ><i class="fa fa-search"></i></a></div>
+          </div>            
+        </div>
+      </div>
+    </div>
+    <div class="item col-sm-6 col-md-6 col-lg-6">
+      <div class="photo">
+        <div class="head">
+          <span class="pull-right"><a class="" data-toggle="modal" href="#image_4" ><i title="Click to add new" class="fa fa-upload tipster"></i></a></span>
+        </div>
+        <div class="img">
+          <img src="<%= animal.fourth_image.url(:medium) %>" alt="">
+          <div class="over">
+            <div class="func"><a href="<%= animal.fourth_image.url %>"><i class="fa fa-link"></i></a><a class="image-zoom" data-toggle="modal" href="#image_display_4" ><i class="fa fa-search"></i></a></div>
+          </div>            
+        </div>
+      </div>
+    </div>
+    <div class="item col-sm-12 col-md-12 col-lg-12 video-item">
+    	<% unless animal.video_embed.blank? %>
+	      <div class="photo">
+	        <div class="head">
+	          <span class="pull-right"><a class="" data-toggle="modal" href="#video_upload" ><i title="Click to add new" class="fa fa-upload tipster"></i></a></span>
+	        </div>
+	        <div class="img">
+	          <div class="videoWrapper">
+	          	<%= raw Sanitize.clean(animal.video_embed, Sanitize::Config::YOUTUBE).sub(/http:/, 'https:') %>
+	          </div>
+	        </div>
+	      </div>
 			<%else%>
 				<a class="btn btn-primary btn-rad btn-trans" data-toggle="modal" href="#video_upload" ><i class="fa fa-plus"></i> Add Video</a>
 			<%end%>
-		</li>
-	</ul>
+    </div>
+  </div>
 </div>
