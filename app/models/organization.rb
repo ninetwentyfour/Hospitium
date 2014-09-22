@@ -1,14 +1,14 @@
 class Organization < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
-  include PublicActivity::Model
-  tracked owner: -> controller, model { controller.current_user }, 
-          recipient: -> controller, model { controller.current_user.organization }, 
-          params: {
-            author_name: -> controller, model { controller.current_user.username },
-            author_email: -> controller, model { controller.current_user.email },
-            object_name: -> controller, model { model.name },
-            summary: -> controller, model { model.changes }
-          }
+  # include PublicActivity::Model
+  # tracked owner: -> controller, model { controller.current_user }, 
+  #         recipient: -> controller, model { controller.current_user.organization }, 
+  #         params: {
+  #           author_name: -> controller, model { controller.current_user.username },
+  #           author_email: -> controller, model { controller.current_user.email },
+  #           object_name: -> controller, model { model.name },
+  #           summary: -> controller, model { model.changes }
+  #         }
 
   has_attached_file :adoption_form, 
                     :default_url => "https://d4uktpxr9m70.cloudfront.net/pdfs/Adoption-Form.pdf", 

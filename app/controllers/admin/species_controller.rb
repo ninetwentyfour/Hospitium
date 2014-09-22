@@ -1,6 +1,6 @@
 class Admin::SpeciesController < Admin::CrudController
   load_and_authorize_resource
-  include PublicActivity::StoreController
+  # include PublicActivity::StoreController
   
   # Allowed params for create and update
   self.permitted_attrs = [:name]

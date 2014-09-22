@@ -1,6 +1,6 @@
 class Admin::AnimalColorsController < Admin::CrudController
   load_and_authorize_resource
-  include PublicActivity::StoreController
+  # include PublicActivity::StoreController
   
   respond_to :html, :json
 
