@@ -17,7 +17,7 @@ class Report < ActiveRecord::Base
     final_status_array
   end
 
-  def self.item_per_day(org, item, days_past, column="`organization_id`")
+  def self.item_per_day(org, item, days_past, column="organization_id")
     date = Date.today - days_past.to_i
 
     items = item.camelize.constantize.where(column+" = ? and date(created_at) > ?", org, date).group("date(created_at)").count

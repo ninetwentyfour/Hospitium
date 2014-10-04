@@ -60,7 +60,7 @@ describe Admin::NotificationsController do
 
       it "redirects to the created notification" do
         post :create, {:notification =>  FactoryGirl.attributes_for(:notification)}
-        response.should redirect_to(admin_notification_path(Notification.last))
+        response.should redirect_to(admin_notification_path(Notification.order(created_at: :desc).first))
       end
     end
   end

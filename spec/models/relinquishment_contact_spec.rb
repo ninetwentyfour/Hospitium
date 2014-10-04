@@ -19,15 +19,6 @@ describe RelinquishmentContact do
     it{should validate_presence_of(:organization_id)}
   end
   
-  
-  describe "#create_uuid" do
-    let(:relinquishment_contact) { FactoryGirl.create(:relinquishment_contact) }
-    
-    it "generates a uuid on creation" do
-      relinquishment_contact.uuid.should_not be_nil
-    end
-  end
-  
   describe "#modify_phone_number" do
     let(:relinquishment_contact) { FactoryGirl.create(:relinquishment_contact, @attr.merge(:phone => "123-456-7890")) }
     

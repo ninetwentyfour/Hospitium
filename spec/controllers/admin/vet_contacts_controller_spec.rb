@@ -58,7 +58,7 @@ describe Admin::VetContactsController do
 
       it "redirects to the created vet_contact" do
         post :create, {:vet_contact =>  FactoryGirl.attributes_for(:vet_contact)}
-        response.should redirect_to(admin_vet_contact_path(VetContact.last))
+        response.should redirect_to(admin_vet_contact_path(VetContact.order(created_at: :desc).first))
       end
     end
   end

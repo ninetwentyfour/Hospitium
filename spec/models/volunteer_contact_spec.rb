@@ -18,15 +18,6 @@ describe VolunteerContact do
     it{should validate_presence_of(:organization_id)}
   end
   
-  
-  describe "#create_uuid" do
-    let(:volunteer_contact) { FactoryGirl.create(:volunteer_contact) }
-    
-    it "generates a uuid on creation" do
-      volunteer_contact.uuid.should_not be_nil
-    end
-  end
-  
   describe "#modify_phone_number" do
     let(:volunteer_contact) { FactoryGirl.create(:volunteer_contact, @attr.merge(:phone => "123-456-7890")) }
     

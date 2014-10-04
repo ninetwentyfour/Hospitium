@@ -87,26 +87,26 @@ class Admin::Home::IndexPresenter
   end
 
   def animals_sparkline
-    # Rails.cache.fetch("animal_sparkline_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}", :expires_in => 1.hour) do
-    #   Report.item_per_day(@user.organization_id, "animal", 14)
-    # end
+    Rails.cache.fetch("animal_sparkline_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}", :expires_in => 1.hour) do
+      Report.item_per_day(@user.organization_id, "animal", 14)
+    end
   end
 
   def species_sparkline
-    # Rails.cache.fetch("species_sparkline_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}_#{@species_count}", :expires_in => 1.hour) do
-    #   Report.item_per_day(@user.organization_id, "species", 14)
-    # end
+    Rails.cache.fetch("species_sparkline_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}_#{@species_count}", :expires_in => 1.hour) do
+      Report.item_per_day(@user.organization_id, "species", 14)
+    end
   end
 
   def contacts_sparkline
-    # Rails.cache.fetch("contact_sparkline_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}", :expires_in => 1.hour) do
-    #   Report.contacts_per_day(@user.organization_id, 14)
-    # end
+    Rails.cache.fetch("contact_sparkline_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}", :expires_in => 1.hour) do
+      Report.contacts_per_day(@user.organization_id, 14)
+    end
   end
 
   def events_sparkline
-    # Rails.cache.fetch("event_sparkline_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}_#{@events_count}", :expires_in => 1.hour) do
-    #   Report.item_per_day(@user.organization_id, "activity", 14, "`recipient_id`")
-    # end
+    Rails.cache.fetch("event_sparkline_hash_user_#{@user.organization_id}_#{@animals_count}_#{@animal_update.to_i}_#{@events_count}", :expires_in => 1.hour) do
+      Report.item_per_day(@user.organization_id, "activity", 14, "recipient_id")
+    end
   end
 end

@@ -9,7 +9,7 @@ namespace :paperclip_migration do
     # Iterate through all of the registered attachments
     puts 'Migrating attachments...'
     attachment_registry.each_definition do |klass, name, options|
-      # if "#{klass}" == 'Organization'
+      if "#{klass}" == 'Document'
         puts "Migrating #{klass}: #{name}"
         # klass.find_each(batch_size: 10) do |instance|
         #   attachment = instance.send(name)
@@ -35,7 +35,7 @@ namespace :paperclip_migration do
                 old_path = interpolator.interpolate(old_path_option, attachment, style_name)
                 new_path = interpolator.interpolate(new_path_option, attachment, style_name)
                 puts "BUCKET: #{s3_bucket}, #{style_name}:\n\told: #{old_path}\n\tnew: #{new_path}"
-                s3_copy(s3_bucket, old_path, new_path)
+                # s3_copy(s3_bucket, old_path, new_path)
               end
             else
               # for things without styles
@@ -46,7 +46,7 @@ namespace :paperclip_migration do
             end
           end
         end
-      # end
+      end
     end
 
     puts 'Completed migration.'

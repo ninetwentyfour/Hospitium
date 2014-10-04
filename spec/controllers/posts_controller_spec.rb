@@ -24,13 +24,13 @@ describe PostsController do
 
   describe 'GET "show"' do
     it "returns http success" do
-      get :show, :id => @post.id
+      get :show, :id => @post.slug
       response.should be_success
     end
     
     it "should find the account by its id" do
-      get :show, :id => @post.id
-      assigns(:post).should == @post
+      get :show, :id => @post.slug
+      assigns(:post).title.should == @post.title
     end
   end
 

@@ -30,7 +30,7 @@ class UuidFullMigration < ActiveRecord::Migration
         # primary_key_to_uuid :organizations_users
         # primary_key_to_uuid :permissions
         primary_key_to_uuid :petfinder_accounts
-        primary_key_to_uuid :photos
+        # primary_key_to_uuid :photos
         primary_key_to_uuid :posts
         primary_key_to_uuid :relinquish_animals
         primary_key_to_uuid :relinquishment_contacts
@@ -66,7 +66,7 @@ class UuidFullMigration < ActiveRecord::Migration
         # columns_to_uuid :organizations_users, :organization_id, :user_id
         columns_to_uuid :permissions, :user_id
         columns_to_uuid :petfinder_accounts, :user_id
-        columns_to_uuid :photos, :animal_id
+        # columns_to_uuid :photos, :animal_id
         columns_to_uuid :relinquish_animals, :animal_id, :relinquishment_contact_id
         columns_to_uuid :relinquishment_contacts, :organization_id
         columns_to_uuid :reports, :organization_id

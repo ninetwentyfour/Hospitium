@@ -18,15 +18,6 @@ describe Shelter do
     it{should validate_presence_of(:organization_id)}
   end
   
-  
-  describe "#create_uuid" do
-    let(:shelter) { FactoryGirl.create(:shelter) }
-    
-    it "generates a uuid on creation" do
-      shelter.uuid.should_not be_nil
-    end
-  end
-  
   describe "#modify_phone_number" do
     let(:shelter) { FactoryGirl.create(:shelter, @attr.merge(:phone => "123-456-7890")) }
     

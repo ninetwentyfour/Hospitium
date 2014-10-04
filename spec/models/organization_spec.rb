@@ -26,15 +26,6 @@ describe Organization do
     
   end
   
-  
-  describe "#create_uuid" do
-    let(:organization) { FactoryGirl.create(:organization) }
-    
-    it "generates a uuid on creation" do
-      organization.uuid.should_not be_nil
-    end
-  end
-  
   describe "#add_default_status" do
     let(:organization) { FactoryGirl.create(:organization) }
     

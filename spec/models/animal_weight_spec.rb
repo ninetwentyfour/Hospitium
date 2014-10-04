@@ -19,15 +19,6 @@ describe AnimalWeight do
     it{should validate_presence_of(:date_of_weight)}
     it{should validate_presence_of(:organization_id)}
   end
-  
-  
-  describe "#create_uuid" do
-    let(:animal_weight) { FactoryGirl.create(:animal_weight) }
-    
-    it "generates a uuid on creation" do
-      animal_weight.uuid.should_not be_nil
-    end
-  end
 
   describe "#show_weight_label_method" do
     let(:animal_weight) { FactoryGirl.create(:animal_weight) }

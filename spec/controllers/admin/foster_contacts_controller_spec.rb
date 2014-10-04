@@ -57,7 +57,7 @@ describe Admin::FosterContactsController do
 
       it "redirects to the created foster_contact" do
         post :create, {:foster_contact =>  FactoryGirl.attributes_for(:foster_contact)}
-        response.should redirect_to(admin_foster_contact_path(FosterContact.last))
+        response.should redirect_to(admin_foster_contact_path(FosterContact.order(created_at: :desc).first))
       end
     end
   end

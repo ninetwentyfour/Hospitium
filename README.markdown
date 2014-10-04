@@ -31,6 +31,7 @@ Install:
 There are several dependencies on other apps/services. 
 
 - Ruby 2.1.1 and up.
+- Postgres: [http://www.postgresql.org/](http://www.postgresql.org/)
 - Memcache: [Simple local install](https://devcenter.heroku.com/articles/memcache#local_memcache_setup).
 - Redis: [Getting Started](http://redis.io/topics/quickstart)
 - [Juggernaut](https://github.com/maccman/juggernaut): I recommend hosting on heroku following these [instructions](https://gist.github.com/1003748). used for real time edits

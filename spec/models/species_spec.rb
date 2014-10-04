@@ -16,16 +16,5 @@ describe Species do
   describe "validations" do
     it{should validate_presence_of(:name)}
     it{should validate_presence_of(:organization_id)}
-  end
-  
-  
-  describe "#create_uuid" do
-    let(:species) { FactoryGirl.create(:species) }
-    
-    it "generates a uuid on creation" do
-      species.uuid.should_not be_nil
-    end
-  end
-
-  
+  end  
 end

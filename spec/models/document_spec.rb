@@ -13,13 +13,6 @@ describe Document do
     it{should belong_to(:documentable)}
   end
   
-  describe "#create_uuid" do
-    
-    it "generates a uuid on creation" do
-      @document.uuid.should_not be_nil
-    end
-  end
-  
   describe "upload image" do
     it {should have_attached_file(:document)}
   end

@@ -11,12 +11,4 @@ describe Note do
     it{should belong_to(:animal)}
     it{should belong_to(:user)}
   end
-  
-  describe "#create_uuid" do
-    let(:note) { FactoryGirl.create(:note) }
-    
-    it "generates a uuid on creation" do
-      note.uuid.should_not be_nil
-    end
-  end
 end

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :post do
-    title   "test title"
+    sequence(:title) { |n| "test title #{n}"}
     content "test content"
   end
 end

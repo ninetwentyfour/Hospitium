@@ -36,15 +36,6 @@ describe Animal do
     it{should validate_presence_of(:status)}
   end
   
-  
-  describe "#create_uuid" do
-    let(:animal) { FactoryGirl.create(:animal) }
-    
-    it "generates a uuid on creation" do
-      animal.uuid.should_not be_nil
-    end
-  end
-  
   describe "#calculate_animal_age" do
     let(:animal) { FactoryGirl.create(:animal, @attr.merge(:birthday => "2001-10-20 00:50:22")) }
     

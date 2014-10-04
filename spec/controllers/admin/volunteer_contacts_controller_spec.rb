@@ -58,7 +58,7 @@ describe Admin::VolunteerContactsController do
 
       it "redirects to the created volunteer_contact" do
         post :create, {:volunteer_contact =>  FactoryGirl.attributes_for(:volunteer_contact)}
-        response.should redirect_to(admin_volunteer_contact_path(VolunteerContact.last))
+        response.should redirect_to(admin_volunteer_contact_path(VolunteerContact.order(created_at: :desc).first))
       end
     end
   end

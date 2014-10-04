@@ -57,7 +57,7 @@ describe Admin::AnimalColorsController do
 
       it "redirects to the created animal_color" do
         post :create, {:animal_color =>  FactoryGirl.attributes_for(:animal_color)}
-        response.should redirect_to(admin_animal_color_path(AnimalColor.last))
+        response.should redirect_to(admin_animal_color_path(AnimalColor.order(created_at: :desc).first))
       end
     end
   end

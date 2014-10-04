@@ -58,7 +58,7 @@ describe Admin::AdoptionContactsController do
 
       it "redirects to the created adoption_contact" do
         post :create, {:adoption_contact =>  FactoryGirl.attributes_for(:adoption_contact)}
-        response.should redirect_to(admin_adoption_contact_path(AdoptionContact.last))
+        response.should redirect_to(admin_adoption_contact_path(AdoptionContact.order(created_at: :desc).first))
       end
     end
   end

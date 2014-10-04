@@ -57,7 +57,7 @@ describe Admin::RelinquishmentContactsController do
 
       it "redirects to the created relinquishment_contact" do
         post :create, {:relinquishment_contact =>  FactoryGirl.attributes_for(:relinquishment_contact)}
-        response.should redirect_to(admin_relinquishment_contact_path(RelinquishmentContact.last))
+        response.should redirect_to(admin_relinquishment_contact_path(RelinquishmentContact.order(created_at: :desc).first))
       end
     end
   end

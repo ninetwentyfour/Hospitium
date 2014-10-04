@@ -6,13 +6,13 @@ describe OrganizationsController do
   describe 'GET "show"' do
     it "returns http success" do
       @org = FactoryGirl.create(:organization)
-      get :show, :id => @org.uuid
+      get :show, :id => @org.id
       response.should be_success
     end
     
     it "should find the organization by its id" do
       @org = FactoryGirl.create(:organization)
-      get :show, :id => @org.uuid
+      get :show, :id => @org.id
       assigns(:organization).should == @org
     end
 

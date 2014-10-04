@@ -18,15 +18,6 @@ describe Shot do
     it{should validate_presence_of(:name)}
   end
   
-  
-  describe "#create_uuid" do
-    let(:shot) { FactoryGirl.create(:shot) }
-    
-    it "generates a uuid on creation" do
-      shot.uuid.should_not be_nil
-    end
-  end
-  
   describe "#formatted_last_administered_date" do
     let(:shot) { FactoryGirl.create(:shot, @attr.merge(:last_administered => "2001-10-20 00:50:22")) }
     
