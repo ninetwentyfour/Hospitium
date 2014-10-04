@@ -1,17 +1,22 @@
 class Post < ActiveRecord::Base
   
-  after_create :send_public_tweet
-  after_update :send_public_tweet
+  before_create :set_slug
+  # after_create :send_public_tweet
+  # after_update :send_public_tweet
 
-  attr_accessible :author, :title, :content
+  attr_accessible :author, :title, :content, :slug
   
   #used to create url for posts
-  def to_params
-    "#{id}-#{title.parameterize}"
+  def to_param
+    slug
+  end
+
+  def set_slug
+    self.slug = self.title.parameterize
   end
   
   def send_public_tweet
-    link = ShortLink.shorten_link("https://hospitium.co/posts/#{self.id}-#{self.title.parameterize}")
+    link = ShortLink.shorten_link("https://hospitium.co/posts/#{self.slug}")
     message = "#{self.title.slice(0, 100)} - #{link}"
     TwitterAccount.twitter_post(message, 1)
   end

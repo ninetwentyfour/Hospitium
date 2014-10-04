@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   def show
     canonical_url("/posts/#{params[:id]}")
     @post = Rails.cache.fetch("public_post_#{params[:id]}", :expires_in => 60.minutes) do
-      Post.find(params[:id])
+      Post.find_by_slug(params[:id])
     end
 
     respond_with(@post)

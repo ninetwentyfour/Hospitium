@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922024302) do
+ActiveRecord::Schema.define(version: 20141004201533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "uuid-ossp"
@@ -348,7 +348,10 @@ ActiveRecord::Schema.define(version: 20140922024302) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "posts", ["slug"], name: "index_posts_on_slug", using: :btree
 
   create_table "relinquish_animals", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.uuid     "animal_id"
