@@ -6,7 +6,7 @@
 			<p>How about checking out one of these?</p>
 			<ul>
 				<% @animals.each do |animal| %>
-					<li><a href="/animals/<%= animal.uuid %>"><%= animal.name %></a></li>
+					<li><a href="/animals/<%= animal.id %>"><%= animal.name %></a></li>
 				<% end %>
 			</ul>
 		</div>

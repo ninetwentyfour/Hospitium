@@ -1,5 +1,5 @@
 animal_show = ->
-  animal_uuid = $("#animal_holder").data("animal_uuid")
+  animal_uuid = $("#animal_holder").data("animal_id")
   animal_id = $("#animal_holder").data("animal_id")
   
   #setup juggernaut to handle real time updating page changes

@@ -21,7 +21,7 @@
 				<tbody class="no-border-x no-border-y">
 					<% @animal_weights.each do |animal_weight| %>
 						<tr>
-							<td><a href="/admin/animals/<%= animal_weight.animal.id unless animal_weight.animal.blank? %>-<%= animal_weight.animal.uuid unless animal_weight.animal.blank? %>"><%= animal_weight.animal.name unless animal_weight.animal.blank? %></a></td>
+							<td><a href="/admin/animals/<%= animal_weight.animal.id unless animal_weight.animal.blank? %>"><%= animal_weight.animal.name unless animal_weight.animal.blank? %></a></td>
 							<td><a href="/admin/animal_weights/<%= animal_weight.id %>"><%= animal_weight.weight %></a></td>
 							<td>
 								<div class="btn-group">

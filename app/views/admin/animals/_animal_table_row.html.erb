@@ -9,8 +9,8 @@
 		<td><%= animal.color %></td>
 		<td class="actions_column">
 			<div class="btn-group">
-				<a class="btn tipster" href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>" title="View Animal"><i class="fa fa-eye"></i></a>
-				<a class="btn tipster" href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>/duplicate" title="Duplicate Animal"><i class="fa fa-plus"></i></a>
+				<a class="btn tipster" href="/admin/animals/<%= animal.id %>" title="View Animal"><i class="fa fa-eye"></i></a>
+				<a class="btn tipster" href="/admin/animals/<%= animal.id %>/duplicate" title="Duplicate Animal"><i class="fa fa-plus"></i></a>
 				<% unless current_user.permissions.first.role_id == 3 %>
 					<%= link_to raw("<i class='fa fa-remove'></i>"), admin_animal_path(animal),
 					            :data => {:confirm => 'Are you sure you want to delete?'}, :method => :delete, :class => "btn tipster", :title => "Delete Animal" %>

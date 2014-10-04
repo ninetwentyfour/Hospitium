@@ -14,18 +14,12 @@ class VolunteerContact < ActiveRecord::Base
   belongs_to :organization
   has_many :documents, :as => :documentable
   
-  before_create :create_uuid, :modify_phone_number
+  before_create :modify_phone_number
   before_update :modify_phone_number
 
   attr_accessible :first_name, :last_name, :address, :phone, :email, :application_date
   
   validates_presence_of :first_name, :last_name, :address, :organization_id
-    
-  
-  #create uuid
-  def create_uuid()
-    self.uuid = UUIDTools::UUID.random_create.to_s
-  end
   
   def show_name_label_method
     "#{self.first_name} #{self.last_name}"

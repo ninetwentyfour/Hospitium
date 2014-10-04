@@ -8,7 +8,7 @@
 			<tbody class="no-border-x no-border-y">
 				<% public_animals.each do |animal| %>
 					<tr>
-						<td><a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><%= animal.name %></a></td>
+						<td><a href="/admin/animals/<%= animal.id %>"><%= animal.name %></a></td>
 						<td><%= animal.impressions_count %></td>
 					</tr>
 				<% end %>

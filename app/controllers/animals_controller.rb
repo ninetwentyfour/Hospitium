@@ -1,17 +1,6 @@
-class AnimalsController < ApplicationController
-  # caches_action :index, 
-  #   :cache_path => Proc.new { |controller| controller.params.map{|k,v| "#{k}=#{v}"}.join('&') + request.format},
-  #   :layout => false, #when rails 4.0 is out - this can use a proc so we can cache xml and json too
-  #   :expires_in => 10.minutes,
-  #   :if => (Proc.new do
-  #       request.format.html?  # cache if is a html request
-  #   end)
-    
-  
-  respond_to :html, :xml, :json
+class AnimalsController < ApplicationController  
+  respond_to :html, :json
 
-  # GET /animals
-  # GET /animals.xml
   def index
     canonical_url("/animals")
     
@@ -20,16 +9,15 @@ class AnimalsController < ApplicationController
                       paginate(:page => params[:page], :per_page => 10).
                       order("updated_at DESC").to_a.shuffle!
     
+    # only show animals from orgs that have contact info
     @animals.select! {|animal| animal.organization.has_info? }
     respond_with(@animals)
   end
 
-  # GET /animals/1
-  # GET /animals/1.xml
   def show
     canonical_url("/animals/#{params[:id]}")
     @animal = Rails.cache.fetch("public_animal_#{params[:id]}", :expires_in => 15.minutes) do
-      Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter).find_by_uuid!(params[:id])
+      Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter).find(params[:id])
     end
 
     if @animal.public == 1
@@ -48,5 +36,4 @@ class AnimalsController < ApplicationController
     
     respond_with(@animals)
   end
-  
 end

@@ -35,7 +35,7 @@ class AdoptAPetAccount < ActiveRecord::Base
       # data rows 
       @animals.each do |animal|
         csv << [ 
-                  animal.uuid, 
+                  animal.id, 
                   animal.species_name, 
                   animal.species_name, 
                   "", 

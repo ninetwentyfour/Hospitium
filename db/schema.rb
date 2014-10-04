@@ -11,16 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140920160044) do
+ActiveRecord::Schema.define(version: 20140922024302) do
 
-  create_table "activities", force: true do |t|
-    t.integer  "trackable_id"
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "uuid-ossp"
+  enable_extension "plpgsql"
+
+  create_table "activities", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "trackable_id"
     t.string   "trackable_type"
-    t.integer  "owner_id"
+    t.uuid     "owner_id"
     t.string   "owner_type"
     t.string   "key"
     t.text     "parameters"
-    t.integer  "recipient_id"
+    t.uuid     "recipient_id"
     t.string   "recipient_type"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -30,9 +34,9 @@ ActiveRecord::Schema.define(version: 20140920160044) do
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
-  create_table "adopt_a_pet_accounts", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "organization_id"
+  create_table "adopt_a_pet_accounts", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "user_id"
+    t.uuid     "organization_id"
     t.boolean  "active",          default: false
     t.text     "user_name"
     t.text     "password"
@@ -43,9 +47,9 @@ ActiveRecord::Schema.define(version: 20140920160044) do
   add_index "adopt_a_pet_accounts", ["organization_id"], name: "index_adopt_a_pet_accounts_on_organization_id", using: :btree
   add_index "adopt_a_pet_accounts", ["user_id"], name: "index_adopt_a_pet_accounts_on_user_id", using: :btree
 
-  create_table "adopt_animals", force: true do |t|
-    t.integer  "animal_id"
-    t.integer  "adoption_contact_id"
+  create_table "adopt_animals", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "animal_id"
+    t.uuid     "adoption_contact_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -53,27 +57,25 @@ ActiveRecord::Schema.define(version: 20140920160044) do
   add_index "adopt_animals", ["adoption_contact_id"], name: "index_adopt_animals_on_adoption_contact_id", using: :btree
   add_index "adopt_animals", ["animal_id"], name: "index_adopt_animals_on_animal_id", using: :btree
 
-  create_table "adoption_contacts", force: true do |t|
+  create_table "adoption_contacts", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "uuid"
     t.string   "address"
     t.string   "phone"
     t.string   "email"
     t.datetime "adopted_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "organization_id"
+    t.uuid     "organization_id"
   end
 
   add_index "adoption_contacts", ["organization_id"], name: "index_adoption_contacts_on_organization_id", using: :btree
 
-  create_table "animal_colors", force: true do |t|
+  create_table "animal_colors", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "color"
-    t.string   "uuid"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "organization_id"
+    t.uuid     "organization_id"
   end
 
   add_index "animal_colors", ["organization_id"], name: "index_animal_colors_on_organization_id", using: :btree
@@ -84,36 +86,34 @@ ActiveRecord::Schema.define(version: 20140920160044) do
     t.datetime "updated_at"
   end
 
-  create_table "animal_weights", force: true do |t|
-    t.integer  "animal_id"
-    t.string   "uuid"
+  create_table "animal_weights", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "animal_id"
     t.integer  "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "organization_id"
+    t.uuid     "organization_id"
     t.datetime "date_of_weight"
   end
 
   add_index "animal_weights", ["animal_id"], name: "index_animal_weights_on_animal_id", using: :btree
   add_index "animal_weights", ["organization_id"], name: "index_animal_weights_on_organization_id", using: :btree
 
-  create_table "animals", force: true do |t|
+  create_table "animals", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "name"
-    t.string   "uuid"
     t.string   "previous_name"
-    t.integer  "species_id"
+    t.uuid     "species_id"
     t.text     "special_needs"
     t.text     "diet"
     t.datetime "date_of_intake"
     t.datetime "date_of_well_check"
-    t.integer  "shelter_id"
+    t.uuid     "shelter_id"
     t.datetime "deceased"
     t.text     "deceased_reason"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "organization_id"
+    t.uuid     "organization_id"
     t.datetime "adopted_date"
-    t.integer  "animal_color_id"
+    t.uuid     "animal_color_id"
     t.string   "image"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 20140920160044) do
     t.integer  "animal_sex_id"
     t.integer  "spay_neuter_id"
     t.integer  "biter_id"
-    t.integer  "status_id"
+    t.uuid     "status_id"
     t.string   "second_image"
     t.string   "second_image_file_name"
     t.string   "second_image_content_type"
@@ -154,7 +154,6 @@ ActiveRecord::Schema.define(version: 20140920160044) do
   add_index "animals", ["spay_neuter_id"], name: "index_animals_on_spay_neuter_id", using: :btree
   add_index "animals", ["species_id"], name: "index_animals_on_species_id", using: :btree
   add_index "animals", ["status_id"], name: "index_animals_on_status_id", using: :btree
-  add_index "animals", ["uuid"], name: "index_animals_on_uuid", using: :btree
 
   create_table "biters", force: true do |t|
     t.string   "value"
@@ -162,9 +161,8 @@ ActiveRecord::Schema.define(version: 20140920160044) do
     t.datetime "updated_at"
   end
 
-  create_table "documents", force: true do |t|
-    t.integer  "animal_id"
-    t.string   "uuid"
+  create_table "documents", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "animal_id"
     t.string   "document"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
@@ -172,29 +170,26 @@ ActiveRecord::Schema.define(version: 20140920160044) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
-    t.integer  "documentable_id"
+    t.uuid     "documentable_id"
     t.string   "documentable_type"
-    t.integer  "volunteer_contact_id"
   end
 
   add_index "documents", ["animal_id"], name: "index_documents_on_animal_id", using: :btree
   add_index "documents", ["documentable_id", "documentable_type"], name: "index_documents_on_documentable_id_and_documentable_type", using: :btree
-  add_index "documents", ["uuid"], name: "index_documents_on_uuid", using: :btree
-  add_index "documents", ["volunteer_contact_id"], name: "index_documents_on_volunteer_contact_id", using: :btree
 
-  create_table "email_blacklists", force: true do |t|
+  create_table "email_blacklists", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string "domain"
   end
 
-  create_table "events", force: true do |t|
-    t.integer  "animal_id"
+  create_table "events", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "animal_id"
     t.string   "event_type"
     t.text     "event_message"
-    t.integer  "related_model_id"
+    t.uuid     "related_model_id"
     t.string   "related_model_name"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.integer  "organization_id"
+    t.uuid     "organization_id"
     t.string   "record_uuid"
   end
 
@@ -204,43 +199,42 @@ ActiveRecord::Schema.define(version: 20140920160044) do
   add_index "events", ["record_uuid"], name: "index_events_on_record_uuid", using: :btree
   add_index "events", ["related_model_id"], name: "index_animal_events_on_related_model_id", using: :btree
 
-  create_table "facebook_accounts", force: true do |t|
-    t.integer  "user_id"
+  create_table "facebook_accounts", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "user_id"
     t.boolean  "active",              default: false
     t.text     "stream_url"
     t.text     "access_token"
     t.text     "oauth_authorize_url"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "organization_id"
+    t.uuid     "organization_id"
   end
 
   add_index "facebook_accounts", ["organization_id"], name: "index_facebook_accounts_on_organization_id", using: :btree
   add_index "facebook_accounts", ["user_id"], name: "index_facebook_accounts_on_user_id", using: :btree
 
-  create_table "foster_animals", force: true do |t|
-    t.integer  "animal_id"
-    t.integer  "foster_contact_id"
+  create_table "foster_animals", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "animal_id"
+    t.uuid     "foster_contact_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "foster_contacts", force: true do |t|
+  create_table "foster_contacts", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "uuid"
     t.string   "address"
     t.string   "phone"
     t.string   "email"
-    t.integer  "organization_id"
+    t.uuid     "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "impressions", force: true do |t|
+  create_table "impressions", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "impressionable_type"
-    t.integer  "impressionable_id"
-    t.integer  "user_id"
+    t.uuid     "impressionable_id"
+    t.uuid     "user_id"
     t.string   "controller_name"
     t.string   "action_name"
     t.string   "view_name"
@@ -261,10 +255,9 @@ ActiveRecord::Schema.define(version: 20140920160044) do
   add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index", using: :btree
   add_index "impressions", ["user_id"], name: "index_impressions_on_user_id", using: :btree
 
-  create_table "notes", force: true do |t|
-    t.integer  "animal_id"
-    t.integer  "user_id"
-    t.string   "uuid"
+  create_table "notes", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "animal_id"
+    t.uuid     "user_id"
     t.text     "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -272,18 +265,16 @@ ActiveRecord::Schema.define(version: 20140920160044) do
 
   add_index "notes", ["animal_id"], name: "index_notes_on_animal_id", using: :btree
   add_index "notes", ["user_id"], name: "index_notes_on_user_id", using: :btree
-  add_index "notes", ["uuid"], name: "index_notes_on_uuid", using: :btree
 
-  create_table "notifications", force: true do |t|
+  create_table "notifications", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status_type"
   end
 
-  create_table "organizations", force: true do |t|
+  create_table "organizations", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "name"
-    t.string   "uuid"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "phone_number"
@@ -311,8 +302,6 @@ ActiveRecord::Schema.define(version: 20140920160044) do
     t.datetime "foster_form_updated_at"
   end
 
-  add_index "organizations", ["uuid"], name: "index_organizations_on_uuid", using: :btree
-
   create_table "organizations_users", id: false, force: true do |t|
     t.integer "organization_id"
     t.integer "user_id"
@@ -322,7 +311,7 @@ ActiveRecord::Schema.define(version: 20140920160044) do
   add_index "organizations_users", ["user_id"], name: "index_organizations_users_on_user_id", using: :btree
 
   create_table "permissions", force: true do |t|
-    t.integer  "user_id"
+    t.uuid     "user_id"
     t.integer  "role_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -331,8 +320,8 @@ ActiveRecord::Schema.define(version: 20140920160044) do
   add_index "permissions", ["role_id"], name: "index_permissions_on_role_id", using: :btree
   add_index "permissions", ["user_id"], name: "index_permissions_on_user_id", using: :btree
 
-  create_table "petfinder_accounts", force: true do |t|
-    t.integer  "user_id"
+  create_table "petfinder_accounts", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "user_id"
     t.boolean  "active",       default: false
     t.text     "ftp_user"
     t.text     "ftp_password"
@@ -340,8 +329,8 @@ ActiveRecord::Schema.define(version: 20140920160044) do
     t.datetime "updated_at"
   end
 
-  create_table "photos", force: true do |t|
-    t.integer  "animal_id"
+  create_table "photos", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "animal_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
@@ -353,7 +342,7 @@ ActiveRecord::Schema.define(version: 20140920160044) do
 
   add_index "photos", ["animal_id"], name: "index_photos_on_animal_id", using: :btree
 
-  create_table "posts", force: true do |t|
+  create_table "posts", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "author"
     t.string   "title"
     t.text     "content"
@@ -361,9 +350,9 @@ ActiveRecord::Schema.define(version: 20140920160044) do
     t.datetime "updated_at"
   end
 
-  create_table "relinquish_animals", force: true do |t|
-    t.integer  "animal_id"
-    t.integer  "relinquishment_contact_id"
+  create_table "relinquish_animals", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "animal_id"
+    t.uuid     "relinquishment_contact_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -371,26 +360,25 @@ ActiveRecord::Schema.define(version: 20140920160044) do
   add_index "relinquish_animals", ["animal_id"], name: "index_relinquish_animals_on_animal_id", using: :btree
   add_index "relinquish_animals", ["relinquishment_contact_id"], name: "index_relinquish_animals_on_relinquishment_contact_id", using: :btree
 
-  create_table "relinquishment_contacts", force: true do |t|
+  create_table "relinquishment_contacts", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "uuid"
     t.string   "address"
     t.string   "phone"
     t.string   "email"
     t.text     "reason"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "organization_id"
+    t.uuid     "organization_id"
   end
 
   add_index "relinquishment_contacts", ["organization_id"], name: "index_relinquishment_contacts_on_organization_id", using: :btree
 
-  create_table "reports", force: true do |t|
+  create_table "reports", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "report"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "organization_id"
+    t.uuid     "organization_id"
   end
 
   add_index "reports", ["organization_id"], name: "index_reports_on_organization_id", using: :btree
@@ -413,9 +401,8 @@ ActiveRecord::Schema.define(version: 20140920160044) do
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", using: :btree
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
-  create_table "shelters", force: true do |t|
+  create_table "shelters", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "name"
-    t.string   "uuid"
     t.string   "contact_first"
     t.string   "contact_last"
     t.string   "address"
@@ -425,26 +412,24 @@ ActiveRecord::Schema.define(version: 20140920160044) do
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "organization_id"
+    t.uuid     "organization_id"
   end
 
   add_index "shelters", ["organization_id"], name: "index_shelters_on_organization_id", using: :btree
 
-  create_table "shots", force: true do |t|
-    t.integer  "animal_id"
-    t.string   "uuid"
+  create_table "shots", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "animal_id"
     t.string   "name"
     t.datetime "last_administered"
     t.datetime "expires"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.integer  "organization_id"
+    t.uuid     "organization_id"
   end
 
   add_index "shots", ["animal_id"], name: "index_shots_on_animal_id", using: :btree
   add_index "shots", ["expires"], name: "index_shots_on_expires", using: :btree
   add_index "shots", ["organization_id"], name: "index_shots_on_organization_id", using: :btree
-  add_index "shots", ["uuid"], name: "index_shots_on_uuid", using: :btree
 
   create_table "spay_neuters", force: true do |t|
     t.string   "spay"
@@ -452,34 +437,33 @@ ActiveRecord::Schema.define(version: 20140920160044) do
     t.datetime "updated_at"
   end
 
-  create_table "species", force: true do |t|
+  create_table "species", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "name"
-    t.string   "uuid"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "organization_id"
+    t.uuid     "organization_id"
   end
 
   add_index "species", ["organization_id"], name: "index_species_on_organization_id", using: :btree
 
-  create_table "statuses", force: true do |t|
+  create_table "statuses", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "status"
-    t.integer  "organization_id"
+    t.uuid     "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "statuses", ["organization_id"], name: "index_statuses_on_organization_id", using: :btree
 
-  create_table "twitter_accounts", force: true do |t|
-    t.integer  "user_id"
+  create_table "twitter_accounts", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "user_id"
     t.boolean  "active",               default: false
     t.text     "stream_url"
     t.string   "oauth_token"
     t.string   "oauth_token_secret"
     t.string   "oauth_token_verifier"
     t.text     "oauth_authorize_url"
-    t.integer  "organization_id"
+    t.uuid     "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -487,7 +471,7 @@ ActiveRecord::Schema.define(version: 20140920160044) do
   add_index "twitter_accounts", ["organization_id"], name: "index_twitter_accounts_on_organization_id", using: :btree
   add_index "twitter_accounts", ["user_id"], name: "index_twitter_accounts_on_user_id", using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "email",                                          null: false
     t.string   "encrypted_password",     limit: 128,             null: false
     t.string   "reset_password_token"
@@ -504,7 +488,7 @@ ActiveRecord::Schema.define(version: 20140920160044) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.integer  "organization_id"
+    t.uuid     "organization_id"
     t.string   "organization_name"
     t.integer  "owner",                              default: 0
     t.integer  "failed_attempts",                    default: 0
@@ -518,46 +502,44 @@ ActiveRecord::Schema.define(version: 20140920160044) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
-  create_table "vet_contacts", force: true do |t|
+  create_table "vet_contacts", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "clinic_name"
-    t.string   "uuid"
     t.string   "address"
     t.string   "phone"
     t.string   "email"
     t.string   "website"
     t.string   "hours"
     t.string   "emergency"
-    t.integer  "organization_id"
+    t.uuid     "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "vet_contacts", ["organization_id"], name: "index_vet_contacts_on_organization_id", using: :btree
 
-  create_table "volunteer_contacts", force: true do |t|
+  create_table "volunteer_contacts", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "uuid"
     t.string   "address"
     t.string   "phone"
     t.string   "email"
     t.datetime "application_date"
-    t.integer  "organization_id"
+    t.uuid     "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "volunteer_contacts", ["organization_id"], name: "index_volunteer_contacts_on_organization_id", using: :btree
 
-  create_table "wordpress_accounts", force: true do |t|
-    t.integer  "user_id"
+  create_table "wordpress_accounts", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "user_id"
     t.boolean  "active",          default: false
     t.text     "site_url"
     t.text     "blog_user"
     t.text     "blog_password"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "organization_id"
+    t.uuid     "organization_id"
   end
 
   add_index "wordpress_accounts", ["organization_id"], name: "index_wordpress_accounts_on_organization_id", using: :btree

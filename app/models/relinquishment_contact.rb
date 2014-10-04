@@ -14,17 +14,12 @@ class RelinquishmentContact < ActiveRecord::Base
   has_many :relinquish_animals
   has_many :animals, :through => :relinquish_animals
   belongs_to :organization
-  before_create :create_uuid, :modify_phone_number
+  before_create :modify_phone_number
   before_update :modify_phone_number
 
   attr_accessible :first_name, :last_name, :address, :phone, :email, :reason
   
   validates_presence_of :first_name, :last_name, :organization_id
-  
-  #create uuid
-  def create_uuid()
-    self.uuid = UUIDTools::UUID.random_create.to_s
-  end
   
   def show_name_label_method
     "#{self.first_name} #{self.last_name}"

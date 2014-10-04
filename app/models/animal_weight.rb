@@ -3,7 +3,6 @@ class AnimalWeight < ActiveRecord::Base
   
   belongs_to :animal
   belongs_to :organization
-  before_create :create_uuid
 
   attr_accessible :animal_id, :weight, :date_of_weight
 
@@ -12,11 +11,6 @@ class AnimalWeight < ActiveRecord::Base
   # show the link in the admin UI instead of the link id
   def show_weight_label_method
     "#{self.weight}"
-  end
-  
-  #create uuid
-  def create_uuid()
-    self.uuid = UUIDTools::UUID.random_create.to_s
   end
   
   def formatted_weight_date

@@ -13,13 +13,5 @@ class AnimalWeightObserver < ActiveRecord::Observer
       :klass  => animal_weight.class.name,
       :record => animal_weight.changes
     })
-    # Juggernaut.publish("/observer/animal/index", {
-    #   :id     => animal.uuid, 
-    #   :type   => type, 
-    #   :klass  => animal.class.name,
-    #   :record => animal.changes
-    # })
   end
-  
-  
 end
