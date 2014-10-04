@@ -7,8 +7,8 @@ class AnimalObserver < ActiveRecord::Observer
   
   def publish(type, animal)    
     Juggernaut.url = ENV['JUGG_URL']
-    Juggernaut.publish("/observer/#{animal.uuid}", {
-      :id     => animal.uuid, 
+    Juggernaut.publish("/observer/#{animal.id}", {
+      :id     => animal.id, 
       :type   => type, 
       :klass  => animal.class.name,
       :record => animal.changes

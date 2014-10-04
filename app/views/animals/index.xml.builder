@@ -3,7 +3,7 @@ xml.instruct! :xml, :version=>"1.0"
 xml.animals do
   @animals.each do |animal|
     xml.animal do
-      xml.id animal.uuid
+      xml.id animal.id
       xml.name animal.name
       xml.location "#{animal.organization_city}, #{animal.organization_state} #{animal.organization_zip_code}"
       xml.status animal.status.status

@@ -23,7 +23,8 @@ gem "spreadsheet"
 gem "comma"
 gem 'redcarpet'
 gem 'encryptor'
-gem 'json_builder'
+# gem 'json_builder'
+gem 'jbuilder'
 gem "statsd-ruby", :require => "statsd"
 gem 'impressionist',:github => "Loremaster/impressionist" # record views of public animals
 gem 'bitly'
@@ -38,6 +39,8 @@ gem 'rack-attack'
 
 # hack for rails 4.1
 gem "polyamorous", :github => "activerecord-hackery/polyamorous"
+# UUID MIGRATION
+gem 'webdack-uuid_migration', :github => "ninetwentyfour/webdack-uuid_migration"
 
 # heroku gems for pulling/pushing db
 # gem 'heroku'

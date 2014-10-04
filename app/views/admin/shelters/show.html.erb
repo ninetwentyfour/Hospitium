@@ -31,7 +31,7 @@
 					</div>
 					<div class="tab-pane" id="2">
 						<% @shelter.animals.each do |animal| %>
-							<p><a href="/admin/animals/<%= animal.id %>-<%= animal.uuid %>"><%= animal.name %></a></p>
+							<p><a href="/admin/animals/<%= animal.id %>"><%= animal.name %></a></p>
 						<%end%>
 					</div>
 				</div>

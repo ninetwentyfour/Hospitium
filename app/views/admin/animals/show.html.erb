@@ -139,8 +139,8 @@
 					</div>
 				</div>
 				<br />
-				<a class="btn btn-primary btn-rad btn-trans" href="/admin/animals/<%= @animal.id %>-<%= @animal.uuid %>/cage_card"><i class="fa fa-print"></i> Cage Card</a>
-				<a class="btn btn-primary btn-rad btn-trans" href="/admin/animals/<%= @animal.id %>-<%= @animal.uuid %>/qr_code"><i class="fa fa-print"></i> QR Code</a>
+				<a class="btn btn-primary btn-rad btn-trans" href="/admin/animals/<%= @animal.id %>/cage_card"><i class="fa fa-print"></i> Cage Card</a>
+				<a class="btn btn-primary btn-rad btn-trans" href="/admin/animals/<%= @animal.id %>/qr_code"><i class="fa fa-print"></i> QR Code</a>
 			</div>
 			
 			<%= render "media_gallery", :animal => @animal %>
@@ -155,7 +155,7 @@
 <%= render "modal_images", :animal => @animal %>
 
 <div id="animal_weights_holder" data-animal_weights='<%= raw(sanitize(@presenter.animal_weights[:values].to_json)) %>' data-animal_weights_times='<%= raw(sanitize(@presenter.animal_weights[:times].to_json)) %>'></div>
-<div id="animal_holder" data-animal_id='<%= @animal.id %>' data-animal_uuid='<%= @animal.uuid %>'></div>
+<div id="animal_holder" data-animal_id='<%= @animal.id %>' data-animal_uuid=''></div>
 
 
 

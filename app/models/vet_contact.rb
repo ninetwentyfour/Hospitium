@@ -12,17 +12,12 @@ class VetContact < ActiveRecord::Base
           }
   
   belongs_to :organization
-  before_create :create_uuid, :modify_phone_number
+  before_create :modify_phone_number
   before_update :modify_phone_number
 
   attr_accessible :clinic_name, :address, :phone, :email, :website, :hours, :emergency
   
   validates_presence_of :clinic_name
-  
-  #create uuid
-  def create_uuid()
-    self.uuid = UUIDTools::UUID.random_create.to_s
-  end
   
   def show_name_label_method
     "#{self.clinic_name}"

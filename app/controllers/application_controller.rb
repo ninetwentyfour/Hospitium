@@ -27,8 +27,8 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end
 
+  # pretty sure this isnt used and can be removed
   APP_DOMAIN = 'hospitium.co'
-
   if Rails.env == "production"
     def ensure_domain
       if request.env['HTTP_HOST'] != APP_DOMAIN

@@ -9,7 +9,7 @@
 			<li class="block-flat singleAnimalAdoption clearfix" style="list-style: none;">
 				<ul class="thumbnails col-sm-3 col-md-3 col-lg-3">
 					<li class="pull-left animal_thumb">
-						<a class="thumbnail" data-toggle="modal" href="#image_display_<%= animal.uuid %>" >
+						<a class="thumbnail" data-toggle="modal" href="#image_display_<%= animal.id %>" >
 							<% unless animal.image.url(:medium) == "/images/medium/missing.png" %>
 								<img height=180 width=260 src="<%= animal.image.url(:medium) %>" alt="">
 							<% else %>
@@ -19,11 +19,11 @@
 					</li>
 				</ul>
 				<div class="col-sm-7 col-md-7 col-lg-7 pull-right animal-pics">
-					<h1><a href="animals/<%= animal.uuid %>"><%= animal.name %></a></h1><h4><%= animal.species_name %></h4>
+					<h1><a href="animals/<%= animal.id %>"><%= animal.name %></a></h1><h4><%= animal.species_name %></h4>
 					<div class="otherAnimalInfo">
 						<p>Status: <%= animal.status.status %></p>
 						<p>Location: <%= animal.organization_city %>, <%= animal.organization_state %> <%= animal.organization_zip_code %></p>
-						<p>Organization: <a href="/organizations/<%= animal.organization.uuid %>"><%= animal.organization_name %></a></p>
+						<p>Organization: <a href="/organizations/<%= animal.organization.id %>"><%= animal.organization_name %></a></p>
 						<p>Sex: <%= animal.sex unless animal.animal_sex.blank? %></p>
 						<p>Age: <%= calculate_animal_age(animal.birthday) unless animal.birthday.blank? %></p>
 						<p>Spay/Neuter: <%= animal.spay unless animal.spay_neuter.blank? %></p>
@@ -32,7 +32,7 @@
 					</div>
 				</div>
 			</li>
-			<div class="modal colored-header" id="image_display_<%= animal.uuid %>" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal colored-header" id="image_display_<%= animal.id %>" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			  <div class="modal-dialog">
 			    <div class="modal-content">
 			      <div class="modal-header">

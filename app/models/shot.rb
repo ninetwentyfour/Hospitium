@@ -1,7 +1,5 @@
 class Shot < ActiveRecord::Base
   include CommonScopes
-
-  before_create :create_uuid
   
   belongs_to :animal
   belongs_to :organization
@@ -26,11 +24,6 @@ class Shot < ActiveRecord::Base
       age = ""
     end
     return age
-  end
-  
-  #create uuid
-  def create_uuid()
-    self.uuid = UUIDTools::UUID.random_create.to_s
   end
 
   # ===============

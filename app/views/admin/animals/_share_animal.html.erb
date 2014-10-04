@@ -1,18 +1,15 @@
 <%= form_tag("/wordpress_accounts/send_blog_post", :method => "post", :class => "form-inline float-form") do %>
-	<input name="animal_uuid" type="hidden" value="<%= animal.uuid %>">
 	<input name="animal_id" type="hidden" value="<%= animal.id %>">
 	<input name="animal_name" type="hidden" value="<%= animal.name %>">
 	<input name="animal_picture" type="hidden" value="<%= animal.image.url(:medium) %>">
 	<button class="btn btn-primary btn-rad btn-trans" type="submit"><i class="fa fa-share"></i> Send to Wordpress</button>
 <%end%>
 <%= form_tag("/facebook_accounts/send_wall_post", :method => "post", :class => "form-inline float-form") do %>
-	<input name="animal_uuid" type="hidden" value="<%= animal.uuid %>">
 	<input name="animal_id" type="hidden" value="<%= animal.id %>">
 	<input name="animal_name" type="hidden" value="<%= animal.name %>">
 	<button class="btn btn-primary btn-rad btn-trans" type="submit"><i class="fa fa-share"></i> Send to Facebook</button>
 <%end%>
 <%= form_tag("/twitter_accounts/send_tweet", :method => "post", :class => "form-inline float-form") do %>
-	<input name="animal_uuid" type="hidden" value="<%= animal.uuid %>">
 	<input name="animal_id" type="hidden" value="<%= animal.id %>">
 	<input name="animal_name" type="hidden" value="<%= animal.name %>">
 	<button class="btn btn-primary btn-rad btn-trans" type="submit"><i class="fa fa-share"></i> Send to Twitter</button>

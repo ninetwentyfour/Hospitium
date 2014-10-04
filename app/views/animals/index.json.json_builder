@@ -3,7 +3,7 @@ page @animals.current_page
 per_page @animals.per_page
 pages_count @animals.total_pages
 animals @animals do |animal|
-  id animal.uuid
+  id animal.id
   name animal.name
   location "#{animal.organization_city}, #{animal.organization_state} #{animal.organization_zip_code}"
   status animal.status.status

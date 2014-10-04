@@ -10,10 +10,43 @@ class Animal < ActiveRecord::Base
             summary: -> controller, model { model.changes }
           }
   
-  has_attached_file :image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, :bucket => 'hospitium-static', :styles => { :large => "530x530#", :medium => "260x180#", :thumb => "140x140#" },:default_url => "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png"
-  has_attached_file :second_image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, :bucket => 'hospitium-static', :styles => { :large => "530x530#", :medium => "260x180#", :thumb => "140x140#" },:default_url => "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png"
-  has_attached_file :third_image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, :bucket => 'hospitium-static', :styles => { :large => "530x530#", :medium => "260x180#", :thumb => "140x140#" },:default_url => "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png"
-  has_attached_file :fourth_image, :storage => :s3, :s3_protocol => "https", :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, :bucket => 'hospitium-static', :styles => { :large => "530x530#", :medium => "260x180#", :thumb => "140x140#" },:default_url => "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png"
+  has_attached_file :image, 
+                    :storage => :s3, 
+                    :s3_protocol => "https", 
+                    :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, 
+                    :bucket => 'hospitium-static-v2', 
+                    :styles => { :large => "530x530#", :medium => "260x180#", :thumb => "140x140#" },
+                    :default_url => "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png",
+                    :url => "/system/:class/:hash/:style/:filename",
+                    # :url  => "/system/:class_migration/:animalname_:orgname_:createdat/:style/:filename",
+                    :hash_secret => ENV['SALTY']
+  has_attached_file :second_image, 
+                    :storage => :s3, 
+                    :s3_protocol => "https", 
+                    :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, 
+                    :bucket => 'hospitium-static-v2', 
+                    :styles => { :large => "530x530#", :medium => "260x180#", :thumb => "140x140#" },
+                    :default_url => "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png",
+                    :url => "/system/:class/:hash/:style/:filename",
+                    :hash_secret => ENV['SALTY']
+  has_attached_file :third_image, 
+                    :storage => :s3, 
+                    :s3_protocol => "https", 
+                    :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, 
+                    :bucket => 'hospitium-static-v2', 
+                    :styles => { :large => "530x530#", :medium => "260x180#", :thumb => "140x140#" },
+                    :default_url => "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png",
+                    :url => "/system/:class/:hash/:style/:filename",
+                    :hash_secret => ENV['SALTY']
+  has_attached_file :fourth_image, 
+                    :storage => :s3, 
+                    :s3_protocol => "https", 
+                    :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, 
+                    :bucket => 'hospitium-static-v2', 
+                    :styles => { :large => "530x530#", :medium => "260x180#", :thumb => "140x140#" },
+                    :default_url => "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png",
+                    :url => "/system/:class/:hash/:style/:filename",
+                    :hash_secret => ENV['SALTY']
   
   belongs_to :organization
   belongs_to :species
@@ -32,9 +65,6 @@ class Animal < ActiveRecord::Base
   has_many :relinquishment_contacts, :through => :relinquish_animals
   has_many :documents, :as => :documentable
   has_many :shots
-  
-  
-  before_create :create_uuid
 
   attr_accessible :name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased, 
     :deceased_reason, :adopted_date, :animal_color_id, :image, :second_image, :third_image, :fourth_image, :public, :birthday, :animal_sex_id, :spay_neuter_id,
@@ -57,16 +87,7 @@ class Animal < ActiveRecord::Base
   delegate :name, :to => :shelter, :prefix => :shelter, :allow_nil => true
   
   is_impressionable :counter_cache => true, :unique => :session_hash
-  
-  #set_primary_key :uuid
-  def to_params
-    "#{id}-#{uuid}"
-  end
-  
-  #create uuid
-  def create_uuid()
-    self.uuid = UUIDTools::UUID.random_create.to_s
-  end
+
   
   def calculate_animal_age
     unless self.birthday.blank?

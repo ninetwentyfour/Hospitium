@@ -15,30 +15,30 @@ class Organization < ActiveRecord::Base
                     :storage => :s3, 
                     :s3_protocol => "https", 
                     :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, 
-                    :bucket => 'hospitium-static', 
-                    :url => "/system/:hash/:filename", 
+                    :bucket => 'hospitium-static-v2', 
+                    :url => "/system/:attachment/:hash/:filename", 
                     :hash_secret => ENV['SALTY']
   has_attached_file :volunteer_form, 
                     :default_url => "https://d4uktpxr9m70.cloudfront.net/pdfs/Volunteer-Application.pdf", 
                     :storage => :s3, 
                     :s3_protocol => "https", 
                     :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, 
-                    :bucket => 'hospitium-static', 
-                    :url => "/system/:hash/:filename", 
+                    :bucket => 'hospitium-static-v2', 
+                    :url => "/system/:attachment/:hash/:filename",
                     :hash_secret => ENV['SALTY']
   has_attached_file :relinquishment_form, 
                     :storage => :s3, 
                     :s3_protocol => "https", 
                     :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, 
-                    :bucket => 'hospitium-static', 
-                    :url => "/system/:hash/:filename", 
+                    :bucket => 'hospitium-static-v2', 
+                    :url => "/system/:attachment/:hash/:filename",
                     :hash_secret => ENV['SALTY']
   has_attached_file :foster_form, 
                     :storage => :s3, 
                     :s3_protocol => "https", 
                     :s3_credentials => {:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET']}, 
-                    :bucket => 'hospitium-static', 
-                    :url => "/system/:hash/:filename", 
+                    :bucket => 'hospitium-static-v2', 
+                    :url => "/system/:attachment/:hash/:filename",
                     :hash_secret => ENV['SALTY']
   validates_attachment_content_type :adoption_form, :content_type => ['application/pdf', 
                                                                       'application/msword', 
@@ -62,18 +62,12 @@ class Organization < ActiveRecord::Base
   has_many :foster_contacts, :dependent => :destroy
   has_many :users, :dependent => :destroy
   
-  before_create :create_uuid
   before_update :modify_phone_number
   after_create :add_default_status, :add_default_animal_colors, :add_default_species
 
   attr_accessible :name, :phone_number, :address, :city, :state, :zip_code, :email, :website, :adoption_form, :volunteer_form, :relinquishment_form, :foster_form
 
   validates_uniqueness_of :name
-  
-  #create uuid
-  def create_uuid()
-    self.uuid = UUIDTools::UUID.random_create.to_s
-  end
   
   #create the default statuses and assign them to the new organization
   def add_default_status

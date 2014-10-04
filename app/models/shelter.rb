@@ -13,17 +13,12 @@ class Shelter < ActiveRecord::Base
   
   belongs_to :organization
   has_many :animals
-  before_create :create_uuid, :modify_phone_number
+  before_create :modify_phone_number
   before_update :modify_phone_number
 
   attr_accessible :name, :contact_first, :contact_last, :address, :phone, :email, :website, :notes
 
   validates_presence_of :name, :organization_id
-  
-  #create uuid
-  def create_uuid()
-    self.uuid = UUIDTools::UUID.random_create.to_s
-  end
   
   def modify_phone_number
     unless self.phone.blank?

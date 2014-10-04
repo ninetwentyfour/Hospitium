@@ -14,7 +14,7 @@ class FosterContact < ActiveRecord::Base
   has_many :foster_animals
   has_many :animals, :through => :foster_animals
   belongs_to :organization
-  before_create :create_uuid, :modify_phone_number
+  before_create :modify_phone_number
   before_update :modify_phone_number
 
   attr_accessible :first_name, :last_name, :address, :phone, :email
@@ -22,11 +22,6 @@ class FosterContact < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :address, :organization_id
   
   accepts_nested_attributes_for :foster_animals
-  
-  #create uuid
-  def create_uuid()
-    self.uuid = UUIDTools::UUID.random_create.to_s
-  end
   
   #remove all characters from phone number except digits
   def modify_phone_number
