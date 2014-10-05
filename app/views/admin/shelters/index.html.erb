@@ -24,13 +24,13 @@
 				<tbody class="no-border-x no-border-y">
 					<% @shelters.each do |shelter| %>
 						<tr>
-							<td><a href="/admin/shelters/<%= shelter.id %>-<%= shelter.uuid %>"><%= shelter.name %></a></td>
+							<td><a href="/admin/shelters/<%= shelter.id %>"><%= shelter.name %></a></td>
 							<td><%= shelter.address %></td>
 							<td><%= number_to_phone(shelter.phone) %></td>
 							<td><%= shelter.email %></td>
 							<td class="actions_column">
 								<div class="btn-group">
-									<a class="btn tipster" href="/admin/shelters/<%= shelter.id %>-<%= shelter.uuid %>" title="View Shelter"><i class="fa fa-eye"></i></a>
+									<a class="btn tipster" href="/admin/shelters/<%= shelter.id %>" title="View Shelter"><i class="fa fa-eye"></i></a>
 									<% if can? :destroy, shelter and shelter.animals.blank? %>
 										<%= link_to raw("<i class='fa fa-remove'></i>"), admin_shelter_path(shelter),
 										            :data => {:confirm => 'Are you sure you want to delete?'}, :method => :delete, :class => "btn tipster", :title => "Delete" %>
