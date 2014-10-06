@@ -16,7 +16,7 @@
 						<% end %>
 
 						<% if can? :set_role, @user %>
-							<span class="admin_user_check"><%= best_in_place @user, :permissions, :type => :select, :collection => [[0, "Standard"], [1, "Admin"]], :path => admin_user_role_path, :nil => @user.roles.first.name %></span>
+							<span class="admin_user_check"><%= best_in_place @user, :permissions, :type => :select, :collection => [[0, "Standard"], [1, "Admin"]], :path => user_role_admin_user_path(@user), :nil => @user.roles.first.name %></span>
 						<% else %>
 							<%= @user.roles.first.name %>
 						<% end %>
@@ -40,10 +40,18 @@
 							<% else %>
 								<p><strong>Email:</strong> <%= @user.email %></p>
 							<% end %>
+
+							<% if current_user.id == @user.id %>
+								<p><strong>API Token:</strong> <%= @user.authentication_token %></p>
+							<% end %>
 							
 							<% if can? :update, @user %>
 								<hr />
 								<a class="btn" data-toggle="modal" href="#editPass" ><i class="fa fa-pencil"></i> Change Password</a>
+							<% end %>
+
+							<% if current_user.id == @user.id %>
+								<a class="btn" href="/admin/users/<%= current_user.id %>/reset_token" ><i class="fa fa-refresh"></i> Reset Token</a>
 							<% end %>
 						</div>
 					</div>

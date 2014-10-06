@@ -1,100 +1,83 @@
-AnimalTracker::Application.routes.draw do
-
-
-  #resources :notes
-  
-  match "/animals/not_available" => "animals#not_available", :via => :get
-  
+AnimalTracker::Application.routes.draw do  
   resource :facebook_accounts, :only => [:new, :destroy]
-  match '/callback/facebook/:id' => "facebook_accounts#callback", :as => :facebook_callback, :via => :get
-  match "/facebook_accounts/send_wall_post" => "facebook_accounts#send_wall_post", :as => nil, :via => :post
-  match "/facebook_accounts/:id" => "facebook_accounts#destroy", :via => :delete
+  get 'callback/facebook/:id', to: 'facebook_accounts#callback', as: :facebook_callback
+  post 'facebook_accounts/send_wall_post', to: 'facebook_accounts#send_wall_post'
+  delete 'facebook_accounts/:id', to: 'facebook_accounts#destroy'
 
   
   resource :twitter_accounts, :only => [:new, :destroy]
-  match '/callback/twitter/' => "twitter_accounts#callback", :as => :twitter_callback, :via => :get
-  match "/twitter_accounts/send_tweet" => "twitter_accounts#send_tweet", :as => nil, :via => :post
-  match "/twitter_accounts/:id" => "twitter_accounts#destroy", :via => :delete
-  
-  # post "versions/:id/revert" => "versions#revert", :as => "revert_version"
-  
-  #force most controllers to /admin
-  match "/permissions" => redirect("/admin/permissions"), :via => :get
-  match "/permissions/:id" => redirect("/admin/permissions/%{id}"), :via => :get
-  match "/permissions/new" => redirect("/admin/permissions/new"), :via => :get
-  match "/permissions/:id/edit" => redirect("/admin/permissions/%{id}/edit"), :via => :get
-  
-  match "/biters" => redirect("/admin/biters"), :via => :get
-  match "/biters/:id" => redirect("/admin/biters/%{id}"), :via => :get
-  match "/biters/new" => redirect("/admin/biters/new"), :via => :get
-  match "/biters/:id/edit" => redirect("/admin/biters/%{id}/edit"), :via => :get
-  
-  match "/animal_sexes" => redirect("/admin/animal_sexes"), :via => :get
-  match "/animal_sexes/:id" => redirect("/admin/animal_sexes/%{id}"), :via => :get
-  match "/animal_sexes/new" => redirect("/admin/animal_sexes/new"), :via => :get
-  match "/animal_sexes/:id/edit" => redirect("/admin/animal_sexes/%{id}/edit"), :via => :get
-  
-  match "/spay_neuters" => redirect("/admin/spay_neuters"), :via => :get
-  match "/spay_neuters/:id" => redirect("/admin/spay_neuters/%{id}"), :via => :get
-  match "/spay_neuters/new" => redirect("/admin/spay_neuters/new"), :via => :get
-  match "/spay_neuters/:id/edit" => redirect("/admin/spay_neuters/%{id}/edit"), :via => :get
-  
-  resources :biters
+  get 'callback/twitter', to: 'twitter_accounts#callback', as: :twitter_callback
+  post 'twitter_accounts/send_tweet', to: 'twitter_accounts#send_tweet'
+  delete 'twitter_accounts/:id', to: 'twitter_accounts#destroy'
 
-  resources :spay_neuters
-
-  resources :animal_sexes
-
+  get '/animals/not_available', to: 'animals#not_available'
   resources :animals, :only => [:show, :index]
 
   resources :organizations, :only => [:show]
   
-  resources :permissions
-  
-  resources :roles
-  
   resources :posts, :only => [:show, :index]
   
-  match "/wordpress_accounts/send_blog_post" => "admin/wordpress_accounts#send_blog_post", :as => nil, :via => :post
-  
-  match "/send-to-adopt-a-pet" => "admin/adopt_a_pet_accounts#send_animal", :as => nil, :via => :get
-  
-  match "/species.:id" => "species#update", :via => :put
+  post 'wordpress_accounts/send_blog_post', to: 'admin/wordpress_accounts#send_blog_post'
+  get 'send-to-adopt-a-pet', to: 'admin/adopt_a_pet_accounts#send_animal'
 
-    
-  devise_for :users#, :controllers => { :sessions => 'users/sessions' } 
+  devise_for :users
   get "home/index"
   root :to => "home#index"
-  match "/about" => "home#about", :as => "about", :via => :get
-  match "/features" => "home#features", :as => "features", :via => :get
-  match "/privacy-and-terms-of-service" => "home#privacy", :as => "privacy", :via => :get
-  match "/why-hospitium" => "home#why", :as => "why", :via => :get
-  match "/recent-changes" => "home#changes", :as => "changes", :via => :get
-  match "/ftp-test" => "adopt_a_pets#send_to_site", :as => "send_to_site", :via => :get
-  
-  match "/posts/feed/rss" => "posts#feed", :via => :get
+  get 'about', to: 'home#about'
+  get 'features', to: 'home#features'
+  get 'privacy-and-terms-of-service', to: 'home#privacy'
+  get 'why-hospitium', to: 'home#why'
+  get 'recent-changes', to: 'home#changes'
+  get 'posts/feed/rss', to: 'posts#feed'
   
   devise_scope :user do
-    match '/users/:id', :to => 'users#update', :via => :put
-    match '/users/sign_out' => 'devise/sessions#destroy', :via => :delete
+    put 'users/:id', to: 'users#update'
+    delete 'users/sign_out', to: 'devise/session#destroy'
   end
   
-  resources :users, :only => [:show, :update]
-  
-  match "/admin/animals/:id/cage_card" => "admin/animals#cage_card", :as => "animals_cage_card", :via => :get
-  match "/admin/animals/:id/qr_code" => "admin/animals#qr_code", :as => "animals_qr_code", :via => :get
-  match "/admin/animals/:id/add_image" => "admin/animals#add_image", :as => "admin_animal_add_image", :via => :patch
   # Prefix route urls with "admin"
   namespace :admin do
-    resources :animals, :species, :statuses, :animal_colors, :shelters, :animal_weights, :adoption_contacts, :organizations, :relinquishment_contacts, :users,
-      :vet_contacts, :volunteer_contacts, :notifications, :posts, :notes, :documents, :shots, :adopt_a_pet_accounts, :wordpress_accounts, :adopt_animals, :relinquish_animals,
-      :foster_contacts, :foster_animals
-      
-    match "/" => "home#index", :as => "index", :via => :get
-    match "animals/:id/duplicate" => "animals#duplicate", :via => :get
-    match "statuses.:id" => "statuses#destroy", :via => :delete
-    match "users/:id/cancel" => "users#cancel", :as => "cancel_user", :via => :delete
-    match "users/:id/set_role" => "users#set_role", :as => "user_role", :via => :put
+    root :to => "home#index"
+
+    resources :species,
+              :statuses,
+              :animal_colors,
+              :shelters,
+              :animal_weights,
+              :adoption_contacts,
+              :organizations,
+              :relinquishment_contacts,
+              :vet_contacts,
+              :volunteer_contacts,
+              :notifications,
+              :posts,
+              :notes,
+              :documents,
+              :shots,
+              :adopt_a_pet_accounts,
+              :wordpress_accounts,
+              :adopt_animals,
+              :relinquish_animals,
+              :foster_contacts,
+              :foster_animals
+
+    resources :animals do
+      resources :animal_weights, :documents, :shots, :notes, :adoption_contacts, :relinquishment_contacts
+      member do
+        get 'cage_card'
+        get 'duplicate'
+        get 'qr_code'
+        patch 'add_image'
+      end
+    end
+
+    resources :users do
+      member do
+        get 'reset_token', to: 'users#reset_token'
+        put 'set_role', to: 'users#set_role', as: 'user_role'
+        delete 'cancel', to: 'users#cancel', as: 'cancel_user'
+      end
+    end
   end
 
   post SecureHeaders::ContentSecurityPolicy::FF_CSP_ENDPOINT => "content_security_policy#scribe"

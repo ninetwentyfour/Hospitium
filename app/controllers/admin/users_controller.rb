@@ -1,5 +1,6 @@
 class Admin::UsersController < Admin::CrudController
   load_and_authorize_resource
+  skip_before_filter :authenticate_user_from_token!, :except => [:index, :show]
   
   # Allowed params for create and update
   self.permitted_attrs = [:email, :password, :password_confirmation, :remember_me, :username, :login, :organization_name, :owner,
@@ -7,8 +8,8 @@ class Admin::UsersController < Admin::CrudController
   # scope create to current_user.organization
   self.save_as_organization = true
   # redirect somewhere other than the object on create/delete
-  self.redirect_on_create = :back
-  self.redirect_on_delete = :back
+  # self.redirect_on_create = :back
+  # self.redirect_on_delete = :back
   
   # GET /users
   # GET /users.xml
@@ -56,5 +57,15 @@ class Admin::UsersController < Admin::CrudController
     permission.save
 
     respond_with(@user, :location => admin_user_path(@user))
+  end
+
+  def reset_token
+    @user = User.find(params[:id])
+    return redirect_to root_path if @user.id != current_user.id
+    @user.authentication_token = @user.generate_authentication_token
+    @user.save
+
+    # respond_with(@user, :location => admin_user_path(@user))
+    redirect_to admin_user_path(@user)
   end
 end

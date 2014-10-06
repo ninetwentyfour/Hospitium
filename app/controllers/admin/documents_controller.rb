@@ -3,12 +3,21 @@ class Admin::DocumentsController < Admin::ApplicationController
   
   respond_to :html, :json, :js
 
-  # POST /documents
-  # POST /documents.json
+  def index
+    if params[:animal_id]
+      @search = Document.organization(current_user).where(documentable_id: params[:animal_id], documentable_type: 'Animal').search(params[:q])
+    else
+      @search = Document.organization(current_user).search(params[:q])
+    end
+    @documents = @search.result.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
+
+    respond_with(@documents)
+  end
+
   def create
     #loop on each file from array and create document
     params[:document][:filearrays].each do |file|
-      @document = Document.new(:document => file, :documentable_id => params[:document][:documentable_id], :documentable_type => params[:document][:documentable_type])
+      @document = Document.new(:document => file, :documentable_id => params[:document][:documentable_id], :documentable_type => params[:document][:documentable_type], :organization_id => current_user.organization.id)
       if @document.save
         flash[:notice] = 'Successfully uploaded the document.'
       else
@@ -19,8 +28,6 @@ class Admin::DocumentsController < Admin::ApplicationController
     redirect_to :back
   end
 
-  # DELETE /documents/1
-  # DELETE /documents/1.json
   def destroy
     @document = Document.find(params[:id])
     @document.destroy

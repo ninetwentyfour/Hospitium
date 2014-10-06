@@ -56,11 +56,6 @@ describe Admin::UsersController do
         assigns(:user).should be_a(User)
         assigns(:user).should be_persisted
       end
-
-      it "redirects to the created user" do
-        post :create, {:user =>  FactoryGirl.attributes_for(:user)}
-        response.should redirect_to "http://test.host"
-      end
     end
   end
 
@@ -89,11 +84,6 @@ describe Admin::UsersController do
       expect {
         delete :destroy, {:id => @user.to_param}
       }.to change(User, :count).by(-1)
-    end
-
-    it "redirects to the users list" do
-      delete :destroy, {:id => @user.to_param}
-      response.should redirect_to "http://test.host"
     end
   end
 end

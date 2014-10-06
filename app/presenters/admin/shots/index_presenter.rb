@@ -1,8 +1,9 @@
 class Admin::Shots::IndexPresenter
-  def initialize(user, page, query)
+  def initialize(user, page, query, animal_id)
     @user = user
     @query = query
     @page = page
+    @animal_id = animal_id
   end
   
   def shots
@@ -10,7 +11,11 @@ class Admin::Shots::IndexPresenter
   end
 
   def search
-    Shot.organization(@user).search(@query)
+    if @animal_id
+      Shot.organization(@user).where(animal_id: @animal_id).search(@query)
+    else
+      Shot.organization(@user).search(@query)
+    end
   end
 
   def animals

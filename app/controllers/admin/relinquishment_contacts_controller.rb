@@ -12,7 +12,11 @@ class Admin::RelinquishmentContactsController < Admin::CrudController
   # GET /relinquishment_contacts
   # GET /relinquishment_contacts.xml
   def index
-    @search = RelinquishmentContact.organization(current_user).search(params[:q])
+    if params[:animal_id]
+      @search = RelinquishmentContact.joins(:relinquish_animals).organization(current_user).where(relinquish_animals: {animal_id: params[:animal_id]}).search(params[:q])
+    else
+      @search = RelinquishmentContact.organization(current_user).search(params[:q])
+    end
     @relinquishment_contacts = @search.result.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
     @presenter = Admin::RelinquishmentContacts::IndexPresenter.new(current_user)
     respond_with(@relinquishment_contacts) do |format|

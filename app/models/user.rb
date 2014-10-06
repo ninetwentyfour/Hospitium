@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   
   before_create :add_to_organization
   after_create :add_default_role, :send_new_email, :increment_stats
+  before_save :ensure_authentication_token
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :login, :organization_name, :owner,
@@ -64,8 +65,22 @@ class User < ActiveRecord::Base
       self.organization_id = @organization.id
     end
   end
+
+  def generate_authentication_token
+    # create a longer token and check that it isn't set on some other user
+    loop do
+      token = Devise.friendly_token + Devise.friendly_token + Devise.friendly_token
+      break token unless User.where(authentication_token: token).first
+    end
+  end
   
   protected
+
+  def ensure_authentication_token
+    if authentication_token.blank?
+      self.authentication_token = generate_authentication_token
+    end
+  end
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup

@@ -159,7 +159,7 @@
 					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
 				</div>
 				<p class="first_image_upload_bar" style="display:none;">Loading...</p>
-				<%= form_for animal, :url => admin_animal_add_image_path, :html => { :id => "first_image_upload" } do |f| %>
+				<%= form_for animal, :url => add_image_admin_animal_path, :html => { :id => "first_image_upload" } do |f| %>
 					<%= f.file_field :image, :accept => "image/jpeg,image/jpg,image/png" %>
 					<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
 				<%end%>
@@ -184,7 +184,7 @@
 					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
 				</div>
 				<p class="second_image_upload_bar" style="display:none;">Loading...</p>
-				<%= form_for animal, :url => admin_animal_add_image_path, :html => { :id => "second_image_upload" }, :validate => true do |f| %>
+				<%= form_for animal, :url => add_image_admin_animal_path, :html => { :id => "second_image_upload" }, :validate => true do |f| %>
 					<%= f.file_field :second_image, :accept => "image/jpeg,image/jpg,image/png" %>
 					<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
 				<%end%>
@@ -209,7 +209,7 @@
 					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
 				</div>
 				<p class="third_image_upload_bar" style="display:none;">Loading...</p>
-				<%= form_for animal, :url => admin_animal_add_image_path, :html => { :id => "third_image_upload" } do |f| %>
+				<%= form_for animal, :url => add_image_admin_animal_path, :html => { :id => "third_image_upload" } do |f| %>
 					<%= f.file_field :third_image, :accept => "image/jpeg,image/jpg,image/png" %>
 					<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
 				<%end%>
@@ -234,7 +234,7 @@
 					<div class="progress-bar progress-bar-danger" style="width: 100%;"></div>
 				</div>
 				<p class="fourth_image_upload_bar" style="display:none;">Loading...</p>
-				<%= form_for animal, :url => admin_animal_add_image_path, :html => { :id => "fourth_image_upload" } do |f| %>
+				<%= form_for animal, :url => add_image_admin_animal_path, :html => { :id => "fourth_image_upload" } do |f| %>
 					<%= f.file_field :fourth_image, :accept => "image/jpeg,image/jpg,image/png" %>
 					<p>We recommend an image with a min-size of 530px. (.png and .jpg allowed)</p>
 				<%end%>

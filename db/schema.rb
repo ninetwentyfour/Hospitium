@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141004201533) do
+ActiveRecord::Schema.define(version: 20141006165758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "uuid-ossp"
@@ -172,10 +172,12 @@ ActiveRecord::Schema.define(version: 20141004201533) do
     t.datetime "document_updated_at"
     t.uuid     "documentable_id"
     t.string   "documentable_type"
+    t.uuid     "organization_id"
   end
 
   add_index "documents", ["animal_id"], name: "index_documents_on_animal_id", using: :btree
   add_index "documents", ["documentable_id", "documentable_type"], name: "index_documents_on_documentable_id_and_documentable_type", using: :btree
+  add_index "documents", ["organization_id"], name: "index_documents_on_organization_id", using: :btree
 
   create_table "email_blacklists", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string "domain"
@@ -497,8 +499,10 @@ ActiveRecord::Schema.define(version: 20141004201533) do
     t.integer  "failed_attempts",                    default: 0
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.string   "authentication_token"
   end
 
+  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", using: :btree
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["organization_id"], name: "index_users_on_organization_id", using: :btree

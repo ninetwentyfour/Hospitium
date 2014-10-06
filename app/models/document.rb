@@ -1,7 +1,9 @@
 class Document < ActiveRecord::Base
+  include CommonScopes
+  belongs_to :organization
   belongs_to :documentable, :polymorphic => true
 
-  attr_accessible :document, :animal_id, :documentable_type, :documentable_id
+  attr_accessible :document, :animal_id, :documentable_type, :documentable_id, :organization_id
   
   has_attached_file :document, 
                     :storage => :s3, 

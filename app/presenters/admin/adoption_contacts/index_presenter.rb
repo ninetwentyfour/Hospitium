@@ -1,8 +1,9 @@
 class Admin::AdoptionContacts::IndexPresenter
-  def initialize(user, page, query)
+  def initialize(user, page, query, animal_id)
     @user = user
     @query = query
     @page = page
+    @animal_id = animal_id
   end
   
   def adoption_contacts
@@ -10,7 +11,11 @@ class Admin::AdoptionContacts::IndexPresenter
   end
 
   def search
-    AdoptionContact.organization(@user).search(@query)
+    if @animal_id
+      AdoptionContact.joins(:adopt_animals).organization(@user).where(adopt_animals: {animal_id: @animal_id}).search(@query)
+    else
+      AdoptionContact.organization(@user).search(@query)
+    end
   end
 
   def animal

@@ -42,6 +42,10 @@ gem "polyamorous", :github => "activerecord-hackery/polyamorous"
 # UUID MIGRATION
 gem 'webdack-uuid_migration', :github => "ninetwentyfour/webdack-uuid_migration"
 
+# faster json
+gem 'oj'
+gem 'oj_mimic_json'
+
 # heroku gems for pulling/pushing db
 # gem 'heroku'
 # gem 'sqlite3'

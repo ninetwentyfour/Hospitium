@@ -13,9 +13,14 @@ class Admin::AnimalWeightsController < Admin::CrudController
   # GET /animal_weights
   # GET /animal_weights.xml
   def index
-    @search = AnimalWeight.includes(:animal).organization(current_user).search(params[:q])
+    if params[:animal_id]
+      @search = AnimalWeight.includes(:animal).organization(current_user).where(animal_id: params[:animal_id]).search(params[:q])
+    else
+      @search = AnimalWeight.includes(:animal).organization(current_user).search(params[:q])
+    end
     @animal_weights = @search.result.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
     @animals = Animal.organization(current_user).order("name")
+
     respond_with(@animal_weights) do |format|
       format.html
       format.csv { render :csv => AnimalWeight.includes(:animal).organization(current_user),

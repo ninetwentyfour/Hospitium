@@ -12,7 +12,7 @@ class Admin::AdoptionContactsController < Admin::CrudController
   # GET /adoption_contacts
   # GET /adoption_contacts.xml
   def index
-    @presenter = Admin::AdoptionContacts::IndexPresenter.new(current_user, params[:page], params[:q])
+    @presenter = Admin::AdoptionContacts::IndexPresenter.new(current_user, params[:page], params[:q], params[:animal_id])
     respond_with(@adoption_contacts) do |format|
       format.html
       format.csv { render :csv => AdoptionContact.organization(current_user),

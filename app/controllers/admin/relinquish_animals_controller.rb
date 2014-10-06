@@ -5,8 +5,6 @@ class Admin::RelinquishAnimalsController < Admin::CrudController
   self.permitted_attrs = [:relinquishment_contact_id, :animal_id]
   # scope create to current_user.organization
   self.save_as_organization = false
-  # redirect somewhere other than the object on create
-  self.redirect_on_create = :back
 
   # # POST /biters
   # # POST /biters.xml

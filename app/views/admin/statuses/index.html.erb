@@ -22,7 +22,7 @@
 								<div class="btn-group">
 									<a class="btn tipster" href="/admin/statuses/<%= status.id %>" title="View Status"><i class="fa fa-eye"></i></a>
 									<% if can? :destroy, status and status.animals.blank? %>
-										<%= link_to raw("<i class='fa fa-remove'></i>"), admin_statuses_path(status),
+										<%= link_to raw("<i class='fa fa-remove'></i>"), admin_status_path(status),
 										            :data => {:confirm => 'Are you sure you want to delete?'}, :method => :delete, :class => "btn tipster", :title => "Delete" %>
 									<% end %>
 								</div>

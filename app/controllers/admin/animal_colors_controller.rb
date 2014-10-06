@@ -8,6 +8,7 @@ class Admin::AnimalColorsController < Admin::CrudController
   self.permitted_attrs = [:color]
   # scope create to current_user.organization
   self.save_as_organization = true
+  self.redirect_on_create = :back
   
   # GET /animal_colors
   # GET /animal_colors.xml

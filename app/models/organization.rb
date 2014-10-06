@@ -49,6 +49,7 @@ class Organization < ActiveRecord::Base
   has_many :animals, :dependent => :destroy
   has_many :animal_colors, :dependent => :destroy
   has_many :animal_weights, :dependent => :destroy
+  has_many :documents
   has_many :facebook_accounts, :dependent => :destroy
   has_many :relinquishment_contacts, :dependent => :destroy
   has_many :shelters, :dependent => :destroy

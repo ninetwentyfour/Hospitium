@@ -13,7 +13,7 @@ class Admin::ShotsController < Admin::CrudController
   # GET /shots
   # GET /shots.csv
   def index
-    @presenter = Admin::Shots::IndexPresenter.new(current_user, params[:page], params[:q])
+    @presenter = Admin::Shots::IndexPresenter.new(current_user, params[:page], params[:q], params[:animal_id])
     respond_with(@shots) do |format|
       format.html
       format.csv { render :csv => Shot.includes(:animal).organization(current_user),

@@ -1,0 +1,10 @@
+json.id @vet_contact.id
+json.clinic_name @vet_contact.clinic_name
+json.address @vet_contact.address
+json.phone number_to_phone(@vet_contact.phone)
+json.email @vet_contact.email
+json.website @vet_contact.website
+json.emergency @vet_contact.emergency
+json.hours @vet_contact.hours
+json.created_at @vet_contact.created_at
+json.updated_at @vet_contact.updated_at

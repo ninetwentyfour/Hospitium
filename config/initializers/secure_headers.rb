@@ -18,6 +18,7 @@
                      '*.newrelic.com',
                      '*.disqus.com', 
                      'inline',
+                     'juggernaut-hospitium2.herokuapp.com',
                      'eval'],
     :style_src   => ['*.googleapis.com', 
                      '*.olark.com', 
@@ -37,6 +38,7 @@
                      'hospitium.co'],
     :frame_src   => ['*.olark.com', 
                      '*.youtube.com',
+                     'juggernaut-hospitium2.herokuapp.com', 
                      '*.disqus.com'],
     :media_src   => ['*.olark.com']
   }

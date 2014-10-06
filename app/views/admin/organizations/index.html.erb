@@ -15,7 +15,7 @@
             </div>
             <div class="col-sm-3">
   						<% if can? :cancel, current_user %>
-  							<%= link_to raw("<i class='fa fa-remove'></i> Cancel Account"), admin_cancel_user_path(current_user),
+  							<%= link_to raw("<i class='fa fa-remove'></i> Cancel Account"), cancel_user_admin_user_path(current_user),
   		                            :data => {:confirm => 'Are you sure you want to delete? This will remove all animals, users, and other data associated with your Organization. This action can not be undone.'}, :method => :delete, :class => "btn btn-primary btn-rad btn-trans pull-right tipster", :title => "Delete" %>
   						<% end %>
             </div>

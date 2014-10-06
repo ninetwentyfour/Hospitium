@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
+  include ActionController::HttpAuthentication::Token
   before_filter :check_domain
   before_filter :get_notice
+  before_filter :authenticate_user_from_token!, unless: :devise_controller?
   before_filter :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery # Turn on request forgery protection. Bear in mind that only non-GET, HTML/JavaScript requests are checked.
   ensure_security_headers
@@ -20,7 +22,13 @@ class ApplicationController < ActionController::Base
   
   rescue_from CanCan::AccessDenied do |exception|
     exception.default_message = "Default error message"
-    redirect_to root_url, :notice => "That URL is prohibited"
+    respond_to do |format|
+      format.html { redirect_to root_url, :notice => "That URL is prohibited" }
+      format.json { render :status => 401,
+                            :json => {  :success => false,
+                                        :info => "That URL is prohibited"
+                            }}
+    end
   end
   
   rescue_from ActiveRecord::RecordNotFound do
@@ -50,6 +58,28 @@ class ApplicationController < ActionController::Base
   
   def canonical_url(canonical_url)
     @canonical_url = canonical_url
+  end
+
+  private
+
+  def authenticate_user_from_token!
+    if token_and_options(request)
+      user_token = token_and_options(request).first
+      user = Rails.cache.fetch("user_auth_#{user_token}", :expires_in => 5.minutes) do
+        user_token && User.where(authentication_token: user_token.to_s).first
+      end
+   
+      if user
+        # Notice we are passing store false, so the user is not
+        # actually stored in the session and a token is needed
+        # for every request. If you want the token to work as a
+        # sign in token, you can simply remove store: false.
+        sign_in user, store: false
+      else
+        # sleep 200-400ms
+        sleep((200 + rand(200)) / 1000.0)
+      end
+    end
   end
 
   protected

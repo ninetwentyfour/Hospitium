@@ -10,8 +10,17 @@ class Admin::NotesController < Admin::CrudController
   # redirect somewhere other than the object on delete
   self.redirect_on_delete = :back
 
-  # POST /notes
-  # POST /notes.json
+  def index
+    if params[:animal_id]
+      @search = Note.includes(:animal).where(animal_id: params[:animal_id]).search(params[:q])
+    else  
+      @search = Note.includes(:animal).where(user_id: current_user.id).search(params[:q])
+    end
+    @notes = @search.result.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
+
+    respond_with(@notes)
+  end
+
   def create
     @note = current_user.notes.new(note_params)
     @note.note = view_context.markdown(@note.note).gsub("\n","").gsub("\r","")
@@ -20,8 +29,6 @@ class Admin::NotesController < Admin::CrudController
     respond_with(@note)
   end
 
-  # DELETE /notes/1
-  # DELETE /notes/1.json
   def destroy
     @note = Note.find(params[:id])
     @note.destroy

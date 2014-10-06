@@ -61,7 +61,7 @@ class Admin::CrudController < Admin::ListController
                                                entry.save 
                                              }
     respond_options = options.reverse_merge(success: created)
-    if redirect_on_create
+    if redirect_on_create and !request.env["HTTP_REFERER"].blank? and request.env["HTTP_REFERER"] != request.env["REQUEST_URI"]
       redirect_to redirect_on_create
     else
       respond_with(:admin, entry, respond_options, &block)
@@ -105,7 +105,7 @@ class Admin::CrudController < Admin::ListController
     location ||= index_url
     respond_options = options.reverse_merge(success: destroyed,
                                             location: location)
-    if redirect_on_delete
+    if redirect_on_delete and !request.env["HTTP_REFERER"].blank? and request.env["HTTP_REFERER"] != request.env["REQUEST_URI"]
       redirect_to redirect_on_delete
     else
       location = !destroyed && request.env["HTTP_REFERER"].presence || index_url

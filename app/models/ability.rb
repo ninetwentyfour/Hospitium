@@ -48,10 +48,14 @@ class Ability
     can :update, Note, animal: { organization: { id: @user.organization_id } }
     can :destroy, Note, animal: { organization: { id: @user.organization_id } }
     
-    can :read, Document, documentable: { organization: { id: @user.organization_id } }
-    can :create, Document, documentable: { organization: { id: @user.organization_id } }
-    can :update, Document, documentable: { organization: { id: @user.organization_id } }
-    can :destroy, Document, documentable: { organization: { id: @user.organization_id } }
+    # can :read, Document, documentable: { organization: { id: @user.organization_id } }
+    can :read, Document, organization: { id: @user.organization_id }
+    # can :create, Document, documentable: { organization: { id: @user.organization_id } }
+    can :create, Document, organization_id: @user.organization_id
+    # can :update, Document, documentable: { organization: { id: @user.organization_id } }
+    can :update, Document, organization: { id: @user.organization_id }
+    # can :destroy, Document, documentable: { organization: { id: @user.organization_id } }
+    can :destroy, Document, organization: { id: @user.organization_id }
 
     can :read, Organization, :id => @user.organization_id
 
@@ -75,6 +79,7 @@ class Ability
     can :create, User
     can :read, User, organization: { id: @user.organization_id }
     can :update, User, :id => @user.id
+    can :reset_token, User, :id => @user.id
 
     can :read, VetContact, organization: { id: @user.organization_id }
     can :create, VetContact
