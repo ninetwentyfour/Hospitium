@@ -4,12 +4,29 @@ class Admin::AnimalsController < Admin::ApplicationController
   
   respond_to :html, :json, :csv, :js
   
-  # GET /animals
-  # GET /animals.xml
   def index
-    @search = Animal.select('animals.name, animals.microchip, animals.birthday, animals.id, animals.status_id, animals.animal_color_id, animals.animal_sex_id, animals.species_id, animals.spay_neuter_id, animals.updated_at, animals.image, animals.image_file_name, animals.image_updated_at, animals.organization_id, animals.created_at, animals.updated_at').
+    if !params[:archived_view]
+      @archived_condition = {archived: false}
+    end
+    @search = Animal.select('animals.name,
+                              animals.microchip,
+                              animals.birthday,
+                              animals.id,
+                              animals.status_id,
+                              animals.animal_color_id,
+                              animals.animal_sex_id,
+                              animals.species_id,
+                              animals.spay_neuter_id,
+                              animals.updated_at,
+                              animals.image,
+                              animals.image_file_name,
+                              animals.image_updated_at,
+                              animals.organization_id,
+                              animals.created_at,
+                              animals.updated_at').
                     includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter).
                     organization(current_user).
+                    where(@archived_condition).
                     search(params[:q])
     @animals = @search.result.paginate(:page => params[:page], :per_page => 10).order("name ASC")
     
@@ -22,8 +39,6 @@ class Admin::AnimalsController < Admin::ApplicationController
     end
   end
 
-  # GET /animals/1
-  # GET /animals/1.xml
   def show
     @animal = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :shelter, :shots).find(params[:id])
     if @animal.documents.blank?
@@ -33,8 +48,6 @@ class Admin::AnimalsController < Admin::ApplicationController
     respond_with(@animal)
   end
 
-  # GET /animals/new
-  # GET /animals/new.xml
   def new
     @animal = Animal.new
     @presenter = Admin::Animals::NewPresenter.new(current_user)
@@ -42,13 +55,10 @@ class Admin::AnimalsController < Admin::ApplicationController
     respond_with(@animal)
   end
 
-  # GET /animals/1/edit
   def edit
     redirect_to admin_animal_path(params[:id])
   end
 
-  # POST /animals
-  # POST /animals.xml
   def create
     @animal = current_user.organization.animals.new(animal_params)
     if @animal.save
@@ -68,8 +78,6 @@ class Admin::AnimalsController < Admin::ApplicationController
     respond_with(@animal, :location => admin_animal_path(@animal)) 
   end
 
-  # DELETE /animals/1
-  # DELETE /animals/1.xml
   def destroy
     @animal = Animal.find(params[:id])
     @animal.destroy
@@ -137,6 +145,6 @@ class Admin::AnimalsController < Admin::ApplicationController
 
       params.require(:animal).permit(:name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased, 
         :deceased_reason, :adopted_date, :animal_color_id, :image, :second_image, :third_image, :fourth_image, :public, :birthday, :animal_sex_id, :spay_neuter_id,
-        :biter_id, :status_id, :video_embed, :microchip)
+        :biter_id, :status_id, :video_embed, :microchip, :archived)
     end
 end

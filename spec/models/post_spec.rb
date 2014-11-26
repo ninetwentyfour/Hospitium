@@ -9,7 +9,9 @@ describe Post do
       TwitterAccount.stubs(:twitter_post).returns(true)
       ShortLink.stubs(:shorten_link).returns("http://example.com")
       
-      post.send_public_tweet.should == true
+      expect(post.send_public_tweet).to eq true
+
+      ShortLink.unstub(:shorten_link)
   	end
   end
 

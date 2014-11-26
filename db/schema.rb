@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006165758) do
+ActiveRecord::Schema.define(version: 20141115202619) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "uuid-ossp"
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "activities", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.uuid     "trackable_id"
@@ -143,10 +143,12 @@ ActiveRecord::Schema.define(version: 20141006165758) do
     t.text     "video_embed"
     t.string   "microchip"
     t.integer  "impressions_count",         default: 0
+    t.boolean  "archived",                  default: false
   end
 
   add_index "animals", ["animal_color_id"], name: "index_animals_on_animal_color_id", using: :btree
   add_index "animals", ["animal_sex_id"], name: "index_animals_on_animal_sex_id", using: :btree
+  add_index "animals", ["archived"], name: "index_animals_on_archived", using: :btree
   add_index "animals", ["biter_id"], name: "index_animals_on_biter_id", using: :btree
   add_index "animals", ["organization_id"], name: "index_animals_on_organization_id", using: :btree
   add_index "animals", ["public"], name: "index_animals_on_public", using: :btree
@@ -164,8 +166,8 @@ ActiveRecord::Schema.define(version: 20141006165758) do
   create_table "documents", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.uuid     "animal_id"
     t.string   "document"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "document_file_name"
     t.string   "document_content_type"
     t.integer  "document_file_size"
@@ -189,17 +191,17 @@ ActiveRecord::Schema.define(version: 20141006165758) do
     t.text     "event_message"
     t.uuid     "related_model_id"
     t.string   "related_model_name"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.uuid     "organization_id"
     t.string   "record_uuid"
   end
 
-  add_index "events", ["animal_id"], name: "index_animal_events_on_animal_id", using: :btree
-  add_index "events", ["event_type"], name: "index_animal_events_on_event_type", using: :btree
-  add_index "events", ["organization_id"], name: "index_animal_events_on_organization_id", using: :btree
+  add_index "events", ["animal_id"], name: "index_events_on_animal_id", using: :btree
+  add_index "events", ["event_type"], name: "index_events_on_event_type", using: :btree
+  add_index "events", ["organization_id"], name: "index_events_on_organization_id", using: :btree
   add_index "events", ["record_uuid"], name: "index_events_on_record_uuid", using: :btree
-  add_index "events", ["related_model_id"], name: "index_animal_events_on_related_model_id", using: :btree
+  add_index "events", ["related_model_id"], name: "index_events_on_related_model_id", using: :btree
 
   create_table "facebook_accounts", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.uuid     "user_id"
@@ -245,8 +247,8 @@ ActiveRecord::Schema.define(version: 20141006165758) do
     t.string   "session_hash"
     t.text     "message"
     t.text     "referrer"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "impressions", ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index", using: :btree
@@ -261,8 +263,8 @@ ActiveRecord::Schema.define(version: 20141006165758) do
     t.uuid     "animal_id"
     t.uuid     "user_id"
     t.text     "note"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "notes", ["animal_id"], name: "index_notes_on_animal_id", using: :btree
@@ -330,19 +332,6 @@ ActiveRecord::Schema.define(version: 20141006165758) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "photos", force: true do |t|
-    t.integer  "animal_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "image"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-  end
-
-  add_index "photos", ["animal_id"], name: "index_photos_on_animal_id", using: :btree
 
   create_table "posts", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "author"
@@ -427,8 +416,8 @@ ActiveRecord::Schema.define(version: 20141006165758) do
     t.string   "name"
     t.datetime "last_administered"
     t.datetime "expires"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.uuid     "organization_id"
   end
 
@@ -477,33 +466,32 @@ ActiveRecord::Schema.define(version: 20141006165758) do
   add_index "twitter_accounts", ["user_id"], name: "index_twitter_accounts_on_user_id", using: :btree
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
-    t.string   "email",                                          null: false
-    t.string   "encrypted_password",     limit: 128,             null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0
+    t.integer  "sign_in_count",          default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "username"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "username"
     t.uuid     "organization_id"
     t.string   "organization_name"
-    t.integer  "owner",                              default: 0
-    t.integer  "failed_attempts",                    default: 0
+    t.integer  "owner",                  default: 0
+    t.integer  "failed_attempts",        default: 0
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", using: :btree
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["organization_id"], name: "index_users_on_organization_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

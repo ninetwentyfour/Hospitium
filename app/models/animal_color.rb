@@ -18,7 +18,6 @@ class AnimalColor < ActiveRecord::Base
   validates_presence_of :color, :organization_id
   
   def report_display_name
-    "#{self.color}"
+    self.color
   end
-  
 end

@@ -26,39 +26,27 @@ class VolunteerContact < ActiveRecord::Base
   end
   
   def modify_phone_number
-    unless self.phone.blank?
-      self.phone = self.phone.delete("^0-9")
-    end
+    self.phone = self.phone.delete('^0-9') unless self.phone.blank?
   end
   
   def formatted_phone
-    unless self.phone.blank?
-      phone = number_to_phone(self.phone)
-    else
-      phone = ""
-    end
-    return phone
+    self.phone.blank? ? '' : number_to_phone(self.phone)
   end
   
   def formatted_application_date
-    unless self.application_date.blank?
-      age = self.application_date.strftime("%a, %b %e at %l:%M")
-    else
-      age = ""
-    end
-    return age
+    self.application_date.blank? ? '' : self.application_date.strftime("%a, %b %e at %l:%M")
   end
   
   # ===============
   # = CSV support =
   # ===============
   comma do
-    id "ID"
-    first_name "First Name"
-    last_name "Last Name"
-    address "Address"
-    phone "Phone"
-    email "Email"
-    application_date "Application Date"
+    id 'ID'
+    first_name 'First Name'
+    last_name 'Last Name'
+    address 'Address'
+    phone 'Phone'
+    email 'Email'
+    application_date 'Application Date'
   end
 end

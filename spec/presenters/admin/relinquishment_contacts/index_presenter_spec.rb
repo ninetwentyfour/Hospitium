@@ -7,17 +7,16 @@ describe Admin::RelinquishmentContacts::IndexPresenter do
   
   describe '#initialize' do
     it 'create presenter' do
-      @presenter = Admin::RelinquishmentContacts::IndexPresenter.new(@user)
-      @presenter.should_not be_nil
+      presenter = Admin::RelinquishmentContacts::IndexPresenter.new(@user)
+      expect(presenter.is_a?(Admin::RelinquishmentContacts::IndexPresenter)).to eq true
     end
   end
 
   describe 'presenter methods' do
     it 'should have all the presenter methods' do
-      @presenter = Admin::RelinquishmentContacts::IndexPresenter.new(@user)
+      presenter = Admin::RelinquishmentContacts::IndexPresenter.new(@user)
 
-      @presenter.animal.should_not be_nil
+      expect(presenter.animal.is_a?(ActiveRecord::Relation)).to eq true
     end
   end
-
 end

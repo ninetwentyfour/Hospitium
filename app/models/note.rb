@@ -4,5 +4,5 @@ class Note < ActiveRecord::Base
 
   attr_accessible :note, :animal_id
   
-  delegate :username, :to => :user, :allow_nil => true
+  delegate :username, to: :user, allow_nil: true
 end

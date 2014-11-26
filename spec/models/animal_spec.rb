@@ -7,7 +7,7 @@ describe Animal do
     }
   end
   
-  describe "relations" do
+  describe 'relations' do
     it{should belong_to(:organization)}
     it{should belong_to(:species)}
     it{should belong_to(:shelter)}
@@ -24,7 +24,7 @@ describe Animal do
     it{should have_many(:documents)}
   end
 
-  describe "validations" do
+  describe 'validations' do
     it{should validate_presence_of(:name)}
     it{should validate_presence_of(:date_of_intake)}
     it{should validate_presence_of(:organization)}
@@ -36,77 +36,77 @@ describe Animal do
     it{should validate_presence_of(:status)}
   end
   
-  describe "#calculate_animal_age" do
-    let(:animal) { FactoryGirl.create(:animal, @attr.merge(:birthday => "2001-10-20 00:50:22")) }
+  describe '#calculate_animal_age' do
+    let(:animal) { FactoryGirl.create(:animal, @attr.merge(birthday: '2001-10-20 00:50:22')) }
     
-    it "should format birthday" do
-      age = (Time.now.year - 2001).to_s + " years"
-      animal.calculate_animal_age.should eql(age)
+    it 'should format birthday' do
+      age = (Time.now.year - 2001).to_s + ' years'
+      expect(animal.calculate_animal_age).to eq age
     end
     
-    it "should return empty string if nil" do
+    it 'should return empty string if nil' do
       animal.birthday = nil
-      animal.calculate_animal_age.should eql("")
+      expect(animal.calculate_animal_age).to eq ''
     end
   end
   
-  describe "#formatted_deceased_date" do
-    let(:animal) { FactoryGirl.create(:animal, @attr.merge(:deceased => "2001-10-20 00:50:22")) }
+  describe '#formatted_deceased_date' do
+    let(:animal) { FactoryGirl.create(:animal, @attr.merge(deceased: '2001-10-20 00:50:22')) }
     
-    it "should format deceased date" do
-      age = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e %Y")
-      animal.formatted_deceased_date.should eql(age)
+    it 'should format deceased date' do
+      age = Time.parse('2001-10-20 00:50:22').strftime('%a, %b %e %Y')
+      expect(animal.formatted_deceased_date).to eq age
     end
     
-    it "should return empty string if nil" do
+    it 'should return empty string if nil' do
       animal.deceased = nil
-      animal.formatted_deceased_date.should eql("")
+      expect(animal.formatted_deceased_date).to eq ''
     end
   end
   
-  describe "#formatted_intake_date" do
-    let(:animal) { FactoryGirl.create(:animal, @attr.merge(:date_of_intake => "2001-10-20 00:50:22")) }
+  describe '#formatted_intake_date' do
+    let(:animal) { FactoryGirl.create(:animal, @attr.merge(date_of_intake: '2001-10-20 00:50:22')) }
     
-    it "should format intake date" do
-      age = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e %Y")
-      animal.formatted_intake_date.should eql(age)
+    it 'should format intake date' do
+      age = Time.parse('2001-10-20 00:50:22').strftime('%a, %b %e %Y')
+      expect(animal.formatted_intake_date).to eq age
     end
     
-    it "should return empty string if nil" do
+    it 'should return empty string if nil' do
       animal.date_of_intake = nil
-      animal.formatted_intake_date.should eql("")
+      expect(animal.formatted_intake_date).to eq ''
     end
   end
   
-  describe "#formatted_well_date" do
-    let(:animal) { FactoryGirl.create(:animal, @attr.merge(:date_of_well_check => "2001-10-20 00:50:22")) }
+  describe '#formatted_well_date' do
+    let(:animal) { FactoryGirl.create(:animal, @attr.merge(date_of_well_check: '2001-10-20 00:50:22')) }
     
-    it "should format well check date" do
-      age = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e %Y")
-      animal.formatted_well_date.should eql(age)
+    it 'should format well check date' do
+      age = Time.parse('2001-10-20 00:50:22').strftime('%a, %b %e %Y')
+      expect(animal.formatted_well_date).to eq age
     end
     
-    it "should return empty string if nil" do
+    it 'should return empty string if nil' do
       animal.date_of_well_check = nil
-      animal.formatted_well_date.should eql("")
+      expect(animal.formatted_well_date).to eq ''
     end
   end
   
-  describe "#formatted_adopted_date" do
-    let(:animal) { FactoryGirl.create(:animal, @attr.merge(:adopted_date => "2001-10-20 00:50:22")) }
+  describe '#formatted_adopted_date' do
+    let(:animal) { FactoryGirl.create(:animal, @attr.merge(adopted_date: '2001-10-20 00:50:22')) }
     
-    it "should format adopted date" do
-      age = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e %Y")
-      animal.formatted_adopted_date.should eql(age)
+    it 'should format adopted date' do
+      age = Time.parse('2001-10-20 00:50:22').strftime('%a, %b %e %Y')
+      expect(animal.formatted_adopted_date).to eq age
     end
     
-    it "should return empty string if nil" do
+    it 'should return empty string if nil' do
       animal.adopted_date = nil
-      animal.formatted_adopted_date.should eql("")
+      expect(animal.formatted_adopted_date).to eq ''
     end
   end
   
-  describe "upload image" do
+  describe 'upload image' do
     it {should have_attached_file(:image)}
     it {should validate_attachment_content_type(:image).allowing('image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png').rejecting('text/plain', 'text/xml')}
 
@@ -120,10 +120,10 @@ describe Animal do
     it {should validate_attachment_content_type(:fourth_image).allowing('image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png').rejecting('text/plain', 'text/xml')}
   end
 
-  describe "comma" do
-    it "should return a csv for the object" do
-      @animal = FactoryGirl.build(:animal)
-      @animal.to_comma.should_not be_blank
+  describe 'comma' do
+    it 'should return a csv for the object' do
+      animal = FactoryGirl.build(:animal)
+      expect(animal.to_comma).to_not be_blank
     end
   end
 end

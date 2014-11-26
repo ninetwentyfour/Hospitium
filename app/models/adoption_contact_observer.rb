@@ -1,6 +1,6 @@
-require "juggernaut"
+require 'juggernaut'
+
 class AdoptionContactObserver < ActiveRecord::Observer
-  
   def after_update(adoption_contact)
       publish(:update, adoption_contact)
   end
@@ -8,10 +8,10 @@ class AdoptionContactObserver < ActiveRecord::Observer
   def publish(type, adoption_contact)
     Juggernaut.url = ENV['JUGG_URL']
     Juggernaut.publish("/observer/adopt_contact/#{adoption_contact.id}", {
-      :id     => adoption_contact.id, 
-      :type   => type, 
-      :klass  => adoption_contact.class.name,
-      :record => adoption_contact.changes
+      id: adoption_contact.id,
+      type: type,
+      klass: adoption_contact.class.name,
+      record: adoption_contact.changes
     })
   end
 end

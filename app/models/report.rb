@@ -1,23 +1,23 @@
 # Report model
 class Report < ActiveRecord::Base
   def self.new_chart(org, type)
-    animals_count = Animal.where(:organization_id => org).count()     
-    all_types = type.camelize.constantize.where(:organization_id => org)
+    animals_count = Animal.where(organization_id: org).count()     
+    all_types = type.camelize.constantize.where(organization_id: org)
     final_status_array = Array.new
 
-    color = Paleta::Color.new(:hex, "7761a7")
-    palette = Paleta::Palette.generate(:type => :analogous, :from => :color, :color => color, :size => all_types.count)
+    color = Paleta::Color.new(:hex, '7761a7')
+    palette = Paleta::Palette.generate(type: :analogous, from: :color, color: color, size: all_types.count)
     colors = palette.to_array(color_model = :hex)
     colors.shuffle!
     all_types.each_with_index do |object, index|
       count = Animal.where(:organization_id => org, "#{type}_id".to_sym => object.id).count()
       percent = ((count.to_f / animals_count.to_f) * 100)
-      final_status_array << {:value => count, :color => "##{colors[index]}", :label => "#{object.report_display_name}", :percent => percent}
+      final_status_array << {value: count, color: "##{colors[index]}", label: "#{object.report_display_name}", percent: percent}
     end
     final_status_array
   end
 
-  def self.item_per_day(org, item, days_past, column="organization_id")
+  def self.item_per_day(org, item, days_past, column='organization_id')
     date = Date.today - days_past.to_i
 
     items = item.camelize.constantize.where(column+" = ? and date(created_at) > ?", org, date).group("date(created_at)").count

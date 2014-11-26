@@ -135,8 +135,18 @@ class Admin::ListController < Admin::ApplicationController
       def define_render_callbacks(*actions)
         args = actions.map { |a| :"render_#{a}" }
         args << { only: :before,
-                  terminator: 'result == false || performed?' }
+                  terminator: callback_terminator }
         define_model_callbacks(*args)
+      end
+
+      private
+
+      def callback_terminator
+        if ::ActiveSupport::VERSION::STRING >= '4.1'
+          lambda { |target, result| result == false || performed? }
+        else
+          'result == false || performed?'
+        end
       end
     end
   end

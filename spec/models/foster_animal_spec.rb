@@ -11,7 +11,7 @@ describe FosterAnimal do
     it { should respond_to(:last_name) }
   end
 
-  describe "relations" do
+  describe 'relations' do
     it{should belong_to(:animal)}
     it{should belong_to(:foster_contact)}
   end

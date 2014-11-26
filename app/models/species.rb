@@ -18,6 +18,6 @@ class Species < ActiveRecord::Base
   validates_presence_of :name, :organization_id
   
   def report_display_name
-    "#{self.name}"
+    self.name
   end
 end

@@ -7,7 +7,7 @@ class Admin::AdoptionContacts::IndexPresenter
   end
   
   def adoption_contacts
-    search.result.paginate(:page => @page, :per_page => 10).order("updated_at DESC")
+    search.result.paginate(page: @page, per_page: 10).order(updated_at: :desc)
   end
 
   def search
@@ -19,7 +19,6 @@ class Admin::AdoptionContacts::IndexPresenter
   end
 
   def animal
-    Animal.organization(@user).order("name ASC")
+    Animal.organization(@user).order(name: :asc)
   end  
-  
 end

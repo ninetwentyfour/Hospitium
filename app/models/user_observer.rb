@@ -1,6 +1,6 @@
-require "juggernaut"
+require 'juggernaut'
+
 class UserObserver < ActiveRecord::Observer
-  
   def after_update(user)
     unless user.no_send_email == true
       publish(:update, user)
@@ -13,14 +13,13 @@ class UserObserver < ActiveRecord::Observer
     end
   end
   
-  
   def publish(type, user)
     Juggernaut.url = ENV['JUGG_URL']
     Juggernaut.publish("/observer/user/#{user.id}", {
-      :id     => user.id, 
-      :type   => type, 
-      :klass  => user.class.name,
-      :record => user.changes
+      id: user.id,
+      type: type,
+      klass: user.class.name,
+      record: user.changes
     })
   end
   
@@ -33,7 +32,7 @@ class UserObserver < ActiveRecord::Observer
         data = resp.body
         result = JSON.parse(data)
         if result.has_key? 'Error'
-           raise "web service error"
+           raise 'web service error'
         end
       end
     end

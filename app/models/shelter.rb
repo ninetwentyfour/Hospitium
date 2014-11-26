@@ -21,32 +21,25 @@ class Shelter < ActiveRecord::Base
   validates_presence_of :name, :organization_id
   
   def modify_phone_number
-    unless self.phone.blank?
-      self.phone = self.phone.delete("^0-9")
-    end
+    self.phone = self.phone.delete('^0-9') unless self.phone.blank?
   end
   
   def formatted_phone
-    unless self.phone.blank?
-      phone = number_to_phone(self.phone)
-    else
-      phone = ""
-    end
-    return phone
+    self.phone.blank? ? '' : number_to_phone(self.phone)
   end
 
   # ===============
   # = CSV support =
   # ===============
   comma do
-    id "ID"
-    name "Name"
-    contact_first "Contact First Name"
-    contact_last "Contact Last Name"
-    address "Address"
-    phone "Phone"
-    email "Email"
-    website "Website"
-    notes "Notes"
+    id 'ID'
+    name 'Name'
+    contact_first 'Contact First Name'
+    contact_last 'Contact Last Name'
+    address 'Address'
+    phone 'Phone'
+    email 'Email'
+    website 'Website'
+    notes 'Notes'
   end
 end

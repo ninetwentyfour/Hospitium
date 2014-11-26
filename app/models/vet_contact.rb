@@ -20,35 +20,28 @@ class VetContact < ActiveRecord::Base
   validates_presence_of :clinic_name
   
   def show_name_label_method
-    "#{self.clinic_name}"
+    self.clinic_name
   end
   
   def modify_phone_number
-    unless self.phone.blank?
-      self.phone = self.phone.delete("^0-9")
-    end
+    self.phone = self.phone.delete('^0-9') unless self.phone.blank?
   end
   
   def formatted_phone
-    unless self.phone.blank?
-      phone = number_to_phone(self.phone)
-    else
-      phone = ""
-    end
-    return phone
+    self.phone.blank? ? '' : number_to_phone(self.phone)
   end
   
   # ===============
   # = CSV support =
   # ===============
   comma do
-    id "ID"
-    clinic_name "Clinic Name"
-    address "Address"
-    phone "Phone"
-    email "Email"
-    website "Website"
-    hours "Hours"
-    emergency "Emergency"
+    id 'ID'
+    clinic_name 'Clinic Name'
+    address 'Address'
+    phone 'Phone'
+    email 'Email'
+    website 'Website'
+    hours 'Hours'
+    emergency 'Emergency'
   end
 end

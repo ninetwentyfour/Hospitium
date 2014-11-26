@@ -7,5 +7,4 @@ class RelinquishAnimal < ActiveRecord::Base
   
   delegate :name, :to => :animal, :allow_nil => true
   delegate :first_name, :last_name, :to => :relinquishment_contact, :allow_nil => true
-  
 end

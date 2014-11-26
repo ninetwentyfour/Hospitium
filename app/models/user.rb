@@ -7,8 +7,7 @@ class User < ActiveRecord::Base
   has_many :wordpress_accounts
   has_many :adopt_a_pet_accounts
   has_many :notes
-  has_many :roles, :through => :permissions
-  #has_and_belongs_to_many :organizations
+  has_many :roles, through: :permissions
   belongs_to :organization
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -30,13 +29,13 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   validates_uniqueness_of :username
   validates_presence_of :organization_name
-  validates_uniqueness_of :organization_name, :if => :should_validate_organization_name?
+  validates_uniqueness_of :organization_name, if: :should_validate_organization_name?
   validate :email_is_not_blacklisted
   
   
   # show the user email in the admin UI instead of the user id
   def show_username_label_method
-    "#{self.username}"
+    self.username
   end
   
   def role?(role)
@@ -44,25 +43,17 @@ class User < ActiveRecord::Base
   end
   
   def add_default_role
-    unless self.skip_default_role == true
-      @user = self.id
-      @permission = Permission.new
-      @permission.user_id = @user
-      if self.owner == 1
-        @permission.role_id = 2
-      else
-        @permission.role_id = 3
-      end
-      @permission.save!
-    end
+    return if self.skip_default_role == true
+    role_id = self.owner == 1 ? 2 : 3
+    permission = Permission.new(user_id: self.id, role_id: role_id)
+    permission.save!
   end
   
   def add_to_organization
     if self.organization_id.nil?
-      @organization = Organization.new
-      @organization.name = self.organization_name
-      @organization.save!
-      self.organization_id = @organization.id
+      organization = Organization.new(name: self.organization_name)
+      organization.save!
+      self.organization_id = organization.id
     end
   end
 
@@ -85,15 +76,11 @@ class User < ActiveRecord::Base
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     login = conditions.delete(:login)
-    where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    where(conditions).where(['lower(username) = :value OR lower(email) = :value', { value: login.downcase }]).first
   end
   
   def should_validate_organization_name?
-    if self.organization_id.nil?
-      true
-    else
-      false
-    end
+    self.organization_id.nil?
   end
   
   def send_new_email
@@ -105,7 +92,7 @@ class User < ActiveRecord::Base
         data = resp.body
         result = JSON.parse(data)
         if result.has_key? 'Error'
-           raise "web service error"
+           raise 'web service error'
         end
       end
     end
@@ -119,7 +106,7 @@ class User < ActiveRecord::Base
     unless Rails.env.test?
       begin
         domain = self.email.split('@').last
-        blacklist = Rails.cache.fetch("email_blacklist", :expires_in => 1.day) do
+        blacklist = Rails.cache.fetch('email_blacklist', expires_in: 1.day) do
           EmailBlacklist.all.map(&:domain)
         end
         if blacklist.include?(domain)
@@ -140,5 +127,4 @@ class User < ActiveRecord::Base
       end
     end
   end
-  
 end

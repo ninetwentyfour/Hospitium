@@ -112,7 +112,7 @@ group :test do
 	gem 'email_spec'
 	gem 'poltergeist'
 	gem 'mocha', "~> 0.13.2", :require => false
-	gem 'fakeweb'
+	gem 'webmock'
 	gem 'vcr'
 	gem 'simplecov', :require => false
 	gem 'coveralls', :require => false

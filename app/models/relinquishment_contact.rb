@@ -12,7 +12,7 @@ class RelinquishmentContact < ActiveRecord::Base
           }
   
   has_many :relinquish_animals
-  has_many :animals, :through => :relinquish_animals
+  has_many :animals, through: :relinquish_animals
   belongs_to :organization
   before_create :modify_phone_number
   before_update :modify_phone_number
@@ -26,32 +26,24 @@ class RelinquishmentContact < ActiveRecord::Base
   end
   
   def modify_phone_number
-    unless self.phone.blank?
-      self.phone = self.phone.delete("^0-9")
-    end
+    self.phone = self.phone.delete('^0-9') unless self.phone.blank?
   end
   
   def formatted_phone
-    unless self.phone.blank?
-      phone = number_to_phone(self.phone)
-    else
-      phone = ""
-    end
-    return phone
+    self.phone.blank? ? '' : number_to_phone(self.phone)
   end
 
   # ===============
   # = CSV support =
   # ===============
   comma do
-    id "ID"
-    first_name "First Name"
-    last_name "Last Name"
-    address "Address"
-    phone "Phone"
-    email "Email"
-    reason "Reason"
-    animals "Relinquished Animal IDs" do |a| a.map{|a| a.id}.join(",") end
+    id 'ID'
+    first_name 'First Name'
+    last_name 'Last Name'
+    address 'Address'
+    phone 'Phone'
+    email 'Email'
+    reason 'Reason'
+    animals 'Relinquished Animal IDs' do |a| a.map{|a| a.id}.join(',') end
   end
-  
 end

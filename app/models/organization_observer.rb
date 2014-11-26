@@ -2,7 +2,7 @@ require "juggernaut"
 class OrganizationObserver < ActiveRecord::Observer
   
   def after_update(organization)
-      publish(:update, organization)
+    publish(:update, organization)
   end
   
   def publish(type, organization)

@@ -10,14 +10,14 @@ class AnimalWeight < ActiveRecord::Base
   
   # show the link in the admin UI instead of the link id
   def show_weight_label_method
-    "#{self.weight}"
+    self.weight.to_s
   end
   
   def formatted_weight_date
     unless self.date_of_weight.blank?
-      age = self.date_of_weight.strftime("%a, %b %e at %l:%M")
+      age = self.date_of_weight.strftime('%a, %b %e at %l:%M')
     else
-      age = ""
+      age = ''
     end
     return age
   end
@@ -35,9 +35,9 @@ class AnimalWeight < ActiveRecord::Base
   # = CSV support =
   # ===============
   comma do
-    id "ID"
-    weight "Weight"
-    animal "Animal" do |a| a.name end
-    date_of_weight "Date of Weight"
+    id 'ID'
+    weight 'Weight'
+    animal 'Animal' do |a| a.name end
+    date_of_weight 'Date of Weight'
   end
 end

@@ -4,7 +4,6 @@ class Admin::RelinquishmentContacts::IndexPresenter
   end
   
   def animal
-    Animal.organization(@user).order("name ASC")
-  end  
-  
+    Animal.organization(@user).order(name: :asc)
+  end
 end

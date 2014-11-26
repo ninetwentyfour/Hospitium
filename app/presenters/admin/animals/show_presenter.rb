@@ -22,18 +22,18 @@ class Admin::Animals::ShowPresenter
   
   def animal_weights
     weight_hash = {}
-    @weights = AnimalWeight.where(:animal_id => @animal.id).order("date_of_weight ASC")
+    @weights = AnimalWeight.where(animal_id: @animal.id).order(date_of_weight: :asc)
     weight_hash[:values] = @weights.map {|record| record.weight }
     weight_hash[:times] = @weights.map {|record| record.date_of_weight.strftime("%m/%d/%Y") }
     weight_hash
   end
   
   def notes
-    Note.includes(:user).where(:animal_id => @animal.id).order(:created_at => :asc)
+    Note.includes(:user).where(animal_id: @animal.id).order(created_at: :asc)
   end
   
   def documents
-    Document.where(:documentable_id => @animal.id, :documentable_type => "Animal")
+    Document.where(documentable_id: @animal.id, documentable_type: 'Animal')
   end
 
   def shots

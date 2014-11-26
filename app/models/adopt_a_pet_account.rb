@@ -16,38 +16,37 @@ class AdoptAPetAccount < ActiveRecord::Base
   def send_csv(current_user)
     require 'csv'
     #get all animals for an organization
-    @animals = Animal.find(:all, :conditions => {:organization_id => current_user.organization_id, :public => 1}) 
-    csv_string = CSV.open("#{Rails.root}/tmp/#{current_user.id}_adopt_a_pet_export_temp.csv", "w") do |csv| 
+    @animals = Animal.organization(current_user).where(public: 1)
+    csv_string = CSV.open("#{Rails.root}/tmp/#{current_user.id}_adopt_a_pet_export_temp.csv", 'w') do |csv|
       # header row 
       csv << [ 
-        "ID", 
-        "Type", 
-        "Breed", 
-        "Breed2", 
-        "Name", 
-        "Sex", 
-        "Description", 
-        "Status", 
-        "SpayedNeutered", 
-        "PhotoURL"
+        'ID',
+        'Type',
+        'Breed',
+        'Breed2',
+        'Name',
+        'Sex',
+        'Description',
+        'Status',
+        'SpayedNeutered',
+        'PhotoURL'
         ] 
 
       # data rows 
       @animals.each do |animal|
-        csv << [ 
-                  animal.id, 
-                  animal.species_name, 
-                  animal.species_name, 
-                  "", 
-                  animal.name, 
-                  animal.sex, 
-                  animal.special_needs, 
-                  "Available", 
-                  animal.spay,  
+        csv << [
+                  animal.id,
+                  animal.species_name,
+                  animal.species_name,
+                  '',
+                  animal.name,
+                  animal.sex,
+                  animal.special_needs,
+                  'Available',
+                  animal.spay,
                   animal.image.url(:large).sub(/https:/, "http:")
                ]
       end
-      
     end
     
     #read the newly created csv
@@ -63,13 +62,12 @@ class AdoptAPetAccount < ActiveRecord::Base
     require 'net/ftp'
     ftp = Net::FTP.new('autoupload.adoptapet.com')
     ftp.passive = true
-    ftp.login(user = "#{@account.user_name}", passwd = "#{@account.password}")
-    ftp.putbinaryfile(file.string(), "pets.csv")
-    ftp.putbinaryfile("#{Rails.root}/public/adopt_a_pet/import.cfg", "import.cfg")
+    ftp.login(user = @account.user_name, passwd = @account.password)
+    ftp.putbinaryfile(file.string(), 'pets.csv')
+    ftp.putbinaryfile("#{Rails.root}/public/adopt_a_pet/import.cfg", 'import.cfg')
     ftp.quit()
     
     #delete the tmp file
     File.delete("#{Rails.root}/tmp/#{current_user.id}_adopt_a_pet_export_temp.csv")
   end
-
 end

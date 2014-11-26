@@ -7,30 +7,29 @@ describe Admin::Home::IndexPresenter do
   
   describe '#initialize' do
     it 'create presenter' do
-      @presenter = Admin::Home::IndexPresenter.new(@user)
-      @presenter.should_not be_nil
+      presenter = Admin::Home::IndexPresenter.new(@user)
+      expect(presenter.is_a?(Admin::Home::IndexPresenter)).to eq true
     end
   end
 
   describe 'presenter methods' do
     it 'should have all the presenter methods' do
-      @presenter = Admin::Home::IndexPresenter.new(@user)
+      presenter = Admin::Home::IndexPresenter.new(@user)
 
-      @presenter.status_chart.should_not be_nil
-      @presenter.species_chart.should_not be_nil
-      @presenter.colors_chart.should_not be_nil
-      @presenter.latest_activity.should_not be_nil
-      @presenter.public_animals.should_not be_nil
-      @presenter.total_animals.should_not be_nil
-      @presenter.total_species.should_not be_nil
-      @presenter.total_contacts.should_not be_nil
-      @presenter.total_events.should_not be_nil
-      @presenter.sex_chart.should_not be_nil
-      @presenter.animals_sparkline.should_not be_nil
-      @presenter.species_sparkline.should_not be_nil
-      @presenter.contacts_sparkline.should_not be_nil
-      @presenter.events_sparkline.should_not be_nil
+      expect(presenter.status_chart).to_not eq nil
+      expect(presenter.species_chart).to_not eq nil
+      expect(presenter.colors_chart).to_not eq nil
+      expect(presenter.latest_activity).to_not eq nil
+      expect(presenter.public_animals).to_not eq nil
+      expect(presenter.total_animals).to_not eq nil
+      expect(presenter.total_species).to_not eq nil
+      expect(presenter.total_contacts).to_not eq nil
+      expect(presenter.total_events).to_not eq nil
+      expect(presenter.sex_chart).to_not eq nil
+      expect(presenter.animals_sparkline).to_not eq nil
+      expect(presenter.species_sparkline).to_not eq nil
+      expect(presenter.contacts_sparkline).to_not eq nil
+      expect(presenter.events_sparkline).to_not eq nil
     end
   end
-
 end

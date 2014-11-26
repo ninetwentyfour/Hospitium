@@ -8,16 +8,15 @@ describe Admin::Animals::ShowPresenter do
 
   describe 'presenter methods' do
     it 'should have all the presenter methods' do
-      @presenter = Admin::Animals::ShowPresenter.new(@user, @animal)
+      presenter = Admin::Animals::ShowPresenter.new(@user, @animal)
 
-      @presenter.statuses.should_not be_nil
-      @presenter.species.should_not be_nil
-      @presenter.colors.should_not be_nil
-      @presenter.shelters.should_not be_nil
-      @presenter.animal_weights.should_not be_nil
-      @presenter.notes.should_not be_nil
-      @presenter.documents.should_not be_nil
+      expect(presenter.statuses.is_a?(Array)).to eq true
+      expect(presenter.species.is_a?(Array)).to eq true
+      expect(presenter.colors.is_a?(Array)).to eq true
+      expect(presenter.shelters.is_a?(Array)).to eq true
+      expect(presenter.animal_weights.is_a?(Hash)).to eq true
+      expect(presenter.notes.is_a?(ActiveRecord::Relation)).to eq true
+      expect(presenter.documents.is_a?(ActiveRecord::Relation)).to eq true
     end
   end
-
 end

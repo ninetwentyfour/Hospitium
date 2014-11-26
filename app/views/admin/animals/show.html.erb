@@ -10,6 +10,10 @@
 					<% if @animal.public == 1 %>
 						<%= render "share_animal", :animal => @animal %>
 					<% end %>
+					<%= form_for [:admin, @animal], html: {class: 'form-inline float-form'} do |f| %>
+						<%= f.hidden_field :archived, value: (@animal.archived ? false : true) %>
+						<button class="btn btn-primary btn-rad btn-trans" type="submit"><i class="fa fa-archive"></i> <%= @animal.archived ? 'Unarchive Animal' : 'Archive Animal'%></button>
+					<%end%>
 				</div>
 			</div>
 		</div>

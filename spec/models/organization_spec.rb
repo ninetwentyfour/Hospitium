@@ -1,14 +1,15 @@
 require 'spec_helper'
 
 describe Organization do
+  let(:organization) { FactoryGirl.create(:organization) }
+
   before(:each) do
     @attr = { 
 
     }
   end
   
-  describe "relations" do
-  
+  describe 'relations' do
     it{should have_many(:adoption_contacts)}
     it{should have_many(:animals)}
     it{should have_many(:animal_colors)}
@@ -23,77 +24,73 @@ describe Organization do
     it{should have_many(:volunteer_contacts)}
     it{should have_many(:wordpress_accounts)}
     it{should have_many(:users)}
-    
   end
   
-  describe "#add_default_status" do
-    let(:organization) { FactoryGirl.create(:organization) }
-    
-    it "should create default statuses" do
-      organization.statuses.size.should eql(7)
+  describe '#add_default_status' do
+    it 'should create default statuses' do
+      expect(organization.statuses.size).to eq 7
     end
   end
   
-  describe "#add_default_animal_colors" do
-    let(:organization) { FactoryGirl.create(:organization) }
-    
-    it "should create default animal colors" do
-      organization.animal_colors.size.should eql(4)
+  describe '#add_default_animal_colors' do
+    it 'should create default animal colors' do
+      expect(organization.animal_colors.size).to eq 4
     end
   end
   
-  describe "#add_default_species" do
-    let(:organization) { FactoryGirl.create(:organization) }
-    
-    it "should create default species" do
-      organization.species.size.should eql(8)
+  describe '#add_default_species' do
+    it 'should create default species' do
+      expect(organization.species.size).to eq 8
     end
   end
 
-  describe "#modify_phone_number" do
-    let(:organization) { FactoryGirl.create(:organization) }
-    
-    it "should strip characters from the phone number" do
-      organization.update_attributes(:phone_number => "123-456-7890")
-      organization.phone_number.should eql("1234567890")
+  describe '#modify_phone_number' do
+    it 'should strip characters from the phone number' do
+      organization.update_attributes(phone_number: '123-456-7890')
+      expect(organization.phone_number).to eq '1234567890'
     end
   end
   
-  describe "#formatted_phone" do
-    let(:organization) { FactoryGirl.create(:organization) }
-    
-    it "should format phone number" do
-      organization.update_attributes(:phone_number => "123-456-7890")
-      organization.formatted_phone.should eql("123-456-7890")
+  describe '#formatted_phone' do
+    it 'should format phone number' do
+      organization.update_attributes(phone_number: '123-456-7890')
+      expect(organization.formatted_phone).to eq '123-456-7890'
     end
     
-    it "should return empty string if nil" do
+    it 'should return empty string if nil' do
       organization.phone_number = nil
-      organization.formatted_phone.should eql("")
+      expect(organization.formatted_phone).to eq ''
     end
   end
   
   describe 'has_info?' do    
     it 'should return true for orgs with an email' do
-      @org = FactoryGirl.create(:organization, :email => "test@example.com")
-      @org.has_info?.should == true
+      org = FactoryGirl.create(:organization, email: 'test@example.com')
+      expect(org.has_info?).to eq true
     end
     
     it 'should return true for orgs with an phone' do
-      @org = FactoryGirl.create(:organization, :phone_number => "5555555555")
-      @org.has_info?.should == true
+      org = FactoryGirl.create(:organization, phone_number: '5555555555')
+      expect(org.has_info?).to eq true
     end
     
     it 'should return true for orgs with an website' do
-      @org = FactoryGirl.create(:organization, :website => "example.com")
-      @org.has_info?.should == true
+      org = FactoryGirl.create(:organization, website: 'example.com')
+      expect(org.has_info?).to eq true
     end
     
     it 'should return false for orgs with no info' do
-      @org = FactoryGirl.create(:organization)
-      @org.has_info?.should == false
+      expect(organization.has_info?).to eq false
     end
   end
 
-  
+  describe 'forms' do
+    it 'should set a default url for adoption forms' do
+      expect(organization.adoption_form.url).to eq 'https://d4uktpxr9m70.cloudfront.net/pdfs/Adoption-Form.pdf'
+    end
+
+    it 'should set a default url for volunteer forms' do
+      expect(organization.volunteer_form.url).to eq 'https://d4uktpxr9m70.cloudfront.net/pdfs/Volunteer-Application.pdf'
+    end
+  end
 end

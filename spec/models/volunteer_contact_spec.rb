@@ -7,57 +7,56 @@ describe VolunteerContact do
     }
   end
   
-  describe "relations" do
+  describe 'relations' do
     it{should belong_to(:organization)}
   end
 
-  describe "validations" do
+  describe 'validations' do
     it{should validate_presence_of(:first_name)}
     it{should validate_presence_of(:last_name)}
     it{should validate_presence_of(:address)}
     it{should validate_presence_of(:organization_id)}
   end
   
-  describe "#modify_phone_number" do
-    let(:volunteer_contact) { FactoryGirl.create(:volunteer_contact, @attr.merge(:phone => "123-456-7890")) }
+  describe '#modify_phone_number' do
+    let(:volunteer_contact) { FactoryGirl.create(:volunteer_contact, @attr.merge(phone: '123-456-7890')) }
     
-    it "should strip characters from the phone number" do
-      volunteer_contact.phone.should eql("1234567890")
+    it 'should strip characters from the phone number' do
+      expect(volunteer_contact.phone).to eq '1234567890'
     end
   end
   
-  describe "#formatted_phone" do
+  describe '#formatted_phone' do
     let(:volunteer_contact) { FactoryGirl.create(:volunteer_contact) }
     
-    it "should format phone number" do
-      number = "555-555-5555"
-      volunteer_contact.formatted_phone.should eql(number)
+    it 'should format phone number' do
+      expect(volunteer_contact.formatted_phone).to eq '555-555-5555'
     end
     
-    it "should return empty string if nil" do
+    it 'should return empty string if nil' do
       volunteer_contact.phone = nil
-      volunteer_contact.formatted_phone.should eql("")
+      expect(volunteer_contact.formatted_phone).to eq ''
     end
   end
   
-  describe "#formatted_application_date" do
-    let(:volunteer_contact) { FactoryGirl.create(:volunteer_contact, @attr.merge(:application_date => "2001-10-20 00:50:22")) }
+  describe '#formatted_application_date' do
+    let(:volunteer_contact) { FactoryGirl.create(:volunteer_contact, @attr.merge(application_date: '2001-10-20 00:50:22')) }
     
-    it "should format application date" do
-      application_date = Time.parse("2001-10-20 00:50:22").strftime("%a, %b %e at %l:%M")
-      volunteer_contact.formatted_application_date.should eql(application_date)
+    it 'should format application date' do
+      application_date = Time.parse('2001-10-20 00:50:22').strftime('%a, %b %e at %l:%M')
+      expect(volunteer_contact.formatted_application_date).to eq application_date
     end
     
-    it "should return empty string if nil" do
+    it 'should return empty string if nil' do
       volunteer_contact.application_date = nil
-      volunteer_contact.formatted_application_date.should eql("")
+      expect(volunteer_contact.formatted_application_date).to eq ''
     end
   end
 
-  describe "comma" do
-    it "should return a csv for the object" do
-      @volunteer_contact = FactoryGirl.build(:volunteer_contact)
-      @volunteer_contact.to_comma.should_not be_blank
+  describe 'comma' do
+    it 'should return a csv for the object' do
+      volunteer_contact = FactoryGirl.build(:volunteer_contact)
+      expect(volunteer_contact.to_comma).to_not be_blank
     end
   end   
 end

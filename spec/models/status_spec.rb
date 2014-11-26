@@ -7,16 +7,14 @@ describe Status do
     }
   end
   
-  describe "relations" do
+  describe 'relations' do
     it{should belong_to(:organization)}
   
     it{should have_many(:animals)}
   end
 
-  describe "validations" do
+  describe 'validations' do
     it{should validate_presence_of(:status)}
     it{should validate_presence_of(:organization_id)}
   end
-
-  
 end

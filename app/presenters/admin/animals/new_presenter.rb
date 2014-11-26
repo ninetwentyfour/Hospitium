@@ -26,5 +26,4 @@ class Admin::Animals::NewPresenter
   def biter
     Biter.all
   end
-  
 end

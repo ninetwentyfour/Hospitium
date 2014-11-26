@@ -7,7 +7,7 @@ class Admin::Shots::IndexPresenter
   end
   
   def shots
-    search.result.paginate(:page => @page, :per_page => 10).order("updated_at DESC")
+    search.result.paginate(page: @page, per_page: 10).order(updated_at: :desc)
   end
 
   def search
@@ -19,7 +19,6 @@ class Admin::Shots::IndexPresenter
   end
 
   def animals
-    Animal.organization(@user).order("name")
+    Animal.organization(@user).order(name: :asc)
   end
-  
 end

@@ -19,11 +19,10 @@ class Status < ActiveRecord::Base
   
   # show the link in the admin UI instead of the link id
   def show_status_label_method
-    "#{self.status}"
+    self.status
   end
   
   def report_display_name
-    "#{self.status}"
+    self.status
   end
-  
 end

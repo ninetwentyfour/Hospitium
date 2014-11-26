@@ -5,7 +5,6 @@ class AdoptAnimal < ActiveRecord::Base
 
   attr_accessible :adoption_contact_id, :animal_id
   
-  delegate :name, :to => :animal, :allow_nil => true
-  delegate :first_name, :last_name, :to => :adoption_contact, :allow_nil => true
-
+  delegate :name, to: :animal, allow_nil: true
+  delegate :first_name, :last_name, to: :adoption_contact, allow_nil: true
 end

@@ -35,7 +35,19 @@ module ApplicationHelper
   end
   
   def table_view_button(params)
-    params.merge(:table_view => "true") unless params[:table_view]
+    params[:table_view] ? params.merge(:table_view => nil) : params.merge(:table_view => "true")
+  end
+
+  def table_button_text(params)
+    params[:table_view] ? '<i class="fa fa-refresh"></i> Card View' : '<i class="fa fa-refresh"></i> Table View'
+  end
+
+  def archived_view_button(params)
+    params[:archived_view] ? params.merge(:archived_view => nil) : params.merge(:archived_view => "true")
+  end
+
+  def archived_button_text(params)
+    params[:archived_view] ? '<i class="fa fa-refresh"></i> Hide Archived' : '<i class="fa fa-refresh"></i> View Archived'
   end
 
   def past_tense_actions(action)
