@@ -2,7 +2,7 @@ language: ruby
 bundler_args: --without development production
 cache: bundler
 rvm:
-  - 2.1.3
+  - 2.1.5
 env:
   global:
     - secure: "bkydnmBQRrAPqAUvtjW4vdj9NteFo9FAYiRlEMJGnqG8dZ6SlseQihDKeBUr\n1aSpX5XP7h8AoxCJolw/K2J4tTYjNAh+cYKP2kJQG/SkIZXKfFJbNzl7zULt\nWareyiHeocI11MU2zaaJpZjwSLiw3G/E9oIy2D3X921SvY7h1L0="

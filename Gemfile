@@ -1,10 +1,10 @@
 source 'http://rubygems.org'
-ruby "2.1.3"
+ruby "2.1.5"
 
 # load ENV vars for testing and dev
 gem 'dotenv-rails', :groups => [:development, :test]
 
-gem 'rails', '4.1.6'
+gem 'rails', '4.1.8'
 
 # Gems used in all environments
 gem 'mysql2'
