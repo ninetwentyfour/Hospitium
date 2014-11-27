@@ -48,8 +48,8 @@ footer {
 	float:right;
 }
 .main-container{
-	padding-left:300px;
-	width: 600px;
+	padding-left: 300px;
+	width: 65%;
 }
 .row{
 	padding: 60px;
@@ -57,6 +57,7 @@ footer {
 .big-quote{
 	font-size:28px !important;
 	width:400px;
+	padding: 15px;
 }
 .media-grid {
 	margin-bottom: 0;
@@ -87,7 +88,6 @@ footer {
 	box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
 }
 .modal{
-	top: 10% !important;
 	left: 5% !important;
 	z-index: 1050 !important;
 	overflow: auto !important;

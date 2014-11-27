@@ -6,6 +6,7 @@
 *= require tooltipster
 *= require admin/jquery-ui-1.8.16.custom
 *= require flat/datatables.css
+*= require print
 */
 
 /*.select2-drop {
@@ -164,3 +165,21 @@ ul.timeline li > .date {
 .gallery-cont .item .head {
   height: 36px;
 }
+
+    html, p, body{
+      font-family: 'Maven Pro', sans-serif !important;
+    }
+    h1,h2,h3,h4,h5,h6{
+      font-weight:700;
+      font-family: 'Cabin', sans-serif !important;
+    }
+    p{
+      font-size:14px;
+      line-height:1.45em;
+      font-weight:400;
+    }
+
+        .otherAnimalInfo p{
+      font-size:14px;
+      line-height:1em !important;
+    }

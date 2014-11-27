@@ -14,7 +14,7 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2014-11-26T14:50:27-07:00">2014-11-26T14:50:27-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2014-11-26T17:15:15-07:00">2014-11-26T17:15:15-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -313,7 +313,7 @@
       <tr>
         <td class="strong"><a href="#1f25cd8754e873e325445b46e2e006dddc4339b6" class="src_link" title="app/controllers/application_controller.rb">app/controllers/application_controller.rb</a></td>
         <td class="red strong">69.77 %</td>
-        <td>90</td>
+        <td>91</td>
         <td>43</td>
         <td>30</td>
         <td>13</td>
@@ -323,7 +323,7 @@
       <tr>
         <td class="strong"><a href="#b0d112d16eb80b46e7be71214d3b3d3ba3fe6e16" class="src_link" title="app/controllers/home_controller.rb">app/controllers/home_controller.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>34</td>
+        <td>33</td>
         <td>17</td>
         <td>17</td>
         <td>0</td>
@@ -333,7 +333,7 @@
       <tr>
         <td class="strong"><a href="#2af7eab8a6fd95f734212fab6457154f86d9044a" class="src_link" title="app/controllers/organizations_controller.rb">app/controllers/organizations_controller.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>16</td>
+        <td>15</td>
         <td>9</td>
         <td>9</td>
         <td>0</td>
@@ -1291,7 +1291,7 @@
       <tr>
         <td class="strong"><a href="#1f25cd8754e873e325445b46e2e006dddc4339b6" class="src_link" title="app/controllers/application_controller.rb">app/controllers/application_controller.rb</a></td>
         <td class="red strong">69.77 %</td>
-        <td>90</td>
+        <td>91</td>
         <td>43</td>
         <td>30</td>
         <td>13</td>
@@ -1301,7 +1301,7 @@
       <tr>
         <td class="strong"><a href="#b0d112d16eb80b46e7be71214d3b3d3ba3fe6e16" class="src_link" title="app/controllers/home_controller.rb">app/controllers/home_controller.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>34</td>
+        <td>33</td>
         <td>17</td>
         <td>17</td>
         <td>0</td>
@@ -1311,7 +1311,7 @@
       <tr>
         <td class="strong"><a href="#2af7eab8a6fd95f734212fab6457154f86d9044a" class="src_link" title="app/controllers/organizations_controller.rb">app/controllers/organizations_controller.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>16</td>
+        <td>15</td>
         <td>9</td>
         <td>9</td>
         <td>0</td>
@@ -11377,7 +11377,7 @@
         <li class="covered" data-hits="2" data-linenumber="5">
           <span class="hits">2</span>
           
-          <code class="ruby">    canonical_url(&quot;/animals&quot;)</code>
+          <code class="ruby">    canonical_url(&#39;/animals&#39;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="6">
@@ -11395,19 +11395,19 @@
         <li class="never" data-hits="" data-linenumber="8">
           
           
-          <code class="ruby">                      where(&#39;public&#39; =&gt; 1).</code>
+          <code class="ruby">                      where(public: 1).</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="9">
           
           
-          <code class="ruby">                      paginate(:page =&gt; params[:page], :per_page =&gt; 10).</code>
+          <code class="ruby">                      paginate(page: params[:page], per_page: 10).</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="10">
           
           
-          <code class="ruby">                      order(&quot;updated_at DESC&quot;).to_a.shuffle!</code>
+          <code class="ruby">                      order(updated_at: :desc).to_a.shuffle!</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="11">
@@ -11461,7 +11461,7 @@
         <li class="covered" data-hits="3" data-linenumber="19">
           <span class="hits">3</span>
           
-          <code class="ruby">    @animal = Rails.cache.fetch(&quot;public_animal_#{params[:id]}&quot;, :expires_in =&gt; 15.minutes) do</code>
+          <code class="ruby">    @animal = Rails.cache.fetch(&quot;public_animal_#{params[:id]}&quot;, expires_in: 15.minutes) do</code>
         </li>
       
         <li class="covered" data-hits="3" data-linenumber="20">
@@ -11491,7 +11491,7 @@
         <li class="covered" data-hits="2" data-linenumber="24">
           <span class="hits">2</span>
           
-          <code class="ruby">      impressionist(@animal, nil, :unique =&gt; [:session_hash])</code>
+          <code class="ruby">      impressionist(@animal, nil, unique: [:session_hash])</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="25">
@@ -11509,7 +11509,7 @@
         <li class="covered" data-hits="1" data-linenumber="27">
           <span class="hits">1</span>
           
-          <code class="ruby">      redirect_to &quot;/animals/not_available&quot;, :status =&gt; 302</code>
+          <code class="ruby">      redirect_to &#39;/animals/not_available&#39;, status: 302</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="28">
@@ -11539,13 +11539,13 @@
         <li class="covered" data-hits="1" data-linenumber="32">
           <span class="hits">1</span>
           
-          <code class="ruby">    canonical_url(&quot;/animals/not_available&quot;)</code>
+          <code class="ruby">    canonical_url(&#39;/animals/not_available&#39;)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="33">
           <span class="hits">1</span>
           
-          <code class="ruby">    @animals = Animal.where(&#39;public&#39; =&gt; 1).</code>
+          <code class="ruby">    @animals = Animal.where(public: 1).</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="34">
@@ -11557,7 +11557,7 @@
         <li class="never" data-hits="" data-linenumber="35">
           
           
-          <code class="ruby">                      order(&quot;updated_at DESC&quot;)</code>
+          <code class="ruby">                      order(updated_at: :desc)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="36">
@@ -11677,11 +11677,11 @@
         <li class="covered" data-hits="237" data-linenumber="13">
           <span class="hits">237</span>
           
-          <code class="ruby">    @random_notice = Rails.cache.fetch(&#39;random_notifications&#39;, :expires_in =&gt; 1.minutes) do</code>
+          <code class="ruby">    @random_notice = Rails.cache.fetch(&#39;random_notifications&#39;, expires_in: 1.minutes) do</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="14">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="5" data-linenumber="14">
+          <span class="hits">5</span>
           
           <code class="ruby">      Notification.offset(rand(Notification.count)).select(&#39;notifications.message, notifications.status_type&#39;).first() unless Notification.count == 0</code>
         </li>
@@ -11743,7 +11743,7 @@
         <li class="covered" data-hits="3" data-linenumber="24">
           <span class="hits">3</span>
           
-          <code class="ruby">    exception.default_message = &quot;Default error message&quot;</code>
+          <code class="ruby">    exception.default_message = &#39;Default error message&#39;</code>
         </li>
       
         <li class="covered" data-hits="3" data-linenumber="25">
@@ -11755,388 +11755,394 @@
         <li class="covered" data-hits="6" data-linenumber="26">
           <span class="hits">6</span>
           
-          <code class="ruby">      format.html { redirect_to root_url, :notice =&gt; &quot;That URL is prohibited&quot; }</code>
+          <code class="ruby">      format.html { redirect_to root_url, notice: &#39;That URL is prohibited&#39; }</code>
         </li>
       
         <li class="covered" data-hits="3" data-linenumber="27">
           <span class="hits">3</span>
           
-          <code class="ruby">      format.json { render :status =&gt; 401,</code>
+          <code class="ruby">      format.json { render status: 401,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="28">
           
           
-          <code class="ruby">                            :json =&gt; {  :success =&gt; false,</code>
+          <code class="ruby">                           json: {</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="29">
           
           
-          <code class="ruby">                                        :info =&gt; &quot;That URL is prohibited&quot;</code>
+          <code class="ruby">                            success: false,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="30">
           
           
-          <code class="ruby">                            }}</code>
+          <code class="ruby">                            info: &#39;That URL is prohibited&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="31">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">                           }}</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="32">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="33">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="34">
+          
+          
           <code class="ruby">  </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="34">
+        <li class="covered" data-hits="1" data-linenumber="35">
           <span class="hits">1</span>
           
           <code class="ruby">  rescue_from ActiveRecord::RecordNotFound do</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="35">
+        <li class="missed" data-hits="0" data-linenumber="36">
           
           
           <code class="ruby">    raise ActionController::RoutingError.new(&#39;Not Found&#39;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="36">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="37">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="38">
           
           
-          <code class="ruby">  # pretty sure this isnt used and can be removed</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="39">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="39">
           
-          <code class="ruby">  APP_DOMAIN = &#39;hospitium.co&#39;</code>
+          
+          <code class="ruby">  # pretty sure this isnt used and can be removed</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="40">
           <span class="hits">1</span>
           
-          <code class="ruby">  if Rails.env == &quot;production&quot;</code>
+          <code class="ruby">  APP_DOMAIN = &#39;hospitium.co&#39;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="41">
+        <li class="covered" data-hits="1" data-linenumber="41">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    def ensure_domain</code>
+          <code class="ruby">  if Rails.env == &#39;production&#39;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="42">
           
           
+          <code class="ruby">    def ensure_domain</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="43">
+          
+          
           <code class="ruby">      if request.env[&#39;HTTP_HOST&#39;] != APP_DOMAIN</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="43">
+        <li class="never" data-hits="" data-linenumber="44">
           
           
           <code class="ruby">        # HTTP 301 is a &quot;permanent&quot; redirect</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="44">
+        <li class="missed" data-hits="0" data-linenumber="45">
           
           
-          <code class="ruby">        redirect_to &quot;https://#{APP_DOMAIN}&quot;, :status =&gt; 301</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="45">
-          
-          
-          <code class="ruby">      end</code>
+          <code class="ruby">        redirect_to &quot;https://#{APP_DOMAIN}&quot;, status: 301</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="46">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="47">
           
           
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="48">
+          
+          
           <code class="ruby">  else</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="48">
+        <li class="covered" data-hits="1" data-linenumber="49">
           <span class="hits">1</span>
           
           <code class="ruby">    def ensure_domain</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="49">
+        <li class="never" data-hits="" data-linenumber="50">
           
           
           <code class="ruby">      #do nothing</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="50">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="51">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="52">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="53">
+          
+          
           <code class="ruby">  </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="53">
+        <li class="covered" data-hits="1" data-linenumber="54">
           <span class="hits">1</span>
           
           <code class="ruby">  def check_domain</code>
         </li>
       
-        <li class="covered" data-hits="237" data-linenumber="54">
+        <li class="covered" data-hits="237" data-linenumber="55">
           <span class="hits">237</span>
           
           <code class="ruby">    if Rails.env.production? and request.host.downcase != &#39;hospitium.co&#39;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="55">
+        <li class="missed" data-hits="0" data-linenumber="56">
           
           
-          <code class="ruby">      redirect_to request.protocol + &#39;hospitium.co&#39; + request.fullpath, :status =&gt; 301</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="56">
-          
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">      redirect_to request.protocol + &#39;hospitium.co&#39; + request.fullpath, status: 301</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="57">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="58">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="59">
+          
+          
           <code class="ruby">  </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="59">
+        <li class="covered" data-hits="1" data-linenumber="60">
           <span class="hits">1</span>
           
           <code class="ruby">  def canonical_url(canonical_url)</code>
         </li>
       
-        <li class="covered" data-hits="18" data-linenumber="60">
+        <li class="covered" data-hits="18" data-linenumber="61">
           <span class="hits">18</span>
           
           <code class="ruby">    @canonical_url = canonical_url</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="61">
+        <li class="never" data-hits="" data-linenumber="62">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="62">
+        <li class="never" data-hits="" data-linenumber="63">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="63">
+        <li class="covered" data-hits="1" data-linenumber="64">
           <span class="hits">1</span>
           
           <code class="ruby">  private</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="64">
+        <li class="never" data-hits="" data-linenumber="65">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="65">
+        <li class="covered" data-hits="1" data-linenumber="66">
           <span class="hits">1</span>
           
           <code class="ruby">  def authenticate_user_from_token!</code>
         </li>
       
-        <li class="covered" data-hits="227" data-linenumber="66">
+        <li class="covered" data-hits="227" data-linenumber="67">
           <span class="hits">227</span>
           
           <code class="ruby">    if token_and_options(request)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="67">
+        <li class="missed" data-hits="0" data-linenumber="68">
           
           
           <code class="ruby">      user_token = token_and_options(request).first</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="68">
+        <li class="missed" data-hits="0" data-linenumber="69">
           
           
-          <code class="ruby">      user = Rails.cache.fetch(&quot;user_auth_#{user_token}&quot;, :expires_in =&gt; 5.minutes) do</code>
+          <code class="ruby">      user = Rails.cache.fetch(&quot;user_auth_#{user_token}&quot;, expires_in: 5.minutes) do</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="69">
+        <li class="missed" data-hits="0" data-linenumber="70">
           
           
           <code class="ruby">        user_token &amp;&amp; User.where(authentication_token: user_token.to_s).first</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="70">
+        <li class="never" data-hits="" data-linenumber="71">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="71">
+        <li class="never" data-hits="" data-linenumber="72">
           
           
           <code class="ruby">   </code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="72">
+        <li class="missed" data-hits="0" data-linenumber="73">
           
           
           <code class="ruby">      if user</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="73">
+        <li class="never" data-hits="" data-linenumber="74">
           
           
           <code class="ruby">        # Notice we are passing store false, so the user is not</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="74">
+        <li class="never" data-hits="" data-linenumber="75">
           
           
           <code class="ruby">        # actually stored in the session and a token is needed</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="75">
+        <li class="never" data-hits="" data-linenumber="76">
           
           
           <code class="ruby">        # for every request. If you want the token to work as a</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="76">
+        <li class="never" data-hits="" data-linenumber="77">
           
           
           <code class="ruby">        # sign in token, you can simply remove store: false.</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="77">
+        <li class="missed" data-hits="0" data-linenumber="78">
           
           
           <code class="ruby">        sign_in user, store: false</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="78">
+        <li class="never" data-hits="" data-linenumber="79">
           
           
           <code class="ruby">      else</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="79">
+        <li class="never" data-hits="" data-linenumber="80">
           
           
           <code class="ruby">        # sleep 200-400ms</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="80">
+        <li class="missed" data-hits="0" data-linenumber="81">
           
           
           <code class="ruby">        sleep((200 + rand(200)) / 1000.0)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="81">
+        <li class="never" data-hits="" data-linenumber="82">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="82">
+        <li class="never" data-hits="" data-linenumber="83">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="83">
+        <li class="never" data-hits="" data-linenumber="84">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="84">
+        <li class="never" data-hits="" data-linenumber="85">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="85">
+        <li class="covered" data-hits="1" data-linenumber="86">
           <span class="hits">1</span>
           
           <code class="ruby">  protected</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="86">
+        <li class="never" data-hits="" data-linenumber="87">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="87">
+        <li class="covered" data-hits="1" data-linenumber="88">
           <span class="hits">1</span>
           
           <code class="ruby">  def configure_permitted_parameters</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="88">
+        <li class="missed" data-hits="0" data-linenumber="89">
           
           
           <code class="ruby">    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:organization_name, :username, :email, :owner, :password, :password_confirmation) }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="89">
+        <li class="never" data-hits="" data-linenumber="90">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="90">
+        <li class="never" data-hits="" data-linenumber="91">
           
           
           <code class="ruby">end</code>
@@ -12187,7 +12193,7 @@
         <li class="covered" data-hits="1" data-linenumber="5">
           <span class="hits">1</span>
           
-          <code class="ruby">    canonical_url(&quot;/&quot;)</code>
+          <code class="ruby">    canonical_url(&#39;/&#39;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="6">
@@ -12229,7 +12235,7 @@
         <li class="covered" data-hits="1" data-linenumber="12">
           <span class="hits">1</span>
           
-          <code class="ruby">    canonical_url(&quot;/about&quot;)</code>
+          <code class="ruby">    canonical_url(&#39;/about&#39;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="13">
@@ -12253,7 +12259,7 @@
         <li class="covered" data-hits="1" data-linenumber="16">
           <span class="hits">1</span>
           
-          <code class="ruby">    canonical_url(&quot;/features&quot;)</code>
+          <code class="ruby">    canonical_url(&#39;/features&#39;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="17">
@@ -12277,7 +12283,7 @@
         <li class="covered" data-hits="1" data-linenumber="20">
           <span class="hits">1</span>
           
-          <code class="ruby">    canonical_url(&quot;/privacy-and-terms-of-service&quot;)</code>
+          <code class="ruby">    canonical_url(&#39;/privacy-and-terms-of-service&#39;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="21">
@@ -12301,7 +12307,7 @@
         <li class="covered" data-hits="1" data-linenumber="24">
           <span class="hits">1</span>
           
-          <code class="ruby">    canonical_url(&quot;/why-hospitium&quot;)</code>
+          <code class="ruby">    canonical_url(&#39;/why-hospitium&#39;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="25">
@@ -12325,19 +12331,19 @@
         <li class="covered" data-hits="1" data-linenumber="28">
           <span class="hits">1</span>
           
-          <code class="ruby">    canonical_url(&quot;/recent-changes&quot;)</code>
+          <code class="ruby">    canonical_url(&#39;/recent-changes&#39;)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="29">
           <span class="hits">1</span>
           
-          <code class="ruby">    @recent_changes = Rails.cache.fetch(&quot;recent_changes_from_github&quot;, :expires_in =&gt; 1.hour) do</code>
+          <code class="ruby">    @recent_changes = Rails.cache.fetch(&#39;recent_changes_from_github&#39;, expires_in: 1.hour) do</code>
         </li>
       
         <li class="covered" data-hits="31" data-linenumber="30">
           <span class="hits">31</span>
           
-          <code class="ruby">      Octokit.list_commits(&quot;ninetwentyfour/Hospitium&quot;, branch = &quot;master&quot;, options = {}).map { |commit| {message: commit.commit.message, date: commit.commit.author.date }}</code>
+          <code class="ruby">      Octokit.list_commits(&#39;ninetwentyfour/Hospitium&#39;, branch = &#39;master&#39;, options = {}).map { |commit| {message: commit.commit.message, date: commit.commit.author.date }}</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="31">
@@ -12353,12 +12359,6 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="33">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="34">
           
           
           <code class="ruby">end</code>
@@ -12415,7 +12415,7 @@
         <li class="covered" data-hits="2" data-linenumber="6">
           <span class="hits">2</span>
           
-          <code class="ruby">    @organization = Rails.cache.fetch(&quot;public_org_#{params[:id]}&quot;, :expires_in =&gt; 15.minutes) do</code>
+          <code class="ruby">    @organization = Rails.cache.fetch(&quot;public_org_#{params[:id]}&quot;, expires_in: 15.minutes) do</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="7">
@@ -12433,13 +12433,13 @@
         <li class="covered" data-hits="2" data-linenumber="9">
           <span class="hits">2</span>
           
-          <code class="ruby">    @animals = Rails.cache.fetch(&quot;public_org_animals_#{params[:id]}&quot;, :expires_in =&gt; 15.minutes) do</code>
+          <code class="ruby">    @animals = Rails.cache.fetch(&quot;public_org_animals_#{params[:id]}&quot;, expires_in: 15.minutes) do</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="10">
           <span class="hits">2</span>
           
-          <code class="ruby">      Animal.where(&#39;public&#39; =&gt; 1, :organization_id =&gt; @organization.id)</code>
+          <code class="ruby">      Animal.where(public: 1, organization_id: @organization.id)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="11">
@@ -12467,12 +12467,6 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="15">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="16">
           
           
           <code class="ruby">end</code>
@@ -12523,13 +12517,13 @@
         <li class="covered" data-hits="2" data-linenumber="5">
           <span class="hits">2</span>
           
-          <code class="ruby">    canonical_url(&quot;/posts&quot;)</code>
+          <code class="ruby">    canonical_url(&#39;/posts&#39;)</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="6">
           <span class="hits">2</span>
           
-          <code class="ruby">    @posts = Post.paginate(:page =&gt; params[:page], :per_page =&gt; 10).order(&quot;created_at DESC&quot;)</code>
+          <code class="ruby">    @posts = Post.paginate(page: params[:page], per_page: 10).order(created_at: :desc)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="7">
@@ -12571,7 +12565,7 @@
         <li class="covered" data-hits="2" data-linenumber="13">
           <span class="hits">2</span>
           
-          <code class="ruby">    @post = Rails.cache.fetch(&quot;public_post_#{params[:id]}&quot;, :expires_in =&gt; 60.minutes) do</code>
+          <code class="ruby">    @post = Rails.cache.fetch(&quot;public_post_#{params[:id]}&quot;, expires_in: 60.minutes) do</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="14">
@@ -12607,7 +12601,7 @@
         <li class="missed" data-hits="0" data-linenumber="19">
           
           
-          <code class="ruby">        return redirect_to post_url(@post), :status =&gt; :moved_permanently</code>
+          <code class="ruby">        return redirect_to post_url(@post), status: :moved_permanently</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="20">

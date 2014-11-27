@@ -1,0 +1,17 @@
+.otherAnimalInfo p{
+  font-size:14px;
+  line-height:1em !important;
+}
+.sidebar-logo{
+  height: 65px;
+}
+.cl-sidebar{
+  background: none;
+}
+#pjax-contain {
+  margin-top: 60px;
+}
+.main-container {
+  width: 100%;
+  padding: 0px 60px;
+}

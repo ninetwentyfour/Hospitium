@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   
   #display notice on every admin page
   def get_notice
-    @random_notice = Rails.cache.fetch('random_notifications', :expires_in => 1.minutes) do
+    @random_notice = Rails.cache.fetch('random_notifications', expires_in: 1.minutes) do
       Notification.offset(rand(Notification.count)).select('notifications.message, notifications.status_type').first() unless Notification.count == 0
     end
   end
@@ -21,13 +21,14 @@ class ApplicationController < ActionController::Base
   end
   
   rescue_from CanCan::AccessDenied do |exception|
-    exception.default_message = "Default error message"
+    exception.default_message = 'Default error message'
     respond_to do |format|
-      format.html { redirect_to root_url, :notice => "That URL is prohibited" }
-      format.json { render :status => 401,
-                            :json => {  :success => false,
-                                        :info => "That URL is prohibited"
-                            }}
+      format.html { redirect_to root_url, notice: 'That URL is prohibited' }
+      format.json { render status: 401,
+                           json: {
+                            success: false,
+                            info: 'That URL is prohibited'
+                           }}
     end
   end
   
@@ -37,11 +38,11 @@ class ApplicationController < ActionController::Base
 
   # pretty sure this isnt used and can be removed
   APP_DOMAIN = 'hospitium.co'
-  if Rails.env == "production"
+  if Rails.env == 'production'
     def ensure_domain
       if request.env['HTTP_HOST'] != APP_DOMAIN
         # HTTP 301 is a "permanent" redirect
-        redirect_to "https://#{APP_DOMAIN}", :status => 301
+        redirect_to "https://#{APP_DOMAIN}", status: 301
       end
     end
   else
@@ -52,7 +53,7 @@ class ApplicationController < ActionController::Base
   
   def check_domain
     if Rails.env.production? and request.host.downcase != 'hospitium.co'
-      redirect_to request.protocol + 'hospitium.co' + request.fullpath, :status => 301
+      redirect_to request.protocol + 'hospitium.co' + request.fullpath, status: 301
     end
   end
   
@@ -65,7 +66,7 @@ class ApplicationController < ActionController::Base
   def authenticate_user_from_token!
     if token_and_options(request)
       user_token = token_and_options(request).first
-      user = Rails.cache.fetch("user_auth_#{user_token}", :expires_in => 5.minutes) do
+      user = Rails.cache.fetch("user_auth_#{user_token}", expires_in: 5.minutes) do
         user_token && User.where(authentication_token: user_token.to_s).first
       end
    
