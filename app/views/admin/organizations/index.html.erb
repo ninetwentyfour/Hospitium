@@ -3,7 +3,7 @@
 		<div class="col-sm-12 col-md-12 col-lg-12 main-app-row">
 				<div class="block-flat profile-info">
 					<div class="row">
-            <div class="col-sm-1">
+            <div class="col-sm-2 col-md-2 col-lg-1">
               <div class="avatar">
                 <%= gravatar_image_tag("#{organization.email}", :alt => "#{organization.email}", :gravatar => { :size => 130 }, :class => "profile-avatar") %>
               </div>
@@ -13,7 +13,7 @@
 						    <h1><%= best_in_place organization, :name, :type => :input, :nil => "Click me to add content!", :path => admin_organization_path(organization) %></h1>
               </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3 hidden-xs hidden-sm">
   						<% if can? :cancel, current_user %>
   							<%= link_to raw("<i class='fa fa-remove'></i> Cancel Account"), cancel_user_admin_user_path(current_user),
   		                            :data => {:confirm => 'Are you sure you want to delete? This will remove all animals, users, and other data associated with your Organization. This action can not be undone.'}, :method => :delete, :class => "btn btn-primary btn-rad btn-trans pull-right tipster", :title => "Delete" %>
@@ -41,7 +41,7 @@
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-6 col-lg-6 map-block">
-						<div id="map_canvas" style="height:409px;width:400px;"></div>
+						<div id="map_canvas" style="height:409px;width:100%;"></div>
 					</div>
 				</div>
 		</div>

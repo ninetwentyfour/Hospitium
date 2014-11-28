@@ -11,7 +11,7 @@
 				<h1><%= link_to post.title, post_path(post) %></h1>
 				<strong><%= post.author %> posted on <%= post.created_at.strftime("%m-%d-%Y") %></strong>
 				<hr />
-				<p><%= markdown(truncate(post.content, :length => 140)) %> <%= link_to 'Read More', post_path(post) %></p>
+				<p><%= unsafe_markdown(truncate(post.content, :length => 140)) %> <%= link_to 'Read More', post_path(post) %></p>
 			</li>
 		<% end %>
 		<%= will_paginate @posts, renderer: BootstrapPagination::Rails %>

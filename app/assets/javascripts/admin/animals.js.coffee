@@ -56,7 +56,7 @@ animal_show = ->
   #create the date picker for adding an animal weight
   $("#animal_weight_date_of_weight").datepicker()
   $("#shot_last_administered").datepicker()
-  $("#shot_expires").datepicker()
+  $("#shot_expires").datepicker({yearRange: "-50:+50"})
   $.datepicker.setDefaults dateFormat: "dd M yy"
 
   $("a[data-toggle=\"tab\"]").on "show.bs.tab", (e) ->

@@ -441,6 +441,7 @@ GEM
     unf_ext (0.0.6)
     uuidtools (2.1.5)
     vcr (2.9.3)
+    vpim (13.11.11)
     warden (1.2.3)
       rack (>= 1.0)
     webmock (1.20.4)
@@ -531,6 +532,7 @@ DEPENDENCIES
   uglifier
   uuidtools
   vcr
+  vpim
   webdack-uuid_migration!
   webmock
   will_paginate

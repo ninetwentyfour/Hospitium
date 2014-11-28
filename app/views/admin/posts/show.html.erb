@@ -5,7 +5,7 @@
 		<strong><%= @post.author %> posted on <%= @post.created_at.strftime("%m-%d-%Y") %></strong>
 	</div>
 	<div>
-		<p><%= markdown(@post.content) %></p>
+		<p><%= unsafe_markdown(@post.content) %></p>
 	</div>
 </div>
 

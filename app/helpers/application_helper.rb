@@ -29,6 +29,13 @@ module ApplicationHelper
         :no_intraemphasis => true, :autolink => true)
     return markdown.render(sanitize(text)).html_safe
   end
+
+  def unsafe_markdown(text)
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(
+        :hard_wrap => true),
+        :no_intraemphasis => true, :autolink => true)
+    return markdown.render(sanitize(text)).html_safe
+  end
   
   def is_table_view(params)
     params.merge({:table_view => 'true'}) if params[:table_view]
@@ -39,7 +46,7 @@ module ApplicationHelper
   end
 
   def table_button_text(params)
-    params[:table_view] ? '<i class="fa fa-refresh"></i> Card View' : '<i class="fa fa-refresh"></i> Table View'
+    params[:table_view] ? '<i class="fa fa-th-large tipster" title="Card View"></i><span class="hidden-xs hidden-sm"> Card View</span>' : '<i class="fa fa-table tipster" title="Table View"></i><span class="hidden-xs hidden-sm"> Table View</span>'
   end
 
   def archived_view_button(params)
@@ -47,7 +54,7 @@ module ApplicationHelper
   end
 
   def archived_button_text(params)
-    params[:archived_view] ? '<i class="fa fa-refresh"></i> Hide Archived' : '<i class="fa fa-refresh"></i> View Archived'
+    params[:archived_view] ? '<i class="fa fa-archive tipster" title="Hide Archived"></i> <span class="hidden-xs hidden-sm">Hide Archived</span>' : '<i class="fa fa-archive tipster" title="View Archived"></i> <span class="hidden-xs hidden-sm">View Archived</span>'
   end
 
   def past_tense_actions(action)

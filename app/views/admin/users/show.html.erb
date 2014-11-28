@@ -2,12 +2,12 @@
 	<div class="col-sm-12 col-md-12 col-lg-12 main-app-row">
 		<div class="block-flat profile-info">
 			<div class="row">
-				<div class="col-sm-1">
+				<div class="col-sm-2 col-md-2 col-lg-1">
 					<div class="avatar">
 						<%= gravatar_image_tag("#{@user.email}", :alt => "#{@user.email}", :gravatar => { :size => 130 }, :class => "profile-avatar") %>
 					</div>
 				</div>
-				<div class="col-sm-11">
+				<div class="col-sm-10 col-md-10 col-lg-11">
 					<div class="personal">
 						<% if can? :update, @user %>
 							<h1><%= best_in_place @user, :username, :type => :input, :nil => "Click me to add content!", :path => admin_user_path %></h1>
@@ -42,7 +42,7 @@
 							<% end %>
 
 							<% if current_user.id == @user.id %>
-								<p><strong>API Token:</strong> <%= @user.authentication_token %></p>
+								<p class="user-token"><strong>API Token:</strong> <code><%= @user.authentication_token %></code></p>
 							<% end %>
 							
 							<% if can? :update, @user %>

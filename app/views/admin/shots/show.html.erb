@@ -31,5 +31,12 @@
   <script type="text/javascript">
     // Trigger juggernaut
     juggernaut_listen('<%= @presenter.shot.id %>', 'shot');
+
+    $.datepicker.setDefaults({
+      dateFormat: 'dd M yy',
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "-50:+50"
+    });
   </script>
 <%end%>

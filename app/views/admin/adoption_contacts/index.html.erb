@@ -1,12 +1,12 @@
 <div class="row">
 	<div class="col-sm-12 col-md-12 col-lg-12">
 		<!-- <div class="block-flat"> -->
-			<a class="btn btn-primary btn-rad btn-trans" href="/admin/adoption_contacts/new"><i class="fa fa-plus"></i>Add New Adoption Contact</a>
+			<a class="btn btn-primary btn-rad btn-trans" href="/admin/adoption_contacts/new"><i class="fa fa-plus tipster" title="Add New"></i><span class="hidden-xs hidden-sm"> Add New Adoption Contact</span></a>
 			&nbsp;
-			<a class="btn btn-primary btn-rad btn-trans" href="/admin/adoption_contacts.csv" id="animal_sync_button"><i class="fa fa-download"></i> Export</a>
+			<a class="btn btn-primary btn-rad btn-trans" href="/admin/adoption_contacts.csv" id="animal_sync_button"><i class="fa fa-download tipster" title="Export"></i> <span class="hidden-xs hidden-sm">Export</span></a>
 			&nbsp;
-			<%= link_to raw('<i class="fa fa-file"></i> Download Adoption Form'), current_user.organization.adoption_form.url, :class => "btn btn-primary btn-rad btn-trans" %>
-			<a class="btn btn-primary btn-rad btn-trans pull-right" data-toggle="modal" href="#myModal" ><i class="fa fa-search"></i> Advanced Search</a>
+			<%= link_to raw('<i class="fa fa-file tipster" title="Download Adoption Form"></i> <span class="hidden-xs hidden-sm">Download Adoption Form</span>'), current_user.organization.adoption_form.url, :class => "btn btn-primary btn-rad btn-trans" %>
+			<a class="btn btn-primary btn-rad btn-trans pull-right" data-toggle="modal" href="#myModal" ><i class="fa fa-search tipster" title="Search"></i> <span class="hidden-xs hidden-sm">Advanced Search</span></a>
 		<!-- </div> -->
 	</div>
 </div>
@@ -19,9 +19,9 @@
 					<tr>
 						<th><%= sort_link @presenter.search, :first_name %></th>
 						<th><%= sort_link @presenter.search, :last_name %></th>
-						<th><%= sort_link @presenter.search, :address %></th>
-						<th><%= sort_link @presenter.search, :phone %></th>
-						<th><%= sort_link @presenter.search, :email %></th>
+						<th class="hidden-xs hidden-sm hidden-md"><%= sort_link @presenter.search, :address %></th>
+						<th class="hidden-xs hidden-sm"><%= sort_link @presenter.search, :phone %></th>
+						<th class="hidden-xs"><%= sort_link @presenter.search, :email %></th>
 						<th></th>
 					</tr>
 				</thead>
@@ -30,9 +30,9 @@
 						<tr>
 							<td><a href="/admin/adoption_contacts/<%= adoption_contact.id %>"><%= adoption_contact.first_name %></a></td>
 							<td><%= adoption_contact.last_name %></td>
-							<td><%= adoption_contact.address %></td>
-							<td><%= number_to_phone(adoption_contact.phone) %></td>
-							<td><%= adoption_contact.email %></td>
+							<td class="hidden-xs hidden-sm hidden-md"><%= adoption_contact.address %></td>
+							<td class="hidden-xs hidden-sm"><%= number_to_phone(adoption_contact.phone) %></td>
+							<td class="hidden-xs"><%= adoption_contact.email %></td>
 							<td class="actions_column">
 								<div class="btn-group">
 									<a class="btn tipster" href="/admin/adoption_contacts/<%= adoption_contact.id %>" title="View Contact"><i class="fa fa-eye"></i></a>

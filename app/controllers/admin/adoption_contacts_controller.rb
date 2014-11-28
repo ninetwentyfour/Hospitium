@@ -2,7 +2,7 @@ class Admin::AdoptionContactsController < Admin::CrudController
   load_and_authorize_resource
   include PublicActivity::StoreController
   
-  respond_to :html, :json, :csv
+  respond_to :html, :json, :csv, :vcf
 
   # Allowed params for create and update
   self.permitted_attrs = [:first_name, :last_name, :phone, :email, :adopted_date, :address]

@@ -1,36 +1,38 @@
 <div class="row">
   <div class="col-sm-12 col-md-12 col-lg-12">
-    <div class="block-flat">
-      <%= form_for shot, :url => admin_shots_path, :validate => true do |f| %>
-        <% if shot.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(shot.errors.count, "error") %> prohibited this shot from being saved:</h2>
+    <div class="block-flat clearfix">
+      <div class="col-sm-12 col-md-12 col-lg-5">
+        <%= form_for shot, :url => admin_shots_path, :validate => true do |f| %>
+          <% if shot.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(shot.errors.count, "error") %> prohibited this shot from being saved:</h2>
 
-            <ul>
-            <% shot.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-            </ul>
-          </div>
+              <ul>
+              <% shot.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+
+            <%= f.label :name %>
+            <%= f.text_field :name, :class => "form-control" %>
+            <div class="form-group">
+              <%= f.label :animal %>
+              <%= collection_select(:shot, :animal_id, current_user.organization.animals, :id, :name) %>
+            </div>
+
+            <%= f.label :last_administered %>
+            <%= f.text_field :last_administered, :class => "form-control" %>
+
+            <%= f.label :expires %>
+            <%= f.text_field :expires, :class => "form-control" %>
+
+            <hr />
+            <%= f.submit "Add Shot", :class => "btn btn-primary submit-button" %>
         <% end %>
-
-
-          <%= f.label :name %>
-          <%= f.text_field :name, :class => "form-control" %>
-          <div class="form-group">
-            <%= f.label :animal %>
-            <%= collection_select(:shot, :animal_id, current_user.organization.animals, :id, :name) %>
-          </div>
-
-          <%= f.label :last_administered %>
-          <%= f.text_field :last_administered, :class => "form-control" %>
-
-          <%= f.label :expires %>
-          <%= f.text_field :expires, :class => "form-control" %>
-
-          <hr />
-          <%= f.submit "Add Shot", :class => "btn btn-primary submit-button" %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
@@ -38,9 +40,9 @@
 <% content_for :javascript_footer do %>
   <script>
     $( "#shot_last_administered" ).datepicker();
-    $( "#shot_expires" ).datepicker();
+    $( "#shot_expires" ).datepicker({yearRange: "-50:+50"});
     $.datepicker.setDefaults({
-      dateFormat: 'D, dd M yy' 
+      dateFormat: 'D, dd M yy'
     });
   </script>
 <%end%>

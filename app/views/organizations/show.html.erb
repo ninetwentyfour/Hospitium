@@ -4,20 +4,24 @@
 			<%= gravatar_image_tag("#{@organization.email}", :alt => "#{@organization.email}", :gravatar => { :size => 50 }, :style => "vertical-align:bottom;padding:5px 5px 7px 0px") %>
 			<h1 style="display:inline;"><%= @organization.name %></h1>
 		</div>
-		<div class="otherAnimalInfo" style="width:400px;float:left">
-			<h2>Contact Info</h2>
-			<%= markdown("Website: #{@organization.pretty_website}") %>
-			<%= markdown("Email: #{@organization.email}") %>
-			<p>Phone Number: <%= number_to_phone(@organization.phone_number, :area_code => true) %></p>
-			<p>Address: <%= @organization.full_address %></p>
-			<h2>Animals For Adoption</h2>
-			<ul>
-				<% @animals.each do |animal| %>
-					<li><a href="/animals/<%= animal.id %>"><%= animal.name %></a></li>
-				<% end %>
-			</ul>
+		<div class="col-sm-12 col-md-12 col-lg-5">
+			<div class="otherAnimalInfo">
+				<h2>Contact Info</h2>
+				<%= markdown("Website: #{@organization.pretty_website}") %>
+				<%= markdown("Email: #{@organization.email}") %>
+				<p>Phone Number: <%= number_to_phone(@organization.phone_number, :area_code => true) %></p>
+				<p>Address: <%= @organization.full_address %></p>
+				<h2>Animals For Adoption</h2>
+				<ul>
+					<% @animals.each do |animal| %>
+						<li><a href="/animals/<%= animal.id %>"><%= animal.name %></a></li>
+					<% end %>
+				</ul>
+			</div>
 		</div>
-		<div id="map_canvas" style="height:400px;width:400px;float:right;"></div>
+		<div class="col-sm-12 col-md-12 col-lg-7">
+			<div id="map_canvas" style="min-height:400px;width:100%;"></div>
+		</div>
 	</div>
 	<p id="notice"><%= notice %></p>
 

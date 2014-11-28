@@ -12,6 +12,28 @@
         <div class="side-user">
         <!-- User progress bar-->
         </div>
+        <div class="visible-xs-block">
+          <ul class="cl-vnavigation">
+            <% if user_signed_in? %>
+              <li class="parent">
+                <a href="#"><%= gravatar_image_tag("#{current_user.email}", :alt => "#{current_user.email}", :gravatar => { :size => 25 }) %><span><%= current_user.username %></span></a>
+                <ul class="sub-menu">
+                  <li><a href="/admin">Dashboard</a></li>
+                  <li><a href="/admin/users/<%= current_user.id %>">User Settings</a></li>
+                  <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li class="divider-vertical"></li>
+              <li><a href="/users/sign_in">Sign In</a></li>
+            <% end %>
+            <li><a href="/why-hospitium">Why Hospitium</a></li>
+            <li><a href="/features">Features</a></li>
+            <li><a href="https://hospitium.tenderapp.com/kb">Docs</a></li>
+            <li><a href="/animals">Adopt an Animal</a></li>
+            <li><a href="/posts">Blog</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

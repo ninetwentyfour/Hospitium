@@ -2,16 +2,21 @@
 	<div class="col-sm-12 col-md-12 col-lg-12 main-app-row">
 		<div class="block-flat profile-info">
       <div class="row">
-        <div class="col-sm-1">
-          <div class="avatar">
-            <%= gravatar_image_tag("#{@volunteer_contact.email}", :alt => "#{@volunteer_contact.email}", :gravatar => { :size => 130 }, :class => "profile-avatar") %>
+        <div class="col-sm-11 col-md-11 col-lg-11">
+          <div class="col-sm-2 col-md-2 col-lg-1">
+            <div class="avatar">
+              <%= gravatar_image_tag("#{@volunteer_contact.email}", :alt => "#{@volunteer_contact.email}", :gravatar => { :size => 130 }, :class => "profile-avatar") %>
+            </div>
+          </div>
+          <div class="col-sm-10 col-md-10 col-lg-10">
+            <div class="personal">
+              <h1><%= best_in_place @volunteer_contact, :first_name, :type => :input, :nil => "Click me to add content!", :path => admin_volunteer_contact_path %> 
+              <%= best_in_place @volunteer_contact, :last_name, :type => :input, :nil => "", :path => admin_volunteer_contact_path %></h1>
+            </div>
           </div>
         </div>
-        <div class="col-sm-11">
-          <div class="personal">
-            <h1><%= best_in_place @volunteer_contact, :first_name, :type => :input, :nil => "Click me to add content!", :path => admin_volunteer_contact_path %> 
-            <%= best_in_place @volunteer_contact, :last_name, :type => :input, :nil => "", :path => admin_volunteer_contact_path %></h1>
-          </div>
+        <div class="col-sm-1 col-md-1 col-lg-1 pull-right share-animal-buttons">
+          <%= link_to raw('<i class="fa fa-download"></i> Download Contact'), admin_volunteer_contact_path(@volunteer_contact, format: :vcf), class: 'btn btn-primary btn-rad btn-trans pull-right' %>
         </div>
       </div>
 		</div>
@@ -64,7 +69,7 @@
 			</div>
 		
 			<div class="col-sm-6 col-md-6 col-lg-6 map-block">
-				<div id="map_canvas" style="height:409px;width:400px;"></div>
+				<div id="map_canvas" style="height:409px;width:100%;"></div>
 			</div>
 		</div>
 	</div>

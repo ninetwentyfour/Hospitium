@@ -6,28 +6,10 @@
 	<div class="otherAnimalInfo">
 		<div class="row">
 			<div class="">
-				<div class="col-sm-5 col-md-5 col-lg-5">
-          <div class="block-flat">
-  					<p>Status: <%= @animal.status.status %></p>
-  					<p>Species: <%= @animal.species_name %></p>
-  					<p>Sex: <%= @animal.sex unless @animal.animal_sex.blank? %></p>
-  					<p>Age: <%= calculate_animal_age(@animal.birthday) unless @animal.birthday.blank? %></p>
-  					<p>Spay/Neuter: <%= @animal.spay unless @animal.spay_neuter.blank? %></p>
-  					<p>Color: <%= @animal.color %></p>
-  					<p>Special Needs: <%= @animal.special_needs %></p>
-            <hr />
-  					<p>Adoption Contact</p>
-  					<p>Organization: <a href="/organizations/<%= @animal.organization.id %>"><%= @animal.organization_name %></a></p>
-  					<%= markdown("Website: #{@animal.organization.pretty_website}") %>
-  					<%= markdown("Email: #{@animal.organization_email}") %>
-  					<p>Phone Number: <%= number_to_phone(@animal.organization_phone_number, :area_code => true) %></p>
-  					<p>Address: <%= @animal.organization.full_address %></p>
-          </div>
-				</div>
-				<div class="col-sm-7 col-md-7 col-lg-7 pull-right animal-pics">
+				<div class="col-sm-12 col-md-12 col-lg-7 animal-pics clearfix col-lg-push-5">
           <div class="gallery-cont">
             <% unless animal.image.url(:medium) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" %>
-              <div class="item col-sm-6 col-md-6 col-lg-6">
+              <div class="item col-sm-6 col-md-6 col-lg-6 pull-left">
                 <div class="photo">
                   <div class="head">
                   </div>
@@ -41,7 +23,7 @@
               </div>
             <% end %>
             <% unless animal.second_image.url(:medium) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" %>
-              <div class="item col-sm-6 col-md-6 col-lg-6">
+              <div class="item col-sm-6 col-md-6 col-lg-6 pull-left">
                 <div class="photo">
                   <div class="head">
                   </div>
@@ -55,7 +37,7 @@
               </div>
             <% end %>
             <% unless animal.third_image.url(:medium) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" %>
-              <div class="item col-sm-6 col-md-6 col-lg-6">
+              <div class="item col-sm-6 col-md-6 col-lg-6 pull-left">
                 <div class="photo">
                   <div class="head">
                   </div>
@@ -69,7 +51,7 @@
               </div>
             <% end %>
             <% unless animal.fourth_image.url(:medium) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" %>
-              <div class="item col-sm-6 col-md-6 col-lg-6">
+              <div class="item col-sm-6 col-md-6 col-lg-6 pull-left">
                 <div class="photo">
                   <div class="head">
                   </div>
@@ -82,7 +64,7 @@
                 </div>
               </div>
             <% end %>
-            <div class="item col-sm-12 col-md-12 col-lg-12 video-item">
+            <div class="item col-sm-12 col-md-12 col-lg-12 video-item pull-left">
               <% unless animal.video_embed.blank? %>
                 <div class="photo">
                   <div class="head">
@@ -97,6 +79,24 @@
             </div>
           </div>
 				</div>
+        <div class="col-sm-12 col-md-12 col-lg-5 col-lg-pull-7">
+          <div class="block-flat">
+            <p>Status: <%= @animal.status.status %></p>
+            <p>Species: <%= @animal.species_name %></p>
+            <p>Sex: <%= @animal.sex unless @animal.animal_sex.blank? %></p>
+            <p>Age: <%= calculate_animal_age(@animal.birthday) unless @animal.birthday.blank? %></p>
+            <p>Spay/Neuter: <%= @animal.spay unless @animal.spay_neuter.blank? %></p>
+            <p>Color: <%= @animal.color %></p>
+            <p>Special Needs: <%= @animal.special_needs %></p>
+            <hr />
+            <p>Adoption Contact</p>
+            <p>Organization: <a href="/organizations/<%= @animal.organization.id %>"><%= @animal.organization_name %></a></p>
+            <%= markdown("Website: #{@animal.organization.pretty_website}") %>
+            <%= markdown("Email: #{@animal.organization_email}") %>
+            <p>Phone Number: <%= number_to_phone(@animal.organization_phone_number, :area_code => true) %></p>
+            <p>Address: <%= @animal.organization.full_address %></p>
+          </div>
+        </div>
 			</div>
 		</div>
 	</div>

@@ -2,7 +2,7 @@ class Admin::FosterContactsController < Admin::CrudController
   load_and_authorize_resource
   include PublicActivity::StoreController
   
-  respond_to :html, :json, :csv
+  respond_to :html, :json, :csv, :vcf
 
   # Allowed params for create and update
   self.permitted_attrs = [:first_name, :last_name, :phone, :email, :address]
@@ -28,5 +28,12 @@ class Admin::FosterContactsController < Admin::CrudController
     @adoptable_animals = Animal.organization(current_user)
     
     respond_with(@foster_contact)
+    # respond_with(@foster_contact) do |format|
+    #   format.vcf do
+    #     @content = Admin::Contacts::VcardPresenter.new(@foster_contact).get_vcard
+    #     response.headers['Content-Disposition'] = 'attachment; filename="' + @foster_contact.first_name.parameterize + '.vcf"'
+    #     render "show.vcf.erb"
+    #   end
+    # end
   end
 end

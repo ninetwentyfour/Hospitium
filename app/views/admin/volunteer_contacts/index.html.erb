@@ -1,12 +1,12 @@
 <div class="row">
 	<div class="col-sm-12 col-md-12 col-lg-12">
-		<a class="btn btn-primary btn-rad btn-trans" href="/admin/volunteer_contacts/new"><i class="fa fa-plus"></i> Add New Volunteer Contact</a>
+		<a class="btn btn-primary btn-rad btn-trans" href="/admin/volunteer_contacts/new"><i class="fa fa-plus tipster" title="Add New"></i><span class="hidden-xs hidden-sm"> Add New Volunteer Contact</span></a>
 		&nbsp;
-		<a class="btn btn-primary btn-rad btn-trans" href="/admin/volunteer_contacts.csv" id="animal_sync_button"><i class="fa fa-download"></i> Export</a>
+		<a class="btn btn-primary btn-rad btn-trans" href="/admin/volunteer_contacts.csv" id="animal_sync_button"><i class="fa fa-download tipster" title="Export"></i><span class="hidden-xs hidden-sm"> Export</span></a>
 		&nbsp;
-		<%= link_to raw('<i class="fa fa-file"></i> Download Volunteer Form'), current_user.organization.volunteer_form.url, :class => "btn btn-primary btn-rad btn-trans" %>
+		<%= link_to raw('<i class="fa fa-file tipster" title="Download Volunteer Form"></i><span class="hidden-xs hidden-sm"> Download Volunteer Form</span>'), current_user.organization.volunteer_form.url, :class => "btn btn-primary btn-rad btn-trans" %>
 
-		<a class="btn btn-primary btn-rad btn-trans pull-right" data-toggle="modal" href="#myModal" ><i class="fa fa-search"></i> Advanced Search</a>
+		<a class="btn btn-primary btn-rad btn-trans pull-right" data-toggle="modal" href="#myModal" ><i class="fa fa-search tipster" title="Search"></i><span class="hidden-xs hidden-sm"> Advanced Search</span></a>
 	</div>
 </div>
 <div class="row">
@@ -18,9 +18,9 @@
 					<tr>
 						<th><%= sort_link @search, :first_name %></th>
 						<th><%= sort_link @search, :last_name %></th>
-						<th><%= sort_link @search, :address %></th>
-						<th><%= sort_link @search, :phone %></th>
-						<th><%= sort_link @search, :email %></th>
+						<th class="hidden-xs hidden-sm hidden-md"><%= sort_link @search, :address %></th>
+						<th class="hidden-xs hidden-sm"><%= sort_link @search, :phone %></th>
+						<th class="hidden-xs"><%= sort_link @search, :email %></th>
 						<th></th>
 					</tr>
 				</thead>
@@ -29,9 +29,9 @@
 						<tr>
 							<td><a href="/admin/volunteer_contacts/<%= volunteer_contact.id %>"><%= volunteer_contact.first_name %></a></td>
 							<td><%= volunteer_contact.last_name %></td>
-							<td><%= volunteer_contact.address %></td>
-							<td><%= number_to_phone(volunteer_contact.phone) %></td>
-							<td><%= volunteer_contact.email %></td>
+							<td class="hidden-xs hidden-sm hidden-md"><%= volunteer_contact.address %></td>
+							<td class="hidden-xs hidden-sm"><%= number_to_phone(volunteer_contact.phone) %></td>
+							<td class="hidden-xs"><%= volunteer_contact.email %></td>
 							<td class="actions_column">
 								<div class="btn-group">
 									<a class="btn tipster" href="/admin/volunteer_contacts/<%= volunteer_contact.id %>" title="View Contact"><i class="fa fa-eye"></i></a>

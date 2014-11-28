@@ -1,33 +1,35 @@
 <div class="row">
   <div class="col-sm-12 col-md-12 col-lg-12">
-    <div class="block-flat">
-      <%= form_for animal_weight, :url => admin_animal_weights_path, :validate => true do |f| %>
-        <% if animal_weight.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(animal_weight.errors.count, "error") %> prohibited this animal_weight from being saved:</h2>
+    <div class="block-flat clearfix">
+      <div class="col-sm-12 col-md-12 col-lg-5">
+        <%= form_for animal_weight, :url => admin_animal_weights_path, :validate => true do |f| %>
+          <% if animal_weight.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(animal_weight.errors.count, "error") %> prohibited this animal_weight from being saved:</h2>
 
-            <ul>
-            <% animal_weight.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-            </ul>
+              <ul>
+              <% animal_weight.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="form-group">
+            <%= f.label :animal %>
+            <%= collection_select(:animal_weight, :animal_id, current_user.organization.animals, :id, :name) %>
           </div>
+
+            <%= f.label :weight %>
+            <%= f.text_field :weight, :class => "form-control" %>
+
+            <%= f.label :date_of_weight %>
+            <%= f.text_field :date_of_weight, :class => "form-control" %>
+
+              <hr />
+             <%= f.submit "Add Weight", :class => "btn btn-primary submit-button" %>
+
         <% end %>
-        <div class="form-group">
-          <%= f.label :animal %>
-          <%= collection_select(:animal_weight, :animal_id, current_user.organization.animals, :id, :name) %>
-        </div>
-
-          <%= f.label :weight %>
-          <%= f.text_field :weight, :class => "form-control" %>
-
-          <%= f.label :date_of_weight %>
-          <%= f.text_field :date_of_weight, :class => "form-control" %>
-
-            <hr />
-           <%= f.submit "Add Weight", :class => "btn btn-primary submit-button" %>
-
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

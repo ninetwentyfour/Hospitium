@@ -1,18 +1,27 @@
 <!-- Main hero unit for a primary marketing message or call to action -->
-<div class="hero-unit clearfix" style="padding-left:10px;">
+<div class="hero-unit clearfix" style="padding:0px 15px;">
 	<div class="page-header">
   	<%= image_tag("home-hos-logo2.png")%><h1 style="display:inline">Hello, Hospitium!</h1>
 	</div>
-	<p id="duck-quote" class="big-quote" style="display:none;"><span style="margin-left: -10px;">“</span>I'm gonna be Internet famous when I'm older. With Hospitium it's super simple to share my adopt link on major social networks.”</p>
-	<p id="duck-quote-name" style="display:none;">- Quackers the duck</p>
-	<p id="rat-quote" class="big-quote" style="display:none;"><span style="margin-left: -10px;">“</span>Hospitium makes tracking my brother and I incredibly easy. The detailed reports make it easy to handle 1-100 of us.”</p>
-	<p id="rat-quote-name" style="display:none;">- Splinter the rat</p>
-	<p id="cat-quote" class="big-quote" style="display:none;"><span style="margin-left: -10px;">“</span>When I was found I had serious health problems. Thanks to the detailed record keeping of my vet visits, I'm in much better health.”</p>
-	<p id="cat-quote-name" style="display:none;">- Buttons the cat</p>
-  <p id="pig-quote" class="big-quote" style="display:none;"><span style="margin-left: -10px;">“</span>Before Hospitium I was a chubby piggy. Now my weight is tracked so I can be on a diet. I've lost 2 pounds so far!”</p>
-	<p id="pig-quote-name" style="display:none;">- TonTon the pig</p>
-	<p id="dog-quote" class="big-quote" style="display:none;"><span style="margin-left: -10px;">“</span>Thanks to Hospitium I found a new home! It handled all the tracking of my potential adoptions.”</p>
-	<p id="dog-quote-name" style="display:none;">- Chloe the dog</p>
+  <blockquote>
+    <!-- <p class="big-quote">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+    <small>Some historic guy</small>
+  </blockquote> -->
+  	<p id="duck-quote" class="big-quote" style="display:none;"><span style="margin-left: -10px;">“</span>I'm gonna be Internet famous when I'm older. With Hospitium it's super simple to share my adopt link on major social networks.”</p>
+  	<small id="duck-quote-name" style="display:none;">Quackers the duck</small>
+
+  	<p id="rat-quote" class="big-quote" style="display:none;"><span style="margin-left: -10px;">“</span>Hospitium makes tracking my brother and I incredibly easy. The detailed reports make it easy to handle 1-100 of us.”</p>
+  	<small id="rat-quote-name" style="display:none;">Splinter the rat</small>
+
+  	<p id="cat-quote" class="big-quote" style="display:none;"><span style="margin-left: -10px;">“</span>When I was found I had serious health problems. Thanks to the detailed record keeping of my vet visits, I'm in much better health.”</p>
+  	<small id="cat-quote-name" style="display:none;">Buttons the cat</small>
+
+    <p id="pig-quote" class="big-quote" style="display:none;"><span style="margin-left: -10px;">“</span>Before Hospitium I was a chubby piggy. Now my weight is tracked so I can be on a diet. I've lost 2 pounds so far!”</p>
+  	<small id="pig-quote-name" style="display:none;">TonTon the pig</small>
+
+  	<p id="dog-quote" class="big-quote" style="display:none;"><span style="margin-left: -10px;">“</span>Thanks to Hospitium I found a new home! It handled all the tracking of my potential adoptions.”</p>
+  	<small id="dog-quote-name" style="display:none;">Chloe the dog</small>
+  </blockquote>
 	<br />
   <p>Keeping track of animals shouldn't be a pain. Hospitium was built to make managing animal shelters and rescues simple and pain free. Our software is easy to use and is flexible enough for shelters of all types.</p>
   <!-- <p class="clearfix"><a class="btn info large" href="/features">Learn more &raquo;</a></p><br /> -->
@@ -98,7 +107,7 @@
 <% set_head_title("Animal Shelter Management Software") %>
 
 <% content_for :head do %>
-  <link href="https://d4uktpxr9m70.cloudfront.net/stylesheets/homepage.css" media="screen" rel="stylesheet" type="text/css" />
+  <%= stylesheet_link_tag 'homepage' %>
 <% end %>
 <% content_for :javascript_footer do %>
   <script>

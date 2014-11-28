@@ -1,12 +1,12 @@
 <% animals.each do |animal| %>
 	<tr>
 		<td><%= link_to animal.name, admin_animal_path(animal) %></td>
-		<td><%= animal.microchip unless animal.microchip.blank? %></td>
+		<td class="hidden-xs hidden-sm hidden-md"><%= animal.microchip unless animal.microchip.blank? %></td>
 		<td><%= animal.try(:status).try(:status) %></td>
-		<td><%= animal.sex unless animal.animal_sex.blank? %></td>
-		<td><%= calculate_animal_age(animal.birthday) unless animal.birthday.blank? %></td>
-		<td><%= animal.spay unless animal.spay_neuter.blank? %></td>
-		<td><%= animal.color %></td>
+		<td class="hidden-xs"><%= animal.sex unless animal.animal_sex.blank? %></td>
+		<td class="hidden-xs hidden-sm"><%= calculate_animal_age(animal.birthday) unless animal.birthday.blank? %></td>
+		<td class="hidden-xs hidden-sm"><%= animal.spay unless animal.spay_neuter.blank? %></td>
+		<td class="hidden-xs hidden-sm hidden-md"><%= animal.color %></td>
 		<td class="actions_column">
 			<div class="btn-group">
 				<a class="btn tipster" href="/admin/animals/<%= animal.id %>" title="View Animal"><i class="fa fa-eye"></i></a>

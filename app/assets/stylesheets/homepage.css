@@ -49,14 +49,42 @@ footer {
 }
 .main-container{
 	padding-left: 300px;
-	width: 65%;
+	width: 75%;
 }
+
+@media (min-width: 1780px) {
+	.main-container{
+		width: 65%;
+	}
+}
+
+@media (max-width: 1490px) {
+	.main-container{
+		padding-left: 200px;
+		width: 85%;
+	}
+}
+
+@media (max-width: 1245px) {
+	.main-container{
+		padding-left: 100px;
+		width: 95%;
+	}
+}
+
+@media (max-width: 965px) {
+	.main-container{
+		padding-left: 60px;
+		width: 100%;
+	}
+}
+
 .row{
 	padding: 60px;
 }
 .big-quote{
 	font-size:28px !important;
-	width:400px;
+	max-width:400px;
 	padding: 15px;
 }
 .media-grid {

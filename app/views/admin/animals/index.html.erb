@@ -3,11 +3,11 @@
 		<!-- <div class="well animal-index-well"> -->
 			<!-- <div class="row-fluid animal-index-action-row"> -->
 				<!-- <div class="col-sm-7 col-md-7 col-lg-7"> -->
-					<a class="btn btn-primary btn-rad btn-trans" href="/admin/animals/new"><i class="fa fa-plus"></i> Add New Animal</a>
+					<a class="btn btn-primary btn-rad btn-trans" href="/admin/animals/new"><i class="fa fa-plus tipster" title="Add New"></i> <span class="hidden-xs hidden-sm">Add New Animal</span></a>
 					&nbsp;
-					<a class="btn btn-primary btn-rad btn-trans" href="/send-to-adopt-a-pet" id="animal_sync_button"><i class="fa fa-share"></i> Sync Public To Adopt-A-Pet</a>
+					<a class="btn btn-primary btn-rad btn-trans" href="/send-to-adopt-a-pet" id="animal_sync_button"><i class="fa fa-share tipster" title="Sync Adopt-A-Pet"></i> <span class="hidden-xs hidden-sm">Sync Public To Adopt-A-Pet</span></a>
 					&nbsp;
-					<a class="btn btn-primary btn-rad btn-trans" href="/admin/animals.csv" id="animal_sync_button"><i class="fa fa-download"></i> Export</a>
+					<a class="btn btn-primary btn-rad btn-trans" href="/admin/animals.csv" id="animal_sync_button"><i class="fa fa-download tipster" title="Export"></i> <span class="hidden-xs hidden-sm">Export</span></a>
 <!-- 				</div> -->
 				<!-- <div class="span1"> &nbsp; </div> -->
 				<!-- <div class="col-sm-5 col-md-5 col-lg-5"> -->
@@ -16,7 +16,7 @@
 						&nbsp;
 						<%= link_to raw(table_button_text(params)), url_for(table_view_button(params)),  :class => "btn btn-primary btn-rad btn-trans" %>
 						&nbsp;
-						<a class="btn btn-primary btn-rad btn-trans" data-toggle="modal" href="#myModal" ><i class="fa fa-search"></i> Advanced Search</a>
+						<a class="btn btn-primary btn-rad btn-trans" data-toggle="modal" href="#myModal"><i class="fa fa-search tipster" title="Search"></i> <span class="hidden-xs hidden-sm">Advanced Search</span></a>
 					</div>
 				</div>
 			<!-- </div> -->

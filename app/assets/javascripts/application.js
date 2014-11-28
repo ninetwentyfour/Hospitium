@@ -38,7 +38,7 @@ function load_scripts(){
 		dateFormat: 'dd M yy',
 		changeMonth: true,
 		changeYear: true,
-		yearRange: "-50:+0"
+		yearRange: "-50:+10"
 	});
 	$('table.tablesorter').dataTable();
 

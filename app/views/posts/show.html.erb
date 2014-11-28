@@ -5,7 +5,7 @@
 		<strong><%= @post.author %> posted on <%= @post.created_at.strftime("%m-%d-%Y") %></strong>
 	</div>
 	<div>
-		<p><%= markdown(@post.content) %></p>
+		<p><%= unsafe_markdown(@post.content) %></p>
 	</div>
 	<p style="text-align:right;"><a class="btn btn-success btn-large js-pjax" href="/users/sign_up">Try It Now &raquo;</a></p>
 </div>

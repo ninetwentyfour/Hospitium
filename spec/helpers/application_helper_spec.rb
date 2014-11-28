@@ -37,6 +37,30 @@ describe ApplicationHelper do
       text = '<script>alert("test");</script>'
       expect(helper.markdown(text)).to eq ''
     end
+
+    it 'should remove html tags' do
+      text = '### Test
+              <img src="test.png" />'.gsub("  ", "")
+      expect(helper.markdown(text).squeeze).to eq "<h3>Test</h3>\n"
+    end
+  end
+
+  describe '#unsafe_markdown' do
+    it 'should return html from text' do
+      text = '### Test'
+      expect(helper.unsafe_markdown(text)).to eq "<h3>Test</h3>\n"
+    end
+
+    it 'should remove script tags' do
+      text = '<script>alert("test");</script>'
+      expect(helper.unsafe_markdown(text)).to eq ''
+    end
+
+    it 'should leave html tags' do
+      text = '### Test
+              <img src="test.png" />'.gsub("  ", "")
+      expect(helper.unsafe_markdown(text).squeeze).to eq "<h3>Test</h3>\n<p><img src=\"test.png\" /></p>\n"
+    end
   end
 
   describe '#is_table_view' do
@@ -66,12 +90,12 @@ describe ApplicationHelper do
   describe '#table_button_text' do
     it 'returns "Card View" when table_view param is present' do
       params = {table_view: 'true'}
-      expect(helper.table_button_text(params)).to eq '<i class="fa fa-refresh"></i> Card View'
+      expect(helper.table_button_text(params)).to eq '<i class="fa fa-th-large tipster" title="Card View"></i><span class="hidden-xs hidden-sm"> Card View</span>'
     end
 
     it 'returns "Table View" when table_view param is not present' do
       params = {}
-      expect(helper.table_button_text(params)).to eq '<i class="fa fa-refresh"></i> Table View'
+      expect(helper.table_button_text(params)).to eq '<i class="fa fa-table tipster" title="Table View"></i><span class="hidden-xs hidden-sm"> Table View</span>'
     end
   end
 
@@ -95,12 +119,12 @@ describe ApplicationHelper do
   describe '#archived_button_text' do
     it 'returns "Hide Archived" when archived_view param is present' do
       params = {archived_view: 'true'}
-      expect(helper.archived_button_text(params)).to eq '<i class="fa fa-refresh"></i> Hide Archived'
+      expect(helper.archived_button_text(params)).to eq '<i class="fa fa-archive tipster" title="Hide Archived"></i> <span class="hidden-xs hidden-sm">Hide Archived</span>'
     end
 
     it 'returns "View Archived" when archived_view param is not present' do
       params = {}
-      expect(helper.archived_button_text(params)).to eq '<i class="fa fa-refresh"></i> View Archived'
+      expect(helper.archived_button_text(params)).to eq '<i class="fa fa-archive tipster" title="View Archived"></i> <span class="hidden-xs hidden-sm">View Archived</span>'
     end
   end
 

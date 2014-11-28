@@ -1,7 +1,7 @@
 # for more settings or checks see: https://github.com/kickstarter/rack-attack
 
 # Throttle requests to 5 requests per second per ip
-Rack::Attack.throttle('req/ip', :limit => 5, :period => 1.second) do |req|
+Rack::Attack.throttle('req/ip', :limit => 15, :period => 1.second) do |req|
   # If the return value is truthy, the cache key for the return value
   # is incremented and compared with the limit. In this case:
   #   "rack::attack:#{Time.now.to_i/1.second}:req/ip:#{req.ip}"
