@@ -81,6 +81,8 @@ AnimalTracker::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
+
+  config.assets.precompile += %w(homepage.css public.css)
   
   # handle logging with unicorn and heroku
   config.logger = Logger.new(STDOUT)
