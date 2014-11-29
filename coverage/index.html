@@ -14,7 +14,7 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2014-11-28T16:25:57-07:00">2014-11-28T16:25:57-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2014-11-28T17:39:18-07:00">2014-11-28T17:39:18-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -11814,8 +11814,8 @@
           <code class="ruby">    @random_notice = Rails.cache.fetch(&#39;random_notifications&#39;, expires_in: 1.minutes) do</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="14">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="5" data-linenumber="14">
+          <span class="hits">5</span>
           
           <code class="ruby">      Notification.offset(rand(Notification.count)).select(&#39;notifications.message, notifications.status_type&#39;).first() unless Notification.count == 0</code>
         </li>
@@ -12702,8 +12702,8 @@
           <code class="ruby">    @post = Rails.cache.fetch(&quot;public_post_#{params[:id]}&quot;, expires_in: 60.minutes) do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="14">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="14">
+          <span class="hits">2</span>
           
           <code class="ruby">      Post.find_by_slug(params[:id])</code>
         </li>
