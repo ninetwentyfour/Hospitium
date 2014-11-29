@@ -7,7 +7,8 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem 'rails', '4.1.8'
 
 # Gems used in all environments
-gem 'mysql2'
+# gem 'mysql2'
+gem 'pg'
 gem 'dalli'
 gem 'aws-sdk'
 gem 'devise'
@@ -60,7 +61,6 @@ gem 'rails-observers'
 # Gems used only for production
 group :production do
 	gem 'airbrake'
-	gem 'pg'
 	gem 'newrelic_rpm'
 	gem 'heroku'
 	gem 'rails_12factor'
