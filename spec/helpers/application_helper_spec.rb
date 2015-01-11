@@ -11,7 +11,7 @@ describe ApplicationHelper do
   describe '#canonical_link_tag' do
     it 'should return a canonical_link_tag' do
       @canonical_url = '/test'
-      expect(helper.canonical_link_tag).to eq '<link href="https://hospitium.co/test" rel="canonical" />'
+      expect(helper.canonical_link_tag).to eq '<link rel="canonical" href="https://hospitium.co/test" />'
     end
   end
 
@@ -59,7 +59,7 @@ describe ApplicationHelper do
     it 'should leave html tags' do
       text = '### Test
               <img src="test.png" />'.gsub("  ", "")
-      expect(helper.unsafe_markdown(text).squeeze).to eq "<h3>Test</h3>\n<p><img src=\"test.png\" /></p>\n"
+      expect(helper.unsafe_markdown(text).squeeze).to eq "<h3>Test</h3>\n<p><img src=\"test.png\"></p>\n"
     end
   end
 

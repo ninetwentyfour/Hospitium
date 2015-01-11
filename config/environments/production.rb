@@ -41,7 +41,7 @@ AnimalTracker::Application.configure do
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
-  config.serve_static_assets = false
+  config.serve_static_files = false
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -61,13 +61,14 @@ AnimalTracker::Application.configure do
   
   config.action_mailer.default_url_options = { :host => 'hospitium.co' }
   ActionMailer::Base.smtp_settings = {
-    :address        => "smtp.sendgrid.net",
-    :port           => "25",
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
     :authentication => :plain,
     :user_name      => ENV['SENDGRID_USERNAME'],
     :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => ENV['SENDGRID_DOMAIN']
+    :domain         => 'hospitium.co'
   }
+  ActionMailer::Base.delivery_method = :smtp
   
   config.action_controller.asset_host = ENV['HOSPITIUM_ASSET_URL']
   

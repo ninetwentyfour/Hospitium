@@ -1,10 +1,10 @@
 source 'http://rubygems.org'
-ruby "2.1.5"
+ruby "2.2.0"
 
 # load ENV vars for testing and dev
 gem 'dotenv-rails', :groups => [:development, :test]
 
-gem 'rails', '4.1.8'
+gem 'rails', '4.2.0'
 
 # Gems used in all environments
 # gem 'mysql2'
@@ -17,7 +17,7 @@ gem 'cancan'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
-gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
+gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.2'
 gem 'juggernaut'
 gem 'gravatar_image_tag'
 gem "spreadsheet"
@@ -67,7 +67,7 @@ group :production do
 end
 
 # Gems used for production and development
-group :production, :development do
+# group :production, :development do
 	gem 'nokogiri'
 	gem 'mechanize'
 	gem 'oauth'
@@ -94,7 +94,7 @@ group :production, :development do
 	gem 'uglifier'
 	gem 'yui-compressor'
 	gem 'closure-compiler', '1.1.10'
-end
+# end
 
 group :test, :development do
   gem "rspec-rails"
@@ -105,14 +105,16 @@ end
 # Gems used only for testing
 group :test do
 	gem "factory_girl_rails"
-	gem "capybara", ">= 2.2.0"
+	gem "capybara"
+	# gem "capybara-webkit"
 	gem 'shoulda-matchers'
-	gem 'cucumber-rails', :require => false
+	# gem 'cucumber-rails', :require => false
 	gem 'database_cleaner'
-	gem 'launchy'
+	# gem 'launchy'
 	gem 'email_spec'
 	gem 'poltergeist'
-	gem 'mocha', "~> 0.13.2", :require => false
+	gem 'capybara-email'
+	# gem 'mocha', "~> 0.13.2", :require => false
 	gem 'webmock'
 	gem 'vcr'
 	gem 'simplecov', :require => false

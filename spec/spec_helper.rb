@@ -4,11 +4,17 @@ require 'coveralls'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
-require 'capybara/rspec'
 require 'paperclip/matchers'
 require 'cancan/matchers'
 require 'database_cleaner'
 require 'public_activity/testing'
+require 'capybara/email/rspec'
+
+require 'capybara/rspec'
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
+Capybara.server_port = 3001
+Capybara.app_host = 'http://localhost:3001'
 
 PublicActivity.enabled = false
 
