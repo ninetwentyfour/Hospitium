@@ -12,6 +12,10 @@ require 'capybara/email/rspec'
 
 require 'capybara/rspec'
 require 'capybara/poltergeist'
+# Capybara.javascript_driver = :poltergeist
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, {js_errors: false})
+end
 Capybara.javascript_driver = :poltergeist
 Capybara.server_port = 3001
 Capybara.app_host = 'http://localhost:3001'
@@ -50,4 +54,7 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, :type => :controller
   config.include ControllerMacros, :type => :controller
+  config.include Warden::Test::Helpers, :type => :feature
+  config.include FeatureMacros, :type => :feature
+  config.include BestInPlace::TestHelpers, :type => :feature
 end

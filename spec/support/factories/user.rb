@@ -8,5 +8,6 @@ FactoryGirl.define do
     association                  :organization
     owner                        1
     confirmed_at                 "2011-10-05 10:34:01"
+    reset_password_token nil
   end
 end

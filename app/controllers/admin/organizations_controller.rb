@@ -16,7 +16,7 @@ class Admin::OrganizationsController < Admin::ApplicationController
     @organization.update_attributes(organization_params)
     
     flash[:success] = "Update successful"
-    respond_with(@organization)
+    respond_with(@organization, :location => admin_organizations_path)
   end
 
   private

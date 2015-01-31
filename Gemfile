@@ -38,6 +38,7 @@ gem 'paleta'
 # security
 gem 'secure_headers'
 gem 'rack-attack'
+gem 'rack-timeout'
 
 # hack for rails 4.1
 gem "polyamorous", :github => "activerecord-hackery/polyamorous"
@@ -88,7 +89,7 @@ end
 
 	# Gems used only for assets and not required
 	# in production environments by default.
-	gem 'sass-rails'
+	# gem 'sass-rails'
 	gem 'less-rails'
 	gem 'coffee-rails'
 	gem 'uglifier'
@@ -107,6 +108,7 @@ group :test do
 	gem "factory_girl_rails"
 	gem "capybara"
 	# gem "capybara-webkit"
+	gem 'selenium-webdriver'
 	gem 'shoulda-matchers'
 	# gem 'cucumber-rails', :require => false
 	gem 'database_cleaner'

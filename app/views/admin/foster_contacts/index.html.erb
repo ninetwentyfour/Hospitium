@@ -39,7 +39,7 @@
                 <div class="btn-group">
                   <a class="btn tipster" href="/admin/foster_contacts/<%= foster_contact.id %>" title="View Contact"><i class="fa fa-eye"></i></a>
                   <% if can? :destroy, foster_contact %>
-                    <%= link_to raw("<i class='fa fa-remove'></i>"), admin_adoption_contact_path(foster_contact),
+                    <%= link_to raw("<i class='fa fa-remove'></i>"), admin_foster_contact_path(foster_contact),
                                 :data => {:confirm => 'Are you sure you want to delete?'}, :method => :delete, :class => "btn tipster", :title => "Delete" %>
                   <% end %>
                 </div>

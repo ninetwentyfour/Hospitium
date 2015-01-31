@@ -13,12 +13,10 @@
 		<div class="col-sm-7 col-md-7 col-lg-7">
 		  <ul class="list-group todo list-widget">
 				<% @recent_changes.each do |commit| %>
-					<li class="list-group-item"><span class="date"><i class="fa fa-clock-o"></i><%= commit[:date].strftime("%d %b %Y") %></span> <%= commit[:message] %></li>
+					<li class="list-group-item">
+            <span class="date"><i class="fa fa-clock-o"></i><%= commit[:date].strftime("%d %b %Y") %></span> <%= link_to commit[:message], commit[:html_url] %>
+          </li>
 				<%end%>
-		    <li class="list-group-item"><span class="date"><i class="fa fa-clock-o"></i> 20 Dec</span> Dinner with my family</li>
-		    <li class="list-group-item"><span class="date"><i class="fa fa-clock-o"></i> 13 Jan</span> Meeting with our partners</li>
-		    <li class="list-group-item"><span class="date"><i class="fa fa-clock-o"></i> 18 Feb</span> Work in new project</li>
-		    <li class="list-group-item"><span class="date"><i class="fa fa-clock-o"></i> 21 Feb</span> Go to the doctor</li>
 		  </ul>
 		</div>
 	</div>
