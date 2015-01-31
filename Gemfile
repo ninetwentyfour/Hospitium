@@ -105,6 +105,7 @@ end
 
 # Gems used only for testing
 group :test do
+	gem 'sass-rails'
 	gem "factory_girl_rails"
 	gem "capybara"
 	# gem "capybara-webkit"
