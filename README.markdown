@@ -1,151 +1,89 @@
-Hospitium
-========
+# [hospitium.co](https://hospitium.co/)
 
 [![Build Status](https://secure.travis-ci.org/ninetwentyfour/Hospitium.png)](http://travis-ci.org/ninetwentyfour/Hospitium) [![Code Climate](https://codeclimate.com/github/ninetwentyfour/Hospitium.png)](https://codeclimate.com/github/ninetwentyfour/Hospitium) [![Dependency Status](https://gemnasium.com/ninetwentyfour/Hospitium.png)](https://gemnasium.com/ninetwentyfour/Hospitium) [![Coverage Status](https://coveralls.io/repos/ninetwentyfour/Hospitium/badge.png?branch=master)](https://coveralls.io/r/ninetwentyfour/Hospitium)
 
+Created by [Travis Berry](http://www.travisberry.com) and [Apple Wood Rescue](http://www.applewoodrescue.org).
 
-[https://hospitium.co/](https://hospitium.co/)
+Licensed under the [MIT license](http://www.opensource.org/licenses/mit-license.php).
 
-Created By: [Travis Berry](http://www.travisberry.com), [Apple Wood Rescue](http://www.applewoodrescue.org)
+RoR, Twitter Bootstrap, and others are licensed under their respective licenses.
 
-Hospitium is Licensed under the MIT license: [http://www.opensource.org/licenses/mit-license.php](http://www.opensource.org/licenses/mit-license.php)
-
-RoR, Twitter Bootstrap, and others licensed under their respective licenses. 
-
-Overview:
-========================
+## Overview
 
 [Hospitium](http://hospitium.co/) is the brain child of Apple Wood Rescue, a small animal rescue in Denver Colorado. Developed to fit the needs of the rescue, it has since been open sourced for anyone to use.
 
-This program is completely free. You can modify it all you want and you can share it with anyone.
+The software is completely **_free_**. You can modify it all you want and you can share it with anyone.
 
 You can support the project by:
 
 - Donating to [Apple Wood Rescue](http://www.applewoodrescue.org/donate/)
+- Contributing to the development of Hospitium on [GitHub](https://github.com/ninetwentyfour/Hospitium)
 
-- Contributing to the development of Hospitium on [github](https://github.com/ninetwentyfour/Hospitium).
+## How to Install
 
-Install:
-========================
+1 - There are several dependencies on other apps/services:
 
-There are several dependencies on other apps/services. 
-
-- Ruby 2.1.1 and up.
-- Postgres: [http://www.postgresql.org/](http://www.postgresql.org/)
-- Memcache: [Simple local install](https://devcenter.heroku.com/articles/memcache#local_memcache_setup).
+- Ruby 2.1.1 and up
+- Postgres: [www.postgresql.org](http://www.postgresql.org/)
+- Memcache: [Local usage](https://devcenter.heroku.com/articles/memcachier#local-usage)
 - Redis: [Getting Started](http://redis.io/topics/quickstart)
-- [Juggernaut](https://github.com/maccman/juggernaut): I recommend hosting on heroku following these [instructions](https://gist.github.com/1003748). used for real time edits
-- [SendGrid](http://sendgrid.com/): A sendgrid account is required to send emails. [http://sendgrid.com/](http://sendgrid.com/)
-- [Bitly](https://bitly.com/): A bitly account is needed for link shortening. [http://bitly.com/a/your\_api\_key](http://bitly.com/a/your\_api\_key)
-- [Twitter](https://twitter.com/): A twitter developer account is required for twitter integration. [https://dev.twitter.com/](https://dev.twitter.com/)
-- [Facebook](http://www.facebook.com/): A facebook developer accoutn is required for facebook integration. [http://developers.facebook.com/](http://developers.facebook.com/)
-- [S3](http://aws.amazon.com/s3/): A s3 account is used for asset hosting. [http://aws.amazon.com/s3/](http://aws.amazon.com/s3/)
+- [Juggernaut](https://github.com/maccman/juggernaut): it is used for real time edits; host it on Heroku following [these instructions](https://gist.github.com/1003748)
+- [SendGrid](http://sendgrid.com/): an account is required to send emails
+- [Bitly](https://bitly.com/): an account is needed for link shortening ‒ _[more info](https://bitly.com/a/your_api_key)_
+- [Twitter](https://twitter.com/): a developer account is required for twitter integration ‒ _[more info](https://dev.twitter.com/)_
+- [Facebook](http://www.facebook.com/): a developer account is required for facebook integration ‒ _[more info](http://developers.facebook.com/)_
+- [S3](http://aws.amazon.com/s3/): an account is used for asset hosting
 
-Setup env variables. Good how to [here](http://devcenter.heroku.com/articles/config-vars#local_setup).
-To use [dotenv](https://github.com/bkeepers/dotenv) copy `.env.example` to `.env` and update any configs
+2 - Setup the env variables
 
-Clone repo
+&nbsp;&nbsp;Learn how: [Configuration and Config Vars](http://devcenter.heroku.com/articles/config-vars#local_setup)
 
-`git clone git://github.com/ninetwentyfour/Hospitium.git`
+&nbsp;&nbsp;To use [dotenv](https://github.com/bkeepers/dotenv) copy `.env.example` to `.env` and update any configs.
 
-`cd Hospitium`
+3 - Clone the git repository
 
-`bundle install`
+```console
+$ git clone git://github.com/ninetwentyfour/Hospitium.git
+$ cd Hospitium
+$ bundle install
+```
 
-create a database called animal_development, or change db connection in `/config/database.yml`
+4 - Database
 
-`rake db:create`
+&nbsp;&nbsp;It must be called _animal_development_.
 
-`rake db:migrate`
+&nbsp;&nbsp;Change connection params in the `/config/database.yml`, if needed.
 
-`rake db:seed`
+&nbsp;&nbsp;Populate it:
 
-`rails s`
+```console
+$ rake db:create
+$ rake db:migrate
+$ rake db:seed
+```
 
-Visit [http://localhost:3000](http://localhost:3000)
+5 - Running
 
-Sign in with 
+```console
+$ rails s
+```
 
-- Login: admin 
-- Password: pleasechange
+Visit [localhost:3000](http://localhost:3000) to test it.
 
-Dashboard can be found at [http://localhost:3000/admin](http://localhost:3000/admin).
+6 - Sign in
 
-Please change your admin password and the organization name if you so choose.
+- **Login:** _admin_
+- **Password:** _pleasechange_
 
-Todo:
-======================== 
+&nbsp;&nbsp;The dashboard can be found at [localhost:3000/admin](http://localhost:3000/admin).
 
-- post to pet finder and other animal sites (adopt-a-pet)
+7 - Change your admin password
 
-- click to call integration with twilio (be able to call vets, contacts, etc from computer with mic or bridge call)
+&nbsp;&nbsp;**This is very important!**
 
-- create graphs of info and stats like average time in shelter etc
+&nbsp;&nbsp;Change the organization name also if you so choose.
 
-- add current location to animal (like address of foster home or vet)
-
-- user docs (started at [https://hospitium.tenderapp.com/kb](https://hospitium.tenderapp.com/kb))
-
-- add more descriptions to labels in create and edit of all models
-
-- lots of testing
-
-- make adopt list random or cycle through entries
-
-- do public adopt pages grouped by organization - make embedable with code to copy in view
-
-- add search to adopt list (search by location and species)
-
-- add image to organization and contacts
-
-- mailchimp email list integration
-
-- create check for memcached server being up or available, if not, kick to db sessions
-
-- import animals from other sites in both batches and api style
-
-- add [aviary](http://www.aviary.com/) support to allow users to edit photos of animals
-
-- make public animal list a queue that is moderated by super admins (not yet - wait to see spam levels)
-
-- seo
-
-- send facebook to pages or groups
-
-- add label warning and make model strip any part of weight that isn't an integer (assumed grams)
-
-- remove and move to env variables all api keys
-
-- make weights decimals and make suffix user configurable 
-
-- graph of animal ages
-
-- do some cake thing on dashboard for animals birthdays
-
-- let organizations add donate links to public pages
-
-- mark what fields are public
-
-- donations and fundraising MVC 
-
-- maybe work with something like this [http://www.petdetect.com/](http://www.petdetect.com/)
-
-- create cancel account mechanism and job that deletes info in 30 days
-
-- track vet visits over time w/ notes
-
-- calculate most adopted species and do percentages of it
-
-- calculate average time from intake to adoption/death
-
-- switch notifications and use in all text area fields redcarpet
-
-- add note in add wordpress/adopt a pet accounts that they should create accounts for this, with unique usernames and strong passwords, with as little permissions as possible (not admin - just post ability)
-
-- Add better back button support for animal cards view. (return to the spot in the infinite scroll)
-
-Contributing:
-========================
+## Contributing
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
