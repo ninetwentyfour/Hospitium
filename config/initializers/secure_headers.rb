@@ -1,5 +1,6 @@
 ::SecureHeaders::Configuration.configure do |config|
-  config.hsts = {:max_age => "631138519", :include_subdomain => false}
+  # config.hsts = {:max_age => "631138519", :include_subdomain => false}
+  config.hsts = false
   config.x_frame_options = 'DENY'
   config.x_content_type_options = "nosniff"
   config.x_xss_protection = {:value => 1, :mode => false}
