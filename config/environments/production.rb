@@ -1,7 +1,7 @@
 AnimalTracker::Application.configure do
   config.eager_load = true
   
-  # config.force_ssl = true
+  config.force_ssl = true
   
   config.cache_store = :dalli_store,
                     (ENV["MEMCACHIER_SERVERS"] || "").split(","),

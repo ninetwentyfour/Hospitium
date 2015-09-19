@@ -52,9 +52,9 @@ class ApplicationController < ActionController::Base
   # end
   
   def check_domain
-    # if Rails.env.production? and request.host.downcase != 'hospitium.co'
-    #   redirect_to request.protocol + 'hospitium.co' + request.fullpath, status: 301
-    # end
+    if Rails.env.production? and request.host.downcase != 'hospitium.co'
+      redirect_to request.protocol + 'hospitium.co' + request.fullpath, status: 301
+    end
   end
   
   def canonical_url(canonical_url)
