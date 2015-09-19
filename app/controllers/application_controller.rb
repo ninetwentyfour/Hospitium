@@ -37,24 +37,24 @@ class ApplicationController < ActionController::Base
   end
 
   # pretty sure this isnt used and can be removed
-  APP_DOMAIN = 'hospitium.co'
-  if Rails.env == 'production'
-    def ensure_domain
-      if request.env['HTTP_HOST'] != APP_DOMAIN
-        # HTTP 301 is a "permanent" redirect
-        redirect_to "https://#{APP_DOMAIN}", status: 301
-      end
-    end
-  else
-    def ensure_domain
-      #do nothing
-    end
-  end
+  # APP_DOMAIN = 'hospitium.co'
+  # if Rails.env == 'production'
+  #   def ensure_domain
+  #     if request.env['HTTP_HOST'] != APP_DOMAIN
+  #       # HTTP 301 is a "permanent" redirect
+  #       redirect_to "https://#{APP_DOMAIN}", status: 301
+  #     end
+  #   end
+  # else
+  #   def ensure_domain
+  #     #do nothing
+  #   end
+  # end
   
   def check_domain
-    if Rails.env.production? and request.host.downcase != 'hospitium.co'
-      redirect_to request.protocol + 'hospitium.co' + request.fullpath, status: 301
-    end
+    # if Rails.env.production? and request.host.downcase != 'hospitium.co'
+    #   redirect_to request.protocol + 'hospitium.co' + request.fullpath, status: 301
+    # end
   end
   
   def canonical_url(canonical_url)
