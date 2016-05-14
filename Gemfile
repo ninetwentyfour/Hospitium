@@ -90,7 +90,7 @@ end
 
 	# Gems used only for assets and not required
 	# in production environments by default.
-	# gem 'sass-rails'
+	gem 'sass-rails'
 	gem 'less-rails'
 	gem 'coffee-rails'
 	gem 'uglifier'
