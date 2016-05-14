@@ -2,7 +2,7 @@ module FeatureMacros
   def new_logged_in_user
     user = FactoryGirl.create(:user)
     user.roles << FactoryGirl.create(:role)
-    user.confirm!
+    user.confirm
     login_as user
     user
   end
@@ -10,7 +10,7 @@ module FeatureMacros
   def existing_logged_in_user
     user = FactoryGirl.create(:user)
     user.roles << FactoryGirl.create(:role)
-    user.confirm!
+    user.confirm
 
     # create some related data for this user/org
     FactoryGirl.create(:animal, organization_id: user.organization_id)

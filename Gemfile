@@ -11,7 +11,7 @@ gem 'rails', '4.2.6'
 gem 'pg'
 gem 'dalli'
 gem 'aws-sdk'
-gem 'devise'
+gem 'devise', '3.5.9'
 gem 'uuidtools'
 gem 'cancan'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
@@ -84,7 +84,7 @@ end
 	gem 'client_side_validations', :git => "git://github.com/substantial/client_side_validations.git", :branch => "support-rails-4.1"
 	gem 'best_in_place', github: "ninetwentyfour/best_in_place"
 	gem 'therubyracer'
-	gem 'jquery-rails', '2.0.1'
+	gem 'jquery-rails', '4.1.1'
 	gem 'select2-rails'
 	gem 'site_meta'
 
