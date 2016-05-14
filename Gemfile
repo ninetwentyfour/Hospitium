@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby "2.2.0"
+ruby "2.3.1"
 
 # load ENV vars for testing and dev
 gem 'dotenv-rails', :groups => [:development, :test]
@@ -79,7 +79,7 @@ end
 	gem 'rqrcode-rails3'
 	gem 'asset_sync'
 	gem 'sanitize'
-	gem 'puma'
+	gem 'puma', '~> 3.4.0'
 	gem 'client_side_validations', :git => "git://github.com/substantial/client_side_validations.git", :branch => "support-rails-4.1"
 	gem 'best_in_place', github: "ninetwentyfour/best_in_place"
 	gem 'therubyracer'
@@ -115,7 +115,7 @@ group :test do
 	gem 'database_cleaner'
 	# gem 'launchy'
 	gem 'email_spec'
-	gem 'poltergeist'
+	gem 'poltergeist', '~> 1.9.0'
 	gem 'capybara-email'
 	# gem 'mocha', "~> 0.13.2", :require => false
 	gem 'webmock'

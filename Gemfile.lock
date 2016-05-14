@@ -301,7 +301,7 @@ GEM
     orm_adapter (0.5.0)
     paleta (0.2.0)
     pg (0.17.1)
-    poltergeist (1.5.1)
+    poltergeist (1.9.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
@@ -313,8 +313,7 @@ GEM
       activerecord (>= 3.0)
       i18n (>= 0.5.0)
       railties (>= 3.0.0)
-    puma (2.10.2)
-      rack (>= 1.1, < 2.0)
+    puma (3.4.0)
     rack (1.6.0)
     rack-attack (4.1.1)
       rack
@@ -468,9 +467,9 @@ GEM
       crack (>= 0.3.2)
     webrobots (0.1.1)
     websocket (1.2.1)
-    websocket-driver (0.5.1)
+    websocket-driver (0.6.3)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.1)
+    websocket-extensions (0.1.2)
     will_paginate (3.0.7)
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
@@ -522,11 +521,11 @@ DEPENDENCIES
   paleta
   paperclip!
   pg
-  poltergeist
+  poltergeist (~> 1.9.0)
   polyamorous!
   protected_attributes
   public_activity
-  puma
+  puma (~> 3.4.0)
   rack-attack
   rack-timeout
   rails (= 4.2.0)
@@ -559,3 +558,9 @@ DEPENDENCIES
   will_paginate
   will_paginate-bootstrap
   yui-compressor
+
+RUBY VERSION
+   ruby 2.3.1p112
+
+BUNDLED WITH
+   1.12.3
