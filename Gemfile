@@ -4,7 +4,7 @@ ruby "2.3.1"
 # load ENV vars for testing and dev
 gem 'dotenv-rails', :groups => [:development, :test]
 
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.6'
 
 # Gems used in all environments
 # gem 'mysql2'
@@ -33,6 +33,7 @@ gem 'octokit'
 gem 'chronic'
 gem 'public_activity'
 gem 'vpim'
+gem 'sendgrid-ruby'
 # generate color schemes
 gem 'paleta'
 # security
@@ -105,7 +106,6 @@ end
 
 # Gems used only for testing
 group :test do
-	gem 'sass-rails'
 	gem "factory_girl_rails"
 	gem "capybara"
 	# gem "capybara-webkit"
