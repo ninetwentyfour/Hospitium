@@ -5,7 +5,7 @@ class Admin::WordpressAccountsController < Admin::ApplicationController
     if @wordpress_account.save
       flash[:notice] = 'Wordpress Account Connected!'
     else
-      flash[:error] = 'Wordpress Account Was Not Connected!'
+      flash[:danger] = 'Wordpress Account Was Not Connected!'
     end
     
     redirect_to "#{root_url}admin/users/#{current_user.id}"

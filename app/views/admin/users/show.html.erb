@@ -44,7 +44,7 @@
 							<% if current_user.id == @user.id %>
 								<p class="user-token"><strong>API Token:</strong> <code><%= @user.authentication_token %></code></p>
 							<% end %>
-							
+
 							<% if can? :update, @user %>
 								<hr />
 								<a class="btn" data-toggle="modal" href="#editPass" ><i class="fa fa-pencil"></i> Change Password</a>
@@ -56,35 +56,14 @@
 						</div>
 					</div>
 					<div class="tab-pane" id="2">
-						<% if @user.wordpress_accounts.first.blank? %>
-							<% if can? :update, @user %>
-								<a class="btn" data-toggle="modal" href="#wordpress" ><i class="fa fa-plus"></i> Add Wordpress Account</a>
-								<hr />
-							<% end %>
-						<%else%>
-							<p><a href="/wordpress_accounts/<%= @user.wordpress_accounts.first.id %>" class="tooltip-class" data-confirm="Are you sure you want to delete?" data-method="delete" rel="tooltip nofollow" data-original-title="Delete"><i class="fa fa-remove"></i></a> <strong>WordPress Account:</strong> <%= @user.wordpress_accounts.first.site_url %></p>
-							<a class="btn" data-toggle="modal" href="#wordpress-edit" ><i class="fa fa-pencil"></i> Edit Wordpress Account</a>
-							<hr />
-						<%end%>
-						
 						<% if @user.adopt_a_pet_accounts.first.blank? %>
 							<% if can? :update, @user %>
 								<a class="btn" data-toggle="modal" href="#adopt_a_pet" ><i class="fa fa-plus"></i> Add Adopt-A-Pet Account</a>
 								<hr />
 							<% end %>
 						<%else%>
-							<p><a href="/adopt_a_pet_accounts/<%= @user.adopt_a_pet_accounts.first.id %>" class="tooltip-class" data-confirm="Are you sure you want to delete?" data-method="delete" rel="tooltip nofollow" data-original-title="Delete"><i class="fa fa-remove"></i></a> <strong>Adopt-A-Pet Account:</strong> <%= @user.adopt_a_pet_accounts.first.user_name %></p>
+							<p><a href="/admin/adopt_a_pet_accounts/<%= @user.adopt_a_pet_accounts.first.id %>" class="tooltip-class" data-confirm="Are you sure you want to delete?" data-method="delete" rel="tooltip nofollow" data-original-title="Delete"><i class="fa fa-remove"></i></a> <strong>Adopt-A-Pet Account:</strong> <%= @user.adopt_a_pet_accounts.first.user_name %></p>
 							<a class="btn" data-toggle="modal" href="#adopt_a_pet-edit" ><i class="fa fa-pencil"></i> Edit Adopt A Pet Account</a>
-							<hr />
-						<%end%>
-						
-						<% unless @user.facebook_accounts.first.blank? %>
-							<p><a href="/facebook_accounts/<%= @user.facebook_accounts.first.id %>" class="tooltip-class" data-confirm="Are you sure you want to delete?" data-method="delete" rel="tooltip nofollow" data-original-title="Delete"><i class="fa fa-remove"></i></a> <strong>Facebook Account:</strong> <%= @user.facebook_accounts.first.stream_url %></p>
-							<hr />
-						<%end%>
-						
-						<% unless @user.twitter_accounts.first.blank? %>
-							<p><a href="/twitter_accounts/<%= @user.twitter_accounts.first.id %>" class="tooltip-class" data-confirm="Are you sure you want to delete?" data-method="delete" rel="tooltip nofollow" data-original-title="Delete"><i class="fa fa-remove"></i></a> <strong>Twitter Account:</strong> <%= @user.twitter_accounts.first.stream_url %></p>
 							<hr />
 						<%end%>
 					</div>
@@ -116,7 +95,7 @@
 						            <% end %>
 						          </blockquote>
 						        </div>
-						      </li>              
+						      </li>
 						    <% end %>
 						  </ul>
 						</div>
@@ -214,9 +193,10 @@
       </div>
       <div class="modal-body" style="overflow:hidden;">
 				<%= form_for AdoptAPetAccount.new, :url => admin_adopt_a_pet_accounts_path, :validate => true, :html => {:id => "adopt_a_pet_form"} do |f| %>
-					Please enter your Adopt A Pet
+					<p>Please enter your Adopt A Pet
 					<a href='http://www.adoptapet.com/shelter/pointers/about_autouploading.html' target='blank'>Auto Upload</a>
-					Username, and Password. <br />
+					Username, and Password. <br /></p>
+					<p>This is not your normal account user and password. Please see the <a href="https://hospitium.tenderapp.com/kb/general-use/connecting-hospitium-to-adopt-a-pet" target="_blank">docs</a> for more info.</p>
 					<%= f.label :user_name %>
 					<%= f.text_field :user_name, :class => "form-control" %>
 					<%= f.label :password %>
@@ -241,9 +221,10 @@
 	      </div>
 	      <div class="modal-body" style="overflow:hidden;">
 					<%= form_for @user.adopt_a_pet_accounts.first, :url => admin_adopt_a_pet_account_path(@user.adopt_a_pet_accounts.first), :html => {:id => "edit_adopt_a_pet_accounts_form"} do |f| %>
-						Please enter your Adopt A Pet
+						<p>Please enter your Adopt A Pet
 						<a href='http://www.adoptapet.com/shelter/pointers/about_autouploading.html' target='blank'>Auto Upload</a>
-						Username, and Password.<br />
+						Username, and Password.<br /></p>
+						<p>This is not your normal account user and password. Please see the <a href="https://hospitium.tenderapp.com/kb/general-use/connecting-hospitium-to-adopt-a-pet" target="_blank">docs</a> for more info.</p>
 						<%= f.label :user_name %>
 						<%= f.text_field :user_name, :class => "form-control" %>
 						<%= f.label :password %>

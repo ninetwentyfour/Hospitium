@@ -2,6 +2,12 @@
 <div class="block-transparent clearfix">
 	<div class="block-flat col-sm-12 col-md-12 col-lg-12">
 		<h1><%= @animal.name %></h1>
+		<a class="btn btn-xs btn-social-icon btn-twitter" href="<%= share_twitter_url(ShortLink.shorten_link("https://hospitium.co/animals/#{@animal.id}"), "#{@animal.name} is ready for adoption at") %>", target="_blank">
+    	<span class="fa fa-twitter"></span>
+  	</a>
+		<a class="btn btn-xs btn-social-icon btn-facebook" href="<%= share_facebook_url(ShortLink.shorten_link("https://hospitium.co/animals/#{@animal.id}")) %>", target="_blank">
+		  <span class="fa fa-facebook"></span>
+		</a>
 	</div>
 	<div class="otherAnimalInfo">
 		<div class="row">
@@ -17,7 +23,7 @@
                     <img src="<%= animal.image.url(:medium) %>" alt="" class="responsive-image">
                     <div class="over">
                       <div class="func"><a href="<%= animal.image.url %>"><i class="fa fa-link"></i></a><a class="image-zoom" data-toggle="modal" href="#image_display_1" ><i class="fa fa-search"></i></a></div>
-                    </div>            
+                    </div>
                   </div>
                 </div>
               </div>
@@ -31,8 +37,8 @@
                     <img src="<%= animal.second_image.url(:medium) %>" alt="" class="responsive-image">
                     <div class="over">
                       <div class="func"><a href="<%= animal.second_image.url %>"><i class="fa fa-link"></i></a><a class="image-zoom" data-toggle="modal" href="#image_display_2" ><i class="fa fa-search"></i></a></div>
-                    </div>            
-                  </div>          
+                    </div>
+                  </div>
                 </div>
               </div>
             <% end %>
@@ -45,7 +51,7 @@
                     <img src="<%= animal.third_image.url(:medium) %>" alt="" >
                     <div class="over">
                       <div class="func"><a href="<%= animal.third_image.url %>"><i class="fa fa-link"></i></a><a class="image-zoom" data-toggle="modal" href="#image_display_3" ><i class="fa fa-search"></i></a></div>
-                    </div>            
+                    </div>
                   </div>
                 </div>
               </div>
@@ -59,7 +65,7 @@
                     <img src="<%= animal.fourth_image.url(:medium) %>" alt="">
                     <div class="over">
                       <div class="func"><a href="<%= animal.fourth_image.url %>"><i class="fa fa-link"></i></a><a class="image-zoom" data-toggle="modal" href="#image_display_4" ><i class="fa fa-search"></i></a></div>
-                    </div>            
+                    </div>
                   </div>
                 </div>
               </div>
@@ -187,7 +193,6 @@
   </div>
 </div>
 
-
 <p id="notice"><%= notice %></p>
 
 
@@ -196,6 +201,14 @@
 <p style="font-size:13px;">
 	All information listed here is contributed by our members. Hospitium is not responsible for its contents. We assume in good faith that all Organizations are in good legal standing to adopt animals. Animals listed here are for adoption only. No animals for sale (adoption fees are ok).
 </p>
+<% set_meta_tags twitter: {
+  card: "summary_large_image",
+  site: "@hospitium_app",
+	title: "Adopt #{@animal.name}",
+	description: "Adopt #{@animal.name} from #{@animal.organization_name}",
+	image: (@animal.image.url(:large) || 'https://d4uktpxr9m70.cloudfront.net/images/no-animal-large-logo2.png')
+} %>
+
 <% set_meta_description("Adopt #{@animal.name} from #{@animal.organization_name}") %>
 <% set_meta_keywords("adopt,animal,pets") %>
 <% set_head_title("Adopt #{@animal.name}") %>
