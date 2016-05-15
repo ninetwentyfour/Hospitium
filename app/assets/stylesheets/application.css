@@ -7,6 +7,7 @@
 *= require admin/jquery-ui-1.8.16.custom
 *= require flat/datatables.css
 *= require print
+*= require bootstrap-social.css
 */
 
 /*.select2-drop {
@@ -60,14 +61,14 @@ margin-bottom: 10px;
   display:none;
 }
 
-#infscr-loading { 
+#infscr-loading {
   text-align: center;
   z-index: 100;
   position: fixed;
   left: 45%;
   bottom: 40px;
   width: 200px;
-  background: #000; 
+  background: #000;
   opacity: 0.9;
   color: #FFF;
 }
@@ -248,4 +249,3 @@ p{
   font-size:14px;
   line-height:1em !important;
 }
-

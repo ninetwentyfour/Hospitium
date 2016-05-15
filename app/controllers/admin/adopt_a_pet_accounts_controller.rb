@@ -1,5 +1,5 @@
 class Admin::AdoptAPetAccountsController < Admin::ApplicationController
-  
+
   respond_to :html, :json
 
   def create
@@ -7,12 +7,12 @@ class Admin::AdoptAPetAccountsController < Admin::ApplicationController
     if @adopt_a_pet_account.save
       flash[:notice] = 'Adopt A Pet Account Connected!'
     else
-      flash[:error] = 'Adopt A Pet Account Was Not Connected!'
+      flash[:danger] = 'Adopt A Pet Account Was Not Connected!'
     end
-    
+
     redirect_to "#{root_url}admin/users/#{current_user.id}"
   end
-  
+
   def update
     @adopt_a_pet = AdoptAPetAccount.find(params[:id])
     params[:adopt_a_pet_account]["password"] = SecPass::encrypt(params[:adopt_a_pet_account]["password"])
@@ -24,21 +24,32 @@ class Admin::AdoptAPetAccountsController < Admin::ApplicationController
       end
     end
   end
-  
-  
+
+
   def send_animal
     @account = AdoptAPetAccount.find_by_user_id(current_user.id)
     if @account.blank?
-      redirect_to("#{root_url}admin/users/#{current_user.id}", :notice => 'Please Add Adopt A Pet Credentials!')
+      flash[:info] = 'Please Add Adopt A Pet Credentials!'
+      redirect_to("#{root_url}admin/users/#{current_user.id}")
     else
-      if @account.send_csv(current_user)
-        redirect_to("#{root_url}admin/animals", :notice => 'Animals Sent To Adopt A Pet!')
-      else
-        redirect_to("#{root_url}admin/animals", :alert => 'Problem Sending Animals To Adopt A Pet!')
+      begin
+        if @account.send_csv(current_user)
+          redirect_to("#{root_url}admin/animals", :notice => 'Animals Sent To Adopt A Pet!')
+        else
+          flash[:danger] = 'Problem Sending Animals To Adopt A Pet!'
+          redirect_to("#{root_url}admin/animals")
+        end
+      rescue Net::FTPPermError
+        flash[:danger] = 'Problem Sending Animals To Adopt A Pet! Please make sure your credentials are correct.'
+        redirect_to("#{root_url}admin/animals")
+      rescue => e
+        notify_airbrake(e)
+        flash[:danger] = 'Problem Sending Animals To Adopt A Pet!'
+        redirect_to("#{root_url}admin/animals")
       end
     end
   end
-  
+
   def destroy
     @account = AdoptAPetAccount.find(params[:id])
     @account.destroy
@@ -54,4 +65,3 @@ class Admin::AdoptAPetAccountsController < Admin::ApplicationController
       params.require(:adopt_a_pet_account).permit(:user_name, :password)
     end
 end
-

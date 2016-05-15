@@ -21,7 +21,7 @@ class Admin::DocumentsController < Admin::ApplicationController
       if @document.save
         flash[:notice] = 'Successfully uploaded the document.'
       else
-        flash[:error] = 'There was a problem uploading the document.'
+        flash[:danger] = 'There was a problem uploading the document.'
       end
     end
     

@@ -7,13 +7,15 @@
 					<span class="public_animal_check"><%= best_in_place @animal, :public, :type => :select, :collection => [[0, "Not public"], [1, "Public"]], :path => admin_animal_path %></span>
 				</div>
 				<div class="col-sm-6 col-md-6 col-lg-6 pull-right share-animal-buttons">
-					<% if @animal.public == 1 %>
-						<%= render "share_animal", :animal => @animal %>
-					<% end %>
-					<%= form_for [:admin, @animal], html: {class: 'form-inline float-form'} do |f| %>
+					<%= form_for [:admin, @animal], html: {class: 'form-inline float-form', style: 'padding-top:0px;'} do |f| %>
 						<%= f.hidden_field :archived, value: (@animal.archived ? false : true) %>
 						<button class="btn btn-primary btn-rad btn-trans" type="submit"><i class="fa fa-archive"></i> <%= @animal.archived ? 'Unarchive Animal' : 'Archive Animal'%></button>
 					<%end%>
+					<% if @animal.public == 1 %>
+						<a class="btn btn-primary btn-rad btn-trans pull-right" href="<%= animal_path(@animal.id) %>", target="_blank">
+							<i class="fa fa-expand"></i> View Public Page
+						</a>
+					<% end %>
 				</div>
 			</div>
 		</div>
@@ -146,7 +148,7 @@
 				<a class="btn btn-primary btn-rad btn-trans" href="/admin/animals/<%= @animal.id %>/cage_card"><i class="fa fa-print"></i> Cage Card</a>
 				<a class="btn btn-primary btn-rad btn-trans" href="/admin/animals/<%= @animal.id %>/qr_code"><i class="fa fa-print"></i> QR Code</a>
 			</div>
-			
+
 			<%= render "media_gallery", :animal => @animal %>
 		</div>
 	</div>
@@ -155,7 +157,7 @@
 
 
 <%= render "modal_forms", :animal => @animal %>
-	
+
 <%= render "modal_images", :animal => @animal %>
 
 <div id="animal_weights_holder" data-animal_weights='<%= raw(sanitize(@presenter.animal_weights[:values].to_json)) %>' data-animal_weights_times='<%= raw(sanitize(@presenter.animal_weights[:times].to_json)) %>'></div>

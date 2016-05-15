@@ -35,7 +35,7 @@ describe ApplicationHelper do
 
     it 'should remove script tags' do
       text = '<script>alert("test");</script>'
-      expect(helper.markdown(text)).to eq ''
+      expect(helper.markdown(text)).to eq "<p>alert(&quot;test&quot;);</p>\n"
     end
 
     it 'should remove html tags' do
@@ -53,7 +53,7 @@ describe ApplicationHelper do
 
     it 'should remove script tags' do
       text = '<script>alert("test");</script>'
-      expect(helper.unsafe_markdown(text)).to eq ''
+      expect(helper.unsafe_markdown(text)).to eq "<p>alert(&quot;test&quot;);</p>\n"
     end
 
     it 'should leave html tags' do

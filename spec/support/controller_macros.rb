@@ -20,7 +20,7 @@ module ControllerMacros
     @request.env["devise.mapping"] = Devise.mappings[:user]
     @user = FactoryGirl.create(:user)
     @user.roles << FactoryGirl.create(:role)
-    @user.confirm!
+    @user.confirm
     sign_in @user
   end
 
@@ -28,7 +28,7 @@ module ControllerMacros
     @request.env["devise.mapping"] = Devise.mappings[:user]
     @user = FactoryGirl.create(:user)
     @user.roles << FactoryGirl.create(:role, :name => "SuperAdmin")
-    @user.confirm!
+    @user.confirm
     sign_in @user
   end
 

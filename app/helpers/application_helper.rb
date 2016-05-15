@@ -1,5 +1,5 @@
 module ApplicationHelper
-  
+
   def calculate_animal_age(birthday)
     age = (Time.now.year - birthday.year).to_s + " years"
     if age == "0 years"
@@ -10,19 +10,19 @@ module ApplicationHelper
     end
     return age
   end
-  
+
   def canonical_link_tag
     tag(:link, :rel => :canonical, :href => "https://hospitium.co#{@canonical_url}") if @canonical_url
   end
-  
+
   def current_class?(con, act)
     if current_page?(:controller => con, :action => act)
-      return 'active' 
+      return 'active'
     else
      return ''
     end
   end
-  
+
   def markdown(text)
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(
         :hard_wrap => true, :filter_html => true),
@@ -36,11 +36,11 @@ module ApplicationHelper
         :no_intraemphasis => true, :autolink => true)
     return markdown.render(sanitize(text)).html_safe
   end
-  
+
   def is_table_view(params)
     params.merge({:table_view => 'true'}) if params[:table_view]
   end
-  
+
   def table_view_button(params)
     params[:table_view] ? params.merge(:table_view => nil) : params.merge(:table_view => "true")
   end
@@ -80,6 +80,18 @@ module ApplicationHelper
       'fa fa-pencil green'
     when 'destroy'
       'fa fa-trash red'
-    end      
+    end
+  end
+
+  def share_twitter_url(url, text)
+    encoded_url = URI::encode(url)
+    encoded_text = URI::encode(text)
+    "https://twitter.com/intent/tweet?url=#{encoded_url}&text=#{encoded_text}&via=hospitium_app"
+  end
+
+  def share_facebook_url(url)
+    # "/wp-admin/post-new.php?content=test&post_title=test"
+    encoded_url = URI::encode(url)
+    "https://www.facebook.com/sharer.php?u=#{encoded_url}"
   end
 end

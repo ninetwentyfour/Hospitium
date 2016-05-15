@@ -1,17 +1,17 @@
 source 'http://rubygems.org'
-ruby "2.2.0"
+ruby "2.3.1"
 
 # load ENV vars for testing and dev
 gem 'dotenv-rails', :groups => [:development, :test]
 
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.6'
 
 # Gems used in all environments
 # gem 'mysql2'
 gem 'pg'
 gem 'dalli'
 gem 'aws-sdk'
-gem 'devise'
+gem 'devise', '3.5.9'
 gem 'uuidtools'
 gem 'cancan'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
@@ -33,6 +33,7 @@ gem 'octokit'
 gem 'chronic'
 gem 'public_activity'
 gem 'vpim'
+gem 'sendgrid-ruby'
 # generate color schemes
 gem 'paleta'
 # security
@@ -79,13 +80,14 @@ end
 	gem 'rqrcode-rails3'
 	gem 'asset_sync'
 	gem 'sanitize'
-	gem 'puma'
+	gem 'puma', '~> 3.4.0'
 	gem 'client_side_validations', :git => "git://github.com/substantial/client_side_validations.git", :branch => "support-rails-4.1"
 	gem 'best_in_place', github: "ninetwentyfour/best_in_place"
 	gem 'therubyracer'
-	gem 'jquery-rails', '2.0.1'
+	gem 'jquery-rails', '4.1.1'
 	gem 'select2-rails'
 	gem 'site_meta'
+	gem 'meta-tags'
 
 	# Gems used only for assets and not required
 	# in production environments by default.
@@ -105,7 +107,6 @@ end
 
 # Gems used only for testing
 group :test do
-	gem 'sass-rails'
 	gem "factory_girl_rails"
 	gem "capybara"
 	# gem "capybara-webkit"
@@ -115,7 +116,7 @@ group :test do
 	gem 'database_cleaner'
 	# gem 'launchy'
 	gem 'email_spec'
-	gem 'poltergeist'
+	gem 'poltergeist', '~> 1.9.0'
 	gem 'capybara-email'
 	# gem 'mocha', "~> 0.13.2", :require => false
 	gem 'webmock'
