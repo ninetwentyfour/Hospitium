@@ -1,7 +1,7 @@
 require 'bitly'
 
 class ShortLink
-  
+
   def self.shorten_link(link)
     Bitly.use_api_version_3
     bitly = Bitly.new('hospitium',ENV['BITLY_API'])
@@ -11,8 +11,10 @@ class ShortLink
     if short_url.blank?
       short_url = RestClient.get "https://tinyurl.com/api-create.php?url=#{link}"
     end
-    
+
     short_url
+  rescue
+    link
   end
-  
+
 end

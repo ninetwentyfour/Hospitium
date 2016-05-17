@@ -2,12 +2,14 @@
 <div class="block-transparent clearfix">
 	<div class="block-flat col-sm-12 col-md-12 col-lg-12">
 		<h1><%= @animal.name %></h1>
-		<a class="btn btn-xs btn-social-icon btn-twitter" href="<%= share_twitter_url(ShortLink.shorten_link("https://hospitium.co/animals/#{@animal.id}"), "#{@animal.name} is ready for adoption at") %>", target="_blank">
-    	<span class="fa fa-twitter"></span>
-  	</a>
-		<a class="btn btn-xs btn-social-icon btn-facebook" href="<%= share_facebook_url(ShortLink.shorten_link("https://hospitium.co/animals/#{@animal.id}")) %>", target="_blank">
-		  <span class="fa fa-facebook"></span>
-		</a>
+		<% cache("animal_share_link_public#{@animal.id}") do %>
+			<a class="btn btn-xs btn-social-icon btn-twitter" href="<%= share_twitter_url(ShortLink.shorten_link("https://hospitium.co/animals/#{@animal.id}"), "#{@animal.name} is ready for adoption at") %>", target="_blank">
+	    	<span class="fa fa-twitter"></span>
+	  	</a>
+			<a class="btn btn-xs btn-social-icon btn-facebook" href="<%= share_facebook_url(ShortLink.shorten_link("https://hospitium.co/animals/#{@animal.id}")) %>", target="_blank">
+			  <span class="fa fa-facebook"></span>
+			</a>
+		<% end %>
 	</div>
 	<div class="otherAnimalInfo">
 		<div class="row">
