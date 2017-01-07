@@ -1,0 +1,11 @@
+machine:
+  services:
+    - redis
+    - memcached
+
+## Customize database setup
+database:
+  override:
+    # replace CircleCI's generated database.yml
+    - cp config/database.yml config/database.yml
+    - bundle exec rake db:create db:migrate
