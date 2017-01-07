@@ -1,6 +1,6 @@
 require 'spec_helper'
- 
-feature 'Species' do 
+
+feature 'Species' do
   before :each do
     @user = new_logged_in_user
     @organization = @user.organization
@@ -71,7 +71,7 @@ feature 'Species' do
       expect(page).to have_content '80204'
     end
 
-    scenario 'user uploads forms' do
+    xscenario 'user uploads forms' do
       # add adoption form
       VCR.use_cassette('features/org_adopt_add', :match_requests_on => [:method]) do
         # add
