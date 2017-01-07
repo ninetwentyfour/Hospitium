@@ -24,7 +24,7 @@ AnimalTracker::Application.configure do
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
-  config.action_mailer.default_url_options = { host: 'localhost', 
+  config.action_mailer.default_url_options = { host: 'localhost',
                                                port: 3001 }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :test
@@ -36,9 +36,15 @@ AnimalTracker::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
-  
+
   config.serve_static_files = true
   config.static_cache_control = "public, max-age=3600"
 
   config.active_record.raise_in_transactional_callbacks = true
+
+  # # Don't fallback to assets pipeline if a precompiled asset is missed
+  config.assets.compile = true
+
+  # # Generate digests for assets URLs
+  config.assets.digest = false
 end
