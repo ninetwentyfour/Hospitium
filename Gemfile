@@ -1,23 +1,23 @@
 source 'http://rubygems.org'
-ruby "2.3.1"
+ruby "2.3.3"
 
 # load ENV vars for testing and dev
 gem 'dotenv-rails', :groups => [:development, :test]
 
-gem 'rails', '4.2.6'
+gem 'rails', '5.0.1'
 
 # Gems used in all environments
 # gem 'mysql2'
 gem 'pg'
 gem 'dalli'
 gem 'aws-sdk'
-gem 'devise', '3.5.9'
+gem 'devise'
 gem 'uuidtools'
 gem 'cancan'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
-gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.2'
+gem 'ransack'
 gem 'juggernaut'
 gem 'gravatar_image_tag'
 gem "spreadsheet"
@@ -57,8 +57,11 @@ gem 'oj_mimic_json'
 
 
 # add these gems to help with the transition to rails4:
-gem 'protected_attributes'
-gem 'rails-observers'
+# gem 'protected_attributes'
+gem 'protected_attributes_continued'
+gem 'rails-observers', git: 'https://github.com/rails/rails-observers.git'
+
+gem 'tilt'
 
 # Gems used only for production
 group :production do
@@ -103,7 +106,9 @@ group :test, :development do
   gem "rspec-rails"
   gem "rspec"
   # gem "brakeman"
+	# gem 'rails-controller-testing'
 end
+gem 'rails-controller-testing'
 
 # Gems used only for testing
 group :test do
@@ -116,7 +121,7 @@ group :test do
 	gem 'database_cleaner'
 	# gem 'launchy'
 	gem 'email_spec'
-	gem 'poltergeist', '~> 1.9.0'
+	gem 'poltergeist'
 	gem 'capybara-email'
 	# gem 'mocha', "~> 0.13.2", :require => false
 	gem 'webmock'

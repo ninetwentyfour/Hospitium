@@ -12,9 +12,9 @@
 				<!-- <div class="span1"> &nbsp; </div> -->
 				<!-- <div class="col-sm-5 col-md-5 col-lg-5"> -->
 					<div class="pull-right animal-index-action-row">
-						<%= link_to raw(archived_button_text(params)), url_for(archived_view_button(params)),  :class => "btn btn-primary btn-rad btn-trans" %>
+						<%= link_to raw(archived_button_text(params.permit!)), url_for(archived_view_button(params.permit!)),  :class => "btn btn-primary btn-rad btn-trans" %>
 						&nbsp;
-						<%= link_to raw(table_button_text(params)), url_for(table_view_button(params)),  :class => "btn btn-primary btn-rad btn-trans" %>
+						<%= link_to raw(table_button_text(params.permit!)), url_for(table_view_button(params.permit!)),  :class => "btn btn-primary btn-rad btn-trans" %>
 						&nbsp;
 						<a class="btn btn-primary btn-rad btn-trans" data-toggle="modal" href="#myModal"><i class="fa fa-search tipster" title="Search"></i> <span class="hidden-xs hidden-sm">Advanced Search</span></a>
 					</div>
@@ -41,7 +41,7 @@
 <%= render 'search', :search => @search, :presenter => @presenter %>
 
 <% content_for :javascript_footer do %>
-	<script>		
+	<script>
 		$(function(){
 			var $container = $('#animal_index');
 			$container.imagesLoaded(function(){
@@ -51,7 +51,7 @@
 			});
 
 			$('#animal_index').infinitescroll({
-				navSelector  : '#pagination-container',    // selector for the paged navigation 
+				navSelector  : '#pagination-container',    // selector for the paged navigation
 				nextSelector : '.next_page > a',  // selector for the NEXT link (to page 2)
 				itemSelector : '.animal-card',     // selector for all items you'll retrieve
 				loading: {
@@ -68,7 +68,7 @@
 				$newElems.imagesLoaded(function(){
 					// show elems now they're ready
 					$newElems.animate({ opacity: 1 });
-					$container.masonry( 'appended', $newElems, true ); 
+					$container.masonry( 'appended', $newElems, true );
 				});
 			}
 		);

@@ -4,8 +4,8 @@ describe Admin::PostsController do
   before :each do
     login_admin
 
-    Post.skip_callback(:create, :after, :send_public_tweet)
-    Post.skip_callback(:update, :after, :send_public_tweet)
+    # Post.skip_callback(:create, :after, :send_public_tweet)
+    # Post.skip_callback(:update, :after, :send_public_tweet)
 
     @post = FactoryGirl.create(:post)
   end
@@ -69,9 +69,9 @@ describe Admin::PostsController do
   #   describe "with valid params" do
   #     it "assigns the requested post as @post" do
   #       put :update, id: @post, post: FactoryGirl.attributes_for(:post)
-  #       assigns(:post).should eq(@post) 
+  #       assigns(:post).should eq(@post)
   #     end
-      
+
   #     it "changes @post attributes" do
   #       put :update, {:id => @post.id, :post => { "content" => "Edit" }}
   #       @post.reload

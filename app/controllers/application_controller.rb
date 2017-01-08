@@ -6,20 +6,20 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery # Turn on request forgery protection. Bear in mind that only non-GET, HTML/JavaScript requests are checked.
   ensure_security_headers
-  
-  
+
+
   #display notice on every admin page
   def get_notice
     @random_notice = Rails.cache.fetch('random_notifications', expires_in: 1.minutes) do
       Notification.offset(rand(Notification.count)).select('notifications.message, notifications.status_type').first() unless Notification.count == 0
     end
   end
-  
+
   # redirect to /admin after all logins
   def after_sign_in_path_for(resource_or_scope)
     '/admin'
   end
-  
+
   rescue_from CanCan::AccessDenied do |exception|
     exception.default_message = 'Default error message'
     respond_to do |format|
@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
                            }}
     end
   end
-  
+
   rescue_from ActiveRecord::RecordNotFound do
     raise ActionController::RoutingError.new('Not Found')
   end
@@ -50,13 +50,13 @@ class ApplicationController < ActionController::Base
   #     #do nothing
   #   end
   # end
-  
+
   def check_domain
     if Rails.env.production? and request.host.downcase != 'hospitium.co'
       redirect_to request.protocol + 'hospitium.co' + request.fullpath, status: 301
     end
   end
-  
+
   def canonical_url(canonical_url)
     @canonical_url = canonical_url
   end
@@ -69,7 +69,7 @@ class ApplicationController < ActionController::Base
       user = Rails.cache.fetch("user_auth_#{user_token}", expires_in: 5.minutes) do
         user_token && User.where(authentication_token: user_token.to_s).first
       end
-   
+
       if user
         # Notice we are passing store false, so the user is not
         # actually stored in the session and a token is needed
@@ -86,6 +86,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:organization_name, :username, :email, :owner, :password, :password_confirmation) }
+    # devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:organization_name, :username, :email, :owner, :password, :password_confirmation) }
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:organization_name, :username, :email, :owner, :password, :password_confirmation])
   end
 end

@@ -11,8 +11,10 @@
 # AnimalTracker::Application.config.session_store :active_record_store
 if Rails.env == "test"
   require 'action_dispatch/middleware/session/dalli_store'
-  AnimalTracker::Application.config.session_store :dalli_store, :namespace => 'sessions', :key => '_foundation_session', :expire_after => 90.minutes
+  # AnimalTracker::Application.config.session_store :dalli_store, :namespace => 'sessions', :key => '_foundation_session', :expire_after => 90.minutes
   # AnimalTracker::Application.config.session_store ActionDispatch::Session::CookieStore
+  # Rails.application.config.session_store ActionDispatch::Session::CacheStore, cache: ActiveSupport::Cache::MemCacheStore.new('localhost:11211', { namespace: 'sessions' })
+  Rails.application.config.session_store ActionDispatch::Session::CacheStore, :expire_after => 90.minutes
 else
   #AnimalTracker::Application.config.session_store :active_record_store
   require 'action_dispatch/middleware/session/dalli_store'
