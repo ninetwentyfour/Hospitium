@@ -29,8 +29,6 @@ class Admin::CrudController < Admin::ListController
 
   helper_method :entry, :full_entry_label
 
-  hide_action :model_identifier, :run_callbacks
-
   ##############  ACTIONS  ############################################
 
   # Show one entry of this model.
@@ -58,7 +56,7 @@ class Admin::CrudController < Admin::ListController
   def create(options = {}, &block)
     assign_attributes
     created = with_callbacks(:create, :save) { with_organization
-                                               entry.save 
+                                               entry.save
                                              }
     respond_options = options.reverse_merge(success: created)
     if redirect_on_create and !request.env["HTTP_REFERER"].blank? and request.env["HTTP_REFERER"] != request.env["REQUEST_URI"]

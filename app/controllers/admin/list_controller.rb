@@ -13,7 +13,6 @@ class Admin::ListController < Admin::ApplicationController
 
   delegate :model_class, :models_label, to: 'self.class'
 
-  hide_action :model_class, :models_label, :inheritable_root_controller
 
   respond_to :html, :json
 

@@ -4,8 +4,8 @@ describe Admin::NotificationsController do
   before :each do
     login_admin
 
-    Notification.skip_callback(:create, :after, :send_public_tweet)
-    Notification.skip_callback(:update, :after, :send_public_tweet)
+    # Notification.skip_callback(:create, :after, :send_public_tweet)
+    # Notification.skip_callback(:update, :after, :send_public_tweet)
 
     @notification = FactoryGirl.create(:notification)
   end
@@ -69,9 +69,9 @@ describe Admin::NotificationsController do
     describe "with valid params" do
       it "assigns the requested notification as @notification" do
         put :update, id: @notification, notification: FactoryGirl.attributes_for(:notification)
-        assigns(:notification).should eq(@notification) 
+        assigns(:notification).should eq(@notification)
       end
-      
+
       it "changes @notification attributes" do
         put :update, {:id => @notification.to_param, :notification => { "message" => "Edit" }}
         @notification.reload

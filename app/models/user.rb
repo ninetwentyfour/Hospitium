@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
          :recoverable, :trackable, :validatable, :confirmable, :lockable
   # Virtual attribute for authenticating by either username or email
   # This is in addition to a real persisted field like 'username'
-  attr_accessor :login, :no_send_email, :skip_default_role
+  attr_accessor :login, :no_send_email, :skip_default_role, :unconfirmed_email
 
   before_create :add_to_organization
   after_create :add_default_role, :send_new_email, :increment_stats
