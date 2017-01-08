@@ -66,7 +66,7 @@ gem 'tilt'
 # Gems used only for production
 group :production do
 	gem 'airbrake'
-	gem 'newrelic_rpm'
+	gem 'newrelic_rpm', '~> 3.17.2'
 	gem 'heroku'
 	gem 'rails_12factor'
 end
