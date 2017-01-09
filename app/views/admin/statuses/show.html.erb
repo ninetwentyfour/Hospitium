@@ -2,7 +2,7 @@
 	<div class="col-sm-12 col-md-12 col-lg-12 main-app-row">
 		<%- unless @animals.blank? %>
 			<div class="alert alert-danger">
-				<a class="close" data-dismiss="alert" href="#">&times;</a> 
+				<a class="close" data-dismiss="alert" href="#">&times;</a>
 				This status can not be deleted until no animals are associated to it.
 			</div>
 		<%end%>
@@ -33,6 +33,7 @@
 <% content_for :javascript_footer do %>
 	<script type="text/javascript">
 		// Trigger juggernaut
-		juggernaut_listen('<%= @status.id %>', 'status');
+		// juggernaut_listen('<%= @status.id %>', 'status');
+		hos_cable_listen('<%= @status.id %>', 'status');
 	</script>
 <%end%>

@@ -14,13 +14,15 @@ class UserObserver < ActiveRecord::Observer
   end
 
   def publish(type, user)
-    Juggernaut.url = ENV['JUGG_URL']
-    Juggernaut.publish("/observer/user/#{user.id}", {
-      id: user.id,
-      type: type,
-      klass: user.class.name,
+    # Juggernaut.url = ENV['JUGG_URL']
+    # Juggernaut.publish("/observer/user/#{user.id}", {
+    #   id: user.id,
+    #   type: type,
+    #   klass: user.class.name,
+    #   record: user.changes
+    # })
+    ActionCable.server.broadcast "bip_#{user.id}",
       record: user.changes
-    })
   end
 
   def send_user_confirmed_email(user)

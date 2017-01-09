@@ -1,10 +1,11 @@
-AnimalTracker::Application.routes.draw do  
+AnimalTracker::Application.routes.draw do
+  mount ActionCable.server => '/cable'
   resource :facebook_accounts, :only => [:new, :destroy]
   get 'callback/facebook/:id', to: 'facebook_accounts#callback', as: :facebook_callback
   post 'facebook_accounts/send_wall_post', to: 'facebook_accounts#send_wall_post'
   delete 'facebook_accounts/:id', to: 'facebook_accounts#destroy'
 
-  
+
   resource :twitter_accounts, :only => [:new, :destroy]
   get 'callback/twitter', to: 'twitter_accounts#callback', as: :twitter_callback
   post 'twitter_accounts/send_tweet', to: 'twitter_accounts#send_tweet'
@@ -14,9 +15,9 @@ AnimalTracker::Application.routes.draw do
   resources :animals, :only => [:show, :index]
 
   resources :organizations, :only => [:show]
-  
+
   resources :posts, :only => [:show, :index]
-  
+
   post 'wordpress_accounts/send_blog_post', to: 'admin/wordpress_accounts#send_blog_post'
   get 'send-to-adopt-a-pet', to: 'admin/adopt_a_pet_accounts#send_animal'
 
@@ -29,12 +30,12 @@ AnimalTracker::Application.routes.draw do
   get 'why-hospitium', to: 'home#why'
   get 'recent-changes', to: 'home#changes'
   get 'posts/feed/rss', to: 'posts#feed'
-  
+
   devise_scope :user do
     put 'users/:id', to: 'users#update'
     delete 'users/sign_out', to: 'devise/session#destroy'
   end
-  
+
   # Prefix route urls with "admin"
   namespace :admin do
     root :to => "home#index"

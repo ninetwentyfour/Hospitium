@@ -1,8 +1,8 @@
 AnimalTracker::Application.configure do
   config.eager_load = true
-  
+
   config.force_ssl = true
-  
+
   config.cache_store = :dalli_store,
                     (ENV["MEMCACHIER_SERVERS"] || "").split(","),
                     {:username => ENV["MEMCACHIER_USERNAME"],
@@ -58,7 +58,7 @@ AnimalTracker::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  
+
   config.action_mailer.default_url_options = { :host => 'hospitium.co' }
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
@@ -69,9 +69,9 @@ AnimalTracker::Application.configure do
     :domain         => 'hospitium.co'
   }
   ActionMailer::Base.delivery_method = :smtp
-  
+
   config.action_controller.asset_host = ENV['HOSPITIUM_ASSET_URL']
-  
+
   # Compress JavaScripts and CSS
   config.assets.compress = true
   config.assets.js_compressor = :closure
@@ -84,8 +84,12 @@ AnimalTracker::Application.configure do
   config.assets.digest = true
 
   config.assets.precompile += %w(homepage.css public.css)
-  
+
   # handle logging with unicorn and heroku
   config.logger = Logger.new(STDOUT)
   config.logger.level = Logger.const_get(ENV['LOG_LEVEL'] ? ENV['LOG_LEVEL'].upcase : 'INFO')
+
+  # Action cable configs
+  config.web_socket_server_url = "wss://hospitium.co/cable"
+  config.action_cable.allowed_request_origins = ['https://hospitium.co']
 end

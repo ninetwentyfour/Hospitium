@@ -21,7 +21,7 @@
 					</div>
 				</div>
 			</div>
-		
+
 			<div class="col-sm-6 col-md-6 col-lg-6 map-block">
 				<div id="map_canvas" style="height:409px;width:100%;"></div>
 			</div>
@@ -41,6 +41,7 @@
 		// Trigger google maps
 		google_map('<%= @vet_contact.address %>', '<%= @vet_contact.clinic_name %>');
 		// Trigger juggernaut
-		juggernaut_listen('<%= @vet_contact.id  %>', 'vet_contact');
+		// juggernaut_listen('<%= @vet_contact.id  %>', 'vet_contact');
+		hos_cable_listen('<%= @vet_contact.id  %>', 'vet_contact');
 	</script>
 <% end %>

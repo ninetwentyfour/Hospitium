@@ -2,61 +2,152 @@ animal_show = ->
   console.log "test"
   animal_uuid = $("#animal_holder").data("animal_id")
   animal_id = $("#animal_holder").data("animal_id")
+  cable = ActionCable.createConsumer()
+
+  cable.subscriptions.create({
+    channel: 'BestInPlaceChannel'
+    id: animal_id
+  },
+    received: (data) ->
+      console.log 'got message'
+      console.log data
+      jQuery.each data.record, (i, val) ->
+        console.log i
+        console.log val
+        if i isnt "updated_at"
+          updated_text = val[1]
+          # $('.tab-content').css("background-color", "#c7f464")
+          if $("#best_in_place_animal_" + animal_id + "_" + i).attr("data-collection") isnt `undefined`
+            brand = $("#best_in_place_animal_" + animal_id + "_" + i).attr("data-collection")
+            test = $.parseJSON(brand)
+            $.each test, (index, value) ->
+              updated_text = value[1]  if value[0].toString() is val[1].toString()
+
+          else if Date.parse(updated_text)
+            d = new Date(updated_text)
+            d.setDate d.getDate() + 1
+            updated_text = dateFormat(d, "ddd, mmm d yyyy")
+          # best_in_place_animal_7a4faa46-d4bd-b9a7-82ab-197af4d41143_special_needs
+          $("#best_in_place_animal_" + animal_id + "_" + i).css("background-color", "#c7f464").html(escapeHtml(updated_text)).delay(1500).animate
+            backgroundColor: "#fff"
+          , 1000
+          # $("#best_in_place_animal_" + animal_id + "_" + i).css("background-color", "#c7f464").html(escapeHtml(updated_text))
+
+      return
+
+    renderMessage: (data) ->
+      '<p> <b>' + data.user + ': </b>' + data.message + '</p>'
+  )
+
+  cable.subscriptions.create({
+    channel: 'NotesChannel'
+    id: animal_id
+  },
+    received: (data) ->
+      console.log data
+      converter = new Showdown.converter()
+      obj = JSON.parse(data.record)
+
+      bg_color = ""
+      updated_text = "There was an update, but a problem displaying. Please refresh."
+
+      $("#animal_notes_list").append "<li id=\"note_" + obj.id + "\"><strong>" + data.user + "</strong> " + obj.created_at + " <br />" + converter.makeHtml(obj.note) + "</li>"
+      $("#animal_notes_list").scrollTop $("#animal_notes_list")[0].scrollHeight
+
+      # /* Highlight the new comment */
+      $("#note_" + obj.id).css "background-color", "#c7f464"
+      if $("#note_" + obj.id).prev("li").css("background-color") is "rgb(255, 255, 255)"
+        bg_color = "#f5f5f5"
+      else
+        bg_color = "#ffffff"
+      $("#note_" + obj.id).delay(1500).animate
+        backgroundColor: bg_color
+      , 1000
+      # console.log 'got message'
+      # console.log data
+      # jQuery.each data.record, (i, val) ->
+      #   console.log i
+      #   console.log val
+      #   if i isnt "updated_at"
+      #     updated_text = val[1]
+      #     # $('.tab-content').css("background-color", "#c7f464")
+      #     if $("#best_in_place_animal_" + animal_id + "_" + i).attr("data-collection") isnt `undefined`
+      #       brand = $("#best_in_place_animal_" + animal_id + "_" + i).attr("data-collection")
+      #       test = $.parseJSON(brand)
+      #       $.each test, (index, value) ->
+      #         updated_text = value[1]  if value[0].toString() is val[1].toString()
+      #
+      #     else if Date.parse(updated_text)
+      #       d = new Date(updated_text)
+      #       d.setDate d.getDate() + 1
+      #       updated_text = dateFormat(d, "ddd, mmm d yyyy")
+      #     # best_in_place_animal_7a4faa46-d4bd-b9a7-82ab-197af4d41143_special_needs
+      #     $("#best_in_place_animal_" + animal_id + "_" + i).css("background-color", "#c7f464").html(escapeHtml(updated_text)).delay(1500).animate
+      #       backgroundColor: "#fff"
+      #     , 1000
+      #     # $("#best_in_place_animal_" + animal_id + "_" + i).css("background-color", "#c7f464").html(escapeHtml(updated_text))
+      #
+      # return
+
+    renderMessage: (data) ->
+      '<p> <b>' + data.user + ': </b>' + data.message + '</p>'
+  )
+
 
   #setup juggernaut to handle real time updating page changes
   #this one handles changes made with best in place
-  jug = new Juggernaut(
-    secure: true
-    host: "juggernaut-hospitium2.herokuapp.com"
-    port: 443
-    transports: ["xhr-polling", "jsonp-polling"]
-  )
-  jug.subscribe "/observer/" + animal_uuid, (data) ->
-    "use strict"
-    updated_text = "There was an update, but a problem displaying. Please refresh."
-    console.log "test"
-    jQuery.each data.record, (i, val) ->
-      console.log i
-      console.log val
-      if i isnt "updated_at"
-        updated_text = val[1]
-        # $('.tab-content').css("background-color", "#c7f464")
-        if $("#best_in_place_animal_" + animal_id + "_" + i).attr("data-collection") isnt `undefined`
-          brand = $("#best_in_place_animal_" + animal_id + "_" + i).attr("data-collection")
-          test = $.parseJSON(brand)
-          $.each test, (index, value) ->
-            updated_text = value[1]  if value[0].toString() is val[1].toString()
+  # jug = new Juggernaut(
+  #   secure: true
+  #   host: "juggernaut-hospitium2.herokuapp.com"
+  #   port: 443
+  #   transports: ["xhr-polling", "jsonp-polling"]
+  # )
+  # jug.subscribe "/observer/" + animal_uuid, (data) ->
+  #   "use strict"
+  #   updated_text = "There was an update, but a problem displaying. Please refresh."
+  #   console.log "test"
+  #   jQuery.each data.record, (i, val) ->
+  #     console.log i
+  #     console.log val
+  #     if i isnt "updated_at"
+  #       updated_text = val[1]
+  #       # $('.tab-content').css("background-color", "#c7f464")
+  #       if $("#best_in_place_animal_" + animal_id + "_" + i).attr("data-collection") isnt `undefined`
+  #         brand = $("#best_in_place_animal_" + animal_id + "_" + i).attr("data-collection")
+  #         test = $.parseJSON(brand)
+  #         $.each test, (index, value) ->
+  #           updated_text = value[1]  if value[0].toString() is val[1].toString()
+  #
+  #       else if Date.parse(updated_text)
+  #         d = new Date(updated_text)
+  #         d.setDate d.getDate() + 1
+  #         updated_text = dateFormat(d, "ddd, mmm d yyyy")
+  #       # best_in_place_animal_7a4faa46-d4bd-b9a7-82ab-197af4d41143_special_needs
+  #       $("#best_in_place_animal_" + animal_id + "_" + i).css("background-color", "#c7f464").html(escapeHtml(updated_text)).delay(1500).animate
+  #         backgroundColor: "#fff"
+  #       , 1000
+  #       # $("#best_in_place_animal_" + animal_id + "_" + i).css("background-color", "#c7f464").html(escapeHtml(updated_text))
 
-        else if Date.parse(updated_text)
-          d = new Date(updated_text)
-          d.setDate d.getDate() + 1
-          updated_text = dateFormat(d, "ddd, mmm d yyyy")
-        # best_in_place_animal_7a4faa46-d4bd-b9a7-82ab-197af4d41143_special_needs
-        $("#best_in_place_animal_" + animal_id + "_" + i).css("background-color", "#c7f464").html(escapeHtml(updated_text)).delay(1500).animate
-          backgroundColor: "#fff"
-        , 1000
-        # $("#best_in_place_animal_" + animal_id + "_" + i).css("background-color", "#c7f464").html(escapeHtml(updated_text))
 
-
-  jug.subscribe "/observer/note/" + animal_id, (data) ->
-    "use strict"
-    converter = new Showdown.converter()
-
-    bg_color = ""
-    updated_text = "There was an update, but a problem displaying. Please refresh."
-
-    $("#animal_notes_list").append "<li id=\"note_" + data.record.id + "\"><strong>" + data.user + "</strong> " + data.created_at + " <br />" + converter.makeHtml(data.record.note) + "</li>"
-    $("#animal_notes_list").scrollTop $("#animal_notes_list")[0].scrollHeight
-
-    # /* Highlight the new comment */
-    $("#note_" + data.record.id).css "background-color", "#c7f464"
-    if $("#note_" + data.record.id).prev("li").css("background-color") is "rgb(255, 255, 255)"
-      bg_color = "#f5f5f5"
-    else
-      bg_color = "#ffffff"
-    $("#note_" + data.record.id).delay(1500).animate
-      backgroundColor: bg_color
-    , 1000
+  # jug.subscribe "/observer/note/" + animal_id, (data) ->
+    # "use strict"
+    # converter = new Showdown.converter()
+    #
+    # bg_color = ""
+    # updated_text = "There was an update, but a problem displaying. Please refresh."
+    #
+    # $("#animal_notes_list").append "<li id=\"note_" + data.record.id + "\"><strong>" + data.user + "</strong> " + data.created_at + " <br />" + converter.makeHtml(data.record.note) + "</li>"
+    # $("#animal_notes_list").scrollTop $("#animal_notes_list")[0].scrollHeight
+    #
+    # # /* Highlight the new comment */
+    # $("#note_" + data.record.id).css "background-color", "#c7f464"
+    # if $("#note_" + data.record.id).prev("li").css("background-color") is "rgb(255, 255, 255)"
+    #   bg_color = "#f5f5f5"
+    # else
+    #   bg_color = "#ffffff"
+    # $("#note_" + data.record.id).delay(1500).animate
+    #   backgroundColor: bg_color
+    # , 1000
 
 
 

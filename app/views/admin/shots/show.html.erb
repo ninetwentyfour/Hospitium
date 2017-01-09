@@ -30,7 +30,8 @@
 <% content_for :javascript_footer do %>
   <script type="text/javascript">
     // Trigger juggernaut
-    juggernaut_listen('<%= @presenter.shot.id %>', 'shot');
+    // juggernaut_listen('<%= @presenter.shot.id %>', 'shot');
+    hos_cable_listen('<%= @presenter.shot.id %>', 'shot');
 
     $.datepicker.setDefaults({
       dateFormat: 'dd M yy',

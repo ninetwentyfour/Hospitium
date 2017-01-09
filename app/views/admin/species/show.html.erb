@@ -2,7 +2,7 @@
 	<div class="col-sm-12 col-md-12 col-lg-12 main-app-row">
 		<%- unless @animals.blank? %>
 			<div class="alert alert-danger">
-				<a class="close" data-dismiss="alert" href="#">&times;</a> 
+				<a class="close" data-dismiss="alert" href="#">&times;</a>
 				This species can not be deleted until no animals are associated to it.
 			</div>
 		<%end%>
@@ -34,34 +34,35 @@
 	<script type="text/javascript">
 		//setup juggernaut to handle real time updating page changes
 		//this one handles changes made with best in place
-		var jug = new Juggernaut({
-			secure: true,
-			host: 'juggernaut-hospitium2.herokuapp.com',
-			port: 443,
-			transports: ['xhr-polling','jsonp-polling']
-		});
-
-		jug.subscribe("/observer/species/<%= @species.id %>", function(data){
-			var updated_text = "There was an update, but a problem displaying. Please refresh."
-			jQuery.each(data.record, function(i, val) {
-				if (i != "updated_at"){
-					updated_text = val[1];
-					if ($("#best_in_place_species_<%= @species.id %>_"+i).attr("data-collection") !== undefined) {
-						var brand = $('#best_in_species_weight_<%= @species.id %>_'+i).attr("data-collection");
-						var test = $.parseJSON(brand);
-						$.each(test, function(index, value) {
-							if(value[0] == val[1]){
-								updated_text = value[1];
-							}
-						});
-					} else {
-					    //do nothing
-					}
-					$('#best_in_place_species_<%= @species.id %>_'+i).css("background-color","#c7f464");
-					$('#best_in_place_species_<%= @species.id %>_'+i).html(updated_text);
-					$('#best_in_place_species_<%= @species.id %>_'+i).delay(1500).animate({backgroundColor: "#f5f5f5"}, 1000 );
-				}
-			});
-		});
+		hos_cable_listen('<%= @species.id %>', 'species');
+		// var jug = new Juggernaut({
+		// 	secure: true,
+		// 	host: 'juggernaut-hospitium2.herokuapp.com',
+		// 	port: 443,
+		// 	transports: ['xhr-polling','jsonp-polling']
+		// });
+		//
+		// jug.subscribe("/observer/species/<%= @species.id %>", function(data){
+		// 	var updated_text = "There was an update, but a problem displaying. Please refresh."
+		// 	jQuery.each(data.record, function(i, val) {
+		// 		if (i != "updated_at"){
+		// 			updated_text = val[1];
+		// 			if ($("#best_in_place_species_<%= @species.id %>_"+i).attr("data-collection") !== undefined) {
+		// 				var brand = $('#best_in_species_weight_<%= @species.id %>_'+i).attr("data-collection");
+		// 				var test = $.parseJSON(brand);
+		// 				$.each(test, function(index, value) {
+		// 					if(value[0] == val[1]){
+		// 						updated_text = value[1];
+		// 					}
+		// 				});
+		// 			} else {
+		// 			    //do nothing
+		// 			}
+		// 			$('#best_in_place_species_<%= @species.id %>_'+i).css("background-color","#c7f464");
+		// 			$('#best_in_place_species_<%= @species.id %>_'+i).html(updated_text);
+		// 			$('#best_in_place_species_<%= @species.id %>_'+i).delay(1500).animate({backgroundColor: "#f5f5f5"}, 1000 );
+		// 		}
+		// 	});
+		// });
 	</script>
 <%end%>
