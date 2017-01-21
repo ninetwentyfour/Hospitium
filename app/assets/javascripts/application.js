@@ -18,6 +18,8 @@
 //= require flat/js/jquery.datatables/jquery.datatables.min
 //= require flat/js/jquery.datatables/bootstrap-adapter/js/datatables
 //= require jquery.tooltipster
+//= require action_cable
+//= require_tree ./channels
 //= require_self
 
 

@@ -147,17 +147,16 @@
     </div>
   </div>
 </div>
-	
-	<% content_for :javascript_footer do %>		
+
+	<% content_for :javascript_footer do %>
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 		<script type="text/javascript">
 			// Trigger google maps
 			google_map('<%= organization.full_address %>', '<%= organization.name %>');
 			// Trigger juggernaut
-			juggernaut_listen('<%= organization.id  %>', 'organization');
+			// juggernaut_listen('<%= organization.id  %>', 'organization');
+			hos_cable_listen('<%= organization.id  %>', 'organization');
 		</script>
 	<%end%>
-	
+
 <%end%>
-
-

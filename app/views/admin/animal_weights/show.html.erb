@@ -29,6 +29,7 @@
 <% content_for :javascript_footer do %>
 	<script type="text/javascript">
 		// Trigger juggernaut
-		juggernaut_listen('<%= @animal_weight.id %>', 'animal_weight');
+		// juggernaut_listen('<%= @animal_weight.id %>', 'animal_weight');
+		hos_cable_listen('<%= @animal_weight.id %>', 'animal_weight');
 	</script>
 <%end%>
