@@ -84,10 +84,10 @@ end
 	gem 'asset_sync'
 	gem 'sanitize'
 	gem 'puma', '~> 3.4.0'
-	gem 'client_side_validations', :git => "git://github.com/substantial/client_side_validations.git", :branch => "support-rails-4.1"
+	gem 'client_side_validations'
 	gem 'best_in_place', github: "ninetwentyfour/best_in_place"
 	gem 'therubyracer'
-	gem 'jquery-rails', '4.1.1'
+	gem 'jquery-rails', '~> 4.2'
 	gem 'select2-rails'
 	gem 'site_meta'
 	gem 'meta-tags'
@@ -107,6 +107,8 @@ group :test, :development do
   gem "rspec"
   # gem "brakeman"
 	# gem 'rails-controller-testing'
+	gem 'better_errors'
+	gem 'binding_of_caller'
 end
 gem 'rails-controller-testing'
 
