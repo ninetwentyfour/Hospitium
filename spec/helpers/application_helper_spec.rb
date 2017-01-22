@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ApplicationHelper do
   describe '#calculate_animal_age' do
     it 'should return an age string' do
-      birthday = 1.days.ago
+      birthday = 1.day.ago
       expect(helper.calculate_animal_age(birthday)).to eq '1 days'
     end
   end
@@ -40,7 +40,7 @@ describe ApplicationHelper do
 
     it 'should remove html tags' do
       text = '### Test
-              <img src="test.png" />'.gsub("  ", "")
+              <img src="test.png" />'.gsub('  ', '')
       expect(helper.markdown(text).squeeze).to eq "<h3>Test</h3>\n"
     end
   end
@@ -58,38 +58,38 @@ describe ApplicationHelper do
 
     it 'should leave html tags' do
       text = '### Test
-              <img src="test.png" />'.gsub("  ", "")
+              <img src="test.png" />'.gsub('  ', '')
       expect(helper.unsafe_markdown(text).squeeze).to eq "<h3>Test</h3>\n<p><img src=\"test.png\"></p>\n"
     end
   end
 
   describe '#is_table_view' do
     it 'should return a table view true if params table_view' do
-      params = {:table_view => 'true'}
-      expect(helper.is_table_view(params)).to eq({:table_view => 'true'})
+      params = { table_view: 'true' }
+      expect(helper.is_table_view(params)).to eq(table_view: 'true')
     end
   end
 
   describe '#table_view_button' do
     it 'should return a table view true unless params table_view' do
       params = {}
-      expect(helper.table_view_button(params)).to eq({table_view: 'true'})
+      expect(helper.table_view_button(params)).to eq(table_view: 'true')
     end
 
     it 'add the table_view params to existing params' do
-      params = {example: 'test'}
-      expect(helper.table_view_button(params)).to eq({example: 'test', table_view: 'true'})
+      params = { example: 'test' }
+      expect(helper.table_view_button(params)).to eq(example: 'test', table_view: 'true')
     end
 
     it 'should return the original params if table_view param is present and set table_view to nil' do
-      params = {example: 'test', table_view: 'true'}
-      expect(helper.table_view_button(params)).to eq({example:'test', table_view: nil})
+      params = { example: 'test', table_view: 'true' }
+      expect(helper.table_view_button(params)).to eq(example: 'test', table_view: nil)
     end
   end
 
   describe '#table_button_text' do
     it 'returns "Card View" when table_view param is present' do
-      params = {table_view: 'true'}
+      params = { table_view: 'true' }
       expect(helper.table_button_text(params)).to eq '<i class="fa fa-th-large tipster" title="Card View"></i><span class="hidden-xs hidden-sm"> Card View</span>'
     end
 
@@ -102,23 +102,23 @@ describe ApplicationHelper do
   describe '#archived_view_button' do
     it 'should return a archived_view true unless params archived_view' do
       params = {}
-      expect(helper.archived_view_button(params)).to eq({archived_view: 'true'})
+      expect(helper.archived_view_button(params)).to eq(archived_view: 'true')
     end
 
     it 'add the archived_view params to existing params' do
-      params = {example: 'test'}
-      expect(helper.archived_view_button(params)).to eq({example: 'test', archived_view: 'true'})
+      params = { example: 'test' }
+      expect(helper.archived_view_button(params)).to eq(example: 'test', archived_view: 'true')
     end
 
     it 'should return the original params if archived_view param is present and set archived_view to nil' do
-      params = {example: 'test', archived_view: 'true'}
-      expect(helper.archived_view_button(params)).to eq({example:'test', archived_view: nil})
+      params = { example: 'test', archived_view: 'true' }
+      expect(helper.archived_view_button(params)).to eq(example: 'test', archived_view: nil)
     end
   end
 
   describe '#archived_button_text' do
     it 'returns "Hide Archived" when archived_view param is present' do
-      params = {archived_view: 'true'}
+      params = { archived_view: 'true' }
       expect(helper.archived_button_text(params)).to eq '<i class="fa fa-archive tipster" title="Hide Archived"></i> <span class="hidden-xs hidden-sm">Hide Archived</span>'
     end
 

@@ -1,10 +1,10 @@
 require 'spec_helper'
- 
-feature 'Shots' do 
+
+feature 'Shots' do
   before :each do
     @user = new_logged_in_user
   end
- 
+
   context 'creating a shot' do
     scenario 'user creates a shot', js: true do
       FactoryGirl.create(:animal, organization_id: @user.organization_id)
@@ -25,8 +25,8 @@ feature 'Shots' do
   context 'editing/viewing a shot', js: true do
     before do
       @shot = FactoryGirl.create(:shot,
-                                   organization_id: @user.organization_id,
-                                   name: 'super fun')
+                                 organization_id: @user.organization_id,
+                                 name: 'super fun')
       sleep 0.2
       visit admin_shot_path(@shot.id)
     end
@@ -43,8 +43,8 @@ feature 'Shots' do
   context 'listing shots' do
     before do
       @shot = FactoryGirl.create(:shot,
-                                    organization_id: @user.organization_id,
-                                    name: 'awesome')
+                                 organization_id: @user.organization_id,
+                                 name: 'awesome')
       visit admin_shots_path
     end
 
@@ -68,7 +68,7 @@ feature 'Shots' do
       within first('tbody tr') do
         expect(page).to have_content @shot.name
 
-        page.find(".fa-remove").click
+        page.find('.fa-remove').click
         # page.driver.browser.switch_to.alert.accept # hack for selenium
         # page.driver.browser.accept_js_confirms # hack for webkit
       end
@@ -91,7 +91,7 @@ feature 'Shots' do
 
       within first('tbody') do
         expect(page).to have_content @shot.name
-      end      
+      end
     end
   end
 end

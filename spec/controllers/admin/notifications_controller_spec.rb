@@ -11,7 +11,7 @@ describe Admin::NotificationsController do
   end
 
   describe 'GET "index"' do
-    it "returns http success" do
+    it 'returns http success' do
       get 'index'
       response.should be_success
     end
@@ -20,80 +20,79 @@ describe Admin::NotificationsController do
       get 'index'
       assigns(:notifications).include?(@notification).should == true
     end
-
   end
 
-  describe "GET show" do
-    it "assigns the requested notification as @notification" do
-      get :show, {:id => @notification.to_param}
+  describe 'GET show' do
+    it 'assigns the requested notification as @notification' do
+      get :show, params: { id: @notification.to_param }
       assigns(:notification).should eq(@notification)
     end
   end
 
-  describe "GET new" do
-    it "assigns a new notification as @notification" do
+  describe 'GET new' do
+    it 'assigns a new notification as @notification' do
       get :new
       assigns(:notification).should be_a_new(Notification)
     end
   end
 
-  describe "GET edit" do
-    it "assigns the requested notification as @notification" do
-      get :edit, {:id => @notification.to_param}
+  describe 'GET edit' do
+    it 'assigns the requested notification as @notification' do
+      get :edit, params: { id: @notification.to_param }
       assigns(:notification).should eq(@notification)
     end
   end
 
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new notification" do
-        expect {
-          post :create, {:notification => FactoryGirl.attributes_for(:notification)}
-        }.to change(Notification, :count).by(1)
+  describe 'POST create' do
+    describe 'with valid params' do
+      it 'creates a new notification' do
+        expect do
+          post :create, params: { notification: FactoryGirl.attributes_for(:notification) }
+        end.to change(Notification, :count).by(1)
       end
 
-      it "assigns a newly created notification as @notification" do
-        post :create, {:notification =>  FactoryGirl.attributes_for(:notification)}
+      it 'assigns a newly created notification as @notification' do
+        post :create, params: { notification: FactoryGirl.attributes_for(:notification) }
         assigns(:notification).should be_a(Notification)
         assigns(:notification).should be_persisted
       end
 
-      it "redirects to the created notification" do
-        post :create, {:notification =>  FactoryGirl.attributes_for(:notification)}
+      it 'redirects to the created notification' do
+        post :create, params: { notification: FactoryGirl.attributes_for(:notification) }
         response.should redirect_to(admin_notification_path(Notification.order(created_at: :desc).first))
       end
     end
   end
 
-  describe "PUT update" do
-    describe "with valid params" do
-      it "assigns the requested notification as @notification" do
-        put :update, id: @notification, notification: FactoryGirl.attributes_for(:notification)
+  describe 'PUT update' do
+    describe 'with valid params' do
+      it 'assigns the requested notification as @notification' do
+        put :update, params: { id: @notification, notification: FactoryGirl.attributes_for(:notification) }
         assigns(:notification).should eq(@notification)
       end
 
-      it "changes @notification attributes" do
-        put :update, {:id => @notification.to_param, :notification => { "message" => "Edit" }}
+      it 'changes @notification attributes' do
+        put :update, params: { id: @notification.to_param, notification: { 'message' => 'Edit' } }
         @notification.reload
-        @notification.message.should eq("Edit")
+        @notification.message.should eq('Edit')
       end
 
-      it "redirects to the notification" do
-        put :update, id: @notification, notification: FactoryGirl.attributes_for(:notification)
+      it 'redirects to the notification' do
+        put :update, params: { id: @notification, notification: FactoryGirl.attributes_for(:notification) }
         response.should redirect_to(admin_notification_path(@notification))
       end
     end
   end
 
-  describe "DELETE destroy" do
-    it "destroys the requested notification" do
-      expect {
-        delete :destroy, {:id => @notification.to_param}
-      }.to change(Notification, :count).by(-1)
+  describe 'DELETE destroy' do
+    it 'destroys the requested notification' do
+      expect do
+        delete :destroy, params: { id: @notification.to_param }
+      end.to change(Notification, :count).by(-1)
     end
 
-    it "redirects to the notifications list" do
-      delete :destroy, {:id => @notification.to_param}
+    it 'redirects to the notifications list' do
+      delete :destroy, params: { id: @notification.to_param }
       response.should redirect_to(admin_notifications_url)
     end
   end

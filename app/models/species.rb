@@ -1,8 +1,8 @@
 class Species < ActiveRecord::Base
   include CommonScopes
   # include PublicActivity::Model
-  # tracked owner: -> controller, model { controller.current_user }, 
-  #         recipient: -> controller, model { controller.current_user.organization }, 
+  # tracked owner: -> controller, model { controller.current_user },
+  #         recipient: -> controller, model { controller.current_user.organization },
   #         params: {
   #           author_name: -> controller, model { controller.current_user.username },
   #           author_email: -> controller, model { controller.current_user.email },
@@ -14,10 +14,10 @@ class Species < ActiveRecord::Base
   has_many :animals
 
   attr_accessible :name
-  
-  validates_presence_of :name, :organization_id
-  
+
+  validates :name, :organization_id, presence: true
+
   def report_display_name
-    self.name
+    name
   end
 end

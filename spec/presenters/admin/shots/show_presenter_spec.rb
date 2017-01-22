@@ -5,7 +5,7 @@ describe Admin::Shots::ShowPresenter do
     @user = FactoryGirl.create(:user)
     @shot = FactoryGirl.create(:shot)
   end
-  
+
   describe '#initialize' do
     it 'create presenter' do
       presenter = Admin::Shots::ShowPresenter.new(@shot.id, @user)

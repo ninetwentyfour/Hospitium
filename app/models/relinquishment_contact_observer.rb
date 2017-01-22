@@ -2,10 +2,10 @@ require 'juggernaut'
 
 class RelinquishmentContactObserver < ActiveRecord::Observer
   def after_update(relinquishment_contact)
-      publish(:update, relinquishment_contact)
+    publish(:update, relinquishment_contact)
   end
 
-  def publish(type, relinquishment_contact)
+  def publish(_type, relinquishment_contact)
     # Juggernaut.url = ENV['JUGG_URL']
     # Juggernaut.publish("/observer/relinquishment_contact/#{relinquishment_contact.id}", {
     #   id: relinquishment_contact.id,
@@ -14,6 +14,6 @@ class RelinquishmentContactObserver < ActiveRecord::Observer
     #   record: relinquishment_contact.changes
     # })
     ActionCable.server.broadcast "bip_#{relinquishment_contact.id}",
-      record: relinquishment_contact.changes
+                                 record: relinquishment_contact.changes
   end
 end

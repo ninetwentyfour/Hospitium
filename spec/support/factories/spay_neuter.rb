@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :spay_neuter do
-    spay "No"
+    spay 'No'
   end
 end

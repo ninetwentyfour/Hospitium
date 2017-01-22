@@ -1,10 +1,10 @@
 require 'spec_helper'
- 
-feature 'Adoption Contacts' do 
+
+feature 'Adoption Contacts' do
   before :each do
     @user = new_logged_in_user
   end
- 
+
   context 'creating an adoption contact' do
     scenario 'user creates an adoption contact' do
       visit admin_adoption_contacts_path
@@ -82,7 +82,7 @@ feature 'Adoption Contacts' do
       end
 
       # remove
-      page.find(".fa-remove").click
+      page.find('.fa-remove').click
       expect(page).to have_content 'Animal successfully removed.'
       within '.nav-tabs' do
         click_on 'Animals'
@@ -94,7 +94,7 @@ feature 'Adoption Contacts' do
 
     scenario 'user can download a vcard of the contact', js: false do
       click_on 'Download Contact'
-      expect(page.text).to eq "BEGIN:VCARD VERSION:3.0 N:bob;billy;;; FN:billy bob ADR;TYPE=home,pref:;;123 fake st;;;; TEL:555-5554 EMAIL;TYPE=pref:test@example.com END:VCARD"
+      expect(page.text).to eq 'BEGIN:VCARD VERSION:3.0 N:bob;billy;;; FN:billy bob ADR;TYPE=home,pref:;;123 fake st;;;; TEL:555-5554 EMAIL;TYPE=pref:test@example.com END:VCARD'
       expect(page.response_headers['Content-Type']).to eq 'text/vcard; charset=utf-8'
     end
   end
@@ -150,13 +150,13 @@ feature 'Adoption Contacts' do
       csv = CSV.parse(page.body)
 
       expect(csv.first).to eq ['ID', 'First Name', 'Last Name', 'Address', 'Phone', 'Email', 'Adopted Animal IDs']
-      expect(csv.last).to eq [@contact.id, 
+      expect(csv.last).to eq [@contact.id,
                               @contact.first_name,
                               @contact.last_name,
                               @contact.address,
                               @contact.phone,
                               @contact.email,
-                              @contact.animals.map{|a| a.id}.join(',')]
+                              @contact.animals.map(&:id).join(',')]
     end
 
     scenario 'user deletes an adoption contact', js: true do
@@ -164,7 +164,7 @@ feature 'Adoption Contacts' do
         expect(page).to have_content @contact.first_name
         expect(page).to have_content @contact.last_name
 
-        page.find(".fa-remove").click
+        page.find('.fa-remove').click
         # page.driver.browser.switch_to.alert.accept # hack for selenium
         # page.driver.browser.accept_js_confirms # hack for webkit
       end
@@ -199,7 +199,7 @@ feature 'Adoption Contacts' do
         expect(page).to have_content second_contact.last_name
         expect(page).to_not have_content @contact.first_name
         expect(page).to_not have_content @contact.last_name
-      end      
+      end
     end
 
     scenario 'uses pagination' do
@@ -215,7 +215,7 @@ feature 'Adoption Contacts' do
 
       within first('tbody') do
         expect(page).to have_content @contact.first_name
-      end      
+      end
     end
   end
 end

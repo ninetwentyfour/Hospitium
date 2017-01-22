@@ -1,5 +1,5 @@
 class Admin::FosterAnimalsController < Admin::CrudController
-  load_and_authorize_resource :foster_animal, :find_by => :animal_id
+  load_and_authorize_resource :foster_animal, find_by: :animal_id
   include PublicActivity::StoreController
 
   respond_to :html, :json
@@ -21,20 +21,21 @@ class Admin::FosterAnimalsController < Admin::CrudController
     @foster_animal.save
     flash[:success] = 'Foster Animal was successfully created.'
 
-    redirect_to(:back)
+    redirect_back(fallback_location: admin_foster_contacts_path)
   end
 
   # DELETE /biters/1
   # DELETE /biters/1.xml
   def destroy
-    @adopt_animal = FosterAnimal.find_by_animal_id_and_foster_contact_id(params[:id], params[:foster])
+    @adopt_animal = FosterAnimal.find_by(animal_id: params[:id], foster_contact_id: params[:foster])
     @adopt_animal.destroy
 
-    redirect_to(:back, :notice => 'Animal successfully removed.')
+    redirect_back(fallback_location: admin_foster_contacts_path, notice: 'Animal successfully removed.')
   end
 
   private
-    def foster_animal_params
-      params.require(:foster_animal).permit(:foster_contact_id, :animal_id, :fostered_date)
-    end
+
+  def foster_animal_params
+    params.require(:foster_animal).permit(:foster_contact_id, :animal_id, :fostered_date)
+  end
 end

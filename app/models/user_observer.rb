@@ -2,9 +2,7 @@ require 'juggernaut'
 
 class UserObserver < ActiveRecord::Observer
   def after_update(user)
-    unless user.no_send_email == true
-      publish(:update, user)
-    end
+    publish(:update, user) unless user.no_send_email == true
   end
 
   def before_save(user)
@@ -13,7 +11,7 @@ class UserObserver < ActiveRecord::Observer
     end
   end
 
-  def publish(type, user)
+  def publish(_type, user)
     # Juggernaut.url = ENV['JUGG_URL']
     # Juggernaut.publish("/observer/user/#{user.id}", {
     #   id: user.id,
@@ -22,7 +20,7 @@ class UserObserver < ActiveRecord::Observer
     #   record: user.changes
     # })
     ActionCable.server.broadcast "bip_#{user.id}",
-      record: user.changes
+                                 record: user.changes
   end
 
   def send_user_confirmed_email(user)

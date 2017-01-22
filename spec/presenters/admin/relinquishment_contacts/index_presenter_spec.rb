@@ -4,7 +4,7 @@ describe Admin::RelinquishmentContacts::IndexPresenter do
   before :each do
     @user = FactoryGirl.create(:user)
   end
-  
+
   describe '#initialize' do
     it 'create presenter' do
       presenter = Admin::RelinquishmentContacts::IndexPresenter.new(@user)

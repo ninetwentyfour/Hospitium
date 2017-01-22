@@ -5,7 +5,7 @@ class ShotObserver < ActiveRecord::Observer
     publish(:update, shot)
   end
 
-  def publish(type, shot)
+  def publish(_type, shot)
     # Juggernaut.url = ENV['JUGG_URL']
     # Juggernaut.publish("/observer/shot/#{shot.id}", {
     #   id: shot.id,
@@ -14,6 +14,6 @@ class ShotObserver < ActiveRecord::Observer
     #   record: shot.changes
     # })
     ActionCable.server.broadcast "bip_#{shot.id}",
-      record: shot.changes
+                                 record: shot.changes
   end
 end

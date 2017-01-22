@@ -6,7 +6,7 @@ describe Admin::HomeController do
   end
 
   describe 'GET "index"' do
-    it "returns http success" do
+    it 'returns http success' do
       get 'index'
       response.should be_success
     end
@@ -15,6 +15,5 @@ describe Admin::HomeController do
       get 'index'
       assigns(:presenter).should_not be_blank
     end
-
   end
 end

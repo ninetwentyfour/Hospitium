@@ -8,7 +8,6 @@ class Ability
   end
 
   def standard
-
     can :manage, :twitter_account
 
     can :read, AdoptAnimal, animal: { organization: { id: @user.organization_id } }
@@ -62,7 +61,7 @@ class Ability
     # can :destroy, Document, documentable: { organization: { id: @user.organization_id } }
     can :destroy, Document, organization: { id: @user.organization_id }
 
-    can :read, Organization, :id => @user.organization_id
+    can :read, Organization, id: @user.organization_id
 
     can :read, RelinquishAnimal, animal: { organization: { id: @user.organization_id } }
     can :create, RelinquishAnimal, animal: { organization: { id: @user.organization_id } }
@@ -80,11 +79,11 @@ class Ability
     can :create, Species
     can :update, Species, organization: { id: @user.organization_id }
 
-    # hack for one user who locked themselves out
+    # HACK: for one user who locked themselves out
     can :create, User
     can :read, User, organization: { id: @user.organization_id }
-    can :update, User, :id => @user.id
-    can :reset_token, User, :id => @user.id
+    can :update, User, id: @user.id
+    can :reset_token, User, id: @user.id
 
     can :read, VetContact, organization: { id: @user.organization_id }
     can :create, VetContact
@@ -132,8 +131,8 @@ class Ability
     can :export, AnimalWeight, organization: { id: @user.organization_id }
     can :bulk_action, AnimalWeight, organization: { id: @user.organization_id }
 
-    can :update, Organization, :id => @user.organization_id
-    can :export, Organization, :id => @user.organization_id
+    can :update, Organization, id: @user.organization_id
+    can :export, Organization, id: @user.organization_id
     can :destroy, Organization, id: @user.organization_id
 
     can :destroy, RelinquishmentContact, organization: { id: @user.organization_id }
@@ -175,5 +174,4 @@ class Ability
   def superadmin
     can :manage, :all
   end
-
 end

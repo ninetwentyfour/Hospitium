@@ -4,7 +4,7 @@ describe Admin::AdoptionContacts::IndexPresenter do
   before :each do
     @user = FactoryGirl.create(:user)
   end
-  
+
   describe '#initialize' do
     it 'create presenter' do
       presenter = Admin::AdoptionContacts::IndexPresenter.new(@user, nil, nil, nil)
@@ -21,5 +21,4 @@ describe Admin::AdoptionContacts::IndexPresenter do
       expect(presenter.search.is_a?(Ransack::Search)).to eq true
     end
   end
-
 end

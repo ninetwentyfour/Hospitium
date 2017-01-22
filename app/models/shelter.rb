@@ -2,15 +2,15 @@ class Shelter < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   include CommonScopes
   include PublicActivity::Model
-  tracked owner: -> controller, model { controller.current_user }, 
-          recipient: -> controller, model { controller.current_user.organization }, 
+  tracked owner: ->(controller, _model) { controller.current_user },
+          recipient: ->(controller, _model) { controller.current_user.organization },
           params: {
-            author_name: -> controller, model { controller.current_user.username },
-            author_email: -> controller, model { controller.current_user.email },
-            object_name: -> controller, model { model.name },
-            summary: -> controller, model { model.changes }
+            author_name: ->(controller, _model) { controller.current_user.username },
+            author_email: ->(controller, _model) { controller.current_user.email },
+            object_name: ->(_controller, model) { model.name },
+            summary: ->(_controller, model) { model.changes }
           }
-  
+
   belongs_to :organization
   has_many :animals
   before_create :modify_phone_number
@@ -18,14 +18,14 @@ class Shelter < ActiveRecord::Base
 
   attr_accessible :name, :contact_first, :contact_last, :address, :phone, :email, :website, :notes
 
-  validates_presence_of :name, :organization_id
-  
+  validates :name, :organization_id, presence: true
+
   def modify_phone_number
-    self.phone = self.phone.delete('^0-9') unless self.phone.blank?
+    self.phone = phone.delete('^0-9') unless phone.blank?
   end
-  
+
   def formatted_phone
-    self.phone.blank? ? '' : number_to_phone(self.phone)
+    phone.blank? ? '' : number_to_phone(phone)
   end
 
   # ===============

@@ -1,7 +1,7 @@
 class Admin::UsersController < Admin::CrudController
   load_and_authorize_resource
-  skip_before_filter :authenticate_user_from_token!, :except => [:index, :show]
-  
+  skip_before_action :authenticate_user_from_token!, except: [:index, :show]
+
   # Allowed params for create and update
   self.permitted_attrs = [:email, :password, :password_confirmation, :remember_me, :username, :login, :organization_name, :owner,
                           :no_send_email, :skip_default_role]
@@ -10,22 +10,22 @@ class Admin::UsersController < Admin::CrudController
   # redirect somewhere other than the object on create/delete
   # self.redirect_on_create = :back
   # self.redirect_on_delete = :back
-  
+
   # GET /users
   # GET /users.xml
   def index
     @search = User.organization(current_user).search(params[:q])
-    @users = @search.result.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
-    
+    @users = @search.result.paginate(page: params[:page], per_page: 10).order('updated_at DESC')
+
     respond_with(@users)
   end
 
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.where(:id => params[:id]).first()
-    @activities = PublicActivity::Activity.where(:owner_id => @user.id).order("created_at desc").limit(5)
-    
+    @user = User.where(id: params[:id]).first
+    @activities = PublicActivity::Activity.where(owner_id: @user.id).order('created_at desc').limit(5)
+
     respond_with(@user)
   end
 
@@ -56,7 +56,7 @@ class Admin::UsersController < Admin::CrudController
     permission.role_id = @user.owner == 1 ? 2 : role
     permission.save
 
-    respond_with(@user, :location => admin_user_path(@user))
+    respond_with(@user, location: admin_user_path(@user))
   end
 
   def reset_token

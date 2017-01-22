@@ -5,11 +5,13 @@ module ContactVcardHelper
         name.given = contact.first_name
         name.family = contact.last_name || ''
       end
-      maker.add_addr do |addr|
-        addr.preferred = true
-        addr.location = 'home'
-        addr.street = contact.address
-      end unless contact.address.blank?
+      unless contact.address.blank?
+        maker.add_addr do |addr|
+          addr.preferred = true
+          addr.location = 'home'
+          addr.street = contact.address
+        end
+      end
       maker.add_tel(contact.formatted_phone) unless contact.formatted_phone.blank?
       maker.add_email(contact.email) { |e| e.preferred = 'yes' } unless contact.email.blank?
     end

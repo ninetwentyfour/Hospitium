@@ -1,43 +1,43 @@
 class AnimalWeight < ActiveRecord::Base
   include CommonScopes
-  
+
   belongs_to :animal
   belongs_to :organization
 
   attr_accessible :animal_id, :weight, :date_of_weight
 
-  validates_presence_of :weight, :date_of_weight, :animal_id, :organization_id
-  
+  validates :weight, :date_of_weight, :animal_id, :organization_id, presence: true
+
   # show the link in the admin UI instead of the link id
   def show_weight_label_method
-    self.weight.to_s
+    weight.to_s
   end
-  
+
   def formatted_weight_date
-    unless self.date_of_weight.blank?
-      age = self.date_of_weight.strftime('%a, %b %e at %l:%M')
-    else
+    if date_of_weight.blank?
       age = ''
+    else
+      age = date_of_weight.strftime('%a, %b %e at %l:%M')
     end
-    return age
+    age
   end
-  
-  def as_xls(options = {})
+
+  def as_xls(_options = {})
     {
-        "Id" => id.to_s,
-        "Weight" => weight,
-        "Animal" => animal["name"],
-        "Date of Weight" => date_of_weight
+      'Id' => id.to_s,
+      'Weight' => weight,
+      'Animal' => animal['name'],
+      'Date of Weight' => date_of_weight
     }
   end
-  
+
   # ===============
   # = CSV support =
   # ===============
   comma do
     id 'ID'
     weight 'Weight'
-    animal 'Animal' do |a| a.name end
+    animal 'Animal', &:name
     date_of_weight 'Date of Weight'
   end
 end

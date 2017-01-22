@@ -1,10 +1,10 @@
 require 'spec_helper'
- 
-feature 'Animal Weights' do 
+
+feature 'Animal Weights' do
   before :each do
     @user = new_logged_in_user
   end
- 
+
   context 'creating an animal weight' do
     scenario 'user creates an animal weight', js: true do
       FactoryGirl.create(:animal, organization_id: @user.organization_id)
@@ -24,7 +24,7 @@ feature 'Animal Weights' do
     before do
       @weight = FactoryGirl.create(:animal_weight,
                                    organization_id: @user.organization_id,
-                                   weight: 1111115)
+                                   weight: 1_111_115)
       sleep 0.2
       visit admin_animal_weight_path(@weight.id)
     end
@@ -32,7 +32,7 @@ feature 'Animal Weights' do
     scenario 'user edits an existing animal weight' do
       # changing the weight
       expect(page).to have_content @weight.weight
-      change_bip_text('weight', 22250)
+      change_bip_text('weight', 22_250)
       expect(page).to_not have_content @weight.weight
       expect(page).to have_content '22250'
     end
@@ -41,8 +41,8 @@ feature 'Animal Weights' do
   context 'listing animal weights' do
     before do
       @weight = FactoryGirl.create(:animal_weight,
-                                    organization_id: @user.organization_id,
-                                    weight: 66667)
+                                   organization_id: @user.organization_id,
+                                   weight: 66_667)
       visit admin_animal_weights_path
     end
 
@@ -66,7 +66,7 @@ feature 'Animal Weights' do
       within first('tbody tr') do
         expect(page).to have_content @weight.weight
 
-        page.find(".fa-remove").click
+        page.find('.fa-remove').click
         # page.driver.browser.switch_to.alert.accept # hack for selenium
         # page.driver.browser.accept_js_confirms # hack for webkit
       end
@@ -89,7 +89,7 @@ feature 'Animal Weights' do
 
       within first('tbody') do
         expect(page).to have_content @weight.weight
-      end      
+      end
     end
   end
 end

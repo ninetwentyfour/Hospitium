@@ -5,7 +5,7 @@ class Admin::Shots::IndexPresenter
     @page = page
     @animal_id = animal_id
   end
-  
+
   def shots
     search.result.paginate(page: @page, per_page: 10).order(updated_at: :desc)
   end

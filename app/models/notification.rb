@@ -1,5 +1,4 @@
 class Notification < ActiveRecord::Base
-
   after_create :send_public_tweet
   after_update :send_public_tweet
 
@@ -7,7 +6,7 @@ class Notification < ActiveRecord::Base
 
   def send_public_tweet
     return unless Rails.env.production?
-    message = "#{self.status_type}! #{self.message.slice(0, 100)}"
+    message = "#{status_type}! #{self.message.slice(0, 100)}"
     TwitterAccount.twitter_post(message, 1)
   end
 end
