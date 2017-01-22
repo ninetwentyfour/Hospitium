@@ -41,7 +41,7 @@ SecureHeaders::Configuration.default do |config|
     media_src: %w(*.olark.com),
     object_src: %w('self'),
     plugin_types: %w(application/x-shockwave-flash),
-    script_src: %w('self' *.googleapis.com *.olark.com *.google-analytics.com *.gstatic.com localhost:3000 d1pm9e0xzdmxcb.cloudfront.net d4uktpxr9m70.cloudfront.net d1ros97qkrwjf5.cloudfront.net *.newrelic.com *.disqus.com 'unsafe-eval'),
+    script_src: %w('self' *.googleapis.com *.olark.com *.google-analytics.com *.gstatic.com localhost:3000 d1pm9e0xzdmxcb.cloudfront.net d4uktpxr9m70.cloudfront.net d1ros97qkrwjf5.cloudfront.net *.newrelic.com *.disqus.com bam.nr-data.net 'unsafe-eval'),
     style_src: %w('unsafe-inline' *.googleapis.com *.olark.com localhost:3000 d1pm9e0xzdmxcb.cloudfront.net d4uktpxr9m70.cloudfront.net maxcdn.bootstrapcdn.com *.disquscdn.com),
     upgrade_insecure_requests: false, # see https://www.w3.org/TR/upgrade-insecure-requests/
     report_uri: %w(https://hospitium.report-uri.io/r/default/csp/reportOnly)
