@@ -12,6 +12,7 @@
 //= require Chart
 //= require jquery.sparklines
 //= require escape_string
+//= require vendor/nanoScroll
 //= require_tree ./admin
 //= require flat/js/behaviour/core
 //= require flat/js/bootstrap/dist/js/bootstrap

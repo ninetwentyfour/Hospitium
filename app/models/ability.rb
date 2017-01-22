@@ -6,9 +6,9 @@ class Ability
       @user.roles.each { |role| send(role.name.downcase) }
     end
   end
-  
+
   def standard
-    
+
     can :manage, :twitter_account
 
     can :read, AdoptAnimal, animal: { organization: { id: @user.organization_id } }
@@ -18,6 +18,11 @@ class Ability
     can :read, AdoptionContact, organization: { id: @user.organization_id }
     can :create, AdoptionContact
     can :update, AdoptionContact, organization: { id: @user.organization_id }
+
+    can :read, ContactNote, organization: { id: @user.organization_id }
+    can :create, ContactNote
+    can :update, ContactNote, organization: { id: @user.organization_id }
+    can :destroy, ContactNote, organization: { id: @user.organization_id }
 
     can :read, FosterAnimal, animal: { organization: { id: @user.organization_id } }
     can :create, FosterAnimal, animal: { organization: { id: @user.organization_id } }
@@ -42,12 +47,12 @@ class Ability
     can :read, AnimalWeight, organization: { id: @user.organization_id }
     can :create, AnimalWeight
     can :update, AnimalWeight, organization: { id: @user.organization_id }
-    
+
     can :read, Note, animal: { organization: { id: @user.organization_id } }
     can :create, Note, animal: { organization: { id: @user.organization_id } }
     can :update, Note, animal: { organization: { id: @user.organization_id } }
     can :destroy, Note, animal: { organization: { id: @user.organization_id } }
-    
+
     # can :read, Document, documentable: { organization: { id: @user.organization_id } }
     can :read, Document, organization: { id: @user.organization_id }
     # can :create, Document, documentable: { organization: { id: @user.organization_id } }
@@ -98,7 +103,7 @@ class Ability
     can :create, Shot
     can :update, Shot, organization: { id: @user.organization_id }
     can :destroy, Shot, organization: { id: @user.organization_id }
-    
+
     can :read, AnimalSex
     can :read, SpayNeuter
     can :read, Biter
@@ -106,7 +111,7 @@ class Ability
 
   def admin
     standard
-    
+
     can :destroy, AdoptionContact, organization: { id: @user.organization_id }
     can :export, AdoptionContact, organization: { id: @user.organization_id }
     can :bulk_action, AdoptionContact, organization: { id: @user.organization_id }
@@ -114,11 +119,11 @@ class Ability
     can :destroy, FosterContact, organization: { id: @user.organization_id }
     can :export, FosterContact, organization: { id: @user.organization_id }
     can :bulk_action, FosterContact, organization: { id: @user.organization_id }
-    
+
     can :destroy, Animal, organization: { id: @user.organization_id }
     can :export, Animal, organization: { id: @user.organization_id }
     can :bulk_action, Animal, organization: { id: @user.organization_id }
-    
+
     can :destroy, AnimalColor, organization: { id: @user.organization_id }
     can :export, AnimalColor, organization: { id: @user.organization_id }
     can :bulk_action, AnimalColor, organization: { id: @user.organization_id }
@@ -158,17 +163,17 @@ class Ability
     can :destroy, VolunteerContact, organization: { id: @user.organization_id }
     can :export, VolunteerContact, organization: { id: @user.organization_id }
     can :bulk_action, VolunteerContact, organization: { id: @user.organization_id }
-    
+
     can :destroy, Status, organization: { id: @user.organization_id }
     can :bulk_action, Status, organization: { id: @user.organization_id }
   end
-  
+
   def super_admin
     can :manage, :all
   end
-  
+
   def superadmin
     can :manage, :all
   end
-  
+
 end

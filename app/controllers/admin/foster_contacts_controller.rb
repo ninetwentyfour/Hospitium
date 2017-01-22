@@ -1,14 +1,14 @@
 class Admin::FosterContactsController < Admin::CrudController
   load_and_authorize_resource
   include PublicActivity::StoreController
-  
+
   respond_to :html, :json, :csv, :vcf
 
   # Allowed params for create and update
   self.permitted_attrs = [:first_name, :last_name, :phone, :email, :address]
   # scope create to current_user.organization
   self.save_as_organization = true
-  
+
   # GET /foster_contacts
   # GET /foster_contacts.xml
   def index
@@ -26,7 +26,8 @@ class Admin::FosterContactsController < Admin::CrudController
     @foster_contact = FosterContact.find(params[:id])
     @animals = FosterContact.find(params[:id]).animals
     @adoptable_animals = Animal.organization(current_user)
-    
+    @contact_notes = ContactNote.where(noteable_id: @foster_contact.id, noteable_type: 'FosterContact').order(created_at: 'ASC')
+
     respond_with(@foster_contact)
     # respond_with(@foster_contact) do |format|
     #   format.vcf do

@@ -25,6 +25,7 @@
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#1" data-toggle="tab">Overview</a></li>
 					<li><a href="#2" data-toggle="tab">Animals</a></li>
+					<li><a href="#5" data-toggle="tab">Notes</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="1">
@@ -36,10 +37,39 @@
 					</div>
 					<div class="tab-pane" id="2">
 						<% @animals.each do |animal| %>
-							<p><%= link_to raw("<i class='fa fa-remove'></i>"), "/admin/adopt_animals/#{animal.id}?adopt=#{@adoption_contact.id}", :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Remove Animal"  %> <a href="/admin/animals/<%= animal.id %>"><%= animal.name %></a></p>
+							<p>
+								<%= link_to raw("<i class='fa fa-remove'></i>"), "/admin/adopt_animals/#{animal.id}?adopt=#{@adoption_contact.id}", :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Remove Animal"  %> <a href="/admin/animals/<%= animal.id %>"><%= animal.name %></a>
+								<% if animal.adopted_date.present? %>
+									<span style='font-size:12px;'> Adopted on: <%= animal.adopted_date.strftime("%m/%d/%Y") %></span>
+								<% end %>
+							</p>
 						<%end%>
 						<hr />
 						<a class="btn btn-primary btn-rad btn-trans" data-toggle="modal" href="#newAnimal" ><i class="fa fa-plus"></i> Add Animal</a>
+					</div>
+					<div class="tab-pane" id="4">
+						<div class="">
+							<div id="weight_graph_holder"><canvas id="canvasWeight" height="300" width="250"></canvas></div>
+							<hr />
+							<a class="btn" data-toggle="modal" href="#newWeight" ><i class="fa fa-plus"></i> Add New Weight</a>
+						</div>
+					</div>
+					<div class="tab-pane" id="5">
+						<ul class="unstyled" id="animal_notes_list">
+							<%unless @contact_notes.blank?%>
+									<%@contact_notes.each do |note| %>
+										<li><%= link_to raw("<i class='fa fa-remove'></i>"), admin_contact_note_path(note), :method => :delete, :class => "pull-right tipster", :rel => "tooltip", :title => "Delete Note"  %><strong><%= note.username %></strong> <%= note.created_at.strftime("%a, %b %e %Y at %I:%m%p") %> <br /><%= raw(sanitize(note.note)) %></li>
+									<%end%>
+							<%end%>
+						</ul>
+						<hr />
+						<h2>Say something!</h2>
+						<%= form_for ContactNote.new, :url => admin_contact_notes_path, :remote => true, :html => {:id => "new_note_#{current_user.id}"} do |f| %>
+							<%= f.text_area :note, :rows => 5, :style => "width:95%;" %>
+							<%= f.hidden_field :noteable_id, :value => @adoption_contact.id %>
+							<%= f.hidden_field :noteable_type, :value => 'AdoptionContact' %><br />
+							<%= f.submit "Add Note", :class => "btn btn-primary submit-button" %>
+						<% end %>
 					</div>
 				</div>
 			</div>
@@ -64,6 +94,8 @@
 					<div class="form-group">
 						<%= f.hidden_field :adoption_contact_id %>
 						<%= collection_select(:adopt_animal, :animal_id, @adoptable_animals, :id, :name) %>
+						<%= f.label :adopted_date %>
+						<%= f.text_field :adopted_date, :class => "form-control" %>
 					</div>
       </div>
       <div class="modal-footer">
@@ -87,5 +119,11 @@
 		// Trigger juggernaut
 		// juggernaut_listen('<%= @adoption_contact.id %>', 'adoption_contact', 'adopt_contact');
 		hos_cable_listen('<%= @adoption_contact.id %>', 'adoption_contact', 'adopt_contact');
+		contact_note_cable_listen('<%= @adoption_contact.id %>', 'adoption_contact', 'adopt_contact');
+		$( "#adopt_animal_adopted_date" ).datepicker();
+    // $( "#shot_expires" ).datepicker({yearRange: "-50:+50"});
+    $.datepicker.setDefaults({
+      dateFormat: 'D, dd M yy'
+    });
 	</script>
 <% end %>

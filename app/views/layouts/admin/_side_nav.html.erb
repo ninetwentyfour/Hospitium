@@ -26,8 +26,14 @@
 					<li class="<%= current_class?('admin/adoption_contacts', controller.action_name) %>">
 						<a href="/admin/adoption_contacts">Adoption Contacts</a>
 					</li>
-					<li class="<%= current_class?('admin/animals', controller.action_name) %>">
+					<li class="parent <%= current_class?('admin/animals', controller.action_name) %>">
 						<a href="/admin/animals">Animals</a>
+						<ul class="sub-menu">
+	            <li class="<%= active_nav_via_id?('admin/animals', controller.action_name, nil, params.try(:[], 'q').try(:[], 'species_id_eq')) %>"><a href="/admin/animals">All Animals</a></li>
+							<% current_user.organization.species.sort_by{|s| s.name }.each do |species| %>
+								<li class="<%= active_nav_via_id?('admin/animals', controller.action_name, species.id, params.try(:[], 'q').try(:[], 'species_id_eq'))%>"><a href="/admin/animals?q%5Bspecies_id_eq%5D=<%= species.id %>"><%= species.name %></a></li>
+							<% end %>
+	          </ul>
 					</li>
 					<li class="<%= current_class?('admin/animal_colors', controller.action_name) %>">
 						<a href="/admin/animal_colors">Animals Colors</a>

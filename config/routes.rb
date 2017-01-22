@@ -60,7 +60,8 @@ AnimalTracker::Application.routes.draw do
               :adopt_animals,
               :relinquish_animals,
               :foster_contacts,
-              :foster_animals
+              :foster_animals,
+              :contact_notes
 
     resources :animals do
       resources :animal_weights, :documents, :shots, :notes, :adoption_contacts, :relinquishment_contacts

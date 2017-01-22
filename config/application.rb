@@ -14,7 +14,7 @@ module AnimalTracker
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-    
+
     config.assets.initialize_on_precompile = false
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -49,15 +49,15 @@ module AnimalTracker
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
-    
-    config.active_record.observers = :animal_observer, :adoption_contact_observer, :animal_color_observer, :animal_weight_observer, :organization_observer, 
+
+    config.active_record.observers = :animal_observer, :adoption_contact_observer, :animal_color_observer, :animal_weight_observer, :organization_observer,
       :relinquishment_contact_observer, :shelter_observer, :species_observer, :status_observer, :user_observer, :vet_contact_observer, :volunteer_contact_observer,
       :note_observer, :adopt_animal_observer, :relinquish_animal_observer, :document_observer, :shot_observer
-      
+
     config.active_record.whitelist_attributes = true
-    
+
     #config.middleware.use "PDFKit::Middleware", :print_media_type => true
-    
+
     # setup statsd - this is hackey
     $statsd = Statsd.new ENV['STATSD'], 8125
     # Set the namespace to admin
@@ -71,8 +71,10 @@ module AnimalTracker
         Devise::SessionsController.layout "login"
         Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application" : "login" }
         Devise::ConfirmationsController.layout "login"
-        Devise::UnlocksController.layout "login"            
-        Devise::PasswordsController.layout "login"     
+        Devise::UnlocksController.layout "login"
+        Devise::PasswordsController.layout "login"
     end
+
+    config.active_record.primary_key = :uuid
   end
 end

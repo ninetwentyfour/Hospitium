@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :wordpress_accounts
   has_many :adopt_a_pet_accounts
   has_many :notes
+  has_many :contact_notes
   has_many :roles, through: :permissions
   belongs_to :organization
   # Include default devise modules. Others available are:

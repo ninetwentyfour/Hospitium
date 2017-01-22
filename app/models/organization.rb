@@ -1,8 +1,8 @@
 class Organization < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   # include PublicActivity::Model
-  # tracked owner: -> controller, model { controller.current_user }, 
-  #         recipient: -> controller, model { controller.current_user.organization }, 
+  # tracked owner: -> controller, model { controller.current_user },
+  #         recipient: -> controller, model { controller.current_user.organization },
   #         params: {
   #           author_name: -> controller, model { controller.current_user.username },
   #           author_email: -> controller, model { controller.current_user.email },
@@ -19,7 +19,7 @@ class Organization < ActiveRecord::Base
     hash_secret: ENV['SALTY']
   }
 
-  has_attached_file :adoption_form, 
+  has_attached_file :adoption_form,
                     ORGANIZATION_FORM_OPTIONS.merge(default_url: 'https://d4uktpxr9m70.cloudfront.net/pdfs/Adoption-Form.pdf')
   has_attached_file :volunteer_form,
                     ORGANIZATION_FORM_OPTIONS.merge(default_url: 'https://d4uktpxr9m70.cloudfront.net/pdfs/Volunteer-Application.pdf')
@@ -31,7 +31,7 @@ class Organization < ActiveRecord::Base
                                                                     'application/msword',
                                                                     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
                                                                     'application/vnd.openxmlformats-officedocument.wordprocessingml.template']
-  
+
   has_many :adoption_contacts, dependent: :destroy
   has_many :animals, dependent: :destroy
   has_many :animal_colors, dependent: :destroy
@@ -49,14 +49,15 @@ class Organization < ActiveRecord::Base
   has_many :wordpress_accounts, dependent: :destroy
   has_many :foster_contacts, dependent: :destroy
   has_many :users, dependent: :destroy
-  
+  has_many :contact_notes, dependent: :destroy
+
   before_update :modify_phone_number
   after_create :add_default_status, :add_default_animal_colors, :add_default_species
 
   attr_accessible :name, :phone_number, :address, :city, :state, :zip_code, :email, :website, :adoption_form, :volunteer_form, :relinquishment_form, :foster_form
 
   validates_uniqueness_of :name
-  
+
   #create the default statuses and assign them to the new organization
   def add_default_status
     ['Adoptable', 'New Intake', 'Sanctuary', 'Sick', 'Deceased', 'Adopted', 'Foster Care'].each do |status_name|
@@ -65,7 +66,7 @@ class Organization < ActiveRecord::Base
       status.save
     end
   end
-  
+
   #create the default animal colors and assign them to the new organization
   def add_default_animal_colors
     ['Black', 'White', 'Gray', 'Brown'].each do |color_name|
@@ -74,7 +75,7 @@ class Organization < ActiveRecord::Base
       animal_color.save
     end
   end
-  
+
   #create the default species and assign them to the new organization
   def add_default_species
     ['Cat', 'Dog', 'Hamster', 'Gerbil', 'Chinchilla', 'Bird', 'Rat', 'Mouse'].each do |species_name|
@@ -83,26 +84,26 @@ class Organization < ActiveRecord::Base
       species.save
     end
   end
-  
+
   def modify_phone_number
     # unless self.phone_number.blank?
       self.phone_number = self.phone_number.delete("^0-9") unless self.phone_number.blank?
     # end
   end
-  
+
   def formatted_phone
     self.phone_number.blank? ? '' : number_to_phone(self.phone_number)
   end
-  
+
   def has_info?
     return false if self.phone_number.blank? and self.email.blank? and self.website.blank?
     true
   end
-  
+
   def full_address
     "#{address} #{city} #{state} #{zip_code}"
   end
-  
+
   def owner
     User.where(organization_id: self.id, owner: 1).first
   end

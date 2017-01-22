@@ -23,6 +23,14 @@ module ApplicationHelper
     end
   end
 
+  def active_nav_via_id?(con, act, expected_id, param_id)
+    if current_page?(:controller => con, :action => act) && expected_id == param_id
+      return 'active'
+    else
+     return ''
+    end
+  end
+
   def markdown(text)
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(
         :hard_wrap => true, :filter_html => true),
