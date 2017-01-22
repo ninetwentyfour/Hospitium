@@ -20,6 +20,7 @@ class Admin::AdoptAnimalsController < Admin::CrudController
       # @adopt_animal.adopted_date = adopt_animal_params[:adopted_date]
     end
     @adopt_animal.save
+    flash[:success] = 'Adopt Animal was successfully created.'
 
     redirect_to(:back, :notice => 'Animal successfully removed.')
   end
