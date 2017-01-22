@@ -43,10 +43,10 @@
 </div>
 
 <% content_for :javascript_footer do %>
-	<script>
+	<script nonce=<%= content_security_policy_nonce(:script) %>>
 	$( "#volunteer_contact_application_date" ).datepicker();
 	$.datepicker.setDefaults({
-	   dateFormat: 'D, dd M yy' 
+	   dateFormat: 'D, dd M yy'
 	});
 	</script>
 <%end%>

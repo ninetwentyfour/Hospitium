@@ -1,7 +1,6 @@
 //= require jquery-ui.min
 //= require jquery_ujs
 //= require best_in_place
-//= require rails.validations
 //= require jquery.mailcheck.min
 //= require showdown
 //= require date
@@ -13,6 +12,8 @@
 //= require jquery.sparklines
 //= require escape_string
 //= require vendor/nanoScroll
+//= require vendor/olark
+//= require vendor/client_side_validations
 //= require_tree ./admin
 //= require flat/js/behaviour/core
 //= require flat/js/bootstrap/dist/js/bootstrap

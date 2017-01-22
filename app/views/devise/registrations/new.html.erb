@@ -76,7 +76,7 @@
 <title><%= yield (:title) %></title>
 
 <% content_for :javascript_footer do %>
-	<script>
+	<script nonce=<%= content_security_policy_nonce(:script) %>>
 		$('#user_email').on('blur', function() {
 			$(this).mailcheck({
 				suggested: function(element, suggestion) {
@@ -84,7 +84,7 @@
 					if ($('#bad_email_spel').length != 0) {
 						$('#bad_email_spel').remove();
 					} else {
-						
+
 					}
 					$('#user_email').parent().append('<p style="font-size:10px;margin-top:-10px;" id="bad_email_spel">Did you mean '+suggestion["full"]+'</p>')
 				},

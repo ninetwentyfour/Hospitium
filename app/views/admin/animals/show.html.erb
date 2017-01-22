@@ -180,7 +180,7 @@
 <%else%>
 	<% content_for :javascript_footer do %>
 		<% content_for :title, "Adopt #{@animal.name} - Hospitium" %>
-		<script type="text/javascript">
+		<script type="text/javascript" nonce=<%= content_security_policy_nonce(:script) %>>
 			// Trigger page js
 			animal_show();
 		</script>

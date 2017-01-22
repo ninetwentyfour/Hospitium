@@ -35,10 +35,10 @@
 </div>
 
 <% content_for :javascript_footer do %>
-  <script>
+  <script nonce=<%= content_security_policy_nonce(:script) %>>
     $( "#animal_weight_date_of_weight" ).datepicker();
     $.datepicker.setDefaults({
-      dateFormat: 'D, dd M yy' 
+      dateFormat: 'D, dd M yy'
     });
   </script>
 <%end%>

@@ -113,13 +113,13 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-sm-12 col-md-12 col-lg-12">	
+	<div class="col-sm-12 col-md-12 col-lg-12">
 		<hr />
 	</div>
 </div>
 
 <div class="row">
-	<div class="col-sm-12 col-md-12 col-lg-12">	
+	<div class="col-sm-12 col-md-12 col-lg-12">
 		<div class="row">
 <div class="col-sm-6 col-md-6 col-lg-6">
 	<%= render "public_activity", :activities => @presenter.latest_activity %>
@@ -128,14 +128,14 @@
 	<div class="block-transparent">
 				<h2>Public Animals</h2>
 				<%= render "public_animals", :public_animals => @presenter.public_animals %>
-			</div> 
+			</div>
 		</div>
 		</div>
 	</div>
-</div> 
+</div>
 
 <% content_for :javascript_footer do %>
-	<script type="text/javascript">
+	<script type="text/javascript" nonce=<%= content_security_policy_nonce(:script) %>>
 		// set chart sizes based on loaded screen size
 		var chart_sizes = Math.round(($(".col-lg-6").width()/2.5));
 		$("#statusDoughnutCanvas").attr({width: chart_sizes, height: chart_sizes});
@@ -152,7 +152,7 @@
 
 		// Trigger page js
 		var data_for_charts = {
-								"status_data":        <%= raw(sanitize(@presenter.status_chart.to_json)) %>, 
+								"status_data":        <%= raw(sanitize(@presenter.status_chart.to_json)) %>,
 								"species_data":       <%= raw(sanitize(@presenter.species_chart.to_json)) %>,
 								"colors_data":        <%= raw(sanitize(@presenter.colors_chart.to_json)) %>,
 								"sex_data":           <%= raw(sanitize(@presenter.sex_chart.to_json)) %>,

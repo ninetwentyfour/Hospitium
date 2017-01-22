@@ -31,7 +31,7 @@
 </div>
 
 <% content_for :javascript_footer do %>
-	<script type="text/javascript">
+	<script type="text/javascript" nonce=<%= content_security_policy_nonce(:script) %>>
 		//setup juggernaut to handle real time updating page changes
 		//this one handles changes made with best in place
 		hos_cable_listen('<%= @species.id %>', 'species');
