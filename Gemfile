@@ -84,7 +84,7 @@ end
 	gem 'asset_sync'
 	gem 'sanitize'
 	gem 'puma', '~> 3.4.0'
-	gem 'client_side_validations'
+	gem 'client_side_validations', github: 'ninetwentyfour/client_side_validations'
 	gem 'best_in_place', github: "ninetwentyfour/best_in_place"
 	gem 'therubyracer'
 	gem 'jquery-rails', '~> 4.2'

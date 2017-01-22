@@ -105,7 +105,7 @@
 
 <% content_for :javascript_footer do %>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-	<script type="text/javascript">
+	<script type="text/javascript" nonce=<%= content_security_policy_nonce(:script) %>>
 		// Trigger google maps
 		google_map('<%= @volunteer_contact.address %>', '<%= @volunteer_contact.first_name %>');
 		// Trigger juggernaut

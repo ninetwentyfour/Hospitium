@@ -110,7 +110,7 @@
   <%= stylesheet_link_tag 'homepage' %>
 <% end %>
 <% content_for :javascript_footer do %>
-  <script>
+  <script nonce=<%= content_security_policy_nonce(:script) %>>
 	var messages = ["pig", "cat", "rat", "dog", "duck"];
 	function getMessage() {
 	   return messages[Math.floor(Math.random() * messages.length)];

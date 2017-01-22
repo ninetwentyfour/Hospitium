@@ -38,7 +38,7 @@
 </div>
 
 <% content_for :javascript_footer do %>
-  <script>
+  <script nonce=<%= content_security_policy_nonce(:script) %>>
     $( "#shot_last_administered" ).datepicker();
     $( "#shot_expires" ).datepicker({yearRange: "-50:+50"});
     $.datepicker.setDefaults({

@@ -41,7 +41,7 @@
 <%= render 'search', :search => @search, :presenter => @presenter %>
 
 <% content_for :javascript_footer do %>
-	<script>
+	<script nonce=<%= content_security_policy_nonce(:script) %>>
 		$(function(){
 			var $container = $('#animal_index');
 			$container.imagesLoaded(function(){

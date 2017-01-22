@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user_from_token!, unless: :devise_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery # Turn on request forgery protection. Bear in mind that only non-GET, HTML/JavaScript requests are checked.
-  ensure_security_headers
+  # ensure_security_headers
 
   # display notice on every admin page
   def get_notice

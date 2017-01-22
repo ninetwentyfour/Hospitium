@@ -31,7 +31,7 @@
 </div>
 
 <% content_for :javascript_footer do %>
-	<script type="text/javascript">
+	<script type="text/javascript" nonce=<%= content_security_policy_nonce(:script) %>>
 		// Trigger juggernaut
 		// juggernaut_listen('<%= @status.id %>', 'status');
 		hos_cable_listen('<%= @status.id %>', 'status');

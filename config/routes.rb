@@ -81,5 +81,5 @@ AnimalTracker::Application.routes.draw do
     end
   end
 
-  post SecureHeaders::ContentSecurityPolicy::FF_CSP_ENDPOINT => 'content_security_policy#scribe'
+  # post SecureHeaders::ContentSecurityPolicy::FF_CSP_ENDPOINT => 'content_security_policy#scribe'
 end

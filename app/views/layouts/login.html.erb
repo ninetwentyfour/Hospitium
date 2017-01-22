@@ -8,7 +8,7 @@
   <meta name="author" content="Travis Berry">
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <%= stylesheet_link_tag "application" %>
   <link href='https://fonts.googleapis.com/css?family=Cabin:700|Maven+Pro' rel='stylesheet' type='text/css'>
@@ -63,7 +63,7 @@
   <%= favicon_link_tag 'apple-touch/57.png', :rel => 'apple-touch-icon', :type => 'image/png', :sizes => '57x57' %>
   <%= favicon_link_tag 'apple-touch/72.png', :rel => 'apple-touch-icon', :type => 'image/png', :sizes => '72x72' %>
   <%= favicon_link_tag 'apple-touch/114.png', :rel => 'apple-touch-icon', :type => 'image/png', :sizes => '114x114' %>
-  <script>
+  <script nonce=<%= content_security_policy_nonce(:script) %>>
     // Handle links in html5 app ipad
     (function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(chref=d.href).replace(e.href,"").indexOf("#")&&(!/^[a-z\+\.\-]+:/i.test(chref)||chref.indexOf(e.protocol+"//"+e.host)===0)&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone");
   </script>
@@ -75,7 +75,7 @@
 
   <div class="middle-login">
     <div class="block-flat">
-      <div class="header">              
+      <div class="header">
         <h3 class="text-center"><a class="brand" href="/" style="padding:2px 20px 0px 0px;"><%= image_tag("hos-logo6.png", :size => "175x35")%></a></h3>
       </div>
       <div>
@@ -84,14 +84,14 @@
       </div>
     </div>
     <!-- <div class="text-center out-links"><a href="#">&copy; 2014 Your Company</a></div> -->
-  </div> 
-  
+  </div>
+
 </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <%= javascript_include_tag "application" %>
   <%= yield :javascript_footer %>
-  <%= render 'layouts/olark' %>
+  <%#= render 'layouts/olark' %>
   <%= render 'layouts/google_analytics' %>
 </body>
 </html>

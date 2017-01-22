@@ -34,7 +34,7 @@ All information listed here is contributed by our members. Hospitium is not resp
 
 <% content_for :javascript_footer do %>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-	<script type="text/javascript">
+	<script type="text/javascript" nonce=<%= content_security_policy_nonce(:script) %>>
 		google_map('<%= @organization.address %> <%= @organization.city %> <%= @organization.state %> <%= @organization.zip_code %>', '<%= @organization.name %>');
 	</script>
 <% end %>

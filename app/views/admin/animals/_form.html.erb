@@ -19,8 +19,8 @@
 					    <%= f.label :name %>
 					    <%= f.text_field :name, :class => "form-control" %>
 						</div>
-						
-						<div class="form-group"v>	
+
+						<div class="form-group"v>
 					    <%= f.label :species %>
 							<%= collection_select(:animal, :species_id, presenter.species, :id, :name, {}, {:class=>'span10'}) %>
 						</div>
@@ -70,7 +70,7 @@
 							<%= f.label :public %>
 							<%= f.check_box :public, :class => "form-control" %>
 						</div>
-						
+
 
 					</div>
 						<div class="col-sm-12 col-md-12 col-lg-12">
@@ -83,17 +83,16 @@
 	</div>
 </div>
 <% content_for :javascript_footer do %>
-	<script>
+	<script nonce=<%= content_security_policy_nonce(:script) %>>
 		$( "#animal_birthday" ).datepicker();
 		$( "#animal_date_of_intake" ).datepicker();
 		$( "#animal_date_of_well_check" ).datepicker();
 		$( "#animal_deceased" ).datepicker();
 		$.datepicker.setDefaults({
-			dateFormat: 'D, dd M yy' 
+			dateFormat: 'D, dd M yy'
 		});
 		$('#datetimepicker').datetimepicker({
     format: 'yyyy-mm-dd hh:ii'
 });
 	</script>
 <%end%>
-

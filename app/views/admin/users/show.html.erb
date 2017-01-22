@@ -243,7 +243,7 @@
 
 
 <% content_for :javascript_footer do %>
-	<script type="text/javascript">
+	<script type="text/javascript" nonce=<%= content_security_policy_nonce(:script) %>>
 		// Trigger juggernaut
 		// juggernaut_listen('<%= @user.id %>', 'user');
 		hos_cable_listen('<%= @user.id %>', 'user');
