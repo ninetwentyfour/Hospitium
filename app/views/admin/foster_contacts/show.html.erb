@@ -37,7 +37,12 @@
           </div>
           <div class="tab-pane" id="2">
             <% @animals.each do |animal| %>
-              <p><%= link_to raw("<i class='fa fa-remove'></i>"), "/admin/foster_animals/#{animal.id}?foster=#{@foster_contact.id}", :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Remove Animal"  %> <a href="/admin/animals/<%= animal.id %>"><%= animal.name %></a></p>
+              <p>
+                <%= link_to raw("<i class='fa fa-remove'></i>"), "/admin/foster_animals/#{animal.id}?foster=#{@foster_contact.id}", :method => :delete, :class => "pull-right tooltip-class", :rel => "tooltip", :title => "Remove Animal"  %> <a href="/admin/animals/<%= animal.id %>"><%= animal.name %></a>
+                <% if animal.adopted_date.present? %>
+                  <span style='font-size:12px;'> Fostered on: <%= animal.fostered_date.strftime("%m/%d/%Y") %></span>
+                <% end %>
+              </p>
             <%end%>
             <hr />
             <a class="btn btn-primary btn-rad btn-trans" data-toggle="modal" href="#newAnimal" ><i class="fa fa-plus"></i> Add Animal</a>
@@ -82,6 +87,8 @@
           <div class="form-group">
             <%= f.hidden_field :foster_contact_id %>
             <%= collection_select(:foster_animal, :animal_id, @adoptable_animals, :id, :name) %>
+            <%= f.label :fostered_date %>
+						<%= f.text_field :fostered_date, :class => "form-control" %>
           </div>
       </div>
       <div class="modal-footer">
@@ -106,5 +113,10 @@
     // juggernaut_listen('<%= @foster_contact.id %>', 'foster_contact', 'foster_contact');
     hos_cable_listen('<%= @foster_contact.id %>', 'foster_contact', 'foster_contact');
     contact_note_cable_listen('<%= @foster_contact.id %>', 'foster_contact', 'foster_contact');
+    $( "#foster_animal_fostered_date" ).datepicker();
+    // $( "#shot_expires" ).datepicker({yearRange: "-50:+50"});
+    $.datepicker.setDefaults({
+      dateFormat: 'D, dd M yy'
+    });
   </script>
 <% end %>

@@ -1,8 +1,8 @@
 class Animal < ActiveRecord::Base
   include CommonScopes
   include PublicActivity::Model
-  tracked owner: -> controller, model { controller.current_user }, 
-          recipient: -> controller, model { controller.current_user.organization }, 
+  tracked owner: -> controller, model { controller.current_user },
+          recipient: -> controller, model { controller.current_user.organization },
           params: {
             author_name: -> controller, model { controller.current_user.username },
             author_email: -> controller, model { controller.current_user.email },
@@ -26,7 +26,7 @@ class Animal < ActiveRecord::Base
   has_attached_file :second_image, ANIMAL_IMAGE_OPTIONS
   has_attached_file :third_image, ANIMAL_IMAGE_OPTIONS
   has_attached_file :fourth_image, ANIMAL_IMAGE_OPTIONS
-  
+
   belongs_to :organization
   belongs_to :species
   belongs_to :shelter
@@ -35,7 +35,7 @@ class Animal < ActiveRecord::Base
   belongs_to :spay_neuter
   belongs_to :biter
   belongs_to :status
-  
+
   has_many :animal_weights
   has_many :notes
   has_many :adopt_animals
@@ -45,10 +45,10 @@ class Animal < ActiveRecord::Base
   has_many :documents, as: :documentable
   has_many :shots
 
-  attr_accessible :name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased, 
+  attr_accessible :name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased,
     :deceased_reason, :adopted_date, :animal_color_id, :image, :second_image, :third_image, :fourth_image, :public, :birthday, :animal_sex_id, :spay_neuter_id,
-    :biter_id, :status_id, :video_embed, :microchip, :impressions_count, :archived
-  
+    :biter_id, :status_id, :video_embed, :microchip, :impressions_count, :archived, :fostered_date
+
   validates_presence_of :name, :date_of_intake, :organization, :species, :animal_color, :biter, :spay_neuter, :animal_sex, :status
   validates_attachment_content_type :image, content_type: ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']
   validates_attachment_content_type :second_image, content_type: ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']
@@ -56,7 +56,7 @@ class Animal < ActiveRecord::Base
   validates_attachment_content_type :fourth_image, content_type: ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']
   validates_attachment_size :image, less_than: 4.megabytes
   validates_attachment_size :second_image, less_than: 4.megabytes
-    
+
   delegate :name, to: :species, prefix: :species, allow_nil: true
   delegate :name, :phone_number, :address, :city, :state, :zip_code, :website, :email, to: :organization, prefix: :organization, allow_nil: true
   delegate :sex, to: :animal_sex, allow_nil: true
@@ -64,10 +64,10 @@ class Animal < ActiveRecord::Base
   delegate :color, to: :animal_color, allow_nil: true
   delegate :value, to: :biter, prefix: :biter, allow_nil: true
   delegate :name, to: :shelter, prefix: :shelter, allow_nil: true
-  
-  is_impressionable counter_cache: true, unique: :session_hash
 
-  
+  # is_impressionable counter_cache: true, unique: :session_hash
+
+
   def calculate_animal_age
     unless self.birthday.blank?
       age = "#{(Time.now.year - self.birthday.year).to_s} years"
@@ -82,23 +82,27 @@ class Animal < ActiveRecord::Base
     end
     age
   end
-  
+
   def formatted_deceased_date
     self.formatted_date('deceased')
   end
-  
+
   def formatted_intake_date
     self.formatted_date('date_of_intake')
   end
-  
+
   def formatted_well_date
     self.formatted_date('date_of_well_check')
   end
-  
+
   def formatted_adopted_date
     self.formatted_date('adopted_date')
   end
-  
+
+  def formatted_fostered_date
+    self.formatted_date('fostered_date')
+  end
+
   def formatted_date(type)
     unless self.send(type).blank?
       age = self.send(type).strftime('%a, %b %e %Y')

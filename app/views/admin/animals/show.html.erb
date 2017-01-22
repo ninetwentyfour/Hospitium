@@ -56,6 +56,7 @@
 						<p><strong>Date of Intake:</strong> <%= best_in_place @animal, :date_of_intake, :type => :date, :display_as => :formatted_intake_date, :path => admin_animal_path %></p>
 						<p><strong>Date of Well Check:</strong> <%= best_in_place @animal, :date_of_well_check, :nil => "Click me to add content!", :type => :date, :display_as => :formatted_well_date, :path => admin_animal_path %></p>
 						<p><strong>Adopted Date:</strong> <%= best_in_place @animal, :adopted_date, :nil => "Click me to add content!", :type => :date, :display_as => :formatted_adopted_date, :path => admin_animal_path %></p>
+						<p><strong>Fostered Date:</strong> <%= best_in_place @animal, :fostered_date, :nil => "Click me to add content!", :type => :date, :display_as => :formatted_fostered_date, :path => admin_animal_path %></p>
 						<p><strong>Deceased:</strong> <%= best_in_place @animal, :deceased, :type => :date, :display_as => :formatted_deceased_date, :nil => "Click me to add content!", :path => admin_animal_path %></p>
 						<p><strong>Deceased Reason</strong>: <%= best_in_place @animal, :deceased_reason, :type => :textarea, :nil => "Click me to add content!", :path => admin_animal_path %></p>
 					</div>
