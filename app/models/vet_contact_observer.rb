@@ -5,7 +5,7 @@ class VetContactObserver < ActiveRecord::Observer
     publish(:update, vet_contact)
   end
 
-  def publish(type, vet_contact)
+  def publish(_type, vet_contact)
     # Juggernaut.url = ENV['JUGG_URL']
     # Juggernaut.publish("/observer/vet_contact/#{vet_contact.id}", {
     #   id: vet_contact.id,
@@ -14,6 +14,6 @@ class VetContactObserver < ActiveRecord::Observer
     #   record: vet_contact.changes
     # })
     ActionCable.server.broadcast "bip_#{vet_contact.id}",
-      record: vet_contact.changes
+                                 record: vet_contact.changes
   end
 end

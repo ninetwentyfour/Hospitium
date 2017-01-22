@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :biter do
-    value "No"
+    value 'No'
   end
 end

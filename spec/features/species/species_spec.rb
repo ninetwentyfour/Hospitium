@@ -1,10 +1,10 @@
 require 'spec_helper'
- 
-feature 'Species' do 
+
+feature 'Species' do
   before :each do
     @user = new_logged_in_user
   end
- 
+
   context 'creating an species' do
     scenario 'user creates an species' do
       visit admin_species_index_path
@@ -21,8 +21,8 @@ feature 'Species' do
   context 'editing/viewing an species', js: true do
     before do
       @species = FactoryGirl.create(:species,
-                                   organization_id: @user.organization_id,
-                                   name: 'kangaroo')
+                                    organization_id: @user.organization_id,
+                                    name: 'kangaroo')
       @animal = FactoryGirl.create(:animal, organization_id: @user.organization_id, species_id: @species.id)
       sleep 0.2
       visit admin_species_path(@species.id)
@@ -61,7 +61,7 @@ feature 'Species' do
       within first('tbody tr') do
         expect(page).to have_content @species.name
 
-        page.find(".fa-remove").click
+        page.find('.fa-remove').click
         # page.driver.browser.switch_to.alert.accept # hack for selenium
         # page.driver.browser.accept_js_confirms # hack for webkit
       end
@@ -84,7 +84,7 @@ feature 'Species' do
 
       within first('tbody') do
         expect(page).to have_content @species.name
-      end      
+      end
     end
   end
 end

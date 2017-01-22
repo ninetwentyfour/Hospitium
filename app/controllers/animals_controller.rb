@@ -4,13 +4,13 @@ class AnimalsController < ApplicationController
   def index
     canonical_url('/animals')
 
-    @animals = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter).
-                      where(public: 1).
-                      paginate(page: params[:page], per_page: 10).
-                      order(updated_at: :desc).to_a.shuffle!
+    @animals = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter)
+                     .where(public: 1)
+                     .paginate(page: params[:page], per_page: 10)
+                     .order(updated_at: :desc).to_a.shuffle!
 
     # only show animals from orgs that have contact info
-    @animals.select! {|animal| animal.organization.has_info? }
+    @animals.select! { |animal| animal.organization.has_info? }
     respond_with(@animals)
   end
 
@@ -30,9 +30,9 @@ class AnimalsController < ApplicationController
 
   def not_available
     canonical_url('/animals/not_available')
-    @animals = Animal.where(public: 1).
-                      limit(5).
-                      order(updated_at: :desc)
+    @animals = Animal.where(public: 1)
+                     .limit(5)
+                     .order(updated_at: :desc)
 
     respond_with(@animals)
   end

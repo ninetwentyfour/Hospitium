@@ -1,26 +1,26 @@
 class Animal < ActiveRecord::Base
   include CommonScopes
   include PublicActivity::Model
-  tracked owner: -> controller, model { controller.current_user },
-          recipient: -> controller, model { controller.current_user.organization },
+  tracked owner: ->(controller, _model) { controller.current_user },
+          recipient: ->(controller, _model) { controller.current_user.organization },
           params: {
-            author_name: -> controller, model { controller.current_user.username },
-            author_email: -> controller, model { controller.current_user.email },
-            object_name: -> controller, model { model.name },
-            summary: -> controller, model { model.changes }
+            author_name: ->(controller, _model) { controller.current_user.username },
+            author_email: ->(controller, _model) { controller.current_user.email },
+            object_name: ->(_controller, model) { model.name },
+            summary: ->(_controller, model) { model.changes }
           }
 
   ANIMAL_IMAGE_OPTIONS = {
     storage: :s3,
     s3_protocol: 'https',
-    s3_credentials: {access_key_id: ENV['S3_KEY'], secret_access_key: ENV['S3_SECRET']},
+    s3_credentials: { access_key_id: ENV['S3_KEY'], secret_access_key: ENV['S3_SECRET'] },
     bucket: 'hospitium-static-v2',
     styles: { large: '530x530#', medium: '260x180#', thumb: '140x140#' },
     default_url: 'https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png',
     url: '/system/:class/:hash/:style/:filename',
     # :url  => "/system/:class_migration/:animalname_:orgname_:createdat/:style/:filename",
     hash_secret: ENV['SALTY']
-  }
+  }.freeze
 
   has_attached_file :image, ANIMAL_IMAGE_OPTIONS
   has_attached_file :second_image, ANIMAL_IMAGE_OPTIONS
@@ -46,10 +46,10 @@ class Animal < ActiveRecord::Base
   has_many :shots
 
   attr_accessible :name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased,
-    :deceased_reason, :adopted_date, :animal_color_id, :image, :second_image, :third_image, :fourth_image, :public, :birthday, :animal_sex_id, :spay_neuter_id,
-    :biter_id, :status_id, :video_embed, :microchip, :impressions_count, :archived, :fostered_date
+                  :deceased_reason, :adopted_date, :animal_color_id, :image, :second_image, :third_image, :fourth_image, :public, :birthday, :animal_sex_id, :spay_neuter_id,
+                  :biter_id, :status_id, :video_embed, :microchip, :impressions_count, :archived, :fostered_date
 
-  validates_presence_of :name, :date_of_intake, :organization, :species, :animal_color, :biter, :spay_neuter, :animal_sex, :status
+  validates :name, :date_of_intake, :organization, :species, :animal_color, :biter, :spay_neuter, :animal_sex, :status, presence: true
   validates_attachment_content_type :image, content_type: ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']
   validates_attachment_content_type :second_image, content_type: ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']
   validates_attachment_content_type :third_image, content_type: ['image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png']
@@ -67,47 +67,44 @@ class Animal < ActiveRecord::Base
 
   # is_impressionable counter_cache: true, unique: :session_hash
 
-
   def calculate_animal_age
-    unless self.birthday.blank?
-      age = "#{(Time.now.year - self.birthday.year).to_s} years"
-      if age == '0 years'
-        age = "#{(Time.now.month - self.birthday.month).to_s} months"
-        if age == '0 months'
-          age = "#{(Time.now.day - self.birthday.day).to_s} days"
-        end
-      end
-    else
+    if birthday.blank?
       age = ''
+    else
+      age = "#{(Time.now.year - birthday.year)} years"
+      if age == '0 years'
+        age = "#{(Time.now.month - birthday.month)} months"
+        age = "#{(Time.now.day - birthday.day)} days" if age == '0 months'
+      end
     end
     age
   end
 
   def formatted_deceased_date
-    self.formatted_date('deceased')
+    formatted_date('deceased')
   end
 
   def formatted_intake_date
-    self.formatted_date('date_of_intake')
+    formatted_date('date_of_intake')
   end
 
   def formatted_well_date
-    self.formatted_date('date_of_well_check')
+    formatted_date('date_of_well_check')
   end
 
   def formatted_adopted_date
-    self.formatted_date('adopted_date')
+    formatted_date('adopted_date')
   end
 
   def formatted_fostered_date
-    self.formatted_date('fostered_date')
+    formatted_date('fostered_date')
   end
 
   def formatted_date(type)
-    unless self.send(type).blank?
-      age = self.send(type).strftime('%a, %b %e %Y')
-    else
+    if send(type).blank?
       age = ''
+    else
+      age = send(type).strftime('%a, %b %e %Y')
     end
     age
   end
@@ -120,11 +117,11 @@ class Animal < ActiveRecord::Base
     name 'Name'
     previous_name 'Previous Name'
     birthday 'Birthday'
-    species 'Species' do |species| species.name end
-    animal_color 'Animal Color' do |ac| ac.color end
-    spay_neuter 'Spay / Neuter' do |sn| sn.spay end
-    biter 'Biter' do |b| b.value end
-    animal_sex 'Sex' do |s| s.sex end
+    species 'Species', &:name
+    animal_color 'Animal Color', &:color
+    spay_neuter 'Spay / Neuter', &:spay
+    biter 'Biter', &:value
+    animal_sex 'Sex', &:sex
     public 'Public' do |p| p == 1 ? 'yes' : 'no' end
     status 'Status' do |s| s.try(:status) end
     special_needs 'Special Needs'

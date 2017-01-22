@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Admin::Animals::ShowPresenter do
   before :each do
     @user = FactoryGirl.create(:user)
-    @animal = FactoryGirl.create(:animal, :organization_id => @user.organization_id)
+    @animal = FactoryGirl.create(:animal, organization_id: @user.organization_id)
   end
 
   describe 'presenter methods' do

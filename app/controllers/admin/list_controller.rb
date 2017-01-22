@@ -8,11 +8,9 @@
 # The loaded model entries are available in the view as an instance variable
 # named after the +model_class+ or by the helper method +entries+.
 class Admin::ListController < Admin::ApplicationController
-
   helper_method :model_class, :models_label, :entries, :path_args
 
   delegate :model_class, :models_label, to: 'self.class'
-
 
   respond_to :html, :json
 
@@ -92,7 +90,6 @@ class Admin::ListController < Admin::ApplicationController
 
       model_class.model_name.human(opts)
     end
-
   end
 
   # Provide +before_render+ callbacks.
@@ -142,7 +139,7 @@ class Admin::ListController < Admin::ApplicationController
 
       def callback_terminator
         if ::ActiveSupport::VERSION::STRING >= '4.1'
-          lambda { |target, result| result == false || performed? }
+          ->(_target, result) { result == false || performed? }
         else
           'result == false || performed?'
         end
@@ -394,5 +391,4 @@ class Admin::ListController < Admin::ApplicationController
   # end
 
   # include Nesting
-
 end

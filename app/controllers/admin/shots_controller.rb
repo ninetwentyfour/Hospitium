@@ -1,6 +1,6 @@
 class Admin::ShotsController < Admin::CrudController
   load_and_authorize_resource
-  
+
   respond_to :html, :json, :csv
 
   # Allowed params for create and update
@@ -9,15 +9,17 @@ class Admin::ShotsController < Admin::CrudController
   self.save_as_organization = true
   # redirect somewhere other than the object on create
   self.redirect_on_create = :back
-  
+
   # GET /shots
   # GET /shots.csv
   def index
     @presenter = Admin::Shots::IndexPresenter.new(current_user, params[:page], params[:q], params[:animal_id])
     respond_with(@shots) do |format|
       format.html
-      format.csv { render :csv => Shot.includes(:animal).organization(current_user),
-                          :filename => 'shots' }
+      format.csv do
+        render csv: Shot.includes(:animal).organization(current_user),
+               filename: 'shots'
+      end
     end
   end
 

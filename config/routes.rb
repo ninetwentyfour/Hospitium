@@ -1,29 +1,28 @@
 AnimalTracker::Application.routes.draw do
   mount ActionCable.server => '/cable'
-  resource :facebook_accounts, :only => [:new, :destroy]
+  resource :facebook_accounts, only: [:new, :destroy]
   get 'callback/facebook/:id', to: 'facebook_accounts#callback', as: :facebook_callback
   post 'facebook_accounts/send_wall_post', to: 'facebook_accounts#send_wall_post'
   delete 'facebook_accounts/:id', to: 'facebook_accounts#destroy'
 
-
-  resource :twitter_accounts, :only => [:new, :destroy]
+  resource :twitter_accounts, only: [:new, :destroy]
   get 'callback/twitter', to: 'twitter_accounts#callback', as: :twitter_callback
   post 'twitter_accounts/send_tweet', to: 'twitter_accounts#send_tweet'
   delete 'twitter_accounts/:id', to: 'twitter_accounts#destroy'
 
   get '/animals/not_available', to: 'animals#not_available'
-  resources :animals, :only => [:show, :index]
+  resources :animals, only: [:show, :index]
 
-  resources :organizations, :only => [:show]
+  resources :organizations, only: [:show]
 
-  resources :posts, :only => [:show, :index]
+  resources :posts, only: [:show, :index]
 
   post 'wordpress_accounts/send_blog_post', to: 'admin/wordpress_accounts#send_blog_post'
   get 'send-to-adopt-a-pet', to: 'admin/adopt_a_pet_accounts#send_animal'
 
   devise_for :users
-  get "home/index"
-  root :to => "home#index"
+  get 'home/index'
+  root to: 'home#index'
   get 'about', to: 'home#about'
   get 'features', to: 'home#features'
   get 'privacy-and-terms-of-service', to: 'home#privacy'
@@ -38,7 +37,7 @@ AnimalTracker::Application.routes.draw do
 
   # Prefix route urls with "admin"
   namespace :admin do
-    root :to => "home#index"
+    root to: 'home#index'
 
     resources :species,
               :statuses,
@@ -82,5 +81,5 @@ AnimalTracker::Application.routes.draw do
     end
   end
 
-  post SecureHeaders::ContentSecurityPolicy::FF_CSP_ENDPOINT => "content_security_policy#scribe"
+  post SecureHeaders::ContentSecurityPolicy::FF_CSP_ENDPOINT => 'content_security_policy#scribe'
 end

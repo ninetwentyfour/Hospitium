@@ -1,6 +1,6 @@
 require 'spec_helper'
- 
-describe 'User Password Reset' do 
+
+describe 'User Password Reset' do
   before :each do
     @user = FactoryGirl.create(:user)
     @user.confirmed_at = Time.now
@@ -13,11 +13,11 @@ describe 'User Password Reset' do
     @user.reload
     expect(@user.reset_password_token).to_not be_nil
   end
- 
+
   it 'shows message about the password reset email' do
     expect(page).to have_content('You will receive an email with instructions about how to reset your password in a few minutes.')
   end
- 
+
   describe 'password reset email' do
     it 'has the correct email content' do
       open_email(@user.email)
@@ -26,7 +26,7 @@ describe 'User Password Reset' do
       expect(current_email.body).to have_content 'Change my password'
     end
 
-    context 'when clicking reset link in email' do   
+    context 'when clicking reset link in email' do
       it 'lets the user set a new password' do
         open_email(@user.email)
 

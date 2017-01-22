@@ -4,13 +4,13 @@ describe Admin::ShotsController do
   before :each do
     login_user
 
-    @shot = FactoryGirl.create(:shot, :organization_id => subject.current_user.organization_id)
+    @shot = FactoryGirl.create(:shot, organization_id: subject.current_user.organization_id)
 
-    request.env["HTTP_REFERER"] = "http://test.host"
+    request.env['HTTP_REFERER'] = 'http://test.host'
   end
 
   describe 'GET "index"' do
-    it "returns http success" do
+    it 'returns http success' do
       get 'index'
       response.should be_success
     end
@@ -19,18 +19,17 @@ describe Admin::ShotsController do
       get 'index'
       assigns(:shots).include?(@shot).should == true
     end
-
   end
 
-  describe "GET show" do
-    it "assigns the requested shot as @shot" do
-      get :show, {:id => @shot.to_param}
+  describe 'GET show' do
+    it 'assigns the requested shot as @shot' do
+      get :show, params: { id: @shot.to_param }
       assigns(:shot).should eq(@shot)
     end
   end
 
-  describe "GET new" do
-    it "assigns a new shot as @shot" do
+  describe 'GET new' do
+    it 'assigns a new shot as @shot' do
       get :new
       assigns(:shot).should be_a_new(Shot)
     end
@@ -64,35 +63,35 @@ describe Admin::ShotsController do
   #   end
   # end
 
-  describe "PUT update" do
-    describe "with valid params" do
-      it "assigns the requested shot as @shot" do
-        put :update, id: @shot, shot: FactoryGirl.attributes_for(:shot)
-        assigns(:shot).should eq(@shot) 
+  describe 'PUT update' do
+    describe 'with valid params' do
+      it 'assigns the requested shot as @shot' do
+        put :update, params: { id: @shot, shot: FactoryGirl.attributes_for(:shot) }
+        assigns(:shot).should eq(@shot)
       end
-      
+
       # it "changes @shot attributes" do
       #   put :update, {:id => @shot.id, :shot => { "name" => "test" }}
       #   @shot.reload
       #   @shot.name.should eq("edit")
       # end
 
-      it "redirects to the shot" do
-        put :update, id: @shot, shot: FactoryGirl.attributes_for(:shot)
+      it 'redirects to the shot' do
+        put :update, params: { id: @shot, shot: FactoryGirl.attributes_for(:shot) }
         response.should redirect_to(admin_shot_path(@shot))
       end
     end
   end
 
-  describe "DELETE destroy" do
-    it "destroys the requested shot" do
-      expect {
-        delete :destroy, {:id => @shot.to_param}
-      }.to change(Shot, :count).by(-1)
+  describe 'DELETE destroy' do
+    it 'destroys the requested shot' do
+      expect do
+        delete :destroy, params: { id: @shot.to_param }
+      end.to change(Shot, :count).by(-1)
     end
 
-    it "redirects to the shots list" do
-      delete :destroy, {:id => @shot.to_param}
+    it 'redirects to the shots list' do
+      delete :destroy, params: { id: @shot.to_param }
       response.should redirect_to(admin_shots_url)
     end
   end

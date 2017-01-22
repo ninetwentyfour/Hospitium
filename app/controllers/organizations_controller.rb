@@ -9,7 +9,7 @@ class OrganizationsController < ApplicationController
     @animals = Rails.cache.fetch("public_org_animals_#{params[:id]}", expires_in: 15.minutes) do
       Animal.where(public: 1, organization_id: @organization.id)
     end
-    
+
     respond_with(@organization)
   end
 end

@@ -1,12 +1,12 @@
 require 'spec_helper'
- 
-describe 'Existing User Dashboard' do 
+
+describe 'Existing User Dashboard' do
   before :each do
     @user = existing_logged_in_user
 
     visit admin_root_path
   end
- 
+
   it 'does not show the Initial Setup instructions to the user' do
     expect(page).to_not have_content('Initial Setup')
     expect(page).to_not have_content('Before doing anything else with your new account')
@@ -96,7 +96,7 @@ describe 'Existing User Dashboard' do
     #   within '#public_animals_list' do
     #     expect(page).to have_content @animal.name
     #     expect(page).to have_content '1'
-    #   end      
+    #   end
     # end
   end
 end

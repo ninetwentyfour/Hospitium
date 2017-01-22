@@ -1,55 +1,55 @@
 require 'spec_helper'
 
-#this is the public animals controller
+# this is the public animals controller
 describe Admin::AdoptAnimalsController do
   before(:each) do
     login_user
     @user = subject.current_user
 
-    @animal = FactoryGirl.create(:animal, :organization_id => @user.organization_id)
-    @adoption_contact = FactoryGirl.create(:adoption_contact, :organization_id => @user.organization_id)
-    @adopt_animal = FactoryGirl.create(:adopt_animal, :animal_id => @animal.id, :adoption_contact_id => @adoption_contact.id)
+    @animal = FactoryGirl.create(:animal, organization_id: @user.organization_id)
+    @adoption_contact = FactoryGirl.create(:adoption_contact, organization_id: @user.organization_id)
+    @adopt_animal = FactoryGirl.create(:adopt_animal, animal_id: @animal.id, adoption_contact_id: @adoption_contact.id)
 
-    request.env["HTTP_REFERER"] = "http://test.host"
+    request.env['HTTP_REFERER'] = 'http://test.host'
   end
 
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new adopt_animal" do
+  describe 'POST create' do
+    describe 'with valid params' do
+      it 'creates a new adopt_animal' do
         AdoptAnimal.observers.disable :all do
-          expect {
-            post :create, {:adopt_animal => {:animal_id => @animal.id, :adoption_contact_id => @adoption_contact.id}}
-          }.to change(AdoptAnimal, :count).by(1)
+          expect do
+            post :create, params: { adopt_animal: { animal_id: @animal.id, adoption_contact_id: @adoption_contact.id } }
+          end.to change(AdoptAnimal, :count).by(1)
         end
       end
 
-      it "assigns a newly created adopt_animal as @adopt_animal" do
+      it 'assigns a newly created adopt_animal as @adopt_animal' do
         AdoptAnimal.observers.disable :all do
-          post :create, {:adopt_animal => {:animal_id => @animal.id, :adoption_contact_id => @adoption_contact.id}}
+          post :create, params: { adopt_animal: { animal_id: @animal.id, adoption_contact_id: @adoption_contact.id } }
           assigns(:adopt_animal).should be_a(AdoptAnimal)
           assigns(:adopt_animal).should be_persisted
         end
       end
 
-      it "redirects to the created back" do
+      it 'redirects to the created back' do
         AdoptAnimal.observers.disable :all do
-          post :create, {:adopt_animal => {:animal_id => @animal.id, :adoption_contact_id => @adoption_contact.id}}
-          response.should redirect_to "http://test.host"
+          post :create, params: { adopt_animal: { animal_id: @animal.id, adoption_contact_id: @adoption_contact.id } }
+          response.should redirect_to 'http://test.host'
         end
       end
     end
   end
 
-  describe "DELETE destroy" do
-    it "destroys the requested adopt_animal" do
-      expect {
-        delete :destroy, {:id => @adopt_animal.animal.id, :adopt => @adopt_animal.adoption_contact.id}
-      }.to change(AdoptAnimal, :count).by(-1)
+  describe 'DELETE destroy' do
+    it 'destroys the requested adopt_animal' do
+      expect do
+        delete :destroy, params: { id: @adopt_animal.animal.id, adopt: @adopt_animal.adoption_contact.id }
+      end.to change(AdoptAnimal, :count).by(-1)
     end
 
-    it "redirects to back" do
-      delete :destroy, {:id => @adopt_animal.animal.id, :adopt => @adopt_animal.adoption_contact.id}
-      response.should redirect_to "http://test.host"
+    it 'redirects to back' do
+      delete :destroy, params: { id: @adopt_animal.animal.id, adopt: @adopt_animal.adoption_contact.id }
+      response.should redirect_to 'http://test.host'
     end
   end
 end

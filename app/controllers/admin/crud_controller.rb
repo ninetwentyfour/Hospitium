@@ -55,12 +55,14 @@ class Admin::CrudController < Admin::ListController
   #   POST /entries.json
   def create(options = {}, &block)
     assign_attributes
-    created = with_callbacks(:create, :save) { with_organization
-                                               entry.save
-                                             }
+    created = with_callbacks(:create, :save) do
+      with_organization
+      entry.save
+    end
     respond_options = options.reverse_merge(success: created)
-    if redirect_on_create and !request.env["HTTP_REFERER"].blank? and request.env["HTTP_REFERER"] != request.env["REQUEST_URI"]
-      redirect_to redirect_on_create
+    if redirect_on_create && !request.env['HTTP_REFERER'].blank? && (request.env['HTTP_REFERER'] != request.env['REQUEST_URI'])
+      # redirect_to redirect_on_create
+      redirect_back(fallback_location: '/admin')
     else
       respond_with(:admin, entry, respond_options, &block)
     end
@@ -68,7 +70,7 @@ class Admin::CrudController < Admin::ListController
 
   # Display a form to edit an exisiting entry of this model.
   #   GET /entries/1/edit
-  def edit(&block)
+  def edit
     # respond_with(:admin, entry, &block)
     redirect_to index_url
   end
@@ -103,11 +105,12 @@ class Admin::CrudController < Admin::ListController
     location ||= index_url
     respond_options = options.reverse_merge(success: destroyed,
                                             location: location)
-    if redirect_on_delete and !request.env["HTTP_REFERER"].blank? and request.env["HTTP_REFERER"] != request.env["REQUEST_URI"]
-      redirect_to redirect_on_delete
+    if redirect_on_delete && !request.env['HTTP_REFERER'].blank? && (request.env['HTTP_REFERER'] != request.env['REQUEST_URI'])
+      # redirect_to redirect_on_delete
+      redirect_back(fallback_location: '/admin')
     else
-      location = !destroyed && request.env["HTTP_REFERER"].presence || index_url
-      respond_with(:admin, entry, options.reverse_merge(:success => destroyed, :location => location), &block)
+      location = !destroyed && request.env['HTTP_REFERER'].presence || index_url
+      respond_with(:admin, entry, options.reverse_merge(success: destroyed, location: location), &block)
     end
   end
 
@@ -154,9 +157,7 @@ class Admin::CrudController < Admin::ListController
 
   # Set a success flash notice when we got a HTML request.
   def set_success_notice
-    if request.format == :html
-      flash[:notice] ||= flash_message(:success)
-    end
+    flash[:notice] ||= flash_message(:success) if request.format == :html
   end
 
   # Set a failure flash notice when we got a HTML request.
@@ -208,7 +209,6 @@ class Admin::CrudController < Admin::ListController
   # An additional :success option is used to handle action callback
   # chain halts.
   class Responder < ActionController::Responder
-
     def initialize(controller, resources, options = {})
       super(controller, with_path_args(resources, controller), options)
     end
@@ -229,9 +229,7 @@ class Admin::CrudController < Admin::ListController
         resources
       end
     end
-
   end
 
   self.responder = Responder
-
 end

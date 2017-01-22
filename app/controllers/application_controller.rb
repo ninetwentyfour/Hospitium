@@ -1,22 +1,21 @@
 class ApplicationController < ActionController::Base
   include ActionController::HttpAuthentication::Token
-  before_filter :check_domain
-  before_filter :get_notice
-  before_filter :authenticate_user_from_token!, unless: :devise_controller?
-  before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_action :check_domain
+  before_action :get_notice
+  before_action :authenticate_user_from_token!, unless: :devise_controller?
+  before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery # Turn on request forgery protection. Bear in mind that only non-GET, HTML/JavaScript requests are checked.
   ensure_security_headers
 
-
-  #display notice on every admin page
+  # display notice on every admin page
   def get_notice
-    @random_notice = Rails.cache.fetch('random_notifications', expires_in: 1.minutes) do
-      Notification.offset(rand(Notification.count)).select('notifications.message, notifications.status_type').first() unless Notification.count == 0
+    @random_notice = Rails.cache.fetch('random_notifications', expires_in: 1.minute) do
+      Notification.offset(rand(Notification.count)).select('notifications.message, notifications.status_type').first unless Notification.count == 0
     end
   end
 
   # redirect to /admin after all logins
-  def after_sign_in_path_for(resource_or_scope)
+  def after_sign_in_path_for(_resource_or_scope)
     '/admin'
   end
 
@@ -24,16 +23,18 @@ class ApplicationController < ActionController::Base
     exception.default_message = 'Default error message'
     respond_to do |format|
       format.html { redirect_to root_url, notice: 'That URL is prohibited' }
-      format.json { render status: 401,
-                           json: {
-                            success: false,
-                            info: 'That URL is prohibited'
-                           }}
+      format.json do
+        render status: 401,
+               json: {
+                 success: false,
+                 info: 'That URL is prohibited'
+               }
+      end
     end
   end
 
   rescue_from ActiveRecord::RecordNotFound do
-    raise ActionController::RoutingError.new('Not Found')
+    raise ActionController::RoutingError, 'Not Found'
   end
 
   # pretty sure this isnt used and can be removed
@@ -52,7 +53,7 @@ class ApplicationController < ActionController::Base
   # end
 
   def check_domain
-    if Rails.env.production? and request.host.downcase != 'hospitium.co'
+    if Rails.env.production? && !request.host.casecmp('hospitium.co').zero?
       redirect_to request.protocol + 'hospitium.co' + request.fullpath, status: 301
     end
   end

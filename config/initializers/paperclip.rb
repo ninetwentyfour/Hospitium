@@ -10,26 +10,26 @@
 #   attachment.instance.try(:organization).try(:name).downcase.underscore
 # end
 
-Paperclip.interpolates :animalname do |attachment, style|
+Paperclip.interpolates :animalname do |attachment, _style|
   attachment.instance.try(:name).downcase.parameterize.underscore
 end
 
-Paperclip.interpolates :docname do |attachment, style|
+Paperclip.interpolates :docname do |attachment, _style|
   attachment.instance.try(:document_file_size).to_i.to_s
 end
 
-Paperclip.interpolates :docolduid do |attachment, style|
+Paperclip.interpolates :docolduid do |attachment, _style|
   attachment.instance.try(:uuid)
 end
 
-Paperclip.interpolates :createdat do |attachment, style|
+Paperclip.interpolates :createdat do |attachment, _style|
   attachment.instance.try(:created_at).to_i.to_s
 end
 
-Paperclip.interpolates :orgname do |attachment, style|
+Paperclip.interpolates :orgname do |attachment, _style|
   attachment.instance.try(:organization).try(:name).downcase.parameterize.underscore
 end
 
-Paperclip.interpolates :selfname do |attachment, style|
+Paperclip.interpolates :selfname do |attachment, _style|
   attachment.instance.try(:name).downcase.parameterize.underscore
 end

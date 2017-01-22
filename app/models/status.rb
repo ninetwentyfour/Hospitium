@@ -1,8 +1,8 @@
 class Status < ActiveRecord::Base
   include CommonScopes
   # include PublicActivity::Model
-  # tracked owner: -> controller, model { controller.current_user }, 
-  #         recipient: -> controller, model { controller.current_user.organization }, 
+  # tracked owner: -> controller, model { controller.current_user },
+  #         recipient: -> controller, model { controller.current_user.organization },
   #         params: {
   #           author_name: -> controller, model { controller.current_user.username },
   #           author_email: -> controller, model { controller.current_user.email },
@@ -15,14 +15,14 @@ class Status < ActiveRecord::Base
 
   attr_accessible :status
 
-  validates_presence_of :status, :organization_id
-  
+  validates :status, :organization_id, presence: true
+
   # show the link in the admin UI instead of the link id
   def show_status_label_method
-    self.status
+    status
   end
-  
+
   def report_display_name
-    self.status
+    status
   end
 end

@@ -15,8 +15,10 @@ class Admin::AdoptionContactsController < Admin::CrudController
     @presenter = Admin::AdoptionContacts::IndexPresenter.new(current_user, params[:page], params[:q], params[:animal_id])
     respond_with(@adoption_contacts) do |format|
       format.html
-      format.csv { render :csv => AdoptionContact.organization(current_user),
-                          :filename => 'adoption_contacts' }
+      format.csv do
+        render csv: AdoptionContact.organization(current_user),
+               filename: 'adoption_contacts'
+      end
     end
   end
 

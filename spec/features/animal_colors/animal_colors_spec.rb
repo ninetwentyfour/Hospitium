@@ -1,10 +1,10 @@
 require 'spec_helper'
- 
-feature 'Animal Colors' do 
+
+feature 'Animal Colors' do
   before :each do
     @user = new_logged_in_user
   end
- 
+
   context 'creating an animal color' do
     scenario 'user creates an animal color' do
       visit admin_animal_colors_path
@@ -21,8 +21,8 @@ feature 'Animal Colors' do
   context 'editing/viewing an animal color', js: true do
     before do
       @color = FactoryGirl.create(:animal_color,
-                                   organization_id: @user.organization_id,
-                                   color: 'super orange')
+                                  organization_id: @user.organization_id,
+                                  color: 'super orange')
       @animal = FactoryGirl.create(:animal, organization_id: @user.organization_id, animal_color_id: @color.id)
       sleep 0.2
       visit admin_animal_color_path(@color.id)
@@ -46,8 +46,8 @@ feature 'Animal Colors' do
   context 'listing animal colors' do
     before do
       @color = FactoryGirl.create(:animal_color,
-                                    organization_id: @user.organization_id,
-                                    color: 'white')
+                                  organization_id: @user.organization_id,
+                                  color: 'white')
       visit admin_animal_colors_path
     end
 
@@ -61,7 +61,7 @@ feature 'Animal Colors' do
       within first('tbody tr') do
         expect(page).to have_content @color.color
 
-        page.find(".fa-remove").click
+        page.find('.fa-remove').click
         # page.driver.browser.switch_to.alert.accept # hack for selenium
         # page.driver.browser.accept_js_confirms # hack for webkit
       end
@@ -84,7 +84,7 @@ feature 'Animal Colors' do
 
       within first('tbody') do
         expect(page).to have_content @color.color
-      end      
+      end
     end
   end
 end

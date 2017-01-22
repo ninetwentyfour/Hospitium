@@ -1,10 +1,10 @@
 require 'spec_helper'
- 
-feature 'Status' do 
+
+feature 'Status' do
   before :each do
     @user = new_logged_in_user
   end
- 
+
   context 'creating a status' do
     scenario 'user creates a status' do
       visit admin_statuses_path
@@ -46,8 +46,8 @@ feature 'Status' do
   context 'listing status' do
     before do
       @status = FactoryGirl.create(:status,
-                                    organization_id: @user.organization_id,
-                                    status: 'awesome')
+                                   organization_id: @user.organization_id,
+                                   status: 'awesome')
       visit admin_statuses_path
     end
 
@@ -61,7 +61,7 @@ feature 'Status' do
       within first('tbody tr') do
         expect(page).to have_content @status.status
 
-        page.find(".fa-remove").click
+        page.find('.fa-remove').click
         # page.driver.browser.switch_to.alert.accept # hack for selenium
         # page.driver.browser.accept_js_confirms # hack for webkit
       end
@@ -84,7 +84,7 @@ feature 'Status' do
 
       within first('tbody') do
         expect(page).to have_content @status.status
-      end      
+      end
     end
   end
 end

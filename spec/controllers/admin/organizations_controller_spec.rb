@@ -10,7 +10,7 @@ describe Admin::OrganizationsController do
   end
 
   describe 'GET "index"' do
-    it "returns http success" do
+    it 'returns http success' do
       get 'index'
       response.should be_success
     end
@@ -19,24 +19,22 @@ describe Admin::OrganizationsController do
       get 'index'
       assigns(:organizations).include?(@organization).should == true
     end
-
   end
 
-  describe "PUT update" do
-    describe "with valid params" do
-      it "assigns the requested organization as @organization" do
-        request.env["HTTP_REFERER"] = "localhost"
-        put :update, id: @organization, organization: FactoryGirl.attributes_for(:organization)
-        assigns(:organization).should eq(@organization) 
+  describe 'PUT update' do
+    describe 'with valid params' do
+      it 'assigns the requested organization as @organization' do
+        request.env['HTTP_REFERER'] = 'localhost'
+        put :update, params: { id: @organization, organization: FactoryGirl.attributes_for(:organization) }
+        assigns(:organization).should eq(@organization)
       end
-      
-      it "changes @organization attributes" do
-        request.env["HTTP_REFERER"] = "localhost"
-        put :update, {:id => @organization.to_param, :organization => { "name" => "Edit" }}
+
+      it 'changes @organization attributes' do
+        request.env['HTTP_REFERER'] = 'localhost'
+        put :update, params: { id: @organization.to_param, organization: { 'name' => 'Edit' } }
         @organization.reload
-        @organization.name.should eq("Edit")
+        @organization.name.should eq('Edit')
       end
     end
   end
-
 end

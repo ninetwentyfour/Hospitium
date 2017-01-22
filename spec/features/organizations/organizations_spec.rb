@@ -73,7 +73,7 @@ feature 'Species' do
 
     xscenario 'user uploads forms' do
       # add adoption form
-      VCR.use_cassette('features/org_adopt_add', :match_requests_on => [:method]) do
+      VCR.use_cassette('features/org_adopt_add', match_requests_on: [:method]) do
         # add
         click_on 'Add Adoption Form'
         attach_file('organization_adoption_form', File.absolute_path('./spec/fixtures/Animal_Surrender_Form.pdf'))
@@ -82,7 +82,7 @@ feature 'Species' do
       end
 
       # add volunteer form
-      VCR.use_cassette('features/org_volunteer_add', :match_requests_on => [:method]) do
+      VCR.use_cassette('features/org_volunteer_add', match_requests_on: [:method]) do
         # add
         click_on 'Add Volunteer Form'
         attach_file('organization_volunteer_form', File.absolute_path('./spec/fixtures/Animal_Surrender_Form.pdf'))
@@ -91,7 +91,7 @@ feature 'Species' do
       end
 
       # add relinquishment form
-      VCR.use_cassette('features/org_relinquishment_add', :match_requests_on => [:method]) do
+      VCR.use_cassette('features/org_relinquishment_add', match_requests_on: [:method]) do
         # add
         click_on 'Add Relinquishment Form'
         attach_file('organization_relinquishment_form', File.absolute_path('./spec/fixtures/Animal_Surrender_Form.pdf'))
@@ -100,7 +100,7 @@ feature 'Species' do
       end
 
       # add foster form
-      VCR.use_cassette('features/org_foster_add', :match_requests_on => [:method]) do
+      VCR.use_cassette('features/org_foster_add', match_requests_on: [:method]) do
         # add
         click_on 'Add Foster Form'
         attach_file('organization_foster_form', File.absolute_path('./spec/fixtures/Animal_Surrender_Form.pdf'))

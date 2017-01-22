@@ -1,0 +1,12 @@
+Style/ConditionalAssignment:
+  Enabled: false
+AllCops:
+  Include:
+    - Rakefile
+    - config.ru
+    - lib/**/*.rake
+  Exclude:
+    - db/schema.rb
+    - 'db/**/*'
+    - 'features/**/*'
+    - 'vendor/**/*'

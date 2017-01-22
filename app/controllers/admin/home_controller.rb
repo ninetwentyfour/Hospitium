@@ -1,5 +1,4 @@
 class Admin::HomeController < Admin::ApplicationController
-
   def index
     @presenter = Admin::Home::IndexPresenter.new(current_user)
 
@@ -11,7 +10,7 @@ class Admin::HomeController < Admin::ApplicationController
   private
 
   def send_stats
-    return if [1,2].sample == 1
+    return if [1, 2].sample == 1
     threads = []
 
     threads << Thread.new do
@@ -30,6 +29,6 @@ class Admin::HomeController < Admin::ApplicationController
       $statsd.gauge 'number_events', PublicActivity::Activity.count
     end
 
-    threads.each { |thread| thread.join }
+    threads.each(&:join)
   end
 end

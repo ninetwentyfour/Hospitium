@@ -15,8 +15,10 @@ class Admin::FosterContactsController < Admin::CrudController
     @presenter = Admin::FosterContacts::IndexPresenter.new(current_user, params[:page], params[:q])
     respond_with(@foster_contacts) do |format|
       format.html
-      format.csv { render :csv => FosterContact.organization(current_user),
-                          :filename => 'foster_contacts' }
+      format.csv do
+        render csv: FosterContact.organization(current_user),
+               filename: 'foster_contacts'
+      end
     end
   end
 

@@ -13,11 +13,11 @@ class Organization < ActiveRecord::Base
   ORGANIZATION_FORM_OPTIONS = {
     storage: :s3,
     s3_protocol: 'https',
-    s3_credentials: {access_key_id: ENV['S3_KEY'], secret_access_key: ENV['S3_SECRET']},
+    s3_credentials: { access_key_id: ENV['S3_KEY'], secret_access_key: ENV['S3_SECRET'] },
     bucket: 'hospitium-static-v2',
     url: '/system/:attachment/:hash/:filename',
     hash_secret: ENV['SALTY']
-  }
+  }.freeze
 
   has_attached_file :adoption_form,
                     ORGANIZATION_FORM_OPTIONS.merge(default_url: 'https://d4uktpxr9m70.cloudfront.net/pdfs/Adoption-Form.pdf')
@@ -27,10 +27,10 @@ class Organization < ActiveRecord::Base
                     ORGANIZATION_FORM_OPTIONS
   has_attached_file :foster_form,
                     ORGANIZATION_FORM_OPTIONS
-  validates_attachment_content_type :adoption_form, content_type: [ 'application/pdf',
-                                                                    'application/msword',
-                                                                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                                                                    'application/vnd.openxmlformats-officedocument.wordprocessingml.template']
+  validates_attachment_content_type :adoption_form, content_type: ['application/pdf',
+                                                                   'application/msword',
+                                                                   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                                                                   'application/vnd.openxmlformats-officedocument.wordprocessingml.template']
 
   has_many :adoption_contacts, dependent: :destroy
   has_many :animals, dependent: :destroy
@@ -56,47 +56,47 @@ class Organization < ActiveRecord::Base
 
   attr_accessible :name, :phone_number, :address, :city, :state, :zip_code, :email, :website, :adoption_form, :volunteer_form, :relinquishment_form, :foster_form
 
-  validates_uniqueness_of :name
+  validates :name, uniqueness: true
 
-  #create the default statuses and assign them to the new organization
+  # create the default statuses and assign them to the new organization
   def add_default_status
     ['Adoptable', 'New Intake', 'Sanctuary', 'Sick', 'Deceased', 'Adopted', 'Foster Care'].each do |status_name|
       status = Status.new(status: status_name)
-      status.organization_id = self.id
+      status.organization_id = id
       status.save
     end
   end
 
-  #create the default animal colors and assign them to the new organization
+  # create the default animal colors and assign them to the new organization
   def add_default_animal_colors
-    ['Black', 'White', 'Gray', 'Brown'].each do |color_name|
+    %w(Black White Gray Brown).each do |color_name|
       animal_color = AnimalColor.new(color: color_name)
-      animal_color.organization_id = self.id
+      animal_color.organization_id = id
       animal_color.save
     end
   end
 
-  #create the default species and assign them to the new organization
+  # create the default species and assign them to the new organization
   def add_default_species
-    ['Cat', 'Dog', 'Hamster', 'Gerbil', 'Chinchilla', 'Bird', 'Rat', 'Mouse'].each do |species_name|
+    %w(Cat Dog Hamster Gerbil Chinchilla Bird Rat Mouse).each do |species_name|
       species = Species.new(name: species_name)
-      species.organization_id = self.id
+      species.organization_id = id
       species.save
     end
   end
 
   def modify_phone_number
     # unless self.phone_number.blank?
-      self.phone_number = self.phone_number.delete("^0-9") unless self.phone_number.blank?
+    self.phone_number = phone_number.delete('^0-9') unless phone_number.blank?
     # end
   end
 
   def formatted_phone
-    self.phone_number.blank? ? '' : number_to_phone(self.phone_number)
+    phone_number.blank? ? '' : number_to_phone(phone_number)
   end
 
   def has_info?
-    return false if self.phone_number.blank? and self.email.blank? and self.website.blank?
+    return false if phone_number.blank? && email.blank? && website.blank?
     true
   end
 
@@ -105,20 +105,20 @@ class Organization < ActiveRecord::Base
   end
 
   def owner
-    User.where(organization_id: self.id, owner: 1).first
+    User.where(organization_id: id, owner: 1).first
   end
 
   def pretty_website
-    if self.website && !url_protocol_present?
-      "http://#{self.website}"
+    if website && !url_protocol_present?
+      "http://#{website}"
     else
-      self.website
+      website
     end
   end
 
   private
 
   def url_protocol_present?
-    self.website[/\Ahttp:\/\//] || self.website[/\Ahttps:\/\//]
+    website[/\Ahttp:\/\//] || website[/\Ahttps:\/\//]
   end
 end

@@ -11,7 +11,7 @@ describe Admin::PostsController do
   end
 
   describe 'GET "index"' do
-    it "returns http success" do
+    it 'returns http success' do
       get 'index'
       response.should be_success
     end
@@ -20,46 +20,45 @@ describe Admin::PostsController do
       get 'index'
       assigns(:posts).include?(@post).should == true
     end
-
   end
 
-  describe "GET show" do
-    it "assigns the requested post as @post" do
-      get :show, {:id => @post.id}
+  describe 'GET show' do
+    it 'assigns the requested post as @post' do
+      get :show, params: { id: @post.id }
       assigns(:post).should eq(@post)
     end
   end
 
-  describe "GET new" do
-    it "assigns a new post as @post" do
+  describe 'GET new' do
+    it 'assigns a new post as @post' do
       get :new
       assigns(:post).should be_a_new(Post)
     end
   end
 
-  describe "GET edit" do
-    it "assigns the requested post as @post" do
-      get :edit, {:id => @post.id}
+  describe 'GET edit' do
+    it 'assigns the requested post as @post' do
+      get :edit, params: { id: @post.id }
       assigns(:post).should eq(@post)
     end
   end
 
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new post" do
-        expect {
-          post :create, {:post => FactoryGirl.attributes_for(:post)}
-        }.to change(Post, :count).by(1)
+  describe 'POST create' do
+    describe 'with valid params' do
+      it 'creates a new post' do
+        expect do
+          post :create, params: { post: FactoryGirl.attributes_for(:post) }
+        end.to change(Post, :count).by(1)
       end
 
-      it "assigns a newly created post as @post" do
-        post :create, {:post =>  FactoryGirl.attributes_for(:post)}
+      it 'assigns a newly created post as @post' do
+        post :create, params: { post: FactoryGirl.attributes_for(:post) }
         assigns(:post).should be_a(Post)
         assigns(:post).should be_persisted
       end
 
-      it "redirects to the created post" do
-        post :create, {:post =>  FactoryGirl.attributes_for(:post)}
+      it 'redirects to the created post' do
+        post :create, params: { post: FactoryGirl.attributes_for(:post) }
         response.should redirect_to(admin_post_path(Post.order(created_at: :desc).first))
       end
     end
@@ -85,15 +84,15 @@ describe Admin::PostsController do
   #   end
   # end
 
-  describe "DELETE destroy" do
-    it "destroys the requested post" do
-      expect {
-        delete :destroy, {:id => @post.id}
-      }.to change(Post, :count).by(-1)
+  describe 'DELETE destroy' do
+    it 'destroys the requested post' do
+      expect do
+        delete :destroy, params: { id: @post.id }
+      end.to change(Post, :count).by(-1)
     end
 
-    it "redirects to the posts list" do
-      delete :destroy, {:id => @post.id}
+    it 'redirects to the posts list' do
+      delete :destroy, params: { id: @post.id }
       response.should redirect_to(admin_posts_url)
     end
   end

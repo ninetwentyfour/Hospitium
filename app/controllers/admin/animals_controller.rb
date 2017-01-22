@@ -5,9 +5,7 @@ class Admin::AnimalsController < Admin::ApplicationController
   respond_to :html, :json, :csv, :js
 
   def index
-    if !params[:archived_view]
-      @archived_condition = {archived: false}
-    end
+    @archived_condition = { archived: false } unless params[:archived_view]
     @search = Animal.select('animals.name,
                               animals.microchip,
                               animals.birthday,
@@ -23,27 +21,27 @@ class Admin::AnimalsController < Admin::ApplicationController
                               animals.image_updated_at,
                               animals.organization_id,
                               animals.created_at,
-                              animals.updated_at').
-                    includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter).
-                    organization(current_user).
-                    where(@archived_condition).
-                    search(params[:q])
-    @animals = @search.result.paginate(:page => params[:page], :per_page => 10).order("name ASC")
+                              animals.updated_at')
+                    .includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter)
+                    .organization(current_user)
+                    .where(@archived_condition)
+                    .search(params[:q])
+    @animals = @search.result.paginate(page: params[:page], per_page: 10).order('name ASC')
 
     @presenter = Admin::Animals::IndexPresenter.new(current_user)
 
     respond_with(@animals) do |format|
       format.html
-      format.csv { render :csv => Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :biter).organization(current_user).all,
-                          :filename => 'animals' }
+      format.csv do
+        render csv: Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :biter).organization(current_user).all,
+               filename: 'animals'
+      end
     end
   end
 
   def show
     @animal = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :shelter, :shots).find(params[:id])
-    if @animal.documents.blank?
-      @animal.documents.build
-    end
+    @animal.documents.build if @animal.documents.blank?
     @presenter = Admin::Animals::ShowPresenter.new(current_user, @animal)
     respond_with(@animal)
   end
@@ -68,7 +66,7 @@ class Admin::AnimalsController < Admin::ApplicationController
       flash[:danger] = 'Animal was not successfully created.'
     end
 
-    respond_with(@animal, :location => admin_animal_path(@animal))
+    respond_with(@animal, location: admin_animal_path(@animal))
   end
 
   def update
@@ -76,7 +74,7 @@ class Admin::AnimalsController < Admin::ApplicationController
     @animal.update_attributes(animal_params)
     $statsd.increment 'animal.updated'
 
-    respond_with(@animal, :location => admin_animal_path(@animal))
+    respond_with(@animal, location: admin_animal_path(@animal))
   end
 
   def destroy
@@ -85,7 +83,7 @@ class Admin::AnimalsController < Admin::ApplicationController
     $statsd.increment 'animal.deleted'
     flash[:notice] = 'Successfully destroyed animal.'
 
-    respond_with(@animal, :location => admin_animals_path)
+    respond_with(@animal, location: admin_animals_path)
   end
 
   def duplicate
@@ -97,15 +95,15 @@ class Admin::AnimalsController < Admin::ApplicationController
       flash[:danger] = 'There was a problem duplicating.'
     end
 
-    redirect_to :back
+    redirect_back(fallback_location: admin_animals_path)
   end
 
   def cage_card
     @animal = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :shelter).find(params[:id])
 
     respond_with(@animal) do |format|
-      format.html {render :action => "cage_card", :layout => "cage_card"}
-      format.xml  { render :xml => @animal }
+      format.html { render action: 'cage_card', layout: 'cage_card' }
+      format.xml  { render xml: @animal }
     end
   end
 
@@ -113,15 +111,17 @@ class Admin::AnimalsController < Admin::ApplicationController
     @animal = Animal.includes(:animal_color, :animal_sex, :species, :status, :organization, :spay_neuter, :shelter).find(params[:id])
 
     respond_to do |format|
-      format.html {render :action => "qr_code", :layout => "qr_code"}
-      format.svg { render :qrcode => "
+      format.html { render action: 'qr_code', layout: 'qr_code' }
+      format.svg do
+        render qrcode: "
         #{@animal.name}
         #{@animal.species_name}
         ----
         #{@animal.organization_name}
-        #{view_context.number_to_phone(@animal.organization_phone_number, :area_code => true) unless @animal.organization_phone_number.blank?}
+        #{view_context.number_to_phone(@animal.organization_phone_number, area_code: true) unless @animal.organization_phone_number.blank?}
         #{@animal.organization_address unless @animal.organization_address.blank?}
-        #{@animal.organization_city unless @animal.organization_city.blank?} #{@animal.organization_state unless @animal.organization_state.blank?} #{@animal.organization_zip_code unless @animal.organization_zip_code.blank?}", :level => :h, :unit => 6 }
+        #{@animal.organization_city unless @animal.organization_city.blank?} #{@animal.organization_state unless @animal.organization_state.blank?} #{@animal.organization_zip_code unless @animal.organization_zip_code.blank?}", level: :h, unit: 6
+      end
     end
   end
 
@@ -136,17 +136,18 @@ class Admin::AnimalsController < Admin::ApplicationController
   end
 
   private
-    def animal_params
-      # this is terrible
-      params[:animal][:birthday] = Chronic.parse(params[:animal][:birthday]) if params[:animal][:birthday]
-      params[:animal][:date_of_intake] = Chronic.parse(params[:animal][:date_of_intake]) if params[:animal][:date_of_intake]
-      params[:animal][:date_of_well_check] = Chronic.parse(params[:animal][:date_of_well_check]) if params[:animal][:date_of_well_check]
-      params[:animal][:adopted_date] = Chronic.parse(params[:animal][:adopted_date]) if params[:animal][:adopted_date]
-      params[:animal][:fostered_date] = Chronic.parse(params[:animal][:fostered_date]) if params[:animal][:fostered_date]
-      params[:animal][:deceased] = Chronic.parse(params[:animal][:deceased]) if params[:animal][:deceased]
 
-      params.require(:animal).permit(:name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased,
-        :deceased_reason, :adopted_date, :animal_color_id, :image, :second_image, :third_image, :fourth_image, :public, :birthday, :animal_sex_id, :spay_neuter_id,
-        :biter_id, :status_id, :video_embed, :microchip, :archived, :fostered_date)
-    end
+  def animal_params
+    # this is terrible
+    params[:animal][:birthday] = Chronic.parse(params[:animal][:birthday]) if params[:animal][:birthday]
+    params[:animal][:date_of_intake] = Chronic.parse(params[:animal][:date_of_intake]) if params[:animal][:date_of_intake]
+    params[:animal][:date_of_well_check] = Chronic.parse(params[:animal][:date_of_well_check]) if params[:animal][:date_of_well_check]
+    params[:animal][:adopted_date] = Chronic.parse(params[:animal][:adopted_date]) if params[:animal][:adopted_date]
+    params[:animal][:fostered_date] = Chronic.parse(params[:animal][:fostered_date]) if params[:animal][:fostered_date]
+    params[:animal][:deceased] = Chronic.parse(params[:animal][:deceased]) if params[:animal][:deceased]
+
+    params.require(:animal).permit(:name, :previous_name, :species_id, :special_needs, :diet, :date_of_intake, :date_of_well_check, :shelter_id, :deceased,
+                                   :deceased_reason, :adopted_date, :animal_color_id, :image, :second_image, :third_image, :fourth_image, :public, :birthday, :animal_sex_id, :spay_neuter_id,
+                                   :biter_id, :status_id, :video_embed, :microchip, :archived, :fostered_date)
+  end
 end

@@ -14,7 +14,7 @@ require 'capybara/rspec'
 require 'capybara/poltergeist'
 # Capybara.javascript_driver = :poltergeist
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, {js_errors: false})
+  Capybara::Poltergeist::Driver.new(app, js_errors: false)
 end
 Capybara.javascript_driver = :poltergeist
 Capybara.server_port = 3001
@@ -55,18 +55,18 @@ RSpec.configure do |config|
   end
 
   [:controller, :view, :request].each do |type|
-    config.include ::Rails::Controller::Testing::TestProcess, :type => type
-    config.include ::Rails::Controller::Testing::TemplateAssertions, :type => type
-    config.include ::Rails::Controller::Testing::Integration, :type => type
+    config.include ::Rails::Controller::Testing::TestProcess, type: type
+    config.include ::Rails::Controller::Testing::TemplateAssertions, type: type
+    config.include ::Rails::Controller::Testing::Integration, type: type
   end
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
 
-  config.include Devise::TestHelpers, :type => :controller
-  config.include ControllerMacros, :type => :controller
-  config.include Warden::Test::Helpers, :type => :feature
-  config.include FeatureMacros, :type => :feature
-  config.include BestInPlace::TestHelpers, :type => :feature
+  config.include Devise::TestHelpers, type: :controller
+  config.include ControllerMacros, type: :controller
+  config.include Warden::Test::Helpers, type: :feature
+  config.include FeatureMacros, type: :feature
+  config.include BestInPlace::TestHelpers, type: :feature
 end

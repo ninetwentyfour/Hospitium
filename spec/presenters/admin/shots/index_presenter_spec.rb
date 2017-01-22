@@ -4,7 +4,7 @@ describe Admin::Shots::IndexPresenter do
   before :each do
     @user = FactoryGirl.create(:user)
   end
-  
+
   describe '#initialize' do
     it 'create presenter' do
       presenter = Admin::Shots::IndexPresenter.new(@user, nil, nil, nil)

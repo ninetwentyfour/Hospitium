@@ -66,7 +66,7 @@ feature 'Volunteer Contacts' do
     end
 
     xscenario 'user can add and remove documents to an volunteer contact' do
-      VCR.use_cassette('features/volunteer_contacts', :match_requests_on => [:method]) do
+      VCR.use_cassette('features/volunteer_contacts', match_requests_on: [:method]) do
         # add
         within '.nav-tabs' do
           click_on 'Documents'
@@ -82,9 +82,9 @@ feature 'Volunteer Contacts' do
           expect(page).to have_content 'arizona.jpg'
         end
       end
-      VCR.use_cassette('features/volunteer_contacts_destroy', :match_requests_on => [:method]) do
+      VCR.use_cassette('features/volunteer_contacts_destroy', match_requests_on: [:method]) do
         # remove
-        page.find(".fa-remove").click
+        page.find('.fa-remove').click
         expect(page).to have_content 'Successfully destroyed document.'
         within '.nav-tabs' do
           click_on 'Documents'
@@ -97,7 +97,7 @@ feature 'Volunteer Contacts' do
 
     scenario 'user can download a vcard of the contact', js: false do
       click_on 'Download Contact'
-      expect(page.text).to eq "BEGIN:VCARD VERSION:3.0 N:bob;billy;;; FN:billy bob ADR;TYPE=home,pref:;;123 fake st;;;; TEL:555-5554 EMAIL;TYPE=pref:test@example.com END:VCARD"
+      expect(page.text).to eq 'BEGIN:VCARD VERSION:3.0 N:bob;billy;;; FN:billy bob ADR;TYPE=home,pref:;;123 fake st;;;; TEL:555-5554 EMAIL;TYPE=pref:test@example.com END:VCARD'
       expect(page.response_headers['Content-Type']).to eq 'text/vcard; charset=utf-8'
     end
   end
@@ -167,7 +167,7 @@ feature 'Volunteer Contacts' do
         expect(page).to have_content @contact.first_name
         expect(page).to have_content @contact.last_name
 
-        page.find(".fa-remove").click
+        page.find('.fa-remove').click
         # page.driver.browser.switch_to.alert.accept # hack for selenium
         # page.driver.browser.accept_js_confirms # hack for webkit
       end

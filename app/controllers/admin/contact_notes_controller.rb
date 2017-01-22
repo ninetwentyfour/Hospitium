@@ -16,7 +16,7 @@ class Admin::ContactNotesController < Admin::CrudController
     else
       @search = Note.includes(:animal).where(user_id: current_user.id).search(params[:q])
     end
-    @notes = @search.result.paginate(:page => params[:page], :per_page => 10).order("updated_at DESC")
+    @notes = @search.result.paginate(page: params[:page], per_page: 10).order('updated_at DESC')
 
     respond_with(@notes)
   end
@@ -24,15 +24,15 @@ class Admin::ContactNotesController < Admin::CrudController
   def create
     @note = current_user.contact_notes.new(note_params)
     @note.organization_id = current_user.organization_id
-    @note.note = view_context.markdown(@note.note).gsub("\n","").gsub("\r","")
+    @note.note = view_context.markdown(@note.note).delete("\n").delete("\r")
     @note.save
     # AnimalsChannel.broadcast_to(@note.animal, @note)
     # ActionCable.server.broadcast 'messages',
     #   message: @note.to_json,
     #   user: current_user.username
     ActionCable.server.broadcast "notes_#{@note.noteable_id}",
-      record: @note.to_json,
-      user: current_user.username
+                                 record: @note.to_json,
+                                 user: current_user.username
     # $statsd.increment 'animal.note.created'
     respond_with(@note)
   end
@@ -42,11 +42,12 @@ class Admin::ContactNotesController < Admin::CrudController
     @note.destroy
     flash[:notice] = 'Successfully destroyed note.'
 
-    redirect_to :back
+    redirect_back(fallback_location: admin_animals_path)
   end
 
   private
-    def note_params
-      params.require(:contact_note).permit(permitted_attrs).merge(organization_id: current_user.organization_id)
-    end
+
+  def note_params
+    params.require(:contact_note).permit(permitted_attrs).merge(organization_id: current_user.organization_id)
+  end
 end

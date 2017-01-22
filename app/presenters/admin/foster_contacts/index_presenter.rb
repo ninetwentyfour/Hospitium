@@ -4,7 +4,7 @@ class Admin::FosterContacts::IndexPresenter
     @query = query
     @page = page
   end
-  
+
   def foster_contacts
     search.result.paginate(page: @page, per_page: 10).order(updated_at: :desc)
   end

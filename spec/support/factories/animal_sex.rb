@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :animal_sex do
-    sex "male"
+    sex 'male'
   end
 end

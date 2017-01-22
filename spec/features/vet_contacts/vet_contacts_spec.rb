@@ -1,10 +1,10 @@
 require 'spec_helper'
- 
-feature 'Vet Contacts' do 
+
+feature 'Vet Contacts' do
   before :each do
     @user = new_logged_in_user
   end
- 
+
   context 'creating a vet_contact' do
     scenario 'user creates a vet_contact' do
       visit admin_vet_contacts_path
@@ -100,7 +100,7 @@ feature 'Vet Contacts' do
       csv = CSV.parse(page.body)
 
       expect(csv.first).to eq ['ID', 'Clinic Name', 'Address', 'Phone', 'Email', 'Website', 'Hours', 'Emergency']
-      expect(csv.last).to eq [@contact.id, 
+      expect(csv.last).to eq [@contact.id,
                               @contact.clinic_name,
                               @contact.address,
                               @contact.phone,
@@ -114,7 +114,7 @@ feature 'Vet Contacts' do
       within first('tbody tr') do
         expect(page).to have_content @contact.clinic_name
 
-        page.find(".fa-remove").click
+        page.find('.fa-remove').click
         # page.driver.browser.switch_to.alert.accept # hack for selenium
         # page.driver.browser.accept_js_confirms # hack for webkit
       end
@@ -143,7 +143,7 @@ feature 'Vet Contacts' do
       within first('tbody') do
         expect(page).to have_content second_contact.clinic_name
         expect(page).to_not have_content @contact.clinic_name
-      end      
+      end
     end
 
     scenario 'uses pagination' do
@@ -159,7 +159,7 @@ feature 'Vet Contacts' do
 
       within first('tbody') do
         expect(page).to have_content @contact.clinic_name
-      end      
+      end
     end
   end
 end

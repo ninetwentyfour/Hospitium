@@ -14,7 +14,7 @@ describe ContactVcardHelper do
     TEL:555-555-5555
     EMAIL;TYPE=pref:example@example.com
     END:VCARD
-    '.gsub("  ", "")
+    '.gsub('  ', '')
   end
 
   describe '#generate_vcard' do

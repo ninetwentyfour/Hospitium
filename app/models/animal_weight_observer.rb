@@ -1,12 +1,11 @@
 require 'juggernaut'
 
 class AnimalWeightObserver < ActiveRecord::Observer
-
   def after_update(animal_weight)
-      publish(:update, animal_weight)
+    publish(:update, animal_weight)
   end
 
-  def publish(type, animal_weight)
+  def publish(_type, animal_weight)
     # Juggernaut.url = ENV['JUGG_URL']
     # Juggernaut.publish("/observer/animal_weight/#{animal_weight.id}", {
     #   id: animal_weight.id,
@@ -15,6 +14,6 @@ class AnimalWeightObserver < ActiveRecord::Observer
     #   record: animal_weight.changes
     # })
     ActionCable.server.broadcast "bip_#{animal_weight.id}",
-      record: animal_weight.changes
+                                 record: animal_weight.changes
   end
 end

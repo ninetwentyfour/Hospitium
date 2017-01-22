@@ -3,22 +3,22 @@ require 'spec_helper'
 describe Event do
   before(:each) do
     @event = FactoryGirl.create(:event)
-    
-    @attr = { 
+
+    @attr = {
 
     }
   end
-  
-  describe "relations" do
-    it{should belong_to(:animal)}
+
+  describe 'relations' do
+    it { should belong_to(:animal) }
   end
-  
+
   # describe "record_event" do
   #   it "should create a new general note" do
-  #     event_hash = { :type => "Test Event", 
-  #                    :message => "Test Message", 
-  #                    :organization => @event.animal.organization_id, 
-  #                    :animal => @event.animal.id 
+  #     event_hash = { :type => "Test Event",
+  #                    :message => "Test Message",
+  #                    :organization => @event.animal.organization_id,
+  #                    :animal => @event.animal.id
   #                  }
   #     time1 = Time.now
   #     event = Event.record_event(event_hash)
