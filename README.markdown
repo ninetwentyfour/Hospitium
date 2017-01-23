@@ -1,6 +1,6 @@
 # [hospitium.co](https://hospitium.co/)
 
-[![Build Status](https://secure.travis-ci.org/ninetwentyfour/Hospitium.png)](http://travis-ci.org/ninetwentyfour/Hospitium) [![Code Climate](https://codeclimate.com/github/ninetwentyfour/Hospitium.png)](https://codeclimate.com/github/ninetwentyfour/Hospitium) [![Dependency Status](https://gemnasium.com/ninetwentyfour/Hospitium.png)](https://gemnasium.com/ninetwentyfour/Hospitium) [![Coverage Status](https://coveralls.io/repos/ninetwentyfour/Hospitium/badge.png?branch=master)](https://coveralls.io/r/ninetwentyfour/Hospitium)
+[![CircleCI](https://circleci.com/gh/ninetwentyfour/Hospitium.svg?style=svg)](https://circleci.com/gh/ninetwentyfour/Hospitium) [![Code Climate](https://codeclimate.com/github/ninetwentyfour/Hospitium.png)](https://codeclimate.com/github/ninetwentyfour/Hospitium) [![Dependency Status](https://gemnasium.com/ninetwentyfour/Hospitium.png)](https://gemnasium.com/ninetwentyfour/Hospitium) [![Coverage Status](https://coveralls.io/repos/ninetwentyfour/Hospitium/badge.png?branch=master)](https://coveralls.io/r/ninetwentyfour/Hospitium)
 
 Created by [Travis Berry](http://www.travisberry.com) and [Apple Wood Rescue](http://www.applewoodrescue.org).
 
