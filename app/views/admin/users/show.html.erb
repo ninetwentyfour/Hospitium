@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col-sm-2 col-md-2 col-lg-1">
 					<div class="avatar">
-						<%= gravatar_image_tag("#{@user.email}", :alt => "#{@user.email}", :gravatar => { :size => 130 }, :class => "profile-avatar") %>
+						<%= gravatar_image_tag("#{@user.email}", :alt => "#{@user.email}", :gravatar => { :size => 260 }, :class => "profile-avatar") %>
 					</div>
 				</div>
 				<div class="col-sm-10 col-md-10 col-lg-11">
@@ -80,7 +80,7 @@
 						        <i class="<%= public_activity_icon(activity.key.split(".").last) %>"></i>
 						        <span class="date"><%= activity.created_at.strftime("%d %b") %></span>
 						        <div class="content">
-						          <p><strong><%= gravatar_image_tag("#{activity.parameters[:author_email]}", :alt => "#{activity.parameters[:author_email]}", :gravatar => { :size => 25 }) %> <%= activity.parameters[:author_name] %></strong> has <%= past_tense_actions(activity.key.split(".").last) %> <%= indefinite_articlerize(activity.trackable_type.underscore.humanize(capitalize: false) ) %>:</p>
+						          <p><strong><%= gravatar_image_tag("#{activity.parameters[:author_email]}", :alt => "#{activity.parameters[:author_email]}", :gravatar => { :size => 50 }) %> <%= activity.parameters[:author_name] %></strong> has <%= past_tense_actions(activity.key.split(".").last) %> <%= indefinite_articlerize(activity.trackable_type.underscore.humanize(capitalize: false) ) %>:</p>
 						          <blockquote>
 						            <% if activity.key.split(".").last == 'update' %>
 						              <% activity.parameters[:summary].each do |update_key, update_value| %>

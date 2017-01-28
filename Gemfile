@@ -19,7 +19,7 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'ransack'
 gem 'juggernaut'
-gem 'gravatar_image_tag'
+gem 'gravatar_image_tag', github: 'ninetwentyfour/gravatar_image_tag'
 gem "spreadsheet"
 gem "comma"
 gem 'redcarpet'

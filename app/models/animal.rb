@@ -15,8 +15,8 @@ class Animal < ActiveRecord::Base
     s3_protocol: 'https',
     s3_credentials: { access_key_id: ENV['S3_KEY'], secret_access_key: ENV['S3_SECRET'] },
     bucket: 'hospitium-static-v2',
-    styles: { large: '530x530#', medium: '260x180#', thumb: '140x140#' },
-    default_url: 'https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png',
+    styles: { large: '1060x1060#', medium: '520x360#', thumb: '280x280#' },
+    default_url: 'https://d4uktpxr9m70.cloudfront.net/images/no-animal-retina.png',
     url: '/system/:class/:hash/:style/:filename',
     # :url  => "/system/:class_migration/:animalname_:orgname_:createdat/:style/:filename",
     hash_secret: ENV['SALTY']
