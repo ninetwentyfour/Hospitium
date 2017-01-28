@@ -7,15 +7,11 @@ else
     config.aws_secret_access_key = ENV['S3_SECRET']
     config.fog_directory = ENV['FOG_DIRECTORY']
 
-    # config.aws_access_key_id = "AKIAJCZTCSIU55PGYHSA"
-    # config.aws_secret_access_key = "x92SrrbPSg8mwQFZ6BL9TadonYrdr6GhGxTf+zXS"
-    # config.fog_directory = "hospitium-app-test"
-
     # Increase upload performance by configuring your region
     # config.fog_region = 'eu-west-1'
     #
     # Don't delete files from the store
-    # config.existing_remote_files = "keep"
+    config.existing_remote_files = "ignore"
     #
     # Automatically replace files with their equivalent gzip compressed version
     config.gzip_compression = true
@@ -26,5 +22,12 @@ else
     #
     # Fail silently.  Useful for environments such as Heroku
     config.fail_silently = true
+    config.custom_headers = {
+      "\.(ttf|otf|eot|woff|woff2)$" => {
+        access_control_allow_origin: '*'
+      },
+      ".*" => { cache_control: 'max-age=315576000, immutable', expires: 1.year.from_now.httpdate },
+      "\.(svg)$" => { content_type: 'image/svg+xml' }
+    }
   end
 end
