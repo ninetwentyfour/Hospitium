@@ -9,7 +9,7 @@
       <ul class="nav navbar-nav navbar-right user-nav">
         <% if user_signed_in? %>
           <li class="dropdown profile_menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= gravatar_image_tag("#{current_user.email}", :alt => "#{current_user.email}", :gravatar => { :size => 25 }) %><span><%= current_user.username %></span> <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= gravatar_image_tag("#{current_user.email}", :alt => "#{current_user.email}", :gravatar => { :size => 50 }) %><span><%= current_user.username %></span> <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="/admin">Dashboard</a></li>
               <li><a href="/admin/users/<%= current_user.id %>">User Settings</a></li>
@@ -21,7 +21,7 @@
           <li class="divider-vertical"></li>
           <li><a href="/users/sign_in">Sign In</a></li>
         <% end %>
-      </ul>     
+      </ul>
       <ul class="nav navbar-nav not-nav hidden-xs">
         <li><a href="/why-hospitium">Why Hospitium</a></li>
         <li><a href="/features">Features</a></li>
@@ -29,7 +29,7 @@
         <li><a href="/animals">Adopt an Animal</a></li>
         <li><a href="/posts">Blog</a></li>
       </ul>
- 
+
     </div>
   </div>
 </div>

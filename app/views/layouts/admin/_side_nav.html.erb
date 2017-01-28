@@ -6,7 +6,7 @@
         <!--LOGO-->
         <div class="sidebar-logo">
           <div class="logo">
-          		<a class="brand" href="/" style="padding:2px 20px 0px 0px;"><%= image_tag("hos-logo6.png", :size => "175x35")%></a>
+							<a class="brand" href="/" style="padding:2px 20px 0px 0px;font-weight:100;"><%= image_tag("hos.svg", width: '35px', height: '35px', style: 'vertical-align:bottom;') %>Hospitium</a>
           </div>
         </div>
         <div class="side-user">
@@ -15,7 +15,7 @@
         <!--Menu-->
 				<ul class="cl-vnavigation">
           <li class="parent visible-xs-block">
-            <a href="#"><%= gravatar_image_tag("#{current_user.email}", :alt => "#{current_user.email}", :gravatar => { :size => 25 }) %><span><%= current_user.username %></span></a>
+            <a href="#"><%= gravatar_image_tag("#{current_user.email}", :alt => "#{current_user.email}", :gravatar => { :size => 50 }) %><span><%= current_user.username %></span></a>
             <ul class="sub-menu">
               <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
             </ul>

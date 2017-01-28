@@ -1,9 +1,4 @@
-<script src="https://d4uktpxr9m70.cloudfront.net/juggernaut.min3.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<script nonce=<%= content_security_policy_nonce(:script) %>>
-  window.hospitiumENV = {};
-  hospitiumENV.juggernautURL = '<%= ENV['HOSPITIUM_JUGG_JS_URL'] %>';
-</script>
 <%= javascript_include_tag "application" %>
 <%= yield :javascript_footer %>
 <%#= render 'layouts/olark' %>

@@ -16,7 +16,7 @@
 			<div class="">
 				<div class="col-sm-12 col-md-12 col-lg-7 animal-pics clearfix col-lg-push-5">
           <div class="gallery-cont">
-            <% unless animal.image.url(:medium) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" %>
+            <% unless animal.image.url(:medium) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-retina.png" %>
               <div class="item col-sm-6 col-md-6 col-lg-6 pull-left">
                 <div class="photo">
                   <div class="head">
@@ -30,7 +30,7 @@
                 </div>
               </div>
             <% end %>
-            <% unless animal.second_image.url(:medium) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" %>
+            <% unless animal.second_image.url(:medium) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-retina.png" %>
               <div class="item col-sm-6 col-md-6 col-lg-6 pull-left">
                 <div class="photo">
                   <div class="head">
@@ -44,7 +44,7 @@
                 </div>
               </div>
             <% end %>
-            <% unless animal.third_image.url(:medium) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" %>
+            <% unless animal.third_image.url(:medium) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-retina.png" %>
               <div class="item col-sm-6 col-md-6 col-lg-6 pull-left">
                 <div class="photo">
                   <div class="head">
@@ -58,7 +58,7 @@
                 </div>
               </div>
             <% end %>
-            <% unless animal.fourth_image.url(:medium) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-new-size-logo2.png" %>
+            <% unless animal.fourth_image.url(:medium) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-retina.png" %>
               <div class="item col-sm-6 col-md-6 col-lg-6 pull-left">
                 <div class="photo">
                   <div class="head">
@@ -119,11 +119,13 @@
 				<h3><%= @animal.name %></h3>
       </div>
       <div class="modal-body" style="overflow:hidden;">
-				<% unless @animal.image.url(:large) == "/images/large/missing.png" %>
-					<img src="<%= @animal.image.url(:large) %>" alt="">
-				<% else %>
-					<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-large-logo2.png" alt="">
-				<%end%>
+				<center>
+					<% unless @animal.image.url(:large) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-retina.png" %>
+						<img src="<%= @animal.image.url(:large) %>" alt="" width='530px'>
+					<% else %>
+						<%= image_tag 'no-animal-large-retina.png', width: '530px' %>
+					<%end%>
+				</center>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -140,11 +142,13 @@
 				<h3><%= @animal.name %></h3>
       </div>
       <div class="modal-body" style="overflow:hidden;">
-				<% unless @animal.second_image.url(:large) == "/second_images/large/missing.png" %>
-					<img src="<%= @animal.second_image.url(:large) %>" alt="">
-				<% else %>
-					<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-large-logo2.png" alt="">
-				<%end%>
+				<center>
+					<% unless @animal.second_image.url(:large) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-retina.png" %>
+						<img src="<%= @animal.second_image.url(:large) %>" alt="" width='530px'>
+					<% else %>
+						<%= image_tag 'no-animal-large-retina.png', width: '530px' %>
+					<%end%>
+				</center>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -161,11 +165,13 @@
 				<h3><%= @animal.name %></h3>
       </div>
       <div class="modal-body" style="overflow:hidden;">
-				<% unless @animal.third_image.url(:large) == "/third_images/large/missing.png" %>
-					<img src="<%= @animal.third_image.url(:large) %>" alt="">
-				<% else %>
-					<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-large-logo2.png" alt="">
-				<%end%>
+				<center>
+					<% unless @animal.third_image.url(:large) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-retina.png" %>
+						<img src="<%= @animal.third_image.url(:large) %>" alt="" width='530px'>
+					<% else %>
+						<%= image_tag 'no-animal-large-retina.png', width: '530px' %>
+					<%end%>
+				</center>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -182,11 +188,13 @@
 				<h3><%= @animal.name %></h3>
       </div>
       <div class="modal-body" style="overflow:hidden;">
-				<% unless @animal.fourth_image.url(:large) == "/fourth_images/large/missing.png" %>
-					<img src="<%= @animal.fourth_image.url(:large) %>" alt="">
-				<% else %>
-					<img src="https://d4uktpxr9m70.cloudfront.net/images/no-animal-large-logo2.png" alt="">
-				<%end%>
+				<center>
+					<% unless @animal.fourth_image.url(:large) == "https://d4uktpxr9m70.cloudfront.net/images/no-animal-retina.png" %>
+						<img src="<%= @animal.fourth_image.url(:large) %>" alt="" width='530px'>
+					<% else %>
+						<%= image_tag 'no-animal-large-retina.png', width: '530px' %>
+					<%end%>
+				</center>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
