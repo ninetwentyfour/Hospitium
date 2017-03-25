@@ -37,6 +37,14 @@ GIT
     gravatar_image_tag (1.2.0)
 
 GIT
+  remote: git://github.com/ninetwentyfour/hospitium_prod_engine.git
+  revision: 0f28030b004cfc8932b993c3fa2f2c37e8798ff5
+  specs:
+    hospitium_prod_engine (0.0.1)
+      rails (~> 5.0.1)
+      sendgrid-ruby
+
+GIT
   remote: git://github.com/ninetwentyfour/webdack-uuid_migration.git
   revision: e8e6f69bb08a922d21d40ea5d9e0ce3b94fd832a
   specs:
@@ -424,6 +432,7 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-ole (1.2.11.7)
     ruby-progressbar (1.8.1)
+    ruby_http_client (3.0.1)
     rubyzip (1.2.0)
     safe_yaml (1.0.4)
     sanitize (3.0.2)
@@ -448,6 +457,8 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
+    sendgrid-ruby (4.0.8)
+      ruby_http_client (~> 3.0.1)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
     simple_oauth (0.2.0)
@@ -546,6 +557,7 @@ DEPENDENCIES
   factory_girl_rails
   gravatar_image_tag!
   heroku
+  hospitium_prod_engine!
   impressionist!
   jbuilder
   jquery-rails (~> 4.2)

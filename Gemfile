@@ -131,3 +131,7 @@ group :test do
 	gem 'simplecov', :require => false
 	gem 'coveralls', :require => false
 end
+
+if ENV['HOSPITIUM_HOSTED_APP']
+  gem 'hospitium_prod_engine', github: 'ninetwentyfour/hospitium_prod_engine'
+end
