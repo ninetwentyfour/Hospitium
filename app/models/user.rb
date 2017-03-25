@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   attr_accessor :login, :no_send_email, :skip_default_role, :unconfirmed_email
 
   before_create :add_to_organization
-  after_create :add_default_role, :send_new_email, :increment_stats
+  after_create :add_default_role, :increment_stats
   before_save :ensure_authentication_token
 
   # Setup accessible (or protected) attributes for your model
@@ -80,22 +80,6 @@ class User < ActiveRecord::Base
 
   def should_validate_organization_name?
     organization_id.nil?
-  end
-
-  def send_new_email
-    unless Rails.env.test? || (no_send_email == true)
-      $statsd.increment 'user.created'
-      client = SendGrid::Client.new(api_key: ENV['SENDGRID_PASSWORD'])
-      mail = SendGrid::Mail.new do |m|
-        m.to = 'contact@travisberry.com'
-        m.from = 'contact@hospitium.co'
-        m.subject = 'Hospitium New User'
-        m.text = "#{username} created an account. #{email} in organization #{organization.name}"
-      end
-      client.send(mail)
-    end
-  rescue => e
-    notify_airbrake(e)
   end
 
   def increment_stats

@@ -33,7 +33,6 @@ gem 'octokit'
 gem 'chronic'
 gem 'public_activity'
 gem 'vpim'
-gem 'sendgrid-ruby'
 # generate color schemes
 gem 'paleta'
 # security
