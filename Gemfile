@@ -86,7 +86,7 @@ end
 	gem 'client_side_validations', github: 'ninetwentyfour/client_side_validations'
 	gem 'best_in_place', github: "ninetwentyfour/best_in_place"
 	gem 'therubyracer'
-	gem 'jquery-rails', '~> 4.2'
+	gem 'jquery-rails', '~> 4.4'
 	gem 'select2-rails'
 	gem 'site_meta'
 	gem 'meta-tags'
