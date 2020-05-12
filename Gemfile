@@ -4,7 +4,7 @@ ruby "2.3.3"
 # load ENV vars for testing and dev
 gem 'dotenv-rails', :groups => [:development, :test]
 
-gem 'rails', '5.0.1'
+gem 'rails', '5.0.7.2'
 
 # Gems used in all environments
 # gem 'mysql2'
