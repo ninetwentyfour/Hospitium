@@ -82,7 +82,7 @@ end
 	gem 'rqrcode-rails3'
 	gem 'asset_sync'
 	gem 'sanitize'
-	gem 'puma', '~> 3.4.0'
+	gem 'puma', '~> 3.12.5'
 	gem 'client_side_validations', github: 'ninetwentyfour/client_side_validations'
 	gem 'best_in_place', github: "ninetwentyfour/best_in_place"
 	gem 'therubyracer'
