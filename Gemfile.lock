@@ -37,14 +37,6 @@ GIT
     gravatar_image_tag (1.2.0)
 
 GIT
-  remote: git://github.com/ninetwentyfour/hospitium_prod_engine.git
-  revision: 0f28030b004cfc8932b993c3fa2f2c37e8798ff5
-  specs:
-    hospitium_prod_engine (0.0.1)
-      rails (~> 5.0.1)
-      sendgrid-ruby
-
-GIT
   remote: git://github.com/ninetwentyfour/webdack-uuid_migration.git
   revision: e8e6f69bb08a922d21d40ea5d9e0ce3b94fd832a
   specs:
@@ -168,6 +160,7 @@ GEM
       activesupport (>= 3.0.0)
     commonjs (0.2.7)
     concurrent-ruby (1.0.4)
+    connection_pool (2.2.3)
     coveralls (0.7.1)
       multi_json (~> 1.3)
       rest-client
@@ -188,7 +181,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
-    domain_name (0.5.21)
+    domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (0.11.1)
       dotenv-deployment (~> 0.0.2)
@@ -237,13 +230,10 @@ GEM
     formatador (0.2.5)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    heroku (1.6.3)
-      json (>= 1.1.0)
-      launchy (>= 0.3.2)
-      rest-client (>= 1.2.0, < 2.0.0)
+    heroku (3.99.4)
     http (0.6.2)
       http_parser.rb (~> 0.6.0)
-    http-cookie (1.0.2)
+    http-cookie (1.0.3)
       domain_name (~> 0.5)
     http_parser.rb (0.6.0)
     httparty (0.14.0)
@@ -265,7 +255,7 @@ GEM
     juggernaut (2.1.1)
       redis
     jwt (1.5.6)
-    launchy (2.4.2)
+    launchy (2.4.3)
       addressable (~> 2.3)
     less (2.6.0)
       commonjs (~> 0.2.7)
@@ -282,29 +272,31 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
-    mechanize (2.7.2)
+    mechanize (2.7.7)
       domain_name (~> 0.5, >= 0.5.1)
-      http-cookie (~> 1.0.0)
-      mime-types (~> 1.17, >= 1.17.2)
+      http-cookie (~> 1.0)
+      mime-types (>= 1.17.2)
       net-http-digest_auth (~> 1.1, >= 1.1.1)
-      net-http-persistent (~> 2.5, >= 2.5.2)
-      nokogiri (~> 1.4)
+      net-http-persistent (>= 2.5.2)
+      nokogiri (~> 1.6)
       ntlm-http (~> 0.1, >= 0.1.1)
+      webrick (~> 1.7)
       webrobots (>= 0.0.9, < 0.2)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
     meta-tags (2.1.0)
       actionpack (>= 3.0.0)
     method_source (0.8.2)
-    mime-types (1.25.1)
+    mime-types (2.99.3)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     naught (1.0.0)
-    net-http-digest_auth (1.4)
-    net-http-persistent (2.9.4)
+    net-http-digest_auth (1.4.1)
+    net-http-persistent (4.0.1)
+      connection_pool (~> 2.2)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
@@ -432,7 +424,6 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-ole (1.2.11.7)
     ruby-progressbar (1.8.1)
-    ruby_http_client (3.0.1)
     rubyzip (1.2.0)
     safe_yaml (1.0.4)
     sanitize (3.0.2)
@@ -457,8 +448,6 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
-    sendgrid-ruby (4.0.8)
-      ruby_http_client (~> 3.0.1)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
     simple_oauth (0.2.0)
@@ -505,7 +494,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.6)
+    unf_ext (0.0.7.7)
     unicode-display_width (1.1.3)
     useragent (0.16.8)
     uuidtools (2.1.5)
@@ -516,7 +505,8 @@ GEM
     webmock (1.20.4)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
-    webrobots (0.1.1)
+    webrick (1.7.0)
+    webrobots (0.1.2)
     websocket (1.2.3)
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
@@ -557,7 +547,6 @@ DEPENDENCIES
   factory_girl_rails
   gravatar_image_tag!
   heroku
-  hospitium_prod_engine!
   impressionist!
   jbuilder
   jquery-rails (~> 4.2)
