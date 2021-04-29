@@ -1,0 +1,22 @@
+version: 2
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "12:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: excon
+    versions:
+    - 0.78.1
+    - 0.79.0
+  - dependency-name: ffi
+    versions:
+    - 1.14.2
+  - dependency-name: protected_attributes_continued
+    versions:
+    - 1.7.0
+  - dependency-name: secure_headers
+    versions:
+    - 6.3.1
